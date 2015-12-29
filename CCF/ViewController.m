@@ -57,6 +57,53 @@
     for (int i = 0; i < contents.count; i++) {
         IGXMLNode * postNode = contents[i];
         
+        IGXMLNode * postInfoNode = [postNode children][1];
+        NSString* trimString = [postInfoNode.firstChild.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        NSMutableArray * infos = [NSMutableArray array];
+        
+        NSArray *separatedString = [trimString componentsSeparatedByString:@"\n"];
+        for (int i = 0 ; i < separatedString.count; i++) {
+            NSString * deleteT = [separatedString[i] stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+            deleteT = [deleteT stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            
+            if (![deleteT isEqualToString:@""]) {
+                [infos addObject:deleteT];
+            }
+            
+        }
+        
+        CCFPost * ccfpost = [[CCFPost alloc]init];
+        if (infos.count > 2) {
+            // 说明有标题
+            ccfpost.postTitle = infos[2];
+            ccfpost.postTitle = infos[1];
+            ccfpost.postLouCeng = infos[0];
+        } else{
+            ccfpost.postTitle = infos[1];
+            ccfpost.postLouCeng = infos[0];
+        }
+        
+        IGXMLNode * postContentNode = [postNode children][0];
+        
+        NSLog(@"%d ->> %@    \n", i, [postContentNode innerHtml]);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -90,7 +137,7 @@
         //IGXMLNode * solveCountNode = subInfoNode;
         
         
-        NSLog(@"%d ->> %@    \n", i, postCountNode.text  );
+
     }
     
     NSLog(@"================= end");

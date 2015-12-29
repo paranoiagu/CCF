@@ -9,6 +9,11 @@
 #import "ViewController.h"
 #import <AFNetworking.h>
 #import <IGHTMLQuery.h>
+#import "CCFUser.h"
+#import "CCFPost.h"
+#import "CCFThread.h"
+
+
 
 @interface ViewController ()
 
@@ -42,22 +47,54 @@
 }
 
 
--(void) parseUserInfo:(NSString*) html{
+-(NSArray*) parseUserInfo:(NSString*) html{
+    NSArray * posts = [NSArray array];
+    
     NSLog(@"================= start");
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet* contents = [document queryWithXPath:@"//*[@id='posts']/div[*]/div/div/div/table/tr[1]"];
     
     for (int i = 0; i < contents.count; i++) {
         IGXMLNode * postNode = contents[i];
+        
+        
+        
+        
+        CCFUser* ccfuser = [[CCFUser alloc]init];
+        
         IGXMLNode * userInfoNode = postNode.firstChild;
         IGXMLNode *nameNode = userInfoNode.firstChild.firstChild;
         
         NSString *name = nameNode.innerHtml;
+        ccfuser.userName = name;
         NSString *nameLink = [nameNode attribute:@"href"];
-        NSLog(@"%d ->> %@    %@  \n", i, name , nameLink );
+        ccfuser.userLink = [@"https://bbs.et8.net/bbs/" stringByAppendingString:@"member.php?u=70961"];
+        ccfuser.userID = [nameLink componentsSeparatedByString:@"member.php?u="].firstObject;
+        //avatar
+        IGXMLNode * avatarNode = userInfoNode.children[1];
+        NSString * avatarLink = [[[avatarNode children] [1] firstChild] attribute:@"src"];
+        ccfuser.userAvatar = avatarLink;
+        
+        //rank
+        IGXMLNode * rankNode = userInfoNode.children[3];
+        ccfuser.userRank = rankNode.text;
+         // 资料div
+        IGXMLNode * subInfoNode = userInfoNode.children[4];
+        // 注册日期
+        IGXMLNode * signDateNode = [[subInfoNode children][1] children] [1];
+        ccfuser.userSignDate = signDateNode.text;
+        // 帖子数量
+        IGXMLNode * postCountNode = [[subInfoNode children][1] children] [2];
+        ccfuser.userPostCount = postCountNode.text;
+        // 精华 解答 暂时先不处理
+        //IGXMLNode * solveCountNode = subInfoNode;
+        
+        
+        NSLog(@"%d ->> %@    \n", i, postCountNode.text  );
     }
     
     NSLog(@"================= end");
+    return posts;
 }
 
 - (NSString *)replaceUnicode:(NSString *)unicodeStr{

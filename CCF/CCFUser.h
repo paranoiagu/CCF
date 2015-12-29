@@ -11,7 +11,8 @@
 @interface CCFUser : NSObject
 
 @property (nonatomic, assign) NSString* userName;
-@property (nonatomic, assign) NSUInteger userID;
+@property (nonatomic, assign) NSString* userID;
+@property (nonatomic, assign) NSString* userAvatar;
 @property (nonatomic, assign) NSString* userRank;
 @property (nonatomic, assign) NSString* userLink;
 @property (nonatomic, assign) NSString* userSignDate;

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0F37B632A0B142C122881626A221666D167EF9D3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "B471BED9AD1BCDB1D65AE8593D137A88BB290F20" : 0,
+    "0F37B632A0B142C122881626A221666D167EF9D3" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "615CB220-6E1B-4E7C-8300-5CCB5D5A0C0D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "B471BED9AD1BCDB1D65AE8593D137A88BB290F20" : "CCF\/Objective-C-HMTL-Parser\/",
+    "0F37B632A0B142C122881626A221666D167EF9D3" : "CCF\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CCF",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CCF.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:andforce\/CCF.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0F37B632A0B142C122881626A221666D167EF9D3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/zootreeves\/Objective-C-HMTL-Parser.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B471BED9AD1BCDB1D65AE8593D137A88BB290F20"
+    }
+  ]
+}

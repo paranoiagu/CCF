@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import <AFNetworking.h>
-#import <TFHpple.h>
+#import <IGHTMLQuery.h>
 
 @interface ViewController ()
 
@@ -27,34 +27,10 @@
     [manager GET:@"https://bbs.et8.net/bbs/showthread.php?t=1331214" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         //
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        string = [self replaceUnicode:string];
+        NSString *html = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        html = [self replaceUnicode:html];
         
-        //NSLog(@"\n------>>>>\n%@", string);
-        NSData* html = [string dataUsingEncoding:NSUTF8StringEncoding];
-
-        TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:html];
-
-        
-        
-        // 回帖
-        //div[@id='posts']/div[*]/div
-        
-        // 回帖人
-        //*[@id="post*"]/tbody/tr[1]/td[1]
-        
-        
-        NSArray * elements  = [doc searchWithXPathQuery:@"//div[@id='posts']/div[*]/div/div"];
-        
-
-        for (int i = 0 ; i < 1; i ++) {
-            //TFHppleElement *element = [elements[i]children][1];
-            
-            NSLog(@"\n------>>>>\n%@", [[elements[i]children][1] raw]);
-            
-            //NSLog(@"\n------>>>>\n%@", [[element firstChildWithClassName:@"tborder"] raw]);
-        }
-        
+        [self parseUserInfo:html];
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -65,8 +41,26 @@
     
 }
 
-- (NSString *)replaceUnicode:(NSString *)unicodeStr
-{
+
+-(void) parseUserInfo:(NSString*) html{
+    NSLog(@"================= start");
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
+    IGXMLNodeSet* contents = [document queryWithXPath:@"//*[@id='posts']/div[*]/div/div/div/table/tr[1]"];
+    
+    for (int i = 0; i < contents.count; i++) {
+        IGXMLNode * postNode = contents[i];
+        IGXMLNode * userInfoNode = postNode.firstChild;
+        IGXMLNode *nameNode = userInfoNode.firstChild.firstChild;
+        
+        NSString *name = nameNode.innerHtml;
+        NSString *nameLink = [nameNode attribute:@"href"];
+        NSLog(@"%d ->> %@    %@  \n", i, name , nameLink );
+    }
+    
+    NSLog(@"================= end");
+}
+
+- (NSString *)replaceUnicode:(NSString *)unicodeStr{
     
     NSString *tempStr1 = [unicodeStr stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
     NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];

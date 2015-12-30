@@ -15,7 +15,10 @@
 
 
 
-@interface LoginViewController ()
+@interface LoginViewController (){
+
+    BOOL  isLogin;
+}
 
 @end
 
@@ -24,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    isLogin = NO;
+    
+    
     NSURL *URL = [NSURL URLWithString:@"https://bbs.et8.net/bbs/login.php?do=vcode"];
 
     [_doorImageView setImageWithURL:URL];
@@ -44,9 +50,13 @@
 }
 */
 
+
+
 - (IBAction)login:(id)sender {
-    NSString *name = @"";
-    NSString *password = @"";
+    
+    
+    NSString *name = @"马小甲";
+    NSString *password = @"CCF!@#456";
     
     NSString * ND5_PWD = [self md5HexDigest: password];
     
@@ -148,5 +158,26 @@
         NSLog(@"refreshDoor failed");
     }];
     
+}
+- (IBAction)tttttt:(id)sender {
+    
+    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    
+    
+    [manager GET:@"https://bbs.et8.net/bbs/member.php?u=71250" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        //
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSString *html = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        html = [self replaceUnicode:html];
+        NSLog(@"%@", html);
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //
+        NSLog(@"%@", error);
+    }];
+
 }
 @end

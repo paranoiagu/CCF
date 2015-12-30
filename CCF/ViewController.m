@@ -13,6 +13,7 @@
 #import "CCFPost.h"
 #import "CCFThread.h"
 
+#import "LoginViewController.h"
 
 
 @interface ViewController ()
@@ -24,6 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+
+    
+    
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
@@ -173,4 +177,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)login:(UIButton *)sender {
+    LoginViewController *login = [[LoginViewController alloc]init];
+    [self presentViewController:login animated:YES completion:^{
+        //
+    }];
+}
 @end

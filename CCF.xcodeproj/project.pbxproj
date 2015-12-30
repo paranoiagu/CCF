@@ -10,6 +10,8 @@
 		4D1EEBAB1C32502A0084F6E9 /* CCFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBAA1C32502A0084F6E9 /* CCFUser.m */; };
 		4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBAD1C3251E70084F6E9 /* CCFPost.m */; };
 		4D1EEBB11C3260130084F6E9 /* CCFThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBB01C3260130084F6E9 /* CCFThread.m */; };
+		4D1EEBBB1C33D4FD0084F6E9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBB91C33D4FD0084F6E9 /* LoginViewController.m */; };
+		4D1EEBBC1C33D4FD0084F6E9 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D1EEBBA1C33D4FD0084F6E9 /* LoginViewController.xib */; };
 		4D339D901C31454A0022A6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D339D8F1C31454A0022A6A4 /* main.m */; };
 		4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D339D921C31454A0022A6A4 /* AppDelegate.m */; };
 		4D339D961C31454A0022A6A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D339D951C31454A0022A6A4 /* ViewController.m */; };
@@ -28,6 +30,9 @@
 		4D1EEBAD1C3251E70084F6E9 /* CCFPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFPost.m; sourceTree = "<group>"; };
 		4D1EEBAF1C3260130084F6E9 /* CCFThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThread.h; sourceTree = "<group>"; };
 		4D1EEBB01C3260130084F6E9 /* CCFThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThread.m; sourceTree = "<group>"; };
+		4D1EEBB81C33D4FD0084F6E9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		4D1EEBB91C33D4FD0084F6E9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		4D1EEBBA1C33D4FD0084F6E9 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		4D339D8B1C31454A0022A6A4 /* CCF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D339D8F1C31454A0022A6A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4D339D911C31454A0022A6A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -100,6 +105,9 @@
 				4D339DA21C31454B0022A6A4 /* Info.plist */,
 				4D339D9A1C31454A0022A6A4 /* CCF.xcdatamodeld */,
 				4D339D8E1C31454A0022A6A4 /* Supporting Files */,
+				4D1EEBB81C33D4FD0084F6E9 /* LoginViewController.h */,
+				4D1EEBB91C33D4FD0084F6E9 /* LoginViewController.m */,
+				4D1EEBBA1C33D4FD0084F6E9 /* LoginViewController.xib */,
 			);
 			path = CCF;
 			sourceTree = "<group>";
@@ -190,6 +198,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D1EEBBC1C33D4FD0084F6E9 /* LoginViewController.xib in Resources */,
 				4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */,
 				4D339D9E1C31454B0022A6A4 /* Assets.xcassets in Resources */,
 				4D339D991C31454A0022A6A4 /* Main.storyboard in Resources */,
@@ -251,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D1EEBBB1C33D4FD0084F6E9 /* LoginViewController.m in Sources */,
 				4D1EEBB11C3260130084F6E9 /* CCFThread.m in Sources */,
 				4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */,
 				4D339D9C1C31454A0022A6A4 /* CCF.xcdatamodeld in Sources */,

@@ -35,21 +35,6 @@
     [_doorImageView setImageWithURL:URL];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 
 - (IBAction)login:(id)sender {
@@ -94,16 +79,6 @@
         
         
         NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
-
-        for (int i = 0; i < cookies.count; i ++) {
-            NSHTTPCookie * cookie = cookies[i];
-            
-            NSLog(@"%@   %@", cookie.name , cookie.value);
-        }
-        
-//        NSLog(@"===================================");
-//        
-//        NSLog(@"%@", cookies);
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"CCF-Cookies"];
         

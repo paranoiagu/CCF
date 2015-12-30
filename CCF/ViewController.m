@@ -17,6 +17,8 @@
 
 #import "CCFParser.h"
 
+#import "CCFBrowser.h"
+#import "CCFUrlBuilder.h"
 
 
 @interface ViewController ()
@@ -29,53 +31,21 @@
     [super viewDidLoad];
 
 
+    CCFBrowser * browser = [[CCFBrowser alloc]init];
     
-    
-    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    
-
-    [manager GET:@"https://bbs.et8.net/bbs/showthread.php?t=1331214" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        //
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSString *html = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        html = [self replaceUnicode:html];
-        
-
+    [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:@"1331214" withPage:@"1" ]:^(NSString* result) {
         CCFParser *parser = [[CCFParser alloc]init];
-        NSMutableArray * posts = [parser parsePostFromThreadHtml:html];
+        NSMutableArray * posts = [parser parsePostFromThreadHtml:result];
         
         NSLog(@"%@", posts);
-        
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //
-        NSLog(@"%@", error);
     }];
+
     
-    
+    [browser getCurrentCCFUser];
 }
 
 
-- (NSString *)replaceUnicode:(NSString *)unicodeStr{
-    
-    NSString *tempStr1 = [unicodeStr stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
-    NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];
-    NSString *tempStr3 = [[@"\""stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
-    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
-    NSString* returnStr = [NSPropertyListSerialization propertyListFromData:tempData
-                                                           mutabilityOption:NSPropertyListImmutable
-                                                                     format:NULL
-                                                           errorDescription:NULL];
-    return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
-}
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (IBAction)login:(UIButton *)sender {
     LoginViewController *login = [[LoginViewController alloc]init];

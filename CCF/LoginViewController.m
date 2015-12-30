@@ -93,11 +93,17 @@
         
         
         
-        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+        NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+
+        for (int i = 0; i < cookies.count; i ++) {
+            NSHTTPCookie * cookie = cookies[i];
+            
+            NSLog(@"%@   %@", cookie.name , cookie.value);
+        }
         
-        NSLog(@"===================================");
-        
-        NSLog(@"%@", cookies);
+//        NSLog(@"===================================");
+//        
+//        NSLog(@"%@", cookies);
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"CCF-Cookies"];
         

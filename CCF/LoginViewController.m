@@ -45,8 +45,8 @@
 */
 
 - (IBAction)login:(id)sender {
-    NSString *name = @"马小甲";
-    NSString *password = @"CCF!@#456";
+    NSString *name = @"";
+    NSString *password = @"";
     
     NSString * ND5_PWD = [self md5HexDigest: password];
     
@@ -80,6 +80,16 @@
         html = [self replaceUnicode:html];
         
         NSLog(@"%@", html);
+        
+        
+        
+        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+        
+        NSLog(@"===================================");
+        
+        NSLog(@"%@", cookies);
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"CCF-Cookies"];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //

@@ -10,13 +10,13 @@
 
 @interface CCFUser : NSObject
 
-@property (nonatomic, assign) NSString* userName;
-@property (nonatomic, assign) NSString* userID;
-@property (nonatomic, assign) NSString* userAvatar;
-@property (nonatomic, assign) NSString* userRank;
-@property (nonatomic, assign) NSString* userLink;
-@property (nonatomic, assign) NSString* userSignDate;
-@property (nonatomic, assign) NSString* userPostCount;
-@property (nonatomic, assign) NSString* userSolveCount;
+@property (nonatomic, strong) NSString* userName;
+@property (nonatomic, strong) NSString* userID;
+@property (nonatomic, strong) NSString* userAvatar;
+@property (nonatomic, strong) NSString* userRank;
+@property (nonatomic, strong) NSString* userLink;
+@property (nonatomic, strong) NSString* userSignDate;
+@property (nonatomic, strong) NSString* userPostCount;
+@property (nonatomic, strong) NSString* userSolveCount;
 
 @end

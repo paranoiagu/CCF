@@ -12,13 +12,13 @@
 
 @interface CCFPost : NSObject
 
-@property (nonatomic, assign) CCFUser* userInfo;
-@property (nonatomic, assign) NSString* postLouCeng;    // 帖子楼层
-@property (nonatomic, assign) NSString* postID;
-@property (nonatomic, assign) NSString* postLink;
-@property (nonatomic, assign) NSString* postTitle;
-@property (nonatomic, assign) NSString* postTime;
-@property (nonatomic, assign) NSString* postContent;
+@property (nonatomic, strong) CCFUser* userInfo;
+@property (nonatomic, strong) NSString* postLouCeng;    // 帖子楼层
+@property (nonatomic, strong) NSString* postID;
+@property (nonatomic, strong) NSString* postLink;
+@property (nonatomic, strong) NSString* postTitle;
+@property (nonatomic, strong) NSString* postTime;
+@property (nonatomic, strong) NSString* postContent;
 
 
 @end

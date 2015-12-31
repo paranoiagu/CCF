@@ -230,6 +230,7 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    NSLog(@"numberOfRowsInSection  %ld", section);
     if (section == 0) {
         // 我的收藏
         return self.favForms.count;
@@ -294,8 +295,14 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
   }
 }
 
-#pragma mark - ImageResource
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //CCFForm * selete = [self itemForIndexPath:indexPath];
+    
+    NSLog(@"%ld     ,     %ld", indexPath.section, indexPath.row);
+}
 
+
+#pragma mark - ImageResource
 - (UIImage *)deleteImage {
   if (_delete == nil) {
     _delete = [UIImage imageNamed:@"ic_delete_18pt"];
@@ -303,15 +310,12 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
   return _delete;
 }
 
-#pragma mark - MAHeaderViewDelegate
 
-- (void)headerView:(MAHeaderView *)headerView
-           section:(NSInteger)section
-          expanded:(BOOL)expanded {
+#pragma mark - MAHeaderViewDelegate
+- (void)headerView:(MAHeaderView *)headerView section:(NSInteger)section expanded:(BOOL)expanded {
   _expandedSections[section] = expanded;
 
-  [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:section]
-                withRowAnimation:UITableViewRowAnimationNone];
+  [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 

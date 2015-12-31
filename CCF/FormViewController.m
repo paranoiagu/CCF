@@ -283,7 +283,6 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
         return headerView;
     } else {
         CCFForm *pro = self.provinces[section - self.sectionTitles.count];
-        theTitle = pro.formName;
         
         theTitle = [pro valueForKey:@"formName"];
         
@@ -320,10 +319,9 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
 //    }
     default: {
       if (_expandedSections[section]) {
-//        MAOfflineProvince *pro = self.provinces[section - self.sectionTitles.count];
-//        // 加1用以下载整个省份的数据
-//        number = pro.cities.count + 1;
-          number = 5;
+        CCFForm *pro = self.provinces[section - self.sectionTitles.count];
+        // 加1用以下载整个省份的数据
+          number = [[pro valueForKey:@"childForms"]count] + 1;//pro.childForms.count + 1;
       }
       break;
     }

@@ -10,4 +10,8 @@
 
 @implementation CCFForm
 
+-(NSString *)formName{
+    return [self valueForKey:@"formName"];
+}
+
 @end

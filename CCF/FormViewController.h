@@ -1,12 +1,12 @@
 #import <UIKit/UIKit.h>
-
+#import "CCFForm.h"
 
 @interface FormViewController : UIViewController
 
 @property(nonatomic, strong) NSArray *cities;
 
 @property(nonatomic, strong) NSArray *sectionTitles;
-@property(nonatomic, strong) NSArray *provinces;
+@property(nonatomic, strong) NSArray<CCFForm*> *provinces;
 
 
 @property(nonatomic, strong) NSMutableSet *downloadingItems;

@@ -145,7 +145,12 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
     NSLog(@"论坛个数======         %ld", ccfFromTree.ccfforms.count);
     
     // 省份
-    self.provinces = ccfFromTree.ccfforms;//[ccfFromTree filterByCCFUser:NO];//[MAOfflineMap sharedOfflineMap].provinces;
+    self.provinces = ccfFromTree.ccfforms;
+    
+    
+    
+    
+    //[ccfFromTree filterByCCFUser:NO];//[MAOfflineMap sharedOfflineMap].provinces;
     // 自治区
     //  self.municipalities = [MAOfflineMap sharedOfflineMap].municipalities;
     
@@ -277,15 +282,16 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
         
         return headerView;
     } else {
-//        MAOfflineProvince *pro = self.provinces[section - self.sectionTitles.count];
-//        theTitle = pro.name;
+        CCFForm *pro = self.provinces[section - self.sectionTitles.count];
+        theTitle = pro.formName;
+        
+        theTitle = [pro valueForKey:@"formName"];
         
         MAHeaderView *headerView = [[MAHeaderView alloc]
                                     initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.bounds),
                                                              kTableCellHeight)
                                     expanded:_expandedSections[section]];
         
-        theTitle = @"00000000000";
         headerView.section = section;
         headerView.text = theTitle;
         headerView.delegate = self;

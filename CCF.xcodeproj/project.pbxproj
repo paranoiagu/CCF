@@ -27,6 +27,9 @@
 		4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DF824BB1C34E5EF005BB858 /* ccf.json */; };
 		4DF824BF1C34E9EF005BB858 /* CCFFormTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824BE1C34E9EF005BB858 /* CCFFormTree.m */; };
 		4DF824C31C34F0B2005BB858 /* CCFFormDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824C21C34F0B2005BB858 /* CCFFormDao.m */; };
+		4DF824C91C34F9F0005BB858 /* MAHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824C51C34F9F0005BB858 /* MAHeaderView.m */; };
+		4DF824CA1C34F9F0005BB858 /* OfflineDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824C71C34F9F0005BB858 /* OfflineDetailViewController.m */; };
+		4DF824CB1C34F9F0005BB858 /* OfflineDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DF824C81C34F9F0005BB858 /* OfflineDetailViewController.xib */; };
 		FF75782265EC6BD32854A29B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7066804BD439AE15BAD99B97 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +70,11 @@
 		4DF824BE1C34E9EF005BB858 /* CCFFormTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormTree.m; sourceTree = "<group>"; };
 		4DF824C11C34F0B2005BB858 /* CCFFormDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFormDao.h; sourceTree = "<group>"; };
 		4DF824C21C34F0B2005BB858 /* CCFFormDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormDao.m; sourceTree = "<group>"; };
+		4DF824C41C34F9F0005BB858 /* MAHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAHeaderView.h; sourceTree = "<group>"; };
+		4DF824C51C34F9F0005BB858 /* MAHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAHeaderView.m; sourceTree = "<group>"; };
+		4DF824C61C34F9F0005BB858 /* OfflineDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineDetailViewController.h; sourceTree = "<group>"; };
+		4DF824C71C34F9F0005BB858 /* OfflineDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineDetailViewController.m; sourceTree = "<group>"; };
+		4DF824C81C34F9F0005BB858 /* OfflineDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfflineDetailViewController.xib; sourceTree = "<group>"; };
 		7066804BD439AE15BAD99B97 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45EAE323577337DE9983928 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -166,6 +174,11 @@
 				4D1EEBA81C324FFD0084F6E9 /* Module */,
 				4D339D911C31454A0022A6A4 /* AppDelegate.h */,
 				4D339D921C31454A0022A6A4 /* AppDelegate.m */,
+				4DF824C41C34F9F0005BB858 /* MAHeaderView.h */,
+				4DF824C51C34F9F0005BB858 /* MAHeaderView.m */,
+				4DF824C61C34F9F0005BB858 /* OfflineDetailViewController.h */,
+				4DF824C71C34F9F0005BB858 /* OfflineDetailViewController.m */,
+				4DF824C81C34F9F0005BB858 /* OfflineDetailViewController.xib */,
 				4D339D941C31454A0022A6A4 /* ViewController.h */,
 				4D339D951C31454A0022A6A4 /* ViewController.m */,
 				4D339D971C31454A0022A6A4 /* Main.storyboard */,
@@ -279,6 +292,7 @@
 				4D1EEBBC1C33D4FD0084F6E9 /* LoginViewController.xib in Resources */,
 				4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */,
 				4D339D9E1C31454B0022A6A4 /* Assets.xcassets in Resources */,
+				4DF824CB1C34F9F0005BB858 /* OfflineDetailViewController.xib in Resources */,
 				4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */,
 				4D339D991C31454A0022A6A4 /* Main.storyboard in Resources */,
 			);
@@ -350,6 +364,8 @@
 				4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */,
 				4D339D9C1C31454A0022A6A4 /* CCF.xcdatamodeld in Sources */,
 				4D339D961C31454A0022A6A4 /* ViewController.m in Sources */,
+				4DF824CA1C34F9F0005BB858 /* OfflineDetailViewController.m in Sources */,
+				4DF824C91C34F9F0005BB858 /* MAHeaderView.m in Sources */,
 				4D1EEBAB1C32502A0084F6E9 /* CCFUser.m in Sources */,
 				4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */,
 				4D339D901C31454A0022A6A4 /* main.m in Sources */,

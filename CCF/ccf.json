@@ -1,6 +1,43 @@
 {
     "ccfforms": [
                  {
+                 "formId": 1,
+                 "formName": "论坛规则及重要公告",
+                 "parentFormId": -1,
+                 "isNeedLogin": 1,
+                 "childForms": [
+                                {
+                                "formId": 79,
+                                "formName": "『论坛规则及论坛公告』",
+                                "parentFormId": 1,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 77,
+                                               "formName": "『违规提示』",
+                                               "parentFormId": 79,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 168,
+                                               "formName": "『『live违规提示』』",
+                                               "parentFormId": 79,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                ]
+                                },
+                                {
+                                "formId": 240,
+                                "formName": "【CCF平台改革专版】",
+                                "parentFormId": 1,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                }
+                                ]
+                 },
+                 {
                  "formId": 42,
                  "formName": "评测活动专版",
                  "parentFormId": -1,

@@ -1,15 +1,7 @@
-//
-//  OfflineDetailViewController.h
-//  OfficialDemo3D
-//
-//  Created by xiaoming han on 14-5-5.
-//  Copyright (c) 2014年 songjian. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 
 
-@interface OfflineDetailViewController : UIViewController
+@interface FormViewController : UIViewController
 
 @property(nonatomic, strong) NSArray *cities;
 

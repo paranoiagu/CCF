@@ -24,7 +24,7 @@
 
 #import "CCFFormTree.h"
 
-#import "OfflineDetailViewController.h"
+#import "FormViewController.h"
 
 @interface ViewController ()
 
@@ -63,7 +63,7 @@
 
 - (IBAction)login:(UIButton *)sender {
     
-    OfflineDetailViewController * show = [[OfflineDetailViewController alloc]init];
+    FormViewController * show = [[FormViewController alloc]init];
     [self presentViewController:show animated:YES completion:^{
         //
     }];

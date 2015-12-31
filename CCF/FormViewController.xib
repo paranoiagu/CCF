@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OfflineDetailViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FormViewController">
             <connections>
                 <outlet property="offlineNavigationBar" destination="SsJ-p0-BjZ" id="jm8-fB-DuP"/>
                 <outlet property="tableView" destination="XHw-ja-b9r" id="Nnd-P1-Dux"/>

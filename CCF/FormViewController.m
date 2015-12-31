@@ -1,6 +1,6 @@
 
 #import "MAHeaderView.h"
-#import "OfflineDetailViewController.h"
+#import "FormViewController.h"
 #import "CCFFormDao.h"
 #import "CCFFormTree.h"
 
@@ -19,7 +19,7 @@ NSString const *DownloadStageIsRunningKey2 = @"DownloadStageIsRunningKey";
 NSString const *DownloadStageStatusKey2 = @"DownloadStageStatusKey";
 NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
 
-@interface OfflineDetailViewController ()<UITableViewDataSource, UITableViewDelegate, MAHeaderViewDelegate> {
+@interface FormViewController ()<UITableViewDataSource, UITableViewDelegate, MAHeaderViewDelegate> {
   char *_expandedSections;
   UIImage *_download;
   UIImage *_pause;
@@ -34,7 +34,7 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
 
 
 
-@implementation OfflineDetailViewController
+@implementation FormViewController
 @synthesize tableView = _tableView;
 @synthesize provinces = _provinces;
 @synthesize downloadingItems = _downloadingItems;
@@ -141,6 +141,8 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
     
     NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
     CCFFormTree * ccfFromTree = [[[CCFFormDao alloc]init] parseCCFForms:path];
+    
+    NSLog(@"论坛个数======         %ld", ccfFromTree.ccfforms.count);
     
     // 省份
     self.provinces = ccfFromTree.ccfforms;//[ccfFromTree filterByCCFUser:NO];//[MAOfflineMap sharedOfflineMap].provinces;

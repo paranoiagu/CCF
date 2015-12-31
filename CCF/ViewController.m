@@ -20,6 +20,9 @@
 #import "CCFBrowser.h"
 #import "CCFUrlBuilder.h"
 
+#import "CCFFormDao.h"
+
+#import "CCFFormTree.h"
 
 @interface ViewController ()
 
@@ -31,18 +34,25 @@
     [super viewDidLoad];
 
 
-    CCFBrowser * browser = [[CCFBrowser alloc]init];
+     NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
+    CCFFormTree * ccfFromTree = [[[CCFFormDao alloc]init] parseCCFForms:path];
     
-    NSString * userID = [browser getCurrentCCFUser];
+    NSLog(@"%@", ccfFromTree);
     
-    NSLog(@"%@", userID);
     
-    [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:@"1331214" withPage:@"1" ]:^(NSString* result) {
-        CCFParser *parser = [[CCFParser alloc]init];
-        NSMutableArray * posts = [parser parsePostFromThreadHtml:result];
-        
-        NSLog(@"%@", posts);
-    }];
+    
+//    CCFBrowser * browser = [[CCFBrowser alloc]init];
+//    
+//    NSString * userID = [browser getCurrentCCFUser];
+//    
+//    NSLog(@"%@", userID);
+//    
+//    [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:@"1331214" withPage:@"1" ]:^(NSString* result) {
+//        CCFParser *parser = [[CCFParser alloc]init];
+//        NSMutableArray * posts = [parser parsePostFromThreadHtml:result];
+//        
+//        NSLog(@"%@", posts);
+//    }];
 
 }
 

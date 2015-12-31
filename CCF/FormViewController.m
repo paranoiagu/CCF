@@ -200,9 +200,7 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.bounds), kSectionHeaderHeight)];
         headerView.backgroundColor = [UIColor lightGrayColor];
         
-        UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(kSectionHeaderMargin, 0,
-                                                                CGRectGetWidth(headerView.bounds),
-                                                                CGRectGetHeight(headerView.bounds))];
+        UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(kSectionHeaderMargin, 0, CGRectGetWidth(headerView.bounds), CGRectGetHeight(headerView.bounds))];
         lb.backgroundColor = [UIColor clearColor];
         lb.text = theTitle;
         lb.textColor = [UIColor whiteColor];
@@ -215,10 +213,7 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
         
         theTitle = [pro valueForKey:@"formName"];
         
-        MAHeaderView *headerView = [[MAHeaderView alloc]
-                                    initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.bounds),
-                                                             kTableCellHeight)
-                                    expanded:_expandedSections[section]];
+        MAHeaderView *headerView = [[MAHeaderView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.bounds), kTableCellHeight) expanded:_expandedSections[section]];
         
         headerView.section = section;
         headerView.text = theTitle;
@@ -271,6 +266,8 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
     if (item != nil) {
         cell.textLabel.text = [item valueForKey:@"formName"];
     }
+    
+    NSLog(@"cellForRowAtIndexPath ->> %ld      -->> raw : %ld", indexPath.section, indexPath.row);
     return cell;
 }
 
@@ -279,35 +276,14 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
         return nil;
     }
     
-    CCFForm *item = nil;
-    
-    switch (indexPath.section) {
-        case 0: {
-//            item = [MAOfflineMap sharedOfflineMap].nationWide;
-            break;
-        }
-        case 1: {
-//            item = self.municipalities[indexPath.row];
-            break;
-        }
-        case 2: {
-            item = nil;
-            break;
-        }
-        default: {
-            CCFForm *pro = self.ccfForms[indexPath.section - self.sectionTitles.count];
-            
-            if (indexPath.row == 0) {
-                item = pro;  // 添加整个省
-            } else {
-                item = [pro valueForKey:@"childForms"][indexPath.row -1];
-            }
-            
-            break;
-        }
+    if (indexPath.section < self.sectionTitles.count) {
+        // 我的收藏
+        return self.favForms[indexPath.row];
+    } else{
+        CCFForm *pro = self.ccfForms[indexPath.section - self.sectionTitles.count];
+        
+        return [pro valueForKey:@"childForms"][indexPath.row];
     }
-    
-    return item;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {

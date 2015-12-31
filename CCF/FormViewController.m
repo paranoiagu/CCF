@@ -20,10 +20,10 @@ NSString const *DownloadStageStatusKey2 = @"DownloadStageStatusKey";
 NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
 
 @interface FormViewController ()<UITableViewDataSource, UITableViewDelegate, MAHeaderViewDelegate> {
-  char *_expandedSections;
-  UIImage *_download;
-  UIImage *_pause;
-  UIImage *_delete;
+  
+    char *_expandedSections;
+  
+    UIImage *_delete;
     
     CGRect orgTopFrame;
     
@@ -35,10 +35,11 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
 
 
 @implementation FormViewController
+
+
 @synthesize tableView = _tableView;
-@synthesize provinces = _provinces;
-@synthesize downloadingItems = _downloadingItems;
-@synthesize downloadStages = _downloadStages;
+@synthesize ccfForms = _ccfForms;
+@synthesize favForms = _favForms;
 @synthesize needReloadWhenDisappear = _needReloadWhenDisappear;
 
 
@@ -47,9 +48,7 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
 - (id)init {
     self = [super init];
     if (self) {
-        [self setupCities];
-        
-        [self setupTitle];
+        [self initForms];
     }
     
     return self;
@@ -110,18 +109,7 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
                                     target:self
                                     action:nil];
     
-    UILabel *prompts = [[UILabel alloc] init];
-    prompts.text = [NSString stringWithFormat:@"默认关键字是\"%@\", 结果在console打印", kDefaultSearchkey];
-    //    prompts.textAlignment   = UITextAlignmentCenter;
-    prompts.textAlignment = NSTextAlignmentCenter;
-    prompts.backgroundColor = [UIColor clearColor];
-    prompts.textColor = [UIColor whiteColor];
-    prompts.font = [UIFont systemFontOfSize:15];
-    [prompts sizeToFit];
-    
-    UIBarButtonItem *promptsItem = [[UIBarButtonItem alloc] initWithCustomView:prompts];
-    
-    self.toolbarItems = [NSArray arrayWithObjects:flexbleItem, promptsItem, flexbleItem, flexbleItem, nil];
+    self.toolbarItems = [NSArray arrayWithObjects:flexbleItem, flexbleItem, flexbleItem, nil];
 }
 
 - (void)initTableView {
@@ -129,46 +117,29 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    [self.view addSubview:self.tableView];
 }
 
-- (void)setupCities {
-    self.sectionTitles = @[ @"全国", @"直辖市", @"省份" ];
+- (void)initForms {
+    self.sectionTitles = @[ @"我的收藏", @"全部板块" ];
+
     
-    //  self.cities = [MAOfflineMap sharedOfflineMap].cities;
+    self.favForms = [NSArray array];
     
     
     NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
     CCFFormTree * ccfFromTree = [[[CCFFormDao alloc]init] parseCCFForms:path];
+
+    self.ccfForms = ccfFromTree.ccfforms;
     
-    NSLog(@"论坛个数======         %ld", ccfFromTree.ccfforms.count);
-    
-    // 省份
-    self.provinces = ccfFromTree.ccfforms;
-    
-    
-    
-    
-    //[ccfFromTree filterByCCFUser:NO];//[MAOfflineMap sharedOfflineMap].provinces;
-    // 自治区
-    //  self.municipalities = [MAOfflineMap sharedOfflineMap].municipalities;
-    
-    self.downloadingItems = [NSMutableSet set];
-    self.downloadStages = [NSMutableDictionary dictionary];
     
     if (_expandedSections != NULL) {
         free(_expandedSections);
         _expandedSections = NULL;
     }
     
-    _expandedSections = (char *)malloc( (self.sectionTitles.count + self.provinces.count) * sizeof(char));
+    _expandedSections = (char *)malloc( (self.sectionTitles.count + self.ccfForms.count) * sizeof(char));
     
-    memset(_expandedSections, 0, (self.sectionTitles.count + self.provinces.count) * sizeof(char));
-}
-
-- (void)setupTitle {
-    self.navigationItem.title = @"Titlellllll";
+    memset(_expandedSections, 0, (self.sectionTitles.count + self.ccfForms.count) * sizeof(char));
 }
 
 
@@ -190,44 +161,6 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
 }
 
 
-
-
-//- (MAOfflineItem *)itemForIndexPath:(NSIndexPath *)indexPath {
-//  if (indexPath == nil) {
-//    return nil;
-//  }
-//
-//  MAOfflineItem *item = nil;
-//
-//  switch (indexPath.section) {
-//    case 0: {
-//      item = [MAOfflineMap sharedOfflineMap].nationWide;
-//      break;
-//    }
-//    case 1: {
-//      item = self.municipalities[indexPath.row];
-//      break;
-//    }
-//    case 2: {
-//      item = nil;
-//      break;
-//    }
-//    default: {
-//      MAOfflineProvince *pro = self.provinces[indexPath.section - self.sectionTitles.count];
-//
-//      if (indexPath.row == 0) {
-//        item = pro;  // 添加整个省
-//      } else {
-//        item = pro.cities[indexPath.row - 1];  // 添加市
-//      }
-//
-//      break;
-//    }
-//  }
-//
-//  return item;
-//}
-
 - (UIButton *)buttonWithImage:(UIImage *)image tag:(NSUInteger)tag {
     
   UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kButtonSize, kButtonSize)];
@@ -242,12 +175,8 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
 - (UIView *)accessoryView {
     
   UIView *accessory = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kButtonSize * kButtonCount, kButtonSize)];
-  UIButton *downloadButton = [self buttonWithImage:[self downloadImage] tag:kTagDownloadButton];
-  UIButton *pauseButton = [self buttonWithImage:[self pauseImage] tag:kTagPauseButton];
   UIButton *deleteButton = [self buttonWithImage:[self deleteImage] tag:kTagDeleteButton];
 
-  [accessory addSubview:downloadButton];
-  [accessory addSubview:pauseButton];
   [accessory addSubview:deleteButton];
 
   return accessory;
@@ -282,7 +211,7 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
         
         return headerView;
     } else {
-        CCFForm *pro = self.provinces[section - self.sectionTitles.count];
+        CCFForm *pro = self.ccfForms[section - self.sectionTitles.count];
         
         theTitle = [pro valueForKey:@"formName"];
         
@@ -301,54 +230,84 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return self.sectionTitles.count + self.provinces.count;
+  return self.sectionTitles.count + self.ccfForms.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-  NSInteger number = 0;
-
-  switch (section) {
-    case 0: {
-      number = 1;
-      break;
+    if (section == 0) {
+        // 我的收藏
+        return self.favForms.count;
+    } else{
+        // 所有论坛
+        // return self.ccfForms.count;
+        
+        if (_expandedSections[section]) {
+            CCFForm *pro = self.ccfForms[section - self.sectionTitles.count];
+            return [[pro valueForKey:@"childForms"]count];
+        }
+        
     }
-//    case 1: {
-//      number = self.municipalities.count;
-//      break;
-//    }
-    default: {
-      if (_expandedSections[section]) {
-        CCFForm *pro = self.provinces[section - self.sectionTitles.count];
-        // 加1用以下载整个省份的数据
-          number = [[pro valueForKey:@"childForms"]count] + 1;//pro.childForms.count + 1;
-      }
-      break;
-    }
-  }
-
-  return number;
+    return 0;
 }
 
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *cityCellIdentifier = @"cityCellIdentifier";
+  
+    static NSString *cityCellIdentifier = @"cityCellIdentifier";
 
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cityCellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cityCellIdentifier];
 
-  if (cell == nil) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cityCellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cityCellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryView = [self accessoryView];
+    }
+  
+    CCFForm *item = [self itemForIndexPath:indexPath];
 
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    if (item != nil) {
+        cell.textLabel.text = [item valueForKey:@"formName"];
+    }
+    return cell;
+}
 
-    cell.accessoryView = [self accessoryView];
-  }
-
-//  MAOfflineItem *item = [self itemForIndexPath:indexPath];
-//  [self updateCell:cell forItem:item];
-
-  return cell;
+- (CCFForm *)itemForIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath == nil) {
+        return nil;
+    }
+    
+    CCFForm *item = nil;
+    
+    switch (indexPath.section) {
+        case 0: {
+//            item = [MAOfflineMap sharedOfflineMap].nationWide;
+            break;
+        }
+        case 1: {
+//            item = self.municipalities[indexPath.row];
+            break;
+        }
+        case 2: {
+            item = nil;
+            break;
+        }
+        default: {
+            CCFForm *pro = self.ccfForms[indexPath.section - self.sectionTitles.count];
+            
+            if (indexPath.row == 0) {
+                item = pro;  // 添加整个省
+            } else {
+                item = [pro valueForKey:@"childForms"][indexPath.row -1];
+            }
+            
+            break;
+        }
+    }
+    
+    return item;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -360,19 +319,6 @@ NSString const *DownloadStageInfoKey2 = @"DownloadStageInfoKey";
 }
 
 #pragma mark - ImageResource
-- (UIImage *)downloadImage {
-  if (_download == nil) {
-    _download = [UIImage imageNamed:@"ic_get_app_18pt"];
-  }
-  return _download;
-}
-
-- (UIImage *)pauseImage {
-  if (_pause == nil) {
-    _pause = [UIImage imageNamed:@"ic_query_builder_18pt"];
-  }
-  return _pause;
-}
 
 - (UIImage *)deleteImage {
   if (_delete == nil) {

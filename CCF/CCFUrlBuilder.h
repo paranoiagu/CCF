@@ -21,4 +21,6 @@
 
 + (NSURL *) buildLoginURL;
 
++ (NSURL *) buildVCodeURL;
+
 @end

@@ -18,6 +18,8 @@
 
 #define kCCFLogin @"https://bbs.et8.net/bbs/login.php?do=login"
 
+#define kCCFVCode @"https://bbs.et8.net/bbs/login.php?do=vcode"
+
 @implementation CCFUrlBuilder
 
 +(NSURL *)buildMemberURL:(NSString *)userId{
@@ -40,4 +42,9 @@
 +(NSURL *)buildLoginURL{
     return  [NSURL URLWithString:kCCFLogin];
 }
+
++(NSURL *)buildVCodeURL{
+    return [NSURL URLWithString:kCCFVCode];
+}
+
 @end

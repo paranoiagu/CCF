@@ -9,7 +9,8 @@
 #import "CCFBrowser.h"
 #import "NSString+Kit.h"
 #import "CCFUrlBuilder.h"
-
+#import <AFImageDownloader.h>
+#import <UIImageView+AFNetworking.h>
 
 #define kCCFCookie @"CCF-Cookies"
 #define kCCFCookie_User @"bbuserid"
@@ -33,7 +34,7 @@
 
 
 -(void)browseWithUrl:(NSURL *)url :(success)callBack{
-    [_browser GET:@"https://bbs.et8.net/bbs/showthread.php?t=1331214" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    [_browser GET:[url absoluteString] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         //
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -82,7 +83,33 @@
 
 }
 
+-(void)refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView{
+    
+    NSURL *vCodeUrl = [CCFUrlBuilder buildVCodeURL];
+    NSString * url = [vCodeUrl absoluteString];
+    
+    AFImageDownloader *downloader = [[vCodeImageView class] sharedImageDownloader];
+    id <AFImageRequestCache> imageCache = downloader.imageCache;
+    [imageCache removeImageWithIdentifier:url];
+    
+    
+    
+    NSURL *URL = [NSURL URLWithString:url];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    UIImageView * view = vCodeImageView;
+    
+    [vCodeImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
 
+        [view setImage:image];
+        
+    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+
+        NSLog(@"refreshDoor failed");
+    }];
+
+}
 -(void)logout{
     
 }

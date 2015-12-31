@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
 
-typedef void(^success) (NSString* result);
+typedef void(^success) (id result);
 
 
 @interface CCFBrowser : NSObject
@@ -21,6 +21,9 @@ typedef void(^success) (NSString* result);
 -(void) loginWithName:(NSString*)name AndPassword:(NSString*)pwd : (success) callBack;
 
 -(void) logout;
+
+-(void)refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView;
+
 
 - (NSString *) getCurrentCCFUser;
 

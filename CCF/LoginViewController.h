@@ -18,6 +18,4 @@
 - (IBAction)login:(id)sender;
 - (IBAction)refreshDoor:(id)sender;
 
-- (IBAction)tttttt:(id)sender;
-
 @end

@@ -33,6 +33,10 @@
 
     CCFBrowser * browser = [[CCFBrowser alloc]init];
     
+    NSString * userID = [browser getCurrentCCFUser];
+    
+    NSLog(@"%@", userID);
+    
     [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:@"1331214" withPage:@"1" ]:^(NSString* result) {
         CCFParser *parser = [[CCFParser alloc]init];
         NSMutableArray * posts = [parser parsePostFromThreadHtml:result];
@@ -40,8 +44,6 @@
         NSLog(@"%@", posts);
     }];
 
-    
-    [browser getCurrentCCFUser];
 }
 
 

@@ -193,6 +193,10 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     // Alternatively, return rowHeight.
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"didSelectRowAtIndexPath %ld,   %ld ", indexPath.section, indexPath.row);
+}
+
 
 #pragma mark - SectionHeaderViewDelegate
 

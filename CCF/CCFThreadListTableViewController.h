@@ -11,9 +11,13 @@
 
 @interface CCFThreadListTableViewController : UITableViewController
 
-- (IBAction)dismiss:(UIBarButtonItem *)sender;
+
+
+
 
 
 @property (nonatomic, strong) CCFEntry * entry;
+
+- (IBAction)back:(UIBarButtonItem *)sender;
 
 @end

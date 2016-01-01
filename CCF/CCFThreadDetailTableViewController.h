@@ -13,5 +13,6 @@
 
 
 @property (nonatomic, assign) CCFEntry* entry;
+- (IBAction)back:(UIBarButtonItem *)sender;
 
 @end

@@ -95,4 +95,7 @@
 }
 */
 
+- (IBAction)back:(UIBarButtonItem *)sender {
+    [self.navigationController popoverPresentationController];
+}
 @end

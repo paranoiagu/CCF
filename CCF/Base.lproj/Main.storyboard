@@ -68,7 +68,7 @@
         <!--帖子列表-->
         <scene sceneID="ZSu-6M-hd2">
             <objects>
-                <tableViewController id="owK-Jl-7fO" customClass="CCFThreadTableViewController" sceneMemberID="viewController">
+                <tableViewController id="owK-Jl-7fO" customClass="CCFThreadListTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="W0o-qo-VEi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

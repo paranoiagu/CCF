@@ -6,13 +6,16 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFThreadTableViewController.h"
+#import "CCFThreadListTableViewController.h"
 
-@interface CCFThreadTableViewController ()
+@interface CCFThreadListTableViewController ()
 
 @end
 
-@implementation CCFThreadTableViewController
+@implementation CCFThreadListTableViewController
+
+@synthesize entry;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

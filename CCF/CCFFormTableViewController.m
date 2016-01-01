@@ -34,6 +34,8 @@
 
 
 #import "CCFFormTableViewController.h"
+#import "CCFThreadListTableViewController.h"
+#import "CCFEntry.h"
 
 
 @interface MyAPLEmailMenuItem : UIMenuItem
@@ -83,6 +85,15 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     return YES;
 }
 
+
+#pragma mark CCFEntryDelegate
+-(void)transValue:(CCFEntry *)value{
+    
+}
+
+
+
+#pragma mark - Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -164,6 +175,22 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 }
 
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    CCFThreadListTableViewController * controller = segue.destinationViewController;
+    
+    NSLog(@"prepareForSegue %@", segue.destinationViewController);
+    
+    if ([controller respondsToSelector:@selector(setEntry:)]) {
+        NSLog(@"prepareForSegue ");
+    }
+//    CCFEntry * entry = [[CCFEntry alloc]init];
+//    entry.urlId = @"123";
+//    entry.page = @"000";
+//    [controller setValue:entry forKey:@"entry"];
+    
+//    NSLog(@"prepareForSegue ");
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -232,7 +259,9 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     NSLog(@"didSelectRowAtIndexPath %ld,   %ld ", indexPath.section, indexPath.row);
+    
 }
 
 

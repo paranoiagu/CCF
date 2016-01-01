@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CCFEntry.h"
 
-@interface CCFThreadTableViewController : UITableViewController
+@interface CCFThreadListTableViewController : UITableViewController
 
 - (IBAction)dismiss:(UIBarButtonItem *)sender;
+
+
+@property (nonatomic, strong) CCFEntry * entry;
+
 @end

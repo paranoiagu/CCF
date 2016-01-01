@@ -51,7 +51,7 @@
 
 
 @class APLHighlightingTextView;
-@class APLQuotation;
+@class CCFForm;
 
 @interface CCFThreadViewCell : UITableViewCell 
 
@@ -59,7 +59,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *actAndSceneLabel;
 @property (nonatomic, weak) IBOutlet APLHighlightingTextView *quotationTextView;
 
-@property (nonatomic) APLQuotation *quotation;
+@property (nonatomic) CCFForm *quotation;
 
 @property (nonatomic) UILongPressGestureRecognizer *longPressRecognizer;
 

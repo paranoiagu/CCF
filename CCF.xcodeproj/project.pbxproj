@@ -14,8 +14,6 @@
 		3AA2D5041C36103C00F312CC /* CCFFormHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D4F71C36103C00F312CC /* CCFFormHeaderView.m */; };
 		3AA2D5051C36103C00F312CC /* CCFFormHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D4F81C36103C00F312CC /* CCFFormHeaderView.xib */; };
 		3AA2D5061C36103C00F312CC /* CCFFormSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D4FA1C36103C00F312CC /* CCFFormSectionInfo.m */; };
-		3AA2D5071C36103C00F312CC /* APLPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D4FC1C36103C00F312CC /* APLPlay.m */; };
-		3AA2D5081C36103C00F312CC /* APLQuotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D4FE1C36103C00F312CC /* APLQuotation.m */; };
 		3AA2D5091C36103C00F312CC /* APLHighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D5001C36103C00F312CC /* APLHighlightingTextView.m */; };
 		3AA2D50A1C36103C00F312CC /* CCFThreadViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D5021C36103C00F312CC /* CCFThreadViewCell.m */; };
 		3AA2D50B1C36103C00F312CC /* CCFThreadViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5031C36103C00F312CC /* CCFThreadViewCell.xib */; };
@@ -61,10 +59,6 @@
 		3AA2D4F81C36103C00F312CC /* CCFFormHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCFFormHeaderView.xib; sourceTree = "<group>"; };
 		3AA2D4F91C36103C00F312CC /* CCFFormSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFormSectionInfo.h; sourceTree = "<group>"; };
 		3AA2D4FA1C36103C00F312CC /* CCFFormSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormSectionInfo.m; sourceTree = "<group>"; };
-		3AA2D4FB1C36103C00F312CC /* APLPlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLPlay.h; sourceTree = "<group>"; };
-		3AA2D4FC1C36103C00F312CC /* APLPlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLPlay.m; sourceTree = "<group>"; };
-		3AA2D4FD1C36103C00F312CC /* APLQuotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLQuotation.h; sourceTree = "<group>"; };
-		3AA2D4FE1C36103C00F312CC /* APLQuotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLQuotation.m; sourceTree = "<group>"; };
 		3AA2D4FF1C36103C00F312CC /* APLHighlightingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLHighlightingTextView.h; sourceTree = "<group>"; };
 		3AA2D5001C36103C00F312CC /* APLHighlightingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLHighlightingTextView.m; sourceTree = "<group>"; };
 		3AA2D5011C36103C00F312CC /* CCFThreadViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadViewCell.h; sourceTree = "<group>"; };
@@ -175,10 +169,6 @@
 				3AA2D4F81C36103C00F312CC /* CCFFormHeaderView.xib */,
 				3AA2D4F91C36103C00F312CC /* CCFFormSectionInfo.h */,
 				3AA2D4FA1C36103C00F312CC /* CCFFormSectionInfo.m */,
-				3AA2D4FB1C36103C00F312CC /* APLPlay.h */,
-				3AA2D4FC1C36103C00F312CC /* APLPlay.m */,
-				3AA2D4FD1C36103C00F312CC /* APLQuotation.h */,
-				3AA2D4FE1C36103C00F312CC /* APLQuotation.m */,
 				3AA2D4FF1C36103C00F312CC /* APLHighlightingTextView.h */,
 				3AA2D5001C36103C00F312CC /* APLHighlightingTextView.m */,
 				3AA2D5011C36103C00F312CC /* CCFThreadViewCell.h */,
@@ -441,7 +431,6 @@
 				4D1EEBBB1C33D4FD0084F6E9 /* LoginViewController.m in Sources */,
 				3AA2D5041C36103C00F312CC /* CCFFormHeaderView.m in Sources */,
 				4DF824C31C34F0B2005BB858 /* CCFFormDao.m in Sources */,
-				3AA2D5081C36103C00F312CC /* APLQuotation.m in Sources */,
 				3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */,
 				4D1EEBB11C3260130084F6E9 /* CCFThread.m in Sources */,
 				4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */,
@@ -451,7 +440,6 @@
 				4DF824CA1C34F9F0005BB858 /* FormViewController.m in Sources */,
 				3AA2D50F1C36105100F312CC /* MyTableViewController.m in Sources */,
 				4DF824C91C34F9F0005BB858 /* MAHeaderView.m in Sources */,
-				3AA2D5071C36103C00F312CC /* APLPlay.m in Sources */,
 				3AA2D5091C36103C00F312CC /* APLHighlightingTextView.m in Sources */,
 				4D1EEBAB1C32502A0084F6E9 /* CCFUser.m in Sources */,
 				4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */,

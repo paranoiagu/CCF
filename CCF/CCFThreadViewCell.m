@@ -48,19 +48,22 @@
  */
 
 #import "CCFThreadViewCell.h"
-#import "APLQuotation.h"
 #import "APLHighlightingTextView.h"
+#import "CCFForm.h"
 
 @implementation CCFThreadViewCell
 
-- (void)setQuotation:(APLQuotation *)newQuotation {
+- (void)setQuotation:(CCFForm *)newQuotation {
  
     if (_quotation != newQuotation) {
         _quotation = newQuotation;
         
-        self.characterLabel.text = _quotation.character;
-        self.actAndSceneLabel.text = [NSString stringWithFormat:@"Act %d, Scene %d", _quotation.act, _quotation.scene];
-        self.quotationTextView.text = _quotation.quotation;
+//        self.characterLabel.text = _quotation.character;
+//        self.actAndSceneLabel.text = [NSString stringWithFormat:@"Act %d, Scene %d", _quotation.act, _quotation.scene];
+//        self.quotationTextView.text = _quotation.quotation;
+        
+        
+        self.quotationTextView.text = [_quotation valueForKey:@"formName"];
     }
 }
 

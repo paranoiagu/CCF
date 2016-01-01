@@ -12,9 +12,9 @@
 #import "CCFThreadViewCell.h"
 #import "CCFFormSectionInfo.h"
 #import "CCFFormHeaderView.h"
+#import "CCFForm.h"
+#import "CCFFormDao.h"
 
-#import "APLPlay.h"
-#import "APLQuotation.h"
 
 @interface MyAPLEmailMenuItem : UIMenuItem
 @property (nonatomic) NSIndexPath *indexPath;
@@ -41,6 +41,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 @property (nonatomic) NSInteger uniformRowHeight;
 
 
+
 @end
 
 
@@ -52,6 +53,11 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 @implementation MyTableViewController
 
+
+@synthesize plays = _plays ;
+
+
+
 - (BOOL)canBecomeFirstResponder {
     
     return YES;
@@ -60,7 +66,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self plays];
+    [self initplays];
     
     // Add a pinch gesture recognizer to the table view.
     UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
@@ -91,14 +97,14 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
         // For each play, set up a corresponding SectionInfo object to contain the default height for each row.
         NSMutableArray *infoArray = [[NSMutableArray alloc] init];
         
-        for (APLPlay *play in self.plays) {
+        for (CCFForm *play in self.plays) {
             
             CCFFormSectionInfo *sectionInfo = [[CCFFormSectionInfo alloc] init];
             sectionInfo.play = play;
             sectionInfo.open = NO;
             
             NSNumber *defaultRowHeight = @(DEFAULT_ROW_HEIGHT);
-            NSInteger countOfQuotations = [[sectionInfo.play quotations] count];
+            NSInteger countOfQuotations = [[sectionInfo.play valueForKey:@"childForms" ] count];
             for (NSInteger i = 0; i < countOfQuotations; i++) {
                 [sectionInfo insertObject:defaultRowHeight inRowHeightsAtIndex:i];
             }
@@ -110,36 +116,13 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     }
 }
 
-- (NSArray *)plays {
+- (void)initplays {
     
-    if (_plays == nil) {
-        
-        NSURL *url = [[NSBundle mainBundle] URLForResource:@"PlaysAndQuotations" withExtension:@"plist"];
-        NSArray *playDictionariesArray = [[NSArray alloc ] initWithContentsOfURL:url];
-        _plays = [NSMutableArray arrayWithCapacity:[playDictionariesArray count]];
-        
-        for (NSDictionary *playDictionary in playDictionariesArray) {
-            
-            APLPlay *play = [[APLPlay alloc] init];
-            play.name = playDictionary[@"playName"];
-            
-            NSArray *quotationDictionaries = playDictionary[@"quotations"];
-            NSMutableArray *quotations = [NSMutableArray arrayWithCapacity:[quotationDictionaries count]];
-            
-            for (NSDictionary *quotationDictionary in quotationDictionaries) {
-                
-                APLQuotation *quotation = [[APLQuotation alloc] init];
-                [quotation setValuesForKeysWithDictionary:quotationDictionary];
-                
-                [quotations addObject:quotation];
-            }
-            play.quotations = quotations;
-            
-            [_plays addObject:play];
-        }
-    }
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
+    CCFFormTree * ccfFromTree = [[[CCFFormDao alloc]init] parseCCFForms:path];
     
-    return _plays;
+    self.plays = ccfFromTree.ccfforms;
+    
 }
 
 
@@ -153,7 +136,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     CCFFormSectionInfo *sectionInfo = (self.sectionInfoArray)[section];
-    NSInteger numStoriesInSection = [[sectionInfo.play quotations] count];
+    NSInteger numStoriesInSection = [[sectionInfo.play valueForKey:@"childForms" ] count];
     
     return sectionInfo.open ? numStoriesInSection : 0;
 }
@@ -183,8 +166,8 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
         cell.longPressRecognizer = nil;
     }
     
-    APLPlay *play = (APLPlay *)[(self.sectionInfoArray)[indexPath.section] play];
-    cell.quotation = (play.quotations)[indexPath.row];
+    CCFForm *play = (CCFForm *)[(self.sectionInfoArray)[indexPath.section] play];
+    cell.quotation = [play valueForKey:@"childForms"][indexPath.row];//(play.quotations)[indexPath.row];
     
     return cell;
 }
@@ -196,7 +179,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     CCFFormSectionInfo *sectionInfo = (self.sectionInfoArray)[section];
     sectionInfo.headerView = sectionHeaderView;
     
-    sectionHeaderView.titleLabel.text = sectionInfo.play.name;
+    sectionHeaderView.titleLabel.text = [sectionInfo.play valueForKey:@"formName"];
     sectionHeaderView.section = section;
     sectionHeaderView.delegate = self;
     
@@ -222,7 +205,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     /*
      Create an array containing the index paths of the rows to insert: These correspond to the rows for each quotation in the current section.
      */
-    NSInteger countOfRowsToInsert = [sectionInfo.play.quotations count];
+    NSInteger countOfRowsToInsert = [[sectionInfo.play valueForKey:@"childForms" ] count];
     NSMutableArray *indexPathsToInsert = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < countOfRowsToInsert; i++) {
         [indexPathsToInsert addObject:[NSIndexPath indexPathForRow:i inSection:sectionOpened]];
@@ -239,7 +222,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
         CCFFormSectionInfo *previousOpenSection = (self.sectionInfoArray)[previousOpenSectionIndex];
         previousOpenSection.open = NO;
         [previousOpenSection.headerView toggleOpenWithUserAction:NO];
-        NSInteger countOfRowsToDelete = [previousOpenSection.play.quotations count];
+        NSInteger countOfRowsToDelete = [[previousOpenSection.play valueForKey:@"childForms" ] count];
         for (NSInteger i = 0; i < countOfRowsToDelete; i++) {
             [indexPathsToDelete addObject:[NSIndexPath indexPathForRow:i inSection:previousOpenSectionIndex]];
         }
@@ -388,11 +371,11 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 - (void)sendEmailForEntryAtIndexPath:(NSIndexPath *)indexPath {
     
-    APLPlay *play = self.plays[indexPath.section];
-    APLQuotation *quotation = play.quotations[indexPath.row];
+    CCFForm *play = self.plays[indexPath.section];
+    CCFForm *quotation = [play valueForKey:@"childForms"][indexPath.row];
     
     // In production, send the appropriate message.
-    NSLog(@"Send email using quotation:\n%@", quotation.quotation);
+    NSLog(@"Send email using quotation:\n%@", [quotation valueForKey:@"formName"]);
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {

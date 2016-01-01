@@ -54,12 +54,13 @@
 #import <Foundation/Foundation.h>
 
 @class CCFFormHeaderView;
-@class APLPlay;
+
+@class CCFForm;
 
 @interface CCFFormSectionInfo : NSObject 
 
 @property (getter = isOpen) BOOL open;
-@property APLPlay *play;
+@property CCFForm *play;
 @property CCFFormHeaderView *headerView;
 
 @property (nonatomic) NSMutableArray *rowHeights;

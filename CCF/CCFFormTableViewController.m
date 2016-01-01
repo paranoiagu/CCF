@@ -15,6 +15,26 @@
 #import "CCFForm.h"
 #import "CCFFormDao.h"
 
+#import <AFNetworking.h>
+#import <IGHTMLQuery.h>
+#import "CCFUser.h"
+#import "CCFPost.h"
+#import "CCFThread.h"
+
+#import "LoginViewController.h"
+
+#import "CCFParser.h"
+
+#import "CCFBrowser.h"
+#import "CCFUrlBuilder.h"
+
+#import "CCFFormDao.h"
+
+#import "CCFFormTree.h"
+
+
+#import "CCFFormTableViewController.h"
+
 
 @interface MyAPLEmailMenuItem : UIMenuItem
 @property (nonatomic) NSIndexPath *indexPath;
@@ -82,6 +102,24 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     
     UINib *sectionHeaderNib = [UINib nibWithNibName:@"CCFFormHeaderView" bundle:nil];
     [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:SectionHeaderViewIdentifier];
+    
+    
+    
+    
+    
+//        CCFBrowser * browser = [[CCFBrowser alloc]init];
+//    
+//        NSString * userID = [browser getCurrentCCFUser];
+//    
+//        NSLog(@"%@", userID);
+//    
+//        [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:@"1331214" withPage:@"1" ]:^(NSString* result) {
+//            CCFParser *parser = [[CCFParser alloc]init];
+//            NSMutableArray * posts = [parser parsePostFromThreadHtml:result];
+//    
+//            NSLog(@"%@", posts);
+//        }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

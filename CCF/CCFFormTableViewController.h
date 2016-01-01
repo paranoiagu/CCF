@@ -11,7 +11,7 @@
 #import <MessageUI/MessageUI.h>     // for MFMailComposeViewControllerDelegate
 #import "CCFFormHeaderView.h"    // for SectionHeaderViewDelegate
 
-@interface MyTableViewController : UITableViewController<MFMailComposeViewControllerDelegate, SectionHeaderViewDelegate>
+@interface CCFFormTableViewController : UITableViewController<MFMailComposeViewControllerDelegate, SectionHeaderViewDelegate>
 
 //@property (nonatomic) NSArray *plays;
 

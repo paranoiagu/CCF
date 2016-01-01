@@ -6,7 +6,7 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "MyTableViewController.h"
+#import "CCFFormTableViewController.h"
 
 
 #import "CCFThreadViewCell.h"
@@ -28,7 +28,7 @@
 
 static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
-@interface MyTableViewController ()
+@interface CCFFormTableViewController ()
 
 @property (nonatomic) NSMutableArray *sectionInfoArray;
 @property (nonatomic) NSIndexPath *pinchedIndexPath;
@@ -51,7 +51,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 #define HEADER_HEIGHT 48
 
 
-@implementation MyTableViewController
+@implementation CCFFormTableViewController
 
 
 @synthesize plays = _plays ;

@@ -25,7 +25,7 @@
 #import "CCFFormTree.h"
 
 
-#import "MyTableViewController.h"
+#import "CCFFormTableViewController.h"
 
 @interface ViewController ()
 
@@ -63,7 +63,7 @@
 
 
 - (IBAction)login:(UIButton *)sender {
-    MyTableViewController * table = [[MyTableViewController alloc]init];
+    CCFFormTableViewController * table = [[CCFFormTableViewController alloc]init];
     
     [self presentViewController:table animated:YES completion:^{
         //

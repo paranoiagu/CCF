@@ -12,7 +12,7 @@
 
 #define kCCFMember @"https://bbs.et8.net/bbs/member.php?u=%@"
 
-#define kCCFFormDisplay @"https://bbs.et8.net/bbs/forumdisplay.php?f=%@"
+#define kCCFFormDisplay @"https://bbs.et8.net/bbs/forumdisplay.php?f=%@&order=desc&page=%@"
 
 #define kCCFShowThread @"https://bbs.et8.net/bbs/showthread.php?t=%@&page=%@"
 
@@ -26,9 +26,9 @@
     
     return [NSURL URLWithString:[NSString stringWithFormat:kCCFMember, userId]];
 }
-+(NSURL *)buildFormURL:(NSString *)formId{
++(NSURL *)buildFormURL:(NSString *)formId withPage:(NSString*) page{
     
-    return [NSURL URLWithString:[NSString stringWithFormat:kCCFFormDisplay, formId]];
+    return [NSURL URLWithString:[NSString stringWithFormat:kCCFFormDisplay, formId, page]];
 }
 
 +(NSURL *)buildIndexURL{

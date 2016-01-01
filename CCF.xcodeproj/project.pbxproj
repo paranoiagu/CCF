@@ -17,7 +17,7 @@
 		3AA2D5091C36103C00F312CC /* APLHighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D5001C36103C00F312CC /* APLHighlightingTextView.m */; };
 		3AA2D50A1C36103C00F312CC /* CCFThreadViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D5021C36103C00F312CC /* CCFThreadViewCell.m */; };
 		3AA2D50B1C36103C00F312CC /* CCFThreadViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5031C36103C00F312CC /* CCFThreadViewCell.xib */; };
-		3AA2D50F1C36105100F312CC /* MyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D50D1C36105100F312CC /* MyTableViewController.m */; };
+		3AA2D50F1C36105100F312CC /* CCFFormTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D50D1C36105100F312CC /* CCFFormTableViewController.m */; };
 		3AA2D5171C3610C400F312CC /* PlaysAndQuotations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5131C3610C400F312CC /* PlaysAndQuotations.plist */; };
 		3AA2D5181C3610C400F312CC /* carat-open.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5141C3610C400F312CC /* carat-open.png */; };
 		3AA2D5191C3610C400F312CC /* carat.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5151C3610C400F312CC /* carat.png */; };
@@ -61,8 +61,8 @@
 		3AA2D5011C36103C00F312CC /* CCFThreadViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadViewCell.h; sourceTree = "<group>"; };
 		3AA2D5021C36103C00F312CC /* CCFThreadViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadViewCell.m; sourceTree = "<group>"; };
 		3AA2D5031C36103C00F312CC /* CCFThreadViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCFThreadViewCell.xib; sourceTree = "<group>"; };
-		3AA2D50C1C36105100F312CC /* MyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewController.h; sourceTree = "<group>"; };
-		3AA2D50D1C36105100F312CC /* MyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewController.m; sourceTree = "<group>"; };
+		3AA2D50C1C36105100F312CC /* CCFFormTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFormTableViewController.h; sourceTree = "<group>"; };
+		3AA2D50D1C36105100F312CC /* CCFFormTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormTableViewController.m; sourceTree = "<group>"; };
 		3AA2D5121C3610C400F312CC /* TVAnimationsGestures-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TVAnimationsGestures-Prefix.pch"; sourceTree = "<group>"; };
 		3AA2D5131C3610C400F312CC /* PlaysAndQuotations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlaysAndQuotations.plist; sourceTree = "<group>"; };
 		3AA2D5141C3610C400F312CC /* carat-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "carat-open.png"; sourceTree = "<group>"; };
@@ -154,8 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				3AA2D5111C36107E00F312CC /* SupportFiles */,
-				3AA2D50C1C36105100F312CC /* MyTableViewController.h */,
-				3AA2D50D1C36105100F312CC /* MyTableViewController.m */,
+				3AA2D50C1C36105100F312CC /* CCFFormTableViewController.h */,
+				3AA2D50D1C36105100F312CC /* CCFFormTableViewController.m */,
 				3AA2D4F61C36103C00F312CC /* CCFFormHeaderView.h */,
 				3AA2D4F71C36103C00F312CC /* CCFFormHeaderView.m */,
 				3AA2D4F81C36103C00F312CC /* CCFFormHeaderView.xib */,
@@ -424,7 +424,7 @@
 				4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */,
 				4D339D9C1C31454A0022A6A4 /* CCF.xcdatamodeld in Sources */,
 				4D339D961C31454A0022A6A4 /* ViewController.m in Sources */,
-				3AA2D50F1C36105100F312CC /* MyTableViewController.m in Sources */,
+				3AA2D50F1C36105100F312CC /* CCFFormTableViewController.m in Sources */,
 				3AEA1F2F1C364E7E00710BD6 /* CCFThreadTableViewController.m in Sources */,
 				3AA2D5091C36103C00F312CC /* APLHighlightingTextView.m in Sources */,
 				4D1EEBAB1C32502A0084F6E9 /* CCFUser.m in Sources */,

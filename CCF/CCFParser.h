@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "CCFPost.h"
 #import "CCFUser.h"
+#import "CCFThreadList.h"
 
 
 @interface CCFParser : NSObject
 
 -(NSMutableArray<CCFPost*>*) parsePostFromThreadHtml:(NSString*)html;
+
+-(NSMutableArray<CCFThreadList*> *) parseThreadListFromHtml: (NSString *) html withThread:(NSString *) threadId;
 
 @end

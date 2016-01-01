@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A2ECF541C36C0EB00CD3968 /* CCFThreadList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2ECF531C36C0EB00CD3968 /* CCFThreadList.m */; };
 		3A9FEDD61C341E2E00F30885 /* CCFUrlBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FEDD51C341E2E00F30885 /* CCFUrlBuilder.m */; };
 		3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FEDD91C342CB800F30885 /* CCFParser.m */; };
 		3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FEDDD1C3430A500F30885 /* CCFBrowser.m */; };
@@ -44,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A2ECF521C36C0EB00CD3968 /* CCFThreadList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadList.h; sourceTree = "<group>"; };
+		3A2ECF531C36C0EB00CD3968 /* CCFThreadList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadList.m; sourceTree = "<group>"; };
 		3A9FEDD41C341E2E00F30885 /* CCFUrlBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUrlBuilder.h; sourceTree = "<group>"; };
 		3A9FEDD51C341E2E00F30885 /* CCFUrlBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUrlBuilder.m; sourceTree = "<group>"; };
 		3A9FEDD81C342CB800F30885 /* CCFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFParser.h; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 				4D1EEBAD1C3251E70084F6E9 /* CCFPost.m */,
 				4D1EEBAF1C3260130084F6E9 /* CCFThread.h */,
 				4D1EEBB01C3260130084F6E9 /* CCFThread.m */,
+				3A2ECF521C36C0EB00CD3968 /* CCFThreadList.h */,
+				3A2ECF531C36C0EB00CD3968 /* CCFThreadList.m */,
 				4DF824B81C34C4C6005BB858 /* CCFForm.h */,
 				4DF824B91C34C4C6005BB858 /* CCFForm.m */,
 				4DF824BD1C34E9EF005BB858 /* CCFFormTree.h */,
@@ -440,6 +445,7 @@
 				3AEA1F371C365EA400710BD6 /* CCFThreadDetailTableViewController.m in Sources */,
 				4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */,
 				4D339D9C1C31454A0022A6A4 /* CCF.xcdatamodeld in Sources */,
+				3A2ECF541C36C0EB00CD3968 /* CCFThreadList.m in Sources */,
 				3AA2D50F1C36105100F312CC /* CCFFormTableViewController.m in Sources */,
 				3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */,
 				3AA2D5091C36103C00F312CC /* APLHighlightingTextView.m in Sources */,

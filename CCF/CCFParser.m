@@ -11,6 +11,58 @@
 
 @implementation CCFParser
 
+
+
+
+-(NSMutableArray<CCFThreadList *> *)parseThreadListFromHtml:(NSString *)html withThread:(NSString *) threadId{
+    NSString * path = [NSString stringWithFormat:@"//*[@id='threadbits_forum_%@']/tr", threadId];
+    
+    //*[@id="threadbits_forum_147"]/tr[1]
+    
+    NSMutableArray * threadList = [NSMutableArray array];
+    
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
+    IGXMLNodeSet* contents = [document queryWithXPath: path];
+    
+    for (int i = 0; i < contents.count; i++){
+        IGXMLNode * threadList = contents[i];
+        if (threadList.children.count > 1) {
+            CCFThreadList * list = [[CCFThreadList alloc]init];
+            
+            IGXMLNode * threadTitleNode = threadList.children [2];
+            NSString *title = [self title:[threadTitleNode innerHtml] ];
+            
+            IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:title error:nil];
+            
+            
+            NSLog(@"---------------> %@", title);
+        }
+        
+        
+    }
+    
+    //NSLog(@"%@", contents);
+    
+    
+    return threadList;
+    
+}
+
+-(NSString *) title:(NSString *) html {
+    NSString *searchText = html;
+    
+    NSString * pattern = @"<a href=\"showthread.php\\?t.*";
+    
+    NSRange range = [searchText rangeOfString:pattern options:NSRegularExpressionSearch];
+    
+    if (range.location != NSNotFound) {
+        //NSLog(@"%@", [searchText substringWithRange:range]);
+        return [searchText substringWithRange:range];
+    }
+    return nil;
+}
+
+
 -(NSMutableArray<CCFPost *> *)parsePostFromThreadHtml:(NSString *)html{
     NSMutableArray * posts = [NSMutableArray array];
 

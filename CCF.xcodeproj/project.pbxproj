@@ -11,6 +11,20 @@
 		3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FEDD91C342CB800F30885 /* CCFParser.m */; };
 		3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FEDDD1C3430A500F30885 /* CCFBrowser.m */; };
 		3A9FEDE21C3438AC00F30885 /* NSString+Kit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FEDE11C3438AC00F30885 /* NSString+Kit.m */; };
+		3AA2D5041C36103C00F312CC /* CCFFormHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D4F71C36103C00F312CC /* CCFFormHeaderView.m */; };
+		3AA2D5051C36103C00F312CC /* CCFFormHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D4F81C36103C00F312CC /* CCFFormHeaderView.xib */; };
+		3AA2D5061C36103C00F312CC /* CCFFormSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D4FA1C36103C00F312CC /* CCFFormSectionInfo.m */; };
+		3AA2D5071C36103C00F312CC /* APLPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D4FC1C36103C00F312CC /* APLPlay.m */; };
+		3AA2D5081C36103C00F312CC /* APLQuotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D4FE1C36103C00F312CC /* APLQuotation.m */; };
+		3AA2D5091C36103C00F312CC /* APLHighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D5001C36103C00F312CC /* APLHighlightingTextView.m */; };
+		3AA2D50A1C36103C00F312CC /* CCFThreadViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D5021C36103C00F312CC /* CCFThreadViewCell.m */; };
+		3AA2D50B1C36103C00F312CC /* CCFThreadViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5031C36103C00F312CC /* CCFThreadViewCell.xib */; };
+		3AA2D50F1C36105100F312CC /* MyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D50D1C36105100F312CC /* MyTableViewController.m */; };
+		3AA2D5101C36105100F312CC /* MyTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D50E1C36105100F312CC /* MyTableViewController.xib */; };
+		3AA2D5171C3610C400F312CC /* PlaysAndQuotations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5131C3610C400F312CC /* PlaysAndQuotations.plist */; };
+		3AA2D5181C3610C400F312CC /* carat-open.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5141C3610C400F312CC /* carat-open.png */; };
+		3AA2D5191C3610C400F312CC /* carat.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5151C3610C400F312CC /* carat.png */; };
+		3AA2D51A1C3610C400F312CC /* TVAnimationsGestures-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5161C3610C400F312CC /* TVAnimationsGestures-Info.plist */; };
 		4D1EEBAB1C32502A0084F6E9 /* CCFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBAA1C32502A0084F6E9 /* CCFUser.m */; };
 		4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBAD1C3251E70084F6E9 /* CCFPost.m */; };
 		4D1EEBB11C3260130084F6E9 /* CCFThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBB01C3260130084F6E9 /* CCFThread.m */; };
@@ -42,6 +56,28 @@
 		3A9FEDDD1C3430A500F30885 /* CCFBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFBrowser.m; sourceTree = "<group>"; };
 		3A9FEDE01C3438AC00F30885 /* NSString+Kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Kit.h"; sourceTree = "<group>"; };
 		3A9FEDE11C3438AC00F30885 /* NSString+Kit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Kit.m"; sourceTree = "<group>"; };
+		3AA2D4F61C36103C00F312CC /* CCFFormHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFormHeaderView.h; sourceTree = "<group>"; };
+		3AA2D4F71C36103C00F312CC /* CCFFormHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormHeaderView.m; sourceTree = "<group>"; };
+		3AA2D4F81C36103C00F312CC /* CCFFormHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCFFormHeaderView.xib; sourceTree = "<group>"; };
+		3AA2D4F91C36103C00F312CC /* CCFFormSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFormSectionInfo.h; sourceTree = "<group>"; };
+		3AA2D4FA1C36103C00F312CC /* CCFFormSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormSectionInfo.m; sourceTree = "<group>"; };
+		3AA2D4FB1C36103C00F312CC /* APLPlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLPlay.h; sourceTree = "<group>"; };
+		3AA2D4FC1C36103C00F312CC /* APLPlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLPlay.m; sourceTree = "<group>"; };
+		3AA2D4FD1C36103C00F312CC /* APLQuotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLQuotation.h; sourceTree = "<group>"; };
+		3AA2D4FE1C36103C00F312CC /* APLQuotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLQuotation.m; sourceTree = "<group>"; };
+		3AA2D4FF1C36103C00F312CC /* APLHighlightingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLHighlightingTextView.h; sourceTree = "<group>"; };
+		3AA2D5001C36103C00F312CC /* APLHighlightingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLHighlightingTextView.m; sourceTree = "<group>"; };
+		3AA2D5011C36103C00F312CC /* CCFThreadViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadViewCell.h; sourceTree = "<group>"; };
+		3AA2D5021C36103C00F312CC /* CCFThreadViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadViewCell.m; sourceTree = "<group>"; };
+		3AA2D5031C36103C00F312CC /* CCFThreadViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCFThreadViewCell.xib; sourceTree = "<group>"; };
+		3AA2D50C1C36105100F312CC /* MyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewController.h; sourceTree = "<group>"; };
+		3AA2D50D1C36105100F312CC /* MyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewController.m; sourceTree = "<group>"; };
+		3AA2D50E1C36105100F312CC /* MyTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyTableViewController.xib; sourceTree = "<group>"; };
+		3AA2D5121C3610C400F312CC /* TVAnimationsGestures-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TVAnimationsGestures-Prefix.pch"; sourceTree = "<group>"; };
+		3AA2D5131C3610C400F312CC /* PlaysAndQuotations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlaysAndQuotations.plist; sourceTree = "<group>"; };
+		3AA2D5141C3610C400F312CC /* carat-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "carat-open.png"; sourceTree = "<group>"; };
+		3AA2D5151C3610C400F312CC /* carat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carat.png; sourceTree = "<group>"; };
+		3AA2D5161C3610C400F312CC /* TVAnimationsGestures-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TVAnimationsGestures-Info.plist"; sourceTree = "<group>"; };
 		4AD749A3A2E07798AF7D58D5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4D1EEBA91C32502A0084F6E9 /* CCFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUser.h; sourceTree = "<group>"; };
 		4D1EEBAA1C32502A0084F6E9 /* CCFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUser.m; sourceTree = "<group>"; };
@@ -127,6 +163,43 @@
 			name = Category;
 			sourceTree = "<group>";
 		};
+		3AA2D4F51C36101E00F312CC /* FoldTableView */ = {
+			isa = PBXGroup;
+			children = (
+				3AA2D5111C36107E00F312CC /* SupportFiles */,
+				3AA2D50C1C36105100F312CC /* MyTableViewController.h */,
+				3AA2D50D1C36105100F312CC /* MyTableViewController.m */,
+				3AA2D50E1C36105100F312CC /* MyTableViewController.xib */,
+				3AA2D4F61C36103C00F312CC /* CCFFormHeaderView.h */,
+				3AA2D4F71C36103C00F312CC /* CCFFormHeaderView.m */,
+				3AA2D4F81C36103C00F312CC /* CCFFormHeaderView.xib */,
+				3AA2D4F91C36103C00F312CC /* CCFFormSectionInfo.h */,
+				3AA2D4FA1C36103C00F312CC /* CCFFormSectionInfo.m */,
+				3AA2D4FB1C36103C00F312CC /* APLPlay.h */,
+				3AA2D4FC1C36103C00F312CC /* APLPlay.m */,
+				3AA2D4FD1C36103C00F312CC /* APLQuotation.h */,
+				3AA2D4FE1C36103C00F312CC /* APLQuotation.m */,
+				3AA2D4FF1C36103C00F312CC /* APLHighlightingTextView.h */,
+				3AA2D5001C36103C00F312CC /* APLHighlightingTextView.m */,
+				3AA2D5011C36103C00F312CC /* CCFThreadViewCell.h */,
+				3AA2D5021C36103C00F312CC /* CCFThreadViewCell.m */,
+				3AA2D5031C36103C00F312CC /* CCFThreadViewCell.xib */,
+			);
+			name = FoldTableView;
+			sourceTree = "<group>";
+		};
+		3AA2D5111C36107E00F312CC /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				3AA2D5121C3610C400F312CC /* TVAnimationsGestures-Prefix.pch */,
+				3AA2D5131C3610C400F312CC /* PlaysAndQuotations.plist */,
+				3AA2D5141C3610C400F312CC /* carat-open.png */,
+				3AA2D5151C3610C400F312CC /* carat.png */,
+				3AA2D5161C3610C400F312CC /* TVAnimationsGestures-Info.plist */,
+			);
+			name = SupportFiles;
+			sourceTree = "<group>";
+		};
 		4D1EEBA81C324FFD0084F6E9 /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +239,7 @@
 		4D339D8D1C31454A0022A6A4 /* CCF */ = {
 			isa = PBXGroup;
 			children = (
+				3AA2D4F51C36101E00F312CC /* FoldTableView */,
 				4DF824C01C34F098005BB858 /* CCFDao */,
 				3A9FEDDF1C34382E00F30885 /* Category */,
 				3A9FEDDB1C34306600F30885 /* CCFBrowser */,
@@ -289,12 +363,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AA2D5181C3610C400F312CC /* carat-open.png in Resources */,
 				4D1EEBBC1C33D4FD0084F6E9 /* LoginViewController.xib in Resources */,
+				3AA2D5101C36105100F312CC /* MyTableViewController.xib in Resources */,
 				4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */,
 				4D339D9E1C31454B0022A6A4 /* Assets.xcassets in Resources */,
 				4DF824CB1C34F9F0005BB858 /* FormViewController.xib in Resources */,
+				3AA2D5171C3610C400F312CC /* PlaysAndQuotations.plist in Resources */,
+				3AA2D5191C3610C400F312CC /* carat.png in Resources */,
 				4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */,
+				3AA2D50B1C36103C00F312CC /* CCFThreadViewCell.xib in Resources */,
 				4D339D991C31454A0022A6A4 /* Main.storyboard in Resources */,
+				3AA2D5051C36103C00F312CC /* CCFFormHeaderView.xib in Resources */,
+				3AA2D51A1C3610C400F312CC /* TVAnimationsGestures-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,10 +435,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */,
+				3AA2D5061C36103C00F312CC /* CCFFormSectionInfo.m in Sources */,
 				3A9FEDE21C3438AC00F30885 /* NSString+Kit.m in Sources */,
 				4DF824BF1C34E9EF005BB858 /* CCFFormTree.m in Sources */,
 				4D1EEBBB1C33D4FD0084F6E9 /* LoginViewController.m in Sources */,
+				3AA2D5041C36103C00F312CC /* CCFFormHeaderView.m in Sources */,
 				4DF824C31C34F0B2005BB858 /* CCFFormDao.m in Sources */,
+				3AA2D5081C36103C00F312CC /* APLQuotation.m in Sources */,
 				3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */,
 				4D1EEBB11C3260130084F6E9 /* CCFThread.m in Sources */,
 				4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */,
@@ -365,11 +449,15 @@
 				4D339D9C1C31454A0022A6A4 /* CCF.xcdatamodeld in Sources */,
 				4D339D961C31454A0022A6A4 /* ViewController.m in Sources */,
 				4DF824CA1C34F9F0005BB858 /* FormViewController.m in Sources */,
+				3AA2D50F1C36105100F312CC /* MyTableViewController.m in Sources */,
 				4DF824C91C34F9F0005BB858 /* MAHeaderView.m in Sources */,
+				3AA2D5071C36103C00F312CC /* APLPlay.m in Sources */,
+				3AA2D5091C36103C00F312CC /* APLHighlightingTextView.m in Sources */,
 				4D1EEBAB1C32502A0084F6E9 /* CCFUser.m in Sources */,
 				4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */,
 				4D339D901C31454A0022A6A4 /* main.m in Sources */,
 				3A9FEDD61C341E2E00F30885 /* CCFUrlBuilder.m in Sources */,
+				3AA2D50A1C36103C00F312CC /* CCFThreadViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

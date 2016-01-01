@@ -26,6 +26,8 @@
 
 #import "FormViewController.h"
 
+#import "MyTableViewController.h"
+
 @interface ViewController ()
 
 @end
@@ -62,11 +64,16 @@
 
 
 - (IBAction)login:(UIButton *)sender {
+    MyTableViewController * table = [[MyTableViewController alloc]init];
     
-    FormViewController * show = [[FormViewController alloc]init];
-    [self presentViewController:show animated:YES completion:^{
+    [self presentViewController:table animated:YES completion:^{
         //
     }];
+    
+//    FormViewController * show = [[FormViewController alloc]init];
+//    [self presentViewController:show animated:YES completion:^{
+//        //
+//    }];
     
 //    LoginViewController *login = [[LoginViewController alloc]init];
 //    [self presentViewController:login animated:YES completion:^{

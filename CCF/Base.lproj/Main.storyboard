@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--CCF-->
+        <!--CCFFormScene-->
         <scene sceneID="s4C-Tw-vM1">
             <objects>
-                <tableViewController id="BcJ-sC-1Pm" customClass="MyTableViewController" sceneMemberID="viewController">
+                <tableViewController id="BcJ-sC-1Pm" userLabel="CCFFormScene" customClass="MyTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9iR-M5-OZE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,7 +73,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BcJ-sC-1Pm" kind="relationship" relationship="rootViewController" id="atM-hg-99D"/>
+                        <segue destination="BcJ-sC-1Pm" kind="relationship" relationship="rootViewController" id="IJr-X8-fuf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fez-f1-3bJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

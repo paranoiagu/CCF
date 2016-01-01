@@ -50,7 +50,7 @@
                                     <outlet property="actAndSceneLabel" destination="zSl-Cj-dMf" id="KyY-q4-6H3"/>
                                     <outlet property="characterLabel" destination="xlB-8v-HNE" id="HLf-ud-nc2"/>
                                     <outlet property="quotationTextView" destination="GJh-xh-Azw" id="5b2-6Q-1Vi"/>
-                                    <segue destination="owK-Jl-7fO" kind="push" id="ZGh-uO-vQ1"/>
+                                    <segue destination="owK-Jl-7fO" kind="push" identifier="ToThreadList" id="ZGh-uO-vQ1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -68,7 +68,7 @@
         <!--帖子列表-->
         <scene sceneID="ZSu-6M-hd2">
             <objects>
-                <tableViewController id="owK-Jl-7fO" customClass="CCFThreadListTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LIST" id="owK-Jl-7fO" customClass="CCFThreadListTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="W0o-qo-VEi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

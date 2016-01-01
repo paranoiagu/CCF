@@ -178,18 +178,30 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     CCFThreadListTableViewController * controller = segue.destinationViewController;
     
-    NSLog(@"prepareForSegue %@", segue.destinationViewController);
-    
     if ([controller respondsToSelector:@selector(setEntry:)]) {
+        
+        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        NSLog(@"prepareForSegue %ld      %ld   ", path.section, path.row);
+        
+        CCFForm * select = [self.plays[path.section] valueForKey:@"childForms"][path.row];
+        
+        CCFEntry * entry = [[CCFEntry alloc]init];
+        
+        entry.urlId = [select valueForKey:@"formId"];
+        
+        entry.page = @"1";
+        
+        [controller setValue:entry forKey:@"entry"];
+
         NSLog(@"prepareForSegue ");
+        
     }
-//    CCFEntry * entry = [[CCFEntry alloc]init];
-//    entry.urlId = @"123";
-//    entry.page = @"000";
-//    [controller setValue:entry forKey:@"entry"];
+
     
-//    NSLog(@"prepareForSegue ");
+    
 }
+
 
 #pragma mark - UITableViewDataSource
 
@@ -259,8 +271,9 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    NSLog(@"didSelectRowAtIndexPath %ld,   %ld ", indexPath.section, indexPath.row);
+//    
+//    NSLog(@"didSelectRowAtIndexPath %ld,   %ld ", indexPath.section, indexPath.row);
+//    [self performSegueWithIdentifier:@"ToThreadList" sender:self.view];
     
 }
 

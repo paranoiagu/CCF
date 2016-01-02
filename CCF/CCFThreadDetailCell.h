@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class CCFPost;
+
 @interface CCFThreadDetailCell : UITableViewCell
 
 
-@property (weak, nonatomic) IBOutlet UITextView *postCpntent;
+@property (weak, nonatomic) IBOutlet UIWebView *content;
+
+@property (nonatomic) CCFPost* post;
 
 @end

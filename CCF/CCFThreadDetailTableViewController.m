@@ -74,32 +74,12 @@
     
     CCFPost *post = self.posts[indexPath.row];
     
-//    cell.postContent.text = post.postContent;
-    
-    NSString * htmlString = post.postContent;
-    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-    
-    
-    [cell.postCpntent setText:post.postContent];
-
+    [cell.content loadHTMLString:post.postContent baseURL:[CCFUrlBuilder buildIndexURL]];
     
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSInteger row = [indexPath row];
-    // 列寬
-    CGFloat contentWidth = self.tableView.frame.size.width;
-    // 用何種字體進行顯示
-    UIFont *font = [UIFont systemFontOfSize:14];
-    // 該行要顯示的內容
-    NSString *content = [[self.posts objectAtIndex:row] postContent];
-    // 計算出顯示完內容需要的最小尺寸
-    CGSize size = [content sizeWithFont:font constrainedToSize:CGSizeMake(contentWidth, 1000.0f) lineBreakMode:NSLineBreakByCharWrapping];// UILineBreakModeWordWrap
-    
-    // 這裏返回需要的高度
-    return size.height+20;
-}
+
 
 
 - (IBAction)back:(UIBarButtonItem *)sender {

@@ -10,6 +10,8 @@
 
 @interface CCFThreadList : NSObject
 
+@property (nonatomic, assign) BOOL isTopThread;
+
 @property (nonatomic, strong) NSString* threadTitle;
 
 @property (nonatomic, strong) NSString* threadID;

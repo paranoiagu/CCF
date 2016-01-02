@@ -12,6 +12,7 @@
 #import "CCFBrowser.h"
 #import "CCFUrlBuilder.h"
 #import "CCFParser.h"
+#import "CCFThreadListCell.h"
 
 
 @interface CCFThreadListTableViewController ()
@@ -20,19 +21,22 @@
 
 @implementation CCFThreadListTableViewController
 
+@synthesize threadList = _threadList;
+@synthesize threadTopList = _threadTopList;
+
 @synthesize entry;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    if (self.threadList == nil) {
+        self.threadList = [NSMutableArray array];
+    }
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    
+    if (self.threadTopList == nil) {
+        self.threadTopList = [NSMutableArray array];
+    }
     
     NSLog(@"viewDidLoad    %@   %@", entry.urlId, entry.page);
     
@@ -51,10 +55,18 @@
         
         CCFParser *parser = [[CCFParser alloc]init];
         
-        NSMutableArray * posts = [parser parseThreadListFromHtml:result withThread:entry.urlId andContainsTop:YES];
+        NSMutableArray<CCFThreadList *> * threadList = [parser parseThreadListFromHtml:result withThread:entry.urlId andContainsTop:YES];
     
+        for (CCFThreadList * thread in threadList) {
+            if (thread.isTopThread) {
+                [self.threadTopList addObject:thread];
+            }else{
+                [self.threadList addObject:thread];
+            }
+        }
         
-//        NSLog(@"%@", result);
+
+        [self.tableView reloadData];
         
     }];
     
@@ -66,16 +78,44 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+
+    if (section == 0) {
+        return self.threadTopList.count;
+    }
+    return self.threadList.count;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *QuoteCellIdentifier = @"CCFThreadListCellIdentifier";
+    
+    CCFThreadListCell *cell = (CCFThreadListCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+    
+//    if(cell == nil) {
+//        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CCFThreadViewCell" owner:self options:nil];
+//        
+//        cell = [nib lastObject];
+//        
+//    }
+    
+    if (indexPath.section == 0) {
+        CCFThreadList *play = self.threadTopList[indexPath.row];
+        
+        cell.threadTitle.text = play.threadTitle;
+    } else{
+        CCFThreadList *play = self.threadList[indexPath.row];
+        
+        cell.threadTitle.text = play.threadTitle;
+    }
 
+    
+    return cell;
+}
 
 
 - (IBAction)back:(UIBarButtonItem *)sender {

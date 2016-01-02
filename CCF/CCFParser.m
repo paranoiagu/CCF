@@ -39,14 +39,12 @@
             
             NSString * titleInnerHtml = [threadTitleNode innerHtml];
             
-            if (!containTop) {
-                // 找出置顶的，过滤掉
-                NSRange range = [titleInnerHtml rangeOfString:@"<font color=\"red\"><b>[置顶]</b></font>"];
-                
-                if (range.location != NSNotFound) {
-                    continue;
-                }
+            NSRange range = [titleInnerHtml rangeOfString:@"<font color=\"red\"><b>[置顶]</b></font>"];
+            if (!containTop && !(range.location == NSNotFound)) {
+                continue;
             }
+            ccfthreadlist.isTopThread = !(range.location == NSNotFound);
+            
             
             
             
@@ -67,7 +65,6 @@
             IGXMLNode * commentCountNode = threadListNode.children [5];
             ccfthreadlist.threadTotalPostCount = [[commentCountNode text] intValue];
             NSLog(@"---------------> %@ ", ccfthreadlist.threadTitle);
-            
             
             [threadList addObject:ccfthreadlist];
         }

@@ -10,12 +10,12 @@
 
 @interface CCFThreadList : NSObject
 
-@property (nonatomic, assign) NSString* threadTitle;
+@property (nonatomic, strong) NSString* threadTitle;
 
-@property (nonatomic, assign) NSString* threadID;
-@property (nonatomic, assign) NSString* threadLink;
+@property (nonatomic, strong) NSString* threadID;
+
 @property (nonatomic, assign) NSUInteger threadTotalPostCount;
 
-@property (nonatomic, assign) NSString* threadAuthor;
+@property (nonatomic, strong) NSString* threadAuthor;
 
 @end

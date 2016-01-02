@@ -51,7 +51,7 @@
         
         CCFParser *parser = [[CCFParser alloc]init];
         
-        NSMutableArray * posts = [parser parseThreadListFromHtml:result withThread:entry.urlId];
+        NSMutableArray * posts = [parser parseThreadListFromHtml:result withThread:entry.urlId andContainsTop:YES];
     
         
 //        NSLog(@"%@", result);

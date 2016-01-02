@@ -16,6 +16,6 @@
 
 -(NSMutableArray<CCFPost*>*) parsePostFromThreadHtml:(NSString*)html;
 
--(NSMutableArray<CCFThreadList*> *) parseThreadListFromHtml: (NSString *) html withThread:(NSString *) threadId;
+-(NSMutableArray<CCFThreadList*> *) parseThreadListFromHtml: (NSString *) html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop;
 
 @end

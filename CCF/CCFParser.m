@@ -14,41 +14,75 @@
 
 
 
--(NSMutableArray<CCFThreadList *> *)parseThreadListFromHtml:(NSString *)html withThread:(NSString *) threadId{
+-(NSMutableArray<CCFThreadList *> *)parseThreadListFromHtml:(NSString *)html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop{
     NSString * path = [NSString stringWithFormat:@"//*[@id='threadbits_forum_%@']/tr", threadId];
     
     //*[@id="threadbits_forum_147"]/tr[1]
     
-    NSMutableArray * threadList = [NSMutableArray array];
+    NSMutableArray<CCFThreadList *> * threadList = [NSMutableArray<CCFThreadList *> array];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet* contents = [document queryWithXPath: path];
     
     for (int i = 0; i < contents.count; i++){
-        IGXMLNode * threadList = contents[i];
-        if (threadList.children.count > 1) {
-            CCFThreadList * list = [[CCFThreadList alloc]init];
+        IGXMLNode * threadListNode = contents[i];
+        if (threadListNode.children.count > 1) {
             
-            IGXMLNode * threadTitleNode = threadList.children [2];
-            NSString *title = [self title:[threadTitleNode innerHtml] ];
+            CCFThreadList * ccfthreadlist = [[CCFThreadList alloc]init];
+            
+
+            
+            
+            
+            // title
+            IGXMLNode * threadTitleNode = threadListNode.children [2];
+            
+            NSString * titleInnerHtml = [threadTitleNode innerHtml];
+            
+            if (!containTop) {
+                // 找出置顶的，过滤掉
+                NSRange range = [titleInnerHtml rangeOfString:@"<font color=\"red\"><b>[置顶]</b></font>"];
+                
+                if (range.location != NSNotFound) {
+                    continue;
+                }
+            }
+            
+            
+            
+            
+            NSString *title = [self parseTitle: titleInnerHtml];
             
             IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:title error:nil];
             
+            //[@"showthread.php?t=" length]    17的由来
+            ccfthreadlist.threadID = [[titleTemp attribute:@"href"] substringFromIndex: 17];
+            ccfthreadlist.threadTitle = [titleTemp text];
             
-            NSLog(@"---------------> %@", title);
+            
+            IGXMLNode * authorNode = threadListNode.children [3];
+            ccfthreadlist.threadAuthor = [authorNode text];
+            
+            
+            IGXMLNode * commentCountNode = threadListNode.children [5];
+            ccfthreadlist.threadTotalPostCount = [[commentCountNode text] intValue];
+            NSLog(@"---------------> %@ ", ccfthreadlist.threadTitle);
+            
+            
+            [threadList addObject:ccfthreadlist];
         }
         
         
     }
     
     //NSLog(@"%@", contents);
-    
+//
     
     return threadList;
     
 }
 
--(NSString *) title:(NSString *) html {
+-(NSString *) parseTitle:(NSString *) html {
     NSString *searchText = html;
     
     NSString * pattern = @"<a href=\"showthread.php\\?t.*";

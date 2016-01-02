@@ -7,6 +7,10 @@
 //
 
 #import "CCFThreadDetailTableViewController.h"
+#import "CCFThreadDetailCell.h"
+#import "CCFBrowser.h"
+#import "CCFUrlBuilder.h"
+#import "CCFParser.h"
 
 @interface CCFThreadDetailTableViewController ()
 
@@ -14,88 +18,91 @@
 
 @implementation CCFThreadDetailTableViewController
 
+@synthesize entry;
+@synthesize posts = _posts;
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    NSLog(@"CCFThreadDetailTableViewController viewDidLoad    %@   %@", entry.urlId, entry.page);
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    CCFBrowser * browser = [[CCFBrowser alloc]init];
+    [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:entry.urlId withPage:entry.page]:^(NSString* result) {
+        
+        CCFParser *parser = [[CCFParser alloc]init];
+        
+        NSMutableArray<CCFPost *> * parsedPosts = [parser parsePostFromThreadHtml:result];
+        
+        if (self.posts == nil) {
+            self.posts = [NSMutableArray array];
+        }
+        
+        [self.posts addObjectsFromArray:parsedPosts];
+        
+        for (CCFPost * post in self.posts) {
+            NSLog(@"=========>>>>>    %@", post.postContent);
+        }
+        [self.tableView reloadData];
+        
+    }];
+
+    
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+
+    return self.posts.count;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    static NSString *QuoteCellIdentifier = @"CCFThreadDetailCellIdentifier";
+    
+    CCFThreadDetailCell *cell = (CCFThreadDetailCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+    
+    CCFPost *post = self.posts[indexPath.row];
+    
+//    cell.postContent.text = post.postContent;
+    
+    NSString * htmlString = post.postContent;
+    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    
+    
+    [cell.postCpntent setText:post.postContent];
+
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger row = [indexPath row];
+    // 列寬
+    CGFloat contentWidth = self.tableView.frame.size.width;
+    // 用何種字體進行顯示
+    UIFont *font = [UIFont systemFontOfSize:14];
+    // 該行要顯示的內容
+    NSString *content = [[self.posts objectAtIndex:row] postContent];
+    // 計算出顯示完內容需要的最小尺寸
+    CGSize size = [content sizeWithFont:font constrainedToSize:CGSizeMake(contentWidth, 1000.0f) lineBreakMode:NSLineBreakByCharWrapping];// UILineBreakModeWordWrap
+    
+    // 這裏返回需要的高度
+    return size.height+20;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)back:(UIBarButtonItem *)sender {
-    [self.navigationController popoverPresentationController];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

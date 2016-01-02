@@ -13,6 +13,7 @@
 #import "CCFUrlBuilder.h"
 #import "CCFParser.h"
 #import "CCFThreadListCell.h"
+#import "CCFThreadDetailTableViewController.h"
 
 
 @interface CCFThreadListTableViewController ()
@@ -23,7 +24,6 @@
 
 @synthesize threadList = _threadList;
 @synthesize threadTopList = _threadTopList;
-
 @synthesize entry;
 
 
@@ -42,15 +42,15 @@
     
     
     
+    
+    
+    
+//    NSString * userID = [browser getCurrentCCFUser];
+//    
+//    
+//    NSLog(@"%@", userID);
+    
     CCFBrowser * browser = [[CCFBrowser alloc]init];
-    
-    
-    NSString * userID = [browser getCurrentCCFUser];
-    
-    
-    NSLog(@"%@", userID);
-    
-    
     [browser browseWithUrl:[CCFUrlBuilder buildFormURL:entry.urlId withPage:entry.page ]:^(NSString* result) {
         
         CCFParser *parser = [[CCFParser alloc]init];
@@ -96,13 +96,6 @@
     
     CCFThreadListCell *cell = (CCFThreadListCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
     
-//    if(cell == nil) {
-//        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CCFThreadViewCell" owner:self options:nil];
-//        
-//        cell = [nib lastObject];
-//        
-//    }
-    
     if (indexPath.section == 0) {
         CCFThreadList *play = self.threadTopList[indexPath.row];
         
@@ -115,6 +108,34 @@
 
     
     return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    CCFThreadDetailTableViewController * controller = segue.destinationViewController;
+    
+    if ([controller respondsToSelector:@selector(setEntry:)]) {
+        
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        CCFThreadList * thread = nil;
+        
+        if (indexPath.section == 0) {
+            thread = self.threadTopList[indexPath.row];
+        } else{
+            thread = self.threadList[indexPath.row];
+        }
+
+        
+        CCFEntry * transEntry = [[CCFEntry alloc]init];
+        
+        transEntry.urlId = thread.threadID;
+        
+        transEntry.page = @"1";
+        
+        [controller setValue:transEntry forKey:@"entry"];
+
+    }
 }
 
 

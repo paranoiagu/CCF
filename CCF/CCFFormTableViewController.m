@@ -197,9 +197,6 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
         NSLog(@"prepareForSegue ");
         
     }
-
-    
-    
 }
 
 

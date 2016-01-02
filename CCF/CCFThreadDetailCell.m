@@ -18,7 +18,8 @@
 
 - (void)awakeFromNib {
 
-    
+    _content.scrollView.scrollEnabled = NO;
+    _content.scrollView.bounces = NO;
     _content.delegate = self;
     
 }
@@ -50,6 +51,14 @@
 
     
     NSLog(@"webViewDidFinishLoad     %f", height );
+    
+    CGRect cellGrame = self.frame;
+    cellGrame.size.height = height;
+    self.frame = cellGrame;
+    
+    
+    
+    self.content.frame = cellGrame;
     
 }
 

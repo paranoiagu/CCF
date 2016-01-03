@@ -92,7 +92,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="threadTitle" destination="GvG-S7-y7k" id="yjZ-qk-ssx"/>
-                                    <segue destination="DXG-iT-Wz3" kind="push" id="l2m-0u-sKj"/>
+                                    <segue destination="2p2-vL-cJ0" kind="push" id="hZc-O4-GLS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -123,7 +123,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFThreadDetailCellIdentifier" rowHeight="120" id="7mO-yU-NBH" customClass="CCFThreadDetailCell">
-                                <rect key="frame" x="0.0" y="92" width="320" height="120"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7mO-yU-NBH" id="pfk-HT-C0I">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
@@ -158,6 +158,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8eC-48-OpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2070" y="-2100"/>
+        </scene>
+        <!--Demo Text View Controller-->
+        <scene sceneID="wxL-Yj-VzW">
+            <objects>
+                <viewController id="2p2-vL-cJ0" customClass="DemoTextViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HaG-NY-aGh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="XZv-DK-yLu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j4D-ko-kRo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1635" y="-3054"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rsw-tr-lOi">

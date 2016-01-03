@@ -11,6 +11,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 #import "DTTiledLayerWithoutFade.h"
+#import "DTCoreText.h"
 
 
 @interface DemoTextViewController ()

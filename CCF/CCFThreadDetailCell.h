@@ -11,13 +11,31 @@
 
 @class CCFPost;
 
+
+
+@protocol CCFThreadDetailCellDelegate <NSObject>
+
+@required
+-(void) relayoutContentHeigt:(NSIndexPath*) indexPath with:(CGFloat) height;
+
+@end
+
+
+
+
+
+
+
 @interface CCFThreadDetailCell : UITableViewCell
 
 
 
 @property (weak, nonatomic) IBOutlet DTAttributedTextContentView *htmlView;
 
+@property (nonatomic, strong) id<CCFThreadDetailCellDelegate> delegate;
 
 @property (nonatomic, strong) CCFPost* post;
+
+-(void) setPost:(CCFPost *)post with:(NSIndexPath*) indexPath;
 
 @end

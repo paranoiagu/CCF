@@ -10,7 +10,10 @@
 #import "CCFUrlBuilder.h"
 #import "CCFPost.h"
 
-@interface CCFThreadDetailCell ()<DTAttributedTextContentViewDelegate>
+@interface CCFThreadDetailCell ()<DTAttributedTextContentViewDelegate>{
+    
+    NSIndexPath *path;
+}
 
 @end
 
@@ -20,9 +23,11 @@
 
     _htmlView.shouldDrawImages = NO;
     _htmlView.shouldDrawLinks = NO;
+    
     _htmlView.delegate = self;
     
     _htmlView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _htmlView.relayoutMask = DTAttributedTextContentViewRelayoutOnHeightChanged | DTAttributedTextContentViewRelayoutOnWidthChanged;
     
 }
 
@@ -41,6 +46,11 @@
 //        [self.htmlView loadHTMLString:html baseURL:[CCFUrlBuilder buildIndexURL]];
         _htmlView.attributedString = [self showHtml:html];
     }
+}
+
+-(void)setPost:(CCFPost *)post with:(NSIndexPath *)indexPath{
+    path = indexPath;
+    [self setPost:post];
 }
 
 - (NSAttributedString *)showHtml:(NSString *)html{
@@ -83,7 +93,24 @@
 #pragma mark DTAttributedTextContentViewDelegate
 -(void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView willDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context{
     CGSize size = [attributedTextContentView suggestedFrameSizeToFitEntireStringConstraintedToWidth:layoutFrame.frame.size.width];
-    NSLog(@"attributedTextContentView----------->>  %f %f", size.width, size.height);
+    
+    
+    //NSLog(@"attributedTextContentView----------->>  %f %f", size.width, size.height);
+    
+    
+    CGRect frame = _htmlView.frame;
+    frame.size.height = size.height;
+    _htmlView.frame = frame;
+    
+    
+    
+    NSLog(@"attributedTextContentView----------->>   %f %f       //     %f %f", size.width, size.height , frame.size.width, frame.size.height);
+    
+    CGRect cellframe = self.frame;
+    
+    NSLog(@"attributedTextContentView----------->>   %f %f \n\t", cellframe.size.width, cellframe.size.height);
+    
+    [self.delegate relayoutContentHeigt:path with:size.height];
 }
 
 -(CGSize)sizeThatFits:(CGSize)size{

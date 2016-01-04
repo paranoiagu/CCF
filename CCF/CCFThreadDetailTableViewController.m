@@ -12,7 +12,10 @@
 #import "CCFUrlBuilder.h"
 #import "CCFParser.h"
 
-@interface CCFThreadDetailTableViewController ()
+@interface CCFThreadDetailTableViewController ()<CCFThreadDetailCellDelegate>{
+    
+    NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
+}
 
 @end
 
@@ -25,6 +28,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    cellHeightDictionary = [NSMutableDictionary<NSIndexPath *, NSNumber *> dictionary];
+    
     
     NSLog(@"CCFThreadDetailTableViewController viewDidLoad    %@   %@", entry.urlId, entry.page);
     
@@ -71,6 +77,7 @@
     static NSString *QuoteCellIdentifier = @"CCFThreadDetailCellIdentifier";
     
     CCFThreadDetailCell *cell = (CCFThreadDetailCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+    cell.delegate = self;
     
     //CCFThreadDetailCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"CCFThreadDetailCellIdentifier" owner:self options:nil] lastObject];
     
@@ -78,14 +85,28 @@
     CCFPost *post = self.posts[indexPath.row];
     
 //    [cell.content loadHTMLString:post.postContent baseURL:[CCFUrlBuilder buildIndexURL]];
-    [cell setPost:post];
+//    [cell setPost:post];
+    [cell setPost:post with:indexPath];
     
     return cell;
 }
 
 
+-(void)relayoutContentHeigt:(NSIndexPath *)indexPath with:(CGFloat)height{
+    if ([cellHeightDictionary objectForKey:indexPath] == nil) {
+        CGFloat fixHeight = height < 44.f? 44.f : height + 10.f;
+        
+        [cellHeightDictionary setObject:[NSNumber numberWithFloat:fixHeight] forKey:indexPath];
+        [self.tableView reloadData];
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 200.f;
+    NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
+    if (nsheight == nil) {
+        return  44;
+    }
+    return nsheight.floatValue;
 }
 
 

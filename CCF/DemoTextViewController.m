@@ -28,12 +28,9 @@
 @end
 
 
-@implementation DemoTextViewController
-{
+@implementation DemoTextViewController{
 	NSString *_fileName;
 	
-	UISegmentedControl *_segmentedControl;
-	UISegmentedControl *_htmlOutputTypeSegment;
 	
 	DTAttributedTextView *_textView;
 	
@@ -46,6 +43,9 @@
 	BOOL _needsAdjustInsetsOnLayout;
 }
 
+@synthesize lastActionLink;
+@synthesize mediaPlayers;
+@synthesize baseURL;
 
 #pragma mark NSObject
 
@@ -54,22 +54,6 @@
 	self = [super init];
 	if (self)
 	{
-		NSMutableArray *items = [[NSMutableArray alloc] initWithObjects:@"View", @"Ranges", @"Chars", @"HTML", nil];
-		
-#ifdef DTCORETEXT_SUPPORT_NS_ATTRIBUTES
-		if (floor(NSFoundationVersionNumber) >= DTNSFoundationVersionNumber_iOS_6_0)
-		{
-			[items addObject:@"iOS 6"];
-		}
-#endif
-		
-		_segmentedControl = [[UISegmentedControl alloc] initWithItems:items];
-		_segmentedControl.selectedSegmentIndex = 0;
-		//[_segmentedControl addTarget:self action:@selector(_segmentedControlChanged:) forControlEvents:UIControlEventValueChanged];
-		self.navigationItem.titleView = _segmentedControl;	
-		
-		[self _updateToolbarForMode];
-		
 		_needsAdjustInsetsOnLayout = YES;
 		
 		self.automaticallyAdjustsScrollViewInsets = YES;
@@ -90,40 +74,6 @@
 
 
 #pragma mark UIViewController
-
-- (void)_updateToolbarForMode
-{
-	NSMutableArray *toolbarItems = [NSMutableArray array];
-	
-	UIBarButtonItem *debug = [[UIBarButtonItem alloc] initWithTitle:@"Debug Frames" style:UIBarButtonItemStylePlain target:self action:@selector(debugButton:)];
-	[toolbarItems addObject:debug];
-	
-	UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-	[toolbarItems addObject:space];
-	
-	UIBarButtonItem *screenshot = [[UIBarButtonItem alloc] initWithTitle:@"Screenshot" style:UIBarButtonItemStylePlain target:self action:@selector(screenshot:)];
-	[toolbarItems addObject:screenshot];
-	
-	if (_segmentedControl.selectedSegmentIndex == 3)
-	{
-		if (!_htmlOutputTypeSegment)
-		{
-			_htmlOutputTypeSegment = [[UISegmentedControl alloc] initWithItems:@[@"Document", @"Fragment"]];
-			_htmlOutputTypeSegment.selectedSegmentIndex = 0;
-			
-			[_htmlOutputTypeSegment addTarget:self action:@selector(_htmlModeChanged:) forControlEvents:UIControlEventValueChanged];
-		}
-	
-		UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
-		[toolbarItems addObject:spacer];
-	
-		UIBarButtonItem *htmlMode = [[UIBarButtonItem alloc] initWithCustomView:_htmlOutputTypeSegment];
-	
-		[toolbarItems addObject:htmlMode];
-	}
-
-	[self setToolbarItems:toolbarItems];
-}
 
 - (void)loadView {
 	[super loadView];
@@ -258,10 +208,6 @@
     }];
     
     
-
-	
-//	[self _segmentedControlChanged:nil];
-	
 	[self.navigationController setToolbarHidden:NO animated:YES];
 }
 
@@ -673,10 +619,7 @@
 	return mediaPlayers;
 }
 
-@synthesize fileName = _fileName;
-@synthesize lastActionLink;
-@synthesize mediaPlayers;
-@synthesize baseURL;
+
 
 
 @end

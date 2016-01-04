@@ -11,8 +11,6 @@
 
 @interface DemoTextViewController : UIViewController <UIActionSheetDelegate, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate>
 
-@property (nonatomic, strong) NSString *fileName;
-
 @property (nonatomic, strong) NSURL *lastActionLink;
 
 @property (nonatomic, strong) NSURL *baseURL;

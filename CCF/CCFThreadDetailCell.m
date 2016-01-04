@@ -26,7 +26,7 @@
     
     _htmlView.delegate = self;
     
-    _htmlView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _htmlView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _htmlView.relayoutMask = DTAttributedTextContentViewRelayoutOnHeightChanged | DTAttributedTextContentViewRelayoutOnWidthChanged;
     
 }
@@ -46,6 +46,7 @@
 //        [self.htmlView loadHTMLString:html baseURL:[CCFUrlBuilder buildIndexURL]];
         _htmlView.attributedString = [self showHtml:html];
     }
+    
 }
 
 -(void)setPost:(CCFPost *)post with:(NSIndexPath *)indexPath{

@@ -17,14 +17,13 @@
 #import "CCFParser.h"
 
 @interface DemoTextViewController ()
-- (void)_segmentedControlChanged:(id)sender;
+//- (void)_segmentedControlChanged:(id)sender;
 
 - (void)linkPushed:(DTLinkButton *)button;
 - (void)linkLongPressed:(UILongPressGestureRecognizer *)gesture;
 - (void)debugButton:(UIBarButtonItem *)sender;
 
 @property (nonatomic, strong) NSMutableSet *mediaPlayers;
-@property (nonatomic, strong) NSArray *contentViews;
 
 @end
 
@@ -37,10 +36,6 @@
 	UISegmentedControl *_htmlOutputTypeSegment;
 	
 	DTAttributedTextView *_textView;
-	UITextView *_rangeView;
-	UITextView *_charsView;
-	UITextView *_htmlView;
-	UITextView *_iOS6View;
 	
 	NSURL *baseURL;
 	
@@ -70,7 +65,7 @@
 		
 		_segmentedControl = [[UISegmentedControl alloc] initWithItems:items];
 		_segmentedControl.selectedSegmentIndex = 0;
-		[_segmentedControl addTarget:self action:@selector(_segmentedControlChanged:) forControlEvents:UIControlEventValueChanged];
+		//[_segmentedControl addTarget:self action:@selector(_segmentedControlChanged:) forControlEvents:UIControlEventValueChanged];
 		self.navigationItem.titleView = _segmentedControl;	
 		
 		[self _updateToolbarForMode];
@@ -134,25 +129,6 @@
 	[super loadView];
 	
 	CGRect frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height);
-	
-	// Create chars view
-	_charsView = [[UITextView alloc] initWithFrame:frame];
-	_charsView.editable = NO;
-	_charsView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	[self.view addSubview:_charsView];
-	
-	// Create range view
-	_rangeView = [[UITextView alloc] initWithFrame:frame];
-	_rangeView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	_rangeView.editable = NO;
-	[self.view addSubview:_rangeView];
-
-	// Create html view
-	_htmlView = [[UITextView alloc] initWithFrame:frame];
-	_htmlView.editable = NO;
-	_htmlView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	[self.view addSubview:_htmlView];
-
 	// Create text view
 	_textView = [[DTAttributedTextView alloc] initWithFrame:frame];
 	
@@ -172,15 +148,6 @@
 	_textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	[self.view addSubview:_textView];
 	
-	// create a text view to for testing iOS 6 compatibility
-	// Create html view
-	_iOS6View = [[UITextView alloc] initWithFrame:frame];
-	_iOS6View.editable = NO;
-	_iOS6View.contentInset = UIEdgeInsetsMake(10, 0, 10, 0);
-	_iOS6View.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	[self.view addSubview:_iOS6View];
-	
-	self.contentViews = @[_charsView, _rangeView, _htmlView, _textView, _iOS6View];
 }
 
 
@@ -293,7 +260,7 @@
     
 
 	
-	[self _segmentedControlChanged:nil];
+//	[self _segmentedControlChanged:nil];
 	
 	[self.navigationController setToolbarHidden:NO animated:YES];
 }
@@ -360,142 +327,19 @@
 	_textView.contentOffset = innerScrollOffset;
 	_textView.scrollIndicatorInsets = outerInsets;
 	
-	_iOS6View.contentInset = outerInsets;
-	_iOS6View.contentOffset = outerScrollOffset;
-	_iOS6View.scrollIndicatorInsets = outerInsets;
-
-	_charsView.contentInset = outerInsets;
-	_charsView.contentOffset = outerScrollOffset;
-	_charsView.scrollIndicatorInsets = outerInsets;
-	
-	_rangeView.contentInset = outerInsets;
-	_rangeView.contentOffset = outerScrollOffset;
-	_rangeView.scrollIndicatorInsets = outerInsets;
-	
-	_htmlView.contentInset = outerInsets;
-	_htmlView.contentOffset = outerScrollOffset;
-	_htmlView.scrollIndicatorInsets = outerInsets;
 	
 	_needsAdjustInsetsOnLayout = NO;
 }
 
 #pragma mark Private Methods
 
-- (void)updateDetailViewForIndex:(NSUInteger)index
-{
-	switch (index) 
-	{
-		case 1:
-		{
-			NSMutableString *dumpOutput = [[NSMutableString alloc] init];
-			NSDictionary *attributes = nil;
-			NSRange effectiveRange = NSMakeRange(0, 0);
-			
-			if ([_textView.attributedString length])
-			{
-				
-				while ((attributes = [_textView.attributedString attributesAtIndex:effectiveRange.location effectiveRange:&effectiveRange]))
-				{
-					[dumpOutput appendFormat:@"Range: (%lu, %lu), %@\n\n", (unsigned long)effectiveRange.location, (unsigned long)effectiveRange.length, attributes];
-					effectiveRange.location += effectiveRange.length;
-					
-					if (effectiveRange.location >= [_textView.attributedString length])
-					{
-						break;
-					}
-				}
-			}
-			_rangeView.text = dumpOutput;
-			break;
-		}
-		case 2:
-		{
-			// Create characters view
-			NSMutableString *dumpOutput = [[NSMutableString alloc] init];
-			NSData *dump = [[_textView.attributedString string] dataUsingEncoding:NSUTF8StringEncoding];
-			for (NSInteger i = 0; i < [dump length]; i++)
-			{
-				char *bytes = (char *)[dump bytes];
-				char b = bytes[i];
-				
-				[dumpOutput appendFormat:@"%li: %x %c\n", (long)i, b, b];
-			}
-			_charsView.text = dumpOutput;
-			
-			break;
-		}
-		case 3:
-		{
-			if (_htmlOutputTypeSegment.selectedSegmentIndex == 0)
-			{
-				_htmlView.text = [_textView.attributedString htmlString];
-			}
-			else
-			{
-				_htmlView.text = [_textView.attributedString htmlFragment];
-			}
-			
-			break;
-		}
-		case 4:
-		{
-			if (![_iOS6View.attributedText length])
-			{
-				_iOS6View.attributedText = [self _attributedStringForSnippetUsingiOS6Attributes:YES];
-			}
-		}
-	}
-}
 
-- (void)_segmentedControlChanged:(id)sender {
-	UIScrollView *selectedView = _textView;
-	
-	switch (_segmentedControl.selectedSegmentIndex)
-	{
-		case 1:
-		{
-			selectedView = _rangeView;
-			break;
-		}
-			
-		case 2:
-		{
-			selectedView = _charsView;
-			break;
-		}
-			
-		case 3:
-		{
-			selectedView = _htmlView;
-			
-			break;
-		}
-			
-		case 4:
-		{
-			selectedView = _iOS6View;
-			break;
-		}
-	}
-
-	// refresh only this tab
-	[self updateDetailViewForIndex:_segmentedControl.selectedSegmentIndex];
-	
-	// Hide all views except for the selected view to not conflict with VoiceOver
-	for (UIView *view in self.contentViews)
-		view.hidden = YES;
-	selectedView.hidden = NO;
-	
-	[self.view bringSubviewToFront:selectedView];
-	[selectedView flashScrollIndicators];
-	
-	[self _updateToolbarForMode];
-}
+//segmentedControlChanged
 
 - (void)_htmlModeChanged:(id)sender
 {
 	// refresh only this tab
-	[self updateDetailViewForIndex:_segmentedControl.selectedSegmentIndex];
+	//[self updateDetailViewForIndex:_segmentedControl.selectedSegmentIndex];
 }
 
 

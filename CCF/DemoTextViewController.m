@@ -17,11 +17,10 @@
 #import "CCFParser.h"
 
 @interface DemoTextViewController ()
-//- (void)_segmentedControlChanged:(id)sender;
 
 - (void)linkPushed:(DTLinkButton *)button;
 - (void)linkLongPressed:(UILongPressGestureRecognizer *)gesture;
-- (void)debugButton:(UIBarButtonItem *)sender;
+
 
 @property (nonatomic, strong) NSMutableSet *mediaPlayers;
 
@@ -507,13 +506,6 @@
 	}
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	if (buttonIndex != actionSheet.cancelButtonIndex)
-	{
-		[[UIApplication sharedApplication] openURL:[self.lastActionLink absoluteURL]];
-	}
-}
 
 - (void)linkLongPressed:(UILongPressGestureRecognizer *)gesture
 {
@@ -556,27 +548,6 @@
 	}
 }
 
-- (void)debugButton:(UIBarButtonItem *)sender
-{
-	[DTCoreTextLayoutFrame setShouldDrawDebugFrames:![DTCoreTextLayoutFrame shouldDrawDebugFrames]];
-	[_textView.attributedTextContentView setNeedsDisplay];
-}
-
-- (void)screenshot:(UIBarButtonItem *)sender
-{
-	UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-	
-	CGRect rect = [keyWindow bounds];
-	UIGraphicsBeginImageContextWithOptions(rect.size, YES, 0);
-	
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	[keyWindow.layer renderInContext:context];
-	
-	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-	
-	[[UIPasteboard generalPasteboard] setImage:image];
-}
 
 #pragma mark - DTLazyImageViewDelegate
 

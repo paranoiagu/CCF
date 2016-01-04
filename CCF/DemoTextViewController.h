@@ -9,7 +9,7 @@
 #import "DTAttributedTextView.h"
 #import "DTLazyImageView.h"
 
-@interface DemoTextViewController : UIViewController <UIActionSheetDelegate, DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate>
+@interface DemoTextViewController : UIViewController < DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate>
 
 @property (nonatomic, strong) NSURL *lastActionLink;
 

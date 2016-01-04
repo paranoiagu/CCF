@@ -82,7 +82,8 @@
 
 #pragma mark DTAttributedTextContentViewDelegate
 -(void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView willDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context{
-    NSLog(@"attributedTextContentView %@", layoutFrame);
+    CGSize size = [attributedTextContentView suggestedFrameSizeToFitEntireStringConstraintedToWidth:layoutFrame.frame.size.width];
+    NSLog(@"attributedTextContentView----------->>  %f %f", size.width, size.height);
 }
 
 -(CGSize)sizeThatFits:(CGSize)size{

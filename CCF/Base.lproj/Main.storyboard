@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="gbM-NL-yco">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="gbM-NL-yco">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
@@ -18,18 +18,18 @@
                                 <rect key="frame" x="0.0" y="86" width="320" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Xw-MN-fXk" id="lP5-Qf-l02">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="87.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="87"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Act, Scene" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" id="zSl-Cj-dMf">
-                                            <rect key="frame" x="256" y="13" width="51.5" height="13"/>
+                                            <rect key="frame" x="256" y="13" width="52" height="13"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="10"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" text="Character" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="10" id="xlB-8v-HNE">
-                                            <rect key="frame" x="12" y="12" width="236.5" height="15"/>
+                                            <rect key="frame" x="12" y="12" width="237" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -78,11 +78,11 @@
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TN0-61-EXD" id="O4O-1v-6IH">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帖子标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GvG-S7-y7k">
-                                            <rect key="frame" x="8" y="8" width="279" height="27.5"/>
+                                            <rect key="frame" x="8" y="8" width="279" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -92,7 +92,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="threadTitle" destination="GvG-S7-y7k" id="yjZ-qk-ssx"/>
-                                    <segue destination="2p2-vL-cJ0" kind="push" id="hZc-O4-GLS"/>
+                                    <segue destination="DXG-iT-Wz3" kind="push" id="6tz-GI-U7V"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -123,22 +123,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFThreadDetailCellIdentifier" rowHeight="120" id="7mO-yU-NBH" customClass="CCFThreadDetailCell">
-                                <rect key="frame" x="0.0" y="28" width="320" height="120"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7mO-yU-NBH" id="pfk-HT-C0I">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <webView contentMode="scaleToFill" id="ngk-YK-7NI">
-                                            <rect key="frame" x="8" y="8" width="304" height="103.5"/>
+                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="fnR-Kx-xvq" customClass="DTAttributedTextView">
+                                            <rect key="frame" x="8" y="8" width="304" height="103"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                                        </webView>
+                                        </scrollView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.88660043245866016" green="1" blue="0.86656492306443578" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="content" destination="ngk-YK-7NI" id="t9Y-d3-PVm"/>
+                                    <outlet property="htmlView" destination="fnR-Kx-xvq" id="8mH-qT-yhJ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <DTCoreText/DTCoreText.h>
 
 @class CCFPost;
 
 @interface CCFThreadDetailCell : UITableViewCell
 
 
-@property (weak, nonatomic) IBOutlet UIWebView *content;
+
+@property (weak, nonatomic) IBOutlet DTAttributedTextView *htmlView;
 
 @property (nonatomic) CCFPost* post;
 

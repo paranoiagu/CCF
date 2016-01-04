@@ -28,8 +28,7 @@
 
 
 @implementation DemoTextViewController{
-	NSString *_fileName;
-	
+
 	
 	DTAttributedTextView *_textView;
 	
@@ -138,10 +137,10 @@
 }
 
 
-- (NSAttributedString *)_attributedStringForSnippetUsingiOS6Attributes:(BOOL)useiOS6Attributes
+- (NSAttributedString *)_attributedStringForSnippetUsingiOS6Attributes:(BOOL)useiOS6Attributes withFileName:(NSString *)filename
 {
 	// Load HTML data
-	NSString *readmePath = [[NSBundle mainBundle] pathForResource:_fileName ofType:nil];
+	NSString *readmePath = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
 	NSString *html = [NSString stringWithContentsOfFile:readmePath encoding:NSUTF8StringEncoding error:NULL];
 	NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
 	
@@ -180,8 +179,7 @@
 	return string;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
 	
 	CGRect bounds = self.view.bounds;
@@ -206,8 +204,6 @@
         
     }];
     
-    
-	[self.navigationController setToolbarHidden:NO animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -275,18 +271,6 @@
 	
 	_needsAdjustInsetsOnLayout = NO;
 }
-
-#pragma mark Private Methods
-
-
-//segmentedControlChanged
-
-- (void)_htmlModeChanged:(id)sender
-{
-	// refresh only this tab
-	//[self updateDetailViewForIndex:_segmentedControl.selectedSegmentIndex];
-}
-
 
 #pragma mark Custom Views on Text
 

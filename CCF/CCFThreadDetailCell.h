@@ -15,7 +15,8 @@
 
 
 
-@property (weak, nonatomic) IBOutlet DTAttributedTextView *htmlView;
+@property (weak, nonatomic) IBOutlet DTAttributedTextContentView *htmlView;
+
 
 @property (nonatomic, strong) CCFPost* post;
 

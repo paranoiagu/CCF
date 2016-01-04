@@ -10,7 +10,7 @@
 #import "CCFUrlBuilder.h"
 #import "CCFPost.h"
 
-@interface CCFThreadDetailCell ()
+@interface CCFThreadDetailCell ()<DTAttributedTextContentViewDelegate>
 
 @end
 
@@ -20,6 +20,8 @@
 
     _htmlView.shouldDrawImages = NO;
     _htmlView.shouldDrawLinks = NO;
+    _htmlView.delegate = self;
+    
     _htmlView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
 }
@@ -78,6 +80,10 @@
     return string;
 }
 
+#pragma mark DTAttributedTextContentViewDelegate
+-(void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView willDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context{
+    NSLog(@"attributedTextContentView %@", layoutFrame);
+}
 
 -(CGSize)sizeThatFits:(CGSize)size{
     return CGSizeMake(size.width, self.frame.size.height);

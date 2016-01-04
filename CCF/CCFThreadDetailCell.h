@@ -26,7 +26,7 @@
 
 
 
-@interface CCFThreadDetailCell : UITableViewCell
+@interface CCFThreadDetailCell : UITableViewCell<DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate>
 
 
 
@@ -37,5 +37,10 @@
 @property (nonatomic, strong) CCFPost* post;
 
 -(void) setPost:(CCFPost *)post with:(NSIndexPath*) indexPath;
+
+
+@property (nonatomic, strong) NSURL *lastActionLink;
+
+@property (nonatomic, strong) NSURL *baseURL;
 
 @end

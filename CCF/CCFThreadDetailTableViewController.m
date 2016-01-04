@@ -97,8 +97,9 @@
         CGFloat fixHeight = height < 44.f? 44.f : height + 10.f;
         
         [cellHeightDictionary setObject:[NSNumber numberWithFloat:fixHeight] forKey:indexPath];
-        [self.tableView reloadData];
+        
     }
+    [self.tableView reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

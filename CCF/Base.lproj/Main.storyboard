@@ -136,7 +136,6 @@
                                         </view>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.88660043245866016" green="1" blue="0.86656492306443578" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="htmlView" destination="ThZ-bp-DaG" id="2h0-Vz-O8V"/>
                                 </connections>

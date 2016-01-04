@@ -12,7 +12,9 @@
 
 #import "DTTiledLayerWithoutFade.h"
 #import "DTCoreText.h"
-
+#import "CCFBrowser.h"
+#import "CCFUrlBuilder.h"
+#import "CCFParser.h"
 
 @interface DemoTextViewController ()
 - (void)_segmentedControlChanged:(id)sender;
@@ -182,6 +184,44 @@
 }
 
 
+- (NSAttributedString *)showHtml:(NSString *)html{
+    // Load HTML data
+//    NSString *readmePath = [[NSBundle mainBundle] pathForResource:_fileName ofType:nil];
+//    NSString *html = [NSString stringWithContentsOfFile:readmePath encoding:NSUTF8StringEncoding error:NULL];
+    NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
+    
+    // Create attributed string from HTML
+    CGSize maxImageSize = CGSizeMake(self.view.bounds.size.width - 20.0, self.view.bounds.size.height - 20.0);
+    
+    // example for setting a willFlushCallback, that gets called before elements are written to the generated attributed string
+    void (^callBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement *element) {
+        
+        // the block is being called for an entire paragraph, so we check the individual elements
+        
+        for (DTHTMLElement *oneChildElement in element.childNodes)
+        {
+            // if an element is larger than twice the font size put it in it's own block
+            if (oneChildElement.displayStyle == DTHTMLElementDisplayStyleInline && oneChildElement.textAttachment.displaySize.height > 2.0 * oneChildElement.fontDescriptor.pointSize)
+            {
+                oneChildElement.displayStyle = DTHTMLElementDisplayStyleBlock;
+                oneChildElement.paragraphStyle.minimumLineHeight = element.textAttachment.displaySize.height;
+                oneChildElement.paragraphStyle.maximumLineHeight = element.textAttachment.displaySize.height;
+            }
+        }
+    };
+    
+    NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:1.0], NSTextSizeMultiplierDocumentOption, [NSValue valueWithCGSize:maxImageSize], DTMaxImageSize,
+                                    @"Times New Roman", DTDefaultFontFamily,  @"purple", DTDefaultLinkColor, @"red", DTDefaultLinkHighlightColor, callBackBlock, DTWillFlushBlockCallBack, nil];
+    
+    
+    //[options setObject:[NSURL fileURLWithPath:readmePath] forKey:NSBaseURLDocumentOption];
+    
+    NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
+    
+    return string;
+}
+
+
 - (NSAttributedString *)_attributedStringForSnippetUsingiOS6Attributes:(BOOL)useiOS6Attributes
 {
 	// Load HTML data
@@ -231,9 +271,27 @@
 	CGRect bounds = self.view.bounds;
 	_textView.frame = bounds;
 
-	// Display string
-	_textView.shouldDrawLinks = NO; // we draw them in DTLinkButton
-	_textView.attributedString = [self _attributedStringForSnippetUsingiOS6Attributes:NO];
+    
+    CCFBrowser * browser = [[CCFBrowser alloc]init];
+    [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:@"1328962" withPage:@"1"]:^(NSString* result) {
+        
+        CCFParser *parser = [[CCFParser alloc]init];
+        
+        NSMutableArray<CCFPost *> * parsedPosts = [parser parsePostFromThreadHtml:result];
+        
+        // Display string
+        _textView.shouldDrawLinks = NO; // we draw them in DTLinkButton
+        
+        
+        CCFPost * first = [parsedPosts firstObject];
+        NSString * content = first.postContent;
+        
+        _textView.attributedString = [self showHtml: content];
+        
+    }];
+    
+    
+
 	
 	[self _segmentedControlChanged:nil];
 	

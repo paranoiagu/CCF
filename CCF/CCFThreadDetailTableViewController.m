@@ -11,7 +11,6 @@
 #import "CCFBrowser.h"
 #import "CCFUrlBuilder.h"
 #import "CCFParser.h"
-#import "UITableView+FDTemplateLayoutCell.h"
 
 @interface CCFThreadDetailTableViewController ()
 

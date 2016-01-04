@@ -30,7 +30,7 @@
 @implementation DemoTextViewController{
 
 	
-	DTAttributedTextView *_textView;
+	DTAttributedTextView *_htmlView;
 	
 	NSURL *baseURL;
 	
@@ -46,18 +46,6 @@
 @synthesize baseURL;
 
 #pragma mark NSObject
-
-- (id)init
-{
-	self = [super init];
-	if (self)
-	{
-		_needsAdjustInsetsOnLayout = YES;
-		
-		self.automaticallyAdjustsScrollViewInsets = YES;
-	}
-	return self;
-}
 
 
 - (void)dealloc 
@@ -75,26 +63,29 @@
 
 - (void)loadView {
 	[super loadView];
-	
+    
+    _needsAdjustInsetsOnLayout = YES;
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    
 	CGRect frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height);
 	// Create text view
-	_textView = [[DTAttributedTextView alloc] initWithFrame:frame];
+	_htmlView = [[DTAttributedTextView alloc] initWithFrame:frame];
 	
 	// we draw images and links via subviews provided by delegate methods
-	_textView.shouldDrawImages = NO;
-	_textView.shouldDrawLinks = NO;
-	_textView.textDelegate = self; // delegate for custom sub views
+	_htmlView.shouldDrawImages = NO;
+	_htmlView.shouldDrawLinks = NO;
+	_htmlView.textDelegate = self; // delegate for custom sub views
 	
 	// gesture for testing cursor positions
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-	[_textView addGestureRecognizer:tap];
+	[_htmlView addGestureRecognizer:tap];
 	
 	// set an inset. Since the bottom is below a toolbar inset by 44px
-	[_textView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 44, 0)];
-	_textView.contentInset = UIEdgeInsetsMake(10, 10, 54, 10);
+	[_htmlView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 44, 0)];
+	_htmlView.contentInset = UIEdgeInsetsMake(10, 10, 54, 10);
 
-	_textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	[self.view addSubview:_textView];
+	_htmlView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	[self.view addSubview:_htmlView];
 	
 }
 
@@ -183,7 +174,7 @@
 	[super viewWillAppear:animated];
 	
 	CGRect bounds = self.view.bounds;
-	_textView.frame = bounds;
+	_htmlView.frame = bounds;
 
     
     CCFBrowser * browser = [[CCFBrowser alloc]init];
@@ -194,13 +185,13 @@
         NSMutableArray<CCFPost *> * parsedPosts = [parser parsePostFromThreadHtml:result];
         
         // Display string
-        _textView.shouldDrawLinks = NO; // we draw them in DTLinkButton
+        _htmlView.shouldDrawLinks = NO; // we draw them in DTLinkButton
         
         
         CCFPost * first = [parsedPosts firstObject];
         NSString * content = first.postContent;
         
-        _textView.attributedString = [self showHtml: content];
+        _htmlView.attributedString = [self showHtml: content];
         
     }];
     
@@ -211,7 +202,7 @@
 	[super viewDidAppear:animated];
 	
 	// now the bar is up so we can autoresize again
-	_textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	_htmlView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 }
 
 - (void)viewWillDisappear:(BOOL)animated;
@@ -264,9 +255,9 @@
 	CGPoint innerScrollOffset = CGPointMake(-innerInsets.left, -innerInsets.top);
 	CGPoint outerScrollOffset = CGPointMake(-outerInsets.left, -outerInsets.top);
 	
-	_textView.contentInset = innerInsets;
-	_textView.contentOffset = innerScrollOffset;
-	_textView.scrollIndicatorInsets = outerInsets;
+	_htmlView.contentInset = innerInsets;
+	_htmlView.contentOffset = innerScrollOffset;
+	_htmlView.scrollIndicatorInsets = outerInsets;
 	
 	
 	_needsAdjustInsetsOnLayout = NO;
@@ -484,7 +475,7 @@
 			
 			if (fragment)
 			{
-				[_textView scrollToAnchorNamed:fragment animated:NO];
+				[_htmlView scrollToAnchorNamed:fragment animated:NO];
 			}
 		}
 	}
@@ -511,10 +502,10 @@
 {
 	if (gesture.state == UIGestureRecognizerStateRecognized)
 	{
-		CGPoint location = [gesture locationInView:_textView];
-		NSUInteger tappedIndex = [_textView closestCursorIndexToPoint:location];
+		CGPoint location = [gesture locationInView:_htmlView];
+		NSUInteger tappedIndex = [_htmlView closestCursorIndexToPoint:location];
 		
-		NSString *plainText = [_textView.attributedString string];
+		NSString *plainText = [_htmlView.attributedString string];
 		NSString *tappedChar = [plainText substringWithRange:NSMakeRange(tappedIndex, 1)];
 		
 		__block NSRange wordRange = NSMakeRange(0, 0);
@@ -544,7 +535,7 @@
 	BOOL didUpdate = NO;
 	
 	// update all attachments that matchin this URL (possibly multiple images with same size)
-	for (DTTextAttachment *oneAttachment in [_textView.attributedTextContentView.layoutFrame textAttachmentsWithPredicate:pred])
+	for (DTTextAttachment *oneAttachment in [_htmlView.attributedTextContentView.layoutFrame textAttachmentsWithPredicate:pred])
 	{
 		// update attachments that have no original size, that also sets the display size
 		if (CGSizeEqualToSize(oneAttachment.originalSize, CGSizeZero))
@@ -558,7 +549,7 @@
 	if (didUpdate)
 	{
 		// layout might have changed due to image sizes
-		[_textView relayoutText];
+		[_htmlView relayoutText];
 	}
 }
 

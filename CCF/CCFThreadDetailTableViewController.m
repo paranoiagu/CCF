@@ -11,6 +11,7 @@
 #import "CCFBrowser.h"
 #import "CCFUrlBuilder.h"
 #import "CCFParser.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 @interface CCFThreadDetailTableViewController ()
 
@@ -84,6 +85,14 @@
 }
 
 
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return [tableView fd_heightForCellWithIdentifier:@"CCFThreadDetailCellIdentifier" configuration:^(id cell) {
+//        // Configure this cell with data, same as what you've done in "-tableView:cellForRowAtIndexPath:"
+//        // Like:
+//        //    cell.entity = self.feedEntities[indexPath.row];
+//        [cell setPost:self.posts[indexPath.row]];
+//    }];
+//}
 
 
 - (IBAction)back:(UIBarButtonItem *)sender {

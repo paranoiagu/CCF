@@ -33,6 +33,7 @@
 - (void)setPost:(CCFPost *)newPost {
     
     if (_post != newPost) {
+        
         _post = newPost;
         NSString * html = self.post.postContent;
 //        [self.htmlView loadHTMLString:html baseURL:[CCFUrlBuilder buildIndexURL]];
@@ -77,4 +78,8 @@
     return string;
 }
 
+
+-(CGSize)sizeThatFits:(CGSize)size{
+    return CGSizeMake(size.width, self.frame.size.height);
+}
 @end

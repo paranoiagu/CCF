@@ -69,7 +69,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 #pragma mark -
 
-#define DEFAULT_ROW_HEIGHT 88
+#define DEFAULT_ROW_HEIGHT 48
 #define HEADER_HEIGHT 48
 
 

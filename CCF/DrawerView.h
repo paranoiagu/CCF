@@ -30,8 +30,8 @@ typedef NS_ENUM(NSInteger, DrawerIndex) {
 
 @property (nonatomic, weak) id<DrawerViewDelegate> delegate;
 
-@property (strong, nonatomic) UIView *leftDrawerView;
-@property (strong, nonatomic) UIView *rightDrawerView;
+@property (strong, nonatomic) IBOutlet UIView *leftDrawerView;
+@property (strong, nonatomic) IBOutlet UIView *rightDrawerView;
 
 
 @property (nonatomic, assign) BOOL leftDrawerOpened;

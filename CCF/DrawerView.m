@@ -54,15 +54,17 @@
 
 -(id)initWithDrawerType:(DrawerViewType)drawerType andXib:(NSString *)name{
         if (self = [super init]) {
-        
+            
+            // 和 xib 绑定
+            [[NSBundle mainBundle] loadNibNamed:name owner:self options:nil];
+            
             [self setDrawerType:drawerType];
             
-            NSArray * nibViews = [[NSBundle mainBundle] loadNibNamed:name owner:self options:nil];
             
             switch (_drawerType) {
                 case DrawerViewTypeLeft:{
 
-                    _leftDrawerView = nibViews.firstObject;
+                    //_leftDrawerView = nibViews.firstObject;
                     
                     [self setUpLeftDrawer];
                     
@@ -71,18 +73,18 @@
                 }
                 case DrawerViewTypeRight:{
                     
-                    _rightDrawerView = nibViews.firstObject;
+                    //_rightDrawerView = nibViews.firstObject;
                     [self setUpRightDrawer];
                     [self setRightDrawerEnadbled:YES];
                     break;
                 }
                 case DrawerViewTypeLeftAndRight:{
 
-                    _leftDrawerView = nibViews.firstObject;
+                    //_leftDrawerView = nibViews.firstObject;
                     [self setUpLeftDrawer];
                     
                     
-                    _rightDrawerView = nibViews.lastObject;
+                    //_rightDrawerView = nibViews.lastObject;
                     [self setUpRightDrawer];
                     
                     

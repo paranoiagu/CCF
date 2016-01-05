@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrawerView">
             <connections>
-                <outlet property="leftDrawerView" destination="iN0-l3-epB" id="98O-hZ-s5u"/>
-                <outlet property="rightDrawerView" destination="dJQ-C7-qpp" id="H6G-eL-odj"/>
+                <outlet property="leftDrawerView" destination="iN0-l3-epB" id="WHZ-Lh-teq"/>
+                <outlet property="rightDrawerView" destination="dJQ-C7-qpp" id="SHy-gC-DGq"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

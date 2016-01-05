@@ -181,6 +181,32 @@
             
             ccfpost.postContent = [postContent innerHtml];
         }
+        
+        
+
+        // 找出图片tag
+        if (postInfoNode.children.count >= 4) {
+            IGXMLNode *node = postInfoNode.children[3];
+            IGXMLNode * node2 = node.children[0];
+            IGXMLNode * node3 = node2.children[1];
+            NSUInteger imageCount = node3.children.count;
+            
+            NSString * format = @"<br><img src=\"%@\" width=\"304\" height=\"304\" >";
+            
+            NSString * imageTag = @"";
+            for (int i = 0; i < imageCount; i++) {
+                IGXMLNode * image = node3.children[i];
+                NSString * formated = [NSString stringWithFormat:format, [@"https://bbs.et8.net/bbs/" stringByAppendingString:[image attribute:@"href"]] ];
+                imageTag = [imageTag stringByAppendingString:formated];
+                
+                NSLog(@"\n\n\n++++++++++++++++++++++++++++++++++++++++++   %@   --->>>   ",  [@"https://bbs.et8.net/bbs/" stringByAppendingString:[image attribute:@"href"]]);
+            }
+            
+            ccfpost.postContent = [ccfpost.postContent stringByAppendingString:imageTag];
+            
+        }
+        
+        
         ccfpost.userInfo = ccfuser;
         
         // 添加解析出来的Post

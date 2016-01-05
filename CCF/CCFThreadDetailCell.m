@@ -169,6 +169,7 @@
     {
         // if the attachment has a hyperlinkURL then this is currently ignored
         DTLazyImageView *imageView = [[DTLazyImageView alloc] initWithFrame:frame];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.delegate = self;
         
         // sets the image if there is one

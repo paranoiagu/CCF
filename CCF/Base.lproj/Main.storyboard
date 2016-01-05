@@ -53,6 +53,9 @@
                     <navigationItem key="navigationItem" title="精品论坛" id="QyS-rW-ir3">
                         <barButtonItem key="leftBarButtonItem" image="ic_qu_menu_grabber" id="KW9-ec-X8l">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="onLeftBarButtonItemClick:" destination="YRy-KR-zZm" id="Hra-w6-T2x"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -61,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8EM-Zv-G62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2513" y="-2300"/>
+            <point key="canvasLocation" x="-2513" y="-2206"/>
         </scene>
         <!--CCFFormScene-->
         <scene sceneID="s4C-Tw-vM1">
@@ -71,7 +74,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Onb-tg-2NS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3044" y="-2433"/>
+            <point key="canvasLocation" x="-3052" y="-2992"/>
         </scene>
         <!--帖子列表-->
         <scene sceneID="ZSu-6M-hd2">
@@ -120,7 +123,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sDT-8I-6Ma" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2076" y="-3054"/>
+            <point key="canvasLocation" x="-2070" y="-2992"/>
         </scene>
         <!--帖子详情-->
         <scene sceneID="ua2-2R-ErE">
@@ -166,7 +169,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8eC-48-OpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2070" y="-2100"/>
+            <point key="canvasLocation" x="-2070" y="-2206"/>
         </scene>
         <!--Demo Text View Controller-->
         <scene sceneID="wxL-Yj-VzW">
@@ -181,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j4D-ko-kRo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1635" y="-3054"/>
+            <point key="canvasLocation" x="-3052" y="-2206"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rsw-tr-lOi">

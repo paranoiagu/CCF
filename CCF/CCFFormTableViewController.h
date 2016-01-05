@@ -13,11 +13,16 @@
 
 #import "CCFEntryDelegate.h"
 
+#import "DrawerView.h"
+
 @interface CCFFormTableViewController : UIViewController<MFMailComposeViewControllerDelegate, SectionHeaderViewDelegate, CCFEntryDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)onLeftBarButtonItemClick:(UIBarButtonItem *)sender;
 
 //@property (nonatomic) NSArray *plays;
 
 @property (nonatomic, strong) NSMutableArray *plays;
+
+@property (nonatomic, strong) DrawerView *leftDrawerView;
 
 @end

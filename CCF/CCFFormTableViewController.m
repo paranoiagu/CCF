@@ -50,9 +50,7 @@
 
 static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
-@interface CCFFormTableViewController (){
-    DrawerView *_leftDrawerView;
-}
+@interface CCFFormTableViewController ()
 
 @property (nonatomic) NSMutableArray *sectionInfoArray;
 @property (nonatomic) NSIndexPath *pinchedIndexPath;
@@ -79,6 +77,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 
 @synthesize plays = _plays ;
+@synthesize leftDrawerView = _leftDrawerView;
 
 
 
@@ -461,4 +460,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 }
 
 
+- (IBAction)onLeftBarButtonItemClick:(UIBarButtonItem *)sender {
+    [self.leftDrawerView openLeftDrawer];
+}
 @end

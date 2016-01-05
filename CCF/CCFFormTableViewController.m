@@ -118,10 +118,10 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     UINib *sectionHeaderNib = [UINib nibWithNibName:@"CCFFormHeaderView" bundle:nil];
     [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:SectionHeaderViewIdentifier];
     
-    
     _leftDrawerView = [[DrawerView alloc] initWithDrawerType:DrawerViewTypeLeft];
     
-    [self.view addSubview:_leftDrawerView];
+    
+    [self.navigationController.view addSubview:_leftDrawerView];
     
 }
 

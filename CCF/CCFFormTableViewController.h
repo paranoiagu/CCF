@@ -13,7 +13,8 @@
 
 #import "CCFEntryDelegate.h"
 
-@interface CCFFormTableViewController : UITableViewController<MFMailComposeViewControllerDelegate, SectionHeaderViewDelegate, CCFEntryDelegate>
+@interface CCFFormTableViewController : UIViewController<MFMailComposeViewControllerDelegate, SectionHeaderViewDelegate, CCFEntryDelegate, UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 //@property (nonatomic) NSArray *plays;
 

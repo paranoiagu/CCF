@@ -43,6 +43,7 @@
 		4D339D9E1C31454B0022A6A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D9D1C31454B0022A6A4 /* Assets.xcassets */; };
 		4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */; };
 		4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796B5F1C3BC17800B3C62D /* DrawerView.m */; };
+		4D796B681C3BDCA800B3C62D /* DrawerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D796B671C3BDCA800B3C62D /* DrawerView.xib */; };
 		4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824B91C34C4C6005BB858 /* CCFForm.m */; };
 		4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DF824BB1C34E5EF005BB858 /* ccf.json */; };
 		4DF824BF1C34E9EF005BB858 /* CCFFormTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824BE1C34E9EF005BB858 /* CCFFormTree.m */; };
@@ -115,6 +116,7 @@
 		4D796B5E1C3BC17800B3C62D /* DrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerView.h; sourceTree = "<group>"; };
 		4D796B5F1C3BC17800B3C62D /* DrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerView.m; sourceTree = "<group>"; };
 		4D796B601C3BC17800B3C62D /* DrawerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewDelegate.h; sourceTree = "<group>"; };
+		4D796B671C3BDCA800B3C62D /* DrawerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawerView.xib; sourceTree = "<group>"; };
 		4DF824B81C34C4C6005BB858 /* CCFForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForm.h; sourceTree = "<group>"; };
 		4DF824B91C34C4C6005BB858 /* CCFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForm.m; sourceTree = "<group>"; };
 		4DF824BB1C34E5EF005BB858 /* ccf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ccf.json; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 			children = (
 				4D796B5E1C3BC17800B3C62D /* DrawerView.h */,
 				4D796B5F1C3BC17800B3C62D /* DrawerView.m */,
+				4D796B671C3BDCA800B3C62D /* DrawerView.xib */,
 				4D796B601C3BC17800B3C62D /* DrawerViewDelegate.h */,
 			);
 			name = "Public Views";
@@ -407,6 +410,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D796B681C3BDCA800B3C62D /* DrawerView.xib in Resources */,
 				3AA2D5181C3610C400F312CC /* carat-open.png in Resources */,
 				4D1EEBBC1C33D4FD0084F6E9 /* LoginViewController.xib in Resources */,
 				4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */,

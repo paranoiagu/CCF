@@ -30,6 +30,10 @@ typedef NS_ENUM(NSInteger, DrawerIndex) {
 
 @property (nonatomic, weak) id<DrawerViewDelegate> delegate;
 
+@property (strong, nonatomic) UIView *leftDrawerView;
+@property (strong, nonatomic) UIView *rightDrawerView;
+
+
 @property (nonatomic, assign) BOOL leftDrawerOpened;
 @property (nonatomic, assign) BOOL leftDrawerEnadbled;
 
@@ -42,6 +46,8 @@ typedef NS_ENUM(NSInteger, DrawerIndex) {
 -(UIView *) findDrawerWithDrawerIndex:(DrawerIndex)type;
 
 -(id)initWithDrawerType:(DrawerViewType)drawerType;
+
+-(id)initWithDrawerType:(DrawerViewType)drawerType andXib:(NSString *)name;
 
 -(id)init;
 

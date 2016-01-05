@@ -14,11 +14,11 @@
 
 
 @interface DrawerView(){
-    UIView *_leftDrawerView;
+
     UIButton *_drawerMaskView;
     
     
-    UIView *_rightDrawerView;
+
     UIView *_rightEageView;
 }
 
@@ -27,12 +27,17 @@
 
 @implementation DrawerView
 
+@synthesize leftDrawerView = _leftDrawerView;
+@synthesize rightDrawerView = _rightDrawerView;
+
+
 -(id)init{
     if (self = [super init]) {
         
         [self setDrawerType:DrawerViewTypeLeft];
         
-        [self initLeftDrawer];
+        [self initLeftDrawerView];
+        [self setUpLeftDrawer];
         
         [self initMaskView];
         
@@ -47,6 +52,52 @@
     return self;
 }
 
+-(id)initWithDrawerType:(DrawerViewType)drawerType andXib:(NSString *)name{
+        if (self = [super init]) {
+        
+            [self setDrawerType:drawerType];
+            
+            NSArray * nibViews = [[NSBundle mainBundle] loadNibNamed:name owner:self options:nil];
+            
+            switch (_drawerType) {
+                case DrawerViewTypeLeft:{
+
+                    _leftDrawerView = nibViews.firstObject;
+                    
+                    [self setUpLeftDrawer];
+                    
+                    [self setLeftDrawerEnadbled:YES];
+                    break;
+                }
+                case DrawerViewTypeRight:{
+                    
+                    _rightDrawerView = nibViews.firstObject;
+                    [self setUpRightDrawer];
+                    [self setRightDrawerEnadbled:YES];
+                    break;
+                }
+                case DrawerViewTypeLeftAndRight:{
+
+                    _leftDrawerView = nibViews.firstObject;
+                    [self setUpLeftDrawer];
+                    
+                    
+                    _rightDrawerView = nibViews.lastObject;
+                    [self setUpRightDrawer];
+                    
+                    
+                    [self setLeftDrawerEnadbled:YES];
+                    [self setRightDrawerEnadbled: YES];
+                    break;
+                }
+            }
+
+            [self initMaskView];
+            
+        }
+    
+    return self;
+}
 
 -(id)initWithDrawerType:(DrawerViewType)drawerType{
    
@@ -55,25 +106,38 @@
         
         switch (_drawerType) {
             case DrawerViewTypeLeft:{
-                [self initLeftDrawer];
+                [self initLeftDrawerView];
+                [self setUpLeftDrawer];
+                
                 [self setLeftDrawerEnadbled:YES];
                 break;
             }
             case DrawerViewTypeRight:{
-                [self initRightDrawer];
+
+                [self initRightDrawerView];
+                [self setUpRightDrawer];
                 [self setRightDrawerEnadbled:YES];
                 break;
             }
             case DrawerViewTypeLeftAndRight:{
-                [self initLeftDrawer];
-                [self initRightDrawer];
+                [self initLeftDrawerView];
+                [self setUpLeftDrawer];
+        
+                
+                [self initRightDrawerView];
+                [self setUpRightDrawer];
+
+
                 [self setLeftDrawerEnadbled:YES];
                 [self setRightDrawerEnadbled: YES];
                 break;
             }
                 
             default:{
-                [self initLeftDrawer];
+                
+                [self initLeftDrawerView];
+                [self setUpLeftDrawer];
+
                 [self setLeftDrawerEnadbled:YES];
                 break;
             }
@@ -256,11 +320,12 @@
     }];
 }
 
-
--(void) initRightDrawer{
+-(void)initRightDrawerView{
     _rightDrawerView = [[UIView alloc]init];
-    
-    
+}
+
+-(void) setUpRightDrawer{
+
     _rightDrawerView.backgroundColor = [UIColor whiteColor];
     
     _rightDrawerView.layer.shadowColor = [[UIColor blackColor]CGColor];
@@ -275,9 +340,14 @@
     [_rightDrawerView addGestureRecognizer:panGestureRecognizer];
 }
 
--(void) initLeftDrawer{
 
+-(void)initLeftDrawerView{
+    
     _leftDrawerView = [[UIView alloc]init];
+}
+
+-(void) setUpLeftDrawer{
+
     
 
     _leftDrawerView.backgroundColor = [UIColor whiteColor];

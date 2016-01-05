@@ -42,6 +42,7 @@
 		4D339D9C1C31454A0022A6A4 /* CCF.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D339D9A1C31454A0022A6A4 /* CCF.xcdatamodeld */; };
 		4D339D9E1C31454B0022A6A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D9D1C31454B0022A6A4 /* Assets.xcassets */; };
 		4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */; };
+		4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796B5F1C3BC17800B3C62D /* DrawerView.m */; };
 		4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824B91C34C4C6005BB858 /* CCFForm.m */; };
 		4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DF824BB1C34E5EF005BB858 /* ccf.json */; };
 		4DF824BF1C34E9EF005BB858 /* CCFFormTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824BE1C34E9EF005BB858 /* CCFFormTree.m */; };
@@ -111,6 +112,9 @@
 		4D339D9D1C31454B0022A6A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D339DA01C31454B0022A6A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D339DA21C31454B0022A6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D796B5E1C3BC17800B3C62D /* DrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerView.h; sourceTree = "<group>"; };
+		4D796B5F1C3BC17800B3C62D /* DrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerView.m; sourceTree = "<group>"; };
+		4D796B601C3BC17800B3C62D /* DrawerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewDelegate.h; sourceTree = "<group>"; };
 		4DF824B81C34C4C6005BB858 /* CCFForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForm.h; sourceTree = "<group>"; };
 		4DF824B91C34C4C6005BB858 /* CCFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForm.m; sourceTree = "<group>"; };
 		4DF824BB1C34E5EF005BB858 /* ccf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ccf.json; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 		4D339D8D1C31454A0022A6A4 /* CCF */ = {
 			isa = PBXGroup;
 			children = (
+				4D796B5D1C3BC15D00B3C62D /* Public Views */,
 				3AEA1F341C365E2100710BD6 /* CCFControllers */,
 				3AEA1F301C365CA600710BD6 /* CCFEntryDelegate.h */,
 				3AEA1F311C365CB600710BD6 /* CCFEntry.h */,
@@ -302,6 +307,16 @@
 				4D339D8F1C31454A0022A6A4 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4D796B5D1C3BC15D00B3C62D /* Public Views */ = {
+			isa = PBXGroup;
+			children = (
+				4D796B5E1C3BC17800B3C62D /* DrawerView.h */,
+				4D796B5F1C3BC17800B3C62D /* DrawerView.m */,
+				4D796B601C3BC17800B3C62D /* DrawerViewDelegate.h */,
+			);
+			name = "Public Views";
 			sourceTree = "<group>";
 		};
 		4DF824C01C34F098005BB858 /* CCFDao */ = {
@@ -475,6 +490,7 @@
 				3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */,
 				4D1EEBB11C3260130084F6E9 /* CCFThread.m in Sources */,
 				4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */,
+				4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */,
 				3AEA1F371C365EA400710BD6 /* CCFThreadDetailTableViewController.m in Sources */,
 				4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */,
 				4D339D9C1C31454A0022A6A4 /* CCF.xcdatamodeld in Sources */,

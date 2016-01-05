@@ -36,7 +36,7 @@
 #import "CCFFormTableViewController.h"
 #import "CCFThreadListTableViewController.h"
 #import "CCFEntry.h"
-
+#import "DrawerView.h"
 
 @interface MyAPLEmailMenuItem : UIMenuItem
 @property (nonatomic) NSIndexPath *indexPath;
@@ -50,7 +50,9 @@
 
 static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
-@interface CCFFormTableViewController ()
+@interface CCFFormTableViewController (){
+    DrawerView *_leftDrawerView;
+}
 
 @property (nonatomic) NSMutableArray *sectionInfoArray;
 @property (nonatomic) NSIndexPath *pinchedIndexPath;
@@ -117,21 +119,9 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:SectionHeaderViewIdentifier];
     
     
+    _leftDrawerView = [[DrawerView alloc] initWithDrawerType:DrawerViewTypeLeft];
     
-    
-    
-//        CCFBrowser * browser = [[CCFBrowser alloc]init];
-//    
-//        NSString * userID = [browser getCurrentCCFUser];
-//    
-//        NSLog(@"%@", userID);
-//    
-//        [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:@"1331214" withPage:@"1" ]:^(NSString* result) {
-//            CCFParser *parser = [[CCFParser alloc]init];
-//            NSMutableArray * posts = [parser parsePostFromThreadHtml:result];
-//    
-//            NSLog(@"%@", posts);
-//        }];
+    [self.view addSubview:_leftDrawerView];
     
 }
 

@@ -18,11 +18,12 @@
 #import "WCPullRefreshControl.h"
 
 
-@interface CCFThreadListTableViewController ()<WCPullRefreshControlDelegate>
+@interface CCFThreadListTableViewController ()<WCPullRefreshControlDelegate>{
+    int currentPage;
+}
 
 @property (strong,nonatomic)WCPullRefreshControl * pullRefresh;
 @property (nonatomic, strong) CCFBrowser * browser;
-
 @end
 
 @implementation CCFThreadListTableViewController
@@ -51,8 +52,9 @@
     NSLog(@"viewDidLoad    %@   %@", entry.urlId, entry.page);
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        //
-        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        int page = currentPage +1;
+        [self browserThreadList:page];
+        [self.tableView.mj_footer endRefreshing];
     }];
     
     self.pullRefresh.delegate = self;
@@ -102,6 +104,8 @@
         
         
         [self.tableView reloadData];
+        
+        currentPage = page;
         
         [self.pullRefresh finishRefreshingSuccessully:YES];
         

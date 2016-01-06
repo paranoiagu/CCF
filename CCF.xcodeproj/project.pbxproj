@@ -11,6 +11,13 @@
 		3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A690A421C3755C00076C8F1 /* CCFThreadListCell.m */; };
 		3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A690A451C375B5B0076C8F1 /* CCFThreadDetailCell.m */; };
 		3A690A481C3792D00076C8F1 /* CCFThreadDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A690A471C3792D00076C8F1 /* CCFThreadDetailCell.xib */; };
+		3A6DF5171C3D5C4100F4CAB7 /* WCGraintCircleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DF50A1C3D5C4100F4CAB7 /* WCGraintCircleLayer.m */; };
+		3A6DF5181C3D5C4100F4CAB7 /* CAShapeLayer+WCPullRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DF50C1C3D5C4100F4CAB7 /* CAShapeLayer+WCPullRefresh.m */; };
+		3A6DF5191C3D5C4100F4CAB7 /* NSDate+WCPullRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DF50E1C3D5C4100F4CAB7 /* NSDate+WCPullRefresh.m */; };
+		3A6DF51A1C3D5C4100F4CAB7 /* WCMagicSquareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DF5101C3D5C4100F4CAB7 /* WCMagicSquareView.m */; };
+		3A6DF51B1C3D5C4100F4CAB7 /* WCProgressItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DF5121C3D5C4100F4CAB7 /* WCProgressItem.m */; };
+		3A6DF51C1C3D5C4100F4CAB7 /* WCPullRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DF5141C3D5C4100F4CAB7 /* WCPullRefreshControl.m */; };
+		3A6DF51D1C3D5C4100F4CAB7 /* WCRefreshingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DF5161C3D5C4100F4CAB7 /* WCRefreshingItem.m */; };
 		3A93298D1C39648900A26249 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A93298C1C39648900A26249 /* CoreText.framework */; };
 		3A9E18F71C39563500AAB751 /* DemoTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E18F61C39563500AAB751 /* DemoTextViewController.m */; };
 		3A9FEDD61C341E2E00F30885 /* CCFUrlBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FEDD51C341E2E00F30885 /* CCFUrlBuilder.m */; };
@@ -59,6 +66,20 @@
 		3A690A441C375B5B0076C8F1 /* CCFThreadDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadDetailCell.h; sourceTree = "<group>"; };
 		3A690A451C375B5B0076C8F1 /* CCFThreadDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadDetailCell.m; sourceTree = "<group>"; };
 		3A690A471C3792D00076C8F1 /* CCFThreadDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCFThreadDetailCell.xib; sourceTree = "<group>"; };
+		3A6DF5091C3D5C4100F4CAB7 /* WCGraintCircleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WCGraintCircleLayer.h; path = ../WCPullRefreshControl/WCPullRefreshControlExample/WCGraintCircleLayer.h; sourceTree = "<group>"; };
+		3A6DF50A1C3D5C4100F4CAB7 /* WCGraintCircleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCGraintCircleLayer.m; path = ../WCPullRefreshControl/WCPullRefreshControlExample/WCGraintCircleLayer.m; sourceTree = "<group>"; };
+		3A6DF50B1C3D5C4100F4CAB7 /* CAShapeLayer+WCPullRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CAShapeLayer+WCPullRefresh.h"; path = "../WCPullRefreshControl/WCPullRefreshControlExample/classes/CAShapeLayer+WCPullRefresh.h"; sourceTree = "<group>"; };
+		3A6DF50C1C3D5C4100F4CAB7 /* CAShapeLayer+WCPullRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CAShapeLayer+WCPullRefresh.m"; path = "../WCPullRefreshControl/WCPullRefreshControlExample/classes/CAShapeLayer+WCPullRefresh.m"; sourceTree = "<group>"; };
+		3A6DF50D1C3D5C4100F4CAB7 /* NSDate+WCPullRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+WCPullRefresh.h"; path = "../WCPullRefreshControl/WCPullRefreshControlExample/classes/NSDate+WCPullRefresh.h"; sourceTree = "<group>"; };
+		3A6DF50E1C3D5C4100F4CAB7 /* NSDate+WCPullRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+WCPullRefresh.m"; path = "../WCPullRefreshControl/WCPullRefreshControlExample/classes/NSDate+WCPullRefresh.m"; sourceTree = "<group>"; };
+		3A6DF50F1C3D5C4100F4CAB7 /* WCMagicSquareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WCMagicSquareView.h; path = ../WCPullRefreshControl/WCPullRefreshControlExample/classes/WCMagicSquareView.h; sourceTree = "<group>"; };
+		3A6DF5101C3D5C4100F4CAB7 /* WCMagicSquareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCMagicSquareView.m; path = ../WCPullRefreshControl/WCPullRefreshControlExample/classes/WCMagicSquareView.m; sourceTree = "<group>"; };
+		3A6DF5111C3D5C4100F4CAB7 /* WCProgressItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WCProgressItem.h; path = ../WCPullRefreshControl/WCPullRefreshControlExample/classes/WCProgressItem.h; sourceTree = "<group>"; };
+		3A6DF5121C3D5C4100F4CAB7 /* WCProgressItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCProgressItem.m; path = ../WCPullRefreshControl/WCPullRefreshControlExample/classes/WCProgressItem.m; sourceTree = "<group>"; };
+		3A6DF5131C3D5C4100F4CAB7 /* WCPullRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WCPullRefreshControl.h; path = ../WCPullRefreshControl/WCPullRefreshControlExample/classes/WCPullRefreshControl.h; sourceTree = "<group>"; };
+		3A6DF5141C3D5C4100F4CAB7 /* WCPullRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCPullRefreshControl.m; path = ../WCPullRefreshControl/WCPullRefreshControlExample/classes/WCPullRefreshControl.m; sourceTree = "<group>"; };
+		3A6DF5151C3D5C4100F4CAB7 /* WCRefreshingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WCRefreshingItem.h; path = ../WCPullRefreshControl/WCPullRefreshControlExample/classes/WCRefreshingItem.h; sourceTree = "<group>"; };
+		3A6DF5161C3D5C4100F4CAB7 /* WCRefreshingItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCRefreshingItem.m; path = ../WCPullRefreshControl/WCPullRefreshControlExample/classes/WCRefreshingItem.m; sourceTree = "<group>"; };
 		3A93298C1C39648900A26249 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		3A9E18F51C39563500AAB751 /* DemoTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTextViewController.h; sourceTree = "<group>"; };
 		3A9E18F61C39563500AAB751 /* DemoTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTextViewController.m; sourceTree = "<group>"; };
@@ -141,6 +162,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A6DF5081C3D5C3100F4CAB7 /* Addon */ = {
+			isa = PBXGroup;
+			children = (
+				3A6DF5091C3D5C4100F4CAB7 /* WCGraintCircleLayer.h */,
+				3A6DF50A1C3D5C4100F4CAB7 /* WCGraintCircleLayer.m */,
+				3A6DF50B1C3D5C4100F4CAB7 /* CAShapeLayer+WCPullRefresh.h */,
+				3A6DF50C1C3D5C4100F4CAB7 /* CAShapeLayer+WCPullRefresh.m */,
+				3A6DF50D1C3D5C4100F4CAB7 /* NSDate+WCPullRefresh.h */,
+				3A6DF50E1C3D5C4100F4CAB7 /* NSDate+WCPullRefresh.m */,
+				3A6DF50F1C3D5C4100F4CAB7 /* WCMagicSquareView.h */,
+				3A6DF5101C3D5C4100F4CAB7 /* WCMagicSquareView.m */,
+				3A6DF5111C3D5C4100F4CAB7 /* WCProgressItem.h */,
+				3A6DF5121C3D5C4100F4CAB7 /* WCProgressItem.m */,
+				3A6DF5131C3D5C4100F4CAB7 /* WCPullRefreshControl.h */,
+				3A6DF5141C3D5C4100F4CAB7 /* WCPullRefreshControl.m */,
+				3A6DF5151C3D5C4100F4CAB7 /* WCRefreshingItem.h */,
+				3A6DF5161C3D5C4100F4CAB7 /* WCRefreshingItem.m */,
+			);
+			name = Addon;
+			sourceTree = "<group>";
+		};
 		3A9E18F41C39561D00AAB751 /* RichText */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +303,7 @@
 		4D339D821C31454A0022A6A4 = {
 			isa = PBXGroup;
 			children = (
+				3A6DF5081C3D5C3100F4CAB7 /* Addon */,
 				4D339D8D1C31454A0022A6A4 /* CCF */,
 				4D339D8C1C31454A0022A6A4 /* Products */,
 				849509D36740A6FFD960CDA8 /* Pods */,
@@ -485,20 +528,26 @@
 				3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */,
 				3A9E18F71C39563500AAB751 /* DemoTextViewController.m in Sources */,
 				3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */,
+				3A6DF51A1C3D5C4100F4CAB7 /* WCMagicSquareView.m in Sources */,
 				3AA2D5061C36103C00F312CC /* CCFFormSectionInfo.m in Sources */,
 				3A9FEDE21C3438AC00F30885 /* NSString+Kit.m in Sources */,
 				4DF824BF1C34E9EF005BB858 /* CCFFormTree.m in Sources */,
 				4D1EEBBB1C33D4FD0084F6E9 /* LoginViewController.m in Sources */,
+				3A6DF51B1C3D5C4100F4CAB7 /* WCProgressItem.m in Sources */,
 				3AA2D5041C36103C00F312CC /* CCFFormHeaderView.m in Sources */,
 				4DF824C31C34F0B2005BB858 /* CCFFormDao.m in Sources */,
 				3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */,
+				3A6DF51D1C3D5C4100F4CAB7 /* WCRefreshingItem.m in Sources */,
 				4D1EEBB11C3260130084F6E9 /* CCFThread.m in Sources */,
 				4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */,
 				4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */,
 				3AEA1F371C365EA400710BD6 /* CCFThreadDetailTableViewController.m in Sources */,
 				4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */,
 				4D339D9C1C31454A0022A6A4 /* CCF.xcdatamodeld in Sources */,
+				3A6DF5191C3D5C4100F4CAB7 /* NSDate+WCPullRefresh.m in Sources */,
+				3A6DF51C1C3D5C4100F4CAB7 /* WCPullRefreshControl.m in Sources */,
 				3A2ECF541C36C0EB00CD3968 /* CCFThreadList.m in Sources */,
+				3A6DF5171C3D5C4100F4CAB7 /* WCGraintCircleLayer.m in Sources */,
 				3AA2D50F1C36105100F312CC /* CCFFormTableViewController.m in Sources */,
 				3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */,
 				3AA2D5091C36103C00F312CC /* APLHighlightingTextView.m in Sources */,
@@ -507,6 +556,7 @@
 				4D339D901C31454A0022A6A4 /* main.m in Sources */,
 				3A9FEDD61C341E2E00F30885 /* CCFUrlBuilder.m in Sources */,
 				3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */,
+				3A6DF5181C3D5C4100F4CAB7 /* CAShapeLayer+WCPullRefresh.m in Sources */,
 				3AA2D50A1C36103C00F312CC /* CCFThreadViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,9 +15,12 @@
 #import "CCFThreadListCell.h"
 #import "CCFThreadDetailTableViewController.h"
 #import "MJRefresh.h"
+#import "WCPullRefreshControl.h"
 
 
-@interface CCFThreadListTableViewController ()
+@interface CCFThreadListTableViewController ()<WCPullRefreshControlDelegate>
+
+@property (strong,nonatomic)WCPullRefreshControl * pullRefresh;
 
 @end
 
@@ -45,6 +48,17 @@
         //
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
     }];
+    
+    self.pullRefresh = [[WCPullRefreshControl alloc] initWithScrollview:self.tableView
+                                                                 Action:NULL
+                                                           progressItem:WCProgressItemTypeRoundCricle
+                                                         refreshingItem:WCRefreshingItemTypeRoundCircle
+                                                             lastUpdate:nil
+                                                         showLastUpdate:NO
+                                                              textColor:[UIColor blackColor]
+                                                              itemColor:[UIColor blackColor]
+                                                             pullHeight:64];
+    self.pullRefresh.delegate = self;
     
     
     
@@ -75,6 +89,21 @@
     }];
     
     
+}
+
+
+-(void)reset{
+    [self.pullRefresh finishRefreshingSuccessully:YES];
+}
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    [self.pullRefresh updateWhenScrollDidEndDraging];
+}
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.pullRefresh updateWhenScrollviewScroll];
+}
+-(void)DidStartRefreshingWithScrollview:(UIScrollView *)scrollview{
+    [self performSelector:@selector(reset) withObject:nil afterDelay:2.0];
 }
 
 

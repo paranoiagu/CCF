@@ -21,6 +21,7 @@
 @interface CCFThreadListTableViewController ()<WCPullRefreshControlDelegate>
 
 @property (strong,nonatomic)WCPullRefreshControl * pullRefresh;
+@property (nonatomic, strong) CCFBrowser * browser;
 
 @end
 
@@ -42,6 +43,11 @@
         self.threadTopList = [NSMutableArray array];
     }
     
+    if (self.browser == nil) {
+        self.browser = [[CCFBrowser alloc]init];
+    }
+    
+    
     NSLog(@"viewDidLoad    %@   %@", entry.urlId, entry.page);
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -49,8 +55,12 @@
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
     }];
     
+    self.pullRefresh.delegate = self;
+    
     self.pullRefresh = [[WCPullRefreshControl alloc] initWithScrollview:self.tableView
-                                                                 Action:NULL
+                                                                 Action:^{
+                                                                     [self browserThreadList:1];
+                                                                 }
                                                            progressItem:WCProgressItemTypeRoundCricle
                                                          refreshingItem:WCRefreshingItemTypeRoundCircle
                                                              lastUpdate:nil
@@ -58,23 +68,30 @@
                                                               textColor:[UIColor blackColor]
                                                               itemColor:[UIColor blackColor]
                                                              pullHeight:64];
-    self.pullRefresh.delegate = self;
     
     
     
+    [self.pullRefresh startPullRefresh];
     
 //    NSString * userID = [browser getCurrentCCFUser];
 //    
 //    
 //    NSLog(@"%@", userID);
     
-    CCFBrowser * browser = [[CCFBrowser alloc]init];
-    [browser browseWithUrl:[CCFUrlBuilder buildFormURL:entry.urlId withPage:entry.page ]:^(NSString* result) {
+
+    
+    
+}
+
+-(void) browserThreadList:(int) page{
+
+    NSString * pageStr = [NSString stringWithFormat:@"%d", page];
+    [self.browser browseWithUrl:[CCFUrlBuilder buildFormURL:entry.urlId withPage:pageStr ]:^(NSString* result) {
         
         CCFParser *parser = [[CCFParser alloc]init];
         
         NSMutableArray<CCFThreadList *> * threadList = [parser parseThreadListFromHtml:result withThread:entry.urlId andContainsTop:YES];
-    
+        
         for (CCFThreadList * thread in threadList) {
             if (thread.isTopThread) {
                 [self.threadTopList addObject:thread];
@@ -83,17 +100,12 @@
             }
         }
         
-
+        
         [self.tableView reloadData];
         
+        [self.pullRefresh finishRefreshingSuccessully:YES];
+        
     }];
-    
-    
-}
-
-
--(void)reset{
-    [self.pullRefresh finishRefreshingSuccessully:YES];
 }
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
@@ -103,7 +115,8 @@
     [self.pullRefresh updateWhenScrollviewScroll];
 }
 -(void)DidStartRefreshingWithScrollview:(UIScrollView *)scrollview{
-    [self performSelector:@selector(reset) withObject:nil afterDelay:2.0];
+    //[self performSelector:@selector(reset) withObject:nil afterDelay:2.0];
+    //[self.pullRefresh finishRefreshingSuccessully:YES];
 }
 
 

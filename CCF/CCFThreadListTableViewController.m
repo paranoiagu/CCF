@@ -14,6 +14,7 @@
 #import "CCFParser.h"
 #import "CCFThreadListCell.h"
 #import "CCFThreadDetailTableViewController.h"
+#import "MJRefresh.h"
 
 
 @interface CCFThreadListTableViewController ()
@@ -40,7 +41,10 @@
     
     NSLog(@"viewDidLoad    %@   %@", entry.urlId, entry.page);
     
-    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        //
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    }];
     
     
     

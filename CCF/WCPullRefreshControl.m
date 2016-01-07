@@ -133,9 +133,11 @@ static const CGFloat itemlength = 25.0;
         self.refreshingItem.hidden = NO;
         self.progressItem.hidden = YES;
         [self.refreshingItem startAnimating];
+        
         CGPoint currentOffset = self.attachedScrollView.contentOffset;
         self.attachedScrollView.contentInset = UIEdgeInsetsMake(defaultPullHeight+self.originalOffset,0,0,0);
         self.attachedScrollView.contentOffset = currentOffset;
+        
         self.lastUpdateLabel.text = @"Updating...";
         if (self.refreshAction) {
             self.refreshAction();
@@ -161,6 +163,35 @@ static const CGFloat itemlength = 25.0;
             }else{
                 self.lastUpdateLabel.text = @"Release to update...";
             }
+        }
+    }
+}
+
+-(void)startPullRefresh{
+    
+    if (self.state == WCPullRefreshControlStateIdle) {
+        self.state = WCPullRefreshControlStateRefreshing;
+        
+        if (self.originalOffset == 0) {
+            self.originalOffset = self.attachedScrollView.contentInset.top;
+        }
+        
+        
+        self.refreshingItem.hidden = NO;
+        self.progressItem.hidden = YES;
+        [self.refreshingItem startAnimating];
+        
+        CGPoint currentOffset = self.attachedScrollView.contentOffset;
+        self.attachedScrollView.contentInset = UIEdgeInsetsMake(defaultPullHeight+self.originalOffset ,0,0,0);
+        self.attachedScrollView.contentOffset = currentOffset;
+        
+        self.lastUpdateLabel.text = @"Updating...";
+        self.lastUpdateLabel.alpha = 1.0f;
+        if (self.refreshAction) {
+            self.refreshAction();
+        }
+        if ([self.delegate respondsToSelector:@selector(DidStartRefreshingWithScrollview:)]) {
+            [self.delegate DidStartRefreshingWithScrollview:self.attachedScrollView];
         }
     }
 }

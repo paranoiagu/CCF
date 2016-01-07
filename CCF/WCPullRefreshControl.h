@@ -63,4 +63,6 @@ typedef void(^WCRefreshAction)(void);
                            Action:(WCRefreshAction) action
                        lastUpdate:(NSDate *)date
                    showLastUpdate:(BOOL)isShowLastUpdate;
+
+-(void) startPullRefresh;
 @end

@@ -26,7 +26,7 @@ static const CGFloat itemlength = 25.0;
                      showLastUpdate:isShowLastUpdate
                           textColor:[UIColor blueColor]
                           itemColor:[UIColor blueColor]
-                         pullHeight:64.0
+                         pullHeight:_pullHeight
             ];
 }
 
@@ -41,10 +41,12 @@ static const CGFloat itemlength = 25.0;
                        pullHeight:(CGFloat)pullHeight
 {
     if (self = [super init]) {
-        CGRect frame = CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width,defaultPullHeight);
+        
         self.pullHeight = pullHeight;
+        CGRect frame = CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width,_pullHeight);
+        
         self.frame = frame;
-        self.center =CGPointMake([UIScreen mainScreen].bounds.size.width/2, -1 * defaultPullHeight/2);
+        self.center =CGPointMake([UIScreen mainScreen].bounds.size.width/2, -1 * _pullHeight/2);
         self.attachedScrollView = scrollview;
         self.refreshAction = action;
         self.showLastUpdate = isShowLastUpdate;
@@ -62,7 +64,7 @@ static const CGFloat itemlength = 25.0;
             self.progressItem = [[WCProgressItem alloc] initWithFrame:itemFrame Type:progressType Color:itemColor];
         }
         self.progressItem.hidden = NO;
-        self.progressItem.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2,defaultPullHeight/8 *4);
+        self.progressItem.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2,_pullHeight/8 *4);
         
         [self addSubview:self.progressItem];
         if (refreshingType == WCRefreshingItemTypeMagicSquare) {
@@ -76,8 +78,8 @@ static const CGFloat itemlength = 25.0;
         //Set up label
         
         CGRect labelFrame;
-        labelFrame.origin = CGPointMake(0.0,defaultPullHeight/4 * 3);
-        labelFrame.size =CGSizeMake([UIScreen mainScreen].bounds.size.width,defaultPullHeight/4);
+        labelFrame.origin = CGPointMake(0.0,_pullHeight/4 * 3);
+        labelFrame.size =CGSizeMake([UIScreen mainScreen].bounds.size.width,_pullHeight/4);
         self.lastUpdateLabel = [[UILabel alloc] init];
         self.lastUpdateLabel.frame = labelFrame;
         self.lastUpdateLabel.textAlignment = NSTextAlignmentCenter;
@@ -113,7 +115,7 @@ static const CGFloat itemlength = 25.0;
                                                                             toItem:nil
                                                                          attribute:NSLayoutAttributeHeight
                                                                         multiplier:1.0
-                                                                          constant:defaultPullHeight];
+                                                                          constant:_pullHeight];
         [scrollview addConstraints:@[consstraint1,consstraint2,consstraint3,consstraint4]];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationDidChanged:)
                                                      name:UIDeviceOrientationDidChangeNotification
@@ -126,7 +128,7 @@ static const CGFloat itemlength = 25.0;
     if (self.state== WCPullRefreshControlStateIdle) {
         self.originalOffset = 0;
     }if(self.state == WCPullRefreshControlStateRefreshing){
-        self.originalOffset = self.attachedScrollView.contentInset.top - defaultPullHeight;
+        self.originalOffset = self.attachedScrollView.contentInset.top - _pullHeight;
     }
 }
 
@@ -138,7 +140,7 @@ static const CGFloat itemlength = 25.0;
         [self.refreshingItem startAnimating];
         
         CGPoint currentOffset = self.attachedScrollView.contentOffset;
-        self.attachedScrollView.contentInset = UIEdgeInsetsMake(defaultPullHeight+self.originalOffset,0,0,0);
+        self.attachedScrollView.contentInset = UIEdgeInsetsMake(_pullHeight+self.originalOffset,0,0,0);
         self.attachedScrollView.contentOffset = currentOffset;
         
         self.lastUpdateLabel.text = @"Updating...";
@@ -185,7 +187,7 @@ static const CGFloat itemlength = 25.0;
         [self.refreshingItem startAnimating];
         
         CGPoint currentOffset = self.attachedScrollView.contentOffset;
-        self.attachedScrollView.contentInset = UIEdgeInsetsMake(defaultPullHeight+self.originalOffset ,0,0,0);
+        self.attachedScrollView.contentInset = UIEdgeInsetsMake(_pullHeight+self.originalOffset ,0,0,0);
         self.attachedScrollView.contentOffset = currentOffset;
         
         self.lastUpdateLabel.text = @"Updating...";
@@ -218,7 +220,7 @@ static const CGFloat itemlength = 25.0;
         self.lastUpdateLabel.text = @"Fail to update";
     }
     [UIView animateWithDuration:0.8 animations:^{
-        self.attachedScrollView.contentInset = UIEdgeInsetsMake(defaultPullHeight,0,0,0);
+        self.attachedScrollView.contentInset = UIEdgeInsetsMake(_pullHeight,0,0,0);
         
 //        self.attachedScrollView.contentInset = UIEdgeInsetsMake(self.originalOffset,0,0,0);
     } completion:^(BOOL finished) {

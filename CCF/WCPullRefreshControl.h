@@ -19,6 +19,7 @@ typedef enum {
 } WCPullRefreshControlState;
 
 typedef void(^WCRefreshAction)(void);
+
 @protocol WCPullRefreshControlDelegate <NSObject>
 -(void)DidStartRefreshingWithScrollview:(UIScrollView *)scrollview;
 @end

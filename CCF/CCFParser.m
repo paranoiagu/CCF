@@ -271,4 +271,18 @@
     return posts;
 }
 
+
+-(NSString *)parseSecurityToken:(NSString *)html{
+    NSString *searchText = html;
+    
+    NSRange range = [searchText rangeOfString:@"\\d{10}-\\S{40}" options:NSRegularExpressionSearch];
+    
+    if (range.location != NSNotFound) {
+        NSLog(@"parseSecurityToken   %@", [searchText substringWithRange:range]);
+        return [searchText substringWithRange:range];
+    }
+    
+    
+    return nil;
+}
 @end

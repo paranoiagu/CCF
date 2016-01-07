@@ -121,6 +121,8 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     _leftDrawerView = [[DrawerView alloc] initWithDrawerType:DrawerViewTypeLeft andXib:@"DrawerView"];
     [self.navigationController.view addSubview:_leftDrawerView];
     
+    NSString * time =  @"1452158804";
+    NSLog(@"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ %@", [CCFUtils getSHA1:time]);
 }
 
 

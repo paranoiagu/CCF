@@ -28,6 +28,7 @@ typedef void(^success) (id result);
 
 - (NSString *) getCurrentCCFUser;
 
+- (NSString *) getSessionhash;
 
 
 @end

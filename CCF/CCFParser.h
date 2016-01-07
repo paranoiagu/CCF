@@ -18,4 +18,6 @@
 
 -(NSMutableArray<CCFThreadList*> *) parseThreadListFromHtml: (NSString *) html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop;
 
+-(NSString *) parseSecurityToken:(NSString *)html;
+
 @end

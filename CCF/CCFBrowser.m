@@ -12,9 +12,12 @@
 #import <AFImageDownloader.h>
 #import <UIImageView+AFNetworking.h>
 #import "CCFUtils.h"
+#import "CCFParser.h"
+
 
 #define kCCFCookie @"CCF-Cookies"
 #define kCCFCookie_User @"bbuserid"
+#define kCCFSecurityToken @"securitytoken"
 
 @implementation CCFBrowser
 
@@ -40,6 +43,14 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        
+        // 保存token
+        CCFParser * parser = [[CCFParser alloc]init];
+        NSString * token = [parser parseSecurityToken:html];
+        if (token != nil) {
+            [self saveSecurityToken:token];
+        }
+        
         
         callBack(html);
         
@@ -145,6 +156,14 @@
 }
 
 
+-(void) saveSecurityToken:(NSString *) token{
+    [[NSUserDefaults standardUserDefaults] setValue:token forKey:kCCFSecurityToken];
+}
+
+- (NSString *) readSecurityToken{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:kCCFSecurityToken];
+}
+
 
 
 //message	:blush;
@@ -181,7 +200,7 @@
 //ajax_lastpost	1452155059
 //message	message	:blush;
 //
-//[RIGHT][URL="https://bbs.et8.net/bbs/showthread.php?p=16695603"]For Test[/URL][/RIGHT]
+//[RIGHT][URL="https://bbs.et8.net/bbs/showthread.php?p=16695603"]For Test:Quick Reply[/URL][/RIGHT]
 //
 
 -(void)reply:(NSString *)threadId :(NSString *)message{
@@ -190,7 +209,7 @@
     
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
 
-    NSString * securitytoken = [NSString stringWithFormat:@"%@-%@", [CCFUtils getTimeSp], [CCFUtils getSHA1:message]];
+    NSString * securitytoken = [self readSecurityToken];
     
     [parameters setValue:securitytoken forKey:@"securitytoken"];
     [parameters setValue:message forKey:@"message"];
@@ -217,9 +236,15 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //
         NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        
+        
+        
+        
         //callBack(html);
         // 保存Cookie
         [self saveCookie];
+        
+        NSLog(@"reply done --------------------->>>>>> \n%@", html);
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -229,7 +254,17 @@
 
 
 
-
+-(NSString *)getSessionhash{
+    NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+    
+    for (int i = 0; i < cookies.count; i ++) {
+        NSHTTPCookie * cookie = cookies[i];
+        if ([cookie.name isEqualToString:@"bbsessionhash"]) {
+            return cookie.value;
+        }
+    }
+    return nil;
+}
 
 
 

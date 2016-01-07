@@ -143,7 +143,7 @@ static const CGFloat itemlength = 25.0;
         self.attachedScrollView.contentInset = UIEdgeInsetsMake(_pullHeight+self.originalOffset,0,0,0);
         self.attachedScrollView.contentOffset = currentOffset;
         
-        self.lastUpdateLabel.text = @"Updating...";
+        self.lastUpdateLabel.text = @"正在刷新";
         if (self.refreshAction) {
             self.refreshAction();
         }
@@ -164,9 +164,9 @@ static const CGFloat itemlength = 25.0;
             self.lastUpdateLabel.text = [NSDate stringFromLastdate:self.lastUpdateDate];
         }else{
             if ([self currentProgress] < 1.0) {
-                self.lastUpdateLabel.text = @"Pull to update...";
+                self.lastUpdateLabel.text = @"继续下拉";
             }else{
-                self.lastUpdateLabel.text = @"Release to update...";
+                self.lastUpdateLabel.text = @"松手刷新";
             }
         }
     }
@@ -190,7 +190,7 @@ static const CGFloat itemlength = 25.0;
         self.attachedScrollView.contentInset = UIEdgeInsetsMake(_pullHeight+self.originalOffset ,0,0,0);
         self.attachedScrollView.contentOffset = currentOffset;
         
-        self.lastUpdateLabel.text = @"Updating...";
+        self.lastUpdateLabel.text = @"正在刷新";
         self.lastUpdateLabel.alpha = 1.0f;
         if (self.refreshAction) {
             self.refreshAction();
@@ -215,9 +215,9 @@ static const CGFloat itemlength = 25.0;
     self.state = WCPullRefreshControlStateDisappearing;
     if (success) {
         self.lastUpdateDate = [NSDate date];
-        self.lastUpdateLabel.text = @"Succeed to update";
+        self.lastUpdateLabel.text = @"刷新成功";
     }else{
-        self.lastUpdateLabel.text = @"Fail to update";
+        self.lastUpdateLabel.text = @"刷新失败";
     }
     [UIView animateWithDuration:0.8 animations:^{
         self.attachedScrollView.contentInset = UIEdgeInsetsMake(_pullHeight,0,0,0);

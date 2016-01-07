@@ -49,6 +49,9 @@ static const CGFloat itemlength = 25.0;
         self.refreshAction = action;
         self.showLastUpdate = isShowLastUpdate;
         [scrollview addSubview:self];
+        
+        
+        
         //Set up items
         CGRect itemFrame;
         itemFrame.origin = CGPointZero;
@@ -215,7 +218,9 @@ static const CGFloat itemlength = 25.0;
         self.lastUpdateLabel.text = @"Fail to update";
     }
     [UIView animateWithDuration:0.8 animations:^{
-        self.attachedScrollView.contentInset = UIEdgeInsetsMake(self.originalOffset,0,0,0);
+        self.attachedScrollView.contentInset = UIEdgeInsetsMake(defaultPullHeight,0,0,0);
+        
+//        self.attachedScrollView.contentInset = UIEdgeInsetsMake(self.originalOffset,0,0,0);
     } completion:^(BOOL finished) {
         self.refreshingItem.hidden = YES;
         self.progressItem.hidden = NO;

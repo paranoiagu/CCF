@@ -56,6 +56,7 @@ typedef void(^WCRefreshAction)(void);
                         textColor:(UIColor *)textcolor
                         itemColor:(UIColor *)progressColor
                        pullHeight:(CGFloat)pullHeight;
+
 -(instancetype)initWithScrollview:(UIScrollView *)scrollview
                            Action:(WCRefreshAction) action;
 

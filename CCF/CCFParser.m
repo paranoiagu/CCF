@@ -24,6 +24,8 @@
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet* contents = [document queryWithXPath: path];
     
+    NSInteger totaleListCount = -1;
+    
     for (int i = 0; i < contents.count; i++){
         IGXMLNode * threadListNode = contents[i];
         if (threadListNode.children.count > 1) {
@@ -65,6 +67,22 @@
             IGXMLNode * commentCountNode = threadListNode.children [5];
             ccfthreadlist.threadTotalPostCount = [[commentCountNode text] intValue];
             NSLog(@"---------------> %@ ", ccfthreadlist.threadTitle);
+            
+            
+            // 总页数
+            if (totaleListCount == -1) {
+                IGXMLNodeSet* totalPageSet = [document queryWithXPath:@"//*[@id='inlinemodform']/table[4]/tr[1]/td[2]/div/table/tr/td[1]"];
+                IGXMLNode * totalPage = totalPageSet.firstObject;
+                NSString * pageText = [totalPage innerHtml];
+                NSString * numberText = [[pageText componentsSeparatedByString:@"，"]lastObject];
+                NSUInteger totalNumber = [numberText integerValue];
+                NSLog(@"总页数：   %@", pageText);
+                ccfthreadlist.threadTotalListPage = totalNumber;
+                totaleListCount = totaleListCount;
+            } else{
+                ccfthreadlist.threadTotalListPage = totaleListCount;
+            }
+            
             
             [threadList addObject:ccfthreadlist];
         }

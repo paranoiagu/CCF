@@ -16,8 +16,10 @@
 
 @property (nonatomic, strong) NSString* threadID;
 
-@property (nonatomic, assign) NSUInteger threadTotalPostCount;
+@property (nonatomic, assign) NSInteger threadTotalPostCount;
 
 @property (nonatomic, strong) NSString* threadAuthor;
+
+@property (nonatomic, assign) NSInteger threadTotalListPage;
 
 @end

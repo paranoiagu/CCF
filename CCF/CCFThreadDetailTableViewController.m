@@ -12,10 +12,18 @@
 #import "CCFUrlBuilder.h"
 #import "CCFParser.h"
 
+#import "MJRefresh.h"
+#import "WCPullRefreshControl.h"
+
 @interface CCFThreadDetailTableViewController ()<CCFThreadDetailCellDelegate>{
     
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
+    int currentPage;
+    CCFBrowser * browser;
 }
+
+
+@property (strong,nonatomic)WCPullRefreshControl * pullRefresh;
 
 @end
 
@@ -29,13 +37,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    browser = [[CCFBrowser alloc]init];
+    
     cellHeightDictionary = [NSMutableDictionary<NSIndexPath *, NSNumber *> dictionary];
     
     
     NSLog(@"CCFThreadDetailTableViewController viewDidLoad    %@   %@", entry.urlId, entry.page);
     
-    CCFBrowser * browser = [[CCFBrowser alloc]init];
-    [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:entry.urlId withPage:entry.page]:^(NSString* result) {
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        int page = currentPage +1;
+        [self browserThreadPosts:page];
+        [self.tableView.mj_footer endRefreshing];
+    }];
+//    
+//    self.pullRefresh = [[WCPullRefreshControl alloc] initWithScrollview:self.tableView Action:^{
+//        [self browserThreadPosts:1];
+//    }];
+//    
+//    [self.pullRefresh startPullRefresh];
+    
+    [self browserThreadPosts:1];
+}
+
+-(void) browserThreadPosts:(int)page{
+    NSString * pageStr = [NSString stringWithFormat:@"%d", page];
+    
+    [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:entry.urlId withPage:pageStr]:^(NSString* result) {
         
         CCFParser *parser = [[CCFParser alloc]init];
         
@@ -53,11 +81,7 @@
         [self.tableView reloadData];
         
     }];
-
-    
-    
 }
-
 
 
 #pragma mark - Table view data source

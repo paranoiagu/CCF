@@ -20,5 +20,8 @@
 @property (nonatomic, strong) NSString* postTime;
 @property (nonatomic, strong) NSString* postContent;
 
+@property (nonatomic, assign) NSInteger postTotalPage; // 帖子总页数
+
+
 
 @end

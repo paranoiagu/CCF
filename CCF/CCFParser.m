@@ -72,13 +72,21 @@
             // 总页数
             if (totaleListCount == -1) {
                 IGXMLNodeSet* totalPageSet = [document queryWithXPath:@"//*[@id='inlinemodform']/table[4]/tr[1]/td[2]/div/table/tr/td[1]"];
-                IGXMLNode * totalPage = totalPageSet.firstObject;
-                NSString * pageText = [totalPage innerHtml];
-                NSString * numberText = [[pageText componentsSeparatedByString:@"，"]lastObject];
-                NSUInteger totalNumber = [numberText integerValue];
-                NSLog(@"总页数：   %@", pageText);
-                ccfthreadlist.threadTotalListPage = totalNumber;
-                totaleListCount = totaleListCount;
+                
+                if (totalPageSet == nil) {
+                    totaleListCount = 1;
+                    ccfthreadlist.threadTotalListPage = 1;
+                }else{
+                    IGXMLNode * totalPage = totalPageSet.firstObject;
+                    NSString * pageText = [totalPage innerHtml];
+                    NSString * numberText = [[pageText componentsSeparatedByString:@"，"]lastObject];
+                    NSUInteger totalNumber = [numberText integerValue];
+                    NSLog(@"总页数：   %@", pageText);
+                    ccfthreadlist.threadTotalListPage = totalNumber;
+                    totaleListCount = totalNumber;
+                }
+                
+                
             } else{
                 ccfthreadlist.threadTotalListPage = totaleListCount;
             }
@@ -118,6 +126,7 @@
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet* contents = [document queryWithXPath:@"//div[@id='posts']/div[*]/div/div/div/table/tr[1]"];
     
+    NSInteger totalPostPage = -1;
     for (int i = 0; i < contents.count; i++) {
         IGXMLNode * postNode = contents[i];
         
@@ -226,6 +235,34 @@
         
         
         ccfpost.userInfo = ccfuser;
+        //*[@id="inlinemodform"]/table[4]/tbody/tr/td[2]/div/table/tbody/tr/td[1]
+
+        
+        // /html/body/div[2]/div/div/table[3]/tbody/tr/td[2]/div/table/tbody/tr/td[1]
+        if (totalPostPage == -1) {
+            IGXMLNodeSet* totalPageSet = [document queryWithXPath:@"/html/body/div[2]/div/div/table[3]/tr/td[2]/div/table/tr/td[1]"];
+            
+//            IGXMLNode * totalPage = totalPageSet.firstObject;
+//            NSString * pageText = [totalPage innerHtml];
+//            NSLog(@"帖子内容总页数总页数：   %@", pageText);
+            
+            if (totalPageSet == nil) {
+                totalPostPage = 1;
+                ccfpost.postTotalPage = 1;
+            }else{
+                IGXMLNode * totalPage = totalPageSet.firstObject;
+                NSString * pageText = [totalPage innerHtml];
+                NSString * numberText = [[pageText componentsSeparatedByString:@"，"]lastObject];
+                NSUInteger totalNumber = [numberText integerValue];
+                NSLog(@"总页数：   %@", pageText);
+                ccfpost.postTotalPage = totalNumber;
+                totalPostPage = totalNumber;
+            }
+            
+            
+        } else{
+            ccfpost.postTotalPage = totalPostPage;
+        }
         
         // 添加解析出来的Post
         [posts addObject:ccfpost];

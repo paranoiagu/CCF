@@ -75,9 +75,9 @@
         
         [self.posts addObjectsFromArray:parsedPosts];
         
-        for (CCFPost * post in self.posts) {
-            NSLog(@"=========>>>>>    %@", post.postContent);
-        }
+//        for (CCFPost * post in self.posts) {
+//            NSLog(@"=========>>>>>    %@", post.postContent);
+//        }
         [self.tableView reloadData];
         
     }];

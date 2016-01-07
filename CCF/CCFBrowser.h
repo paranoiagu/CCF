@@ -22,8 +22,9 @@ typedef void(^success) (id result);
 
 -(void) logout;
 
--(void)refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView;
+-(void) refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView;
 
+-(void) reply:(NSString *) threadId :(NSString *) message;
 
 - (NSString *) getCurrentCCFUser;
 

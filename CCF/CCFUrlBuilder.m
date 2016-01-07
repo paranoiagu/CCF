@@ -20,6 +20,8 @@
 
 #define kCCFVCode @"https://bbs.et8.net/bbs/login.php?do=vcode"
 
+#define kCCFReply @"https://bbs.et8.net/bbs/newreply.php?do=postreply&t=%@"
+
 @implementation CCFUrlBuilder
 
 +(NSURL *)buildMemberURL:(NSString *)userId{
@@ -47,4 +49,7 @@
     return [NSURL URLWithString:kCCFVCode];
 }
 
++(NSURL *) buildReplyURL:(NSString *)threadId{
+    return [NSURL URLWithString:[NSString stringWithFormat:kCCFReply, threadId]];
+}
 @end

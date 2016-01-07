@@ -11,6 +11,7 @@
 #import "CCFUrlBuilder.h"
 #import <AFImageDownloader.h>
 #import <UIImageView+AFNetworking.h>
+#import "CCFUtils.h"
 
 #define kCCFCookie @"CCF-Cookies"
 #define kCCFCookie_User @"bbuserid"
@@ -142,5 +143,123 @@
         }
     }
 }
+
+
+
+
+//message	:blush;
+//
+//[RIGHT][URL="https://bbs.et8.net/bbs/showthread.php?p=16695603"]For Test[/URL][/RIGHT]
+//wysiwyg	0
+//iconid	0
+//s
+//securitytoken	1452154683-4031b805ac9b34c26256eb6fb4878d39e2fb227d
+//do	postreply
+//t	1332499
+//p
+//specifiedpost	0
+//posthash	1bbdf96a3924c5e374f5d1a419709082
+//poststarttime	1452154683
+//loggedinuser	71250
+//multiquoteempty
+//sbutton	提交回复
+//parseurl	1
+//emailupdate	9999
+
+
+
+
+
+
+
+
+
+
+
+//securitytoken	1452155065-ad50b435ca02e154a4280ef99dcf12bbe274b5ce
+//ajax	1
+//ajax_lastpost	1452155059
+//message	message	:blush;
+//
+//[RIGHT][URL="https://bbs.et8.net/bbs/showthread.php?p=16695603"]For Test[/URL][/RIGHT]
+//
+
+-(void)reply:(NSString *)threadId :(NSString *)message{
+    
+    NSURL * loginUrl = [CCFUrlBuilder buildReplyURL:threadId];
+    
+    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+
+    NSString * securitytoken = [NSString stringWithFormat:@"%@-%@", [CCFUtils getTimeSp], [CCFUtils getSHA1:message]];
+    
+    [parameters setValue:securitytoken forKey:@"securitytoken"];
+    [parameters setValue:message forKey:@"message"];
+    
+    [parameters setValue:@"postreply" forKey:@"do"];
+    [parameters setValue:threadId forKey:@"t"];
+    [parameters setValue:@"who cares" forKey:@"p"];
+    
+    [parameters setValue:@"0" forKey:@"specifiedpost"];
+
+    [parameters setValue:@"1" forKey:@"parseurl"];
+    
+    [parameters setValue:[self getCurrentCCFUser] forKey:@"loggedinuser"];
+    [parameters setValue:@"1" forKey:@"fromquickreply"];
+    
+    [parameters setValue:@"0" forKey:@"styleid"];
+    [parameters setValue:@"0" forKey:@"wysiwyg"];
+    
+    
+    [parameters setValue:@"" forKey:@"s"];
+    
+    [_browser POST:[loginUrl absoluteString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        //
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //
+        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        //callBack(html);
+        // 保存Cookie
+        [self saveCookie];
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //
+    }];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

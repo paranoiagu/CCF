@@ -23,4 +23,5 @@
 
 + (NSURL *) buildVCodeURL;
 
++ (NSURL *) buildReplyURL:(NSString *)threadId;
 @end

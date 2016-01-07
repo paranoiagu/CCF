@@ -64,7 +64,7 @@
     
     NSString * message = @":blush;\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?p=16695603\"]For Test:Quick Reply[/URL][/RIGHT]";
     
-    [browser reply:entry.urlId :message];
+//    [browser reply:entry.urlId :message];
 }
 
 -(void) browserThreadPosts:(int)page{

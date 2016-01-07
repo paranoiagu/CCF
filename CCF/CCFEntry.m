@@ -3,6 +3,6 @@
 
 @implementation CCFEntry
 
-@synthesize urlId,page;
+@synthesize urlId,page, totalPage;
 
 @end

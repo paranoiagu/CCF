@@ -17,9 +17,12 @@
 #import "MJRefresh.h"
 #import "WCPullRefreshControl.h"
 
+#define TypePullRefresh 0
+#define TypeLoadMore 1
 
 @interface CCFThreadListTableViewController ()<WCPullRefreshControlDelegate>{
     int currentPage;
+    int totalPage;
 }
 
 @property (strong,nonatomic)WCPullRefreshControl * pullRefresh;
@@ -53,49 +56,66 @@
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         int page = currentPage +1;
-        [self browserThreadList:page];
-        [self.tableView.mj_footer endRefreshing];
+        [self browserThreadList:page type:TypeLoadMore];
+        
     }];
     
     self.pullRefresh.delegate = self;
     
     
     self.pullRefresh = [[WCPullRefreshControl alloc] initWithScrollview:self.tableView Action:^{
-        [self browserThreadList:1];
+        [self browserThreadList:1 type:TypePullRefresh];
     }];
     
     [self.pullRefresh startPullRefresh];
     
 }
 
--(void) browserThreadList:(int) page{
+-(void) browserThreadList:(int) page type:(int) pullOrLoadMore{
 
-    NSString * pageStr = [NSString stringWithFormat:@"%d", page];
-    [self.browser browseWithUrl:[CCFUrlBuilder buildFormURL:entry.urlId withPage:pageStr ]:^(NSString* result) {
+    if (totalPage == 0 || currentPage < totalPage) {
+        NSString * pageStr = [NSString stringWithFormat:@"%d", page];
         
-        CCFParser *parser = [[CCFParser alloc]init];
-        
-        NSMutableArray<CCFThreadList *> * threadList = [parser parseThreadListFromHtml:result withThread:entry.urlId andContainsTop:YES];
-        if (page == 1) {
-            [self.threadList removeAllObjects];
-            [self.threadTopList removeAllObjects];
-        }
-        for (CCFThreadList * thread in threadList) {
-            if (thread.isTopThread) {
-                [self.threadTopList addObject:thread];
-            }else{
-                [self.threadList addObject:thread];
+        [self.browser browseWithUrl:[CCFUrlBuilder buildFormURL:entry.urlId withPage:pageStr ]:^(NSString* result) {
+            
+            CCFParser *parser = [[CCFParser alloc]init];
+            
+            NSMutableArray<CCFThreadList *> * threadList = [parser parseThreadListFromHtml:result withThread:entry.urlId andContainsTop:YES];
+            
+            totalPage = (int)threadList.lastObject.threadTotalPostCount;
+            
+            if (page == 1) {
+                [self.threadList removeAllObjects];
+                [self.threadTopList removeAllObjects];
             }
+            for (CCFThreadList * thread in threadList) {
+                if (thread.isTopThread) {
+                    [self.threadTopList addObject:thread];
+                }else{
+                    [self.threadList addObject:thread];
+                }
+            }
+            
+            
+            [self.tableView reloadData];
+            
+            currentPage = page;
+            if (pullOrLoadMore == TypePullRefresh) {
+                [self.pullRefresh finishRefreshingSuccessully:YES];
+            } else{
+                [self.tableView.mj_footer endRefreshing];
+            }
+        }];
+    } else{
+        if (pullOrLoadMore == TypePullRefresh) {
+            [self.pullRefresh finishRefreshingSuccessully:NO];
+        } else{
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
         
-        
-        [self.tableView reloadData];
-        
-        currentPage = page;
-        
-        [self.pullRefresh finishRefreshingSuccessully:YES];
-        
-    }];
+
+    }
+    
 }
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{

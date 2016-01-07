@@ -8,5 +8,6 @@
 
 @property(nonatomic,strong) NSString *urlId;
 @property(nonatomic,strong) NSString *page;
+@property (nonatomic,strong) NSString *totalPage;
 
 @end

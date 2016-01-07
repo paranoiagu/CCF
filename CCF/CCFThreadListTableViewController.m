@@ -82,7 +82,7 @@
             
             NSMutableArray<CCFThreadList *> * threadList = [parser parseThreadListFromHtml:result withThread:entry.urlId andContainsTop:YES];
             
-            totalPage = (int)threadList.lastObject.threadTotalPostCount;
+            totalPage = (int)threadList.lastObject.threadTotalListPage;
             
             if (page == 1) {
                 [self.threadList removeAllObjects];

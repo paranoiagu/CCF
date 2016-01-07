@@ -24,9 +24,9 @@ static const CGFloat itemlength = 25.0;
                      refreshingItem:WCRefreshingItemTypeRoundCircle
                          lastUpdate:date
                      showLastUpdate:isShowLastUpdate
-                          textColor:[UIColor blueColor]
-                          itemColor:[UIColor blueColor]
-                         pullHeight:_pullHeight
+                          textColor:[UIColor blackColor]
+                          itemColor:[UIColor blackColor]
+                         pullHeight:defaultPullHeight
             ];
 }
 

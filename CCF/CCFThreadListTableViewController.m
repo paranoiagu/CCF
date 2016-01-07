@@ -59,29 +59,12 @@
     
     self.pullRefresh.delegate = self;
     
-    self.pullRefresh = [[WCPullRefreshControl alloc] initWithScrollview:self.tableView
-                                                                 Action:^{
-                                                                     [self browserThreadList:1];
-                                                                 }
-                                                           progressItem:WCProgressItemTypeRoundCricle
-                                                         refreshingItem:WCRefreshingItemTypeRoundCircle
-                                                             lastUpdate:nil
-                                                         showLastUpdate:NO
-                                                              textColor:[UIColor blackColor]
-                                                              itemColor:[UIColor blackColor]
-                                                             pullHeight:64];
     
-    
+    self.pullRefresh = [[WCPullRefreshControl alloc] initWithScrollview:self.tableView Action:^{
+        [self browserThreadList:1];
+    }];
     
     [self.pullRefresh startPullRefresh];
-    
-//    NSString * userID = [browser getCurrentCCFUser];
-//    
-//    
-//    NSLog(@"%@", userID);
-    
-
-    
     
 }
 
@@ -93,7 +76,10 @@
         CCFParser *parser = [[CCFParser alloc]init];
         
         NSMutableArray<CCFThreadList *> * threadList = [parser parseThreadListFromHtml:result withThread:entry.urlId andContainsTop:YES];
-        
+        if (page == 1) {
+            [self.threadList removeAllObjects];
+            [self.threadTopList removeAllObjects];
+        }
         for (CCFThreadList * thread in threadList) {
             if (thread.isTopThread) {
                 [self.threadTopList addObject:thread];

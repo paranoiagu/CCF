@@ -19,6 +19,8 @@
     
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
     int currentPage;
+    int totalPage;
+    
     CCFBrowser * browser;
 }
 
@@ -48,9 +50,9 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         int page = currentPage +1;
         [self browserThreadPosts:page];
-        [self.tableView.mj_footer endRefreshing];
+        
     }];
-//    
+
 //    self.pullRefresh = [[WCPullRefreshControl alloc] initWithScrollview:self.tableView Action:^{
 //        [self browserThreadPosts:1];
 //    }];
@@ -61,26 +63,36 @@
 }
 
 -(void) browserThreadPosts:(int)page{
-    NSString * pageStr = [NSString stringWithFormat:@"%d", page];
+    if (totalPage == 0 || currentPage < totalPage) {
     
-    [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:entry.urlId withPage:pageStr]:^(NSString* result) {
+        NSString * pageStr = [NSString stringWithFormat:@"%d", page];
         
-        CCFParser *parser = [[CCFParser alloc]init];
-        
-        NSMutableArray<CCFPost *> * parsedPosts = [parser parsePostFromThreadHtml:result];
-        
-        if (self.posts == nil) {
-            self.posts = [NSMutableArray array];
-        }
-        
-        [self.posts addObjectsFromArray:parsedPosts];
-        
-//        for (CCFPost * post in self.posts) {
-//            NSLog(@"=========>>>>>    %@", post.postContent);
-//        }
-        [self.tableView reloadData];
-        
-    }];
+        [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:entry.urlId withPage:pageStr]:^(NSString* result) {
+            
+            CCFParser *parser = [[CCFParser alloc]init];
+            
+            NSMutableArray<CCFPost *> * parsedPosts = [parser parsePostFromThreadHtml:result];
+            
+            if (self.posts == nil) {
+                self.posts = [NSMutableArray array];
+            }
+            
+            [self.posts addObjectsFromArray:parsedPosts];
+            
+            currentPage = page;
+            
+            if (currentPage < totalPage) {
+                [self.tableView.mj_footer endRefreshing];
+            } else{
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                
+            }
+            
+            [self.tableView reloadData];
+            
+        }];
+    }
+    
 }
 
 

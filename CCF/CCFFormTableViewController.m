@@ -8,7 +8,6 @@
 
 #import "CCFFormTableViewController.h"
 
-
 #import "CCFThreadViewCell.h"
 #import "CCFFormSectionInfo.h"
 #import "CCFFormHeaderView.h"
@@ -37,6 +36,8 @@
 #import "CCFThreadListTableViewController.h"
 #import "CCFEntry.h"
 #import "DrawerView.h"
+
+#import "CCFUtils.h"
 
 @interface MyAPLEmailMenuItem : UIMenuItem
 @property (nonatomic) NSIndexPath *indexPath;
@@ -121,6 +122,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     [self.navigationController.view addSubview:_leftDrawerView];
     
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     

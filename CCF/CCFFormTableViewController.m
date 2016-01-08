@@ -123,6 +123,12 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     
     NSString * time =  @"1452158804";
     NSLog(@"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ %@", [CCFUtils getSHA1:time]);
+    
+    CCFBrowser * browser = [[CCFBrowser alloc] init];
+    
+//    [browser loginWithName:@"马小甲" AndPassword:@"" :^(id result) {
+//        
+//    }];
 }
 
 

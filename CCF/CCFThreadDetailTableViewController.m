@@ -42,12 +42,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.inputText.delegate = self;
+    
     
     
     
     field = [[CCFUITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
     field.heightDelegate = self;
+    
+//    field.delegate = self;
     
     UIColor * borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     field.layer.borderColor = borderColor.CGColor;
@@ -56,6 +58,34 @@
     field.delegate = self;
 
     inputToolbar = [[[NSBundle mainBundle] loadNibNamed:@"QuickReply" owner:self options:nil]firstObject];
+    [inputToolbar sizeToFit];
+    
+//    field.inputAccessoryView = inputToolbar;
+    
+    
+    NSArray<UIBarButtonItem*> * items  = inputToolbar.items;
+    
+    for (UIBarButtonItem * item in items) {
+        if (item.customView != nil) {
+            item.customView = field;
+        }
+        
+        UIEdgeInsets insets = item.imageInsets;
+        insets.bottom = - CGRectGetHeight(inputToolbar.frame) + 44;
+        item.imageInsets = insets;
+        
+        
+    }
+    
+    CGRect screenSize = [UIScreen mainScreen].bounds;
+    
+    CGRect frame = inputToolbar.frame;
+    frame.origin.y = screenSize.size.height - 44;
+    inputToolbar.frame = frame;
+    
+    
+    [self.view addSubview:inputToolbar];
+    
     
     
     browser = [[CCFBrowser alloc]init];
@@ -83,26 +113,72 @@
     
     
     
+
+    
     
 }
 
 
+
+
+
+- (void)keyboardWillShow:(id)sender {
+    CGRect keyboardFrame;
+    //    UIKeyboardBoundsUserInfoKey
+    [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+    int keyboardHeight = CGRectGetHeight(keyboardFrame);
+
+    
+    CGSize keyboardSize = CGSizeMake(320, keyboardHeight);
+    
+    [UIView beginAnimations:nil context:NULL];
+    // 设置动画
+    [UIView setAnimationDuration:0.3];
+    // 将toolBar的位置放到键盘上方
+    CGRect frame = inputToolbar.frame;
+    frame.origin.y = keyboardSize.height;
+    inputToolbar.frame = frame;
+
+    [UIView commitAnimations];
+
+}
+
+-(void)keyboardWillHide:(id)sender
+{
+    CGRect keyboardFrame;
+    //    UIKeyboardBoundsUserInfoKey
+    [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+    int keyboardHeight = CGRectGetHeight(keyboardFrame);
+    NSLog(@"keyboardHeight = %d",keyboardHeight);
+    //    [postView.toolBar setFrame:CGRectMake(0, 460-44-keyboardHeight, 320, 44)];    //我是在ViewController里面控制View
+    
+    CGSize keyboardSize = CGSizeMake(320, keyboardHeight);
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    CGRect frame = inputToolbar.frame;
+    frame.origin.y += keyboardSize.height;
+    inputToolbar.frame = frame;
+    
+//    frame = self.chatTableVIew.frame;
+//    frame.size.height += keyboardSize.height;
+//    self.chatTableVIew.frame = frame;
+    
+    [UIView commitAnimations];
+    
+//    NSLog(@"y is %f", self.toolbar.frame.origin.y);
+    //    [self.toolbar setFrame:CGRectMake(0, self.toolbar.frame.origin.y +keyboardHeight , 320,44)];
+}
+
+
+
+
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
-    NSArray<UIBarButtonItem*> * items  = inputToolbar.items;
+
+    [inputToolbar removeFromSuperview];
+    field.inputView = inputToolbar;
     
-    for (UIBarButtonItem * item in items) {
-        if (item.customView != nil) {
-            item.customView = field;
-        }
-        
-        UIEdgeInsets insets = item.imageInsets;
-        insets.bottom = - CGRectGetHeight(inputToolbar.frame) + 44;
-        item.imageInsets = insets;
-        
-        
-    }
-    self.inputText.inputAccessoryView = inputToolbar;
+//    field.inputAccessoryView = inputToolbar;
 //    self.inputText.inputView = self.floatTextView;
 
     

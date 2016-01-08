@@ -22,6 +22,8 @@
     int totalPage;
     
     CCFBrowser * browser;
+    
+    UITextView * field;
 }
 
 
@@ -40,6 +42,16 @@
     [super viewDidLoad];
     
     self.inputText.delegate = self;
+    
+    
+    
+    field = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
+    
+    UIColor * borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    field.layer.borderColor = borderColor.CGColor;
+    field.layer.borderWidth = 0.5;
+    field.layer.cornerRadius = 5.0;
+
     
     
     browser = [[CCFBrowser alloc]init];
@@ -66,21 +78,12 @@
     [self browserThreadPosts:1];
     
     
-    NSString * message = @":blush;\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?p=16695603\"]For Test:Quick Reply[/URL][/RIGHT]";
+    
     
 }
 
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    
-    
-    UITextView * field = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
-
-    UIColor * borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-    field.layer.borderColor = borderColor.CGColor;
-    field.layer.borderWidth = 0.5;
-    field.layer.cornerRadius = 5.0;
-
     
     
     UIToolbar * inputToolbar = [[[NSBundle mainBundle] loadNibNamed:@"QuickReply" owner:self options:nil]firstObject];
@@ -188,5 +191,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)floatReplyClick:(id)sender {
+    [browser reply:entry.urlId :field.text];
 }
 @end

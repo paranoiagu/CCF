@@ -204,6 +204,8 @@
 //
 
 -(void)reply:(NSString *)threadId :(NSString *)message{
+    NSString * testMesage = @"\n:blush;\n\n\n\n\n\n\n\n\n\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?p=16695603\"]Test For CCF iPhone Client[/URL][/RIGHT]";
+    NSString *test = [message stringByAppendingString:testMesage];
     
     NSURL * loginUrl = [CCFUrlBuilder buildReplyURL:threadId];
     
@@ -212,7 +214,7 @@
     NSString * securitytoken = [self readSecurityToken];
     
     [parameters setValue:securitytoken forKey:@"securitytoken"];
-    [parameters setValue:message forKey:@"message"];
+    [parameters setValue:test forKey:@"message"];
     
     [parameters setValue:@"postreply" forKey:@"do"];
     [parameters setValue:threadId forKey:@"t"];

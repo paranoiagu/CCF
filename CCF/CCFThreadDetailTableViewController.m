@@ -15,7 +15,7 @@
 #import "MJRefresh.h"
 #import "WCPullRefreshControl.h"
 
-@interface CCFThreadDetailTableViewController ()<CCFThreadDetailCellDelegate>{
+@interface CCFThreadDetailTableViewController ()<CCFThreadDetailCellDelegate, UITextFieldDelegate>{
     
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
     int currentPage;
@@ -38,6 +38,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.inputText.delegate = self;
+    
     
     browser = [[CCFBrowser alloc]init];
     
@@ -67,9 +70,46 @@
     
 //    [browser reply:entry.urlId :message];
     
-    self.navigationController.toolbarHidden = NO;
+//    self.toolbar.toolbarHidden = NO;
+//    [self.inputText removeFromSuperview];
+//    self.inputText.inputAccessoryView = self.toolbar;
+    
+    
+//    self.inputText.inputView = self.inputText;
+//    [self.inputText removeFromSuperview];
+//    [self.inputText becomeFirstResponder];
     
    
+}
+
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    
+    UITextView * field = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
+//    field.backgroundColor = [UIColor redColor];
+    UIColor * borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    
+    field.layer.borderColor = borderColor.CGColor;
+    
+    field.layer.borderWidth = 0.5;
+    
+    field.layer.cornerRadius = 5.0;
+//
+//    self.inputText.inputAccessoryView = field;
+    
+    
+    UIToolbar * inputToolbar = [[[NSBundle mainBundle] loadNibNamed:@"QuickReply" owner:self options:nil]firstObject];
+    
+    NSArray<UIBarButtonItem*> * items  = inputToolbar.items;
+    
+    for (UIBarButtonItem * item in items) {
+        if (item.customView != nil) {
+            item.customView = field;
+        }
+    }
+    self.inputText.inputAccessoryView = inputToolbar;
+    return YES;
 }
 
 -(void) browserThreadPosts:(int)page{

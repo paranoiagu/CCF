@@ -160,6 +160,17 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Item" id="N00-Bx-Sw4"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="qdr-Ur-Txf"/>
+                                    <barButtonItem style="plain" id="Aw4-wO-CaB">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="4K4-3T-7pO">
+                                            <rect key="frame" x="60" y="7" width="200" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="20d-7a-MuZ"/>
+                                    <barButtonItem title="Item" id="egb-wQ-yEx"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -174,7 +185,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="inputText" destination="4K4-3T-7pO" id="ur5-Dx-NSu"/>
                         <outlet property="tableView" destination="0kL-4t-8ck" id="phc-zG-VOg"/>
+                        <outlet property="toolbar" destination="5vk-xv-NjP" id="GlI-FI-pog"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMo-BC-1hm" userLabel="First Responder" sceneMemberID="firstResponder"/>

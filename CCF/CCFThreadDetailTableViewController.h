@@ -18,6 +18,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UITextField *inputText;
 - (IBAction)back:(UIBarButtonItem *)sender;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end

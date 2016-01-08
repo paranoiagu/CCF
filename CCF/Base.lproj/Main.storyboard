@@ -180,7 +180,7 @@
                         <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="wNF-wl-SA9">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="back:" destination="DXG-iT-Wz3" id="3oX-AR-QaW"/>
+                                <action selector="back:" destination="uVJ-xa-q2g" id="AKt-Gf-Afv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

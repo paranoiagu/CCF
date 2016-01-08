@@ -16,6 +16,12 @@
 
 @property (nonatomic, strong) CCFEntry* entry;
 
+@property (strong, nonatomic) IBOutlet UIToolbar *floatToolbar;
+
+@property (weak, nonatomic) IBOutlet UITextField *floatTextView;
+- (IBAction)floatReplyClick:(id)sender;
+
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UITextField *inputText;

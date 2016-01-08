@@ -4,7 +4,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CCFThreadDetailTableViewController">
+            <connections>
+                <outlet property="floatTextView" destination="M0Z-yj-H5T" id="Wsh-ih-f4R"/>
+                <outlet property="floatToolbar" destination="8eX-9v-IzH" id="ooY-do-IEi"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="8eX-9v-IzH">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -21,7 +26,11 @@
                     </textField>
                 </barButtonItem>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="Tsy-Qo-8xb"/>
-                <barButtonItem systemItem="reply" id="viq-U8-HGT"/>
+                <barButtonItem systemItem="reply" id="viq-U8-HGT">
+                    <connections>
+                        <action selector="floatReplyClick:" destination="-1" id="phh-nD-80Z"/>
+                    </connections>
+                </barButtonItem>
             </items>
             <point key="canvasLocation" x="349" y="295"/>
         </toolbar>

@@ -68,18 +68,6 @@
     
     NSString * message = @":blush;\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?p=16695603\"]For Test:Quick Reply[/URL][/RIGHT]";
     
-//    [browser reply:entry.urlId :message];
-    
-//    self.toolbar.toolbarHidden = NO;
-//    [self.inputText removeFromSuperview];
-//    self.inputText.inputAccessoryView = self.toolbar;
-    
-    
-//    self.inputText.inputView = self.inputText;
-//    [self.inputText removeFromSuperview];
-//    [self.inputText becomeFirstResponder];
-    
-   
 }
 
 
@@ -87,16 +75,12 @@
     
     
     UITextView * field = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
-//    field.backgroundColor = [UIColor redColor];
+
     UIColor * borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-    
     field.layer.borderColor = borderColor.CGColor;
-    
     field.layer.borderWidth = 0.5;
-    
     field.layer.cornerRadius = 5.0;
-//
-//    self.inputText.inputAccessoryView = field;
+
     
     
     UIToolbar * inputToolbar = [[[NSBundle mainBundle] loadNibNamed:@"QuickReply" owner:self options:nil]firstObject];
@@ -109,6 +93,9 @@
         }
     }
     self.inputText.inputAccessoryView = inputToolbar;
+//    self.inputText.inputView = self.floatTextView;
+
+    
     return YES;
 }
 
@@ -199,5 +186,7 @@
 
 - (IBAction)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)floatReplyClick:(id)sender {
 }
 @end

@@ -14,16 +14,17 @@
 
 #import "MJRefresh.h"
 #import "WCPullRefreshControl.h"
+#import "CCFUITextView.h"
 
-@interface CCFThreadDetailTableViewController ()<CCFThreadDetailCellDelegate, UITextFieldDelegate>{
+@interface CCFThreadDetailTableViewController ()<CCFThreadDetailCellDelegate, UITextViewDelegate, CCFUITextViewDelegate>{
     
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
     int currentPage;
     int totalPage;
     
     CCFBrowser * browser;
-    
-    UITextView * field;
+    UIToolbar * inputToolbar;
+    CCFUITextView * field;
 }
 
 
@@ -45,13 +46,16 @@
     
     
     
-    field = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
+    field = [[CCFUITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
+    field.heightDelegate = self;
     
     UIColor * borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     field.layer.borderColor = borderColor.CGColor;
     field.layer.borderWidth = 0.5;
     field.layer.cornerRadius = 5.0;
+    field.delegate = self;
 
+    inputToolbar = [[[NSBundle mainBundle] loadNibNamed:@"QuickReply" owner:self options:nil]firstObject];
     
     
     browser = [[CCFBrowser alloc]init];
@@ -85,21 +89,43 @@
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
-    
-    UIToolbar * inputToolbar = [[[NSBundle mainBundle] loadNibNamed:@"QuickReply" owner:self options:nil]firstObject];
-    
     NSArray<UIBarButtonItem*> * items  = inputToolbar.items;
     
     for (UIBarButtonItem * item in items) {
         if (item.customView != nil) {
             item.customView = field;
         }
+        
+        UIEdgeInsets insets = item.imageInsets;
+        insets.bottom = - CGRectGetHeight(inputToolbar.frame) + 44;
+        item.imageInsets = insets;
+        
+        
     }
     self.inputText.inputAccessoryView = inputToolbar;
 //    self.inputText.inputView = self.floatTextView;
 
     
     return YES;
+}
+
+-(void)heightChanged:(CGFloat)height{
+    
+    CGRect rect = inputToolbar.frame;
+    CGFloat addHeight = height - rect.size.height;
+    
+    rect.size.height = height + 14;
+    rect.origin.y = rect.origin.y - addHeight - 14;
+    
+    inputToolbar.frame = rect;
+    
+    NSArray<UIBarButtonItem*> * items  = inputToolbar.items;
+    for (UIBarButtonItem * item in items) {
+        UIEdgeInsets insets = item.imageInsets;
+        insets.bottom = - CGRectGetHeight(inputToolbar.frame) + 44;
+        item.imageInsets = insets;
+    }
+    
 }
 
 -(void) browserThreadPosts:(int)page{

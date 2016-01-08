@@ -10,12 +10,13 @@
 #import "CCFEntry.h"
 #import "CCFPost.h"
 
-@interface CCFThreadDetailTableViewController : UITableViewController
+@interface CCFThreadDetailTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray<CCFPost *> * posts;
 
 @property (nonatomic, strong) CCFEntry* entry;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (IBAction)back:(UIBarButtonItem *)sender;
 

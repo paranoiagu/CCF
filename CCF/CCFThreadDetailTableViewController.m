@@ -45,7 +45,8 @@
     
     
     NSLog(@"CCFThreadDetailTableViewController viewDidLoad    %@   %@", entry.urlId, entry.page);
-    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         int page = currentPage +1;

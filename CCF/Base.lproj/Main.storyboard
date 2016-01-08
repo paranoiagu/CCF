@@ -42,10 +42,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BcJ-sC-1Pm" id="42u-KT-tJb"/>
-                                    <outlet property="delegate" destination="BcJ-sC-1Pm" id="8NH-Nf-0bf"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -65,16 +61,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8EM-Zv-G62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2513" y="-2206"/>
-        </scene>
-        <!--CCFFormScene-->
-        <scene sceneID="s4C-Tw-vM1">
-            <objects>
-                <tableViewController id="BcJ-sC-1Pm" userLabel="CCFFormScene" customClass="CCFFormTableViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="精品论坛" id="T2Y-Et-O7n"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Onb-tg-2NS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3052" y="-2992"/>
         </scene>
         <!--帖子列表-->
         <scene sceneID="ZSu-6M-hd2">
@@ -103,7 +89,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="threadTitle" destination="GvG-S7-y7k" id="yjZ-qk-ssx"/>
-                                    <segue destination="DXG-iT-Wz3" kind="push" id="6tz-GI-U7V"/>
+                                    <segue destination="uVJ-xa-q2g" kind="push" id="Fvg-nc-NlU"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -125,53 +111,60 @@
             </objects>
             <point key="canvasLocation" x="-2070" y="-2992"/>
         </scene>
-        <!--帖子详情-->
+        <!--Thread Detail Table View Controller-->
         <scene sceneID="ua2-2R-ErE">
             <objects>
                 <tableViewController id="DXG-iT-Wz3" customClass="CCFThreadDetailTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0kL-4t-8ck">
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8eC-48-OpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2070" y="-2206"/>
+        </scene>
+        <!--帖子详情-->
+        <scene sceneID="6Nc-xO-8oF">
+            <objects>
+                <viewController id="uVJ-xa-q2g" customClass="CCFThreadDetailTableViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bP8-cK-iVl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0kL-4t-8ck">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFThreadDetailCellIdentifier" rowHeight="120" id="7mO-yU-NBH" customClass="CCFThreadDetailCell">
+                                        <rect key="frame" x="0.0" y="92" width="320" height="120"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7mO-yU-NBH" id="pfk-HT-C0I">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" id="ThZ-bp-DaG" customClass="DTAttributedTextContentView">
+                                                    <rect key="frame" x="8" y="8" width="304" height="103"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="htmlView" destination="ThZ-bp-DaG" id="2h0-Vz-O8V"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="5vk-xv-NjP">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Item" id="N00-Bx-Sw4"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFThreadDetailCellIdentifier" rowHeight="120" id="7mO-yU-NBH" customClass="CCFThreadDetailCell">
-                                <rect key="frame" x="0.0" y="92" width="320" height="120"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7mO-yU-NBH" id="pfk-HT-C0I">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" id="ThZ-bp-DaG" customClass="DTAttributedTextContentView">
-                                            <rect key="frame" x="8" y="8" width="304" height="103"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="htmlView" destination="ThZ-bp-DaG" id="2h0-Vz-O8V"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="DXG-iT-Wz3" id="SGD-lo-DQA"/>
-                            <outlet property="delegate" destination="DXG-iT-Wz3" id="qTt-6b-QcM"/>
-                        </connections>
-                    </tableView>
-                    <toolbarItems>
-                        <barButtonItem systemItem="camera" id="Hdi-M1-JEB"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Lsb-6v-1az"/>
-                        <barButtonItem style="plain" id="lrv-nV-olm">
-                            <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="pTD-eA-dnh">
-                                <rect key="frame" x="58" y="7" width="204" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="aeu-dI-JUp"/>
-                        <barButtonItem systemItem="reply" id="A8Z-uW-9FG"/>
-                    </toolbarItems>
+                    </view>
                     <navigationItem key="navigationItem" title="帖子详情" id="k6b-GS-gyh">
                         <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="wNF-wl-SA9">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -180,26 +173,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8eC-48-OpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2070" y="-2206"/>
-        </scene>
-        <!--Demo Text View Controller-->
-        <scene sceneID="wxL-Yj-VzW">
-            <objects>
-                <viewController id="2p2-vL-cJ0" customClass="DemoTextViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HaG-NY-aGh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="XZv-DK-yLu"/>
+                    <connections>
+                        <outlet property="tableView" destination="0kL-4t-8ck" id="phc-zG-VOg"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j4D-ko-kRo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eMo-BC-1hm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3052" y="-2206"/>
+            <point key="canvasLocation" x="-1715" y="-2206"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rsw-tr-lOi">

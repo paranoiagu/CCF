@@ -122,52 +122,7 @@
 
 
 
-- (void)keyboardWillShow:(id)sender {
-    CGRect keyboardFrame;
-    //    UIKeyboardBoundsUserInfoKey
-    [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
-    int keyboardHeight = CGRectGetHeight(keyboardFrame);
 
-    
-    CGSize keyboardSize = CGSizeMake(320, keyboardHeight);
-    
-    [UIView beginAnimations:nil context:NULL];
-    // 设置动画
-    [UIView setAnimationDuration:0.3];
-    // 将toolBar的位置放到键盘上方
-    CGRect frame = inputToolbar.frame;
-    frame.origin.y = keyboardSize.height;
-    inputToolbar.frame = frame;
-
-    [UIView commitAnimations];
-
-}
-
--(void)keyboardWillHide:(id)sender
-{
-    CGRect keyboardFrame;
-    //    UIKeyboardBoundsUserInfoKey
-    [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
-    int keyboardHeight = CGRectGetHeight(keyboardFrame);
-    NSLog(@"keyboardHeight = %d",keyboardHeight);
-    //    [postView.toolBar setFrame:CGRectMake(0, 460-44-keyboardHeight, 320, 44)];    //我是在ViewController里面控制View
-    
-    CGSize keyboardSize = CGSizeMake(320, keyboardHeight);
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    CGRect frame = inputToolbar.frame;
-    frame.origin.y += keyboardSize.height;
-    inputToolbar.frame = frame;
-    
-//    frame = self.chatTableVIew.frame;
-//    frame.size.height += keyboardSize.height;
-//    self.chatTableVIew.frame = frame;
-    
-    [UIView commitAnimations];
-    
-//    NSLog(@"y is %f", self.toolbar.frame.origin.y);
-    //    [self.toolbar setFrame:CGRectMake(0, self.toolbar.frame.origin.y +keyboardHeight , 320,44)];
-}
 
 
 

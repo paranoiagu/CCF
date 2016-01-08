@@ -8,20 +8,56 @@
 
 #import "CCFToolbar.h"
 
-@implementation CCFToolbar
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+@implementation CCFToolbar{
+    CGRect screenSize;
 }
-*/
+
 
 -(void)didMoveToSuperview{
+    screenSize = [UIScreen mainScreen].bounds;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
+
+- (void)keyboardWillShow:(id)sender {
+    CGRect keyboardFrame;
+    //    UIKeyboardBoundsUserInfoKey
+    [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+//    int keyboardHeight = CGRectGetHeight(keyboardFrame);
+    
+    
+    //CGSize keyboardSize = CGSizeMake(CGRectGetWidth(screenSize), keyboardHeight);
+    
+    [UIView beginAnimations:nil context:NULL];
+    // 设置动画
+    [UIView setAnimationDuration:0.3];
+    // 将toolBar的位置放到键盘上方
+    CGRect frame = self.frame;
+    frame.origin.y = CGRectGetHeight(screenSize) - CGRectGetHeight(keyboardFrame) - CGRectGetHeight(self.frame) ;
+    self.frame = frame;
+    
+    [UIView commitAnimations];
+    
+}
+
+-(void)keyboardWillHide:(id)sender{
+    CGRect keyboardFrame;
+    
+    [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    
+    CGRect frame = self.frame;
+    frame.origin.y += CGRectGetHeight(keyboardFrame);
+    self.frame = frame;
+
+    
+    [UIView commitAnimations];
+
+}
+
 
 @end

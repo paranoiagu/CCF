@@ -11,16 +11,7 @@
 #import "CCFShowThread.h"
 
 
-
-
-
-
-
 @implementation CCFParser
-
-
-
-
 
 -(NSMutableArray<CCFThreadList *> *)parseThreadListFromHtml:(NSString *)html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop{
     NSString * path = [NSString stringWithFormat:@"//*[@id='threadbits_forum_%@']/tr", threadId];
@@ -40,10 +31,6 @@
             
             CCFThreadList * ccfthreadlist = [[CCFThreadList alloc]init];
             
-
-            
-            
-            
             // title
             IGXMLNode * threadTitleNode = threadListNode.children [2];
             
@@ -54,10 +41,7 @@
                 continue;
             }
             ccfthreadlist.isTopThread = !(range.location == NSNotFound);
-            
-            
-            
-            
+  
             
             NSString *title = [self parseTitle: titleInnerHtml];
             
@@ -74,9 +58,6 @@
             
             IGXMLNode * commentCountNode = threadListNode.children [5];
             ccfthreadlist.threadTotalPostCount = [[commentCountNode text] intValue];
-            NSLog(@"---------------> %@ ", ccfthreadlist.threadTitle);
-            
-            
             // 总页数
             if (totaleListCount == -1) {
                 IGXMLNodeSet* totalPageSet = [document queryWithXPath:@"//*[@id='inlinemodform']/table[4]/tr[1]/td[2]/div/table/tr/td[1]"];
@@ -94,21 +75,12 @@
                     totaleListCount = totalNumber;
                 }
                 
-                
             } else{
                 ccfthreadlist.threadTotalListPage = totaleListCount;
             }
-            
-            
             [threadList addObject:ccfthreadlist];
         }
-        
-        
     }
-    
-    //NSLog(@"%@", contents);
-//
-    
     return threadList;
     
 }
@@ -141,10 +113,7 @@
     IGXMLNode * titleNode = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/strong"].firstObject;
     thread.threadTitle = titleNode.text;
     
-    
 
-    
-    
     IGXMLNodeSet * threadInfoSet = [document queryWithXPath:@"/html/body/div[4]/div/div/table[1]/tr/td[2]/div/table/tr"];
     
 //    <tr>
@@ -184,8 +153,6 @@
         
     }
     
-    
-    
     return thread;
 }
 
@@ -205,7 +172,7 @@
     NSString * xPathTime = @"//*[@id='table1']/tr/td[1]/div";
     
     
-    int i = 0;
+//    int i = 0;
     
     for (IGXMLNode * node in postMessages) {
         
@@ -228,24 +195,29 @@
         
         NSString *xPathAttImage = [NSString stringWithFormat:@"//*[@id='td_post_%@']/div[2]/fieldset/div", postId];
         IGXMLNode *attImage = [postDocument queryWithXPath:xPathAttImage].firstObject;
+
         
         if (attImage != nil) {
-            NSUInteger imageCount = attImage.children.count;
+
+            NSString * allImage = @"";
             
-            NSString * format = @"<br><img src=\"%@\" width=\"304\" height=\"304\" >";
             
-            NSString * imageTag = @"";
-            for (int i = 0; i < imageCount; i++) {
-                IGXMLNode * image = attImage.children[i];
-                NSString * formated = [NSString stringWithFormat:format, [@"https://bbs.et8.net/bbs/" stringByAppendingString:[image attribute:@"href"]] ];
-                imageTag = [imageTag stringByAppendingString:formated];
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<img class=\"attach\" src=\"attachment.php\\?attachmentid=(\\d+)" options:NSRegularExpressionCaseInsensitive error:nil];
+            
+            NSArray * result = [regex matchesInString:attImage.html options:0 range:NSMakeRange(0, attImage.html.length)];
+            
+            for (NSTextCheckingResult *tmpresult in result) {
+                
+                //    <img class="attach" src="attachment.php?attachmentid=872113
+                NSString * image = [[attImage.html substringWithRange:tmpresult.range] stringByAppendingString:@"\"><br>"];
+                NSString * fixedImage = [image stringByReplacingOccurrencesOfString:@"class=\"attach\"" withString:@"width=\"300\" height=\"300\""];
+                NSString * fixUrl = [fixedImage stringByReplacingOccurrencesOfString:@"src=\"attachment.php" withString:@"src=\"https://bbs.et8.net/bbs/attachment.php"];
+                
+                allImage = [allImage stringByAppendingString:fixUrl];
+
             }
-            
-            ccfpost.postContent = [ccfpost.postContent stringByAppendingString:imageTag];
+            ccfpost.postContent = [ccfpost.postContent stringByAppendingString:allImage];
         }
-        
-        
-        
         
         NSRange louCengRange = [time.text rangeOfString:@"#\\d+" options:NSRegularExpressionSearch];
         
@@ -259,12 +231,6 @@
         if (timeRange.location != NSNotFound) {
             ccfpost.postTime = [time.text substringWithRange:timeRange];
         }
-        
-        
-        
-        //NSLog(@"\n%d >>>>>>>>>>>>>>\n %@ \n<<<<<<<<<<<<< \n\n", i ++ ,ccfpost.postLouCeng);
-        
-        
         // 保存数据
         ccfpost.postID = postId;
         
@@ -274,7 +240,7 @@
         
     }
     
-    /////////
+
     // 发帖账户信息 table -> td
     //*[@id='posts']/div[1]/div/div/div/table/tr[1]/td[1]
     IGXMLNodeSet *postUserInfo = [document queryWithXPath:@"//*[@id='posts']/div[*]/div/div/div/table/tr[1]/td[1]"];
@@ -318,8 +284,7 @@
         newPost.userInfo = ccfuser;
         [posts removeObjectAtIndex:postPointer];
         [posts insertObject:newPost atIndex:postPointer];
-        
-        // NSLog(@"\n%d >>>>>>>>>>>>>>\n %@ \n<<<<<<<<<<<<< \n\n", i ++ ,posts[postPointer].userInfo.userName);
+
         postPointer ++;
     }
     

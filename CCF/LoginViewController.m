@@ -16,6 +16,8 @@
 #import "CCFBrowser.h"
 #import "AlertProgressViewController.h"
 #import "CCFParser.h"
+#import "CCFFormTableViewController.h"
+#import "AppDelegate.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>{
 
@@ -37,6 +39,12 @@
     _password.delegate = self;
     
     
+    
+    _userName.returnKeyType=UIReturnKeyNext;
+    _password.returnKeyType=UIReturnKeyDone;
+    _password.keyboardType = UIKeyboardTypeASCIICapable;
+    
+    
     _browser = [[CCFBrowser alloc]init];
     
     screenSize = [UIScreen mainScreen].bounds;
@@ -49,6 +57,16 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     currentFocused = textField;
     
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField == _userName) {
+         [_password becomeFirstResponder];
+    } else{
+//        [self performSelector:@selector(login:)];
+        [self login:self];
+    }
+    return YES;
 }
 
 
@@ -90,6 +108,7 @@
 
 - (IBAction)login:(id)sender {
     
+
     
     NSString *name = _userName.text;
     NSString *password = _password.text;
@@ -116,8 +135,18 @@
     [_browser loginWithName:name AndPassword:password :^(NSString *result) {
         NSString * userId = [_browser getCurrentCCFUser];
         if (userId != nil) {
-            //[self popoverPresentationController];
-            [progress dismissViewControllerAnimated:YES completion:nil];
+            AppDelegate *app = [[UIApplication sharedApplication] delegate];
+            
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UITabBarController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"CCFRootController"];
+            [[UIApplication sharedApplication].keyWindow setRootViewController:rootViewController];
+            
+            [UIView transitionWithView:app.window
+                              duration:0.5
+                               options:UIViewAnimationOptionTransitionFlipFromTop
+                            animations:^{ app.window.rootViewController = rootViewController; }
+                            completion:nil];
             
         } else{
             CCFParser * parse = [[CCFParser alloc]init];

@@ -14,6 +14,8 @@
 #import<Foundation/Foundation.h>
 
 #import "CCFBrowser.h"
+#import "AlertProgressViewController.h"
+#import "CCFParser.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>{
 
@@ -91,9 +93,46 @@
     
     NSString *name = _userName.text;
     NSString *password = _password.text;
+    if ([name isEqualToString:@""] || [password isEqualToString:@""]) {
+        
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Default Alert View" message:@"Defalut" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+//        [alertView show];
+        
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"错误" message:@"\n用户名或密码为空" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        
+        [alert addAction:action];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        
+        return;
+    }
+    
+    AlertProgressViewController * progress = [AlertProgressViewController alertControllerWithTitle:@"提示" message:@"\n\n\n正在登录" preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:progress animated:YES completion:nil];
+    
     
     [_browser loginWithName:name AndPassword:password :^(NSString *result) {
-        NSLog(@"%@", result);
+        NSString * userId = [_browser getCurrentCCFUser];
+        if (userId != nil) {
+            //[self popoverPresentationController];
+            [progress dismissViewControllerAnimated:YES completion:nil];
+            
+        } else{
+            CCFParser * parse = [[CCFParser alloc]init];
+            NSString * error = [parse parseLoginErrorMessage:result];
+            
+            [progress dismissViewControllerAnimated:NO completion:nil];
+            
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"错误" message:error delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            
+            [alertView show];
+            
+            NSLog(@"loginWithNameloginWithNameloginWithNameloginWithName %@", error);
+        }
+//        NSLog(@"loginWithNameloginWithNameloginWithNameloginWithName %@", result);
     }];
 }
 

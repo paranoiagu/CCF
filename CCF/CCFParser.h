@@ -20,4 +20,6 @@
 
 -(NSString *) parseSecurityToken:(NSString *)html;
 
+- (NSString *) parseLoginErrorMessage:(NSString *)html;
+
 @end

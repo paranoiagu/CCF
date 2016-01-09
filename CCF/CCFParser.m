@@ -285,4 +285,14 @@
     
     return nil;
 }
+
+
+-(NSString *)parseLoginErrorMessage:(NSString *)html{
+    // /html/body/div[2]/div/div/table[3]/tr[2]/td/div/div/div
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
+    IGXMLNodeSet* contents = [document queryWithXPath: @"/html/body/div[2]/div/div/table[3]/tr[2]/td/div/div/div"];
+    
+    return contents.firstObject.text;
+    
+}
 @end

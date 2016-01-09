@@ -137,8 +137,54 @@
     
     thread.threadPosts = [self parseShowThreadPosts:document];
     
-    // /html/body/div[2]/div/div/table[2]/tbody/tr/td[1]/table/tr[2]/td/strong
-    IGXMLNode * titleNode = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tbody/tr/td[1]/table/tr[2]/td/strong"].firstObject;
+
+    IGXMLNode * titleNode = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/strong"].firstObject;
+    thread.threadTitle = titleNode.text;
+    
+    
+
+    
+    
+    IGXMLNodeSet * threadInfoSet = [document queryWithXPath:@"/html/body/div[4]/div/div/table[1]/tr/td[2]/div/table/tr"];
+    
+//    <tr>
+//    <td class="vbmenu_control" style="font-weight:normal">第 1 页，共 9 页</td>
+//    
+//    
+//    <td class="alt2"><span class="smallfont" title="显示结果从 1 到 15, 共计 127 条."><strong>1</strong></span></td>
+//    <td class="alt1"><a class="smallfont" href="showthread.php?t=1317973&amp;page=2" title="显示结果从 16 到 30, 共计 127 条.">2</a></td>
+//    <td class="alt1"><a class="smallfont" href="showthread.php?t=1317973&amp;page=3" title="显示结果从 31 到 45, 共计 127 条.">3</a></td>
+//    <td class="alt1"><a class="smallfont" href="showthread.php?t=1317973&amp;page=4" title="显示结果从 46 到 60, 共计 127 条.">4</a></td>
+//    <td class="alt1"><a class="smallfont" href="showthread.php?t=1317973&amp;page=5" title="显示结果从 61 到 75, 共计 127 条.">5</a></td>
+//    <td class="alt1"><a rel="next" class="smallfont" href="showthread.php?t=1317973&amp;page=2" title="下一页 - 结果从 16 到 30, 共计 127">&gt;</a></td>
+//    <td class="alt1" nowrap><a class="smallfont" href="showthread.php?t=1317973&amp;page=9" title="尾页 - 结果从 121 到 127, 共计 127">最后一页 <strong>»</strong></a></td>
+//    
+//    </tr>
+    
+    
+    
+    if (threadInfoSet == nil || threadInfoSet.count == 0) {
+        thread.threadTotalPage = 1;
+        thread.threadCurrentPage = 1;
+        thread.threadTotalPostCount = thread.threadPosts.count;
+        
+    } else{
+        IGXMLNode *currentPageAndTotalPageNode = threadInfoSet.firstObject.firstChild;
+        NSString * currentPageAndTotalPageString = currentPageAndTotalPageNode.text;
+        NSArray *pageAndTotalPage = [currentPageAndTotalPageString componentsSeparatedByString:@"页，共"];
+        
+        thread.threadTotalPage = [[[pageAndTotalPage.lastObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"页" withString:@""] intValue];
+        thread.threadCurrentPage = [[[pageAndTotalPage.firstObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"第" withString:@""] intValue];
+        
+        IGXMLNode *totalPostCount = [threadInfoSet.firstObject children][1];
+        
+        NSString * totalPostString = [totalPostCount.firstChild attribute:@"title"];
+        NSString *tmp = [totalPostString componentsSeparatedByString:@"共计 "].lastObject;
+        thread.threadTotalPostCount = [[tmp stringByReplacingOccurrencesOfString:@" 条." withString:@""] intValue];
+        
+    }
+    
+    
     
     return thread;
 }

@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "CCFBrowser.h"
 
 @interface AppDelegate ()
 
@@ -30,6 +32,13 @@
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
         }
     }
+    
+    CCFBrowser * browser = [[CCFBrowser alloc]init];
+    
+    if (browser.getCurrentCCFUser == nil) {
+        self.window.rootViewController = [[LoginViewController alloc]init];
+    }
+    
     
     return YES;
 }

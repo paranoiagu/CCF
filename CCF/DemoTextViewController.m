@@ -15,6 +15,7 @@
 #import "CCFBrowser.h"
 #import "CCFUrlBuilder.h"
 #import "CCFParser.h"
+#import "CCFShowThread.h"
 
 @interface DemoTextViewController ()
 
@@ -182,7 +183,9 @@
         
         CCFParser *parser = [[CCFParser alloc]init];
         
-        NSMutableArray<CCFPost *> * parsedPosts = [parser parsePostFromThreadHtml:result];
+        CCFShowThread * thread = [parser parseShowThreadWithHtml:result];
+        
+        NSMutableArray<CCFPost *> * parsedPosts = thread.threadPosts;
         
         // Display string
         _htmlView.shouldDrawLinks = NO; // we draw them in DTLinkButton

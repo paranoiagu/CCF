@@ -12,9 +12,15 @@
 #import "CCFThreadList.h"
 
 
+
+@class CCFShowThread;
+
+
 @interface CCFParser : NSObject
 
--(NSMutableArray<CCFPost*>*) parsePostFromThreadHtml:(NSString*)html;
+
+-(CCFShowThread *) parseShowThreadWithHtml:(NSString*)html;
+
 
 -(NSMutableArray<CCFThreadList*> *) parseThreadListFromHtml: (NSString *) html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop;
 

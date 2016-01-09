@@ -8,8 +8,16 @@
 
 #import "CCFParser.h"
 #import <IGHTMLQuery.h>
+#import "CCFShowThread.h"
+
+
+
+
+
+
 
 @implementation CCFParser
+
 
 
 
@@ -120,18 +128,36 @@
 }
 
 
--(NSMutableArray<CCFPost *> *)parsePostFromThreadHtml:(NSString *)html{
-    NSMutableArray<CCFPost*> * posts = [NSMutableArray array];
-    
-    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
 
+
+-(CCFShowThread *)parseShowThreadWithHtml:(NSString *)html{
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
+    
+    CCFShowThread * thread = [[CCFShowThread alloc]init];
+    
+    thread.threadPosts = [self parseShowThreadPosts:document];
+    
+    // /html/body/div[2]/div/div/table[2]/tbody/tr/td[1]/table/tr[2]/td/strong
+    IGXMLNode * titleNode = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tbody/tr/td[1]/table/tr[2]/td/strong"].firstObject;
+    
+    return thread;
+}
+
+
+
+
+
+
+-(NSMutableArray<CCFPost *> *)parseShowThreadPosts:(IGHTMLDocument *)document{
+    
+    NSMutableArray<CCFPost*> * posts = [NSMutableArray array];
     
     // 发帖内容的 table -> td
     IGXMLNodeSet *postMessages = [document queryWithXPath:@"//*[@id='posts']/div[*]/div/div/div/table/tr[1]/td[2]"];
     
     // 发帖时间
     NSString * xPathTime = @"//*[@id='table1']/tr/td[1]/div";
-
+    
     
     int i = 0;
     
@@ -142,7 +168,7 @@
         
         NSString * postId = [[[node attribute:@"id"] componentsSeparatedByString:@"td_post_"]lastObject];
         
-       
+        
         IGXMLDocument * postDocument = [[IGHTMLDocument alloc] initWithHTMLString:node.html error:nil];
         
         IGXMLNode * time = [postDocument queryWithXPath:xPathTime].firstObject;
@@ -150,7 +176,7 @@
         
         NSString *xPathMessage = [NSString stringWithFormat:@"//*[@id='post_message_%@']", postId];
         IGXMLNode *message = [postDocument queryWithXPath:xPathMessage].firstObject;
-
+        
         ccfpost.postContent = message.html;
         
         
@@ -172,8 +198,8 @@
             ccfpost.postContent = [ccfpost.postContent stringByAppendingString:imageTag];
         }
         
-
-
+        
+        
         
         NSRange louCengRange = [time.text rangeOfString:@"#\\d+" options:NSRegularExpressionSearch];
         
@@ -247,214 +273,15 @@
         [posts removeObjectAtIndex:postPointer];
         [posts insertObject:newPost atIndex:postPointer];
         
-       // NSLog(@"\n%d >>>>>>>>>>>>>>\n %@ \n<<<<<<<<<<<<< \n\n", i ++ ,posts[postPointer].userInfo.userName);
+        // NSLog(@"\n%d >>>>>>>>>>>>>>\n %@ \n<<<<<<<<<<<<< \n\n", i ++ ,posts[postPointer].userInfo.userName);
         postPointer ++;
     }
-        
-    
-    i = 0;
-    for (CCFPost * testPost in posts) {
-        NSLog(@"\n%d >>>>>>>>>>>>>>\n %@ \n<<<<<<<<<<<<< \n\n", i ++ ,testPost.userInfo.userName);
-    }
     
     return posts;
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--(NSMutableArray<CCFPost *> *)parsePostFromThreadHtml_bak:(NSString *)html{
-    NSMutableArray * posts = [NSMutableArray array];
-
-    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
-    
-    //*[@id="post_message_16695560"]
-    
-    //*[@id="td_post_16695560"]/div[1]
-    
-    //*[@id="td_post_16695560"]/div[1]
-    
-    //*[@id="td_post_16695560"]/div[1]
-    
-    //*[@id="posts"]/div[1]
-    
-    //*[@id="posts"]/div[1]/div/div/div/table/tbody/tr[1]/td[2]/div[1]
-    
-    
-    IGXMLNodeSet* contents = [document queryWithXPath:@"//div[@id='posts']/div[*]/div/div/div/table/tr[1]"];
-    
-    NSInteger totalPostPage = -1;
-    for (int i = 0; i < contents.count; i++) {
-        IGXMLNode * postNode = contents[i];
-        
-        
-        
-        
-        
-        CCFUser* ccfuser = [[CCFUser alloc]init];
-        
-        IGXMLNode * userInfoNode = postNode.firstChild;
-        IGXMLNode *nameNode = userInfoNode.firstChild.firstChild;
-        
-        NSString *name = nameNode.innerHtml;
-        ccfuser.userName = name;
-        NSString *nameLink = [nameNode attribute:@"href"];
-        ccfuser.userLink = [@"https://bbs.et8.net/bbs/" stringByAppendingString:@"member.php?u=70961"];
-        ccfuser.userID = [nameLink componentsSeparatedByString:@"member.php?u="].firstObject;
-        //avatar
-        IGXMLNode * avatarNode = userInfoNode.children[1];
-        NSString * avatarLink = [[[avatarNode children] [1] firstChild] attribute:@"src"];
-        ccfuser.userAvatar = avatarLink;
-        
-        //rank
-        IGXMLNode * rankNode = userInfoNode.children[3];
-        ccfuser.userRank = rankNode.text;
-        // 资料div
-        IGXMLNode * subInfoNode = userInfoNode.children[4];
-        // 注册日期
-        IGXMLNode * signDateNode = [[subInfoNode children][1] children] [1];
-        ccfuser.userSignDate = signDateNode.text;
-        // 帖子数量
-        IGXMLNode * postCountNode = [[subInfoNode children][1] children] [2];
-        ccfuser.userPostCount = postCountNode.text;
-        // 精华 解答 暂时先不处理
-        //IGXMLNode * solveCountNode = subInfoNode;
-        
-        
-        
-        
-        
-        IGXMLNode * postInfoNode = [postNode children][1];
-        
-        NSString* trimString = [postInfoNode.firstChild.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        
-        NSMutableArray * infos = [NSMutableArray array];
-        
-        NSArray *separatedString = [trimString componentsSeparatedByString:@"\n"];
-        for (int i = 0 ; i < separatedString.count; i++) {
-            NSString * deleteT = [separatedString[i] stringByReplacingOccurrencesOfString:@"\t" withString:@""];
-            deleteT = [deleteT stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            
-            if (![deleteT isEqualToString:@""]) {
-                [infos addObject:deleteT];
-            }
-            
-        }
-        
-        CCFPost * ccfpost = [[CCFPost alloc]init];
-        if (infos.count > 2) {
-            // 说明有标题
-            ccfpost.postTitle = infos[2];
-            ccfpost.postTime = infos[1];
-            ccfpost.postLouCeng = infos[0];
-        } else{
-            ccfpost.postTime = infos[1];
-            ccfpost.postLouCeng = infos[0];
-        }
-        
-        ccfpost.postID = [[[postInfoNode attribute:@"id"] componentsSeparatedByString:@"td_post_"]lastObject];
-        
-        // post_message
-        IGXMLNodeSet * postContentNodeSet = [[postNode children][1] children];
-        
-        
-        if ([ccfpost.postLouCeng isEqualToString:@"#1"]) {
-            ccfpost.postContent = [postContentNodeSet[2] innerHtml];
-        } else{
-            IGXMLNode * postContent = postContentNodeSet[postContentNodeSet.count - 1];
-            
-            ccfpost.postContent = [postContent innerHtml];
-        }
-        
-        
-
-        // 找出图片tag
-        if (postInfoNode.children.count >= 4) {
-            IGXMLNode *node = postInfoNode.children[3];
-            IGXMLNode * node2 = node.children[0];
-            IGXMLNode * node3 = node2.children[1];
-            NSUInteger imageCount = node3.children.count;
-            
-            NSString * format = @"<br><img src=\"%@\" width=\"304\" height=\"304\" >";
-            
-            NSString * imageTag = @"";
-            for (int i = 0; i < imageCount; i++) {
-                IGXMLNode * image = node3.children[i];
-                NSString * formated = [NSString stringWithFormat:format, [@"https://bbs.et8.net/bbs/" stringByAppendingString:[image attribute:@"href"]] ];
-                imageTag = [imageTag stringByAppendingString:formated];
-                
-                NSLog(@"\n\n\n++++++++++++++++++++++++++++++++++++++++++   %@   --->>>   ",  [@"https://bbs.et8.net/bbs/" stringByAppendingString:[image attribute:@"href"]]);
-            }
-            
-            ccfpost.postContent = [ccfpost.postContent stringByAppendingString:imageTag];
-            
-        }
-        
-        
-        ccfpost.userInfo = ccfuser;
-        //*[@id="inlinemodform"]/table[4]/tbody/tr/td[2]/div/table/tbody/tr/td[1]
-
-        
-        // /html/body/div[2]/div/div/table[3]/tbody/tr/td[2]/div/table/tbody/tr/td[1]
-        if (totalPostPage == -1) {
-            IGXMLNodeSet* totalPageSet = [document queryWithXPath:@"/html/body/div[2]/div/div/table[3]/tr/td[2]/div/table/tr/td[1]"];
-            
-//            IGXMLNode * totalPage = totalPageSet.firstObject;
-//            NSString * pageText = [totalPage innerHtml];
-//            NSLog(@"帖子内容总页数总页数：   %@", pageText);
-            
-            if (totalPageSet == nil) {
-                totalPostPage = 1;
-                ccfpost.postTotalPage = 1;
-            }else{
-                IGXMLNode * totalPage = totalPageSet.firstObject;
-                NSString * pageText = [totalPage innerHtml];
-                NSString * numberText = [[pageText componentsSeparatedByString:@"，"]lastObject];
-                NSUInteger totalNumber = [numberText integerValue];
-                NSLog(@"总页数：   %@", pageText);
-                ccfpost.postTotalPage = totalNumber;
-                totalPostPage = totalNumber;
-            }
-            
-            
-        } else{
-            ccfpost.postTotalPage = totalPostPage;
-        }
-        
-        // 添加解析出来的Post
-        [posts addObject:ccfpost];
-
-    }
-    return posts;
-}
 
 
 -(NSString *)parseSecurityToken:(NSString *)html{

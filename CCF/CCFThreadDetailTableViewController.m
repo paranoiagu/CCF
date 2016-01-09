@@ -16,6 +16,8 @@
 #import "WCPullRefreshControl.h"
 #import "CCFUITextView.h"
 
+#import "CCFShowThread.h"
+
 @interface CCFThreadDetailTableViewController ()<CCFThreadDetailCellDelegate, UITextViewDelegate, CCFUITextViewDelegate>{
     
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
@@ -168,7 +170,10 @@
             
             CCFParser *parser = [[CCFParser alloc]init];
             
-            NSMutableArray<CCFPost *> * parsedPosts = [parser parsePostFromThreadHtml:result];
+            CCFShowThread * thread = [parser parseShowThreadWithHtml:result];
+            
+            NSMutableArray<CCFPost *> * parsedPosts = thread.threadPosts;
+            
             
             if (self.posts == nil) {
                 self.posts = [NSMutableArray array];

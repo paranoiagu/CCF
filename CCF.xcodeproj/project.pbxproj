@@ -36,7 +36,7 @@
 		3AEA1F371C365EA400710BD6 /* CCFThreadDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F361C365EA400710BD6 /* CCFThreadDetailTableViewController.m */; };
 		4D1EEBAB1C32502A0084F6E9 /* CCFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBAA1C32502A0084F6E9 /* CCFUser.m */; };
 		4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBAD1C3251E70084F6E9 /* CCFPost.m */; };
-		4D1EEBB11C3260130084F6E9 /* CCFThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBB01C3260130084F6E9 /* CCFThread.m */; };
+		4D1EEBB11C3260130084F6E9 /* CCFShowThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBB01C3260130084F6E9 /* CCFShowThread.m */; };
 		4D1EEBBB1C33D4FD0084F6E9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBB91C33D4FD0084F6E9 /* LoginViewController.m */; };
 		4D1EEBBC1C33D4FD0084F6E9 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D1EEBBA1C33D4FD0084F6E9 /* LoginViewController.xib */; };
 		4D339D901C31454A0022A6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D339D8F1C31454A0022A6A4 /* main.m */; };
@@ -117,8 +117,8 @@
 		4D1EEBAA1C32502A0084F6E9 /* CCFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUser.m; sourceTree = "<group>"; };
 		4D1EEBAC1C3251E70084F6E9 /* CCFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFPost.h; sourceTree = "<group>"; };
 		4D1EEBAD1C3251E70084F6E9 /* CCFPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFPost.m; sourceTree = "<group>"; };
-		4D1EEBAF1C3260130084F6E9 /* CCFThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThread.h; sourceTree = "<group>"; };
-		4D1EEBB01C3260130084F6E9 /* CCFThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThread.m; sourceTree = "<group>"; };
+		4D1EEBAF1C3260130084F6E9 /* CCFShowThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowThread.h; sourceTree = "<group>"; };
+		4D1EEBB01C3260130084F6E9 /* CCFShowThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFShowThread.m; sourceTree = "<group>"; };
 		4D1EEBB81C33D4FD0084F6E9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		4D1EEBB91C33D4FD0084F6E9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		4D1EEBBA1C33D4FD0084F6E9 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -285,8 +285,8 @@
 				4D1EEBAA1C32502A0084F6E9 /* CCFUser.m */,
 				4D1EEBAC1C3251E70084F6E9 /* CCFPost.h */,
 				4D1EEBAD1C3251E70084F6E9 /* CCFPost.m */,
-				4D1EEBAF1C3260130084F6E9 /* CCFThread.h */,
-				4D1EEBB01C3260130084F6E9 /* CCFThread.m */,
+				4D1EEBAF1C3260130084F6E9 /* CCFShowThread.h */,
+				4D1EEBB01C3260130084F6E9 /* CCFShowThread.m */,
 				3A2ECF521C36C0EB00CD3968 /* CCFThreadList.h */,
 				3A2ECF531C36C0EB00CD3968 /* CCFThreadList.m */,
 				4DF824B81C34C4C6005BB858 /* CCFForm.h */,
@@ -582,7 +582,7 @@
 				3AA2D5041C36103C00F312CC /* CCFFormHeaderView.m in Sources */,
 				4DF824C31C34F0B2005BB858 /* CCFFormDao.m in Sources */,
 				3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */,
-				4D1EEBB11C3260130084F6E9 /* CCFThread.m in Sources */,
+				4D1EEBB11C3260130084F6E9 /* CCFShowThread.m in Sources */,
 				4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */,
 				4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */,
 				3AEA1F371C365EA400710BD6 /* CCFThreadDetailTableViewController.m in Sources */,

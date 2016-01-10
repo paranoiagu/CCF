@@ -50,6 +50,8 @@
     
     
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     
     field = [[CCFUITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
     field.heightDelegate = self;

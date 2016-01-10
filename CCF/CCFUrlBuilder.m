@@ -22,6 +22,8 @@
 
 #define kCCFReply @"https://bbs.et8.net/bbs/newreply.php?do=postreply&t=%@"
 
+#define kCCFFavForm @"https://bbs.et8.net/bbs/usercp.php"
+
 @implementation CCFUrlBuilder
 
 +(NSURL *)buildMemberURL:(NSString *)userId{
@@ -55,5 +57,9 @@
 
 +(NSURL *)buildUserAvatarURL:(NSString *)avatar{
     return [NSURL URLWithString:[kCCFIndex stringByAppendingString:avatar ]];
+}
+
++(NSURL *) buildFavFormURL{
+    return [NSURL URLWithString:kCCFFavForm];
 }
 @end

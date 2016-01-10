@@ -318,4 +318,13 @@
     return contents.firstObject.text;
     
 }
+
+-(NSMutableArray<CCFThreadList *> *)parseFavThreadListFormHtml:(NSString *)html{
+    
+    //*[@id="collapseobj_usercp_forums"]/tr[*]/td[2]
+    
+    return nil;
+}
+
+
 @end

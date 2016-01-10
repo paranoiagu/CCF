@@ -27,4 +27,6 @@
 
 + (NSURL *) buildUserAvatarURL:(NSString *) avatar;
 
++ (NSURL *) buildFavFormURL;
+
 @end

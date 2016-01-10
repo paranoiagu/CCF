@@ -24,6 +24,8 @@
 
 -(NSMutableArray<CCFThreadList*> *) parseThreadListFromHtml: (NSString *) html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop;
 
+-(NSMutableArray<CCFThreadList*> *) parseFavThreadListFormHtml: (NSString *) html;
+
 -(NSString *) parseSecurityToken:(NSString *)html;
 
 - (NSString *) parseLoginErrorMessage:(NSString *)html;

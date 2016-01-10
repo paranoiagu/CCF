@@ -135,8 +135,8 @@
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
 
-    [inputToolbar removeFromSuperview];
-    field.inputView = inputToolbar;
+//    [inputToolbar removeFromSuperview];
+//    field.inputView = inputToolbar;
     
 //    field.inputAccessoryView = inputToolbar;
 //    self.inputText.inputView = self.floatTextView;
@@ -257,6 +257,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)floatReplyClick:(id)sender {
+    
+    [field resignFirstResponder];
+    
+    
     AlertProgressViewController * alertProgress = [AlertProgressViewController alertControllerWithTitle:@"" message:@"\n\n\n正在回复" preferredStyle:UIAlertControllerStyleAlert];
     
     [self presentViewController:alertProgress animated:YES completion:nil];

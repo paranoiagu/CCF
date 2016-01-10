@@ -173,7 +173,7 @@
         <!--收藏板块-->
         <scene sceneID="0Ce-NM-EC5">
             <objects>
-                <tableViewController id="Jit-bj-gGf" sceneMemberID="viewController">
+                <tableViewController id="Jit-bj-gGf" customClass="CCFFavFormController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="iTX-sQ-xzL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -389,6 +389,6 @@
         <image name="ic_settings_18pt" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZGh-uO-vQ1"/>
+        <segue reference="gXA-3j-72k"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -236,7 +236,10 @@
 
 -(void)relayoutContentHeigt:(NSIndexPath *)indexPath with:(CGFloat)height{
     if ([cellHeightDictionary objectForKey:indexPath] == nil) {
-        CGFloat fixHeight = height < 44.f? 44.f : height + 10.f;
+        
+        CGFloat tmpHeight = height + 80;
+        
+        CGFloat fixHeight = tmpHeight < 115.f? 115.f : tmpHeight;
         
         [cellHeightDictionary setObject:[NSNumber numberWithFloat:fixHeight] forKey:indexPath];
         
@@ -247,7 +250,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
     if (nsheight == nil) {
-        return  44;
+        return  115.0;
     }
     return nsheight.floatValue;
 }

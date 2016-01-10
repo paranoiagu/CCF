@@ -52,4 +52,8 @@
 +(NSURL *) buildReplyURL:(NSString *)threadId{
     return [NSURL URLWithString:[NSString stringWithFormat:kCCFReply, threadId]];
 }
+
++(NSURL *)buildUserAvatarURL:(NSString *)avatar{
+    return [NSURL URLWithString:[kCCFIndex stringByAppendingString:avatar ]];
+}
 @end

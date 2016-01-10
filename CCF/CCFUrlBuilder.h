@@ -24,4 +24,7 @@
 + (NSURL *) buildVCodeURL;
 
 + (NSURL *) buildReplyURL:(NSString *)threadId;
+
++ (NSURL *) buildUserAvatarURL:(NSString *) avatar;
+
 @end

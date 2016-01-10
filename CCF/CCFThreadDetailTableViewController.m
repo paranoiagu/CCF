@@ -99,7 +99,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
         int page = currentPage +1;
         [self browserThreadPosts:page];
         
@@ -171,6 +171,7 @@
             CCFParser *parser = [[CCFParser alloc]init];
             
             CCFShowThread * thread = [parser parseShowThreadWithHtml:result];
+            totalPage = thread.threadTotalPage;
             
             NSMutableArray<CCFPost *> * parsedPosts = thread.threadPosts;
             

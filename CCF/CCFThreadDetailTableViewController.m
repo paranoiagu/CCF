@@ -18,6 +18,9 @@
 
 #import "CCFShowThread.h"
 
+#import "AlertProgressViewController.h"
+
+
 @interface CCFThreadDetailTableViewController ()<CCFThreadDetailCellDelegate, UITextViewDelegate, CCFUITextViewDelegate>{
     
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
@@ -254,6 +257,37 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)floatReplyClick:(id)sender {
-    [browser reply:entry.urlId :field.text];
+    AlertProgressViewController * alertProgress = [AlertProgressViewController alertControllerWithTitle:@"" message:@"\n\n\n正在回复" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:alertProgress animated:YES completion:nil];
+    
+    [browser reply:entry.urlId :field.text :^(BOOL isSuccess, id showThread) {
+        
+        [alertProgress dismissViewControllerAnimated:NO completion:^{
+            
+        }];
+        
+        if (isSuccess) {
+            
+            field.text = @"";
+            
+            [self.posts removeAllObjects];
+            
+            CCFShowThread * thread = showThread;
+            
+            [self.posts addObjectsFromArray:thread.threadPosts];
+            
+            totalPage = thread.threadTotalPage;
+            currentPage = thread.threadCurrentPage;
+            
+            [self.tableView reloadData];
+            
+            
+        } else{
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"发送失败" message:showThread delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alertView show];
+        }
+    }];
+
 }
 @end

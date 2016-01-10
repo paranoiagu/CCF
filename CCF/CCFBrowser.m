@@ -14,6 +14,8 @@
 #import "CCFUtils.h"
 #import "CCFParser.h"
 
+#import "CCFPost.h"
+#import "CCFShowThread.h"
 
 #define kCCFCookie @"CCF-Cookies"
 #define kCCFCookie_User @"bbuserid"
@@ -203,14 +205,17 @@
 //[RIGHT][URL="https://bbs.et8.net/bbs/showthread.php?p=16695603"]For Test:Quick Reply[/URL][/RIGHT]
 //
 
--(void)reply:(NSString *)threadId :(NSString *)message{
-    NSString * testMesage = @"\n:blush;\n\n\n\n\n\n\n\n\n\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?p=16695603\"]Test For CCF iPhone Client[/URL][/RIGHT]";
+-(void)reply:(NSString *)threadId :(NSString *)message :(Reply)result{
+    //NSString * testMesage = @"\n:blush;\n\n\n\n\n\n\n\n\n\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?p=16695603\"]Test For CCF iPhone Client[/URL][/RIGHT]";
+    
+    NSString * testMesage = @"";
+    
     NSString *test = [message stringByAppendingString:testMesage];
     
     NSURL * loginUrl = [CCFUrlBuilder buildReplyURL:threadId];
     
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
-
+    
     NSString * securitytoken = [self readSecurityToken];
     
     [parameters setValue:securitytoken forKey:@"securitytoken"];
@@ -221,7 +226,7 @@
     [parameters setValue:@"who cares" forKey:@"p"];
     
     [parameters setValue:@"0" forKey:@"specifiedpost"];
-
+    
     [parameters setValue:@"1" forKey:@"parseurl"];
     
     [parameters setValue:[self getCurrentCCFUser] forKey:@"loggedinuser"];
@@ -236,15 +241,40 @@
     [_browser POST:[loginUrl absoluteString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         //
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //
+
+        // 保存Cookie
+        [self saveCookie];
+
+        // 返回 html
         NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
         
         
+        NSString * error = @"此帖是您在最后 5 分钟发表的帖子的副本，您将返回该主题。";
+        NSRange range = [html rangeOfString:error];
+        if (range.location != NSNotFound) {
+            result(NO, error);
+            return;
+        }
+        
+        error = @"您输入的信息太短，您发布的信息至少为 5 个字符。";
+        range = [html rangeOfString:error];
+        if (range.location != NSNotFound) {
+            result(NO, error);
+            return;
+        }
         
         
-        //callBack(html);
-        // 保存Cookie
-        [self saveCookie];
+        CCFParser * parser = [[CCFParser alloc]init];
+        CCFShowThread * thread = [parser parseShowThreadWithHtml:html];
+        
+        
+        
+        if(thread.threadPosts.count > 0){
+            result(YES, thread);
+
+        } else{
+            result(NO, @"未知错误");
+        }
         
         NSLog(@"reply done --------------------->>>>>> \n%@", html);
         
@@ -253,6 +283,28 @@
         //
     }];
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-
-@class CCFPost;
+#import "CCFPost.h"
 
 @interface CCFShowThread : NSObject
 

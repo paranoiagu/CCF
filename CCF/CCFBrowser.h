@@ -7,10 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import <AFNetworking.h>
+
+@class CCFShowThread;
+
+
 
 typedef void(^success) (id result);
 
+typedef void (^Reply) (BOOL isSuccess, id result);
 
 @interface CCFBrowser : NSObject
 
@@ -24,7 +30,7 @@ typedef void(^success) (id result);
 
 -(void) refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView;
 
--(void) reply:(NSString *) threadId :(NSString *) message;
+-(void) reply:(NSString *) threadId :(NSString *) message : (Reply) result;
 
 - (NSString *) getCurrentCCFUser;
 

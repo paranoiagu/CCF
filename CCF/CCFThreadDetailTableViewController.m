@@ -245,8 +245,10 @@
         
         [cellHeightDictionary setObject:[NSNumber numberWithFloat:fixHeight] forKey:indexPath];
         
+        
+        [self.tableView reloadData];
     }
-    [self.tableView reloadData];
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

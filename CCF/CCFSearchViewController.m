@@ -13,7 +13,7 @@
 #import "CCFSearchResultCell.h"
 
 
-@interface CCFSearchViewController ()<UITableViewDataSource, UITableViewDelegate>{
+@interface CCFSearchViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>{
     NSMutableArray<CCFSearchResult *> * searchResult;
     int currentPage;
     int maxPage;
@@ -30,6 +30,8 @@
     [super viewDidLoad];
 
     [self initData];
+    
+    self.searchBar.delegate = self;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -51,6 +53,19 @@
     currentPage = 0;
     maxPage = 0;
 }
+
+#pragma mark UISearchBarDelegate
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
+    NSLog(@"searchBarSearchButtonClicked");
+}
+
+
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    NSLog(@"searchBarShouldBeginEditing");
+    return YES;
+}
+
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

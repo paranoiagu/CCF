@@ -17,6 +17,7 @@
     NSMutableArray<CCFSearchResult *> * searchResult;
     int currentPage;
     int maxPage;
+    CCFBrowser * browser;
 }
 
 @end
@@ -30,22 +31,14 @@
     [super viewDidLoad];
 
     [self initData];
+    browser = [[CCFBrowser alloc]init];
     
     self.searchBar.delegate = self;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    
-    CCFBrowser * browser = [[CCFBrowser alloc]init];
-    
-    [browser searchWithKeyWord:@"ccf" searchDone:^(CCFSearchResultPage* result) {
-        
-        [searchResult addObjectsFromArray:result.searchResults];
-        
-        [self.tableView reloadData];
-        
-    }];
+
 }
 
 -(void) initData{
@@ -56,13 +49,27 @@
 
 #pragma mark UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    [searchBar resignFirstResponder];
+    
     NSLog(@"searchBarSearchButtonClicked");
+    
+    [browser searchWithKeyWord:searchBar.text searchDone:^(CCFSearchResultPage* result) {
+        
+        [searchResult removeAllObjects ];
+        
+        [searchResult addObjectsFromArray:result.searchResults];
+        
+        [self.tableView reloadData];
+        
+    }];
+    
 }
 
 
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
     NSLog(@"searchBarShouldBeginEditing");
+    
+
+    
     return YES;
 }
 

@@ -136,7 +136,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="postAuthor" destination="phj-P7-tOr" id="LVq-z5-N8T"/>
                                     <outlet property="postBelongForm" destination="IqZ-gY-eyv" id="xlV-63-Rpf"/>

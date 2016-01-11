@@ -343,7 +343,6 @@
         
         // 返回 html
         NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-        NSLog(@"++++++++++++++++++++>>>>>>>>>>>> \n%@" , html);
         
         CCFParser * parser = [[CCFParser alloc]init];
         

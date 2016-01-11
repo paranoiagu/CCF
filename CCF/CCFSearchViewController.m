@@ -20,7 +20,7 @@
 
     CCFBrowser * browser = [[CCFBrowser alloc]init];
     
-    [browser searchWithKeyWord:@"CCF客户端" searchDone:^(id result) {
+    [browser searchWithKeyWord:@"ccf" searchDone:^(id result) {
         
     }];
 }

@@ -345,6 +345,10 @@
         NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
         NSLog(@"++++++++++++++++++++>>>>>>>>>>>> \n%@" , html);
         
+        CCFParser * parser = [[CCFParser alloc]init];
+        
+        [parser parseSearchPageFromHtml:html];
+        
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //

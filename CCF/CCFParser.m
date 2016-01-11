@@ -331,6 +331,50 @@
 
 -(NSMutableArray<CCFSearchResultPage *> *)parseSearchPageFromHtml:(NSString *)html{
     
+    
+    
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
+    
+    
+    IGXMLNodeSet * searchNodeSet = [document queryWithXPath:@"//*[@id='threadslist']/tr[*]"];
+    
+    if (searchNodeSet == nil || searchNodeSet.count == 0) {
+        return nil;
+    }
+    
+    
+    CCFSearchResultPage * resultPage = [[CCFSearchResultPage alloc]init];
+    
+    NSMutableArray<CCFSearchResult*>* post = [NSMutableArray array];
+    
+    for (IGXMLNode *node in searchNodeSet) {
+        if (node.children.count == 9) {
+            // 9个节点是正确的输出结果
+            CCFSearchResult * result = [[CCFSearchResult alloc]init];
+            
+            IGXMLNode * postIdNode = [node.children[2] children][0];
+            NSString * postId = [[postIdNode.children[1] attribute:@"href"] componentsSeparatedByString:@"showthread.php?t="].lastObject;
+            
+            NSLog(@"++++++++++++++ >>>>  %@", postId);
+            
+            NSString * postTitle = [node.children[2] text];
+            NSString * postAuthor = [node.children[3] text];
+            NSString * postTime = [node.children[4] text];
+            NSString * postBelongForm = [node.children[8] text];
+            
+            result.postID = postId;
+            result.postTitle = postTitle;
+            result.postAuthor = postAuthor;
+            result.postTime = postTime;
+            result.postBelongForm = postBelongForm;
+            
+            [post addObject:result];
+        }
+    }
+    
+    
+    resultPage.searchResults = post;
+    
     return nil;
 }
 

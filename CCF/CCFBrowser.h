@@ -36,5 +36,6 @@ typedef void (^Reply) (BOOL isSuccess, id result);
 
 - (NSString *) getSessionhash;
 
+- (void) searchWithKeyWord:(NSString*) keyWord searchDone:(success) callback;
 
 @end

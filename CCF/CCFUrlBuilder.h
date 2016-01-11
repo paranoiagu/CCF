@@ -29,4 +29,6 @@
 
 + (NSURL *) buildFavFormURL;
 
++ (NSURL *) buildSearchUrl;
+
 @end

@@ -285,29 +285,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -(NSString *)getSessionhash{
     NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     
@@ -320,7 +297,59 @@
     return nil;
 }
 
+-(void)searchWithKeyWord:(NSString *)keyWord searchDone:(success)callback{
 
+
+
+
+//        forumchoice[]	0
+//        childforums	1
+//        saveprefs	1
+    
+    
+    NSURL * searchUrl = [CCFUrlBuilder buildSearchUrl];
+    
+    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+    
+    NSString * securitytoken = [self readSecurityToken];
+    [parameters setValue:@"" forKey:@"s"];
+    [parameters setValue:securitytoken forKey:@"securitytoken"];
+    [parameters setValue:@"process" forKey:@"do"];
+    [parameters setValue:@"" forKey:@"searchthreadid"];
+    [parameters setValue:keyWord forKey:@"query"];
+    [parameters setValue:@"1" forKey:@"titleonly"];
+    [parameters setValue:@"" forKey:@"searchuser"];
+    [parameters setValue:@"0" forKey:@"starteronly"];
+    [parameters setValue:@"1" forKey:@"exactname"];
+    [parameters setValue:@"0" forKey:@"replyless"];
+    [parameters setValue:@"0" forKey:@"replylimit"];
+    [parameters setValue:@"0" forKey:@"searchdate"];
+    [parameters setValue:@"after" forKey:@"beforeafter"];
+    [parameters setValue:@"lastpost" forKey:@"sortby"];
+    [parameters setValue:@"descending" forKey:@"order"];
+    [parameters setValue:@"0" forKey:@"showposts"];
+    [parameters setValue:@"" forKey:@"tag"];
+    [parameters setValue:@"0" forKey:@"forumchoice[]"];
+    [parameters setValue:@"1" forKey:@"childforums"];
+    [parameters setValue:@"1" forKey:@"saveprefs"];
+    
+
+    [_browser POST:[searchUrl absoluteString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        //
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        // 保存Cookie
+        [self saveCookie];
+        
+        // 返回 html
+        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        NSLog(@"++++++++++++++++++++>>>>>>>>>>>> \n%@" , html);
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //
+    }];
+}
 
 
 

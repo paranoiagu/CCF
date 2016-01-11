@@ -24,6 +24,8 @@
 
 #define kCCFFavForm @"https://bbs.et8.net/bbs/usercp.php"
 
+#define kCCFSearch @"https://bbs.et8.net/bbs/search.php?do=process"
+
 @implementation CCFUrlBuilder
 
 +(NSURL *)buildMemberURL:(NSString *)userId{
@@ -61,5 +63,9 @@
 
 +(NSURL *) buildFavFormURL{
     return [NSURL URLWithString:kCCFFavForm];
+}
+
++ (NSURL *)buildSearchUrl{
+    return [NSURL URLWithString:kCCFSearch];
 }
 @end

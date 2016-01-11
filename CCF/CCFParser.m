@@ -9,6 +9,8 @@
 #import "CCFParser.h"
 #import <IGHTMLQuery.h>
 #import "CCFShowThread.h"
+#import "CCFSearchResult.h"
+#import "CCFSearchResultPage.h"
 
 
 @implementation CCFParser
@@ -326,5 +328,10 @@
     return nil;
 }
 
+
+-(NSMutableArray<CCFSearchResultPage *> *)parseSearchPageFromHtml:(NSString *)html{
+    
+    return nil;
+}
 
 @end

@@ -14,6 +14,7 @@
 
 
 @class CCFShowThread;
+@class CCFSearchResultPage;
 
 
 @interface CCFParser : NSObject
@@ -29,5 +30,7 @@
 -(NSString *) parseSecurityToken:(NSString *)html;
 
 - (NSString *) parseLoginErrorMessage:(NSString *)html;
+
+- (NSMutableArray<CCFSearchResultPage*> *) parseSearchPageFromHtml:( NSString*) html;
 
 @end

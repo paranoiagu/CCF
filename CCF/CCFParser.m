@@ -374,7 +374,8 @@
             NSString * postIdNode = [node.children[2] html];
             NSString * postId = [postIdNode stringWithRegular:@"id=\"thread_title_\\d+\"" andChild:@"\\d+"];
             
-            NSString * postTitle = [node.children[2] text];
+            
+            NSString * postTitle = [[[node.children[2] text] trim] componentsSeparatedByString:@"\n"].firstObject;
             NSString * postAuthor = [node.children[3] text];
             NSString * postTime = [node.children[4] text];
             NSString * postBelongForm = [node.children[8] text];

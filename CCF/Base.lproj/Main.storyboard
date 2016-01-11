@@ -71,7 +71,7 @@
         <!--搜索帖子-->
         <scene sceneID="Jhp-ED-whb">
             <objects>
-                <viewController id="kTa-wx-4PB" sceneMemberID="viewController">
+                <viewController id="kTa-wx-4PB" customClass="CCFSearchViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X2J-yp-hQO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,8 +111,16 @@
                     <navigationItem key="navigationItem" title="搜索帖子" id="gHc-WK-4vI">
                         <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="rKw-aq-fre">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="back:" destination="kTa-wx-4PB" id="phU-kN-gWY"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="AGe-tu-viL" id="fba-0K-dSq"/>
+                        <outlet property="segmentedControl" destination="XC4-Y7-51f" id="TTZ-5N-FwM"/>
+                        <outlet property="tableView" destination="z9t-pN-knu" id="Opy-vE-sYf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h7t-NX-DYQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

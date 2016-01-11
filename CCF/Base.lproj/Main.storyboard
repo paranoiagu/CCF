@@ -136,10 +136,10 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="auther" destination="phj-P7-tOr" id="AsO-FN-Y46"/>
-                                            <outlet property="form" destination="IqZ-gY-eyv" id="3YN-cf-u0h"/>
+                                            <outlet property="postAuthor" destination="phj-P7-tOr" id="ltm-sx-lAW"/>
+                                            <outlet property="postBelongForm" destination="IqZ-gY-eyv" id="2yj-pk-n34"/>
                                             <outlet property="postTime" destination="rFo-Fh-37B" id="b6p-kP-HPf"/>
-                                            <outlet property="searchResultContent" destination="A9e-9R-DHH" id="fNs-0n-wHo"/>
+                                            <outlet property="postTitle" destination="A9e-9R-DHH" id="0LG-gf-V5M"/>
                                             <segue destination="uVJ-xa-q2g" kind="push" id="wBq-hR-IEd"/>
                                         </connections>
                                     </tableViewCell>

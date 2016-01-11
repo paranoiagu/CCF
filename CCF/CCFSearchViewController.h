@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CCFSearchViewController : UIViewController
+@interface CCFSearchViewController : UITableViewController
+
+
+
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 

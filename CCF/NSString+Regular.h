@@ -14,4 +14,6 @@
 
 -(NSString*) stringWithRegular:(NSString *) regular andChild:(NSString *) childRegular;
 
+-(NSString*) trim;
+
 @end

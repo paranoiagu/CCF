@@ -40,4 +40,9 @@
     }
     return nil;
 }
+
+-(NSString *)trim{
+    return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
 @end

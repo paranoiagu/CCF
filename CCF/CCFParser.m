@@ -380,11 +380,12 @@
             NSString * postBelongForm = [node.children[8] text];
             
             result.postID = postId;
-            result.postTitle = postTitle;
+            result.postTitle = [postTitle trim];
             result.postAuthor = postAuthor;
-            result.postTime = postTime;
+            result.postTime = [postTime trim];
             result.postBelongForm = postBelongForm;
             
+            NSLog(@"+++++++++++++++++++++++++++++++++ %@", [postTitle trim]);
             [post addObject:result];
         }
     }

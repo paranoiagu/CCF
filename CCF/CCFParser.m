@@ -12,6 +12,8 @@
 #import "CCFSearchResult.h"
 #import "CCFSearchResultPage.h"
 
+#import "NSString+Regular.h"
+
 
 @implementation CCFParser
 
@@ -345,6 +347,15 @@
     
     CCFSearchResultPage * resultPage = [[CCFSearchResultPage alloc]init];
     
+    //*[@id="threadslist"]/tr[1]/td/span[1]
+    IGXMLNode * postTotalCountNode = [document queryWithXPath:@"//*[@id='threadslist']/tr[1]/td/span[1]"].firstObject;
+
+    NSString * postTotalCount = [postTotalCountNode.text stringWithRegular:@"共计 \\d+ 条" andChild:@"\\d+"];
+    
+    NSLog(@"+++++++++++++ >>>>>> %@", postTotalCount);
+    
+    
+    
     NSMutableArray<CCFSearchResult*>* post = [NSMutableArray array];
     
     for (IGXMLNode *node in searchNodeSet) {
@@ -354,8 +365,6 @@
             
             IGXMLNode * postIdNode = [node.children[2] children][0];
             NSString * postId = [[postIdNode.children[1] attribute:@"href"] componentsSeparatedByString:@"showthread.php?t="].lastObject;
-            
-            NSLog(@"++++++++++++++ >>>>  %@", postId);
             
             NSString * postTitle = [node.children[2] text];
             NSString * postAuthor = [node.children[3] text];

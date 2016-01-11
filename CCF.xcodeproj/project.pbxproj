@@ -62,6 +62,7 @@
 		4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BDA1C43666C00B3C62D /* CCFSearchResultCell.m */; };
 		4D796BDE1C43675100B3C62D /* CCFSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BDD1C43675100B3C62D /* CCFSearchResult.m */; };
 		4D796BE11C436A5400B3C62D /* CCFSearchResultPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BE01C436A5400B3C62D /* CCFSearchResultPage.m */; };
+		4D796BE41C437C5000B3C62D /* NSString+Regular.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BE31C437C5000B3C62D /* NSString+Regular.m */; };
 		4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824B91C34C4C6005BB858 /* CCFForm.m */; };
 		4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DF824BB1C34E5EF005BB858 /* ccf.json */; };
 		4DF824BF1C34E9EF005BB858 /* CCFFormTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824BE1C34E9EF005BB858 /* CCFFormTree.m */; };
@@ -169,6 +170,8 @@
 		4D796BDD1C43675100B3C62D /* CCFSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSearchResult.m; sourceTree = "<group>"; };
 		4D796BDF1C436A5400B3C62D /* CCFSearchResultPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSearchResultPage.h; sourceTree = "<group>"; };
 		4D796BE01C436A5400B3C62D /* CCFSearchResultPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSearchResultPage.m; sourceTree = "<group>"; };
+		4D796BE21C437C5000B3C62D /* NSString+Regular.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Regular.h"; sourceTree = "<group>"; };
+		4D796BE31C437C5000B3C62D /* NSString+Regular.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Regular.m"; sourceTree = "<group>"; };
 		4DF824B81C34C4C6005BB858 /* CCFForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForm.h; sourceTree = "<group>"; };
 		4DF824B91C34C4C6005BB858 /* CCFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForm.m; sourceTree = "<group>"; };
 		4DF824BB1C34E5EF005BB858 /* ccf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ccf.json; sourceTree = "<group>"; };
@@ -428,6 +431,8 @@
 			children = (
 				4D796BCB1C3E4BDD00B3C62D /* CCFUtils.h */,
 				4D796BCC1C3E4BDD00B3C62D /* CCFUtils.m */,
+				4D796BE21C437C5000B3C62D /* NSString+Regular.h */,
+				4D796BE31C437C5000B3C62D /* NSString+Regular.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -595,6 +600,7 @@
 			files = (
 				3AEA1F331C365CB600710BD6 /* CCFEntry.m in Sources */,
 				3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */,
+				4D796BE41C437C5000B3C62D /* NSString+Regular.m in Sources */,
 				3A9E18F71C39563500AAB751 /* DemoTextViewController.m in Sources */,
 				3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */,
 				4D796BC91C3DFA6400B3C62D /* WCGraintCircleLayer.m in Sources */,

@@ -331,7 +331,7 @@
 }
 
 
--(NSMutableArray<CCFSearchResultPage *> *)parseSearchPageFromHtml:(NSString *)html{
+-(CCFSearchResultPage*)parseSearchPageFromHtml:(NSString *)html{
     
     
     
@@ -392,7 +392,7 @@
     
     resultPage.searchResults = post;
     
-    return nil;
+    return resultPage;
 }
 
 @end

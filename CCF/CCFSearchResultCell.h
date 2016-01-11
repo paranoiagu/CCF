@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class CCFSearchResult;
+
 @interface CCFSearchResultCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *postTitle;
 @property (weak, nonatomic) IBOutlet UILabel *postAuthor;
 @property (weak, nonatomic) IBOutlet UILabel *postTime;
 @property (weak, nonatomic) IBOutlet UILabel *postBelongForm;
+
+
+-(void) setSearchResult:(CCFSearchResult *) result;
 
 @end

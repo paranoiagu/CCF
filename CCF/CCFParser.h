@@ -31,6 +31,6 @@
 
 - (NSString *) parseLoginErrorMessage:(NSString *)html;
 
-- (NSMutableArray<CCFSearchResultPage*> *) parseSearchPageFromHtml:( NSString*) html;
+- (CCFSearchResultPage *) parseSearchPageFromHtml:( NSString*) html;
 
 @end

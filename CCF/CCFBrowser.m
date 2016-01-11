@@ -299,21 +299,12 @@
 
 -(void)searchWithKeyWord:(NSString *)keyWord searchDone:(success)callback{
 
-
-
-
-//        forumchoice[]	0
-//        childforums	1
-//        saveprefs	1
-    
-    
     NSURL * searchUrl = [CCFUrlBuilder buildSearchUrl];
     
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     
-    NSString * securitytoken = [self readSecurityToken];
+    
     [parameters setValue:@"" forKey:@"s"];
-    [parameters setValue:securitytoken forKey:@"securitytoken"];
     [parameters setValue:@"process" forKey:@"do"];
     [parameters setValue:@"" forKey:@"searchthreadid"];
     [parameters setValue:keyWord forKey:@"query"];
@@ -333,25 +324,52 @@
     [parameters setValue:@"1" forKey:@"childforums"];
     [parameters setValue:@"1" forKey:@"saveprefs"];
     
-
-    [_browser POST:[searchUrl absoluteString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-        //
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+    [_browser GET:[searchUrl absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        // 保存Cookie
-        [self saveCookie];
-        
-        // 返回 html
         NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
         
+        // 保存token
         CCFParser * parser = [[CCFParser alloc]init];
+        NSString * token = [parser parseSecurityToken:html];
+        if (token != nil) {
+            [self saveSecurityToken:token];
+        }
         
-        [parser parseSearchPageFromHtml:html];
+        NSString * securitytoken = [self readSecurityToken];
+        [parameters setValue:securitytoken forKey:@"securitytoken"];
+
+        
+        [_browser POST:[searchUrl absoluteString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+            //
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            // 保存Cookie
+            [self saveCookie];
+            
+            // 返回 html
+            NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+            
+            NSLog(@"-----search: %@", html);
+            CCFParser * parser = [[CCFParser alloc]init];
+            
+            CCFSearchResultPage * page = [parser parseSearchPageFromHtml:html];
+            
+            callback(page);
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            //
+        }];
+        
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //
+        
     }];
+    
+    
+
+
 }
 
 

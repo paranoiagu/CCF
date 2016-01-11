@@ -24,7 +24,7 @@
 
 #define kCCFFavForm @"https://bbs.et8.net/bbs/usercp.php"
 
-#define kCCFSearch @"https://bbs.et8.net/bbs/search.php?do=process"
+#define kCCFSearch @"https://bbs.et8.net/bbs/search.php"
 
 @implementation CCFUrlBuilder
 

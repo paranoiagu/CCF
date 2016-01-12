@@ -16,8 +16,7 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
-- (void)saveContext
-{
+- (void)saveContext{
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil) {
@@ -34,8 +33,7 @@
 
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)managedObjectContext
-{
+- (NSManagedObjectContext *)managedObjectContext{
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
     }
@@ -50,8 +48,7 @@
 
 // Returns the managed object model for the application.
 // If the model doesn't already exist, it is created from the application's model.
-- (NSManagedObjectModel *)managedObjectModel
-{
+- (NSManagedObjectModel *)managedObjectModel{
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
@@ -62,8 +59,7 @@
 
 // Returns the persistent store coordinator for the application.
 // If the coordinator doesn't already exist, it is created and the application's store added to it.
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator{
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
@@ -99,8 +95,7 @@
         newsInfo.parentFormId = [info valueForKey:@"parentFormId"];
         
         NSError *error;
-        if(![context save:&error])
-        {
+        if(![context save:&error]) {
             NSLog(@"不能保存：%@",[error localizedDescription]);
         }
     }
@@ -135,8 +130,7 @@
 }
 
 //删除
--(void)deleteData
-{
+-(void)deleteData{
     NSManagedObjectContext *context = [self managedObjectContext];
     NSEntityDescription *entity = [NSEntityDescription entityForName:kFormEntry inManagedObjectContext:context];
     
@@ -145,21 +139,17 @@
     [request setEntity:entity];
     NSError *error = nil;
     NSArray *datas = [context executeFetchRequest:request error:&error];
-    if (!error && datas && [datas count])
-    {
-        for (NSManagedObject *obj in datas)
-        {
+    if (!error && datas && [datas count]) {
+        for (NSManagedObject *obj in datas) {
             [context deleteObject:obj];
         }
-        if (![context save:&error])
-        {
+        if (![context save:&error]) {
             NSLog(@"error:%@",error);
         }
     }
 }
 //更新
-- (void)updateData:(NSString*)newsId  withIsLook:(NSString*)islook
-{
+- (void)updateData:(NSString*)newsId  withIsLook:(NSString*)islook{
     NSManagedObjectContext *context = [self managedObjectContext];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"newsid like[cd] %@",newsId];

@@ -65,6 +65,10 @@
 		4D796BE41C437C5000B3C62D /* NSString+Regular.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BE31C437C5000B3C62D /* NSString+Regular.m */; };
 		4D796BEA1C44992700B3C62D /* UIStoryboard+CCF.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BE91C44992700B3C62D /* UIStoryboard+CCF.m */; };
 		4D796BED1C44A43B00B3C62D /* CCFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BEC1C44A43B00B3C62D /* CCFNavigationController.m */; };
+		4D796BF11C44B6F800B3C62D /* Form.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */; };
+		4D796BF61C44BBA000B3C62D /* FormEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF31C44BBA000B3C62D /* FormEntry+CoreDataProperties.m */; };
+		4D796BF71C44BBA000B3C62D /* FormEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF51C44BBA000B3C62D /* FormEntry.m */; };
+		4D796BFA1C44BE7800B3C62D /* CCFCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF91C44BE7800B3C62D /* CCFCoreDataManager.m */; };
 		4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824B91C34C4C6005BB858 /* CCFForm.m */; };
 		4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DF824BB1C34E5EF005BB858 /* ccf.json */; };
 		4DF824BF1C34E9EF005BB858 /* CCFFormTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824BE1C34E9EF005BB858 /* CCFFormTree.m */; };
@@ -178,6 +182,13 @@
 		4D796BE91C44992700B3C62D /* UIStoryboard+CCF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+CCF.m"; sourceTree = "<group>"; };
 		4D796BEB1C44A43B00B3C62D /* CCFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFNavigationController.h; sourceTree = "<group>"; };
 		4D796BEC1C44A43B00B3C62D /* CCFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFNavigationController.m; sourceTree = "<group>"; };
+		4D796BF01C44B6F800B3C62D /* Form.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Form.xcdatamodel; sourceTree = "<group>"; };
+		4D796BF21C44BBA000B3C62D /* FormEntry+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormEntry+CoreDataProperties.h"; sourceTree = "<group>"; };
+		4D796BF31C44BBA000B3C62D /* FormEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
+		4D796BF41C44BBA000B3C62D /* FormEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormEntry.h; sourceTree = "<group>"; };
+		4D796BF51C44BBA000B3C62D /* FormEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormEntry.m; sourceTree = "<group>"; };
+		4D796BF81C44BE7800B3C62D /* CCFCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFCoreDataManager.h; sourceTree = "<group>"; };
+		4D796BF91C44BE7800B3C62D /* CCFCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFCoreDataManager.m; sourceTree = "<group>"; };
 		4DF824B81C34C4C6005BB858 /* CCFForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForm.h; sourceTree = "<group>"; };
 		4DF824B91C34C4C6005BB858 /* CCFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForm.m; sourceTree = "<group>"; };
 		4DF824BB1C34E5EF005BB858 /* ccf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ccf.json; sourceTree = "<group>"; };
@@ -314,6 +325,7 @@
 		4D1EEBA81C324FFD0084F6E9 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				4D796BEE1C44B59100B3C62D /* Core Data */,
 				4DF824BB1C34E5EF005BB858 /* ccf.json */,
 				4D1EEBA91C32502A0084F6E9 /* CCFUser.h */,
 				4D1EEBAA1C32502A0084F6E9 /* CCFUser.m */,
@@ -445,6 +457,20 @@
 				4D796BE31C437C5000B3C62D /* NSString+Regular.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		4D796BEE1C44B59100B3C62D /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */,
+				4D796BF21C44BBA000B3C62D /* FormEntry+CoreDataProperties.h */,
+				4D796BF31C44BBA000B3C62D /* FormEntry+CoreDataProperties.m */,
+				4D796BF41C44BBA000B3C62D /* FormEntry.h */,
+				4D796BF51C44BBA000B3C62D /* FormEntry.m */,
+				4D796BF81C44BE7800B3C62D /* CCFCoreDataManager.h */,
+				4D796BF91C44BE7800B3C62D /* CCFCoreDataManager.m */,
+			);
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 		4DF824C01C34F098005BB858 /* CCFDao */ = {
@@ -625,7 +651,10 @@
 				3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */,
 				4D1EEBB11C3260130084F6E9 /* CCFShowThread.m in Sources */,
 				4D796BDE1C43675100B3C62D /* CCFSearchResult.m in Sources */,
+				4D796BF11C44B6F800B3C62D /* Form.xcdatamodeld in Sources */,
 				4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */,
+				4D796BFA1C44BE7800B3C62D /* CCFCoreDataManager.m in Sources */,
+				4D796BF71C44BBA000B3C62D /* FormEntry.m in Sources */,
 				3A7569AD1C42B179000486F4 /* CCFFavFormController.m in Sources */,
 				4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */,
 				4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */,
@@ -633,6 +662,7 @@
 				4D796BC21C3DF93D00B3C62D /* NSDate+WCPullRefresh.m in Sources */,
 				4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */,
 				4D796BD81C43576700B3C62D /* CCFSearchViewController.m in Sources */,
+				4D796BF61C44BBA000B3C62D /* FormEntry+CoreDataProperties.m in Sources */,
 				4D339D9C1C31454A0022A6A4 /* CCF.xcdatamodeld in Sources */,
 				3A2ECF541C36C0EB00CD3968 /* CCFThreadList.m in Sources */,
 				3AA2D50F1C36105100F312CC /* CCFFormTableViewController.m in Sources */,
@@ -830,6 +860,16 @@
 			);
 			currentVersion = 4D339D9B1C31454A0022A6A4 /* CCF.xcdatamodel */;
 			path = CCF.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4D796BF01C44B6F800B3C62D /* Form.xcdatamodel */,
+			);
+			currentVersion = 4D796BF01C44B6F800B3C62D /* Form.xcdatamodel */;
+			path = Form.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

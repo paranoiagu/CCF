@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#define kCCFRootController @"CCFRootController"
+#define kCCFRootController @"CCFNavigationController"
 
-
-
+//所有的论坛
+#define kCCFFavFormController @"CCFFavFormController"
+//收藏的论坛
 @interface UIStoryboard(CCF)
 
 +(UIStoryboard *)mainStoryboard;

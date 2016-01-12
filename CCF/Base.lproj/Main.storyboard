@@ -182,7 +182,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cKE-3m-3bz">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cKE-3m-3bz" id="3JT-05-wfC">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -283,7 +283,7 @@
         <!--收藏板块-->
         <scene sceneID="0Ce-NM-EC5">
             <objects>
-                <tableViewController id="Jit-bj-gGf" customClass="CCFFavFormController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CCFFavFormController" id="Jit-bj-gGf" customClass="CCFFavFormController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="iTX-sQ-xzL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -479,7 +479,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Rsw-tr-lOi">
             <objects>
-                <navigationController storyboardIdentifier="CCFRootController" id="gbM-NL-yco" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CCFNavigationController" id="gbM-NL-yco" customClass="CCFNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bo8-Gq-c5Y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

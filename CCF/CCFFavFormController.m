@@ -11,6 +11,7 @@
 #import "CCFUrlBuilder.h"
 #import "CCFBrowser.h"
 #import "CCFParser.h"
+#import "CCFCoreDataManager.h"
 
 @interface CCFFavFormController (){
     CCFBrowser *_browser;
@@ -30,6 +31,13 @@
         
     }];
     
+    
+    CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] init];
+    
+    NSMutableArray *forms = [manager selectAll];
+    
+    NSLog(@"%@", forms);
+
 }
 
 

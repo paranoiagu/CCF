@@ -25,7 +25,6 @@
     
     if([cookiesdata length]) {
         NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData:cookiesdata];
-        NSLog(@"cookie    >>>>>>>>> %@", cookies);
         
         NSHTTPCookie *cookie;
         for (cookie in cookies) {

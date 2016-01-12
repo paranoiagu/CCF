@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-#define TableName @"CCFForm"
+#define kFormEntry @"FormEntry"
 
 @interface CCFCoreDataManager : NSObject
 
@@ -25,6 +25,10 @@
 
 //插入数据
 - (void)insertCoreData:(NSMutableArray*)dataArray;
+
+// 取出所有的数据
+- (NSMutableArray*) selectAll;
+
 //查询
 - (NSMutableArray*)selectData:(int)pageSize andOffset:(int)currentPage;
 //删除

@@ -55,7 +55,7 @@
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"NewsModel" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Form" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -68,7 +68,7 @@
         return _persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"NewsModel.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Form.sqlite"];
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -89,15 +89,14 @@
 }
 
 //插入数据
-- (void)insertCoreData:(NSMutableArray*)dataArray
-{
+- (void)insertCoreData:(NSMutableArray*)dataArray{
     NSManagedObjectContext *context = [self managedObjectContext];
     for (FormEntry *info in dataArray) {
-        FormEntry *newsInfo = [NSEntityDescription insertNewObjectForEntityForName:TableName inManagedObjectContext:context];
+        FormEntry *newsInfo = [NSEntityDescription insertNewObjectForEntityForName:kFormEntry inManagedObjectContext:context];
         
-        newsInfo.formId = info.formId;
-        newsInfo.formName = info.formName;
-        newsInfo.parentFormId = info.parentFormId;
+        newsInfo.formId = [info valueForKey:@"formId"];
+        newsInfo.formName = [info valueForKey:@"formName"];
+        newsInfo.parentFormId = [info valueForKey:@"parentFormId"];
         
         NSError *error;
         if(![context save:&error])
@@ -108,8 +107,7 @@
 }
 
 //查询
-- (NSMutableArray*)selectData:(int)pageSize andOffset:(int)currentPage
-{
+- (NSMutableArray*)selectData:(int)pageSize andOffset:(int)currentPage{
     NSManagedObjectContext *context = [self managedObjectContext];
     
     // 限定查询结果的数量
@@ -122,7 +120,7 @@
     [fetchRequest setFetchLimit:pageSize];
     [fetchRequest setFetchOffset:currentPage];
     
-    NSEntityDescription *entity = [NSEntityDescription entityForName:TableName inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:kFormEntry inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
@@ -140,7 +138,7 @@
 -(void)deleteData
 {
     NSManagedObjectContext *context = [self managedObjectContext];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:TableName inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:kFormEntry inManagedObjectContext:context];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setIncludesPropertyValues:NO];
@@ -164,12 +162,11 @@
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     
-    NSPredicate *predicate = [NSPredicate
-                              predicateWithFormat:@"newsid like[cd] %@",newsId];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"newsid like[cd] %@",newsId];
     
     //首先你需要建立一个request
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:TableName inManagedObjectContext:context]];
+    [request setEntity:[NSEntityDescription entityForName:kFormEntry inManagedObjectContext:context]];
     [request setPredicate:predicate];//这里相当于sqlite中的查询条件，具体格式参考苹果文档 https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/Predicates/Articles/pCreating.html
     NSError *error = nil;
     NSArray *result = [context executeFetchRequest:request error:&error];//这里获取到的是一个数组，你需要取出你要更新的那个obj
@@ -182,5 +179,27 @@
         //更新成功
         NSLog(@"更新成功");
     }
+}
+
+-(NSMutableArray *)selectAll{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    // 限定查询结果的数量
+    //setFetchLimit
+    // 查询的偏移量
+    //setFetchOffset
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:kFormEntry inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    NSMutableArray *resultArray = [NSMutableArray array];
+    
+    [resultArray addObjectsFromArray:fetchedObjects];
+    
+    return resultArray;
 }
 @end

@@ -39,6 +39,9 @@
 
 #import "CCFUtils.h"
 
+#import "CCFCoreDataManager.h"
+
+
 @interface MyAPLEmailMenuItem : UIMenuItem
 @property (nonatomic) NSIndexPath *indexPath;
 @end
@@ -121,14 +124,6 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     _leftDrawerView = [[DrawerView alloc] initWithDrawerType:DrawerViewTypeLeft andXib:@"DrawerView"];
     [self.navigationController.view addSubview:_leftDrawerView];
     
-    NSString * time =  @"1452158804";
-    NSLog(@"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ %@", [CCFUtils getSHA1:time]);
-    
-    CCFBrowser * browser = [[CCFBrowser alloc] init];
-    
-//    [browser loginWithName:@"马小甲" AndPassword:@"" :^(id result) {
-//        
-//    }];
 }
 
 
@@ -170,6 +165,9 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     CCFFormTree * ccfFromTree = [[[CCFFormDao alloc]init] parseCCFForms:path];
     
     self.plays = ccfFromTree.ccfforms;
+    
+    CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] init];
+    [manager insertCoreData:self.plays];
     
 }
 

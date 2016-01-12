@@ -85,11 +85,14 @@
 }
 
 //插入数据
-- (void)insertCoreData:(NSMutableArray*)dataArray{
+- (void)insertData:(NSMutableArray*)dataArray{
     NSManagedObjectContext *context = [self managedObjectContext];
-    for (FormEntry *info in dataArray) {
-        FormEntry *newsInfo = [NSEntityDescription insertNewObjectForEntityForName:kFormEntry inManagedObjectContext:context];
+    for (NSManagedObject *info in dataArray) {
         
+        
+        NSManagedObject *needInsert = [NSEntityDescription insertNewObjectForEntityForName:kFormEntry inManagedObjectContext:context];
+        
+        FormEntry *newsInfo = (FormEntry*)needInsert;
         newsInfo.formId = [info valueForKey:@"formId"];
         newsInfo.formName = [info valueForKey:@"formName"];
         newsInfo.parentFormId = [info valueForKey:@"parentFormId"];
@@ -100,6 +103,28 @@
         }
     }
 }
+
+-(void)insertData:(NSMutableArray *)dataArray operation:(Operation)operation{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    for (NSManagedObject *info in dataArray) {
+        
+        
+        NSManagedObject *needInsert = [NSEntityDescription insertNewObjectForEntityForName:kFormEntry inManagedObjectContext:context];
+        
+//        FormEntry *newsInfo = (FormEntry*)needInsert;
+//        newsInfo.formId = [info valueForKey:@"formId"];
+//        newsInfo.formName = [info valueForKey:@"formName"];
+//        newsInfo.parentFormId = [info valueForKey:@"parentFormId"];
+        operation(needInsert, info);
+        
+        NSError *error;
+        if(![context save:&error]) {
+            NSLog(@"不能保存：%@",[error localizedDescription]);
+        }
+    }
+}
+
+
 
 //查询
 - (NSMutableArray*)selectData:(int)pageSize andOffset:(int)currentPage{
@@ -171,7 +196,7 @@
     }
 }
 
--(NSMutableArray *)selectAll{
+-(NSMutableArray *)selectData{
     NSManagedObjectContext *context = [self managedObjectContext];
     
     // 限定查询结果的数量

@@ -12,6 +12,9 @@
 
 #define kFormEntry @"FormEntry"
 
+typedef void(^Operation) (NSManagedObject * target, id src);
+
+
 @interface CCFCoreDataManager : NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -21,18 +24,21 @@
 
 - (void)saveContext;
 
-- (NSURL *)applicationDocumentsDirectory;
-
 //插入数据
-- (void)insertCoreData:(NSMutableArray*)dataArray;
+//- (void)insertData:(NSMutableArray*)dataArray;
+
+- (void)insertData:(NSMutableArray*)dataArray operation:(Operation) operation;
+
 
 // 取出所有的数据
-- (NSMutableArray*) selectAll;
+- (NSMutableArray*) selectData;
 
 //查询
 - (NSMutableArray*)selectData:(int)pageSize andOffset:(int)currentPage;
+
 //删除
 - (void)deleteData;
+
 //更新
 - (void)updateData:(NSString*)newsId withIsLook:(NSString*)islook;
 

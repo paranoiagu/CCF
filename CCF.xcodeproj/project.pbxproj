@@ -462,15 +462,31 @@
 		4D796BEE1C44B59100B3C62D /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				4D796BFC1C44CCCE00B3C62D /* Post */,
+				4D796BFB1C44CCBF00B3C62D /* Form */,
+				4D796BF81C44BE7800B3C62D /* CCFCoreDataManager.h */,
+				4D796BF91C44BE7800B3C62D /* CCFCoreDataManager.m */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		4D796BFB1C44CCBF00B3C62D /* Form */ = {
+			isa = PBXGroup;
+			children = (
 				4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */,
 				4D796BF21C44BBA000B3C62D /* FormEntry+CoreDataProperties.h */,
 				4D796BF31C44BBA000B3C62D /* FormEntry+CoreDataProperties.m */,
 				4D796BF41C44BBA000B3C62D /* FormEntry.h */,
 				4D796BF51C44BBA000B3C62D /* FormEntry.m */,
-				4D796BF81C44BE7800B3C62D /* CCFCoreDataManager.h */,
-				4D796BF91C44BE7800B3C62D /* CCFCoreDataManager.m */,
 			);
-			name = "Core Data";
+			name = Form;
+			sourceTree = "<group>";
+		};
+		4D796BFC1C44CCCE00B3C62D /* Post */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Post;
 			sourceTree = "<group>";
 		};
 		4DF824C01C34F098005BB858 /* CCFDao */ = {

@@ -40,6 +40,7 @@
 #import "CCFUtils.h"
 
 #import "CCFCoreDataManager.h"
+#import "FormEntry+CoreDataProperties.h"
 
 
 @interface MyAPLEmailMenuItem : UIMenuItem
@@ -167,7 +168,13 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     self.plays = ccfFromTree.ccfforms;
     
     CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] init];
-    [manager insertCoreData:self.plays];
+
+    [manager insertData:self.plays operation:^(NSManagedObject *target, id src) {
+        FormEntry *newsInfo = (FormEntry*)target;
+        newsInfo.formId = [src valueForKey:@"formId"];
+        newsInfo.formName = [src valueForKey:@"formName"];
+        newsInfo.parentFormId = [src valueForKey:@"parentFormId"];
+    }];
     
 }
 

@@ -34,7 +34,7 @@
     
     CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] init];
     
-    NSMutableArray *forms = [manager selectAll];
+    NSMutableArray *forms = [manager selectData];
     
     NSLog(@"%@", forms);
 

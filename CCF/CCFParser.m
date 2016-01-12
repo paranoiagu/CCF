@@ -11,8 +11,9 @@
 #import "CCFShowThread.h"
 #import "CCFSearchResult.h"
 #import "CCFSearchResultPage.h"
-
+#import "FormEntry+CoreDataProperties.h"
 #import "NSString+Regular.h"
+#import "CCFCoreDataManager.h"
 
 
 @implementation CCFParser
@@ -399,16 +400,37 @@
 
 
 
--(NSMutableArray<CCFForm *> *)parseFavFormFormHtml:(NSString *)html{
+-(NSMutableArray<FormEntry *> *)parseFavFormFormHtml:(NSString *)html{
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet * favFormNodeSet = [document queryWithXPath:@"//*[@id='collapseobj_usercp_forums']/tr[*]/td[2]/div[1]/a"];
     
-//    <a href="forumdisplay.php?f=158">『手机◇移动数码』</a>
+
+    NSMutableArray* ids = [NSMutableArray array];
     
+    //<a href="forumdisplay.php?f=158">『手机◇移动数码』</a>
     for (IGXMLNode *node in favFormNodeSet) {
-        NSLog(@"+++++++++++++++++++++++++++++++++ %@", [node html]);
+        NSString * idsStr = [node.html stringWithRegular:@"f=\\d+" andChild:@"\\d+"];
+        [ids addObject:[NSNumber numberWithInt:[idsStr intValue]]];
+        
+        NSLog(@"+++++++++++++++++++++++++++++++++ %@", idsStr);
     }
+    
+    // 1 2 3 6
+    CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+    
+    NSMutableArray * result = [manager selectData:^NSPredicate *{
+
+//        { 'Ben', 'Melissa', 'Nick' }
+        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(formId > 0)"];
+        
+        return predicate;
+    }];
+    
+    for (FormEntry *entry in result) {
+        NSLog(@"***************************** %@", entry.formName);
+    }
+    //NSLog(@"+++++++++++++++++++++++++++++++++ >>>>>>   %ld %@", result.count ,result);
         
     return nil;
 }

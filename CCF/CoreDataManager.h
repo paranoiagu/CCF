@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 typedef void(^Operation) (NSManagedObject * target, id src);
+typedef NSPredicate *(^SelectOperation) ();
 
 
 @interface CoreDataManager : NSObject
@@ -30,6 +31,8 @@ typedef void(^Operation) (NSManagedObject * target, id src);
 
 // 取出所有的数据
 - (NSMutableArray*) selectData;
+
+- (NSMutableArray*) selectData:(SelectOperation) operation;
 
 //查询
 - (NSMutableArray*)selectData:(int)pageSize andOffset:(int)currentPage;

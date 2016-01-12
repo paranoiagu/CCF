@@ -234,4 +234,26 @@
     
     return resultArray;
 }
+
+-(NSMutableArray *)selectData:(SelectOperation)operation{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:_entry inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate = operation();
+    if (predicate != nil) {
+        [fetchRequest setPredicate:predicate];
+    }
+
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    NSMutableArray *resultArray = [NSMutableArray array];
+    
+    [resultArray addObjectsFromArray:fetchedObjects];
+    
+    return resultArray;
+}
 @end

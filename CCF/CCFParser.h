@@ -10,6 +10,7 @@
 #import "CCFPost.h"
 #import "CCFUser.h"
 #import "CCFThreadList.h"
+#import "FormEntry+CoreDataProperties.h"
 
 
 
@@ -33,6 +34,6 @@
 
 - (CCFSearchResultPage *) parseSearchPageFromHtml:( NSString*) html;
 
-- (NSMutableArray<CCFForm *> *) parseFavFormFormHtml:(NSString *)html;
+- (NSMutableArray<FormEntry *> *) parseFavFormFormHtml:(NSString *)html;
 
 @end

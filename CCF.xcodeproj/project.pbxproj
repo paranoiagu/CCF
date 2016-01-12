@@ -68,7 +68,8 @@
 		4D796BF11C44B6F800B3C62D /* Form.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */; };
 		4D796BF61C44BBA000B3C62D /* FormEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF31C44BBA000B3C62D /* FormEntry+CoreDataProperties.m */; };
 		4D796BF71C44BBA000B3C62D /* FormEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF51C44BBA000B3C62D /* FormEntry.m */; };
-		4D796BFA1C44BE7800B3C62D /* CCFCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF91C44BE7800B3C62D /* CCFCoreDataManager.m */; };
+		4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF91C44BE7800B3C62D /* CoreDataManager.m */; };
+		4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */; };
 		4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824B91C34C4C6005BB858 /* CCFForm.m */; };
 		4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DF824BB1C34E5EF005BB858 /* ccf.json */; };
 		4DF824BF1C34E9EF005BB858 /* CCFFormTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824BE1C34E9EF005BB858 /* CCFFormTree.m */; };
@@ -187,8 +188,10 @@
 		4D796BF31C44BBA000B3C62D /* FormEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
 		4D796BF41C44BBA000B3C62D /* FormEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormEntry.h; sourceTree = "<group>"; };
 		4D796BF51C44BBA000B3C62D /* FormEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormEntry.m; sourceTree = "<group>"; };
-		4D796BF81C44BE7800B3C62D /* CCFCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFCoreDataManager.h; sourceTree = "<group>"; };
-		4D796BF91C44BE7800B3C62D /* CCFCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFCoreDataManager.m; sourceTree = "<group>"; };
+		4D796BF81C44BE7800B3C62D /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		4D796BF91C44BE7800B3C62D /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		4D796BFD1C44FAED00B3C62D /* CCFCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFCoreDataManager.h; sourceTree = "<group>"; };
+		4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFCoreDataManager.m; sourceTree = "<group>"; };
 		4DF824B81C34C4C6005BB858 /* CCFForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForm.h; sourceTree = "<group>"; };
 		4DF824B91C34C4C6005BB858 /* CCFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForm.m; sourceTree = "<group>"; };
 		4DF824BB1C34E5EF005BB858 /* ccf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ccf.json; sourceTree = "<group>"; };
@@ -464,8 +467,10 @@
 			children = (
 				4D796BFC1C44CCCE00B3C62D /* Post */,
 				4D796BFB1C44CCBF00B3C62D /* Form */,
-				4D796BF81C44BE7800B3C62D /* CCFCoreDataManager.h */,
-				4D796BF91C44BE7800B3C62D /* CCFCoreDataManager.m */,
+				4D796BF81C44BE7800B3C62D /* CoreDataManager.h */,
+				4D796BF91C44BE7800B3C62D /* CoreDataManager.m */,
+				4D796BFD1C44FAED00B3C62D /* CCFCoreDataManager.h */,
+				4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -669,7 +674,8 @@
 				4D796BDE1C43675100B3C62D /* CCFSearchResult.m in Sources */,
 				4D796BF11C44B6F800B3C62D /* Form.xcdatamodeld in Sources */,
 				4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */,
-				4D796BFA1C44BE7800B3C62D /* CCFCoreDataManager.m in Sources */,
+				4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */,
+				4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */,
 				4D796BF71C44BBA000B3C62D /* FormEntry.m in Sources */,
 				3A7569AD1C42B179000486F4 /* CCFFavFormController.m in Sources */,
 				4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */,

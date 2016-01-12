@@ -6,11 +6,12 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "CoreDataManager.h"
 
-
-
+typedef NS_ENUM(NSInteger, CCFCoreDataEntry) {
+    CCFCoreDataEntryForm = 0,
+    CCFCoreDataEntryPost
+};
 
 
 #pragma mark Form 相关
@@ -20,36 +21,8 @@
 
 
 
+@interface CCFCoreDataManager : CoreDataManager
 
-typedef void(^Operation) (NSManagedObject * target, id src);
-
-
-@interface CCFCoreDataManager : NSObject
-
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
--(instancetype)initWithXcdatamodeld:(NSString *)name andWithPersistentName:(NSString *)persistentName andWithEntryName:(NSString *)entryName;
-
-- (void)saveContext;
-
-//插入数据
-//- (void)insertData:(NSMutableArray*)dataArray;
-
-- (void)insertData:(NSMutableArray*)dataArray operation:(Operation) operation;
-
-
-// 取出所有的数据
-- (NSMutableArray*) selectData;
-
-//查询
-- (NSMutableArray*)selectData:(int)pageSize andOffset:(int)currentPage;
-
-//删除
-- (void)deleteData;
-
-//更新
-- (void)updateData:(NSString*)newsId withIsLook:(NSString*)islook;
+-(instancetype)initWithCCFCoreDataEntry:(CCFCoreDataEntry) enrty;
 
 @end

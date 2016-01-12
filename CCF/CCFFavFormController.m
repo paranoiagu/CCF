@@ -32,7 +32,7 @@
     }];
     
     
-    CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithXcdatamodeld:kFormXcda andWithPersistentName:kFormDBName andWithEntryName:kFormEntry];
+    CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
     
     NSMutableArray *forms = [manager selectData];
     

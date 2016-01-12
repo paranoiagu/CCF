@@ -403,6 +403,9 @@
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet * favFormNodeSet = [document queryWithXPath:@"//*[@id='collapseobj_usercp_forums']/tr[*]/td[2]/div[1]/a"];
+    
+//    <a href="forumdisplay.php?f=158">『手机◇移动数码』</a>
+    
     for (IGXMLNode *node in favFormNodeSet) {
         NSLog(@"+++++++++++++++++++++++++++++++++ %@", [node html]);
     }

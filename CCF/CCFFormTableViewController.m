@@ -167,7 +167,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     
     self.plays = ccfFromTree.ccfforms;
     
-    CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithXcdatamodeld:kFormXcda andWithPersistentName:kFormDBName andWithEntryName:kFormEntry];
+    CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
 
     [manager insertData:self.plays operation:^(NSManagedObject *target, id src) {
         FormEntry *newsInfo = (FormEntry*)target;

@@ -9,12 +9,29 @@
 #import "CCFCoreDataManager.h"
 #import "FormEntry.h"
 
-@implementation CCFCoreDataManager
+@implementation CCFCoreDataManager{
+    NSString * _xcdatamodeld;
+    NSString * _persistent;
+    NSString * _entry;
+}
 
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+
+-(instancetype)initWithXcdatamodeld:(NSString *)name andWithPersistentName:(NSString *)persistentName andWithEntryName:(NSString *)entryName{
+    if (self = [super init]) {
+        _xcdatamodeld = name;
+        _persistent = persistentName;
+        _entry = entryName;
+        
+    }
+    return self;
+}
+
+
 
 - (void)saveContext{
     NSError *error = nil;
@@ -52,7 +69,7 @@
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Form" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:_xcdatamodeld withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -64,7 +81,7 @@
         return _persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Form.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:_persistent];
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -90,7 +107,7 @@
     for (NSManagedObject *info in dataArray) {
         
         
-        NSManagedObject *needInsert = [NSEntityDescription insertNewObjectForEntityForName:kFormEntry inManagedObjectContext:context];
+        NSManagedObject *needInsert = [NSEntityDescription insertNewObjectForEntityForName:_entry inManagedObjectContext:context];
         
         FormEntry *newsInfo = (FormEntry*)needInsert;
         newsInfo.formId = [info valueForKey:@"formId"];
@@ -109,7 +126,7 @@
     for (NSManagedObject *info in dataArray) {
         
         
-        NSManagedObject *needInsert = [NSEntityDescription insertNewObjectForEntityForName:kFormEntry inManagedObjectContext:context];
+        NSManagedObject *needInsert = [NSEntityDescription insertNewObjectForEntityForName:_entry inManagedObjectContext:context];
         
 //        FormEntry *newsInfo = (FormEntry*)needInsert;
 //        newsInfo.formId = [info valueForKey:@"formId"];
@@ -140,7 +157,7 @@
     [fetchRequest setFetchLimit:pageSize];
     [fetchRequest setFetchOffset:currentPage];
     
-    NSEntityDescription *entity = [NSEntityDescription entityForName:kFormEntry inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:_entry inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
@@ -157,7 +174,7 @@
 //删除
 -(void)deleteData{
     NSManagedObjectContext *context = [self managedObjectContext];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:kFormEntry inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:_entry inManagedObjectContext:context];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setIncludesPropertyValues:NO];
@@ -181,7 +198,7 @@
     
     //首先你需要建立一个request
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:kFormEntry inManagedObjectContext:context]];
+    [request setEntity:[NSEntityDescription entityForName:_entry inManagedObjectContext:context]];
     [request setPredicate:predicate];//这里相当于sqlite中的查询条件，具体格式参考苹果文档 https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/Predicates/Articles/pCreating.html
     NSError *error = nil;
     NSArray *result = [context executeFetchRequest:request error:&error];//这里获取到的是一个数组，你需要取出你要更新的那个obj
@@ -207,7 +224,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 
     
-    NSEntityDescription *entity = [NSEntityDescription entityForName:kFormEntry inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:_entry inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];

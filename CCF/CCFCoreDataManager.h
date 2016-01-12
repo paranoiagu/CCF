@@ -10,7 +10,16 @@
 #import <CoreData/CoreData.h>
 
 
+
+
+
+#pragma mark Form 相关
 #define kFormEntry @"FormEntry"
+#define kFormXcda @"Form"
+#define kFormDBName @"Form.sqlite"
+
+
+
 
 typedef void(^Operation) (NSManagedObject * target, id src);
 
@@ -21,6 +30,7 @@ typedef void(^Operation) (NSManagedObject * target, id src);
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+-(instancetype)initWithXcdatamodeld:(NSString *)name andWithPersistentName:(NSString *)persistentName andWithEntryName:(NSString *)entryName;
 
 - (void)saveContext;
 

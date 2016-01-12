@@ -10,4 +10,6 @@
 
 @interface CCFNavigationController : UINavigationController
 
+-(void)setRootViewController:(UIViewController *)rootViewController;
+
 @end

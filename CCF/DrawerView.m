@@ -12,6 +12,9 @@
 #define kDefaultDrawerRatio 4/5
 #define kMaxMaskAlpha 0.6f
 
+#import "CCFNavigationController.h"
+#import "UIStoryboard+CCF.h"
+#import "CCFFavFormController.h"
 
 @interface DrawerView(){
 
@@ -242,6 +245,17 @@
     if (_rightDrawerView != nil && _rightDrawerEnadbled && _rightDrawerOpened) {
         [self hideRightDrawerWithAnim:_rightDrawerView];
     }
+}
+
+- (IBAction)changViewController:(id)sender {
+    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+
+        CCFNavigationController * controller = self.window.rootViewController;
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        CCFFavFormController * favController = [storyboard instantiateViewControllerWithIdentifier:kCCFFavFormController];
+        [controller setRootViewController:favController];
+    }
+    
 }
 
 - (void) showRightDrawerWithAdim:(UIView *)view{

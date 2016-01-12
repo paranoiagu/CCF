@@ -56,5 +56,6 @@ typedef NS_ENUM(NSInteger, DrawerIndex) {
 
 -(void)openRightDrawer;
 -(void)closeRightDrawer;
+- (IBAction)changViewController:(id)sender;
 
 @end

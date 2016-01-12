@@ -386,7 +386,7 @@
             result.postTime = [postTime trim];
             result.postBelongForm = postBelongForm;
             
-            NSLog(@"+++++++++++++++++++++++++++++++++ %@", [postTitle trim]);
+            
             [post addObject:result];
         }
     }
@@ -396,5 +396,65 @@
     
     return resultPage;
 }
+
+
+
+-(NSMutableArray<CCFForm *> *)parseFavFormFormHtml:(NSString *)html{
+    
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
+    IGXMLNodeSet * favFormNodeSet = [document queryWithXPath:@"//*[@id='collapseobj_usercp_forums']/tr[*]/td[2]/div[1]/a"];
+    for (IGXMLNode *node in favFormNodeSet) {
+        NSLog(@"+++++++++++++++++++++++++++++++++ %@", [node html]);
+    }
+        
+    return nil;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

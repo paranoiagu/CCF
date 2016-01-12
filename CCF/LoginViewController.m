@@ -19,6 +19,8 @@
 #import "CCFFormTableViewController.h"
 #import "AppDelegate.h"
 
+#import "UIStoryboard+CCF.h"
+
 @interface LoginViewController ()<UITextFieldDelegate>{
 
     CCFBrowser *_browser;
@@ -135,18 +137,9 @@
     [_browser loginWithName:name AndPassword:password :^(NSString *result) {
         NSString * userId = [_browser getCurrentCCFUser];
         if (userId != nil) {
-            AppDelegate *app = [[UIApplication sharedApplication] delegate];
             
-            
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UITabBarController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"CCFRootController"];
-            [[UIApplication sharedApplication].keyWindow setRootViewController:rootViewController];
-            
-            [UIView transitionWithView:app.window
-                              duration:0.5
-                               options:UIViewAnimationOptionTransitionFlipFromTop
-                            animations:^{ app.window.rootViewController = rootViewController; }
-                            completion:nil];
+            UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
+            [storyboard changeRootViewControllerTo:kCCFRootController];
             
         } else{
             CCFParser * parse = [[CCFParser alloc]init];

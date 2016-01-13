@@ -14,4 +14,12 @@
     
     return [self initWithXcdatamodeld:kFormXcda andWithPersistentName:kFormDBName andWithEntryName:kFormEntry];
 }
+
+
+-(NSMutableArray *)selectFavForms:(NSArray *)ids{
+    return [self selectData:^NSPredicate *{
+        return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
+    }];
+}
+
 @end

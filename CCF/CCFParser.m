@@ -14,7 +14,7 @@
 #import "FormEntry+CoreDataProperties.h"
 #import "NSString+Regular.h"
 #import "CCFCoreDataManager.h"
-
+#import "NSUserDefaults+CCF.h"
 
 @implementation CCFParser
 
@@ -412,25 +412,18 @@
     for (IGXMLNode *node in favFormNodeSet) {
         NSString * idsStr = [node.html stringWithRegular:@"f=\\d+" andChild:@"\\d+"];
         [ids addObject:[NSNumber numberWithInt:[idsStr intValue]]];
-        
-        NSLog(@"+++++++++++++++++++++++++++++++++ %@", idsStr);
     }
     
+    [[NSUserDefaults standardUserDefaults] saveFavFormIds:ids];
 
+
+    // 通过ids 过滤出Form
     CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
-    
     NSMutableArray * result = [manager selectData:^NSPredicate *{
-
-        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"formId IN %@", ids];
-        
-        return predicate;
+         return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
     }];
-    
-    for (FormEntry *entry in result) {
-        NSLog(@"***************************** %@", entry.formName);
-    }
         
-    return nil;
+    return result;
 }
 
 

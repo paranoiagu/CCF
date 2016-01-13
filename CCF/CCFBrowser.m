@@ -16,8 +16,9 @@
 
 #import "CCFPost.h"
 #import "CCFThreadDetail.h"
+#import "NSUserDefaults+CCF.h"
 
-#define kCCFCookie @"CCF-Cookies"
+
 #define kCCFCookie_User @"bbuserid"
 #define kCCFSecurityToken @"securitytoken"
 
@@ -141,20 +142,11 @@
 }
 
 -(void) saveCookie{
-    NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:kCCFCookie];
+        [[NSUserDefaults standardUserDefaults] saveCookie];
 }
 
 -(void) loadCookie{
-    NSData *cookiesdata = [[NSUserDefaults standardUserDefaults] objectForKey:kCCFCookie];
-    if([cookiesdata length]) {
-        NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData:cookiesdata];
-        NSHTTPCookie *cookie;
-        for (cookie in cookies) {
-            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-        }
-    }
+    [[NSUserDefaults standardUserDefaults] loadCookie];
 }
 
 

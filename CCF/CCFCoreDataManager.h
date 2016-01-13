@@ -25,4 +25,6 @@ typedef NS_ENUM(NSInteger, CCFCoreDataEntry) {
 
 -(instancetype)initWithCCFCoreDataEntry:(CCFCoreDataEntry) enrty;
 
+-(NSMutableArray *)selectFavForms:(NSArray *) ids;
+
 @end

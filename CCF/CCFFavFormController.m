@@ -12,31 +12,43 @@
 #import "CCFBrowser.h"
 #import "CCFParser.h"
 #import "CCFCoreDataManager.h"
+#import "NSUserDefaults+CCF.h"
 
 @interface CCFFavFormController (){
     CCFBrowser *_browser;
+    NSMutableArray<FormEntry *> * _favForms;
 }
 
 @end
 
 @implementation CCFFavFormController
 
+
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     _browser = [[CCFBrowser alloc]init];
     
-    [_browser browseWithUrl:[CCFUrlBuilder buildFavFormURL] :^(NSString* result) {
-        CCFParser * parser = [[CCFParser alloc]init];
-        [parser parseFavFormFormHtml:result];
-        
-    }];
     
     
-    CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
     
-    NSMutableArray *forms = [manager selectData];
+    NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
     
-    NSLog(@"%@", forms);
+    if (userDef.favFormIds == nil) {
+        [_browser browseWithUrl:[CCFUrlBuilder buildFavFormURL] :^(NSString* result) {
+            CCFParser * parser = [[CCFParser alloc]init];
+            _favForms = [parser parseFavFormFormHtml:result];
+            [self.tableView reloadData];
+            
+        }];
+    } else{
+        CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+        _favForms = [manager selectFavForms:userDef.favFormIds];
+        [self.tableView reloadData];
+    }
 
 }
 
@@ -46,12 +58,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 0;
+    return _favForms.count;
 }
 
 

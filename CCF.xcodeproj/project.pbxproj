@@ -331,11 +331,8 @@
 				4D796BEE1C44B59100B3C62D /* Core Data */,
 				4DF824BB1C34E5EF005BB858 /* ccf.json */,
 				4D796C011C45F38400B3C62D /* Form */,
-				4D796C001C45F2E100B3C62D /* Thread */,
-				4D796BDC1C43675100B3C62D /* CCFSearchResult.h */,
-				4D796BDD1C43675100B3C62D /* CCFSearchResult.m */,
-				4D796BDF1C436A5400B3C62D /* CCFSearchResultPage.h */,
-				4D796BE01C436A5400B3C62D /* CCFSearchResultPage.m */,
+				4D796C001C45F2E100B3C62D /* Thread-Normal */,
+				4D796C021C45F99000B3C62D /* Thread-Search */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -484,7 +481,7 @@
 			name = Post;
 			sourceTree = "<group>";
 		};
-		4D796C001C45F2E100B3C62D /* Thread */ = {
+		4D796C001C45F2E100B3C62D /* Thread-Normal */ = {
 			isa = PBXGroup;
 			children = (
 				4D1EEBA91C32502A0084F6E9 /* CCFUser.h */,
@@ -496,7 +493,7 @@
 				3A2ECF521C36C0EB00CD3968 /* CCFThreadList.h */,
 				3A2ECF531C36C0EB00CD3968 /* CCFThreadList.m */,
 			);
-			name = Thread;
+			name = "Thread-Normal";
 			sourceTree = "<group>";
 		};
 		4D796C011C45F38400B3C62D /* Form */ = {
@@ -508,6 +505,17 @@
 				4DF824BE1C34E9EF005BB858 /* CCFFormTree.m */,
 			);
 			name = Form;
+			sourceTree = "<group>";
+		};
+		4D796C021C45F99000B3C62D /* Thread-Search */ = {
+			isa = PBXGroup;
+			children = (
+				4D796BDC1C43675100B3C62D /* CCFSearchResult.h */,
+				4D796BDD1C43675100B3C62D /* CCFSearchResult.m */,
+				4D796BDF1C436A5400B3C62D /* CCFSearchResultPage.h */,
+				4D796BE01C436A5400B3C62D /* CCFSearchResultPage.m */,
+			);
+			name = "Thread-Search";
 			sourceTree = "<group>";
 		};
 		4DF824C01C34F098005BB858 /* CCFDao */ = {

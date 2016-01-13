@@ -16,6 +16,7 @@
 #import "CCFThreadDetailTableViewController.h"
 #import "MJRefresh.h"
 #import "WCPullRefreshControl.h"
+#import "CCFNewThreadViewController.h"
 
 #define TypePullRefresh 0
 #define TypeLoadMore 1
@@ -171,33 +172,50 @@
     
     NSLog(@"prepareForSegue&&&&&&&&                 %@", sender);
     
-    
-    
-    CCFThreadDetailTableViewController * controller = segue.destinationViewController;
-    
-    if ([controller respondsToSelector:@selector(setEntry:)]) {
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         
+        CCFNewThreadViewController * newPostController = segue.destinationViewController;
         
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
-        CCFThreadList * thread = nil;
-        
-        if (indexPath.section == 0) {
-            thread = self.threadTopList[indexPath.row];
-        } else{
-            thread = self.threadList[indexPath.row];
+        if ([newPostController respondsToSelector:@selector(setEntry:)]) {
+
+            CCFEntry * transEntry = [[CCFEntry alloc]init];
+            
+            transEntry.urlId = entry.urlId;
+            
+            [newPostController setValue:transEntry forKey:@"entry"];
+            
         }
-
         
-        CCFEntry * transEntry = [[CCFEntry alloc]init];
         
-        transEntry.urlId = thread.threadID;
+    } else if([sender isKindOfClass:[UITableViewCell class]]){
+        CCFThreadDetailTableViewController * controller = segue.destinationViewController;
         
-        transEntry.page = @"1";
-        
-        [controller setValue:transEntry forKey:@"entry"];
-
+        if ([controller respondsToSelector:@selector(setEntry:)]) {
+            
+            
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            
+            CCFThreadList * thread = nil;
+            
+            if (indexPath.section == 0) {
+                thread = self.threadTopList[indexPath.row];
+            } else{
+                thread = self.threadList[indexPath.row];
+            }
+            
+            
+            CCFEntry * transEntry = [[CCFEntry alloc]init];
+            
+            transEntry.urlId = thread.threadID;
+            
+            transEntry.page = @"1";
+            
+            [controller setValue:transEntry forKey:@"entry"];
+            
+        }
     }
+    
+
 }
 
 

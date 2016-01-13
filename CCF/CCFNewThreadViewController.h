@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CCFEntry.h"
 
 @interface CCFNewThreadViewController : UIViewController
+
+
+
+@property (nonatomic, strong) CCFEntry* entry;
+
+
 
 @property (weak, nonatomic) IBOutlet UITextField *subject;
 @property (weak, nonatomic) IBOutlet UITextView *message;

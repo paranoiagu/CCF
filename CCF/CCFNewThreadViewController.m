@@ -12,7 +12,8 @@
 
 
 @interface CCFNewThreadViewController (){
-    
+    NSString * fId;
+    CCFBrowser * broswer;
 }
 
 @end
@@ -22,11 +23,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    fId = _entry.urlId;
+    broswer = [[CCFBrowser alloc]init];
+    
 }
 
 
 
 - (IBAction)createThread:(id)sender {
+    [broswer createNewThreadForForm:fId withSubject:_subject.text andMessage:_message.text];
+    
 }
 
 - (IBAction)back:(id)sender {

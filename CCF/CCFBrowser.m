@@ -368,13 +368,47 @@
         
         NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
         
-        // 保存token
         CCFParser * parser = [[CCFParser alloc]init];
         NSString * token = [parser parseSecurityToken:html];
 
         NSString * hash = [parser parsePostHash:html];
         
         NSLog(@"createNewThreadForForm ------> hash: %@", hash);
+        
+
+        NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+        [parameters setValue:subject forKey:@"subject"];
+        [parameters setValue:message forKey:@"message"];
+        [parameters setValue:@"0" forKey:@"wysiwyg"];
+        [parameters setValue:@"0" forKey:@"iconid"];
+        [parameters setValue:@"" forKey:@"s"];
+        [parameters setValue:token forKey:@"securitytoken"];
+        [parameters setValue:fId forKey:@"f"];
+        [parameters setValue:@"postthread" forKey:@"do"];
+        [parameters setValue:hash forKey:@"posthash"];
+        
+        
+        [parameters setValue:[CCFUtils getTimeSp] forKey:@"poststarttime"];
+        [parameters setValue:[self getCurrentCCFUser] forKey:@"loggedinuser"];
+        [parameters setValue:@"发表主题" forKey:@"sbutton"];
+        [parameters setValue:@"1" forKey:@"parseurl"];
+        [parameters setValue:@"9999" forKey:@"emailupdate"];
+        [parameters setValue:@"4" forKey:@"polloptions"];
+            
+        
+        [_browser POST:[newPostUrl absoluteString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+            [self saveCookie];
+            
+            NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+            
+            CCFParser * parser = [[CCFParser alloc]init];
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

@@ -167,6 +167,12 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    
+    NSLog(@"prepareForSegue&&&&&&&&                 %@", sender);
+    
+    
+    
     CCFThreadDetailTableViewController * controller = segue.destinationViewController;
     
     if ([controller respondsToSelector:@selector(setEntry:)]) {

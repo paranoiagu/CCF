@@ -15,7 +15,7 @@
 #import "CCFBrowser.h"
 #import "CCFUrlBuilder.h"
 #import "CCFParser.h"
-#import "CCFShowThread.h"
+#import "CCFThreadDetail.h"
 
 @interface DemoTextViewController ()
 
@@ -183,7 +183,7 @@
         
         CCFParser *parser = [[CCFParser alloc]init];
         
-        CCFShowThread * thread = [parser parseShowThreadWithHtml:result];
+        CCFThreadDetail * thread = [parser parseShowThreadWithHtml:result];
         
         NSMutableArray<CCFPost *> * parsedPosts = thread.threadPosts;
         

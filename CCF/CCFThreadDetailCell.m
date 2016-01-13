@@ -64,11 +64,11 @@
 //        [self.htmlView loadHTMLString:html baseURL:[CCFUrlBuilder buildIndexURL]];
         _htmlView.attributedString = [self showHtml:html];
         
-        _username.text = newPost.userInfo.userName;
+        _username.text = newPost.postUserInfo.userName;
         _louCeng.text = newPost.postLouCeng;
         _postTime.text = newPost.postTime;
         
-        [_avatarImage setImageWithURL:[CCFUrlBuilder buildUserAvatarURL:newPost.userInfo.userAvatar]];
+        [_avatarImage setImageWithURL:[CCFUrlBuilder buildUserAvatarURL:newPost.postUserInfo.userAvatar]];
         
     }
     

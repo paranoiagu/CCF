@@ -10,7 +10,7 @@
 
 #import <AFNetworking.h>
 
-@class CCFShowThread;
+@class CCFThreadDetail;
 
 
 

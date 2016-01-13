@@ -6,8 +6,8 @@
 //  Copyright © 2015年 andforce. All rights reserved.
 //
 
-#import "CCFShowThread.h"
+#import "CCFThreadDetail.h"
 
-@implementation CCFShowThread
+@implementation CCFThreadDetail
 
 @end

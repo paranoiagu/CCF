@@ -15,7 +15,7 @@
 #import "CCFParser.h"
 
 #import "CCFPost.h"
-#import "CCFShowThread.h"
+#import "CCFThreadDetail.h"
 
 #define kCCFCookie @"CCF-Cookies"
 #define kCCFCookie_User @"bbuserid"
@@ -265,7 +265,7 @@
         
         
         CCFParser * parser = [[CCFParser alloc]init];
-        CCFShowThread * thread = [parser parseShowThreadWithHtml:html];
+        CCFThreadDetail * thread = [parser parseShowThreadWithHtml:html];
         
         
         

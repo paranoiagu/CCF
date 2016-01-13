@@ -12,7 +12,7 @@
 
 @interface CCFPost : NSObject
 
-@property (nonatomic, strong) CCFUser* userInfo;
+@property (nonatomic, strong) CCFUser* postUserInfo;
 @property (nonatomic, strong) NSString* postLouCeng;    // 帖子楼层
 @property (nonatomic, strong) NSString* postID;
 @property (nonatomic, strong) NSString* postLink;

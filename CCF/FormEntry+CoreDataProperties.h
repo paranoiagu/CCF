@@ -2,7 +2,7 @@
 //  FormEntry+CoreDataProperties.h
 //  CCF
 //
-//  Created by WDY on 16/1/12.
+//  Created by WDY on 16/1/13.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSNumber *formId;
 @property (nullable, nonatomic, retain) NSString *formName;
+@property (nullable, nonatomic, retain) NSNumber *isNeedLogin;
 @property (nullable, nonatomic, retain) NSNumber *parentFormId;
 
 @end

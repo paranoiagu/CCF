@@ -8,7 +8,7 @@
 
 #import "CCFParser.h"
 #import <IGHTMLQuery.h>
-#import "CCFShowThread.h"
+#import "CCFThreadDetail.h"
 #import "CCFSearchResult.h"
 #import "CCFSearchResultPage.h"
 #import "FormEntry+CoreDataProperties.h"
@@ -107,10 +107,10 @@
 
 
 
--(CCFShowThread *)parseShowThreadWithHtml:(NSString *)html{
+-(CCFThreadDetail *)parseShowThreadWithHtml:(NSString *)html{
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     
-    CCFShowThread * thread = [[CCFShowThread alloc]init];
+    CCFThreadDetail * thread = [[CCFThreadDetail alloc]init];
     
     thread.threadPosts = [self parseShowThreadPosts:document];
     
@@ -283,10 +283,10 @@
         //IGXMLNode * solveCountNode = subInfoNode;
         
         
-        posts[postPointer].userInfo = ccfuser;
+        posts[postPointer].postUserInfo = ccfuser;
         
         CCFPost * newPost = posts[postPointer];
-        newPost.userInfo = ccfuser;
+        newPost.postUserInfo = ccfuser;
         [posts removeObjectAtIndex:postPointer];
         [posts insertObject:newPost atIndex:postPointer];
 

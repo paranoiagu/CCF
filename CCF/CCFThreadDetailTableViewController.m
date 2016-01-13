@@ -16,7 +16,7 @@
 #import "WCPullRefreshControl.h"
 #import "CCFUITextView.h"
 
-#import "CCFShowThread.h"
+#import "CCFThreadDetail.h"
 
 #import "AlertProgressViewController.h"
 
@@ -175,7 +175,7 @@
             
             CCFParser *parser = [[CCFParser alloc]init];
             
-            CCFShowThread * thread = [parser parseShowThreadWithHtml:result];
+            CCFThreadDetail * thread = [parser parseShowThreadWithHtml:result];
             totalPage = thread.threadTotalPage;
             
             NSMutableArray<CCFPost *> * parsedPosts = thread.threadPosts;
@@ -284,7 +284,7 @@
             
             [self.posts removeAllObjects];
             
-            CCFShowThread * thread = showThread;
+            CCFThreadDetail * thread = showThread;
             
             [self.posts addObjectsFromArray:thread.threadPosts];
             

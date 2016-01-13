@@ -14,14 +14,14 @@
 
 
 
-@class CCFShowThread;
+@class CCFThreadDetail;
 @class CCFSearchResultPage;
 @class CCFForm;
 
 @interface CCFParser : NSObject
 
 
--(CCFShowThread *) parseShowThreadWithHtml:(NSString*)html;
+-(CCFThreadDetail *) parseShowThreadWithHtml:(NSString*)html;
 
 
 -(NSMutableArray<CCFThreadList*> *) parseThreadListFromHtml: (NSString *) html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop;

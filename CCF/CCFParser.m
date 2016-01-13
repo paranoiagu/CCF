@@ -381,11 +381,11 @@
             NSString * postTime = [node.children[4] text];
             NSString * postBelongForm = [node.children[8] text];
             
-            result.postID = postId;
-            result.postTitle = [postTitle trim];
-            result.postAuthor = postAuthor;
-            result.postTime = [postTime trim];
-            result.postBelongForm = postBelongForm;
+            result.threadID = postId;
+            result.threadTitle = [postTitle trim];
+            result.threadAuthor = postAuthor;
+            result.threadCreateTime = [postTime trim];
+            result.threadBelongForm = postBelongForm;
             
             
             [post addObject:result];

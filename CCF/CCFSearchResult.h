@@ -11,10 +11,10 @@
 @interface CCFSearchResult : NSObject
 
 
-@property (nonatomic, strong) NSString* postID;
-@property (nonatomic, strong) NSString* postTitle;
-@property (nonatomic, strong) NSString* postAuthor;
-@property (nonatomic, strong) NSString* postTime;
-@property (nonatomic, strong) NSString* postBelongForm;
+@property (nonatomic, strong) NSString* threadID;
+@property (nonatomic, strong) NSString* threadTitle;
+@property (nonatomic, strong) NSString* threadAuthor;
+@property (nonatomic, strong) NSString* threadCreateTime;
+@property (nonatomic, strong) NSString* threadBelongForm;
 
 @end

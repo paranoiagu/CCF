@@ -28,10 +28,10 @@
     if (_result != result) {
         _result = result;
         
-        _postTitle.text = _result.postTitle;
-        _postAuthor.text = _result.postAuthor;
-        _postTime.text = _result.postTime;
-        _postBelongForm.text = _result.postBelongForm;
+        _postTitle.text = _result.threadTitle;
+        _postAuthor.text = _result.threadAuthor;
+        _postTime.text = _result.threadCreateTime;
+        _postBelongForm.text = _result.threadBelongForm;
     }
 }
 

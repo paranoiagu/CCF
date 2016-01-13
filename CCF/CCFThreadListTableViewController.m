@@ -198,4 +198,7 @@
 - (IBAction)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (IBAction)createThread:(id)sender {
+}
 @end

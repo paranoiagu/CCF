@@ -26,6 +26,8 @@
 
 #define kCCFSearch @"https://bbs.et8.net/bbs/search.php"
 
+#define kCCFNewThread @"https://bbs.et8.net/bbs/newthread.php?do=newthread&f=%@"
+
 @implementation CCFUrlBuilder
 
 +(NSURL *)buildMemberURL:(NSString *)userId{
@@ -67,5 +69,9 @@
 
 + (NSURL *)buildSearchUrl{
     return [NSURL URLWithString:kCCFSearch];
+}
+
++(NSURL *)buildNewThreadURL:(NSString *)formId{
+    return [NSURL URLWithString:[NSString stringWithFormat:kCCFNewThread, formId]];
 }
 @end

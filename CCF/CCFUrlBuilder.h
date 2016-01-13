@@ -31,4 +31,6 @@
 
 + (NSURL *) buildSearchUrl;
 
++ (NSURL *) buildNewThreadURL:(NSString *)formId;
+
 @end

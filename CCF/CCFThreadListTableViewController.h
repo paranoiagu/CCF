@@ -21,5 +21,6 @@
 @property (nonatomic, strong) CCFEntry * entry;
 
 - (IBAction)back:(UIBarButtonItem *)sender;
+- (IBAction)createThread:(id)sender;
 
 @end

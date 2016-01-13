@@ -358,12 +358,29 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
-    
-    
-
-
 }
 
+
+-(void)createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message{
+    NSURL * newPostUrl = [CCFUrlBuilder buildNewThreadURL:fId];
+    
+    [_browser GET: [newPostUrl absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        
+        // 保存token
+        CCFParser * parser = [[CCFParser alloc]init];
+        NSString * token = [parser parseSecurityToken:html];
+
+        NSString * hash = [parser parsePostHash:html];
+        
+        NSLog(@"createNewThreadForForm ------> hash: %@", hash);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
+}
 
 
 

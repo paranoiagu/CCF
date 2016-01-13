@@ -416,13 +416,12 @@
         NSLog(@"+++++++++++++++++++++++++++++++++ %@", idsStr);
     }
     
-    // 1 2 3 6
+
     CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
     
     NSMutableArray * result = [manager selectData:^NSPredicate *{
 
-//        { 'Ben', 'Melissa', 'Nick' }
-        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(formId > 0)"];
+        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"formId IN %@", ids];
         
         return predicate;
     }];
@@ -430,7 +429,6 @@
     for (FormEntry *entry in result) {
         NSLog(@"***************************** %@", entry.formName);
     }
-    //NSLog(@"+++++++++++++++++++++++++++++++++ >>>>>>   %ld %@", result.count ,result);
         
     return nil;
 }

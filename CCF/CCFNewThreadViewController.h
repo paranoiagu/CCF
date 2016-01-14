@@ -22,5 +22,6 @@
 
 - (IBAction)createThread:(id)sender;
 - (IBAction)back:(id)sender;
+- (IBAction)pickPhoto:(id)sender;
 
 @end

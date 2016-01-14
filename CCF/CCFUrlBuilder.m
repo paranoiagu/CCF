@@ -28,6 +28,8 @@
 
 #define kCCFNewThread @"https://bbs.et8.net/bbs/newthread.php?do=newthread&f=%@"
 
+#define kCCFUploadFile @"https://bbs.et8.net/bbs/newattachment.php?do=manageattach&p="
+
 @implementation CCFUrlBuilder
 
 +(NSURL *)buildMemberURL:(NSString *)userId{
@@ -67,11 +69,15 @@
     return [NSURL URLWithString:kCCFFavForm];
 }
 
-+ (NSURL *)buildSearchUrl{
++(NSURL *)buildSearchUrl{
     return [NSURL URLWithString:kCCFSearch];
 }
 
 +(NSURL *)buildNewThreadURL:(NSString *)formId{
     return [NSURL URLWithString:[NSString stringWithFormat:kCCFNewThread, formId]];
+}
+
++(NSURL *)buildUploadFileURL{
+    return [NSURL URLWithString:kCCFUploadFile];
 }
 @end

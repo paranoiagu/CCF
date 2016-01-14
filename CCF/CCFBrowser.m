@@ -418,6 +418,116 @@
 
 
 
+- (NSString *)contentTypeForImageData:(NSData *)data {
+    uint8_t c;
+    [data getBytes:&c length:1];
+    
+    switch (c) {
+        case 0xFF:
+            return @"image/jpeg";
+        case 0x89:
+            return @"image/png";
+        case 0x47:
+            return @"image/gif";
+        case 0x49:
+        case 0x4D:
+            return @"image/tiff";
+    }
+    return nil;
+}
+
+
+-(void) createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash{
+    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:subject forKey:@"subject"];
+    [parameters setValue:message forKey:@"message"];
+    [parameters setValue:@"0" forKey:@"wysiwyg"];
+    [parameters setValue:@"0" forKey:@"iconid"];
+    [parameters setValue:@"" forKey:@"s"];
+    [parameters setValue:token forKey:@"securitytoken"];
+    [parameters setValue:fId forKey:@"f"];
+    [parameters setValue:@"postthread" forKey:@"do"];
+    [parameters setValue:hash forKey:@"posthash"];
+    
+    
+    [parameters setValue:[CCFUtils getTimeSp] forKey:@"poststarttime"];
+    [parameters setValue:[self getCurrentCCFUser] forKey:@"loggedinuser"];
+    [parameters setValue:@"发表主题" forKey:@"sbutton"];
+    [parameters setValue:@"1" forKey:@"parseurl"];
+    [parameters setValue:@"9999" forKey:@"emailupdate"];
+    [parameters setValue:@"4" forKey:@"polloptions"];
+    
+    NSURL * newPostUrl = [CCFUrlBuilder buildNewThreadURL:fId];
+    [_browser POST:[newPostUrl absoluteString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [self saveCookie];
+        
+        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        
+        CCFParser * parser = [[CCFParser alloc]init];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+
+
+
+-(void)createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImage:(NSData *) image{
+    NSURL * newPostUrl = [CCFUrlBuilder buildNewThreadURL:fId];
+    
+    [_browser GET: [newPostUrl absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        
+        CCFParser * parser = [[CCFParser alloc]init];
+        NSString * token = [parser parseSecurityToken:html];
+        
+        NSString * hash = [parser parsePostHash:html];
+        
+        NSLog(@"createNewThreadForForm ------> hash: %@", hash);
+        
+        
+        
+        NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+        
+        [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
+        [parameters setValue:@"上传" forKey:@"upload"];
+        [parameters setValue:@"0" forKey:@"editpost"];
+        [parameters setValue:@"" forKey:@"s"];
+        [parameters setValue:@"" forKey:@"t"];
+        [parameters setValue:fId forKey:@"f"];
+        [parameters setValue:[CCFUtils getTimeSp] forKey:@"poststarttime"];
+        [parameters setValue:@"" forKey:@"p"];
+        
+        
+        [parameters setValue:token forKey:@"securitytoken"];
+        
+        [parameters setValue:hash forKey:@"posthash"];
+        
+        
+        [_browser POST:@"" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            
+            [formData appendPartWithFileData:image name:@"attachment[]" fileName:@"123.jpg" mimeType:[self contentTypeForImageData:image]];
+            
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            [self createNewThreadForForm:fId withSubject:subject andMessage:message withToken:token withHash:hash];
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
+}
 
 
 

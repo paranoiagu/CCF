@@ -33,4 +33,5 @@
 
 + (NSURL *) buildNewThreadURL:(NSString *)formId;
 
++ (NSURL *) buildUploadFileURL;
 @end

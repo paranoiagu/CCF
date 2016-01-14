@@ -38,6 +38,8 @@ typedef void (^Reply) (BOOL isSuccess, id result);
 
 - (void) searchWithKeyWord:(NSString*) keyWord searchDone:(success) callback;
 
-- (void) createNewThreadForForm:(NSString*) fId withSubject:(NSString*)subject andMessage:(NSString*)message;
+//- (void) createNewThreadForForm:(NSString*) fId withSubject:(NSString*)subject andMessage:(NSString*)message;
+
+-(void)createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImage:(NSData *) image;
 
 @end

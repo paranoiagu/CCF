@@ -74,18 +74,61 @@
 - (void) fileSizeAtPath:(NSURL*) filePath{
     //return [self fileSizeAtPathWithString:filePath.path];
     ALAssetsLibrary* alLibrary = [[ALAssetsLibrary alloc] init];
-    __block long long fileMB  = 0.0;
+    __block long long fileSize  = 0.0;
     
     [alLibrary assetForURL:filePath resultBlock:^(ALAsset *asset){
          ALAssetRepresentation *representation = [asset defaultRepresentation];
-         fileMB = [representation size];
+        
+        fileSize = [representation size];
         
         
-        NSLog(@"图片大小:   %lld", fileMB);
+        NSLog(@"图片大小:   %lld", fileSize);
         
      }failureBlock:nil];
     
 }
+
+
++ (NSString*) mimeTypeForFileAtPath: (NSString *) path {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        return nil;
+    }
+    // Borrowed from http://stackoverflow.com/questions/5996797/determine-mime-type-of-nsdata-loaded-from-a-file
+    // itself, derived from  http://stackoverflow.com/questions/2439020/wheres-the-iphone-mime-type-database
+    CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef)CFBridgingRetain([path pathExtension]), NULL);
+    
+    
+    CFStringRef mimeType = UTTypeCopyPreferredTagWithClass (UTI, kUTTagClassMIMEType);
+    CFRelease(UTI);
+    if (!mimeType) {
+        return @"application/octet-stream";
+    }
+    
+    return nil;
+//    return [NSMakeCollectable((NSString *)CFBridgingRelease(mimeType)) ];
+}
+
+
+
+
+- (NSString *)contentTypeForImageData:(NSData *)data {
+    uint8_t c;
+    [data getBytes:&c length:1];
+    
+    switch (c) {
+        case 0xFF:
+            return @"image/jpeg";
+        case 0x89:
+            return @"image/png";
+        case 0x47:
+            return @"image/gif";
+        case 0x49:
+        case 0x4D:
+            return @"image/tiff";
+    }
+    return nil;
+}
+
 
 
 #pragma mark UIImagePickerControllerDelegate
@@ -99,6 +142,12 @@
     UIImage * select = [info valueForKey:UIImagePickerControllerOriginalImage];
     
     NSURL * selectUrl = [info valueForKey:UIImagePickerControllerReferenceURL];
+    
+    NSData * date = UIImageJPEGRepresentation(select, 1.0);
+    
+    
+    NSLog(@"----------&&&&&&&    %@", [self contentTypeForImageData:date]);
+    
     [self fileSizeAtPath:selectUrl];
     
     
@@ -114,8 +163,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
-
-
 
 
 
@@ -143,7 +190,10 @@
 
 
 - (IBAction)createThread:(id)sender {
-    [broswer createNewThreadForForm:fId withSubject:_subject.text andMessage:_message.text];
+
+    NSData * date = UIImageJPEGRepresentation(images[0], 1);
+    
+    [broswer createNewThreadForForm:fId withSubject:_subject.text andMessage:_message.text withImage:date];
     
 }
 

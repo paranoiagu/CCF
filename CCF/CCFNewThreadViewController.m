@@ -9,6 +9,7 @@
 #import "CCFNewThreadViewController.h"
 #import "CCFBrowser.h"
 #import "SelectPhotoCollectionViewCell.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 
 @interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>{
@@ -45,10 +46,45 @@
     //设置协议
     pickControl.delegate = self;
     //设置编辑
-    [pickControl setAllowsEditing:YES];
+    [pickControl setAllowsEditing:NO];
     //选完图片之后回到的视图界面
     
     images = [NSMutableArray array];
+}
+
+
+
+
+
+
+
+- (long long) fileSizeAtPathWithString:(NSString*) filePath{
+    
+    
+    NSFileManager* manager = [NSFileManager defaultManager];
+    
+    
+    if ([manager fileExistsAtPath:filePath]){
+        
+        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
+    }
+    return 0;
+}
+
+- (void) fileSizeAtPath:(NSURL*) filePath{
+    //return [self fileSizeAtPathWithString:filePath.path];
+    ALAssetsLibrary* alLibrary = [[ALAssetsLibrary alloc] init];
+    __block long long fileMB  = 0.0;
+    
+    [alLibrary assetForURL:filePath resultBlock:^(ALAsset *asset){
+         ALAssetRepresentation *representation = [asset defaultRepresentation];
+         fileMB = [representation size];
+        
+        
+        NSLog(@"图片大小:   %lld", fileMB);
+        
+     }failureBlock:nil];
+    
 }
 
 
@@ -62,6 +98,10 @@
     
     UIImage * select = [info valueForKey:UIImagePickerControllerOriginalImage];
     
+    NSURL * selectUrl = [info valueForKey:UIImagePickerControllerReferenceURL];
+    [self fileSizeAtPath:selectUrl];
+    
+    
     [images addObject:select];
     
     
@@ -74,6 +114,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
+
+
+
+
+
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;

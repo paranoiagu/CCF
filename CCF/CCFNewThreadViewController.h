@@ -24,4 +24,7 @@
 - (IBAction)back:(id)sender;
 - (IBAction)pickPhoto:(id)sender;
 
+
+@property (weak, nonatomic) IBOutlet UICollectionView *selectPhotos;
+
 @end

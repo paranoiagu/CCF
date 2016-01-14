@@ -41,6 +41,7 @@
 		4D1EEBB11C3260130084F6E9 /* CCFThreadDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBB01C3260130084F6E9 /* CCFThreadDetail.m */; };
 		4D1EEBBB1C33D4FD0084F6E9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBB91C33D4FD0084F6E9 /* LoginViewController.m */; };
 		4D1EEBBC1C33D4FD0084F6E9 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D1EEBBA1C33D4FD0084F6E9 /* LoginViewController.xib */; };
+		4D32560D1C4754E700053288 /* SelectPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D32560C1C4754E700053288 /* SelectPhotoCollectionViewCell.m */; };
 		4D339D901C31454A0022A6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D339D8F1C31454A0022A6A4 /* main.m */; };
 		4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D339D921C31454A0022A6A4 /* AppDelegate.m */; };
 		4D339D991C31454A0022A6A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D971C31454A0022A6A4 /* Main.storyboard */; };
@@ -141,6 +142,8 @@
 		4D1EEBB81C33D4FD0084F6E9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		4D1EEBB91C33D4FD0084F6E9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		4D1EEBBA1C33D4FD0084F6E9 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		4D32560B1C4754E700053288 /* SelectPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		4D32560C1C4754E700053288 /* SelectPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		4D339D8B1C31454A0022A6A4 /* CCF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D339D8F1C31454A0022A6A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4D339D911C31454A0022A6A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -329,6 +332,8 @@
 				4D796BEC1C44A43B00B3C62D /* CCFNavigationController.m */,
 				3A842C9F1C469AC1002944A9 /* CCFNewThreadViewController.h */,
 				3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */,
+				4D32560B1C4754E700053288 /* SelectPhotoCollectionViewCell.h */,
+				4D32560C1C4754E700053288 /* SelectPhotoCollectionViewCell.m */,
 			);
 			name = CCFControllers;
 			sourceTree = "<group>";
@@ -714,6 +719,7 @@
 				4D796BF71C44BBA000B3C62D /* FormEntry.m in Sources */,
 				3A7569AD1C42B179000486F4 /* CCFFavFormController.m in Sources */,
 				4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */,
+				4D32560D1C4754E700053288 /* SelectPhotoCollectionViewCell.m in Sources */,
 				4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */,
 				3AEA1F371C365EA400710BD6 /* CCFThreadDetailTableViewController.m in Sources */,
 				4D796BC21C3DF93D00B3C62D /* NSDate+WCPullRefresh.m in Sources */,

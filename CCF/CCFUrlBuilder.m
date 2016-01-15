@@ -84,6 +84,6 @@
 }
 
 +(NSURL *)buildManageFileURL:(NSString *)formId postTime:(NSString *)time postHash:(NSString *)hash{
-    return [NSURL URLWithString:[NSString stringWithFormat:kCCFUploadFile, formId, time, hash]];
+    return [NSURL URLWithString:[NSString stringWithFormat:kCCFManageFile, formId, time, hash]];
 }
 @end

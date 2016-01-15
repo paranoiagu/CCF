@@ -33,7 +33,7 @@
 
 + (NSURL *) buildNewThreadURL:(NSString *)formId;
 
-+ (NSURL *) buildManageFileURL:(NSString *) formId postTime:(NSString*) time postHash:(NSString*)hash;
++ (NSURL *) buildManageFileURL:(NSString *)formId postTime:(NSString *)time postHash:(NSString *)hash;
 
 + (NSURL *) buildUploadFileURL;
 

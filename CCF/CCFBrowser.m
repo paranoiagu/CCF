@@ -373,9 +373,6 @@
 
         NSString * hash = [parser parsePostHash:html];
         
-        NSLog(@"createNewThreadForForm ------> hash: %@", hash);
-        
-
         NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
         [parameters setValue:subject forKey:@"subject"];
         [parameters setValue:message forKey:@"message"];
@@ -437,7 +434,7 @@
 }
 
 
--(void) createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash{
+-(void) createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash postTime:(NSString*)time{
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     [parameters setValue:subject forKey:@"subject"];
     [parameters setValue:message forKey:@"message"];
@@ -450,7 +447,7 @@
     [parameters setValue:hash forKey:@"posthash"];
     
     
-    [parameters setValue:[CCFUtils getTimeSp] forKey:@"poststarttime"];
+    [parameters setValue:time forKey:@"poststarttime"];
     [parameters setValue:[self getCurrentCCFUser] forKey:@"loggedinuser"];
     [parameters setValue:@"发表主题" forKey:@"sbutton"];
     [parameters setValue:@"1" forKey:@"parseurl"];
@@ -468,6 +465,9 @@
         
         CCFParser * parser = [[CCFParser alloc]init];
         
+        
+        NSLog(@"========================= \n%@ +++++++++", html);
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
@@ -478,7 +478,9 @@
     
     NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
     
-    [_browser GET:[url absoluteString] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSString * managerUrl = [url absoluteString];
+    
+    [_browser GET:managerUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         //
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -486,7 +488,7 @@
         
         NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^ %@", html);
 
-        //[self uploadFile:token fId:formId postTime:time hash:hash image:image];
+        [self uploadFile:token fId:formId postTime:time hash:hash image:image];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //
@@ -515,13 +517,21 @@
     [parameters setValue:@"上传" forKey:@"upload"];
     [parameters setValue:@"" forKey:@"attachmenturl[]"];
     
+    [parameters setValue:@"abc123.jpeg" forKey:@"attachment[]"];
+    [parameters setValue:@"" forKey:@"attachment[]"];
+    [parameters setValue:@"" forKey:@"attachment[]"];
+    [parameters setValue:@"" forKey:@"attachment[]"];
+    [parameters setValue:@"" forKey:@"attachment[]"];
+    
     
     
     NSURL * uploadUrl = [CCFUrlBuilder buildUploadFileURL];
     
     [_browser POST:[uploadUrl absoluteString] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
-        [formData appendPartWithFileData:image name:@"attachment[]" fileName:@"123.jpg" mimeType:[self contentTypeForImageData:image]];
+        NSString * type = [self contentTypeForImageData:image];
+        
+        [formData appendPartWithFileData:image name:@"attachment[]" fileName:@"abc123.jpeg" mimeType:type];
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         NSLog(@"上传结果 NSProgress:   %@", uploadProgress);
@@ -529,9 +539,9 @@
         
         NSString *uploadResult = [[[NSString alloc] initWithData:responseObjectUpload encoding:NSUTF8StringEncoding] replaceUnicode];
         
-        NSLog(@"上传结果:   %@", uploadResult);
+        NSLog(@"上传结果-------->>>>>>>> :   %@", uploadResult);
         
-        //[self createNewThreadForForm:fId withSubject:subject andMessage:message withToken:token withHash:hash];
+        //[self createNewThreadForForm:fId withSubject:@"【客户端测试，需删除】带图测试" andMessage:@"带图测试!!!!!" withToken:token withHash:hash postTime:postTime];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -545,8 +555,8 @@
     
     
     NSURL * newThreadUrl = [CCFUrlBuilder buildNewThreadURL:fId];
-    NSString * postTime = [CCFUtils getTimeSp];
     
+    __block NSString * postTime;
     
     [_browser GET: [newThreadUrl absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -554,7 +564,7 @@
         
         CCFParser * parser = [[CCFParser alloc]init];
         NSString * token = [parser parseSecurityToken:html];
-        
+        postTime = [[token componentsSeparatedByString:@"-"] firstObject];
         NSString * hash = [parser parsePostHash:html];
         
         [self manageAtt:fId andPostTime:postTime andPostHash:hash postToken:token needUpload:image];
@@ -564,24 +574,6 @@
     }];
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

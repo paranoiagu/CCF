@@ -26,4 +26,13 @@
         callback(html);
     } failure:nil];
 }
+
+-(void)POSTWithURL:(NSURL *)url parameters:(id)parameters constructingBodyWithBlock:(void (^)(id<AFMultipartFormData>))block requestCallback:(RequestCallback)callback{
+    [self POST:[url absoluteString] parameters:parameters constructingBodyWithBlock:block progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        callback(html);
+        
+    } failure:nil];
+}
 @end

@@ -17,4 +17,8 @@ typedef void(^RequestCallback) (NSString* html);
 
 -(void)POSTWithURL:(NSURL*)url parameters:(id)parameters requestCallback:(RequestCallback) callback;
 
+-(void)POSTWithURL:(NSURL*)url parameters:(id)parameters constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block requestCallback:(RequestCallback) callback;
+
+
+
 @end

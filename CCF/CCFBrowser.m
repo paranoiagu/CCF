@@ -443,62 +443,35 @@
     }];
 }
 
-// [RIGHT][URL="https://bbs.et8.net/bbs/showthread.php?t=1332499"]Test For: CCF Client[/URL][/RIGHT]
+
+
+
+
+
+
+
+
+
 -(void)createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImage:(NSData *) image{
     
     message = [message stringByAppendingString:@"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"]Test For: CCF Client[/URL][/RIGHT]"];
     
     // 准备发帖
    [self createNewThreadPrepair:fId :^(NSString *token, NSString *hash, NSString *time) {
-      
+      [self uploadImagePrepair:fId startPostTime:token postHash:hash :^(NSString* result) {
+          
+      }];
    }];
 }
 
 
 
-// 上传图片
--(void) manageAtt:(NSString *)formId andPostTime:(NSString *)time andPostHash:(NSString*)hash postToken:(NSString*) token needUpload:(NSData *) image{
-    
-    NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
-    
-    NSString * managerUrl = [url absoluteString];
-    
-    [_browser GET:managerUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        //
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-        
-        NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^ %@", html);
-        
-        [self uploadFile:token fId:formId postTime:time hash:hash image:image];
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //
-        NSLog(@"%@", error);
-    }];
-    
-}
-
-
+// 进入图片管理页面，准备上传图片
 -(void)uploadImagePrepair:(NSString*)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(success) callback{
     NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
-    
-    NSString * managerUrl = [url absoluteString];
-    
-    [_browser GET:managerUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-        
-        callback(html);
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //
-        NSLog(@"%@", error);
+    [_browser GETWithURL:url requestCallback:^(NSString *html) {
+      callback(html);
     }];
-    
 }
 
 
@@ -507,12 +480,7 @@
     
     NSURL * newThreadUrl = [CCFUrlBuilder buildNewThreadURL:formId];
     
-    
-    
-    [_browser GET: [newThreadUrl absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-        
+    [_browser GETWithURL:newThreadUrl requestCallback:^(NSString *html) {
         CCFParser * parser = [[CCFParser alloc]init];
         
         NSString * token = [parser parseSecurityToken:html];
@@ -520,10 +488,8 @@
         NSString * hash = [parser parsePostHash:html];
         
         callback(token, hash, postTime);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
     }];
-    
+
 }
 
 

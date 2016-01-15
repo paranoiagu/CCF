@@ -351,7 +351,23 @@
 }
 
 
--(void) createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash postTime:(NSString*)time{
+-(void)createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImage:(NSData *) image{
+    
+    message = [message stringByAppendingString:@"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"]Test For: CCF Client[/URL][/RIGHT]"];
+    
+    // 准备发帖
+   [self createNewThreadPrepair:fId :^(NSString *token, NSString *hash, NSString *time) {
+       // 如果有图片，先传图片
+      [self uploadImagePrepair:fId startPostTime:time postHash:hash :^(NSString* result) {
+          // 传完图片，正式发帖子
+          [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time];
+      }];
+   }];
+}
+
+
+// 正式开始发送
+-(void) doPostThread:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash postTime:(NSString*)time{
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     [parameters setValue:subject forKey:@"subject"];
     [parameters setValue:message forKey:@"message"];
@@ -372,30 +388,26 @@
     [parameters setValue:@"4" forKey:@"polloptions"];
     
     NSURL * newPostUrl = [CCFUrlBuilder buildNewThreadURL:fId];
-    [_browser POST:[newPostUrl absoluteString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+    [_browser POSTWithURL:newPostUrl parameters:parameters requestCallback:^(NSString *html) {
         
         [self saveCookie];
-        
-        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-        
         CCFParser * parser = [[CCFParser alloc]init];
-        
-        
-        NSLog(@"========================= \n%@ +++++++++", html);
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
 }
 
 
+// 进入图片管理页面，准备上传图片
+-(void)uploadImagePrepair:(NSString*)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(success) callback{
+    NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
+    [_browser GETWithURL:url requestCallback:^(NSString *html) {
+      callback(html);
+    }];
+}
 
+// 开始上传图片
 - (void)uploadFile:(NSString *)token fId:(NSString *)fId postTime:(NSString *)postTime hash:(NSString *)hash image:(NSData *)image {
-    // NSLog(@"createNewThreadForForm ------> hash: %@", hash);
-    
-    
     
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     
@@ -422,56 +434,14 @@
     
     NSURL * uploadUrl = [CCFUrlBuilder buildUploadFileURL];
     
-    [_browser POST:[uploadUrl absoluteString] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        
+    [_browser POSTWithURL:uploadUrl parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSString * type = [self contentTypeForImageData:image];
         
         [formData appendPartWithFileData:image name:@"attachment[]" fileName:@"abc123.jpeg" mimeType:type];
-        
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
-        NSLog(@"上传结果 NSProgress:   %@", uploadProgress);
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObjectUpload) {
-        
-        NSString *uploadResult = [[[NSString alloc] initWithData:responseObjectUpload encoding:NSUTF8StringEncoding] replaceUnicode];
-        
-        NSLog(@"上传结果-------->>>>>>>> :   %@", uploadResult);
-        
-        //[self createNewThreadForForm:fId withSubject:@"【客户端测试，需删除】带图测试" andMessage:@"带图测试!!!!!" withToken:token withHash:hash postTime:postTime];
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+    } requestCallback:^(NSString *html) {
+        NSLog(@"上传结果-------->>>>>>>> :   %@", html);
     }];
-}
-
-
-
-
-
-
-
-
-
-
--(void)createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImage:(NSData *) image{
     
-    message = [message stringByAppendingString:@"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"]Test For: CCF Client[/URL][/RIGHT]"];
-    
-    // 准备发帖
-   [self createNewThreadPrepair:fId :^(NSString *token, NSString *hash, NSString *time) {
-      [self uploadImagePrepair:fId startPostTime:token postHash:hash :^(NSString* result) {
-          
-      }];
-   }];
-}
-
-
-
-// 进入图片管理页面，准备上传图片
--(void)uploadImagePrepair:(NSString*)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(success) callback{
-    NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
-    [_browser GETWithURL:url requestCallback:^(NSString *html) {
-      callback(html);
-    }];
 }
 
 

@@ -30,6 +30,8 @@
 
 #define kCCFUploadFile @"https://bbs.et8.net/bbs/newattachment.php?do=manageattach&p="
 
+#define kCCFManageFile @"https://bbs.et8.net/bbs/newattachment.php?f=%@&poststarttime=%@&posthash=%@"
+
 @implementation CCFUrlBuilder
 
 +(NSURL *)buildMemberURL:(NSString *)userId{
@@ -79,5 +81,9 @@
 
 +(NSURL *)buildUploadFileURL{
     return [NSURL URLWithString:kCCFUploadFile];
+}
+
++(NSURL *)buildManageFileURL:(NSString *)formId postTime:(NSString *)time postHash:(NSString *)hash{
+    return [NSURL URLWithString:[NSString stringWithFormat:kCCFUploadFile, formId, time, hash]];
 }
 @end

@@ -474,15 +474,81 @@
 }
 
 
+-(void) manageAtt:(NSString *)formId andPostTime:(NSString *)time andPostHash:(NSString*)hash postToken:(NSString*) token needUpload:(NSData *) image{
+    
+    NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
+    
+    [_browser GET:[url absoluteString] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        //
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        
+        NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^ %@", html);
+
+        //[self uploadFile:token fId:formId postTime:time hash:hash image:image];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //
+        NSLog(@"%@", error);
+    }];
+
+}
+
+- (void)uploadFile:(NSString *)token fId:(NSString *)fId postTime:(NSString *)postTime hash:(NSString *)hash image:(NSData *)image {
+    // NSLog(@"createNewThreadForForm ------> hash: %@", hash);
+    
+    
+    
+    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+    
+    [parameters setValue:@"" forKey:@"s"];
+    [parameters setValue:token forKey:@"securitytoken"];
+    [parameters setValue:@"do" forKey:@"manageattach"];
+    [parameters setValue:@"" forKey:@"t"];
+    [parameters setValue:fId forKey:@"f"];
+    [parameters setValue:@"" forKey:@"p"];
+    [parameters setValue:postTime forKey:@"poststarttime"];
+    [parameters setValue:@"0" forKey:@"editpost"];
+    [parameters setValue:hash forKey:@"posthash"];
+    [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
+    [parameters setValue:@"上传" forKey:@"upload"];
+    [parameters setValue:@"" forKey:@"attachmenturl[]"];
+    
+    
+    
+    NSURL * uploadUrl = [CCFUrlBuilder buildUploadFileURL];
+    
+    [_browser POST:[uploadUrl absoluteString] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        [formData appendPartWithFileData:image name:@"attachment[]" fileName:@"123.jpg" mimeType:[self contentTypeForImageData:image]];
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        NSLog(@"上传结果 NSProgress:   %@", uploadProgress);
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObjectUpload) {
+        
+        NSString *uploadResult = [[[NSString alloc] initWithData:responseObjectUpload encoding:NSUTF8StringEncoding] replaceUnicode];
+        
+        NSLog(@"上传结果:   %@", uploadResult);
+        
+        //[self createNewThreadForForm:fId withSubject:subject andMessage:message withToken:token withHash:hash];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+
 // [RIGHT][URL="https://bbs.et8.net/bbs/showthread.php?t=1332499"]Test For: CCF Client[/URL][/RIGHT]
 -(void)createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImage:(NSData *) image{
     
     message = [message stringByAppendingString:@"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"]Test For: CCF Client[/URL][/RIGHT]"];
     
     
-    NSURL * newPostUrl = [CCFUrlBuilder buildNewThreadURL:fId];
+    NSURL * newThreadUrl = [CCFUrlBuilder buildNewThreadURL:fId];
+    NSString * postTime = [CCFUtils getTimeSp];
     
-    [_browser GET: [newPostUrl absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+    [_browser GET: [newThreadUrl absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
         
@@ -491,47 +557,7 @@
         
         NSString * hash = [parser parsePostHash:html];
         
-        NSLog(@"createNewThreadForForm ------> hash: %@", hash);
-        
-        
-        
-        NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
-        
-        [parameters setValue:@"" forKey:@"s"];
-        [parameters setValue:token forKey:@"securitytoken"];
-        [parameters setValue:@"do" forKey:@"manageattach"];
-        [parameters setValue:@"" forKey:@"t"];
-        [parameters setValue:fId forKey:@"f"];
-        [parameters setValue:@"" forKey:@"p"];
-        [parameters setValue:[CCFUtils getTimeSp] forKey:@"poststarttime"];
-        [parameters setValue:@"0" forKey:@"editpost"];
-        [parameters setValue:hash forKey:@"posthash"];
-        [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
-        [parameters setValue:@"上传" forKey:@"upload"];
-        [parameters setValue:@"" forKey:@"attachmenturl[]"];
-
-        
-        
-        NSURL * uploadUrl = [CCFUrlBuilder buildUploadFileURL];
-        
-        [_browser POST:[uploadUrl absoluteString] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-            
-            [formData appendPartWithFileData:image name:@"attachment[]" fileName:@"123.jpg" mimeType:[self contentTypeForImageData:image]];
-            
-        } progress:^(NSProgress * _Nonnull uploadProgress) {
-            NSLog(@"上传结果 NSProgress:   %@", uploadProgress);
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObjectUpload) {
-            
-            NSString *uploadResult = [[[NSString alloc] initWithData:responseObjectUpload encoding:NSUTF8StringEncoding] replaceUnicode];
-            
-            NSLog(@"上传结果:   %@", uploadResult);
-            
-            //[self createNewThreadForForm:fId withSubject:subject andMessage:message withToken:token withHash:hash];
-            
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
-        }];
-        
+        [self manageAtt:fId andPostTime:postTime andPostHash:hash postToken:token needUpload:image];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

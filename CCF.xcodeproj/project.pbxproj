@@ -74,6 +74,7 @@
 		4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */; };
 		4D796C051C460D4200B3C62D /* NSUserDefaults+CCF.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */; };
 		4DEB34C31C47BBE400063CBB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */; };
+		4DEB34C61C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */; };
 		4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824B91C34C4C6005BB858 /* CCFForm.m */; };
 		4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DF824BB1C34E5EF005BB858 /* ccf.json */; };
 		4DF824BF1C34E9EF005BB858 /* CCFFormTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824BE1C34E9EF005BB858 /* CCFFormTree.m */; };
@@ -203,6 +204,8 @@
 		4D796C031C460D4200B3C62D /* NSUserDefaults+CCF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+CCF.h"; sourceTree = "<group>"; };
 		4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+CCF.m"; sourceTree = "<group>"; };
 		4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		4DEB34C41C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+SimpleAction.h"; sourceTree = "<group>"; };
+		4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+SimpleAction.m"; sourceTree = "<group>"; };
 		4DF824B81C34C4C6005BB858 /* CCFForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForm.h; sourceTree = "<group>"; };
 		4DF824B91C34C4C6005BB858 /* CCFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForm.m; sourceTree = "<group>"; };
 		4DF824BB1C34E5EF005BB858 /* ccf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ccf.json; sourceTree = "<group>"; };
@@ -429,6 +432,8 @@
 			isa = PBXGroup;
 			children = (
 				4D796BB41C3DF89D00B3C62D /* PullRefresh */,
+				4DEB34C41C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.h */,
+				4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */,
 			);
 			name = Addons;
 			sourceTree = "<group>";
@@ -713,6 +718,7 @@
 				4D1EEBBB1C33D4FD0084F6E9 /* LoginViewController.m in Sources */,
 				3AA2D5041C36103C00F312CC /* CCFFormHeaderView.m in Sources */,
 				4DF824C31C34F0B2005BB858 /* CCFFormDao.m in Sources */,
+				4DEB34C61C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m in Sources */,
 				3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */,
 				4D1EEBB11C3260130084F6E9 /* CCFThreadDetail.m in Sources */,
 				4D796BDE1C43675100B3C62D /* CCFSearchResult.m in Sources */,

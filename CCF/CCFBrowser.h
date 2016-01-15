@@ -18,6 +18,9 @@ typedef void(^success) (id result);
 
 typedef void (^Reply) (BOOL isSuccess, id result);
 
+typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
+
+
 @interface CCFBrowser : NSObject
 
 @property (nonatomic, strong) AFHTTPSessionManager * browser;

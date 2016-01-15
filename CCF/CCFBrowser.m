@@ -17,10 +17,13 @@
 #import "CCFPost.h"
 #import "CCFThreadDetail.h"
 #import "NSUserDefaults+CCF.h"
+#import "AFHTTPSessionManager+SimpleAction.h"
 
 
 #define kCCFCookie_User @"bbuserid"
 #define kCCFSecurityToken @"securitytoken"
+
+
 
 @implementation CCFBrowser
 
@@ -41,28 +44,16 @@
 
 
 -(void)browseWithUrl:(NSURL *)url :(success)callBack{
-    [_browser GET:[url absoluteString] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        //
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-        
-        // 保存token
+    
+    [_browser GETWithURL:url requestCallback:^(NSString *html) {
         CCFParser * parser = [[CCFParser alloc]init];
         NSString * token = [parser parseSecurityToken:html];
         if (token != nil) {
             [self saveSecurityToken:token];
         }
-        
-        
         callBack(html);
-        
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //
-        NSLog(@"%@", error);
     }];
-
+    
 }
 
 
@@ -82,20 +73,12 @@
     [parameters setValue:md5pwd forKey:@"vb_login_md5password"];
     [parameters setValue:md5pwd forKey:@"vb_login_md5password_utf"];
     
-    [_browser POST:[loginUrl absoluteString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-        //
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //
-        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+    [_browser POSTWithURL:loginUrl parameters:parameters requestCallback:^(NSString *html) {
         callBack(html);
         // 保存Cookie
         [self saveCookie];
         
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //
     }];
-
 }
 
 -(void)refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView{
@@ -159,44 +142,6 @@
 }
 
 
-
-//message	:blush;
-//
-//[RIGHT][URL="https://bbs.et8.net/bbs/showthread.php?p=16695603"]For Test[/URL][/RIGHT]
-//wysiwyg	0
-//iconid	0
-//s
-//securitytoken	1452154683-4031b805ac9b34c26256eb6fb4878d39e2fb227d
-//do	postreply
-//t	1332499
-//p
-//specifiedpost	0
-//posthash	1bbdf96a3924c5e374f5d1a419709082
-//poststarttime	1452154683
-//loggedinuser	71250
-//multiquoteempty
-//sbutton	提交回复
-//parseurl	1
-//emailupdate	9999
-
-
-
-
-
-
-
-
-
-
-
-//securitytoken	1452155065-ad50b435ca02e154a4280ef99dcf12bbe274b5ce
-//ajax	1
-//ajax_lastpost	1452155059
-//message	message	:blush;
-//
-//[RIGHT][URL="https://bbs.et8.net/bbs/showthread.php?p=16695603"]For Test:Quick Reply[/URL][/RIGHT]
-//
-
 -(void)reply:(NSString *)threadId :(NSString *)message :(Reply)result{
     //NSString * testMesage = @"\n:blush;\n\n\n\n\n\n\n\n\n\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?p=16695603\"]Test For CCF iPhone Client[/URL][/RIGHT]";
     
@@ -230,16 +175,9 @@
     
     [parameters setValue:@"" forKey:@"s"];
     
-    [_browser POST:[loginUrl absoluteString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-        //
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-
+    [_browser POSTWithURL:loginUrl parameters:parameters requestCallback:^(NSString *html) {
         // 保存Cookie
         [self saveCookie];
-
-        // 返回 html
-        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-        
         
         NSString * error = @"此帖是您在最后 5 分钟发表的帖子的副本，您将返回该主题。";
         NSRange range = [html rangeOfString:error];
@@ -263,17 +201,15 @@
         
         if(thread.threadPosts.count > 0){
             result(YES, thread);
-
+            
         } else{
             result(NO, @"未知错误");
         }
         
         NSLog(@"reply done --------------------->>>>>> \n%@", html);
         
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //
     }];
+    
 }
 
 
@@ -316,12 +252,7 @@
     [parameters setValue:@"1" forKey:@"childforums"];
     [parameters setValue:@"1" forKey:@"saveprefs"];
     
-    
-    [_browser GET:[searchUrl absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-        
-        // 保存token
+    [_browser GETWithURL:searchUrl requestCallback:^(NSString *html) {
         CCFParser * parser = [[CCFParser alloc]init];
         NSString * token = [parser parseSecurityToken:html];
         if (token != nil) {
@@ -331,33 +262,19 @@
         NSString * securitytoken = [self readSecurityToken];
         [parameters setValue:securitytoken forKey:@"securitytoken"];
 
-        
-        [_browser POST:[searchUrl absoluteString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-            //
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [_browser POSTWithURL:searchUrl parameters:parameters requestCallback:^(NSString *html) {
             
-            // 保存Cookie
             [self saveCookie];
-            
-            // 返回 html
-            NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-            
             NSLog(@"-----search: %@", html);
             CCFParser * parser = [[CCFParser alloc]init];
             
             CCFSearchResultPage * page = [parser parseSearchPageFromHtml:html];
             
             callback(page);
-            
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            //
+
         }];
-        
-        
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
     }];
+    
 }
 
 
@@ -474,28 +391,6 @@
 }
 
 
--(void) manageAtt:(NSString *)formId andPostTime:(NSString *)time andPostHash:(NSString*)hash postToken:(NSString*) token needUpload:(NSData *) image{
-    
-    NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
-    
-    NSString * managerUrl = [url absoluteString];
-    
-    [_browser GET:managerUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        //
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-        
-        NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^ %@", html);
-
-        [self uploadFile:token fId:formId postTime:time hash:hash image:image];
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //
-        NSLog(@"%@", error);
-    }];
-
-}
 
 - (void)uploadFile:(NSString *)token fId:(NSString *)fId postTime:(NSString *)postTime hash:(NSString *)hash image:(NSData *)image {
     // NSLog(@"createNewThreadForForm ------> hash: %@", hash);
@@ -553,28 +448,83 @@
     
     message = [message stringByAppendingString:@"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"]Test For: CCF Client[/URL][/RIGHT]"];
     
+    // 准备发帖
+   [self createNewThreadPrepair:fId :^(NSString *token, NSString *hash, NSString *time) {
+      
+   }];
+}
+
+
+
+// 上传图片
+-(void) manageAtt:(NSString *)formId andPostTime:(NSString *)time andPostHash:(NSString*)hash postToken:(NSString*) token needUpload:(NSData *) image{
     
-    NSURL * newThreadUrl = [CCFUrlBuilder buildNewThreadURL:fId];
+    NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
     
-    __block NSString * postTime;
+    NSString * managerUrl = [url absoluteString];
+    
+    [_browser GET:managerUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        //
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        
+        NSLog(@"^^^^^^^^^^^^^^^^^^^^^^^^^ %@", html);
+        
+        [self uploadFile:token fId:formId postTime:time hash:hash image:image];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //
+        NSLog(@"%@", error);
+    }];
+    
+}
+
+
+-(void)uploadImagePrepair:(NSString*)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(success) callback{
+    NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
+    
+    NSString * managerUrl = [url absoluteString];
+    
+    [_browser GET:managerUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        
+        callback(html);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //
+        NSLog(@"%@", error);
+    }];
+    
+}
+
+
+// 获取发新帖子的Posttime hash 和token
+-(void) createNewThreadPrepair:(NSString *)formId :(CallBack) callback{
+    
+    NSURL * newThreadUrl = [CCFUrlBuilder buildNewThreadURL:formId];
+    
+    
     
     [_browser GET: [newThreadUrl absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
         
         CCFParser * parser = [[CCFParser alloc]init];
+        
         NSString * token = [parser parseSecurityToken:html];
-        postTime = [[token componentsSeparatedByString:@"-"] firstObject];
+        NSString * postTime = [[token componentsSeparatedByString:@"-"] firstObject];
         NSString * hash = [parser parsePostHash:html];
         
-        [self manageAtt:fId andPostTime:postTime andPostHash:hash postToken:token needUpload:image];
-        
+        callback(token, hash, postTime);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
     
 }
-
 
 
 

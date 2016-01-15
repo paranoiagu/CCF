@@ -359,8 +359,10 @@
    [self createNewThreadPrepair:fId :^(NSString *token, NSString *hash, NSString *time) {
        // 如果有图片，先传图片
       [self uploadImagePrepair:fId startPostTime:time postHash:hash :^(NSString* result) {
+          NSLog(@"Upload Result --------> %@ \n", result);
           // 传完图片，正式发帖子
-          [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time];
+          //[self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time];
+          [self uploadFile:token fId:fId postTime:time hash:hash image:image];
       }];
    }];
 }
@@ -401,6 +403,7 @@
 // 进入图片管理页面，准备上传图片
 -(void)uploadImagePrepair:(NSString*)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(success) callback{
     NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
+    
     [_browser GETWithURL:url requestCallback:^(NSString *html) {
       callback(html);
     }];
@@ -424,22 +427,41 @@
     [parameters setValue:@"上传" forKey:@"upload"];
     [parameters setValue:@"" forKey:@"attachmenturl[]"];
     
-    [parameters setValue:@"abc123.jpeg" forKey:@"attachment[]"];
-    [parameters setValue:@"" forKey:@"attachment[]"];
-    [parameters setValue:@"" forKey:@"attachment[]"];
-    [parameters setValue:@"" forKey:@"attachment[]"];
-    [parameters setValue:@"" forKey:@"attachment[]"];
     
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // 设置时间格式
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *str = [formatter stringFromDate:[NSDate date]];
+    NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
+    
+    [parameters setValue:fileName forKey:@"attachment[]"];
+//    [parameters setValue:@"" forKey:@"attachment[]"];
+//    [parameters setValue:@"" forKey:@"attachment[]"];
+//    [parameters setValue:@"" forKey:@"attachment[]"];
+//    [parameters setValue:@"" forKey:@"attachment[]"];
+    
+
     
     
     NSURL * uploadUrl = [CCFUrlBuilder buildUploadFileURL];
     
+    //[_browser.requestSerializer setValue:@"multipart/form-data; boundary=----WebKitFormBoundaryG9KMXkoSxJnZByFF" forHTTPHeaderField:@"Content-Type"];
+
     [_browser POSTWithURL:uploadUrl parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSString * type = [self contentTypeForImageData:image];
         
-        [formData appendPartWithFileData:image name:@"attachment[]" fileName:@"abc123.jpeg" mimeType:type];
+        //[formData appendPartWithFileData:image name:@"attachment[]" fileName:@"abc123.jpeg" mimeType:type];
+        
+        UIImage *image = [UIImage imageNamed:@"test.jpg"];
+        NSData *data = UIImageJPEGRepresentation(image, 1);
+        
+        
+        [formData appendPartWithFileData:data name:@"attachment[]" fileName:fileName mimeType:type];
+        
     } requestCallback:^(NSString *html) {
+        
         NSLog(@"上传结果-------->>>>>>>> :   %@", html);
+        NSLog(@"上传结果-------->>>>>>>> 上传结束");
     }];
     
 }

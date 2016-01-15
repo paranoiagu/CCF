@@ -474,8 +474,12 @@
 }
 
 
-
+// [RIGHT][URL="https://bbs.et8.net/bbs/showthread.php?t=1332499"]Test For: CCF Client[/URL][/RIGHT]
 -(void)createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImage:(NSData *) image{
+    
+    message = [message stringByAppendingString:@"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"]Test For: CCF Client[/URL][/RIGHT]"];
+    
+    
     NSURL * newPostUrl = [CCFUrlBuilder buildNewThreadURL:fId];
     
     [_browser GET: [newPostUrl absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -493,30 +497,36 @@
         
         NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
         
-        [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
-        [parameters setValue:@"上传" forKey:@"upload"];
-        [parameters setValue:@"0" forKey:@"editpost"];
         [parameters setValue:@"" forKey:@"s"];
+        [parameters setValue:token forKey:@"securitytoken"];
+        [parameters setValue:@"do" forKey:@"manageattach"];
         [parameters setValue:@"" forKey:@"t"];
         [parameters setValue:fId forKey:@"f"];
-        [parameters setValue:[CCFUtils getTimeSp] forKey:@"poststarttime"];
         [parameters setValue:@"" forKey:@"p"];
-        
-        
-        [parameters setValue:token forKey:@"securitytoken"];
-        
+        [parameters setValue:[CCFUtils getTimeSp] forKey:@"poststarttime"];
+        [parameters setValue:@"0" forKey:@"editpost"];
         [parameters setValue:hash forKey:@"posthash"];
+        [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
+        [parameters setValue:@"上传" forKey:@"upload"];
+        [parameters setValue:@"" forKey:@"attachmenturl[]"];
+
         
         
-        [_browser POST:@"" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSURL * uploadUrl = [CCFUrlBuilder buildUploadFileURL];
+        
+        [_browser POST:[uploadUrl absoluteString] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             
             [formData appendPartWithFileData:image name:@"attachment[]" fileName:@"123.jpg" mimeType:[self contentTypeForImageData:image]];
             
         } progress:^(NSProgress * _Nonnull uploadProgress) {
+            NSLog(@"上传结果 NSProgress:   %@", uploadProgress);
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObjectUpload) {
             
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSString *uploadResult = [[[NSString alloc] initWithData:responseObjectUpload encoding:NSUTF8StringEncoding] replaceUnicode];
             
-            [self createNewThreadForForm:fId withSubject:subject andMessage:message withToken:token withHash:hash];
+            NSLog(@"上传结果:   %@", uploadResult);
+            
+            //[self createNewThreadForForm:fId withSubject:subject andMessage:message withToken:token withHash:hash];
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A0A997D1C4A5AFC00086DAB /* RoundCornerUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A997C1C4A5AFC00086DAB /* RoundCornerUITextView.m */; };
 		3A0A99801C4A6A4E00086DAB /* RoundCornerUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A997F1C4A6A4E00086DAB /* RoundCornerUIView.m */; };
+		3A0A99831C4A71B600086DAB /* CCFSeniorNewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */; };
 		3A187B331C40A452003DA5C2 /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A187B321C40A452003DA5C2 /* download.png */; };
 		3A187B361C40B4EE003DA5C2 /* AlertProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A187B351C40B4EE003DA5C2 /* AlertProgressViewController.m */; };
 		3A2ECF541C36C0EB00CD3968 /* CCFThreadList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2ECF531C36C0EB00CD3968 /* CCFThreadList.m */; };
@@ -88,6 +89,8 @@
 		3A0A997C1C4A5AFC00086DAB /* RoundCornerUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundCornerUITextView.m; sourceTree = "<group>"; };
 		3A0A997E1C4A6A4E00086DAB /* RoundCornerUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundCornerUIView.h; sourceTree = "<group>"; };
 		3A0A997F1C4A6A4E00086DAB /* RoundCornerUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundCornerUIView.m; sourceTree = "<group>"; };
+		3A0A99811C4A71B600086DAB /* CCFSeniorNewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSeniorNewPostViewController.h; sourceTree = "<group>"; };
+		3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSeniorNewPostViewController.m; sourceTree = "<group>"; };
 		3A187B321C40A452003DA5C2 /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
 		3A187B341C40B4EE003DA5C2 /* AlertProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertProgressViewController.h; sourceTree = "<group>"; };
 		3A187B351C40B4EE003DA5C2 /* AlertProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertProgressViewController.m; sourceTree = "<group>"; };
@@ -344,6 +347,8 @@
 				3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */,
 				4D32560B1C4754E700053288 /* SelectPhotoCollectionViewCell.h */,
 				4D32560C1C4754E700053288 /* SelectPhotoCollectionViewCell.m */,
+				3A0A99811C4A71B600086DAB /* CCFSeniorNewPostViewController.h */,
+				3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */,
 			);
 			name = CCFControllers;
 			sourceTree = "<group>";
@@ -755,6 +760,7 @@
 				4D796BD21C3FC8ED00B3C62D /* CCFUITextView.m in Sources */,
 				4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */,
 				4D796BEA1C44992700B3C62D /* UIStoryboard+CCF.m in Sources */,
+				3A0A99831C4A71B600086DAB /* CCFSeniorNewPostViewController.m in Sources */,
 				3A0A99801C4A6A4E00086DAB /* RoundCornerUIView.m in Sources */,
 				4D339D901C31454A0022A6A4 /* main.m in Sources */,
 				4D796BED1C44A43B00B3C62D /* CCFNavigationController.m in Sources */,

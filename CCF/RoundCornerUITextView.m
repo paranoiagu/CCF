@@ -44,6 +44,7 @@
     self.layer.borderColor = borderColor.CGColor;
     self.layer.borderWidth = 0.5;
     self.layer.cornerRadius = 5.0;
+
 }
 
 @end

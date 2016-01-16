@@ -18,7 +18,7 @@
 
 @interface NSUserDefaults(CCF)
 
--(void)loadCookie;
+-(NSString *)loadCookie;
 
 -(void)saveCookie;
 

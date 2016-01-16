@@ -128,8 +128,8 @@
         [[NSUserDefaults standardUserDefaults] saveCookie];
 }
 
--(void) loadCookie{
-    [[NSUserDefaults standardUserDefaults] loadCookie];
+-(NSString *) loadCookie{
+    return [[NSUserDefaults standardUserDefaults] loadCookie];
 }
 
 
@@ -363,10 +363,17 @@
           //[self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time];
           //[self uploadFile:token fId:fId postTime:time hash:hash image:image];
           
+          CCFParser * parser = [[CCFParser alloc]init];
+          
+          NSString * uploadToken = [parser parseSecurityToken:result];
+          NSString * uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
+          NSString * uploadHash = [parser parsePostHash:result];
+          
+          
           
           NSURL * uploadUrl = [CCFUrlBuilder buildUploadFileURL];
           
-          [self uploadImage:uploadUrl :token fId:fId postTime:time hash:hash :image];
+          [self uploadImage:uploadUrl :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image];
           
       }];
    }];
@@ -496,105 +503,58 @@
     
 //    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
     
-    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    [request setHTTPShouldHandleCookies:NO];
+    //[request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    [request setHTTPShouldHandleCookies:YES];
     [request setTimeoutInterval:60];
     [request setHTTPMethod:@"POST"];
     
-    NSString *boundary = @"------WebKitFormBoundaryuMLI1FFamzkfbSe4";
+    NSString * cookie = [self loadCookie];
+    NSLog(@"=================================>>>>>>>>> %@ <<<<<<<<<<<<<<<<<<<<", cookie);
+    [request setValue:cookie forHTTPHeaderField:@"Cookie"];
+    
+    NSString *boundary = @"----WebKitFormBoundaryuMLI1FFamzkfbSe5";
     
     // set Content-Type in HTTP header
     NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
     [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
     
+    [request setValue:token forHTTPHeaderField:@"securitytoken"];
+    
+    
+    
     // post body
     NSMutableData *body = [NSMutableData data];
-    
-    // add params (all params are strings)
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"s"] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"securitytoken"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", token] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"do"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", @"manageattach"] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"t"] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"f"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", fId] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"p"] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"poststarttime"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", postTime] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"editpost"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", @"0"] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"posthash"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", hash] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"MAX_FILE_SIZE"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", @"16777216"] dataUsingEncoding:NSUTF8StringEncoding]];
 
     
     
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[@"Content-Disposition: form-data; name=\"attachment[]\"; filename=\"\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    // add params (all params are strings)
+    NSMutableDictionary* parameters = [[NSMutableDictionary alloc] init];
+    [parameters setValue:@"" forKey:@"s"];
+    [parameters setValue:token forKey:@"securitytoken"];
+    [parameters setValue:@"do" forKey:@"manageattach"];
+    [parameters setValue:@"" forKey:@"t"];
+    [parameters setValue:fId forKey:@"f"];
+    [parameters setValue:@"" forKey:@"p"];
+    [parameters setValue:postTime forKey:@"poststarttime"];
+    [parameters setValue:@"0" forKey:@"editpost"];
+    [parameters setValue:hash forKey:@"posthash"];
+    [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
+    [parameters setValue:@"上传" forKey:@"upload"];
+    [parameters setValue:@"" forKey:@"attachmenturl[]"];
     
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[@"Content-Disposition: form-data; name=\"attachment[]\"; filename=\"\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[@"Content-Disposition: form-data; name=\"attachment[]\"; filename=\"\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[@"Content-Disposition: form-data; name=\"attachment[]\"; filename=\"\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"upload"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", @"上传"] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"attachmenturl[]"] dataUsingEncoding:NSUTF8StringEncoding]];
+
+    for (NSString *param in parameters) {
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", param] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"%@\r\n", [parameters objectForKey:param]] dataUsingEncoding:NSUTF8StringEncoding]];
+    }
     
     
     
     // add image data
     if (imageData) {
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@; filename=imageName.jpg\r\n", @"attachment[]"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"222222.jpg\"\r\n", @"attachment[]"] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:imageData];
         [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -612,9 +572,11 @@
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
-        NSLog(@" ----------------------->>>>     %@", response);
+        NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
-        NSLog(@" ----------------------->>>>     %@", data);
+        NSLog(@" ----------------------->>>>     %@", responseString);
+        
+        //NSLog(@" ----------------------->>>>     %@", data);
         if(data.length > 0)
         {
             //success

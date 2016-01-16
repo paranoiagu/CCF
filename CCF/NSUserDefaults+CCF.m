@@ -10,7 +10,7 @@
 
 @implementation NSUserDefaults(CCF)
 
--(void)loadCookie{
+-(NSString *)loadCookie{
     NSData *cookiesdata = [self objectForKey:kCCFCookie];
     
     
@@ -21,7 +21,16 @@
         for (cookie in cookies) {
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
         }
+        
+        
+        NSLog(@"=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>   %@    &&&&&&&&&&&&&&&&&&", cookies);
     }
+    
+    
+
+    NSString *result = [[NSString alloc] initWithData:cookiesdata encoding:NSUTF8StringEncoding];
+
+    return result;
 }
 
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0A997D1C4A5AFC00086DAB /* RoundCornerUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A997C1C4A5AFC00086DAB /* RoundCornerUITextView.m */; };
 		3A187B331C40A452003DA5C2 /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A187B321C40A452003DA5C2 /* download.png */; };
 		3A187B361C40B4EE003DA5C2 /* AlertProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A187B351C40B4EE003DA5C2 /* AlertProgressViewController.m */; };
 		3A2ECF541C36C0EB00CD3968 /* CCFThreadList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2ECF531C36C0EB00CD3968 /* CCFThreadList.m */; };
@@ -82,6 +83,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A0A997B1C4A5AFC00086DAB /* RoundCornerUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundCornerUITextView.h; sourceTree = "<group>"; };
+		3A0A997C1C4A5AFC00086DAB /* RoundCornerUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundCornerUITextView.m; sourceTree = "<group>"; };
 		3A187B321C40A452003DA5C2 /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
 		3A187B341C40B4EE003DA5C2 /* AlertProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertProgressViewController.h; sourceTree = "<group>"; };
 		3A187B351C40B4EE003DA5C2 /* AlertProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertProgressViewController.m; sourceTree = "<group>"; };
@@ -421,6 +424,8 @@
 				4D796BD11C3FC8ED00B3C62D /* CCFUITextView.m */,
 				3A6736C11C400EAA008D51EC /* CCFToolbar.h */,
 				3A6736C21C400EAA008D51EC /* CCFToolbar.m */,
+				3A0A997B1C4A5AFC00086DAB /* RoundCornerUITextView.h */,
+				3A0A997C1C4A5AFC00086DAB /* RoundCornerUITextView.m */,
 			);
 			name = "Public Views";
 			sourceTree = "<group>";
@@ -748,6 +753,7 @@
 				4D339D901C31454A0022A6A4 /* main.m in Sources */,
 				4D796BED1C44A43B00B3C62D /* CCFNavigationController.m in Sources */,
 				3A9FEDD61C341E2E00F30885 /* CCFUrlBuilder.m in Sources */,
+				3A0A997D1C4A5AFC00086DAB /* RoundCornerUITextView.m in Sources */,
 				3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */,
 				4D796BC11C3DF93D00B3C62D /* CAShapeLayer+WCPullRefresh.m in Sources */,
 				3A187B361C40B4EE003DA5C2 /* AlertProgressViewController.m in Sources */,

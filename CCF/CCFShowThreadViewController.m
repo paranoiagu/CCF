@@ -52,14 +52,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     field = [[CCFUITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
-    
     field.heightDelegate = self;
-
-    
-    UIColor * borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-    field.layer.borderColor = borderColor.CGColor;
-    field.layer.borderWidth = 0.5;
-    field.layer.cornerRadius = 5.0;
     field.delegate = self;
 
     [_floatToolbar sizeToFit];

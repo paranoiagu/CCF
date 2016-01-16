@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFEntry.h"
+#import "RoundCornerUITextView.h"
 
 @interface CCFNewThreadViewController : UIViewController
 
@@ -18,7 +19,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UITextField *subject;
-@property (weak, nonatomic) IBOutlet UITextView *message;
+@property (weak, nonatomic) IBOutlet RoundCornerUITextView *message;
 
 - (IBAction)createThread:(id)sender;
 - (IBAction)back:(id)sender;

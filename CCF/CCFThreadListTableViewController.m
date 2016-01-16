@@ -13,7 +13,7 @@
 #import "CCFUrlBuilder.h"
 #import "CCFParser.h"
 #import "CCFThreadListCell.h"
-#import "CCFThreadDetailTableViewController.h"
+#import "CCFShowThreadViewController.h"
 #import "MJRefresh.h"
 #import "WCPullRefreshControl.h"
 #import "CCFNewThreadViewController.h"
@@ -188,7 +188,7 @@
         
         
     } else if([sender isKindOfClass:[UITableViewCell class]]){
-        CCFThreadDetailTableViewController * controller = segue.destinationViewController;
+        CCFShowThreadViewController * controller = segue.destinationViewController;
         
         if ([controller respondsToSelector:@selector(setEntry:)]) {
             

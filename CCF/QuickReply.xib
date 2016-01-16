@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CCFThreadDetailTableViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CCFShowThreadViewController">
             <connections>
                 <outlet property="floatToolbar" destination="8eX-9v-IzH" id="ooY-do-IEi"/>
             </connections>
@@ -14,11 +14,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <items>
-                <barButtonItem systemItem="camera" id="gqf-Ei-iRY"/>
+                <barButtonItem systemItem="add" id="gqf-Ei-iRY"/>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="4kh-NL-gYe"/>
                 <barButtonItem style="plain" id="id4-eE-AXq">
-                    <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="M0Z-yj-H5T">
-                        <rect key="frame" x="60" y="7" width="200" height="30"/>
+                    <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="发表你的态度..." textAlignment="natural" minimumFontSize="17" id="M0Z-yj-H5T">
+                        <rect key="frame" x="51" y="7" width="218" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>

@@ -10,7 +10,7 @@
 #import "CCFEntry.h"
 #import "CCFPost.h"
 
-@interface CCFThreadDetailTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface CCFShowThreadViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray<CCFPost *> * posts;
 

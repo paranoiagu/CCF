@@ -6,7 +6,7 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFThreadDetailTableViewController.h"
+#import "CCFShowThreadViewController.h"
 #import "CCFThreadDetailCell.h"
 #import "CCFBrowser.h"
 #import "CCFUrlBuilder.h"
@@ -21,7 +21,7 @@
 #import "AlertProgressViewController.h"
 
 
-@interface CCFThreadDetailTableViewController ()<CCFThreadDetailCellDelegate, UITextViewDelegate, CCFUITextViewDelegate>{
+@interface CCFShowThreadViewController ()<CCFThreadDetailCellDelegate, UITextViewDelegate, CCFUITextViewDelegate>{
     
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
     int currentPage;
@@ -37,7 +37,7 @@
 
 @end
 
-@implementation CCFThreadDetailTableViewController
+@implementation CCFShowThreadViewController
 
 @synthesize entry;
 @synthesize posts = _posts;

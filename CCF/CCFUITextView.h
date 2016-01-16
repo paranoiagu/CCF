@@ -23,4 +23,7 @@
 
 @property (nonatomic, strong) id<CCFUITextViewDelegate> heightDelegate;
 
+
+-(void) showPlaceHolder:(BOOL) show;
+
 @end

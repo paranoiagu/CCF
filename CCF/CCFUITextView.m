@@ -8,15 +8,39 @@
 
 #import "CCFUITextView.h"
 
-@implementation CCFUITextView
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+@implementation CCFUITextView{
+    UILabel * placeHoler;
+    
 }
-*/
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        placeHoler = [[UILabel alloc] initWithFrame:self.frame];
+        
+        [self addSubview:placeHoler];
+        placeHoler.text = @" 发表您的态度...";
+        placeHoler.font = [UIFont systemFontOfSize:14];
+        placeHoler.enabled = NO;
+
+    }
+    return self;
+}
+
+-(void)textViewDidChange:(UITextView *)textView{
+
+}
+
+-(void)showPlaceHolder:(BOOL)show{
+    if (show) {
+        placeHoler.text = @" 发表您的态度...";
+    } else{
+        placeHoler.text = @"";
+    }
+}
+
+
 
 
 -(void)setContentSize:(CGSize)contentSize{

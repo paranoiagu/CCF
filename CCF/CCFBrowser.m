@@ -277,61 +277,6 @@
     
 }
 
-
--(void)createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message{
-    NSURL * newPostUrl = [CCFUrlBuilder buildNewThreadURL:fId];
-    
-    [_browser GET: [newPostUrl absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-        
-        CCFParser * parser = [[CCFParser alloc]init];
-        NSString * token = [parser parseSecurityToken:html];
-
-        NSString * hash = [parser parsePostHash:html];
-        
-        NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
-        [parameters setValue:subject forKey:@"subject"];
-        [parameters setValue:message forKey:@"message"];
-        [parameters setValue:@"0" forKey:@"wysiwyg"];
-        [parameters setValue:@"0" forKey:@"iconid"];
-        [parameters setValue:@"" forKey:@"s"];
-        [parameters setValue:token forKey:@"securitytoken"];
-        [parameters setValue:fId forKey:@"f"];
-        [parameters setValue:@"postthread" forKey:@"do"];
-        [parameters setValue:hash forKey:@"posthash"];
-        
-        
-        [parameters setValue:[CCFUtils getTimeSp] forKey:@"poststarttime"];
-        [parameters setValue:[self getCurrentCCFUser] forKey:@"loggedinuser"];
-        [parameters setValue:@"发表主题" forKey:@"sbutton"];
-        [parameters setValue:@"1" forKey:@"parseurl"];
-        [parameters setValue:@"9999" forKey:@"emailupdate"];
-        [parameters setValue:@"4" forKey:@"polloptions"];
-            
-        
-        [_browser POST:[newPostUrl absoluteString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-
-            [self saveCookie];
-            
-            NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-            
-            CCFParser * parser = [[CCFParser alloc]init];
-            
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
-        }];
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-    }];
-    
-}
-
-
-
 - (NSString *)contentTypeForImageData:(NSData *)data {
     uint8_t c;
     [data getBytes:&c length:1];
@@ -361,7 +306,8 @@
       [self uploadImagePrepair:fId startPostTime:time postHash:hash :^(NSString* result) {
           
           //[self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time];
-          //[self uploadFile:token fId:fId postTime:time hash:hash image:image];
+          
+          
           
           CCFParser * parser = [[CCFParser alloc]init];
           
@@ -369,11 +315,11 @@
           NSString * uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
           NSString * uploadHash = [parser parsePostHash:result];
           
-          
-          
-          NSURL * uploadUrl = [CCFUrlBuilder buildUploadFileURL];
-          
-          [self uploadImage:uploadUrl :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image];
+//          [self uploadFile:uploadToken fId:fId postTime:uploadTime hash:uploadHash image:image];
+
+          [self uploadImage:[CCFUrlBuilder buildUploadFileURL] :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image callback:^(id result) {
+              [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time];
+          }];
           
       }];
    }];
@@ -428,7 +374,7 @@
     
     [parameters setValue:@"" forKey:@"s"];
     [parameters setValue:token forKey:@"securitytoken"];
-    [parameters setValue:@"do" forKey:@"manageattach"];
+    [parameters setValue:@"manageattach" forKey:@"do"];
     [parameters setValue:@"" forKey:@"t"];
     [parameters setValue:fId forKey:@"f"];
     [parameters setValue:@"" forKey:@"p"];
@@ -468,9 +414,9 @@
         NSData *data = UIImageJPEGRepresentation(image, 1);
         
         
-        //[formData appendPartWithFileData:data name:@"attachment[]" fileName:fileName mimeType:type];
+        [formData appendPartWithFileData:data name:@"attachment[]" fileName:fileName mimeType:type];
         
-        [formData appendPartWithFormData:data name:fileName];
+        //[formData appendPartWithFormData:data name:fileName];
         
     } requestCallback:^(NSString *html) {
         
@@ -498,7 +444,7 @@
 
 }
 
--(void) uploadImage:(NSURL *)url :(NSString *)token fId:(NSString *)fId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData{
+-(void) uploadImage:(NSURL *)url :(NSString *)token fId:(NSString *)fId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData callback:(success)callback{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
 //    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
@@ -531,7 +477,7 @@
     NSMutableDictionary* parameters = [[NSMutableDictionary alloc] init];
     [parameters setValue:@"" forKey:@"s"];
     [parameters setValue:token forKey:@"securitytoken"];
-    [parameters setValue:@"do" forKey:@"manageattach"];
+    [parameters setValue:@"manageattach" forKey:@"do"];
     [parameters setValue:@"" forKey:@"t"];
     [parameters setValue:fId forKey:@"f"];
     [parameters setValue:@"" forKey:@"p"];
@@ -571,15 +517,13 @@
     
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        
-        NSLog(@" ----------------------->>>>     %@", responseString);
-        
-        //NSLog(@" ----------------------->>>>     %@", data);
-        if(data.length > 0)
-        {
+
+        if(data.length > 0) {
             //success
+            NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            callback(responseString);
+        } else{
+            callback(@"failed");
         }
     }];
 }

@@ -193,7 +193,10 @@
 
     NSData * date = UIImageJPEGRepresentation(images[0], 1);
     
-    [broswer createNewThreadForForm:fId withSubject:_subject.text andMessage:_message.text withImage:date];
+    NSString *title = @"带图测试【需删除】";
+    NSString *message = @"111111111111111111111111111";
+    
+    [broswer createNewThreadForForm:fId withSubject:title andMessage:message withImage:date];
     
 }
 

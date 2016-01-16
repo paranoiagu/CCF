@@ -41,8 +41,6 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 - (void) searchWithKeyWord:(NSString*) keyWord searchDone:(success) callback;
 
-//- (void) createNewThreadForForm:(NSString*) fId withSubject:(NSString*)subject andMessage:(NSString*)message;
-
 -(void)createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImage:(NSData *) image;
 
 -(void) uploadImage:(NSURL *)url :(UIImage *) image;

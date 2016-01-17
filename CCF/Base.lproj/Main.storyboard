@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gbM-NL-yco">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -42,7 +43,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="quotationTextView" destination="GJh-xh-Azw" id="5b2-6Q-1Vi"/>
-                                            <segue destination="owK-Jl-7fO" kind="show" identifier="ToThreadList" id="ZGh-uO-vQ1"/>
+                                            <segue destination="owK-Jl-7fO" kind="show" id="ezQ-PD-8mT"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -66,7 +67,7 @@
                         <barButtonItem key="rightBarButtonItem" image="ic_qu_search" id="bkL-dF-juG" userLabel="搜索">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="epM-Tw-Q6d" kind="show" id="G8P-eh-DtN"/>
+                                <segue destination="epM-Tw-Q6d" kind="show" id="u5X-Ul-ojk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -149,7 +150,7 @@
                                     <outlet property="postBelongForm" destination="IqZ-gY-eyv" id="xlV-63-Rpf"/>
                                     <outlet property="postTime" destination="rFo-Fh-37B" id="ME3-SI-36p"/>
                                     <outlet property="postTitle" destination="A9e-9R-DHH" id="xHf-ol-emR"/>
-                                    <segue destination="TcI-Mw-KoO" kind="show" id="vBy-89-SNs"/>
+                                    <segue destination="TcI-Mw-KoO" kind="show" id="GM9-DC-SqE"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -259,7 +260,7 @@
                         <barButtonItem key="rightBarButtonItem" image="ic_settings_18pt" id="KRh-vX-gMa" userLabel="设置">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="8su-O0-ar6" kind="show" id="l8Y-rd-Duf"/>
+                                <segue destination="8su-O0-ar6" kind="show" id="beV-TO-eFu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -317,7 +318,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="owK-Jl-7fO" kind="show" id="gXA-3j-72k"/>
+                                    <segue destination="owK-Jl-7fO" kind="show" id="BtX-d5-2Dd"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -396,17 +397,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="帖子列表" id="ieL-rG-HqG">
-                        <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="S79-BI-HIh">
+                        <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="S79-BI-HIh" userLabel="返回">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="back:" destination="owK-Jl-7fO" id="6ys-AC-TeC"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="ic_mode_edit_18pt" id="fP7-pF-d1m">
+                        <barButtonItem key="rightBarButtonItem" image="ic_mode_edit_18pt" id="fP7-pF-d1m" userLabel="新主题">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="createThread:" destination="owK-Jl-7fO" id="n3s-B0-L83"/>
-                                <segue destination="pXN-Qw-w0b" kind="show" id="O8t-yS-Zd8"/>
+                                <segue destination="pXN-Qw-w0b" kind="show" id="SW8-po-9M8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -800,7 +801,7 @@
         <image name="ic_settings_18pt" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vBy-89-SNs"/>
-        <segue reference="gXA-3j-72k"/>
+        <segue reference="ezQ-PD-8mT"/>
+        <segue reference="g6H-l4-rUB"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -427,9 +427,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="五个字" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lnk-2g-A1b" customClass="RoundCornerUITextView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="五个字" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lnk-2g-A1b" customClass="RoundCornerUITextView">
                                 <rect key="frame" x="20" y="116" width="560" height="186"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lnk-2g-A1b" secondAttribute="height" multiplier="280:93" id="dpg-L4-Kuv"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -446,8 +449,11 @@
                                     <action selector="pickPhoto:" destination="pXN-Qw-w0b" eventType="touchUpInside" id="I0H-Ue-PMT"/>
                                 </connections>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CrH-wA-AVZ">
-                                <rect key="frame" x="20" y="362" width="280" height="186"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CrH-wA-AVZ">
+                                <rect key="frame" x="20" y="362" width="560" height="230"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CrH-wA-AVZ" secondAttribute="height" multiplier="56:23" id="IgL-WX-a4U"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RRW-lW-87Q">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -483,6 +489,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="G9m-d8-4BV" firstAttribute="top" secondItem="e5j-8u-NEf" secondAttribute="bottom" constant="14" id="6L8-OJ-oki"/>
+                            <constraint firstItem="BTe-LE-Lmy" firstAttribute="top" secondItem="CrH-wA-AVZ" secondAttribute="bottom" constant="8" id="AoC-2e-r0k"/>
+                            <constraint firstItem="lnk-2g-A1b" firstAttribute="top" secondItem="G9m-d8-4BV" secondAttribute="bottom" constant="8" id="B8S-DX-67Y"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="CrH-wA-AVZ" secondAttribute="leading" id="VDV-8R-3dD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lnk-2g-A1b" secondAttribute="trailing" id="g7Q-DM-rr4"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="lnk-2g-A1b" secondAttribute="leading" id="iAX-Tc-hP9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CrH-wA-AVZ" secondAttribute="trailing" id="l2v-cA-HK9"/>
                             <constraint firstItem="G9m-d8-4BV" firstAttribute="trailing" secondItem="AJH-d0-yHy" secondAttribute="trailingMargin" id="q7s-ji-OSJ"/>
                             <constraint firstItem="G9m-d8-4BV" firstAttribute="leading" secondItem="AJH-d0-yHy" secondAttribute="leadingMargin" id="xxb-Cc-dQm"/>
                         </constraints>

@@ -57,7 +57,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="精品论坛" id="QyS-rW-ir3">
-                        <barButtonItem key="leftBarButtonItem" image="ic_qu_menu_grabber" id="KW9-ec-X8l">
+                        <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="KW9-ec-X8l">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onLeftBarButtonItemClick:" destination="YRy-KR-zZm" id="Hra-w6-T2x"/>
@@ -76,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8EM-Zv-G62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4170" y="-2935"/>
+            <point key="canvasLocation" x="-4609" y="-2935"/>
         </scene>
         <!--搜索帖子-->
         <scene sceneID="chf-UW-YjL">
@@ -173,56 +173,56 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K0h-A8-Tqt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2897" y="-1906"/>
+            <point key="canvasLocation" x="-3911" y="-2540"/>
         </scene>
         <!--悄悄话-->
-        <scene sceneID="cVg-PB-xq8">
+        <scene sceneID="uMz-Tn-fkt">
             <objects>
-                <tableViewController id="dSs-ia-fde" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yIc-45-MB9">
+                <tableViewController id="Ini-uH-Plv" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="NMx-Ja-5OC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cKE-3m-3bz">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IIr-LO-Ezy">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cKE-3m-3bz" id="3JT-05-wfC">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IIr-LO-Ezy" id="s7U-pU-gfH">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="dSs-ia-fde" id="BaC-A0-lCb"/>
-                            <outlet property="delegate" destination="dSs-ia-fde" id="gID-aC-Txp"/>
+                            <outlet property="dataSource" destination="Ini-uH-Plv" id="Hgd-ha-QRJ"/>
+                            <outlet property="delegate" destination="Ini-uH-Plv" id="ppo-Vi-Uva"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="悄悄话" id="kvO-hN-vMF">
-                        <barButtonItem key="leftBarButtonItem" image="ic_qu_menu_grabber" id="Bc8-P6-BLU">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <navigationItem key="navigationItem" title="悄悄话" id="cLz-Vm-wsI" userLabel="悄悄话">
+                        <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="Ol5-Vk-tan">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aOM-T1-Q72" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dM1-AX-JUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4170" y="-1946"/>
+            <point key="canvasLocation" x="-4609" y="-2214"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="aqu-Ou-PS3">
+        <scene sceneID="ggw-tb-1h3">
             <objects>
-                <navigationController id="s6g-ic-MoL" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a68-7L-G53">
+                <navigationController id="VLb-SK-6Zj" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="86V-Dm-jRj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="dSs-ia-fde" kind="relationship" relationship="rootViewController" id="eim-SH-zW1"/>
+                        <segue destination="Ini-uH-Plv" kind="relationship" relationship="rootViewController" id="267-pt-edX"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dWo-uo-STm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="STf-RP-C0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5306.25" y="-2235.2112676056336"/>
+            <point key="canvasLocation" x="-5307" y="-2214"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vTH-sA-lRG">
@@ -253,7 +253,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </scrollView>
                     <navigationItem key="navigationItem" title="我的页面" id="8T4-uM-jNf">
-                        <barButtonItem key="leftBarButtonItem" image="ic_qu_menu_grabber" id="2ri-7j-ZtT" userLabel="菜单">
+                        <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="2ri-7j-ZtT" userLabel="菜单">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_settings_18pt" id="KRh-vX-gMa" userLabel="设置">
@@ -266,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iw7-V7-8PO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4170" y="-4427.1126760563375"/>
+            <point key="canvasLocation" x="-4609" y="-4428"/>
         </scene>
         <!--设置选项-->
         <scene sceneID="cD6-Oh-uV2">
@@ -289,7 +289,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEs-qd-k2x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3165" y="-4427.1126760563375"/>
+            <point key="canvasLocation" x="-3905" y="-4428"/>
         </scene>
         <!--收藏板块-->
         <scene sceneID="0Ce-NM-EC5">
@@ -327,14 +327,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="收藏板块" id="Mhk-pJ-bvf" userLabel="收藏板块">
-                        <barButtonItem key="leftBarButtonItem" image="ic_qu_menu_grabber" id="AyA-ib-x17">
+                        <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="AyA-ib-x17">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9F-UZ-2ks" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4170" y="-3719.3661971830984"/>
+            <point key="canvasLocation" x="-4609" y="-3720"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UzZ-TC-g8q">
@@ -413,7 +413,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sDT-8I-6Ma" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2897" y="-2796"/>
+            <point key="canvasLocation" x="-3905" y="-3358"/>
         </scene>
         <!--新主题-->
         <scene sceneID="cr2-FS-gXj">
@@ -521,7 +521,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xfo-dw-K7M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1817" y="-1933"/>
+            <point key="canvasLocation" x="-3148" y="-3673"/>
         </scene>
         <!--Show Thread View Controller-->
         <scene sceneID="Kid-kF-uIx">
@@ -659,7 +659,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrp-3y-fYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2136" y="-2796"/>
+            <point key="canvasLocation" x="-3148" y="-2935"/>
         </scene>
         <!--高级回帖-->
         <scene sceneID="0ad-k0-Qjn">
@@ -769,7 +769,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4C-zz-DaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1442" y="-2796"/>
+            <point key="canvasLocation" x="-2416" y="-2935"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rsw-tr-lOi">
@@ -792,15 +792,15 @@
         <image name="ic_arrow_back_18pt" width="18" height="18"/>
         <image name="ic_camera_enhance_18pt" width="18" height="18"/>
         <image name="ic_insert_photo_18pt" width="18" height="18"/>
+        <image name="ic_left_menu" width="24" height="24"/>
         <image name="ic_mode_edit_18pt" width="18" height="18"/>
         <image name="ic_mood_18pt" width="18" height="18"/>
-        <image name="ic_qu_menu_grabber" width="24" height="24"/>
         <image name="ic_qu_search" width="24" height="24"/>
         <image name="ic_send_18pt" width="18" height="18"/>
         <image name="ic_settings_18pt" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZGh-uO-vQ1"/>
-        <segue reference="g6H-l4-rUB"/>
+        <segue reference="vBy-89-SNs"/>
+        <segue reference="gXA-3j-72k"/>
     </inferredMetricsTieBreakers>
 </document>

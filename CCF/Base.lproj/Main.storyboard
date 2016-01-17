@@ -673,9 +673,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wio-Ec-b1f">
-                                <rect key="frame" x="0.0" y="272" width="600" height="252"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wio-Ec-b1f">
+                                <rect key="frame" x="0.0" y="272" width="600" height="292"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Wio-Ec-b1f" secondAttribute="height" multiplier="150:73" id="UBd-x2-C7c"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="yv2-E6-k1Q">
                                     <size key="itemSize" width="92" height="90"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -724,7 +727,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="高级回帖" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="acq-4R-1JW" userLabel="replyContentView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="高级回帖" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="acq-4R-1JW" userLabel="replyContentView">
                                 <rect key="frame" x="20" y="0.0" width="560" height="264"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="-64" maxX="0.0" maxY="0.0"/>
@@ -737,7 +740,14 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="6QA-fG-IbD" secondAttribute="trailing" constant="-20" id="947-2f-Qwc"/>
                             <constraint firstItem="6QA-fG-IbD" firstAttribute="leading" secondItem="mOC-MK-2JQ" secondAttribute="leadingMargin" constant="-20" id="9HQ-ul-WBy"/>
+                            <constraint firstItem="Wio-Ec-b1f" firstAttribute="top" secondItem="acq-4R-1JW" secondAttribute="bottom" constant="8" id="Hfx-jn-ock"/>
+                            <constraint firstItem="acq-4R-1JW" firstAttribute="trailing" secondItem="mOC-MK-2JQ" secondAttribute="trailingMargin" id="UDf-IP-iGf"/>
+                            <constraint firstItem="acq-4R-1JW" firstAttribute="top" secondItem="mOC-MK-2JQ" secondAttribute="topMargin" constant="64" id="VbI-7X-yxV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Wio-Ec-b1f" secondAttribute="trailing" constant="-20" id="Yy0-Yi-5OP"/>
                             <constraint firstItem="dCe-aI-mg4" firstAttribute="top" secondItem="6QA-fG-IbD" secondAttribute="bottom" id="Z57-fo-NwC"/>
+                            <constraint firstItem="dCe-aI-mg4" firstAttribute="top" secondItem="Wio-Ec-b1f" secondAttribute="bottom" constant="44" id="duJ-pH-MiR"/>
+                            <constraint firstItem="Wio-Ec-b1f" firstAttribute="leading" secondItem="mOC-MK-2JQ" secondAttribute="leadingMargin" constant="-20" id="f93-V9-Sek"/>
+                            <constraint firstItem="acq-4R-1JW" firstAttribute="leading" secondItem="mOC-MK-2JQ" secondAttribute="leadingMargin" id="kNw-cp-cdN"/>
                             <constraint firstItem="6QA-fG-IbD" firstAttribute="leading" secondItem="mOC-MK-2JQ" secondAttribute="leadingMargin" constant="-20" id="tVo-Jf-RV4"/>
                         </constraints>
                     </view>
@@ -791,6 +801,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZGh-uO-vQ1"/>
-        <segue reference="Fvg-nc-NlU"/>
+        <segue reference="gmL-Of-aKJ"/>
     </inferredMetricsTieBreakers>
 </document>

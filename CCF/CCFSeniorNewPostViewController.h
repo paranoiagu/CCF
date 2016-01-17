@@ -17,6 +17,8 @@
 
 - (IBAction)insertPhoto:(id)sender;
 
+- (IBAction)back:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *insertCollectionView;
 
 @end

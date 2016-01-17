@@ -139,6 +139,8 @@
     return images.count;
 }
 
+
+
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *QuoteCellIdentifier = @"CCFSeniorNewPostViewControllerCell";
@@ -184,5 +186,9 @@
     
     [self presentViewController:insertPhotoController animated:YES completion:nil];
 
+}
+
+- (IBAction)back:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

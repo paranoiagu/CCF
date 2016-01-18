@@ -119,6 +119,11 @@
                                 <constraint firstItem="jxM-TA-MUh" firstAttribute="top" secondItem="Fcj-zH-iwm" secondAttribute="top" id="YJe-5c-lyI"/>
                                 <constraint firstItem="8tJ-KN-Enm" firstAttribute="leading" secondItem="Fcj-zH-iwm" secondAttribute="leading" constant="40" id="lwQ-Ld-2RP"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="L09-Ad-t0Z"/>
+                                </mask>
+                            </variation>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFSearchResultCell" rowHeight="150" id="0l5-QU-mkL" customClass="CCFSearchResultCell">

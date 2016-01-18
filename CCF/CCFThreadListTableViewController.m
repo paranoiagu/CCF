@@ -155,12 +155,10 @@
     
     if (indexPath.section == 0) {
         CCFThreadList *play = self.threadTopList[indexPath.row];
-        
-        cell.threadTitle.text = play.threadTitle;
+        [cell setThreadList:play];
     } else{
         CCFThreadList *play = self.threadList[indexPath.row];
-        
-        cell.threadTitle.text = play.threadTitle;
+        [cell setThreadList:play];
     }
 
     

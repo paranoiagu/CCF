@@ -7,8 +7,13 @@
 //
 
 #import "CCFThreadListCell.h"
+#import "CCFThreadList.h"
 
 @implementation CCFThreadListCell
+
+@synthesize threadAuthor = _threadAuthor;
+@synthesize threadPostCount = _threadPostCount;
+@synthesize threadTitle = _threadTitle;
 
 - (void)awakeFromNib {
     // Initialization code
@@ -20,4 +25,9 @@
     // Configure the view for the selected state
 }
 
+-(void)setThreadList:(CCFThreadList *)threadList{
+    self.threadAuthor.text = threadList.threadAuthor;
+    self.threadTitle.text = threadList.threadTitle;
+    self.threadPostCount.text = [NSString stringWithFormat:@"%ld", threadList.threadTotalPostCount];
+}
 @end

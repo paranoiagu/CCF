@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CCFThreadList;
 
 @interface CCFThreadListCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *threadAuthor;
 
 @property (weak, nonatomic) IBOutlet UILabel *threadTitle;
+
+@property (weak, nonatomic) IBOutlet UILabel *threadPostCount;
+
+-(void) setThreadList:(CCFThreadList *) threadList;
+
 @end

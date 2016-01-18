@@ -624,7 +624,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jom-RI-cJC">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jom-RI-cJC" customClass="CCFToolbar">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem image="ic_control_point_18pt" id="jf0-ac-fQI">
@@ -643,8 +643,11 @@
                                         </textField>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ZAI-ZB-X0S"/>
-                                    <barButtonItem image="ic_reply_all_18pt" id="FDL-VS-Slk">
+                                    <barButtonItem image="ic_reply_all_18pt" id="FDL-VS-Slk" userLabel="快速回复">
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <connections>
+                                            <action selector="floatReplyClick:" destination="TcI-Mw-KoO" id="o6E-Xo-Dbq"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -663,9 +666,13 @@
                     <navigationItem key="navigationItem" title="帖子详情" id="J7F-R2-drj">
                         <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="Vbs-TP-joe">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="back:" destination="TcI-Mw-KoO" id="ycU-Pq-XO8"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="floatToolbar" destination="Jom-RI-cJC" id="X3W-HM-AuW"/>
                         <outlet property="tableView" destination="7bA-9M-9JM" id="ccg-ug-VCg"/>
                     </connections>
                 </viewController>

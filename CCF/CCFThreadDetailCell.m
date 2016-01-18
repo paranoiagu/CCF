@@ -19,6 +19,7 @@
     // private
     NSURL *lastActionLink;
     NSMutableSet *mediaPlayers;
+    NSIndexPath * currentPath;
     
     BOOL _needsAdjustInsetsOnLayout;
 }
@@ -54,7 +55,22 @@
     // Configure the view for the selected state
 }
 
-- (void)setPost:(CCFPost *)newPost {
+//- (void)setPost:(CCFPost *)newPost {
+//    
+//    NSString * html = newPost.postContent;
+//    self.htmlView.attributedString = [self showHtml:html];
+//    
+//    self.username.text = newPost.postUserInfo.userName;
+//    self.louCeng.text = newPost.postLouCeng;
+//    self.postTime.text = newPost.postTime;
+//    
+//    [self.avatarImage setImageWithURL:[CCFUrlBuilder buildUserAvatarURL:newPost.postUserInfo.userAvatar]];
+//    
+//}
+
+
+- (void)setPost:(CCFPost *)newPost forIndexPath:(NSIndexPath *)indexPath{
+    currentPath = indexPath;
     
     NSString * html = newPost.postContent;
     self.htmlView.attributedString = [self showHtml:html];
@@ -104,17 +120,17 @@
 }
 
 //#pragma mark DTAttributedTextContentViewDelegate
-//-(void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView willDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context{
-//    
-//    
+-(void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView willDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context{
+    
+    
 //    CGSize size = [attributedTextContentView suggestedFrameSizeToFitEntireStringConstraintedToWidth:layoutFrame.frame.size.width];
 //    
 //    CGRect frame = self.htmlView.frame;
 //    frame.size.height = size.height;
 //    self.htmlView.frame = frame;
-//    
-//    [self.delegate relayoutContentHeigt:currentIndexPath with:size.height];
-//}
+    
+    [self.delegate relayoutContentHeigt:currentPath with:CGRectGetHeight(layoutFrame.frame) + 65];
+}
 
 
 

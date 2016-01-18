@@ -22,7 +22,7 @@
 #import <UITableView+FDTemplateLayoutCell.h>
 
 
-@interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate>{
+@interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate>{
     
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
     int currentPage;
@@ -48,8 +48,8 @@
     [super viewDidLoad];
     
     
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 180.0;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    self.tableView.estimatedRowHeight = 180.0;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     field = [[CCFUITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
@@ -197,33 +197,41 @@
     static NSString *QuoteCellIdentifier = @"CCFThreadDetailCellIdentifier";
     
     CCFThreadDetailCell *cell = (CCFThreadDetailCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-    //cell.delegate = self;
+    cell.delegate = self;
     
     CCFPost *post = self.posts[indexPath.row];
     
 //    [cell.content loadHTMLString:post.postContent baseURL:[CCFUrlBuilder buildIndexURL]];
 //    [cell setPost:post];
-    [cell setPost:post];
+    [cell setPost:post forIndexPath:indexPath];
     
     return cell;
 }
 
+-(void)relayoutContentHeigt:(NSIndexPath *)indexPath with:(CGFloat)height{
+    NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
+    if (nsheight == nil) {
+        [cellHeightDictionary setObject:[NSNumber numberWithFloat:height] forKey:indexPath];
+        [self.tableView reloadData];
+    }
 
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
-//    if (nsheight == nil) {
-//        return  115.0;
-//    }
-//    return nsheight.floatValue;
-//}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 15 + [tableView fd_heightForCellWithIdentifier:@"CCFThreadDetailCellIdentifier" configuration:^(CCFThreadDetailCell *cell) {
-
-        [cell setPost:self.posts[indexPath.row]];
-    }];
 }
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
+    if (nsheight == nil) {
+        return  115.0;
+    }
+    return nsheight.floatValue;
+}
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 15 + [tableView fd_heightForCellWithIdentifier:@"CCFThreadDetailCellIdentifier" configuration:^(CCFThreadDetailCell *cell) {
+//
+//        [cell setPost:self.posts[indexPath.row]];
+//    }];
+//}
 
 
 - (IBAction)back:(UIBarButtonItem *)sender {

@@ -33,8 +33,9 @@
 
 @property (nonatomic, strong) id<CCFThreadDetailCellDelegate> delegate;
 
--(void) setPost:(CCFPost *)post;
+//-(void) setPost:(CCFPost *)post;
 
+-(void) setPost:(CCFPost *)post forIndexPath:(NSIndexPath*)indexPath;
 
 @property (nonatomic, strong) NSURL *lastActionLink;
 

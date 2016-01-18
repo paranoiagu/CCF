@@ -655,8 +655,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ThZ-bp-DaG" customClass="DTAttributedTextContentView">
-                                                    <rect key="frame" x="8" y="48" width="584" height="44"/>
-                                                    <color key="backgroundColor" red="0.88660043249999998" green="1" blue="0.8665649231" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <rect key="frame" x="8" y="48" width="584" height="42"/>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -664,10 +663,11 @@
                                                 <constraint firstItem="ThZ-bp-DaG" firstAttribute="top" secondItem="okf-PT-KoA" secondAttribute="bottom" constant="1" id="87Z-SA-UtM"/>
                                                 <constraint firstItem="okf-PT-KoA" firstAttribute="top" secondItem="UhN-7m-F8t" secondAttribute="bottom" constant="1" id="DYD-dT-2qx"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="UhN-7m-F8t" secondAttribute="trailing" constant="-8" id="FkL-s4-SMl"/>
+                                                <constraint firstItem="ThZ-bp-DaG" firstAttribute="top" secondItem="0Cc-Qp-g1k" secondAttribute="topMargin" constant="40" id="GGB-l9-7TC"/>
                                                 <constraint firstItem="UhN-7m-F8t" firstAttribute="leading" secondItem="0Cc-Qp-g1k" secondAttribute="leadingMargin" constant="-8" id="VYy-yO-15R"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="okf-PT-KoA" secondAttribute="leading" id="YPe-bV-kUk"/>
                                                 <constraint firstItem="QrN-AL-8xb" firstAttribute="top" secondItem="Fwt-jQ-8lb" secondAttribute="bottom" constant="8" id="ail-aW-PPL"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="ThZ-bp-DaG" secondAttribute="bottom" constant="-1.5" id="ci0-pT-n5U"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ThZ-bp-DaG" secondAttribute="bottom" id="ci0-pT-n5U"/>
                                                 <constraint firstItem="Fwt-jQ-8lb" firstAttribute="top" secondItem="UhN-7m-F8t" secondAttribute="top" id="gGj-w6-0Ng"/>
                                                 <constraint firstItem="6m9-we-bhe" firstAttribute="top" secondItem="UhN-7m-F8t" secondAttribute="bottom" constant="11.5" id="liB-Wp-FKd"/>
                                                 <constraint firstItem="6m9-we-bhe" firstAttribute="leading" secondItem="okf-PT-KoA" secondAttribute="trailing" constant="8" id="oWT-Ou-UtU"/>
@@ -676,6 +676,11 @@
                                                 <constraint firstItem="UhN-7m-F8t" firstAttribute="top" secondItem="0Cc-Qp-g1k" secondAttribute="topMargin" constant="-8" id="voS-tK-8YS"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="QrN-AL-8xb" secondAttribute="trailing" id="wJY-Qr-Hhc"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="87Z-SA-UtM"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="avatarImage" destination="okf-PT-KoA" id="7Mh-ZC-dzE"/>

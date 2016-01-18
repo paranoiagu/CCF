@@ -250,7 +250,7 @@
 - (IBAction)changViewController:(id)sender {
     if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
 
-        CCFNavigationController * controller = self.window.rootViewController;
+        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
         CCFFavFormController * favController = [storyboard instantiateViewControllerWithIdentifier:kCCFFavFormController];
         [controller setRootViewController:favController];

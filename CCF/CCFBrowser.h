@@ -43,6 +43,5 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 -(void)createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImage:(NSData *) image;
 
--(void) uploadImage:(NSURL *)url :(UIImage *) image;
 
 @end

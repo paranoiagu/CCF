@@ -352,7 +352,7 @@
     [_browser POSTWithURL:newPostUrl parameters:parameters requestCallback:^(NSString *html) {
         
         [self saveCookie];
-        CCFParser * parser = [[CCFParser alloc]init];
+        //CCFParser * parser = [[CCFParser alloc]init];
         
     }];
 }

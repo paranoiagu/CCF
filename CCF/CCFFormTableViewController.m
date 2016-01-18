@@ -81,7 +81,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 @implementation CCFFormTableViewController
 
 
-@synthesize plays = _plays ;
+@synthesize forms = _forms ;
 @synthesize leftDrawerView = _leftDrawerView;
 
 
@@ -141,7 +141,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
         // For each play, set up a corresponding SectionInfo object to contain the default height for each row.
         NSMutableArray *infoArray = [[NSMutableArray alloc] init];
         
-        for (CCFForm *play in self.plays) {
+        for (CCFForm *play in self.forms) {
             
             CCFFormSectionInfo *sectionInfo = [[CCFFormSectionInfo alloc] init];
             sectionInfo.play = play;
@@ -165,7 +165,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
     CCFFormTree * ccfFromTree = [[[CCFFormDao alloc]init] parseCCFForms:path];
     
-    self.plays = ccfFromTree.ccfforms;
+    self.forms = [ccfFromTree.ccfforms copy];
     
     
     
@@ -181,7 +181,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     
     NSMutableArray<CCFForm *> * needInsert = [NSMutableArray array];
     
-    for (CCFForm *form in self.plays) {
+    for (CCFForm *form in self.forms) {
         [needInsert addObject:form];
         
         NSMutableArray<CCFForm> * childForms = [form valueForKey:@"childForms"];
@@ -215,7 +215,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         NSLog(@"prepareForSegue %ld      %ld   ", path.section, path.row);
         
-        CCFForm * select = [self.plays[path.section] valueForKey:@"childForms"][path.row];
+        CCFForm * select = [self.forms[path.section] valueForKey:@"childForms"][path.row];
         
         CCFEntry * entry = [[CCFEntry alloc]init];
         
@@ -235,7 +235,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return [self.plays count];
+    return [self.forms count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -474,16 +474,20 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 - (void)emailMenuButtonPressed:(UIMenuController *)menuController {
     
-    MyAPLEmailMenuItem *menuItem = [[UIMenuController sharedMenuController] menuItems][0];
-    if (menuItem.indexPath) {
-        [self resignFirstResponder];
-        [self sendEmailForEntryAtIndexPath:menuItem.indexPath];
+    NSArray<UIMenuItem *> *menuItems = [[UIMenuController sharedMenuController] menuItems];
+    if (menuItems != nil && menuItems.count > 0) {
+        MyAPLEmailMenuItem *menuItem = (MyAPLEmailMenuItem *)menuItems[0];
+        if (menuItem.indexPath) {
+            [self resignFirstResponder];
+            [self sendEmailForEntryAtIndexPath:menuItem.indexPath];
+        }
     }
+    
 }
 
 - (void)sendEmailForEntryAtIndexPath:(NSIndexPath *)indexPath {
     
-    CCFForm *play = self.plays[indexPath.section];
+    CCFForm *play = self.forms[indexPath.section];
     CCFForm *quotation = [play valueForKey:@"childForms"][indexPath.row];
     
     // In production, send the appropriate message.

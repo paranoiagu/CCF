@@ -168,7 +168,7 @@
             CCFParser *parser = [[CCFParser alloc]init];
             
             CCFThreadDetail * thread = [parser parseShowThreadWithHtml:result];
-            totalPage = thread.threadTotalPage;
+            totalPage = (int)thread.threadTotalPage;
             
             NSMutableArray<CCFPost *> * parsedPosts = thread.threadPosts;
             
@@ -280,8 +280,8 @@
             
             [self.posts addObjectsFromArray:thread.threadPosts];
             
-            totalPage = thread.threadTotalPage;
-            currentPage = thread.threadCurrentPage;
+            totalPage = (int)thread.threadTotalPage;
+            currentPage = (int)thread.threadCurrentPage;
             
             [self.tableView reloadData];
             

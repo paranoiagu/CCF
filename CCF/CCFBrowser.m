@@ -145,7 +145,7 @@
 -(void)reply:(NSString *)threadId :(NSString *)message :(Reply)result{
     //NSString * testMesage = @"\n:blush;\n\n\n\n\n\n\n\n\n\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?p=16695603\"]Test For CCF iPhone Client[/URL][/RIGHT]";
     
-    NSString * testMesage = @"";
+    NSString * testMesage = @"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"][COLOR=\"Silver\"][I]SENDBY『CCF客户端』[/I][/COLOR][/URL][/RIGHT]";
     
     NSString *test = [message stringByAppendingString:testMesage];
     

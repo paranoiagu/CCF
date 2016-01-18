@@ -657,9 +657,6 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ThZ-bp-DaG" customClass="DTAttributedTextContentView">
                                                     <rect key="frame" x="8" y="48" width="584" height="44"/>
                                                     <color key="backgroundColor" red="0.88660043249999998" green="1" blue="0.8665649231" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="ThZ-bp-DaG" secondAttribute="height" multiplier="146:11" id="bEg-Vp-cbA"/>
-                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>

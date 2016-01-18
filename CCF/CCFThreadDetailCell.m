@@ -14,8 +14,6 @@
 
 
 @interface CCFThreadDetailCell (){
-    NSIndexPath *path;
-    
     NSURL *baseURL;
     
     // private
@@ -69,15 +67,9 @@
     
 }
 
--(void)setPost:(CCFPost *)post with:(NSIndexPath *)indexPath{
-    path = indexPath;
-    [self setPost:post];
-}
 
 - (NSAttributedString *)showHtml:(NSString *)html{
-    // Load HTML data
-    //    NSString *readmePath = [[NSBundle mainBundle] pathForResource:_fileName ofType:nil];
-    //    NSString *html = [NSString stringWithContentsOfFile:readmePath encoding:NSUTF8StringEncoding error:NULL];
+    
     NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
     
     // Create attributed string from HTML
@@ -111,18 +103,18 @@
     return string;
 }
 
-#pragma mark DTAttributedTextContentViewDelegate
--(void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView willDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context{
-    
-    
-    CGSize size = [attributedTextContentView suggestedFrameSizeToFitEntireStringConstraintedToWidth:layoutFrame.frame.size.width];
-    
-    CGRect frame = self.htmlView.frame;
-    frame.size.height = size.height;
-    self.htmlView.frame = frame;
-    
-    [self.delegate relayoutContentHeigt:path with:size.height];
-}
+//#pragma mark DTAttributedTextContentViewDelegate
+//-(void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView willDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context{
+//    
+//    
+//    CGSize size = [attributedTextContentView suggestedFrameSizeToFitEntireStringConstraintedToWidth:layoutFrame.frame.size.width];
+//    
+//    CGRect frame = self.htmlView.frame;
+//    frame.size.height = size.height;
+//    self.htmlView.frame = frame;
+//    
+//    [self.delegate relayoutContentHeigt:currentIndexPath with:size.height];
+//}
 
 
 

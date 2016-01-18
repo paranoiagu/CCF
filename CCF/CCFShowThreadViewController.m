@@ -19,9 +19,10 @@
 #import "CCFThreadDetail.h"
 
 #import "AlertProgressViewController.h"
+#import <UITableView+FDTemplateLayoutCell.h>
 
 
-@interface CCFShowThreadViewController ()<CCFThreadDetailCellDelegate, UITextViewDelegate, CCFUITextViewDelegate>{
+@interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate>{
     
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
     int currentPage;
@@ -47,8 +48,8 @@
     [super viewDidLoad];
     
     
-    
-    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 180.0;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     field = [[CCFUITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
@@ -107,11 +108,6 @@
     
     [self browserThreadPosts:1];
     
-    
-    
-
-    
-    
 }
 
 
@@ -126,18 +122,6 @@
 }
 
 
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    
-
-//    [inputToolbar removeFromSuperview];
-//    field.inputView = inputToolbar;
-    
-//    field.inputAccessoryView = inputToolbar;
-//    self.inputText.inputView = self.floatTextView;
-
-    
-    return YES;
-}
 
 -(void)heightChanged:(CGFloat)height{
     
@@ -213,42 +197,32 @@
     static NSString *QuoteCellIdentifier = @"CCFThreadDetailCellIdentifier";
     
     CCFThreadDetailCell *cell = (CCFThreadDetailCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-    cell.delegate = self;
-    
-    //CCFThreadDetailCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"CCFThreadDetailCellIdentifier" owner:self options:nil] lastObject];
-    
+    //cell.delegate = self;
     
     CCFPost *post = self.posts[indexPath.row];
     
 //    [cell.content loadHTMLString:post.postContent baseURL:[CCFUrlBuilder buildIndexURL]];
 //    [cell setPost:post];
-    [cell setPost:post with:indexPath];
+    [cell setPost:post];
     
     return cell;
 }
 
 
--(void)relayoutContentHeigt:(NSIndexPath *)indexPath with:(CGFloat)height{
-    if ([cellHeightDictionary objectForKey:indexPath] == nil) {
-        
-        CGFloat tmpHeight = height + 80;
-        
-        CGFloat fixHeight = tmpHeight < 115.f? 115.f : tmpHeight;
-        
-        [cellHeightDictionary setObject:[NSNumber numberWithFloat:fixHeight] forKey:indexPath];
-        
-        
-        [self.tableView reloadData];
-    }
 
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
+//    if (nsheight == nil) {
+//        return  115.0;
+//    }
+//    return nsheight.floatValue;
+//}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
-    if (nsheight == nil) {
-        return  115.0;
-    }
-    return nsheight.floatValue;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [tableView fd_heightForCellWithIdentifier:@"CCFThreadDetailCellIdentifier" configuration:^(CCFThreadDetailCell *cell) {
+
+        [cell setPost:self.posts[indexPath.row]];
+    }];
 }
 
 

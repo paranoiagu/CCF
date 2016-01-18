@@ -12,17 +12,12 @@
 @class CCFPost;
 
 
-
 @protocol CCFThreadDetailCellDelegate <NSObject>
 
 @required
 -(void) relayoutContentHeigt:(NSIndexPath*) indexPath with:(CGFloat) height;
 
 @end
-
-
-
-
 
 
 
@@ -38,7 +33,7 @@
 
 @property (nonatomic, strong) id<CCFThreadDetailCellDelegate> delegate;
 
--(void) setPost:(CCFPost *)post with:(NSIndexPath*) indexPath;
+-(void) setPost:(CCFPost *)post;
 
 
 @property (nonatomic, strong) NSURL *lastActionLink;

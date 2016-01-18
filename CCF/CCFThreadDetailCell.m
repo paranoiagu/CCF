@@ -24,28 +24,29 @@
     
     BOOL _needsAdjustInsetsOnLayout;
 }
-
-
-
-
 @end
 
-@implementation CCFThreadDetailCell
 
+@implementation CCFThreadDetailCell
 
 @synthesize lastActionLink;
 @synthesize baseURL;
 
+@synthesize htmlView = _htmlView;
+@synthesize username = _username;
+@synthesize louCeng = _louCeng;
+@synthesize postTime = _postTime;
+@synthesize avatarImage = _avatarImage;
 
 - (void)awakeFromNib {
 
-    _htmlView.shouldDrawImages = NO;
-    _htmlView.shouldDrawLinks = NO;
+    self.htmlView.shouldDrawImages = NO;
+    self.htmlView.shouldDrawLinks = NO;
     
-    _htmlView.delegate = self;
+    self.htmlView.delegate = self;
     
-    _htmlView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    _htmlView.relayoutMask = DTAttributedTextContentViewRelayoutOnHeightChanged | DTAttributedTextContentViewRelayoutOnWidthChanged;
+    self.htmlView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.htmlView.relayoutMask = DTAttributedTextContentViewRelayoutOnHeightChanged | DTAttributedTextContentViewRelayoutOnWidthChanged;
     
 }
 
@@ -57,20 +58,14 @@
 
 - (void)setPost:(CCFPost *)newPost {
     
-    if (_post != newPost) {
-        
-        _post = newPost;
-        NSString * html = self.post.postContent;
-//        [self.htmlView loadHTMLString:html baseURL:[CCFUrlBuilder buildIndexURL]];
-        _htmlView.attributedString = [self showHtml:html];
-        
-        _username.text = newPost.postUserInfo.userName;
-        _louCeng.text = newPost.postLouCeng;
-        _postTime.text = newPost.postTime;
-        
-        [_avatarImage setImageWithURL:[CCFUrlBuilder buildUserAvatarURL:newPost.postUserInfo.userAvatar]];
-        
-    }
+    NSString * html = newPost.postContent;
+    self.htmlView.attributedString = [self showHtml:html];
+    
+    self.username.text = newPost.postUserInfo.userName;
+    self.louCeng.text = newPost.postLouCeng;
+    self.postTime.text = newPost.postTime;
+    
+    [self.avatarImage setImageWithURL:[CCFUrlBuilder buildUserAvatarURL:newPost.postUserInfo.userAvatar]];
     
 }
 
@@ -122,21 +117,9 @@
     
     CGSize size = [attributedTextContentView suggestedFrameSizeToFitEntireStringConstraintedToWidth:layoutFrame.frame.size.width];
     
-    
-    //NSLog(@"attributedTextContentView----------->>  %f %f", size.width, size.height);
-    
-    
-    CGRect frame = _htmlView.frame;
+    CGRect frame = self.htmlView.frame;
     frame.size.height = size.height;
-    _htmlView.frame = frame;
-    
-    
-    
-    NSLog(@"attributedTextContentView----------->>   %f %f       //     %f %f", size.width, size.height , frame.size.width, frame.size.height);
-    
-    CGRect cellframe = self.frame;
-    
-    NSLog(@"attributedTextContentView----------->>   %f %f \n\t", cellframe.size.width, cellframe.size.height);
+    self.htmlView.frame = frame;
     
     [self.delegate relayoutContentHeigt:path with:size.height];
 }
@@ -273,7 +256,7 @@
     BOOL didUpdate = NO;
     
     // update all attachments that matchin this URL (possibly multiple images with same size)
-    for (DTTextAttachment *oneAttachment in [_htmlView.layoutFrame textAttachmentsWithPredicate:pred])
+    for (DTTextAttachment *oneAttachment in [self.htmlView.layoutFrame textAttachmentsWithPredicate:pred])
     {
         // update attachments that have no original size, that also sets the display size
         if (CGSizeEqualToSize(oneAttachment.originalSize, CGSizeZero))
@@ -287,7 +270,7 @@
     if (didUpdate)
     {
         // layout might have changed due to image sizes
-        [_htmlView relayoutText];
+        [self.htmlView relayoutText];
     }
 }
 
@@ -311,7 +294,7 @@
             
 //            if (fragment)
 //            {
-//                [_htmlView scrollToAnchorNamed:fragment animated:NO];
+//                [self.htmlView scrollToAnchorNamed:fragment animated:NO];
 //            }
         }
     }
@@ -338,10 +321,10 @@
 {
     if (gesture.state == UIGestureRecognizerStateRecognized)
     {
-        CGPoint location = [gesture locationInView:_htmlView];
-        NSUInteger tappedIndex = [_htmlView closestCursorIndexToPoint:location];
+        CGPoint location = [gesture locationInView:self.htmlView];
+        NSUInteger tappedIndex = [self.htmlView closestCursorIndexToPoint:location];
         
-        NSString *plainText = [_htmlView.attributedString string];
+        NSString *plainText = [self.htmlView.attributedString string];
         NSString *tappedChar = [plainText substringWithRange:NSMakeRange(tappedIndex, 1)];
         
         __block NSRange wordRange = NSMakeRange(0, 0);

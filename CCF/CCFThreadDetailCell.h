@@ -38,8 +38,6 @@
 
 @property (nonatomic, strong) id<CCFThreadDetailCellDelegate> delegate;
 
-@property (nonatomic, strong) CCFPost* post;
-
 -(void) setPost:(CCFPost *)post with:(NSIndexPath*) indexPath;
 
 

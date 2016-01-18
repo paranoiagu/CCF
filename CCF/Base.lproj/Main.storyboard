@@ -411,14 +411,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="【讨论】CCF客户端目前基本处于美化适配阶段，还有用&lt;=iOS 7 的同学么？【讨论】CCF客户端目前基本处于美化适配阶段，还有用&lt;=iOS 7 的同学么？" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GvG-S7-y7k">
-                                            <rect key="frame" x="8" y="30" width="584" height="45"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="马小甲" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDK-ou-6x0">
-                                            <rect key="frame" x="8" y="8" width="51" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="马小甲" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDK-ou-6x0">
+                                            <rect key="frame" x="8" y="8" width="51" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -427,15 +421,34 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSa-kv-R8G">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSa-kv-R8G">
                                             <rect key="frame" x="570" y="76" width="22" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="6zz-1m-JfJ"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【讨论】CCF客户端目前基本处于美化适配阶段，还有用&lt;=iOS 7 的同学么？【讨论】CCF客户端目前基本处于美化适配阶段，还有用&lt;=iOS 7 的同学么？" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GvG-S7-y7k">
+                                            <rect key="frame" x="8" y="27" width="584" height="48"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="leadingMargin" secondItem="GvG-S7-y7k" secondAttribute="leading" id="2GZ-6z-OnS"/>
+                                        <constraint firstAttribute="topMargin" secondItem="tDK-ou-6x0" secondAttribute="top" id="BpO-zi-tnW"/>
+                                        <constraint firstItem="eSa-kv-R8G" firstAttribute="top" secondItem="GvG-S7-y7k" secondAttribute="bottom" constant="1" id="I0B-Zc-hO6"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="tDK-ou-6x0" secondAttribute="leading" id="I6Q-P3-E8e"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="GvG-S7-y7k" secondAttribute="trailing" id="Sne-x0-gfs"/>
+                                        <constraint firstItem="eSa-kv-R8G" firstAttribute="trailing" secondItem="GvG-S7-y7k" secondAttribute="trailing" id="ZDU-7q-SNr"/>
+                                        <constraint firstItem="GvG-S7-y7k" firstAttribute="top" secondItem="O4O-1v-6IH" secondAttribute="topMargin" constant="19" id="b1h-uX-j5j"/>
+                                        <constraint firstItem="eSa-kv-R8G" firstAttribute="bottom" secondItem="O4O-1v-6IH" secondAttribute="bottomMargin" id="cKz-Bv-o2I"/>
+                                        <constraint firstItem="GvG-S7-y7k" firstAttribute="top" secondItem="tDK-ou-6x0" secondAttribute="bottom" constant="1" id="pSO-pr-Q3R"/>
+                                    </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.57414234511132045" green="0.42800746495536501" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="threadAuthor" destination="tDK-ou-6x0" id="Y48-18-2ms"/>
                                     <outlet property="threadPostCount" destination="eSa-kv-R8G" id="eoa-Jf-NkL"/>

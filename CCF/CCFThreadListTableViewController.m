@@ -17,6 +17,7 @@
 #import "MJRefresh.h"
 #import "WCPullRefreshControl.h"
 #import "CCFNewThreadViewController.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 #define TypePullRefresh 0
 #define TypeLoadMore 1
@@ -39,6 +40,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 180.0;
+    
     
     if (self.threadList == nil) {
         self.threadList = [NSMutableArray array];
@@ -165,6 +170,22 @@
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [tableView fd_heightForCellWithIdentifier:@"CCFThreadListCellIdentifier" configuration:^(CCFThreadListCell *cell) {
+        [self configureCell:cell atIndexPath:indexPath];
+    }];
+}
+
+- (void)configureCell:(CCFThreadListCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
+    
+    [cell setThreadList:self.threadList[indexPath.row]];
+}
+
+
+
+
+#pragma mark Controller跳转
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     

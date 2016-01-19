@@ -76,6 +76,7 @@
 		4D796C051C460D4200B3C62D /* NSUserDefaults+CCF.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */; };
 		4DB98FB31C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB98FB01C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m */; };
 		4DB98FB41C4E0F5A0081AF87 /* CCFUserEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB98FB21C4E0F5A0081AF87 /* CCFUserEntry.m */; };
+		4DB98FB61C4E33E00081AF87 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DB98FB51C4E33E00081AF87 /* logo.jpg */; };
 		4DEB34C31C47BBE400063CBB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */; };
 		4DEB34C61C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */; };
 		4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824B91C34C4C6005BB858 /* CCFForm.m */; };
@@ -214,6 +215,7 @@
 		4DB98FB01C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCFUserEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
 		4DB98FB11C4E0F5A0081AF87 /* CCFUserEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUserEntry.h; sourceTree = "<group>"; };
 		4DB98FB21C4E0F5A0081AF87 /* CCFUserEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUserEntry.m; sourceTree = "<group>"; };
+		4DB98FB51C4E33E00081AF87 /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
 		4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4DEB34C41C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+SimpleAction.h"; sourceTree = "<group>"; };
 		4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+SimpleAction.m"; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 		4D339D8E1C31454A0022A6A4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4DB98FB51C4E33E00081AF87 /* logo.jpg */,
 				4D339D8F1C31454A0022A6A4 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -658,6 +661,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D796B681C3BDCA800B3C62D /* DrawerView.xib in Resources */,
+				4DB98FB61C4E33E00081AF87 /* logo.jpg in Resources */,
 				3AA2D5181C3610C400F312CC /* carat-open.png in Resources */,
 				4D1EEBBC1C33D4FD0084F6E9 /* LoginViewController.xib in Resources */,
 				4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */,

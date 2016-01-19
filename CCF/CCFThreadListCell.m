@@ -83,9 +83,21 @@
         
          NSLog(@"NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
     } else{
-         NSLog(@"YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+        
+        
         CCFUserEntry * user = users.firstObject;
-        [self.avatarImage setImageWithURL:[CCFUrlBuilder buildAvatarURL:user.userAvatar]];
+        NSLog(@"YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY[%@]", user.userAvatar);
+        
+        if (user.userAvatar == nil) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"jpg"];
+            NSURL* url = [NSURL fileURLWithPath:path];
+
+            [self.avatarImage setImageWithURL:url];
+        } else{
+            
+            [self.avatarImage setImageWithURL:[CCFUrlBuilder buildAvatarURL:user.userAvatar]];
+        }
+        
     }
     
     

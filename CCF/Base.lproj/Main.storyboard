@@ -491,9 +491,12 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="avatarImage" destination="iZN-tK-62t" id="EB3-qo-WPD"/>
                                     <outlet property="threadAuthor" destination="tDK-ou-6x0" id="Y48-18-2ms"/>
+                                    <outlet property="threadCreateTime" destination="8BI-7v-S6q" id="dKs-Xc-sBL"/>
                                     <outlet property="threadPostCount" destination="eSa-kv-R8G" id="eoa-Jf-NkL"/>
                                     <outlet property="threadTitle" destination="GvG-S7-y7k" id="yjZ-qk-ssx"/>
+                                    <outlet property="threadType" destination="WbE-tS-fUt" id="u6o-6Y-cTI"/>
                                     <segue destination="TcI-Mw-KoO" kind="show" id="g6H-l4-rUB"/>
                                 </connections>
                             </tableViewCell>

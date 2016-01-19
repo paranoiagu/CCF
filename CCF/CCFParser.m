@@ -15,6 +15,7 @@
 #import "NSString+Regular.h"
 #import "CCFCoreDataManager.h"
 #import "NSUserDefaults+CCF.h"
+#import "NSString+Regular.h"
 
 @implementation CCFParser
 
@@ -59,7 +60,11 @@
             
             
             IGXMLNode * authorNode = threadListNode.children [3];
-            ccfthreadlist.threadAuthor = [authorNode text];
+
+            NSString * authorIdStr = [authorNode innerHtml];
+            ccfthreadlist.threadAuthorID = [authorIdStr stringWithRegular:@"\\d+"];
+            
+            ccfthreadlist.threadAuthorName = [authorNode text];
             
             
             IGXMLNode * commentCountNode = threadListNode.children [5];

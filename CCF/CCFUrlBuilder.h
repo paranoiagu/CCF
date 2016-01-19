@@ -37,4 +37,8 @@
 
 + (NSURL *) buildUploadFileURL;
 
++ (NSURL *) buildThreadFirtFloorByThreadId:(NSString *) threadID;
+
++ (NSURL *) buildAvatarURL:(NSString *) avatar;
+
 @end

@@ -32,6 +32,10 @@
 
 #define kCCFManageFile @"https://bbs.et8.net/bbs/newattachment.php?f=%@&poststarttime=%@&posthash=%@"
 
+#define kCCFThreadFloor @"https://bbs.et8.net/bbs/showpost.php?p=%@&postcount=1"
+
+#define kCCFAvatar @"https://bbs.et8.net/bbs/customavatars/%@"
+
 @implementation CCFUrlBuilder
 
 +(NSURL *)buildMemberURL:(NSString *)userId{
@@ -85,5 +89,13 @@
 
 +(NSURL *)buildManageFileURL:(NSString *)formId postTime:(NSString *)time postHash:(NSString *)hash{
     return [NSURL URLWithString:[NSString stringWithFormat:kCCFManageFile, formId, time, hash]];
+}
+
++(NSURL *)buildThreadFirtFloorByThreadId:(NSString *)threadID{
+    return [NSURL URLWithString:[NSString stringWithFormat:kCCFThreadFloor, threadID]];
+}
+
++(NSURL *)buildAvatarURL:(NSString *)avatar{
+    return [NSURL URLWithString:[NSString stringWithFormat:kCCFAvatar, avatar]];
 }
 @end

@@ -25,8 +25,6 @@
 
 + (NSURL *) buildReplyURL:(NSString *)threadId;
 
-+ (NSURL *) buildUserAvatarURL:(NSString *) avatar;
-
 + (NSURL *) buildFavFormURL;
 
 + (NSURL *) buildSearchUrl;

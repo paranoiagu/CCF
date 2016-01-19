@@ -272,6 +272,8 @@
         //avatar
         IGXMLNode * avatarNode = userInfoNode.children[1];
         NSString * avatarLink = [[[avatarNode children] [1] firstChild] attribute:@"src"];
+        avatarLink = [[avatarLink componentsSeparatedByString:@"/"]lastObject];
+        
         ccfuser.userAvatar = avatarLink;
         
         //rank

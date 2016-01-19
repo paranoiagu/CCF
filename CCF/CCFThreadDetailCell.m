@@ -11,6 +11,8 @@
 #import "CCFPost.h"
 #import <UIImageView+AFNetworking.h>
 #import "CCFUrlBuilder.h"
+#import "CCFCoreDataManager.h"
+#import "CCFUserEntry+CoreDataProperties.h"
 
 
 @interface CCFThreadDetailCell (){
@@ -20,6 +22,7 @@
     NSURL *lastActionLink;
     NSMutableSet *mediaPlayers;
     NSIndexPath * currentPath;
+    CCFCoreDataManager *_coreDateManager;
     
     BOOL _needsAdjustInsetsOnLayout;
 }
@@ -46,6 +49,8 @@
     
     self.htmlView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.htmlView.relayoutMask = DTAttributedTextContentViewRelayoutOnHeightChanged | DTAttributedTextContentViewRelayoutOnWidthChanged;
+    
+    _coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
     
 }
 
@@ -79,7 +84,26 @@
     self.louCeng.text = newPost.postLouCeng;
     self.postTime.text = newPost.postTime;
     
-    [self.avatarImage setImageWithURL:[CCFUrlBuilder buildUserAvatarURL:newPost.postUserInfo.userAvatar]];
+    NSString * avatar = newPost.postUserInfo.userAvatar;
+    
+    if ([avatar isEqualToString:@"no_avatar.gif"]) {
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"jpg"];
+        NSURL* url = [NSURL fileURLWithPath:path];
+        [self.avatarImage setImageWithURL:url];
+        
+    } else{
+        [self.avatarImage setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
+        
+        [_coreDateManager insertOneData:^(id src) {
+            
+            CCFUserEntry * user =(CCFUserEntry *)src;
+            
+            user.userID = newPost.postUserInfo.userID;
+            user.userAvatar = newPost.postUserInfo.userAvatar;
+        }];
+    }
+    
     
 }
 

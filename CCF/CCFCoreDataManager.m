@@ -11,8 +11,15 @@
 @implementation CCFCoreDataManager
 
 -(instancetype)initWithCCFCoreDataEntry:(CCFCoreDataEntry)enrty{
+    if (enrty == CCFCoreDataEntryForm) {
     
-    return [self initWithXcdatamodeld:kFormXcda andWithPersistentName:kFormDBName andWithEntryName:kFormEntry];
+        return [self initWithXcdatamodeld:kFormXcda andWithPersistentName:kFormDBName andWithEntryName:kFormEntry];
+    } else if (enrty == CCFCoreDataEntryUser){
+        
+        return [self initWithXcdatamodeld:kFormXcda andWithPersistentName:kFormDBName andWithEntryName:kUserEntry];
+    }
+    return nil;
+    
 }
 
 
@@ -21,5 +28,6 @@
         return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
     }];
 }
+
 
 @end

@@ -141,6 +141,18 @@
     }
 }
 
+-(void)insertOneData:(InsertOperation)operation{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    NSManagedObject *needInsert = [NSEntityDescription insertNewObjectForEntityForName:_entry inManagedObjectContext:context];
+    
+    operation(needInsert);
+    
+    NSError *error;
+    if(![context save:&error]) {
+        NSLog(@"不能保存：%@",[error localizedDescription]);
+    }
+}
 
 
 //查询
@@ -256,4 +268,6 @@
     
     return resultArray;
 }
+
+
 @end

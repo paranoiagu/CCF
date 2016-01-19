@@ -12,9 +12,14 @@
 #import "CCFUrlBuilder.h"
 #import "NSString+Regular.h"
 #import <UIImageView+AFNetworking.h>
+#import "CCFCoreDataManager.h"
+#import "CCFUserEntry+CoreDataProperties.h"
+
 
 @implementation CCFThreadListCell{
     CCFBrowser *_browser;
+    CCFCoreDataManager *_coreDateManager;
+    
 }
 
 @synthesize threadAuthor = _threadAuthor;
@@ -29,6 +34,7 @@
     self = [super initWithCoder:coder];
     if (self) {
         _browser = [[CCFBrowser alloc]init];
+        _coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
     }
     return self;
 }
@@ -50,19 +56,38 @@
     self.threadTitle.text = threadList.threadTitle;
     self.threadPostCount.text = [NSString stringWithFormat:@"%ld", threadList.threadTotalPostCount];
     
-    NSURL * url = [CCFUrlBuilder buildMemberURL:threadList.threadAuthorID];
-    
-    [_browser browseWithUrl:url :^(NSString* result) {
-        //https://bbs.et8.net/bbs/customavatars/thumbs/avatar46611_13.gif
-        
-        NSString * regular = [NSString stringWithFormat:@"/avatar%@_(\\d+).gif", threadList.threadAuthorID];
-        
-        NSString * avatar = [result stringWithRegular:regular];
-        
-        [self.avatarImage setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
-        
-        NSLog(@"KKKKKKKKKKKKKKKKK %@", avatar);
+    NSMutableArray * users = [_coreDateManager selectData:^NSPredicate *{
+       return [NSPredicate predicateWithFormat:@"userID = %@", threadList.threadAuthorID];
     }];
+    
+    if (users == nil || users.count == 0) {
+        NSURL * url = [CCFUrlBuilder buildMemberURL:threadList.threadAuthorID];
+        
+        [_browser browseWithUrl:url :^(NSString* result) {
+            
+            NSString * regular = [NSString stringWithFormat:@"/avatar%@_(\\d+).gif", threadList.threadAuthorID];
+            
+            NSString * avatar = [result stringWithRegular:regular];
+            
+            [_coreDateManager insertOneData:^(id src) {
+                
+                CCFUserEntry * user =(CCFUserEntry *)src;
+                
+                user.userID = threadList.threadAuthorID;
+                user.userAvatar = avatar;
+            }];
+            
+            [self.avatarImage setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
+           
+        }];
+        
+         NSLog(@"NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+    } else{
+         NSLog(@"YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+        CCFUserEntry * user = users.firstObject;
+        [self.avatarImage setImageWithURL:[CCFUrlBuilder buildAvatarURL:user.userAvatar]];
+    }
+    
     
 }
 @end

@@ -48,7 +48,6 @@
 		4D339D901C31454A0022A6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D339D8F1C31454A0022A6A4 /* main.m */; };
 		4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D339D921C31454A0022A6A4 /* AppDelegate.m */; };
 		4D339D991C31454A0022A6A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D971C31454A0022A6A4 /* Main.storyboard */; };
-		4D339D9C1C31454A0022A6A4 /* CCF.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D339D9A1C31454A0022A6A4 /* CCF.xcdatamodeld */; };
 		4D339D9E1C31454B0022A6A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D9D1C31454B0022A6A4 /* Assets.xcassets */; };
 		4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */; };
 		4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796B5F1C3BC17800B3C62D /* DrawerView.m */; };
@@ -75,6 +74,8 @@
 		4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF91C44BE7800B3C62D /* CoreDataManager.m */; };
 		4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */; };
 		4D796C051C460D4200B3C62D /* NSUserDefaults+CCF.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */; };
+		4DB98FB31C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB98FB01C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m */; };
+		4DB98FB41C4E0F5A0081AF87 /* CCFUserEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB98FB21C4E0F5A0081AF87 /* CCFUserEntry.m */; };
 		4DEB34C31C47BBE400063CBB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */; };
 		4DEB34C61C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */; };
 		4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824B91C34C4C6005BB858 /* CCFForm.m */; };
@@ -159,7 +160,6 @@
 		4D339D911C31454A0022A6A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4D339D921C31454A0022A6A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4D339D981C31454A0022A6A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4D339D9B1C31454A0022A6A4 /* CCF.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CCF.xcdatamodel; sourceTree = "<group>"; };
 		4D339D9D1C31454B0022A6A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D339DA01C31454B0022A6A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D339DA21C31454B0022A6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -210,6 +210,10 @@
 		4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFCoreDataManager.m; sourceTree = "<group>"; };
 		4D796C031C460D4200B3C62D /* NSUserDefaults+CCF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+CCF.h"; sourceTree = "<group>"; };
 		4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+CCF.m"; sourceTree = "<group>"; };
+		4DB98FAF1C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCFUserEntry+CoreDataProperties.h"; sourceTree = "<group>"; };
+		4DB98FB01C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCFUserEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
+		4DB98FB11C4E0F5A0081AF87 /* CCFUserEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUserEntry.h; sourceTree = "<group>"; };
+		4DB98FB21C4E0F5A0081AF87 /* CCFUserEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUserEntry.m; sourceTree = "<group>"; };
 		4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4DEB34C41C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+SimpleAction.h"; sourceTree = "<group>"; };
 		4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+SimpleAction.m"; sourceTree = "<group>"; };
@@ -406,7 +410,6 @@
 				4D339D9D1C31454B0022A6A4 /* Assets.xcassets */,
 				3A187B321C40A452003DA5C2 /* download.png */,
 				4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */,
-				4D339D9A1C31454A0022A6A4 /* CCF.xcdatamodeld */,
 				4D339DA21C31454B0022A6A4 /* Info.plist */,
 				4D339D8E1C31454A0022A6A4 /* Supporting Files */,
 			);
@@ -487,6 +490,12 @@
 		4D796BEE1C44B59100B3C62D /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */,
+				4DB98FAF1C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.h */,
+				4DB98FB01C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m */,
+				4DB98FB11C4E0F5A0081AF87 /* CCFUserEntry.h */,
+				4DB98FB21C4E0F5A0081AF87 /* CCFUserEntry.m */,
+				4DB98F9F1C4E04690081AF87 /* User */,
 				4D796BFC1C44CCCE00B3C62D /* Post */,
 				4D796BFB1C44CCBF00B3C62D /* Form */,
 				4D796BF81C44BE7800B3C62D /* CoreDataManager.h */,
@@ -500,7 +509,6 @@
 		4D796BFB1C44CCBF00B3C62D /* Form */ = {
 			isa = PBXGroup;
 			children = (
-				4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */,
 				4D796BF21C44BBA000B3C62D /* FormEntry+CoreDataProperties.h */,
 				4D796BF31C44BBA000B3C62D /* FormEntry+CoreDataProperties.m */,
 				4D796BF41C44BBA000B3C62D /* FormEntry.h */,
@@ -551,6 +559,13 @@
 				4D796BE01C436A5400B3C62D /* CCFSearchResultPage.m */,
 			);
 			name = "Thread-Search";
+			sourceTree = "<group>";
+		};
+		4DB98F9F1C4E04690081AF87 /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 		4DF824C01C34F098005BB858 /* CCFDao */ = {
@@ -735,6 +750,7 @@
 				4D796BDE1C43675100B3C62D /* CCFSearchResult.m in Sources */,
 				4D796BF11C44B6F800B3C62D /* Form.xcdatamodeld in Sources */,
 				4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */,
+				4DB98FB41C4E0F5A0081AF87 /* CCFUserEntry.m in Sources */,
 				4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */,
 				4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */,
 				4D796BF71C44BBA000B3C62D /* FormEntry.m in Sources */,
@@ -748,7 +764,7 @@
 				4D796BD81C43576700B3C62D /* CCFSearchViewController.m in Sources */,
 				4D796BF61C44BBA000B3C62D /* FormEntry+CoreDataProperties.m in Sources */,
 				4D796C051C460D4200B3C62D /* NSUserDefaults+CCF.m in Sources */,
-				4D339D9C1C31454A0022A6A4 /* CCF.xcdatamodeld in Sources */,
+				4DB98FB31C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m in Sources */,
 				3A2ECF541C36C0EB00CD3968 /* CCFThreadList.m in Sources */,
 				3AA2D50F1C36105100F312CC /* CCFFormTableViewController.m in Sources */,
 				3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */,
@@ -941,16 +957,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		4D339D9A1C31454A0022A6A4 /* CCF.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4D339D9B1C31454A0022A6A4 /* CCF.xcdatamodel */,
-			);
-			currentVersion = 4D339D9B1C31454A0022A6A4 /* CCF.xcdatamodel */;
-			path = CCF.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

@@ -10,6 +10,10 @@
 #import <CoreData/CoreData.h>
 
 typedef void(^Operation) (NSManagedObject * target, id src);
+
+
+typedef void(^InsertOperation) (id src);
+
 typedef NSPredicate *(^SelectOperation) ();
 
 
@@ -28,11 +32,14 @@ typedef NSPredicate *(^SelectOperation) ();
 
 - (void)insertData:(NSMutableArray*)dataArray operation:(Operation) operation;
 
+- (void)insertOneData:(InsertOperation) operation;
+
 
 // 取出所有的数据
 - (NSMutableArray*) selectData;
 
 - (NSMutableArray*) selectData:(SelectOperation) operation;
+
 
 //查询
 - (NSMutableArray*)selectData:(int)pageSize andOffset:(int)currentPage;

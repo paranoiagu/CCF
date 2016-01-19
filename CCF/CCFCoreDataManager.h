@@ -10,7 +10,9 @@
 
 typedef NS_ENUM(NSInteger, CCFCoreDataEntry) {
     CCFCoreDataEntryForm = 0,
-    CCFCoreDataEntryPost
+    CCFCoreDataEntryPost,
+    CCFCoreDataEntryUser
+    
 };
 
 
@@ -18,6 +20,8 @@ typedef NS_ENUM(NSInteger, CCFCoreDataEntry) {
 #define kFormEntry @"FormEntry"
 #define kFormXcda @"Form"
 #define kFormDBName @"Form.sqlite"
+
+#define kUserEntry @"CCFUserEntry"
 
 
 

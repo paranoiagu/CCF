@@ -53,7 +53,13 @@
 
 -(void)setThreadList:(CCFThreadList *)threadList{
     self.threadAuthor.text = threadList.threadAuthorName;
-    self.threadTitle.text = threadList.threadTitle;
+    
+    NSString * type = [threadList.threadTitle stringWithRegular:@"【.{1,4}】"];
+    
+    self.threadTitle.text = type == nil ? threadList.threadTitle : [threadList.threadTitle substringFromIndex:type.length];
+    
+    self.threadType.text = type == nil ? @"【讨论】" : type;
+    
     self.threadPostCount.text = [NSString stringWithFormat:@"%ld", threadList.threadTotalPostCount];
     
     NSMutableArray * users = [_coreDateManager selectData:^NSPredicate *{
@@ -80,14 +86,10 @@
             [self.avatarImage setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
            
         }];
-        
-         NSLog(@"NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+
     } else{
         
-        
         CCFUserEntry * user = users.firstObject;
-        NSLog(@"YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY[%@]", user.userAvatar);
-        
         if (user.userAvatar == nil) {
             NSString *path = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"jpg"];
             NSURL* url = [NSURL fileURLWithPath:path];

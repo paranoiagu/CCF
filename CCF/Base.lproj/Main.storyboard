@@ -404,11 +404,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFThreadListCellIdentifier" rowHeight="150" id="TN0-61-EXD" customClass="CCFThreadListCell">
-                                <rect key="frame" x="0.0" y="92" width="600" height="150"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFThreadListCellIdentifier" rowHeight="110" id="TN0-61-EXD" customClass="CCFThreadListCell">
+                                <rect key="frame" x="0.0" y="92" width="600" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TN0-61-EXD" id="O4O-1v-6IH">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="110"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vS-K9-48K" userLabel="devider">
@@ -440,17 +440,10 @@
                                             <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GvG-S7-y7k">
-                                            <rect key="frame" x="8" y="61" width="584" height="61"/>
-                                            <string key="text">CCF客户端目前基本处于美化适配阶段，还有用&lt;=iOS 7 的同学么CCF客户端目前基本处于美化适配阶段，还有用&lt;=iOS 7 的同学么？CCF客户端目前基本处于美化适配阶段，还有用&lt;=iOS 7 的同学么CCF客户端目前基本处于美化适配阶段，还有用&lt;=iOS 7 的同学么？</string>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GvG-S7-y7k">
+                                            <rect key="frame" x="8" y="61" width="584" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-01-01，12:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8BI-7v-S6q">
-                                            <rect key="frame" x="61" y="32" width="146" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="讨论" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbE-tS-fUt">
@@ -458,6 +451,12 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="vDV-Cf-e2s"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-01-01，12:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8BI-7v-S6q">
+                                            <rect key="frame" x="462" y="84" width="130" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -470,18 +469,26 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="GvG-S7-y7k" secondAttribute="bottom" constant="20" id="9ix-Ro-re5"/>
                                         <constraint firstItem="tDK-ou-6x0" firstAttribute="leading" secondItem="iZN-tK-62t" secondAttribute="trailing" constant="8" id="CFw-pq-o88"/>
                                         <constraint firstItem="GvG-S7-y7k" firstAttribute="top" secondItem="iZN-tK-62t" secondAttribute="bottom" constant="8" id="GRa-ew-Hmq"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="8BI-7v-S6q" secondAttribute="bottom" id="JhF-Q3-9V4"/>
                                         <constraint firstItem="eSa-kv-R8G" firstAttribute="top" secondItem="0vS-K9-48K" secondAttribute="bottom" constant="7" id="LPC-bg-JYf"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="8BI-7v-S6q" secondAttribute="trailing" id="Pol-Ih-fAX"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="iZN-tK-62t" secondAttribute="leading" id="UmN-xx-TRw"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="WbE-tS-fUt" secondAttribute="trailing" id="VDH-bo-V7l"/>
                                         <constraint firstItem="tDK-ou-6x0" firstAttribute="top" secondItem="0vS-K9-48K" secondAttribute="bottom" constant="8" id="VOz-AA-dZH"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="GvG-S7-y7k" secondAttribute="trailing" id="Xvr-jC-xhx"/>
-                                        <constraint firstItem="8BI-7v-S6q" firstAttribute="top" secondItem="tDK-ou-6x0" secondAttribute="bottom" constant="5" id="iB8-Tk-9xD"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="GvG-S7-y7k" secondAttribute="bottom" constant="20" id="Y4s-uV-O3X"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="GvG-S7-y7k" secondAttribute="leading" id="pdw-4w-UUm"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="GvG-S7-y7k" secondAttribute="bottom" constant="60" id="roV-Sj-rV7"/>
                                         <constraint firstItem="iZN-tK-62t" firstAttribute="top" secondItem="0vS-K9-48K" secondAttribute="bottom" constant="7" id="sJY-MB-UNB"/>
-                                        <constraint firstItem="8BI-7v-S6q" firstAttribute="leading" secondItem="iZN-tK-62t" secondAttribute="trailing" constant="8" id="sXN-jt-8NE"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="0vS-K9-48K" secondAttribute="trailing" constant="-8" id="v6T-yf-1Pc"/>
                                         <constraint firstItem="0vS-K9-48K" firstAttribute="top" secondItem="O4O-1v-6IH" secondAttribute="topMargin" constant="-8" id="y0i-7W-rb2"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="9ix-Ro-re5"/>
+                                            <exclude reference="roV-Sj-rV7"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="threadAuthor" destination="tDK-ou-6x0" id="Y48-18-2ms"/>

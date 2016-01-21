@@ -20,7 +20,7 @@
                     <rect key="frame" x="102" y="209" width="75" height="30"/>
                     <state key="normal" title="订阅的论坛"/>
                     <connections>
-                        <action selector="changViewController:" destination="-1" eventType="touchUpInside" id="d6R-bb-fYh"/>
+                        <action selector="showMyFavForm:" destination="-1" eventType="touchUpInside" id="MDc-7L-0j5"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="EMP-9K-WJf">
@@ -29,22 +29,37 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opA-uL-w8P">
                     <rect key="frame" x="109" y="255" width="60" height="30"/>
                     <state key="normal" title="我的私信"/>
+                    <connections>
+                        <action selector="showMessage:" destination="-1" eventType="touchUpInside" id="s9W-AM-CU8"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Dj-gl-lyY">
                     <rect key="frame" x="102" y="293" width="75" height="30"/>
                     <state key="normal" title="收藏的帖子"/>
+                    <connections>
+                        <action selector="showFavThread:" destination="-1" eventType="touchUpInside" id="vJ5-4X-jxj"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4GR-Q0-M8U">
                     <rect key="frame" x="110" y="338" width="60" height="30"/>
                     <state key="normal" title="查看新帖"/>
+                    <connections>
+                        <action selector="showNewThread:" destination="-1" eventType="touchUpInside" id="um0-qo-gNh"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCu-GK-wSI">
                     <rect key="frame" x="109" y="383" width="60" height="30"/>
                     <state key="normal" title="我的回帖"/>
+                    <connections>
+                        <action selector="showMyPost:" destination="-1" eventType="touchUpInside" id="6GU-Nq-09o"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsm-8B-AfT">
                     <rect key="frame" x="109" y="426" width="60" height="30"/>
                     <state key="normal" title="我的主题"/>
+                    <connections>
+                        <action selector="showMyThread:" destination="-1" eventType="touchUpInside" id="1KT-qx-UQn"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gwl-fW-8Z8">
                     <rect key="frame" x="213" y="12" width="72" height="22"/>

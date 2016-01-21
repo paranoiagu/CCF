@@ -247,15 +247,30 @@
     }
 }
 
-- (IBAction)changViewController:(id)sender {
+- (IBAction)showMyFavForm:(id)sender {
     if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
-
+        
         CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
         CCFFavFormController * favController = [storyboard instantiateViewControllerWithIdentifier:kCCFFavFormController];
         [controller setRootViewController:favController];
     }
     
+}
+
+- (IBAction)showMessage:(id)sender {
+}
+
+- (IBAction)showFavThread:(id)sender {
+}
+
+- (IBAction)showNewThread:(id)sender {
+}
+
+- (IBAction)showMyPost:(id)sender {
+}
+
+- (IBAction)showMyThread:(id)sender {
 }
 
 - (void) showRightDrawerWithAdim:(UIView *)view{

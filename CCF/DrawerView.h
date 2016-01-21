@@ -56,6 +56,13 @@ typedef NS_ENUM(NSInteger, DrawerIndex) {
 
 -(void)openRightDrawer;
 -(void)closeRightDrawer;
-- (IBAction)changViewController:(id)sender;
+
+- (IBAction)showMyFavForm:(id)sender;
+- (IBAction)showMessage:(id)sender;
+- (IBAction)showFavThread:(id)sender;
+- (IBAction)showNewThread:(id)sender;
+- (IBAction)showMyPost:(id)sender;
+- (IBAction)showMyThread:(id)sender;
+
 
 @end

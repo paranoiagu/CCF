@@ -87,7 +87,7 @@
             CCFParser *parser = [[CCFParser alloc]init];
             
             NSMutableArray<CCFThreadList *> * threadList = [parser parseThreadListFromHtml:result withThread:entry.urlId andContainsTop:YES];
-            
+            //logo
             totalPage = (int)threadList.lastObject.threadTotalListPage;
             
             if (page == 1) {

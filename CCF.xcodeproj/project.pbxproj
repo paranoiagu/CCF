@@ -367,7 +367,7 @@
 			children = (
 				4D796BEE1C44B59100B3C62D /* Core Data */,
 				4DF824BB1C34E5EF005BB858 /* ccf.json */,
-				4D796C011C45F38400B3C62D /* Form */,
+				4D796C011C45F38400B3C62D /* JSONModel */,
 				4D796C001C45F2E100B3C62D /* Thread-Normal */,
 				4D796C021C45F99000B3C62D /* Thread-Search */,
 			);
@@ -544,7 +544,7 @@
 			name = "Thread-Normal";
 			sourceTree = "<group>";
 		};
-		4D796C011C45F38400B3C62D /* Form */ = {
+		4D796C011C45F38400B3C62D /* JSONModel */ = {
 			isa = PBXGroup;
 			children = (
 				4DF824B81C34C4C6005BB858 /* CCFFormJSONModel.h */,
@@ -552,7 +552,7 @@
 				4DF824BD1C34E9EF005BB858 /* CCFFormTreeJSONModel.h */,
 				4DF824BE1C34E9EF005BB858 /* CCFFormTreeJSONModel.m */,
 			);
-			name = Form;
+			name = JSONModel;
 			sourceTree = "<group>";
 		};
 		4D796C021C45F99000B3C62D /* Thread-Search */ = {

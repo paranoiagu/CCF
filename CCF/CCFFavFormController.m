@@ -13,6 +13,7 @@
 #import "CCFParser.h"
 #import "CCFCoreDataManager.h"
 #import "NSUserDefaults+CCF.h"
+#import "CCFFavFormControllerCell.h"
 
 @interface CCFFavFormController (){
     CCFBrowser *_browser;
@@ -66,5 +67,11 @@
     return _favForms.count;
 }
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString * ID = @"CCFFavFormControllerCell";
+    CCFFavFormControllerCell * cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    
+    return cell;
+}
 
 @end

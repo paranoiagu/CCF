@@ -8,10 +8,12 @@
 
 #import "CCFFormDao.h"
 #import "CCFFormTreeJSONModel.h"
+#import "CCFFormJSONModel.h"
 
 @implementation CCFFormDao
 
--(CCFFormTreeJSONModel *)parseCCFForms:(NSString *)jsonFilePath{
+
+-(NSArray<CCFFormJSONModel*> *)parseCCFForms:(NSString *)jsonFilePath{
     NSError *error;
     
     NSData *jsonData = [[NSData alloc]initWithContentsOfFile:jsonFilePath];
@@ -19,11 +21,14 @@
     // 系统自带的json解析方法
     //id jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
     //[jsonObject objectForKey:@"Cameras"];
+    
+    
     CCFFormTreeJSONModel *forms = [[CCFFormTreeJSONModel alloc] initWithData:jsonData error:&error];
     
     
-    return forms;
-    
+    return forms.ccfforms;
+
 }
+
 
 @end

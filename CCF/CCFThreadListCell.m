@@ -62,9 +62,9 @@
     
     self.threadPostCount.text = [NSString stringWithFormat:@"%ld", threadList.threadTotalPostCount];
     
-    NSMutableArray * users = [_coreDateManager selectData:^NSPredicate *{
+    NSMutableArray * users = [[_coreDateManager selectData:^NSPredicate *{
        return [NSPredicate predicateWithFormat:@"userID = %@", threadList.threadAuthorID];
-    }];
+    }] copy];
     
     if (users == nil || users.count == 0) {
         NSURL * url = [CCFUrlBuilder buildMemberURL:threadList.threadAuthorID];

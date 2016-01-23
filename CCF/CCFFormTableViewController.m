@@ -11,7 +11,6 @@
 #import "CCFThreadViewCell.h"
 #import "CCFFormSectionInfo.h"
 #import "CCFFormHeaderView.h"
-#import "CCFFormJSONModel.h"
 #import "CCFFormDao.h"
 
 #import <AFNetworking.h>
@@ -141,14 +140,14 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
         // For each play, set up a corresponding SectionInfo object to contain the default height for each row.
         NSMutableArray *infoArray = [[NSMutableArray alloc] init];
         
-        for (CCFFormJSONModel *play in self.forms) {
+        for (CCFForm *play in self.forms) {
             
             CCFFormSectionInfo *sectionInfo = [[CCFFormSectionInfo alloc] init];
-            sectionInfo.play = play;
+            sectionInfo.forms = play;
             sectionInfo.open = NO;
             
             NSNumber *defaultRowHeight = @(DEFAULT_ROW_HEIGHT);
-            NSInteger countOfQuotations = [[sectionInfo.play valueForKey:@"childForms" ] count];
+            NSInteger countOfQuotations = [[sectionInfo.forms valueForKey:@"childForms" ] count];
             for (NSInteger i = 0; i < countOfQuotations; i++) {
                 [sectionInfo insertObject:defaultRowHeight inRowHeightsAtIndex:i];
             }
@@ -163,19 +162,9 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 - (void)initplays {
     
     NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
-    CCFFormTreeJSONModel * ccfFromTree = [[[CCFFormDao alloc]init] parseCCFForms:path];
+    NSArray<CCFFormJSONModel*> * forms = [[[CCFFormDao alloc]init] parseCCFForms:path];
     
-    self.forms = [ccfFromTree.ccfforms copy];
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    self.forms = [forms mutableCopy];
     
     
     
@@ -241,7 +230,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     CCFFormSectionInfo *sectionInfo = (self.sectionInfoArray)[section];
-    NSInteger numStoriesInSection = [[sectionInfo.play valueForKey:@"childForms" ] count];
+    NSInteger numStoriesInSection = [[sectionInfo.forms valueForKey:@"childForms" ] count];
     
     return sectionInfo.open ? numStoriesInSection : 0;
 }
@@ -271,7 +260,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
         cell.longPressRecognizer = nil;
     }
     
-    CCFFormJSONModel *play = (CCFFormJSONModel *)[(self.sectionInfoArray)[indexPath.section] play];
+    CCFFormJSONModel *play = (CCFFormJSONModel *)[(self.sectionInfoArray)[indexPath.section] forms];
     cell.quotation = [play valueForKey:@"childForms"][indexPath.row];//(play.quotations)[indexPath.row];
     
     return cell;
@@ -284,7 +273,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     CCFFormSectionInfo *sectionInfo = (self.sectionInfoArray)[section];
     sectionInfo.headerView = sectionHeaderView;
     
-    sectionHeaderView.titleLabel.text = [sectionInfo.play valueForKey:@"formName"];
+    sectionHeaderView.titleLabel.text = [sectionInfo.forms valueForKey:@"formName"];
     sectionHeaderView.section = section;
     sectionHeaderView.delegate = self;
     
@@ -317,7 +306,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     /*
      Create an array containing the index paths of the rows to insert: These correspond to the rows for each quotation in the current section.
      */
-    NSInteger countOfRowsToInsert = [[sectionInfo.play valueForKey:@"childForms" ] count];
+    NSInteger countOfRowsToInsert = [[sectionInfo.forms valueForKey:@"childForms" ] count];
     NSMutableArray *indexPathsToInsert = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < countOfRowsToInsert; i++) {
         [indexPathsToInsert addObject:[NSIndexPath indexPathForRow:i inSection:sectionOpened]];
@@ -334,7 +323,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
         CCFFormSectionInfo *previousOpenSection = (self.sectionInfoArray)[previousOpenSectionIndex];
         previousOpenSection.open = NO;
         [previousOpenSection.headerView toggleOpenWithUserAction:NO];
-        NSInteger countOfRowsToDelete = [[previousOpenSection.play valueForKey:@"childForms" ] count];
+        NSInteger countOfRowsToDelete = [[previousOpenSection.forms valueForKey:@"childForms" ] count];
         for (NSInteger i = 0; i < countOfRowsToDelete; i++) {
             [indexPathsToDelete addObject:[NSIndexPath indexPathForRow:i inSection:previousOpenSectionIndex]];
         }
@@ -487,8 +476,8 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 - (void)sendEmailForEntryAtIndexPath:(NSIndexPath *)indexPath {
     
-    CCFFormJSONModel *play = self.forms[indexPath.section];
-    CCFFormJSONModel *quotation = [play valueForKey:@"childForms"][indexPath.row];
+    CCFFormJSONModel * selectForm = self.forms[indexPath.section];
+    CCFForm *quotation = [selectForm valueForKey:@"childForms"][indexPath.row];
     
     // In production, send the appropriate message.
     NSLog(@"Send email using quotation:\n%@", [quotation valueForKey:@"formName"]);

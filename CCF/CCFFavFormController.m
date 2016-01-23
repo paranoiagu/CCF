@@ -47,7 +47,7 @@
         }];
     } else{
         CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
-        _favForms = [manager selectFavForms:userDef.favFormIds];
+        _favForms = [[manager selectFavForms:userDef.favFormIds] mutableCopy];
         [self.tableView reloadData];
     }
 
@@ -70,6 +70,10 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * ID = @"CCFFavFormControllerCell";
     CCFFavFormControllerCell * cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    
+    FormEntry * entry = _favForms[indexPath.row];
+    
+    cell.form.text = [entry formName];
     
     return cell;
 }

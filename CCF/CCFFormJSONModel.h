@@ -9,17 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "JSONModel.h"
 
-@protocol CCFForm
+@protocol CCFFormJSONModel
 @end
 
 
-@interface CCFForm : JSONModel
+@interface CCFFormJSONModel : JSONModel
 
 @property (nonatomic, assign) int formId;
 @property (nonatomic, strong) NSString * formName;
 @property (nonatomic, assign) int parentFormId;
 
-@property (nonatomic, strong) NSMutableArray<CCFForm> * childForms;
+@property (nonatomic, strong) NSMutableArray<CCFFormJSONModel> * childForms;
 @property (nonatomic, assign) int isNeedLogin;
 
 

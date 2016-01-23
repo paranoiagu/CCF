@@ -7,7 +7,7 @@
 //
 
 #import "CCFFavFormController.h"
-#import "CCFForm.h"
+#import "CCFFormJSONModel.h"
 #import "CCFUrlBuilder.h"
 #import "CCFBrowser.h"
 #import "CCFParser.h"
@@ -17,7 +17,7 @@
 
 @interface CCFFavFormController (){
     CCFBrowser *_browser;
-    NSMutableArray<CCFForm *> * _favForms;
+    NSMutableArray<CCFFormJSONModel *> * _favForms;
 }
 
 @end
@@ -74,7 +74,7 @@
     static NSString * ID = @"CCFFavFormControllerCell";
     CCFFavFormControllerCell * cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
-    CCFForm * form = _favForms[indexPath.row];
+    CCFFormJSONModel * form = _favForms[indexPath.row];
     
     NSLog(@"----------> %@", form.formName);
     

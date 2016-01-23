@@ -7,7 +7,7 @@
 //
 
 #import "CoreDataManager.h"
-#import "CCFForm.h"
+#import "CCFFormJSONModel.h"
 
 typedef NS_ENUM(NSInteger, CCFCoreDataEntry) {
     CCFCoreDataEntryForm = 0,
@@ -30,6 +30,6 @@ typedef NS_ENUM(NSInteger, CCFCoreDataEntry) {
 
 -(instancetype)initWithCCFCoreDataEntry:(CCFCoreDataEntry) enrty;
 
--(NSArray<CCFForm *> *)selectFavForms:(NSArray *) ids;
+-(NSArray<CCFFormJSONModel *> *)selectFavForms:(NSArray *) ids;
 
 @end

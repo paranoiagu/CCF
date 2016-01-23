@@ -6,15 +6,15 @@
 //  Copyright © 2015年 andforce. All rights reserved.
 //
 
-#import "CCFFormTree.h"
+#import "CCFFormTreeJSONModel.h"
 
-@implementation CCFFormTree
+@implementation CCFFormTreeJSONModel
 
--(NSArray<CCFForm*> *)filterByCCFUser:(BOOL)logdined{
+-(NSArray<CCFFormJSONModel*> *)filterByCCFUser:(BOOL)logdined{
     if (_ccfforms == nil) {
         return nil;
     }
-    NSMutableArray<CCFForm> * filtered = [NSMutableArray<CCFForm> array];
+    NSMutableArray<CCFFormJSONModel> * filtered = [NSMutableArray<CCFFormJSONModel> array];
     
     if (logdined) {
         return _ccfforms;
@@ -23,17 +23,17 @@
     NSUInteger count = _ccfforms.count;
     
     for (int i = 0; i < count; i++) {
-        CCFForm * form = _ccfforms[i];
+        CCFFormJSONModel * form = _ccfforms[i];
         if (form.isNeedLogin == 0) {
             [filtered addObject:form];
         }
     }
     
-    for (CCFForm * form in filtered) {
+    for (CCFFormJSONModel * form in filtered) {
 
-        NSMutableArray<CCFForm> *childForms = form.childForms;
+        NSMutableArray<CCFFormJSONModel> *childForms = form.childForms;
         if (childForms != nil && childForms.count > 0) {
-            for (CCFForm * child in childForms) {
+            for (CCFFormJSONModel * child in childForms) {
             
                 if (child.isNeedLogin == 1) {
                     [childForms removeObject:childForms];

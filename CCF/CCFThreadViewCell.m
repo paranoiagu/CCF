@@ -49,11 +49,11 @@
 
 #import "CCFThreadViewCell.h"
 #import "APLHighlightingTextView.h"
-#import "CCFForm.h"
+#import "CCFFormJSONModel.h"
 
 @implementation CCFThreadViewCell
 
-- (void)setQuotation:(CCFForm *)newQuotation {
+- (void)setQuotation:(CCFFormJSONModel *)newQuotation {
  
     if (_quotation != newQuotation) {
         _quotation = newQuotation;

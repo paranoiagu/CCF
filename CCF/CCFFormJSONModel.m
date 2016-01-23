@@ -6,9 +6,9 @@
 //  Copyright © 2015年 andforce. All rights reserved.
 //
 
-#import "CCFForm.h"
+#import "CCFFormJSONModel.h"
 
-@implementation CCFForm
+@implementation CCFFormJSONModel
 
 
 @end

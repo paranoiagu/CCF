@@ -55,12 +55,12 @@
 
 @class CCFFormHeaderView;
 
-@class CCFForm;
+@class CCFFormJSONModel;
 
 @interface CCFFormSectionInfo : NSObject 
 
 @property (getter = isOpen) BOOL open;
-@property CCFForm *play;
+@property CCFFormJSONModel *play;
 @property CCFFormHeaderView *headerView;
 
 @property (nonatomic) NSMutableArray *rowHeights;

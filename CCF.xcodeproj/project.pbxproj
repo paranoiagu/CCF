@@ -79,9 +79,9 @@
 		4DB98FB61C4E33E00081AF87 /* logo in Resources */ = {isa = PBXBuildFile; fileRef = 4DB98FB51C4E33E00081AF87 /* logo */; };
 		4DEB34C31C47BBE400063CBB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */; };
 		4DEB34C61C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */; };
-		4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824B91C34C4C6005BB858 /* CCFForm.m */; };
+		4DF824BA1C34C4C6005BB858 /* CCFFormJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824B91C34C4C6005BB858 /* CCFFormJSONModel.m */; };
 		4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DF824BB1C34E5EF005BB858 /* ccf.json */; };
-		4DF824BF1C34E9EF005BB858 /* CCFFormTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824BE1C34E9EF005BB858 /* CCFFormTree.m */; };
+		4DF824BF1C34E9EF005BB858 /* CCFFormTreeJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824BE1C34E9EF005BB858 /* CCFFormTreeJSONModel.m */; };
 		4DF824C31C34F0B2005BB858 /* CCFFormDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824C21C34F0B2005BB858 /* CCFFormDao.m */; };
 		FF75782265EC6BD32854A29B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7066804BD439AE15BAD99B97 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -220,11 +220,11 @@
 		4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4DEB34C41C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+SimpleAction.h"; sourceTree = "<group>"; };
 		4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+SimpleAction.m"; sourceTree = "<group>"; };
-		4DF824B81C34C4C6005BB858 /* CCFForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForm.h; sourceTree = "<group>"; };
-		4DF824B91C34C4C6005BB858 /* CCFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForm.m; sourceTree = "<group>"; };
+		4DF824B81C34C4C6005BB858 /* CCFFormJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFormJSONModel.h; sourceTree = "<group>"; };
+		4DF824B91C34C4C6005BB858 /* CCFFormJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormJSONModel.m; sourceTree = "<group>"; };
 		4DF824BB1C34E5EF005BB858 /* ccf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ccf.json; sourceTree = "<group>"; };
-		4DF824BD1C34E9EF005BB858 /* CCFFormTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFormTree.h; sourceTree = "<group>"; };
-		4DF824BE1C34E9EF005BB858 /* CCFFormTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormTree.m; sourceTree = "<group>"; };
+		4DF824BD1C34E9EF005BB858 /* CCFFormTreeJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFormTreeJSONModel.h; sourceTree = "<group>"; };
+		4DF824BE1C34E9EF005BB858 /* CCFFormTreeJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormTreeJSONModel.m; sourceTree = "<group>"; };
 		4DF824C11C34F0B2005BB858 /* CCFFormDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFormDao.h; sourceTree = "<group>"; };
 		4DF824C21C34F0B2005BB858 /* CCFFormDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormDao.m; sourceTree = "<group>"; };
 		7066804BD439AE15BAD99B97 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -547,10 +547,10 @@
 		4D796C011C45F38400B3C62D /* Form */ = {
 			isa = PBXGroup;
 			children = (
-				4DF824B81C34C4C6005BB858 /* CCFForm.h */,
-				4DF824B91C34C4C6005BB858 /* CCFForm.m */,
-				4DF824BD1C34E9EF005BB858 /* CCFFormTree.h */,
-				4DF824BE1C34E9EF005BB858 /* CCFFormTree.m */,
+				4DF824B81C34C4C6005BB858 /* CCFFormJSONModel.h */,
+				4DF824B91C34C4C6005BB858 /* CCFFormJSONModel.m */,
+				4DF824BD1C34E9EF005BB858 /* CCFFormTreeJSONModel.h */,
+				4DF824BE1C34E9EF005BB858 /* CCFFormTreeJSONModel.m */,
 			);
 			name = Form;
 			sourceTree = "<group>";
@@ -743,7 +743,7 @@
 				4D796BC91C3DFA6400B3C62D /* WCGraintCircleLayer.m in Sources */,
 				3AA2D5061C36103C00F312CC /* CCFFormSectionInfo.m in Sources */,
 				3A9FEDE21C3438AC00F30885 /* NSString+Kit.m in Sources */,
-				4DF824BF1C34E9EF005BB858 /* CCFFormTree.m in Sources */,
+				4DF824BF1C34E9EF005BB858 /* CCFFormTreeJSONModel.m in Sources */,
 				4D796BC31C3DF93D00B3C62D /* WCMagicSquareView.m in Sources */,
 				4D796BC61C3DF93D00B3C62D /* WCRefreshingItem.m in Sources */,
 				4D1EEBBB1C33D4FD0084F6E9 /* LoginViewController.m in Sources */,
@@ -754,7 +754,7 @@
 				4D1EEBB11C3260130084F6E9 /* CCFThreadDetail.m in Sources */,
 				4D796BDE1C43675100B3C62D /* CCFSearchResult.m in Sources */,
 				4D796BF11C44B6F800B3C62D /* Form.xcdatamodeld in Sources */,
-				4DF824BA1C34C4C6005BB858 /* CCFForm.m in Sources */,
+				4DF824BA1C34C4C6005BB858 /* CCFFormJSONModel.m in Sources */,
 				4DB98FB41C4E0F5A0081AF87 /* CCFUserEntry.m in Sources */,
 				4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */,
 				4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */,

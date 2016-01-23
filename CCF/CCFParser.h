@@ -11,12 +11,13 @@
 #import "CCFUser.h"
 #import "CCFThreadList.h"
 #import "FormEntry+CoreDataProperties.h"
+#import "CCFFormJSONModel.h"
 
 
 
 @class CCFThreadDetail;
 @class CCFSearchResultPage;
-@class CCFForm;
+@class CCFFormJSONModel;
 
 @interface CCFParser : NSObject
 
@@ -36,6 +37,6 @@
 
 - (CCFSearchResultPage *) parseSearchPageFromHtml:( NSString*) html;
 
-- (NSMutableArray<CCFForm *> *) parseFavFormFormHtml:(NSString *)html;
+- (NSMutableArray<CCFFormJSONModel *> *) parseFavFormFormHtml:(NSString *)html;
 
 @end

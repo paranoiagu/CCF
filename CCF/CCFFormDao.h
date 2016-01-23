@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CCFFormTree.h"
+#import "CCFFormTreeJSONModel.h"
 
 @interface CCFFormDao : NSObject
 
--(CCFFormTree *)parseCCFForms:(NSString *)jsonFilePath;
+-(CCFFormTreeJSONModel *)parseCCFForms:(NSString *)jsonFilePath;
 
 
 @end

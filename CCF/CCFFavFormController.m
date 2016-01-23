@@ -17,7 +17,7 @@
 
 @interface CCFFavFormController (){
     CCFBrowser *_browser;
-    NSMutableArray<FormEntry *> * _favForms;
+    NSMutableArray<CCFForm *> * _favForms;
 }
 
 @end
@@ -30,7 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _favForms = [NSMutableArray array];
     _browser = [[CCFBrowser alloc]init];
     
     
@@ -47,7 +47,10 @@
         }];
     } else{
         CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
-        _favForms = [[manager selectFavForms:userDef.favFormIds] mutableCopy];
+        NSArray* forms = [[manager selectFavForms:userDef.favFormIds] mutableCopy];
+        
+        [_favForms addObjectsFromArray:forms];
+        
         [self.tableView reloadData];
     }
 
@@ -71,9 +74,11 @@
     static NSString * ID = @"CCFFavFormControllerCell";
     CCFFavFormControllerCell * cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
-    FormEntry * entry = _favForms[indexPath.row];
+    CCFForm * form = _favForms[indexPath.row];
     
-    cell.form.text = [entry formName];
+    NSLog(@"----------> %@", form.formName);
+    
+    cell.form.text = form.formName;
     
     return cell;
 }

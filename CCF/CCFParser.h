@@ -36,6 +36,6 @@
 
 - (CCFSearchResultPage *) parseSearchPageFromHtml:( NSString*) html;
 
-- (NSMutableArray<FormEntry *> *) parseFavFormFormHtml:(NSString *)html;
+- (NSMutableArray<CCFForm *> *) parseFavFormFormHtml:(NSString *)html;
 
 @end

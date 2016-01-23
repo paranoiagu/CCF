@@ -7,6 +7,8 @@
 //
 
 #import "CCFCoreDataManager.h"
+#import "FormEntry.h"
+#import "CCFForm.h"
 
 @implementation CCFCoreDataManager
 
@@ -23,11 +25,25 @@
 }
 
 
--(NSMutableArray *)selectFavForms:(NSArray *)ids{
-    return [self selectData:^NSPredicate *{
+-(NSArray<CCFForm *> *)selectFavForms:(NSArray *)ids{
+    
+    NSArray<FormEntry *> *entrys = [self selectData:^NSPredicate *{
         return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
     }];
+    
+    NSMutableArray<CCFForm *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];
+    
+    for (FormEntry *entry in entrys) {
+        CCFForm * form = [[CCFForm alloc] init];
+        form.formName = entry.formName;
+        
+        [forms addObject:form];
+        
+    }
+    return [forms copy];
 }
+
+
 
 
 @end

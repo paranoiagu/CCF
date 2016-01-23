@@ -247,7 +247,7 @@
     return resultArray;
 }
 
--(NSMutableArray *)selectData:(SelectOperation)operation{
+-(NSArray *)selectData:(SelectOperation)operation{
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
@@ -262,11 +262,9 @@
 
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    NSMutableArray *resultArray = [NSMutableArray array];
-    
-    [resultArray addObjectsFromArray:fetchedObjects];
-    
-    return resultArray;
+
+
+    return fetchedObjects;
 }
 
 

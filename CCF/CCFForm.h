@@ -22,6 +22,5 @@
 @property (nonatomic, strong) NSMutableArray<CCFForm> * childForms;
 @property (nonatomic, assign) int isNeedLogin;
 
--(NSString *)formName;
 
 @end

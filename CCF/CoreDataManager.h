@@ -36,13 +36,13 @@ typedef NSPredicate *(^SelectOperation) ();
 
 
 // 取出所有的数据
-- (NSMutableArray*) selectData;
+- (NSArray*) selectData;
 
-- (NSMutableArray*) selectData:(SelectOperation) operation;
+- (NSArray*) selectData:(SelectOperation) operation;
 
 
 //查询
-- (NSMutableArray*)selectData:(int)pageSize andOffset:(int)currentPage;
+- (NSArray*)selectData:(int)pageSize andOffset:(int)currentPage;
 
 //删除
 - (void)deleteData;

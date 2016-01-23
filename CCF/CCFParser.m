@@ -16,6 +16,7 @@
 #import "CCFCoreDataManager.h"
 #import "NSUserDefaults+CCF.h"
 #import "NSString+Regular.h"
+#import "CCFForm.h"
 
 @implementation CCFParser
 
@@ -414,7 +415,7 @@
 
 
 
--(NSMutableArray<FormEntry *> *)parseFavFormFormHtml:(NSString *)html{
+-(NSMutableArray<CCFForm *> *)parseFavFormFormHtml:(NSString *)html{
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet * favFormNodeSet = [document queryWithXPath:@"//*[@id='collapseobj_usercp_forums']/tr[*]/td[2]/div[1]/a"];
@@ -433,11 +434,20 @@
 
     // 通过ids 过滤出Form
     CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
-    NSMutableArray * result = [manager selectData:^NSPredicate *{
+    NSArray * result = [manager selectData:^NSPredicate *{
          return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
     }];
+    
+    NSMutableArray<CCFForm *> * forms = [NSMutableArray arrayWithCapacity:result.count];
+    
+    for (FormEntry * entry in result) {
+        CCFForm * form = [[CCFForm alloc] init];
         
-    return result;
+        form.formName = entry.formName;
+        [forms addObject:form];
+    }
+    
+    return forms;
 }
 
 

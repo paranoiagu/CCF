@@ -405,7 +405,6 @@
 				3AEA1F311C365CB600710BD6 /* CCFEntry.h */,
 				3AEA1F321C365CB600710BD6 /* CCFEntry.m */,
 				3AA2D4F51C36101E00F312CC /* FoldTableView */,
-				4DF824C01C34F098005BB858 /* CCFDao */,
 				3A9FEDDF1C34382E00F30885 /* Category */,
 				3A9FEDDB1C34306600F30885 /* CCFBrowser */,
 				3A9FEDD71C342C4400F30885 /* CCFParser */,
@@ -551,6 +550,8 @@
 		4D796C011C45F38400B3C62D /* JSONModel */ = {
 			isa = PBXGroup;
 			children = (
+				4DF824C11C34F0B2005BB858 /* CCFFormDao.h */,
+				4DF824C21C34F0B2005BB858 /* CCFFormDao.m */,
 				4DF824BB1C34E5EF005BB858 /* ccf.json */,
 				4DF824B81C34C4C6005BB858 /* CCFFormJSONModel.h */,
 				4DF824B91C34C4C6005BB858 /* CCFFormJSONModel.m */,
@@ -576,15 +577,6 @@
 			children = (
 			);
 			name = User;
-			sourceTree = "<group>";
-		};
-		4DF824C01C34F098005BB858 /* CCFDao */ = {
-			isa = PBXGroup;
-			children = (
-				4DF824C11C34F0B2005BB858 /* CCFFormDao.h */,
-				4DF824C21C34F0B2005BB858 /* CCFFormDao.m */,
-			);
-			name = CCFDao;
 			sourceTree = "<group>";
 		};
 		849509D36740A6FFD960CDA8 /* Pods */ = {

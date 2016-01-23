@@ -17,7 +17,7 @@
 
 @class CCFThreadDetail;
 @class CCFSearchResultPage;
-@class CCFFormJSONModel;
+@class CCFForm;
 
 @interface CCFParser : NSObject
 
@@ -37,6 +37,6 @@
 
 - (CCFSearchResultPage *) parseSearchPageFromHtml:( NSString*) html;
 
-- (NSMutableArray<CCFFormJSONModel *> *) parseFavFormFormHtml:(NSString *)html;
+- (NSMutableArray<CCFForm *> *) parseFavFormFormHtml:(NSString *)html;
 
 @end

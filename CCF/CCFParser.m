@@ -17,6 +17,7 @@
 #import "NSUserDefaults+CCF.h"
 #import "NSString+Regular.h"
 #import "CCFFormJSONModel.h"
+#import "CCFForm.h"
 
 @implementation CCFParser
 
@@ -415,7 +416,7 @@
 
 
 
--(NSMutableArray<CCFFormJSONModel *> *)parseFavFormFormHtml:(NSString *)html{
+-(NSMutableArray<CCFForm *> *)parseFavFormFormHtml:(NSString *)html{
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet * favFormNodeSet = [document queryWithXPath:@"//*[@id='collapseobj_usercp_forums']/tr[*]/td[2]/div[1]/a"];
@@ -438,15 +439,15 @@
          return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
     }];
     
-    NSMutableArray<CCFFormJSONModel *> * forms = [NSMutableArray arrayWithCapacity:result.count];
+    NSMutableArray<CCFForm *> * forms = [NSMutableArray arrayWithCapacity:result.count];
     
     for (FormEntry * entry in result) {
-        CCFFormJSONModel * form = [[CCFFormJSONModel alloc] init];
-        
+        CCFForm * form = [[CCFForm alloc] init];
         form.formName = entry.formName;
+        form.formId = [entry.formId intValue];
         [forms addObject:form];
     }
-    
+
     return forms;
 }
 

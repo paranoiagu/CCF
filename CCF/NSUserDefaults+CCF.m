@@ -48,4 +48,13 @@
     return [self objectForKey:kCCFFavFormIds];
 }
 
+
+-(BOOL)hasInserAllForms{
+    return [self boolForKey:kCCFInsertAllForms];
+}
+
+-(void)setInserAllForms:(BOOL)insert{
+    return [self setBool:insert forKey:kCCFInsertAllForms];
+}
+
 @end

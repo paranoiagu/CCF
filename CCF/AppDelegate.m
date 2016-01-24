@@ -9,6 +9,12 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "CCFBrowser.h"
+#import "CCFForm.h"
+#import "CCFFormDao.h"
+#import "CCFCoreDataManager.h"
+#import "FormEntry.h"
+#import "NSUserDefaults+CCF.h"
+
 
 @interface AppDelegate ()
 
@@ -28,6 +34,45 @@
         self.window.rootViewController = [[LoginViewController alloc]init];
     }
     
+    
+    
+    
+    NSUserDefaults * data = [NSUserDefaults standardUserDefaults];
+    
+    if (![data hasInserAllForms]) {
+        
+        NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
+        NSArray<CCFForm*> * forms = [[[CCFFormDao alloc]init] parseCCFForms:path];
+        
+        NSMutableArray<CCFForm *> * needInsert = [NSMutableArray array];
+        
+        for (CCFForm *form in forms) {
+            [needInsert addObject:form];
+            
+            NSMutableArray<CCFForm*> * childForms = form.childForms;
+            
+            if (childForms != nil && childForms.count > 0) {
+                
+                for (CCFForm * child in childForms) {
+                    [needInsert addObject:child];
+                }
+            }
+        }
+        
+        CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+        
+        [manager insertData:needInsert operation:^(NSManagedObject *target, id src) {
+            FormEntry *newsInfo = (FormEntry*)target;
+            newsInfo.formId = [src valueForKey:@"formId"];
+            newsInfo.formName = [src valueForKey:@"formName"];
+            newsInfo.parentFormId = [src valueForKey:@"parentFormId"];
+        }];
+        
+        [data setInserAllForms:YES];
+        
+    }
+
+
     
     return YES;
 }

@@ -163,32 +163,6 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     
     self.forms = [forms mutableCopy];
     
-    
-    
-    NSMutableArray<CCFForm *> * needInsert = [NSMutableArray array];
-    
-    for (CCFForm *form in self.forms) {
-        [needInsert addObject:form];
-        
-        NSMutableArray<CCFForm*> * childForms = form.childForms;
-        
-        if (childForms != nil && childForms.count > 0) {
-            
-            for (CCFForm * child in childForms) {
-                [needInsert addObject:child];
-            }
-        }
-    }
-    
-    CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
-
-    [manager insertData:needInsert operation:^(NSManagedObject *target, id src) {
-        FormEntry *newsInfo = (FormEntry*)target;
-        newsInfo.formId = [src valueForKey:@"formId"];
-        newsInfo.formName = [src valueForKey:@"formName"];
-        newsInfo.parentFormId = [src valueForKey:@"parentFormId"];
-    }];
-    
 }
 
 

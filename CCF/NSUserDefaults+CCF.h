@@ -12,6 +12,8 @@
 #define kCCFCookie @"CCF-Cookies"
 #define kCCFFavFormIds @"CCF-FavIds"
 
+#define kCCFInsertAllForms @"InsertAllForms"
+
 
 
 
@@ -25,5 +27,9 @@
 -(void) saveFavFormIds:(NSArray*) ids;
 
 -(NSArray *) favFormIds;
+
+-(BOOL) hasInserAllForms;
+
+-(void) setInserAllForms:(BOOL)insert;
 
 @end

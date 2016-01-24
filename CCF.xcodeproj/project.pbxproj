@@ -11,6 +11,10 @@
 		3A0A99801C4A6A4E00086DAB /* RoundCornerUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A997F1C4A6A4E00086DAB /* RoundCornerUIView.m */; };
 		3A0A99831C4A71B600086DAB /* CCFSeniorNewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */; };
 		3A187B361C40B4EE003DA5C2 /* AlertProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A187B351C40B4EE003DA5C2 /* AlertProgressViewController.m */; };
+		3A1CF86F1C54F88C002E52EE /* LeftDrawerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */; };
+		3A1CF8761C54F8AB002E52EE /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF8711C54F8AB002E52EE /* CommonUtils.m */; };
+		3A1CF8771C54F8AB002E52EE /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF8731C54F8AB002E52EE /* UIImage+Tint.m */; };
+		3A1CF8781C54F8AB002E52EE /* UIColor+MyColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF8751C54F8AB002E52EE /* UIColor+MyColor.m */; };
 		3A2ECF541C36C0EB00CD3968 /* CCFThreadList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2ECF531C36C0EB00CD3968 /* CCFThreadList.m */; };
 		3A6736C31C400EAA008D51EC /* CCFToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6736C21C400EAA008D51EC /* CCFToolbar.m */; };
 		3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A690A421C3755C00076C8F1 /* CCFThreadListCell.m */; };
@@ -96,6 +100,15 @@
 		3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSeniorNewPostViewController.m; sourceTree = "<group>"; };
 		3A187B341C40B4EE003DA5C2 /* AlertProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertProgressViewController.h; sourceTree = "<group>"; };
 		3A187B351C40B4EE003DA5C2 /* AlertProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertProgressViewController.m; sourceTree = "<group>"; };
+		3A1CF86D1C54F88C002E52EE /* LeftDrawerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftDrawerItem.h; sourceTree = "<group>"; };
+		3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftDrawerItem.m; sourceTree = "<group>"; };
+		3A1CF8701C54F8AB002E52EE /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
+		3A1CF8711C54F8AB002E52EE /* CommonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtils.m; sourceTree = "<group>"; };
+		3A1CF8721C54F8AB002E52EE /* UIImage+Tint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tint.h"; sourceTree = "<group>"; };
+		3A1CF8731C54F8AB002E52EE /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
+		3A1CF8741C54F8AB002E52EE /* UIColor+MyColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyColor.h"; sourceTree = "<group>"; };
+		3A1CF8751C54F8AB002E52EE /* UIColor+MyColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MyColor.m"; sourceTree = "<group>"; };
+		3A1CF8791C54F8CD002E52EE /* Constances.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constances.h; sourceTree = "<group>"; };
 		3A2ECF521C36C0EB00CD3968 /* CCFThreadList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadList.h; sourceTree = "<group>"; };
 		3A2ECF531C36C0EB00CD3968 /* CCFThreadList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadList.m; sourceTree = "<group>"; };
 		3A6736C11C400EAA008D51EC /* CCFToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFToolbar.h; sourceTree = "<group>"; };
@@ -433,6 +446,15 @@
 		4D796B5D1C3BC15D00B3C62D /* Public Views */ = {
 			isa = PBXGroup;
 			children = (
+				3A1CF8791C54F8CD002E52EE /* Constances.h */,
+				3A1CF8701C54F8AB002E52EE /* CommonUtils.h */,
+				3A1CF8711C54F8AB002E52EE /* CommonUtils.m */,
+				3A1CF8721C54F8AB002E52EE /* UIImage+Tint.h */,
+				3A1CF8731C54F8AB002E52EE /* UIImage+Tint.m */,
+				3A1CF8741C54F8AB002E52EE /* UIColor+MyColor.h */,
+				3A1CF8751C54F8AB002E52EE /* UIColor+MyColor.m */,
+				3A1CF86D1C54F88C002E52EE /* LeftDrawerItem.h */,
+				3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */,
 				4D796B5E1C3BC17800B3C62D /* DrawerView.h */,
 				4D796B5F1C3BC17800B3C62D /* DrawerView.m */,
 				4D796B671C3BDCA800B3C62D /* DrawerView.xib */,
@@ -753,6 +775,7 @@
 				4D796BF11C44B6F800B3C62D /* Form.xcdatamodeld in Sources */,
 				4DF824BA1C34C4C6005BB858 /* CCFFormJSONModel.m in Sources */,
 				4DB98FB41C4E0F5A0081AF87 /* CCFUserEntry.m in Sources */,
+				3A1CF8761C54F8AB002E52EE /* CommonUtils.m in Sources */,
 				4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */,
 				4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */,
 				4D796BF71C44BBA000B3C62D /* FormEntry.m in Sources */,
@@ -761,6 +784,7 @@
 				4D32560D1C4754E700053288 /* SelectPhotoCollectionViewCell.m in Sources */,
 				4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */,
 				3AEA1F371C365EA400710BD6 /* CCFShowThreadViewController.m in Sources */,
+				3A1CF86F1C54F88C002E52EE /* LeftDrawerItem.m in Sources */,
 				4D796BC21C3DF93D00B3C62D /* NSDate+WCPullRefresh.m in Sources */,
 				4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */,
 				4D796BD81C43576700B3C62D /* CCFSearchViewController.m in Sources */,
@@ -778,9 +802,11 @@
 				4D796BC51C3DF93D00B3C62D /* WCPullRefreshControl.m in Sources */,
 				4D796BE11C436A5400B3C62D /* CCFSearchResultPage.m in Sources */,
 				4D796BD21C3FC8ED00B3C62D /* CCFUITextView.m in Sources */,
+				3A1CF8781C54F8AB002E52EE /* UIColor+MyColor.m in Sources */,
 				4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */,
 				4D796BEA1C44992700B3C62D /* UIStoryboard+CCF.m in Sources */,
 				3A0A99831C4A71B600086DAB /* CCFSeniorNewPostViewController.m in Sources */,
+				3A1CF8771C54F8AB002E52EE /* UIImage+Tint.m in Sources */,
 				3A0A99801C4A6A4E00086DAB /* RoundCornerUIView.m in Sources */,
 				4D339D901C31454A0022A6A4 /* main.m in Sources */,
 				4D796BED1C44A43B00B3C62D /* CCFNavigationController.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "DrawerViewDelegate.h"
+#import "LeftDrawerItem.h"
+
 
 typedef CGFloat(^TouchX) (CGFloat x, CGFloat maxX);
 
@@ -64,5 +66,12 @@ typedef NS_ENUM(NSInteger, DrawerIndex) {
 - (IBAction)showMyPost:(id)sender;
 - (IBAction)showMyThread:(id)sender;
 
+@property (weak, nonatomic) IBOutlet LeftDrawerItem *favForm;
+@property (weak, nonatomic) IBOutlet LeftDrawerItem *allForm;
+@property (weak, nonatomic) IBOutlet LeftDrawerItem *message;
+@property (weak, nonatomic) IBOutlet LeftDrawerItem *favThread;
+@property (weak, nonatomic) IBOutlet LeftDrawerItem *showNewThread;
+@property (weak, nonatomic) IBOutlet LeftDrawerItem *myPost;
+@property (weak, nonatomic) IBOutlet LeftDrawerItem *myThread;
 
 @end

@@ -462,7 +462,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 
 - (IBAction)onLeftBarButtonItemClick:(UIBarButtonItem *)sender {
-    CCFNavigationController * navigation = self.navigationController;
+    CCFNavigationController * navigation = (CCFNavigationController *)self.navigationController;
     [navigation showLeftDrawer];
 }
 @end

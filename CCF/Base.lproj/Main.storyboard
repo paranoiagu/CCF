@@ -254,7 +254,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ggw-tb-1h3">
             <objects>
-                <navigationController id="VLb-SK-6Zj" sceneMemberID="viewController">
+                <navigationController id="VLb-SK-6Zj" customClass="CCFNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="86V-Dm-jRj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -270,7 +270,7 @@
         <!--Navigation Controller-->
         <scene sceneID="vTH-sA-lRG">
             <objects>
-                <navigationController id="Bsn-yt-DMM" sceneMemberID="viewController">
+                <navigationController id="Bsn-yt-DMM" customClass="CCFNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DjY-Dc-5YR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -378,6 +378,9 @@
                     <navigationItem key="navigationItem" title="收藏板块" id="Mhk-pJ-bvf" userLabel="收藏板块">
                         <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="AyA-ib-x17">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="showLeftDrawer:" destination="Jit-bj-gGf" id="tNe-Zb-Lcz"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
@@ -388,7 +391,7 @@
         <!--Navigation Controller-->
         <scene sceneID="UzZ-TC-g8q">
             <objects>
-                <navigationController id="Vqu-5f-2mo" sceneMemberID="viewController">
+                <navigationController id="Vqu-5f-2mo" customClass="CCFNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vw8-cl-cGx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -939,7 +942,7 @@
         <image name="ic_settings_18pt" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BtX-d5-2Dd"/>
+        <segue reference="ezQ-PD-8mT"/>
         <segue reference="g6H-l4-rUB"/>
     </inferredMetricsTieBreakers>
 </document>

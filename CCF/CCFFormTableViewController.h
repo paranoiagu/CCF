@@ -24,6 +24,5 @@
 
 @property (nonatomic, strong) NSMutableArray<CCFForm *> *forms;
 
-@property (nonatomic, strong) DrawerView *leftDrawerView;
 
 @end

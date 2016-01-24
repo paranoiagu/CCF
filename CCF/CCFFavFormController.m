@@ -14,6 +14,7 @@
 #import "NSUserDefaults+CCF.h"
 #import "CCFFavFormControllerCell.h"
 #import "CCFForm.h"
+#import "CCFThreadListTableViewController.h"
 
 @interface CCFFavFormController (){
     CCFBrowser *_browser;
@@ -56,6 +57,29 @@
 
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    CCFThreadListTableViewController * controller = segue.destinationViewController;
+    
+    if ([controller respondsToSelector:@selector(setEntry:)]) {
+        
+        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        NSLog(@"prepareForSegue %ld      %ld   ", path.section, path.row);
+        
+        CCFForm * select = _favForms[path.row];
+        
+        CCFEntry * entry = [[CCFEntry alloc]init];
+        
+        entry.urlId = [NSString stringWithFormat:@"%d", select.formId];
+        
+        entry.page = @"1";
+        
+        [controller setValue:entry forKey:@"entry"];
+        
+        NSLog(@"prepareForSegue ");
+        
+    }
+}
 
 
 #pragma mark - Table view data source
@@ -81,4 +105,6 @@
     return cell;
 }
 
+- (IBAction)showLeftDrawer:(id)sender {
+}
 @end

@@ -78,8 +78,6 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 
 @synthesize forms = _forms ;
-@synthesize leftDrawerView = _leftDrawerView;
-
 
 
 - (BOOL)canBecomeFirstResponder {
@@ -117,9 +115,6 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     
     UINib *sectionHeaderNib = [UINib nibWithNibName:@"CCFFormHeaderView" bundle:nil];
     [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:SectionHeaderViewIdentifier];
-    
-    _leftDrawerView = [[DrawerView alloc] initWithDrawerType:DrawerViewTypeLeft andXib:@"DrawerView"];
-    [self.navigationController.view addSubview:_leftDrawerView];
     
 }
 
@@ -466,6 +461,6 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 
 - (IBAction)onLeftBarButtonItemClick:(UIBarButtonItem *)sender {
-    [self.leftDrawerView openLeftDrawer];
+    
 }
 @end

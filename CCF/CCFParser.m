@@ -16,7 +16,6 @@
 #import "CCFCoreDataManager.h"
 #import "NSUserDefaults+CCF.h"
 #import "NSString+Regular.h"
-#import "CCFFormJSONModel.h"
 #import "CCFForm.h"
 
 @implementation CCFParser

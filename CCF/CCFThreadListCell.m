@@ -97,7 +97,11 @@
             [self.avatarImage setImageWithURL:url];
         } else{
             
-            [self.avatarImage setImageWithURL:[CCFUrlBuilder buildAvatarURL:user.userAvatar]];
+            NSLog(@"+++++++++++++++++++++++++++++++++++++++++++%@", user.userAvatar);
+            
+            NSURL * url = [CCFUrlBuilder buildAvatarURL:user.userAvatar];
+            
+            [self.avatarImage setImageWithURL:url];
         }
         
     }

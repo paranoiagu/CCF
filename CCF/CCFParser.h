@@ -11,7 +11,6 @@
 #import "CCFUser.h"
 #import "CCFThreadList.h"
 #import "FormEntry+CoreDataProperties.h"
-#import "CCFFormJSONModel.h"
 
 
 

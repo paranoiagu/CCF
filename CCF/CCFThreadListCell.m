@@ -35,6 +35,12 @@
     if (self) {
         _browser = [[CCFBrowser alloc]init];
         _coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+        
+        [self.avatarImage setContentScaleFactor:[[UIScreen mainScreen] scale]];
+        self.avatarImage.contentMode =  UIViewContentModeScaleAspectFit;
+        self.avatarImage.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        self.avatarImage.clipsToBounds  = YES;
+
     }
     return self;
 }

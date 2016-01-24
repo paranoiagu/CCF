@@ -60,7 +60,7 @@
 @interface CCFFormSectionInfo : NSObject 
 
 @property (getter = isOpen) BOOL open;
-@property CCFForm *forms;
+@property CCFForm *form;
 @property CCFFormHeaderView *headerView;
 
 @property (nonatomic) NSMutableArray *rowHeights;

@@ -12,9 +12,9 @@
 #import "CCFFormHeaderView.h"    // for SectionHeaderViewDelegate
 
 #import "CCFEntryDelegate.h"
+#import "CCFForm.h"
 
 #import "DrawerView.h"
-@class CCFFormJSONModel;
 
 @interface CCFFormTableViewController : UIViewController<MFMailComposeViewControllerDelegate, SectionHeaderViewDelegate, CCFEntryDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -22,7 +22,7 @@
 
 - (IBAction)onLeftBarButtonItemClick:(UIBarButtonItem *)sender;
 
-@property (nonatomic, strong) NSMutableArray<CCFFormJSONModel *> *forms;
+@property (nonatomic, strong) NSMutableArray<CCFForm *> *forms;
 
 @property (nonatomic, strong) DrawerView *leftDrawerView;
 

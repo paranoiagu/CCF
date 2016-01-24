@@ -15,6 +15,7 @@
 #import "CCFFavFormControllerCell.h"
 #import "CCFForm.h"
 #import "CCFThreadListTableViewController.h"
+#import "CCFNavigationController.h"
 
 @interface CCFFavFormController (){
     CCFBrowser *_browser;
@@ -106,5 +107,7 @@
 }
 
 - (IBAction)showLeftDrawer:(id)sender {
+    CCFNavigationController * rootController = self.navigationController;
+    [rootController showLeftDrawer];
 }
 @end

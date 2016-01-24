@@ -12,4 +12,6 @@
 
 -(void)setRootViewController:(UIViewController *)rootViewController;
 
+-(void) showLeftDrawer;
+
 @end

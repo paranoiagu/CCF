@@ -37,6 +37,7 @@
 
 #import "CCFCoreDataManager.h"
 #import "FormEntry+CoreDataProperties.h"
+#import "CCFNavigationController.h"
 
 
 @interface MyAPLEmailMenuItem : UIMenuItem
@@ -461,6 +462,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 
 - (IBAction)onLeftBarButtonItemClick:(UIBarButtonItem *)sender {
-    
+    CCFNavigationController * navigation = self.navigationController;
+    [navigation showLeftDrawer];
 }
 @end

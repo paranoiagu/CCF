@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
@@ -18,8 +19,11 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fxb-5T-kYp">
-                    <rect key="frame" x="225" y="319" width="150" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fxb-5T-kYp">
+                    <rect key="frame" x="225" y="378" width="150" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="fxb-5T-kYp" secondAttribute="height" multiplier="5:1" id="EIx-Fy-Tnb"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
@@ -43,45 +47,47 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Aq8-bR-V6W" userLabel="logo">
                     <rect key="frame" x="110" y="1000" width="100" height="39"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text=".::ClassiClub ForuM::." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVE-uw-u5K">
-                    <rect key="frame" x="175" y="82" width="250" height="70"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="精品论坛" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSk-hR-ATu">
-                    <rect key="frame" x="232" y="174" width="136" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cmi-2m-SRN">
-                    <rect key="frame" x="225" y="254" width="150" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cmi-2m-SRN">
+                    <rect key="frame" x="225" y="313" width="150" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="cmi-2m-SRN" secondAttribute="height" multiplier="5:1" id="pC5-3T-3rR"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oul-TD-2GN">
-                    <rect key="frame" x="285" y="404" width="30" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oul-TD-2GN">
+                    <rect key="frame" x="285" y="463" width="30" height="30"/>
                     <state key="normal" title="登录">
-                        <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="login:" destination="-1" eventType="touchUpInside" id="UOb-M5-bEj"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ccfLogo" translatesAutoresizingMaskIntoConstraints="NO" id="KW9-CB-Ybn">
+                    <rect key="frame" x="50" y="131" width="500" height="130"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="KW9-CB-Ybn" secondAttribute="height" multiplier="274:71" id="xHX-c1-atA"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.1843137255" green="0.27058823529999998" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="cmi-2m-SRN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="N6a-Bb-RQS"/>
-                <constraint firstItem="Oul-TD-2GN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QhY-Js-rmV"/>
-                <constraint firstItem="fxb-5T-kYp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="WUy-7r-Erf"/>
-                <constraint firstItem="RSk-hR-ATu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="inC-Du-e7d"/>
-                <constraint firstItem="aVE-uw-u5K" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="uhL-mb-haH"/>
+                <constraint firstItem="Oul-TD-2GN" firstAttribute="top" secondItem="fxb-5T-kYp" secondAttribute="bottom" constant="55" id="1QS-eG-WSc"/>
+                <constraint firstAttribute="trailing" secondItem="KW9-CB-Ybn" secondAttribute="trailing" constant="50" id="2my-9S-jKV"/>
+                <constraint firstItem="KW9-CB-Ybn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="131" id="5WS-B5-sD0"/>
+                <constraint firstItem="KW9-CB-Ybn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="Jr0-aH-A0W"/>
+                <constraint firstItem="cmi-2m-SRN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SQw-42-0LB"/>
+                <constraint firstItem="fxb-5T-kYp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Shq-ep-4BE"/>
+                <constraint firstItem="fxb-5T-kYp" firstAttribute="top" secondItem="cmi-2m-SRN" secondAttribute="bottom" constant="35" id="XOt-27-Saz"/>
+                <constraint firstItem="cmi-2m-SRN" firstAttribute="top" secondItem="KW9-CB-Ybn" secondAttribute="bottom" constant="52" id="YI3-i9-MJK"/>
+                <constraint firstItem="Oul-TD-2GN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bmd-A9-SB7"/>
             </constraints>
             <point key="canvasLocation" x="185" y="589"/>
         </view>
     </objects>
     <resources>
+        <image name="ccfLogo" width="274" height="71"/>
         <image name="logo" width="200" height="78"/>
     </resources>
 </document>

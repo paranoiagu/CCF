@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="h6s-4j-gBo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ccfLogo" translatesAutoresizingMaskIntoConstraints="NO" id="h6s-4j-gBo">
                                 <rect key="frame" x="71" y="194" width="458" height="119"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="h6s-4j-gBo" secondAttribute="height" multiplier="458:119" id="auh-vx-3rP"/>
@@ -29,8 +29,8 @@
                         <color key="backgroundColor" red="0.18431372549019609" green="0.27058823529411763" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="h6s-4j-gBo" secondAttribute="trailing" constant="51" id="3Nt-uw-NGM"/>
+                            <constraint firstItem="h6s-4j-gBo" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="51" id="6dF-W7-z08"/>
                             <constraint firstItem="h6s-4j-gBo" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="174" id="LEC-V0-qjI"/>
-                            <constraint firstItem="h6s-4j-gBo" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="51" id="mgy-5m-Gns"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -40,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchscreen_logo" width="182" height="47"/>
+        <image name="ccfLogo" width="274" height="71"/>
     </resources>
 </document>

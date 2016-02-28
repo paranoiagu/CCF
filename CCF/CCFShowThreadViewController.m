@@ -17,6 +17,7 @@
 #import "CCFUITextView.h"
 
 #import "CCFThreadDetail.h"
+#import "CCFApi.h"
 
 #import "AlertProgressViewController.h"
 #import <UITableView+FDTemplateLayoutCell.h>
@@ -30,6 +31,7 @@
     
     CCFBrowser * browser;
     CCFUITextView * field;
+    CCFApi *_api;
 }
 
 
@@ -83,7 +85,7 @@
     
     [self.view addSubview:_floatToolbar];
     
-    
+    _api = [[CCFApi alloc] init];
     
     browser = [[CCFBrowser alloc]init];
     
@@ -246,19 +248,15 @@
     
     [self presentViewController:alertProgress animated:YES completion:nil];
     
-    [browser reply:entry.urlId :field.text :^(BOOL isSuccess, id showThread) {
-        
-        [alertProgress dismissViewControllerAnimated:NO completion:^{
-            
-        }];
-        
+    [_api replyThreadWithId:entry.urlId andMessage:field.text handler:^(BOOL isSuccess, id message) {
+        [alertProgress dismissViewControllerAnimated:NO completion:nil];
         if (isSuccess) {
             
             field.text = @"";
             
             [self.posts removeAllObjects];
             
-            CCFThreadDetail * thread = showThread;
+            CCFThreadDetail * thread = message;
             
             [self.posts addObjectsFromArray:thread.threadPosts];
             
@@ -269,7 +267,7 @@
             
             
         } else{
-            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"发送失败" message:showThread delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"发送失败" message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alertView show];
         }
     }];

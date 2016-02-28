@@ -109,9 +109,6 @@
     }];
 
 }
--(void)logout{
-    
-}
 
 -(LoginCCFUser *)getCurrentCCFUser{
     NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
@@ -150,7 +147,7 @@
 }
 
 
--(void)reply:(NSString *)threadId :(NSString *)message :(Reply)result{
+-(void)replyThreadWithId:(NSString *)threadId withMessage:(NSString *)message handler:(success)result{
     //NSString * testMesage = @"\n:blush;\n\n\n\n\n\n\n\n\n\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?p=16695603\"]Test For CCF iPhone Client[/URL][/RIGHT]";
     
     NSString * testMesage = @"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"][COLOR=\"Silver\"][I]SENDBY『CCF客户端』[/I][/COLOR][/URL][/RIGHT]";
@@ -189,37 +186,9 @@
         // 保存Cookie
         [self saveCookie];
         
-        NSString * error = @"此帖是您在最后 5 分钟发表的帖子的副本，您将返回该主题。";
-        NSRange range = [html rangeOfString:error];
-        if (range.location != NSNotFound) {
-            result(NO, error);
-            return;
-        }
-        
-        error = @"您输入的信息太短，您发布的信息至少为 5 个字符。";
-        range = [html rangeOfString:error];
-        if (range.location != NSNotFound) {
-            result(NO, error);
-            return;
-        }
-        
-        
-        CCFParser * parser = [[CCFParser alloc]init];
-        CCFThreadDetail * thread = [parser parseShowThreadWithHtml:html];
-        
-        
-        
-        if(thread.threadPosts.count > 0){
-            result(YES, thread);
-            
-        } else{
-            result(NO, @"未知错误");
-        }
-        
-        NSLog(@"reply done --------------------->>>>>> \n%@", html);
+        result(html);
         
     }];
-    
 }
 
 
@@ -293,39 +262,44 @@
     return nil;
 }
 
-
--(void)createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImage:(NSData *) image{
-    
+-(void)createNewThreadWithFormId:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *)image handler:(success)handler{
     message = [message stringByAppendingString:@"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"]Test For: CCF Client[/URL][/RIGHT]"];
     
     // 准备发帖
-   [self createNewThreadPrepair:fId :^(NSString *token, NSString *hash, NSString *time) {
-       // 如果有图片，先传图片
-      [self uploadImagePrepair:fId startPostTime:time postHash:hash :^(NSString* result) {
-          
-          //[self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time];
-          
-          
-          
-          CCFParser * parser = [[CCFParser alloc]init];
-          
-          NSString * uploadToken = [parser parseSecurityToken:result];
-          NSString * uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
-          NSString * uploadHash = [parser parsePostHash:result];
-          
-//          [self uploadFile:uploadToken fId:fId postTime:uploadTime hash:uploadHash image:image];
+    [self createNewThreadPrepair:fId :^(NSString *token, NSString *hash, NSString *time) {
+        
+        if (image != nil) {
+            // 没有图片，直接发送主题
+            [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time handler:^(id result) {
+                handler(result);
+            }];
+        } else{
+            // 如果有图片，先传图片
+            [self uploadImagePrepair:fId startPostTime:time postHash:hash :^(NSString* result) {
+                
+                // 解析出上传图片需要的参数
+                CCFParser * parser = [[CCFParser alloc]init];
+                NSString * uploadToken = [parser parseSecurityToken:result];
+                NSString * uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
+                NSString * uploadHash = [parser parsePostHash:result];
+                
+                [self uploadImage:[CCFUrlBuilder buildUploadFileURL] :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image callback:^(id result) {
+                    [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time handler:^(id result) {
+                        handler(result);
+                    }];
+                }];
+                
+            }];
+        }
 
-          [self uploadImage:[CCFUrlBuilder buildUploadFileURL] :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image callback:^(id result) {
-              [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time];
-          }];
-          
-      }];
-   }];
+    }];
 }
 
 
+
+
 // 正式开始发送
--(void) doPostThread:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash postTime:(NSString*)time{
+-(void) doPostThread:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash postTime:(NSString*)time handler:(success) handler{
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     [parameters setValue:subject forKey:@"subject"];
     [parameters setValue:message forKey:@"message"];
@@ -352,7 +326,7 @@
     [_browser POSTWithURL:newPostUrl parameters:parameters requestCallback:^(NSString *html) {
         
         [self saveCookie];
-        //CCFParser * parser = [[CCFParser alloc]init];
+        handler(html);
         
     }];
 }

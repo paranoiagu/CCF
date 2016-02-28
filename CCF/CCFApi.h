@@ -11,13 +11,13 @@
 
 typedef void (^Handler) (id handler);
 
-typedef void (^LoginHandler) (BOOL isSuccess, NSString* message);
+typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 
 @interface CCFApi : NSObject
 
 
 // 登录论坛
--(void) loginWithName:(NSString*)name andPassWord:(NSString*) passWord handler:(LoginHandler) handler;
+-(void) loginWithName:(NSString*)name andPassWord:(NSString*) passWord handler:(HandlerWithBool) handler;
 
 // 获取当前登录的账户信息
 -(LoginCCFUser *) getLoginUser;
@@ -26,10 +26,10 @@ typedef void (^LoginHandler) (BOOL isSuccess, NSString* message);
 -(void) logout;
 
 // 发表一个新的帖子
--(void) createNewThreadWithFormId:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *) images handler:(Handler) handler;
+-(void) createNewThreadWithFormId:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *) image handler:(HandlerWithBool) handler;
 
 // 发表一个回帖
--(void) replyThreadWithId:(NSString*) threadId andMessage:(NSString*) message handler:(Handler) handler;
+-(void) replyThreadWithId:(NSString*) threadId andMessage:(NSString*) message handler:(HandlerWithBool) handler;
 
 // 搜索论坛
 -(void) searchWithKeyWord:(NSString*) keyWord handler:(Handler) handler;

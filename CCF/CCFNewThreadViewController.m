@@ -8,6 +8,7 @@
 
 #import "CCFNewThreadViewController.h"
 #import "CCFBrowser.h"
+#import "CCFApi.h"
 #import "SelectPhotoCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
@@ -17,6 +18,7 @@
     
     NSString * fId;
     CCFBrowser * broswer;
+    CCFApi *_api;
     
     UIImagePickerController *pickControl;
     
@@ -33,6 +35,7 @@
 
     fId = _entry.urlId;
     broswer = [[CCFBrowser alloc]init];
+    _api = [[CCFApi alloc] init];
     
     
     _selectPhotos.delegate = self;
@@ -191,13 +194,19 @@
 
 - (IBAction)createThread:(id)sender {
 
-    NSData * date = UIImageJPEGRepresentation(images[0], 1);
+    //NSData * date = UIImageJPEGRepresentation(images[0], 1);
     
-    NSString *title = @"带图测试【需删除】";
-    NSString *message = @"111111111111111111111111111";
+    NSString *title = @"客户端api容错处理【需删除】";
+    NSString *message = @"容错处理";
     
-    [broswer createNewThreadForForm:fId withSubject:title andMessage:message withImage:date];
     
+    [_api createNewThreadWithFormId:fId withSubject:title andMessage:message withImages:nil handler:^(BOOL isSuccess, id message) {
+        if (isSuccess) {
+            NSLog(@"createNewThreadWithFormId %@", @"发帖成功");
+        } else{
+            NSLog(@"createNewThreadWithFormId %@", message);
+        }
+    }];
 }
 
 - (IBAction)back:(id)sender {

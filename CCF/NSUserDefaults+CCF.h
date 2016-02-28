@@ -32,4 +32,6 @@
 
 -(void) setInserAllForms:(BOOL)insert;
 
+-(void) clearCookie;
+
 @end

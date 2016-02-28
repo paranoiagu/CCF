@@ -30,17 +30,15 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 -(void) loginWithName:(NSString*)name andPassWord:(NSString*)passWord : (success) callBack;
 
--(void) logout;
-
 -(void) refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView;
 
--(void) reply:(NSString *) threadId :(NSString *) message : (Reply) result;
+-(void) replyThreadWithId:(NSString *) threadId withMessage:(NSString *) message handler: (success) result;
 
 -(LoginCCFUser *) getCurrentCCFUser;
 
 -(void) searchWithKeyWord:(NSString*) keyWord searchDone:(success) callback;
 
--(void) createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImage:(NSData *) image;
 
+-(void)createNewThreadWithFormId:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *)image handler:(success)handler;
 
 @end

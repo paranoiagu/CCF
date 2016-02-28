@@ -9,11 +9,17 @@
 #import "CCFApi.h"
 #import "CCFBrowser.h"
 #import "CCFParser.h"
+#import "NSUserDefaults+CCF.h"
+#import "CCFThreadDetail.h"
+
 
 #define kCCFCookie_User @"bbuserid"
 #define kCCFCookie_LastVisit @"bblastvisit"
 #define kCCFCookie_IDStack @"IDstack"
 #define kCCFSecurityToken @"securitytoken"
+
+#define kErrorMessageTooShort @"您输入的信息太短，您发布的信息至少为 5 个字符。"
+#define kErrorMessageTimeTooShort @"此帖是您在最后 5 分钟发表的帖子的副本，您将返回该主题。"
 
 @implementation CCFApi{
     CCFBrowser *_browser;
@@ -30,7 +36,7 @@
 }
 
 
--(void)loginWithName:(NSString *)name andPassWord:(NSString *)passWord handler:(LoginHandler)handler{
+-(void)loginWithName:(NSString *)name andPassWord:(NSString *)passWord handler:(HandlerWithBool)handler{
     [_browser loginWithName:name andPassWord:passWord :^(NSString* result) {
         LoginCCFUser *user = [self getLoginUser];
         if (user.userID == nil) {
@@ -41,7 +47,6 @@
         }
     }];
 }
-
 
 -(LoginCCFUser *)getLoginUser{
     NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
@@ -61,4 +66,69 @@
     }
     return user;
 }
+
+-(void)logout{
+    [[NSUserDefaults standardUserDefaults] clearCookie];
+}
+
+-(void)createNewThreadWithFormId:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *)image handler:(HandlerWithBool)handler{
+    [_browser createNewThreadWithFormId:fId withSubject:subject andMessage:message withImages:image handler:^(NSString* result) {
+        NSString * error = kErrorMessageTimeTooShort;
+        NSRange range = [result rangeOfString:error];
+        if (range.location != NSNotFound) {
+            handler(NO, error);
+            return;
+        }
+        
+        error = kErrorMessageTooShort;
+        range = [result rangeOfString:error];
+        if (range.location != NSNotFound) {
+            handler(NO, error);
+            return;
+        }
+        
+        CCFThreadDetail * thread = [_praser parseShowThreadWithHtml:result];
+        
+        
+        
+        if(thread.threadPosts.count > 0){
+            handler(YES, thread);
+            
+        } else{
+            handler(NO, @"未知错误");
+        }
+    }];
+
+}
+
+
+-(void)replyThreadWithId:(NSString *)threadId andMessage:(NSString *)message handler:(HandlerWithBool)handler{
+    [_browser replyThreadWithId:threadId withMessage:message handler:^(NSString* result) {
+        NSString * error = kErrorMessageTimeTooShort;
+        NSRange range = [result rangeOfString:error];
+        if (range.location != NSNotFound) {
+            handler(NO, error);
+            return;
+        }
+        
+        error = kErrorMessageTooShort;
+        range = [result rangeOfString:error];
+        if (range.location != NSNotFound) {
+            handler(NO, error);
+            return;
+        }
+
+        CCFThreadDetail * thread = [_praser parseShowThreadWithHtml:result];
+        
+        
+        
+        if(thread.threadPosts.count > 0){
+            handler(YES, thread);
+            
+        } else{
+            handler(NO, @"未知错误");
+        }
+    }];
+}
+
 @end

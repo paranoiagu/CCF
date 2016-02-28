@@ -57,4 +57,8 @@
     return [self setBool:insert forKey:kCCFInsertAllForms];
 }
 
+-(void)clearCookie{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kCCFCookie];
+}
+
 @end

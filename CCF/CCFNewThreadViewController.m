@@ -196,16 +196,20 @@
 
     //NSData * date = UIImageJPEGRepresentation(images[0], 1);
     
-    NSString *title = @"客户端api容错处理【需删除】";
-    NSString *message = @"容错处理";
+//    NSString *title = @"客户端api容错处理【需删除】";
+//    NSString *message = @"容错处理";
+//    
+//    
+//    [_api createNewThreadWithFormId:fId withSubject:title andMessage:message withImages:nil handler:^(BOOL isSuccess, id message) {
+//        if (isSuccess) {
+//            NSLog(@"createNewThreadWithFormId %@", @"发帖成功");
+//        } else{
+//            NSLog(@"createNewThreadWithFormId %@", message);
+//        }
+//    }];
     
-    
-    [_api createNewThreadWithFormId:fId withSubject:title andMessage:message withImages:nil handler:^(BOOL isSuccess, id message) {
-        if (isSuccess) {
-            NSLog(@"createNewThreadWithFormId %@", @"发帖成功");
-        } else{
-            NSLog(@"createNewThreadWithFormId %@", message);
-        }
+    [broswer privateMessageInbox:^(id result) {
+        
     }];
 }
 

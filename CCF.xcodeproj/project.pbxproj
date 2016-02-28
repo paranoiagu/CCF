@@ -47,6 +47,8 @@
 		3AF86A711C82BF660036AD61 /* UIImageView+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF86A701C82BF660036AD61 /* UIImageView+Circle.m */; };
 		3AF86A741C82CAB50036AD61 /* LoginCCFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF86A731C82CAB50036AD61 /* LoginCCFUser.m */; };
 		3AF86A781C82EECE0036AD61 /* CCFApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF86A771C82EECE0036AD61 /* CCFApi.m */; };
+		3AF86A7B1C8329710036AD61 /* PrivateMessageInboxPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF86A7A1C8329710036AD61 /* PrivateMessageInboxPage.m */; };
+		3AF86A7F1C8329C40036AD61 /* InboxMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF86A7E1C8329C40036AD61 /* InboxMessage.m */; };
 		4D1EEBAB1C32502A0084F6E9 /* CCFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBAA1C32502A0084F6E9 /* CCFUser.m */; };
 		4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBAD1C3251E70084F6E9 /* CCFPost.m */; };
 		4D1EEBB11C3260130084F6E9 /* CCFThreadDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBB01C3260130084F6E9 /* CCFThreadDetail.m */; };
@@ -170,6 +172,10 @@
 		3AF86A731C82CAB50036AD61 /* LoginCCFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCCFUser.m; sourceTree = "<group>"; };
 		3AF86A761C82EECE0036AD61 /* CCFApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFApi.h; sourceTree = "<group>"; };
 		3AF86A771C82EECE0036AD61 /* CCFApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFApi.m; sourceTree = "<group>"; };
+		3AF86A791C8329710036AD61 /* PrivateMessageInboxPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageInboxPage.h; sourceTree = "<group>"; };
+		3AF86A7A1C8329710036AD61 /* PrivateMessageInboxPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageInboxPage.m; sourceTree = "<group>"; };
+		3AF86A7D1C8329C40036AD61 /* InboxMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxMessage.h; sourceTree = "<group>"; };
+		3AF86A7E1C8329C40036AD61 /* InboxMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxMessage.m; sourceTree = "<group>"; };
 		4AD749A3A2E07798AF7D58D5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4D1EEBA91C32502A0084F6E9 /* CCFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUser.h; sourceTree = "<group>"; };
 		4D1EEBAA1C32502A0084F6E9 /* CCFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUser.m; sourceTree = "<group>"; };
@@ -396,9 +402,21 @@
 			name = CCFAPI;
 			sourceTree = "<group>";
 		};
+		3AF86A7C1C83298C0036AD61 /* PrivateMessage */ = {
+			isa = PBXGroup;
+			children = (
+				3AF86A791C8329710036AD61 /* PrivateMessageInboxPage.h */,
+				3AF86A7A1C8329710036AD61 /* PrivateMessageInboxPage.m */,
+				3AF86A7D1C8329C40036AD61 /* InboxMessage.h */,
+				3AF86A7E1C8329C40036AD61 /* InboxMessage.m */,
+			);
+			name = PrivateMessage;
+			sourceTree = "<group>";
+		};
 		4D1EEBA81C324FFD0084F6E9 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				3AF86A7C1C83298C0036AD61 /* PrivateMessage */,
 				4D796BEE1C44B59100B3C62D /* Core Data */,
 				4D796C011C45F38400B3C62D /* JSONModel */,
 				4D796C001C45F2E100B3C62D /* Thread-Normal */,
@@ -781,10 +799,12 @@
 				3AEA1F331C365CB600710BD6 /* CCFEntry.m in Sources */,
 				3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */,
 				4D796BE41C437C5000B3C62D /* NSString+Regular.m in Sources */,
+				3AF86A7B1C8329710036AD61 /* PrivateMessageInboxPage.m in Sources */,
 				3A9E18F71C39563500AAB751 /* DemoTextViewController.m in Sources */,
 				3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */,
 				4D796BC91C3DFA6400B3C62D /* WCGraintCircleLayer.m in Sources */,
 				3AA2D5061C36103C00F312CC /* CCFFormSectionInfo.m in Sources */,
+				3AF86A7F1C8329C40036AD61 /* InboxMessage.m in Sources */,
 				3A9FEDE21C3438AC00F30885 /* NSString+Kit.m in Sources */,
 				4DF824BF1C34E9EF005BB858 /* CCFFormTreeJSONModel.m in Sources */,
 				4D796BC31C3DF93D00B3C62D /* WCMagicSquareView.m in Sources */,

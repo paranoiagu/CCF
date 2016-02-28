@@ -492,8 +492,25 @@
     }];
 }
 
+-(void)privateMessageInbox:(success)handler{
+    [_browser GETWithURL:[CCFUrlBuilder buildPrivateMessageInbox] requestCallback:^(NSString *html) {
+        CCFParser * praser = [[CCFParser alloc] init];
+        [praser parseInboxMessageFormHtml:html];
+        
+        //NSLog(@"privateMessageInbox %@", html);
+    }];
+    
+}
 
+-(void)privateMessageOutbox:(success)handler{
+    [_browser GETWithURL:[CCFUrlBuilder buildPrivateMessageOutbox] requestCallback:^(NSString *html) {
+        NSLog(@"privateMessageOutbox %@ ",html);
+    }];
+}
 
+-(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(success)handler{
+    
+}
 
 
 @end

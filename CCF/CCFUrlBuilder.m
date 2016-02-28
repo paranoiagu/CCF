@@ -36,6 +36,10 @@
 
 #define kCCFAvatar @"https://bbs.et8.net/bbs/customavatars/%@"
 
+#define kCCFPrivateMessageInbox @"https://bbs.et8.net/bbs/private.php?folderid=0"
+
+#define kCCFPrivateMessageOutbox @"https://bbs.et8.net/bbs/private.php?folderid=-1"
+
 @implementation CCFUrlBuilder
 
 +(NSURL *)buildMemberURL:(NSString *)userId{
@@ -94,4 +98,13 @@
 +(NSURL *)buildAvatarURL:(NSString *)avatar{
     return [NSURL URLWithString:[NSString stringWithFormat:kCCFAvatar, avatar]];
 }
+
++(NSURL *)buildPrivateMessageInbox{
+    return [NSURL URLWithString:kCCFPrivateMessageInbox];
+}
+
++(NSURL *)buildPrivateMessageOutbox{
+    return [NSURL URLWithString:kCCFPrivateMessageOutbox];
+}
+
 @end

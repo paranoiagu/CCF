@@ -40,4 +40,9 @@
 // https://bbs.et8.net/bbs/member.php
 + (NSURL *) buildAvatarURL:(NSString *) avatar;
 
++ (NSURL *) buildPrivateMessageInbox;
+
++ (NSURL *) buildPrivateMessageOutbox;
+
+
 @end

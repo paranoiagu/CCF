@@ -12,11 +12,13 @@
 #import "CCFSearchResult.h"
 #import "CCFSearchResultPage.h"
 #import "FormEntry+CoreDataProperties.h"
-#import "NSString+Regular.h"
 #import "CCFCoreDataManager.h"
 #import "NSUserDefaults+CCF.h"
 #import "NSString+Regular.h"
 #import "CCFForm.h"
+#import "PrivateMessageInboxPage.h"
+#import "InboxMessage.h"
+
 
 @implementation CCFParser
 
@@ -451,7 +453,65 @@
 }
 
 
+-(PrivateMessageInboxPage *)parseInboxMessageFormHtml:(NSString *)html{
+    PrivateMessageInboxPage * page = [[PrivateMessageInboxPage alloc] init];
+    
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
 
+    IGXMLNodeSet * totalPage = [document queryWithXPath:@"//*[@id='pmform']/table[1]/tr/td/div/table/tr/td[1]"];
+    //<td class="vbmenu_control" style="font-weight:normal">第 1 页，共 5 页</td>
+    NSString * fullText = [[totalPage firstObject] text];
+    NSString * currentPage = [fullText stringWithRegular:@"第 \\d+ 页" andChild:@"\\d+"];
+    page.currentPage = [currentPage integerValue];
+    NSString * totalPageCount = [fullText stringWithRegular:@"共 \\d+ 页" andChild:@"\\d+"];
+    page.totalPageCount = [totalPageCount integerValue];
+    
+    
+    
+    
+    IGXMLNodeSet * totalCount = [document queryWithXPath:@"//*[@id='pmform']/table[1]/tr/td/div/table/tr/td[7]"];
+    NSString * totalCountStr = [[[totalCount firstObject] html] stringWithRegular:@"共计 \\d+" andChild:@"\\d+"];
+    page.inboxMessageCount = [totalCountStr integerValue];
+    
+    
+    
+    NSMutableArray<InboxMessage*> * messagesList  = [NSMutableArray array];
+    
+    IGXMLNodeSet *messages = [document queryWithXPath:@"//*[@id='pmform']/table[2]/tbody[*]/tr"];
+    for (IGXMLNode * node in messages) {
+        long childCount = [[node children] count];
+        if (childCount == 4) {
+            // 有4个节点说明是正常的站内短信
+            InboxMessage * message = [[InboxMessage alloc] init];
+            
+            IGXMLNodeSet * children = [node children];
+            // 1. 是不是未读短信
+            IGXMLNode * unreadFlag = children[0];
+            message.isReaded = ![[unreadFlag html] containsString:@"pm_new.gif"];
+            
+            // 2. 标题
+            IGXMLNode * title = [children[2] children][0];
+            NSString * titleStr = [[title children] [1] text];
+            
+            message.pmTitle = titleStr;
+            
+            NSString * timeDay = [[title children] [0] text];
+            
+            
+            IGXMLNode * author = [children[2] children][1];
+            NSString * authorText = [[author children] [1] text];
+            message.pmAuthor = authorText;
+            
+            NSString * timeHour = [[author children] [0] text];
+            message.pmTime = [[timeDay stringByAppendingString:@" "] stringByAppendingString:timeHour];
+            
+        }
+        
+    }
+    
+    return page;
+    
+}
 
 
 

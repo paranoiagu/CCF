@@ -73,5 +73,6 @@ typedef NS_ENUM(NSInteger, DrawerIndex) {
 @property (weak, nonatomic) IBOutlet LeftDrawerItem *showNewThread;
 @property (weak, nonatomic) IBOutlet LeftDrawerItem *myPost;
 @property (weak, nonatomic) IBOutlet LeftDrawerItem *myThread;
+@property (weak, nonatomic) IBOutlet UIImageView *avatarUIImageView;
 
 @end

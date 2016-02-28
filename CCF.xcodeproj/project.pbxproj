@@ -44,6 +44,7 @@
 		3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */; };
 		3AEA1F331C365CB600710BD6 /* CCFEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F321C365CB600710BD6 /* CCFEntry.m */; };
 		3AEA1F371C365EA400710BD6 /* CCFShowThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */; };
+		3AF86A711C82BF660036AD61 /* UIImageView+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF86A701C82BF660036AD61 /* UIImageView+Circle.m */; };
 		4D1EEBAB1C32502A0084F6E9 /* CCFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBAA1C32502A0084F6E9 /* CCFUser.m */; };
 		4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBAD1C3251E70084F6E9 /* CCFPost.m */; };
 		4D1EEBB11C3260130084F6E9 /* CCFThreadDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EEBB01C3260130084F6E9 /* CCFThreadDetail.m */; };
@@ -161,6 +162,8 @@
 		3AEA1F321C365CB600710BD6 /* CCFEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFEntry.m; sourceTree = "<group>"; };
 		3AEA1F351C365EA400710BD6 /* CCFShowThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowThreadViewController.h; sourceTree = "<group>"; };
 		3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFShowThreadViewController.m; sourceTree = "<group>"; };
+		3AF86A6F1C82BF660036AD61 /* UIImageView+Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Circle.h"; sourceTree = "<group>"; };
+		3AF86A701C82BF660036AD61 /* UIImageView+Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Circle.m"; sourceTree = "<group>"; };
 		4AD749A3A2E07798AF7D58D5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4D1EEBA91C32502A0084F6E9 /* CCFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUser.h; sourceTree = "<group>"; };
 		4D1EEBAA1C32502A0084F6E9 /* CCFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUser.m; sourceTree = "<group>"; };
@@ -467,6 +470,8 @@
 				3A0A997C1C4A5AFC00086DAB /* RoundCornerUITextView.m */,
 				3A0A997E1C4A6A4E00086DAB /* RoundCornerUIView.h */,
 				3A0A997F1C4A6A4E00086DAB /* RoundCornerUIView.m */,
+				3AF86A6F1C82BF660036AD61 /* UIImageView+Circle.h */,
+				3AF86A701C82BF660036AD61 /* UIImageView+Circle.m */,
 			);
 			name = "Public Views";
 			sourceTree = "<group>";
@@ -753,6 +758,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AF86A711C82BF660036AD61 /* UIImageView+Circle.m in Sources */,
 				3A842CA11C469AC1002944A9 /* CCFNewThreadViewController.m in Sources */,
 				3AEA1F331C365CB600710BD6 /* CCFEntry.m in Sources */,
 				3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */,

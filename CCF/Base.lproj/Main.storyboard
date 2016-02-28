@@ -204,7 +204,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="搜索帖子" id="9DQ-Fa-DON">
                         <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="ihs-oh-m0e">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="back:" destination="epM-Tw-Q6d" id="Fpr-Sy-12D"/>
                             </connections>
@@ -327,7 +327,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="设置选项" id="E23-rx-vYb">
                         <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="L1u-tQ-cQM" userLabel="返回">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
@@ -624,13 +624,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="新主题" id="2Au-sw-TiE">
                         <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="AD8-yx-S7E">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="back:" destination="pXN-Qw-w0b" id="6QI-qf-qnC"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_send_18pt" id="K3L-Lq-1FW">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="createThread:" destination="pXN-Qw-w0b" id="ser-lo-J3w"/>
                             </connections>
@@ -789,7 +789,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="帖子详情" id="J7F-R2-drj">
                         <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="Vbs-TP-joe">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="back:" destination="TcI-Mw-KoO" id="ycU-Pq-XO8"/>
                             </connections>
@@ -896,13 +896,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="高级回帖" id="5fd-YQ-uSr">
                         <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="7wl-n0-h7h">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="back:" destination="pPN-ZQ-aHh" id="NyV-bR-vn5"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="发送" id="LtD-U6-XVu">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -954,6 +954,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ezQ-PD-8mT"/>
-        <segue reference="g6H-l4-rUB"/>
+        <segue reference="GM9-DC-SqE"/>
     </inferredMetricsTieBreakers>
 </document>

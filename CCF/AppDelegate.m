@@ -29,8 +29,11 @@
     
     
     CCFBrowser * browser = [[CCFBrowser alloc]init];
+    LoginCCFUser * loginUser = [browser getCurrentCCFUser];
     
-    if (browser.getCurrentCCFUser == nil) {
+    NSDate * date = [NSDate date];
+    
+    if (loginUser.userID == nil || [loginUser.expireTime compare:date] == NSOrderedAscending) {
         self.window.rootViewController = [[LoginViewController alloc]init];
     }
     

@@ -37,6 +37,7 @@
 
 + (NSURL *) buildThreadFirtFloorByThreadId:(NSString *) threadID;
 
+// https://bbs.et8.net/bbs/member.php
 + (NSURL *) buildAvatarURL:(NSString *) avatar;
 
 @end

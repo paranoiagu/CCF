@@ -10,8 +10,9 @@
 
 #import <AFNetworking.h>
 
-@class CCFThreadDetail;
+#import "LoginCCFUser.h"
 
+@class CCFThreadDetail;
 
 
 typedef void(^success) (id result);
@@ -35,13 +36,13 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 -(void) reply:(NSString *) threadId :(NSString *) message : (Reply) result;
 
-- (NSString *) getCurrentCCFUser;
+-(LoginCCFUser *) getCurrentCCFUser;
 
-- (NSString *) getSessionhash;
+-(NSString *) getSessionhash;
 
-- (void) searchWithKeyWord:(NSString*) keyWord searchDone:(success) callback;
+-(void) searchWithKeyWord:(NSString*) keyWord searchDone:(success) callback;
 
--(void)createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImage:(NSData *) image;
+-(void) createNewThreadForForm:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImage:(NSData *) image;
 
 
 @end

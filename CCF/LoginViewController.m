@@ -135,7 +135,7 @@
     
     
     [_browser loginWithName:name AndPassword:password :^(NSString *result) {
-        NSString * userId = [_browser getCurrentCCFUser];
+        NSString * userId = [_browser getCurrentCCFUser].userID;
         if (userId != nil) {
             
             UIStoryboard *storyboard = [UIStoryboard mainStoryboard];

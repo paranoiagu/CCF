@@ -21,6 +21,8 @@
 
 
 #define kCCFCookie_User @"bbuserid"
+#define kCCFCookie_LastVisit @"bblastvisit"
+#define kCCFCookie_IDStack @"IDstack"
 #define kCCFSecurityToken @"securitytoken"
 
 
@@ -112,16 +114,23 @@
     
 }
 
--(NSString *)getCurrentCCFUser{
+-(LoginCCFUser *)getCurrentCCFUser{
     NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+    
+    LoginCCFUser * user = [[LoginCCFUser alloc] init];
     
     for (int i = 0; i < cookies.count; i ++) {
         NSHTTPCookie * cookie = cookies[i];
-        if ([cookie.name isEqualToString:kCCFCookie_User]) {
-            return cookie.value;
+        
+        if ([cookie.name isEqualToString:kCCFCookie_LastVisit]) {
+            user.lastVisit = cookie.value;
+        } else if([cookie.name isEqualToString:kCCFCookie_User]){
+            user.userID = cookie.value;
+        } else if ([cookie.name isEqualToString:kCCFCookie_IDStack]){
+            user.expireTime = cookie.expiresDate;
         }
     }
-    return nil;
+    return user;
 }
 
 -(void) saveCookie{
@@ -166,7 +175,9 @@
     
     [parameters setValue:@"1" forKey:@"parseurl"];
     
-    [parameters setValue:[self getCurrentCCFUser] forKey:@"loggedinuser"];
+    LoginCCFUser * user = [self getCurrentCCFUser];
+    
+    [parameters setValue:user.userID forKey:@"loggedinuser"];
     [parameters setValue:@"1" forKey:@"fromquickreply"];
     
     [parameters setValue:@"0" forKey:@"styleid"];
@@ -341,7 +352,9 @@
     
     
     [parameters setValue:time forKey:@"poststarttime"];
-    [parameters setValue:[self getCurrentCCFUser] forKey:@"loggedinuser"];
+    
+    LoginCCFUser *user = [self getCurrentCCFUser];
+    [parameters setValue:user.userID forKey:@"loggedinuser"];
     [parameters setValue:@"发表主题" forKey:@"sbutton"];
     [parameters setValue:@"1" forKey:@"parseurl"];
     [parameters setValue:@"9999" forKey:@"emailupdate"];

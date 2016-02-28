@@ -11,7 +11,7 @@
 #import "CCFApi.h"
 #import "SelectPhotoCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "PrivateMessageInboxPage.h"
+#import "PrivateMessagePage.h"
 
 
 @interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>{
@@ -209,9 +209,6 @@
         }
     }];
     
-//    [_api privateMessageInbox:^(PrivateMessageInboxPage* handler) {
-//        NSLog(@"privateMessageInbox    %ld", handler.inboxMessages.count);
-//    }];
 }
 
 - (IBAction)back:(id)sender {

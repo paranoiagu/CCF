@@ -17,7 +17,7 @@
 @class CCFThreadDetail;
 @class CCFSearchResultPage;
 @class CCFForm;
-@class PrivateMessageInboxPage;
+@class PrivateMessagePage;
 
 @interface CCFParser : NSObject
 
@@ -39,6 +39,6 @@
 
 - (NSMutableArray<CCFForm *> *) parseFavFormFormHtml:(NSString *)html;
 
-- (PrivateMessageInboxPage*) parseInboxMessageFormHtml:(NSString*) html;
+- (PrivateMessagePage*) parseInboxMessageFormHtml:(NSString*) html;
 
 @end

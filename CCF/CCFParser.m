@@ -16,8 +16,8 @@
 #import "NSUserDefaults+CCF.h"
 #import "NSString+Regular.h"
 #import "CCFForm.h"
-#import "PrivateMessageInboxPage.h"
-#import "InboxMessage.h"
+#import "PrivateMessagePage.h"
+#import "PrivateMessage.h"
 
 
 @implementation CCFParser
@@ -453,8 +453,8 @@
 }
 
 
--(PrivateMessageInboxPage *)parseInboxMessageFormHtml:(NSString *)html{
-    PrivateMessageInboxPage * page = [[PrivateMessageInboxPage alloc] init];
+-(PrivateMessagePage *)parseInboxMessageFormHtml:(NSString *)html{
+    PrivateMessagePage * page = [[PrivateMessagePage alloc] init];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
 
@@ -475,14 +475,14 @@
     
     
     
-    NSMutableArray<InboxMessage*> * messagesList  = [NSMutableArray array];
+    NSMutableArray<PrivateMessage*> * messagesList  = [NSMutableArray array];
     
     IGXMLNodeSet *messages = [document queryWithXPath:@"//*[@id='pmform']/table[2]/tbody[*]/tr"];
     for (IGXMLNode * node in messages) {
         long childCount = [[node children] count];
         if (childCount == 4) {
             // 有4个节点说明是正常的站内短信
-            InboxMessage * message = [[InboxMessage alloc] init];
+            PrivateMessage * message = [[PrivateMessage alloc] init];
             
             IGXMLNodeSet * children = [node children];
             // 1. 是不是未读短信

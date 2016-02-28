@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "InboxMessage.h"
+#import "PrivateMessage.h"
 
-@interface PrivateMessageInboxPage : NSObject
+@interface PrivateMessagePage : NSObject
 
-@property (nonatomic, strong) NSMutableArray<InboxMessage *> * inboxMessages;
+@property (nonatomic, strong) NSMutableArray<PrivateMessage *> * inboxMessages;
 
 @property (nonatomic, assign) NSUInteger inboxMessageCount;
 

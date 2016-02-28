@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface InboxMessage : NSObject
+@interface PrivateMessage : NSObject
 
 @property (nonatomic, assign) BOOL isReaded;
 @property (nonatomic, strong) NSString *pmTitle;

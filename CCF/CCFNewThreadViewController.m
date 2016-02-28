@@ -11,6 +11,7 @@
 #import "CCFApi.h"
 #import "SelectPhotoCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "PrivateMessageInboxPage.h"
 
 
 @interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>{
@@ -196,21 +197,21 @@
 
     //NSData * date = UIImageJPEGRepresentation(images[0], 1);
     
-//    NSString *title = @"客户端api容错处理【需删除】";
-//    NSString *message = @"容错处理";
-//    
-//    
-//    [_api createNewThreadWithFormId:fId withSubject:title andMessage:message withImages:nil handler:^(BOOL isSuccess, id message) {
-//        if (isSuccess) {
-//            NSLog(@"createNewThreadWithFormId %@", @"发帖成功");
-//        } else{
-//            NSLog(@"createNewThreadWithFormId %@", message);
-//        }
-//    }];
+    NSString *title = @"客户端api容错处理【需删除】";
+    NSString *message = @"容错处理";
     
-    [broswer privateMessageInbox:^(id result) {
-        
+    
+    [_api createNewThreadWithFormId:fId withSubject:title andMessage:message withImages:nil handler:^(BOOL isSuccess, id message) {
+        if (isSuccess) {
+            NSLog(@"createNewThreadWithFormId %@", @"发帖成功");
+        } else{
+            NSLog(@"createNewThreadWithFormId %@", message);
+        }
     }];
+    
+//    [_api privateMessageInbox:^(PrivateMessageInboxPage* handler) {
+//        NSLog(@"privateMessageInbox    %ld", handler.inboxMessages.count);
+//    }];
 }
 
 - (IBAction)back:(id)sender {

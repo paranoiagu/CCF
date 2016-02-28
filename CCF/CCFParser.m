@@ -505,9 +505,12 @@
             NSString * timeHour = [[author children] [0] text];
             message.pmTime = [[timeDay stringByAppendingString:@" "] stringByAppendingString:timeHour];
             
+            [messagesList addObject:message];
+            
         }
-        
     }
+    
+    page.inboxMessages = messagesList;
     
     return page;
     

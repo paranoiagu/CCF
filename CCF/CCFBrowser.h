@@ -41,11 +41,9 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 -(void)createNewThreadWithFormId:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *)image handler:(success)handler;
 
-// 读取论坛站内私信-收件箱
--(void) privateMessageInbox:(success) handler;
+// 读取论坛站内私信   type 0 表示收件箱   1表示发件箱
+-(void) privateMessageWithType:(int) type handler:(success) handler;
 
-// 读取站内私信-发件箱
--(void) privateMessageOutbox:(success) handler;
 
 // 发送站内短信
 -(void) sendPrivateMessageToUserName:(NSString*)name andTitle:(NSString*)title andMessage:(NSString*) message handler:(success)handler;

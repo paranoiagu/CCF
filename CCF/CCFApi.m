@@ -161,4 +161,12 @@
     }];
 }
 
+
+-(void)privateMessageWithType:(int)type handler:(Handler)handler{
+    [_browser privateMessageInbox:^(NSString* result) {
+        PrivateMessageInboxPage * page = [_praser parseInboxMessageFormHtml:result];
+        handler(page);
+    }];
+}
+
 @end

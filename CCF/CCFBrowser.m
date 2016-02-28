@@ -492,19 +492,10 @@
     }];
 }
 
--(void)privateMessageInbox:(success)handler{
-    [_browser GETWithURL:[CCFUrlBuilder buildPrivateMessageInbox] requestCallback:^(NSString *html) {
-        CCFParser * praser = [[CCFParser alloc] init];
-        [praser parseInboxMessageFormHtml:html];
-        
-        //NSLog(@"privateMessageInbox %@", html);
-    }];
-    
-}
 
--(void)privateMessageOutbox:(success)handler{
-    [_browser GETWithURL:[CCFUrlBuilder buildPrivateMessageOutbox] requestCallback:^(NSString *html) {
-        NSLog(@"privateMessageOutbox %@ ",html);
+-(void)privateMessageWithType:(int)type handler:(success)handler{
+    [_browser GETWithURL:[CCFUrlBuilder buildPrivateMessageInbox] requestCallback:^(NSString *html) {
+        handler(html);
     }];
 }
 

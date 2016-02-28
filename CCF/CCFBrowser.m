@@ -232,12 +232,8 @@
         [_browser POSTWithURL:searchUrl parameters:parameters requestCallback:^(NSString *html) {
             
             [self saveCookie];
-            NSLog(@"-----search: %@", html);
-            CCFParser * parser = [[CCFParser alloc]init];
             
-            CCFSearchResultPage * page = [parser parseSearchPageFromHtml:html];
-            
-            callback(page);
+            callback(html);
 
         }];
     }];

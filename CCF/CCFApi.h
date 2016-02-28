@@ -32,7 +32,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void) replyThreadWithId:(NSString*) threadId andMessage:(NSString*) message handler:(HandlerWithBool) handler;
 
 // 搜索论坛
--(void) searchWithKeyWord:(NSString*) keyWord handler:(Handler) handler;
+-(void) searchWithKeyWord:(NSString*) keyWord handler:(HandlerWithBool) handler;
 
 // 读取论坛站内私信-收件箱
 -(void) privateMessageInbox:(Handler) handler;

@@ -10,6 +10,8 @@
 #import "CCFBrowser.h"
 #import "CCFSearchResult.h"
 #import "CCFSearchResultPage.h"
+#import "CCFApi.h"
+
 #import "CCFSearchResultCell.h"
 
 
@@ -18,6 +20,7 @@
     int currentPage;
     int maxPage;
     CCFBrowser * browser;
+    CCFApi * _api;
 }
 
 @end
@@ -32,6 +35,7 @@
 
     [self initData];
     browser = [[CCFBrowser alloc]init];
+    _api = [[CCFApi alloc] init];
     
     self.searchBar.delegate = self;
     
@@ -51,15 +55,15 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
     NSLog(@"searchBarSearchButtonClicked");
-    
-    [browser searchWithKeyWord:searchBar.text searchDone:^(CCFSearchResultPage* result) {
-        
-        [searchResult removeAllObjects ];
-        
-        [searchResult addObjectsFromArray:result.searchResults];
-        
-        [self.tableView reloadData];
-        
+    [_api searchWithKeyWord:searchBar.text handler:^(BOOL isSuccess, id message) {
+        if (isSuccess) {
+            CCFSearchResultPage* result = message;
+            [searchResult removeAllObjects ];
+            [searchResult addObjectsFromArray:result.searchResults];
+            [self.tableView reloadData];
+        } else{
+            NSLog(@"searchBarSearchButtonClicked   ERROR %@", message);
+        }
     }];
     
 }

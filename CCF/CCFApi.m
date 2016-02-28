@@ -11,6 +11,7 @@
 #import "CCFParser.h"
 #import "NSUserDefaults+CCF.h"
 #import "CCFThreadDetail.h"
+#import "CCFSearchResultPage.h"
 
 
 #define kCCFCookie_User @"bbuserid"
@@ -20,6 +21,9 @@
 
 #define kErrorMessageTooShort @"您输入的信息太短，您发布的信息至少为 5 个字符。"
 #define kErrorMessageTimeTooShort @"此帖是您在最后 5 分钟发表的帖子的副本，您将返回该主题。"
+
+#define kSearchErrorTooshort @"对不起，没有匹配记录。请尝试采用其他条件查询。"
+#define kSearchErrorTooFast @"本论坛允许的进行两次搜索的时间间隔必须大于 30 秒。"
 
 @implementation CCFApi{
     CCFBrowser *_browser;
@@ -125,6 +129,32 @@
         if(thread.threadPosts.count > 0){
             handler(YES, thread);
             
+        } else{
+            handler(NO, @"未知错误");
+        }
+    }];
+}
+
+
+-(void)searchWithKeyWord:(NSString *)keyWord handler:(HandlerWithBool)handler{
+    [_browser searchWithKeyWord:keyWord searchDone:^(NSString* result) {
+        
+        NSRange range = [result rangeOfString:kSearchErrorTooshort];
+        if (range.location != NSNotFound) {
+            handler(NO,kSearchErrorTooshort);
+            return;
+        }
+        
+        range = [result rangeOfString:kSearchErrorTooFast];
+        if (range.location != NSNotFound) {
+            handler(NO, kSearchErrorTooFast);
+            return;
+        }
+
+        CCFSearchResultPage * page = [_praser parseSearchPageFromHtml:result];
+        
+        if (page != nil && page.searchResults != nil && page.searchResults.count > 0) {
+            handler(YES, page);
         } else{
             handler(NO, @"未知错误");
         }

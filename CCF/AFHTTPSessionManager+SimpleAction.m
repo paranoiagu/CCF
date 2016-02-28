@@ -40,7 +40,7 @@
         callback(html);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"upload Failed ----------------------->>>>     %@", error);
+        NSLog(@"AFHTTPSessionManager+SimpleAction POSTWithURL  %@", error);
     }];
 }
 

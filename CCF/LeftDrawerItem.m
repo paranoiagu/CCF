@@ -36,10 +36,7 @@
         [self setTitle:text forState:UIControlStateNormal];
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self setTitleColor:blueHighLightColor forState:UIControlStateHighlighted];
-        
         [self setTitleColor:blueHighLightColor forState:UIControlStateSelected];
-        
-        //[self setBackgroundColor:[UIColor grayColor]];
         
         
         UIImage *normalImage = [CommonUtils createImageWithColor:[UIColor whiteColor]];
@@ -49,8 +46,7 @@
         UIImage *highLight = [CommonUtils createImageWithColor:[UIColor colorWithButtonHighLight]];
         [self setBackgroundImage:highLight forState:UIControlStateHighlighted];
         [self setBackgroundImage:highLight forState:UIControlStateSelected];
-        
-        
+
         
         self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         
@@ -78,10 +74,7 @@
         [self setTitle:text forState:UIControlStateNormal];
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self setTitleColor:blueHighLightColor forState:UIControlStateHighlighted];
-        
         [self setTitleColor:blueHighLightColor forState:UIControlStateSelected];
-        
-        //[self setBackgroundColor:[UIColor grayColor]];
         
         
         UIImage *normalImage = [CommonUtils createImageWithColor:[UIColor whiteColor]];
@@ -102,22 +95,4 @@
     return self;
 }
 
-//-(void)didMoveToSuperview{
-//    [super didMoveToSuperview];
-//    NSArray * childViews = self.superview.subviews;
-//    
-//    UIView * lastView = childViews[childViews.count - 2];
-//    
-//    CGRect lastFrame = lastView.frame;
-//
-//    self.frame = CGRectMake(0, lastFrame.origin.y + lastFrame.size.height, self.superview.frame.size.width, 50);
-//    
-//    
-//    
-//    [self setImageEdgeInsets:UIEdgeInsetsMake(0, kMarginLeft, 0, 0)];
-//    
-//    
-//    [self setTitleEdgeInsets:UIEdgeInsetsMake(0, kMarginLeft * 2, 0, 0)];
-//    
-//}
 @end

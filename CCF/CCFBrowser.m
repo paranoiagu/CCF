@@ -58,11 +58,9 @@
     
 }
 
-
--(void)loginWithName:(NSString *)name AndPassword:(NSString *)pwd :(success)callBack{
-    
+-(void) loginWithName:(NSString *)name andPassWord:(NSString *)passWord :(success)callBack{
     NSURL * loginUrl = [CCFUrlBuilder buildLoginURL];
-    NSString * md5pwd = [pwd md5HexDigest];
+    NSString * md5pwd = [passWord md5HexDigest];
     
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     [parameters setValue:name forKey:@"vb_login_username"];
@@ -82,6 +80,7 @@
         
     }];
 }
+
 
 -(void)refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView{
     
@@ -223,18 +222,6 @@
     
 }
 
-
--(NSString *)getSessionhash{
-    NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
-    
-    for (int i = 0; i < cookies.count; i ++) {
-        NSHTTPCookie * cookie = cookies[i];
-        if ([cookie.name isEqualToString:@"bbsessionhash"]) {
-            return cookie.value;
-        }
-    }
-    return nil;
-}
 
 -(void)searchWithKeyWord:(NSString *)keyWord searchDone:(success)callback{
 
@@ -404,12 +391,7 @@
     formatter.dateFormat = @"yyyyMMddHHmmss";
     NSString *str = [formatter stringFromDate:[NSDate date]];
     NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
-    
     [parameters setValue:fileName forKey:@"attachment[]"];
-//    [parameters setValue:@"" forKey:@"attachment[]"];
-//    [parameters setValue:@"" forKey:@"attachment[]"];
-//    [parameters setValue:@"" forKey:@"attachment[]"];
-//    [parameters setValue:@"" forKey:@"attachment[]"];
     
 
     
@@ -468,7 +450,6 @@
     [request setHTTPMethod:@"POST"];
     
     NSString * cookie = [self loadCookie];
-    NSLog(@"=================================>>>>>>>>> %@ <<<<<<<<<<<<<<<<<<<<", cookie);
     [request setValue:cookie forHTTPHeaderField:@"Cookie"];
     
     NSString *boundary = @"----WebKitFormBoundaryuMLI1FFamzkfbSe5";

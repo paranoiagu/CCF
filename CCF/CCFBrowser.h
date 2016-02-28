@@ -28,7 +28,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 -(void) browseWithUrl:(NSURL*) url : (success) callBack ;
 
--(void) loginWithName:(NSString*)name AndPassword:(NSString*)pwd : (success) callBack;
+-(void) loginWithName:(NSString*)name andPassWord:(NSString*)passWord : (success) callBack;
 
 -(void) logout;
 
@@ -37,8 +37,6 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 -(void) reply:(NSString *) threadId :(NSString *) message : (Reply) result;
 
 -(LoginCCFUser *) getCurrentCCFUser;
-
--(NSString *) getSessionhash;
 
 -(void) searchWithKeyWord:(NSString*) keyWord searchDone:(success) callback;
 

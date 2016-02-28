@@ -15,6 +15,9 @@
 #import "CCFNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import "CCFFavFormController.h"
+#import <UIImageView+AFNetworking.h>
+#import "CCFUrlBuilder.h"
+#import "LoginCCFUser.h"
 
 @interface DrawerView(){
 
@@ -50,6 +53,10 @@
         [self addGestureRecognizer:leftEdgePanRecognizer];
         
         [self setLeftDrawerEnadbled:YES];
+        
+        LoginCCFUser * user = [[LoginCCFUser alloc] init];
+        
+        [_avatarUIImageView setImageWithURL:[CCFUrlBuilder buildAvatarURL:user.userID]];
 
     }
     return self;

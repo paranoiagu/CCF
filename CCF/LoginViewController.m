@@ -20,11 +20,14 @@
 #import "AppDelegate.h"
 
 #import "UIStoryboard+CCF.h"
+#import "CCFApi.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>{
 
     CCFBrowser *_browser;
     CGRect screenSize;
+    
+    CCFApi *_ccfApi;
     
     UITextField * currentFocused;
     
@@ -50,6 +53,8 @@
     _browser = [[CCFBrowser alloc]init];
     
     screenSize = [UIScreen mainScreen].bounds;
+    
+    _ccfApi = [[CCFApi alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -134,28 +139,21 @@
     [self presentViewController:progress animated:YES completion:nil];
     
     
-    [_browser loginWithName:name AndPassword:password :^(NSString *result) {
-        NSString * userId = [_browser getCurrentCCFUser].userID;
-        if (userId != nil) {
-            
-            UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
-            [storyboard changeRootViewControllerTo:kCCFRootController];
-            
+    [_ccfApi loginWithName:name andPassWord:password handler:^(BOOL isSuccess, NSString *message) {
+        if (isSuccess) {
+            UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
+            [stortboard changeRootViewControllerTo:kCCFRootController];
         } else{
-            CCFParser * parse = [[CCFParser alloc]init];
-            NSString * error = [parse parseLoginErrorMessage:result];
-            
             [progress dismissViewControllerAnimated:NO completion:nil];
             
             
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"错误" message:error delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"错误" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             
             [alertView show];
-            
-            NSLog(@"loginWithNameloginWithNameloginWithNameloginWithName %@", error);
         }
-//        NSLog(@"loginWithNameloginWithNameloginWithNameloginWithName %@", result);
+        
     }];
+    
 }
 
 

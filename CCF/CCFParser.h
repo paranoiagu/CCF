@@ -41,4 +41,6 @@
 
 - (PrivateMessagePage*) parseInboxMessageFormHtml:(NSString*) html;
 
+- (NSString *) parsePrivateMessageContent:(NSString*) html;
+
 @end

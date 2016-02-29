@@ -498,6 +498,12 @@
     }];
 }
 
+-(void)showPrivateContentById:(NSString *)pmId handler:(success)handler{
+    [_browser GETWithURL:[CCFUrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(NSString *html) {
+        handler(html);
+    }];
+}
+
 -(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(success)handler{
     
 }

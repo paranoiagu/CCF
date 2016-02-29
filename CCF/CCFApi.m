@@ -167,4 +167,13 @@
         handler(page);
     }];
 }
+
+-(void)showPrivateContentById:(NSString *)pmId handler:(Handler)handler{
+    [_browser showPrivateContentById:pmId handler:^(NSString* result) {
+        NSString * content = [_praser parsePrivateMessageContent:result];
+        handler(content);
+    }];
+}
+
+
 @end

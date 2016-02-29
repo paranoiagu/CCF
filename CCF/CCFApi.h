@@ -34,8 +34,11 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 搜索论坛
 -(void) searchWithKeyWord:(NSString*) keyWord handler:(HandlerWithBool) handler;
 
-// 读取论坛站内私信   type 0 表示收件箱   -1表示发件箱
+// 读取论坛站内私信List   type 0 表示收件箱   -1表示发件箱
 -(void) privateMessageWithType:(int) type andPage:(int)page handler:(Handler) handler;
+
+// 根据PM ID 显示一条私信内容
+-(void) showPrivateContentById:(NSString*)pmId handler:(Handler)handler;
 
 // 发送站内短信
 -(void) sendPrivateMessageToUserName:(NSString*)name andTitle:(NSString*)title andMessage:(NSString*) message handler:(Handler)handler;

@@ -44,4 +44,8 @@
 
 + (NSURL *) buildShowPrivateMessageURLWithId:(NSString*) messageId;
 
++ (NSURL *) buildSendPrivateMessageURL;
+
++ (NSURL *) buildReplyPrivateMessageURLWithReplyedID:(NSString*) pmId;
+
 @end

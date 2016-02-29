@@ -110,4 +110,14 @@
     return [NSURL URLWithString:url];
 }
 
++(NSURL *)buildReplyPrivateMessageURLWithReplyedID:(NSString *)pmId{
+    NSString * url = [@"https://bbs.et8.net/bbs/private.php?do=insertpm&pmid=" stringByAppendingString:pmId];
+    return [NSURL URLWithString:url];
+}
+
++(NSURL *)buildSendPrivateMessageURL{
+    NSString * url = @"https://bbs.et8.net/bbs/private.php?do=insertpm&pmid=0";
+    return [NSURL URLWithString:url];
+}
+
 @end

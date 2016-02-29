@@ -504,9 +504,92 @@
     }];
 }
 
--(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(success)handler{
+-(void)replyPrivateMessageWithId:(NSString *)pmId toUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(success)handler{
+
+    NSURL * replyUrl = [CCFUrlBuilder buildReplyPrivateMessageURLWithReplyedID:pmId];
+    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+    
+    
+    [parameters setValue:message forKey:@"message"];
+    [parameters setValue:@"0" forKey:@"wysiwyg"];
+    
+    [parameters setValue:@"6" forKey:@"styleid"];
+    
+    [parameters setValue:@"1" forKey:@"fromquickreply"];
+    
+    [parameters setValue:@"" forKey:@"s"];
+    
+    [parameters setValue:@"0" forKey:@"securitytoken"];//===
+    [parameters setValue:@"insertpm" forKey:@"do"];
+    
+    [parameters setValue:pmId forKey:@"pmid"];
+    
+    [parameters setValue:@"0" forKey:@"loggedinuser"];//===
+    
+    [parameters setValue:@"1" forKey:@"parseurl"];
+    
+    [parameters setValue:@"1" forKey:@"signature"];
+    
+    [parameters setValue:title forKey:@"title"];
+    
+    NSString * fixName = [name stringByAppendingString:@" ;"];
+    [parameters setValue:fixName forKey:@"recipients"];
+    
+    [parameters setValue:@"0" forKey:@"forward"];
+    [parameters setValue:@"1" forKey:@"savecopy"];
+    [parameters setValue:@"提交信息" forKey:@"sbutton"];
+    
+    [_browser POSTWithURL:replyUrl parameters:parameters requestCallback:^(NSString *html) {
+        
+    }];
     
 }
+
+-(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(success)handler{
+
+    
+    NSURL * sendPMUrl = [CCFUrlBuilder buildSendPrivateMessageURL];
+    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+    
+    
+    [parameters setValue:message forKey:@"message"];
+    [parameters setValue:title forKey:@"title"];
+    [parameters setValue:@"0" forKey:@"pmid"];
+    NSString * fixName = [name stringByAppendingString:@" ;"];
+    [parameters setValue:fixName forKey:@"recipients"];
+    [parameters setValue:@"0" forKey:@"wysiwyg"];
+    [parameters setValue:@"" forKey:@"s"];
+    [parameters setValue:@"0" forKey:@"securitytoken"];//===
+    [parameters setValue:@"0" forKey:@"forward"];
+    [parameters setValue:@"1" forKey:@"savecopy"];
+    [parameters setValue:@"提交信息" forKey:@"sbutton"];
+    [parameters setValue:@"1" forKey:@"parseurl"];
+    [parameters setValue:@"insertpm" forKey:@"do"];
+    [parameters setValue:@"" forKey:@"bccrecipients"];//===
+    [parameters setValue:@"0" forKey:@"iconid"];
+    
+    
+    
+    
+    
+    [_browser POSTWithURL:sendPMUrl parameters:parameters requestCallback:^(NSString *html) {
+        
+    }];
+    
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @end

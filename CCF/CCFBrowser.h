@@ -43,9 +43,12 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 // 读取论坛站内私信   type 0 表示收件箱   1表示发件箱
 -(void) privateMessageWithType:(int) type andpage:(int)page handler:(success) handler;
+
 // 根据PM ID 显示一条私信内容
 -(void) showPrivateContentById:(NSString*)pmId handler:(success)handler;
 
+// 回复站内短信
+-(void) replyPrivateMessageWithId:(NSString*)pmId toUserName:(NSString*)name andTitle:(NSString*)title andMessage:(NSString*) message handler:(success)handler;
 
 // 发送站内短信
 -(void) sendPrivateMessageToUserName:(NSString*)name andTitle:(NSString*)title andMessage:(NSString*) message handler:(success)handler;

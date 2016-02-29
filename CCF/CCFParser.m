@@ -492,8 +492,11 @@
             // 2. 标题
             IGXMLNode * title = [children[2] children][0];
             NSString * titleStr = [[title children] [1] text];
-            
             message.pmTitle = titleStr;
+            
+            NSString * messageLink = [[[title children] [1] attribute:@"href"] stringWithRegular:@"\\d+"];
+            message.pmID = messageLink;
+            
             
             NSString * timeDay = [[title children] [0] text];
             

@@ -11,6 +11,7 @@
 @interface PrivateMessage : NSObject
 
 @property (nonatomic, assign) BOOL isReaded;
+@property (nonatomic, strong) NSString *pmID;
 @property (nonatomic, strong) NSString *pmTitle;
 @property (nonatomic, strong) NSString *pmAuthor;
 

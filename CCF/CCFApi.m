@@ -161,12 +161,10 @@
     }];
 }
 
-
--(void)privateMessageWithType:(int)type handler:(Handler)handler{
-    [_browser privateMessageWithType:type handler:^(id result) {
+-(void)privateMessageWithType:(int)type andPage:(int)page handler:(Handler)handler{
+    [_browser privateMessageWithType:type andpage:page handler:^(id result) {
         PrivateMessagePage * page = [_praser parseInboxMessageFormHtml:result];
         handler(page);
     }];
 }
-
 @end

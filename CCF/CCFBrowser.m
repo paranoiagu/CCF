@@ -492,9 +492,8 @@
     }];
 }
 
-
--(void)privateMessageWithType:(int)type handler:(success)handler{
-    [_browser GETWithURL:[CCFUrlBuilder buildPrivateMessageInbox] requestCallback:^(NSString *html) {
+-(void)privateMessageWithType:(int)type andpage:(int)page handler:(success)handler{
+    [_browser GETWithURL:[CCFUrlBuilder buildPrivateMessageWithType:type andPage:page] requestCallback:^(NSString *html) {
         handler(html);
     }];
 }

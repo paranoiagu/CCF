@@ -48,7 +48,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 -(void) showPrivateContentById:(NSString*)pmId handler:(success)handler;
 
 // 回复站内短信
--(void) replyPrivateMessageWithId:(NSString*)pmId toUserName:(NSString*)name andTitle:(NSString*)title andMessage:(NSString*) message handler:(success)handler;
+-(void) replyPrivateMessageWithId:(NSString*)pmId andMessage:(NSString*) message handler:(success)handler;
 
 // 发送站内短信
 -(void) sendPrivateMessageToUserName:(NSString*)name andTitle:(NSString*)title andMessage:(NSString*) message handler:(success)handler;

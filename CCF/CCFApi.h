@@ -43,6 +43,8 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 发送站内短信
 -(void) sendPrivateMessageToUserName:(NSString*)name andTitle:(NSString*)title andMessage:(NSString*) message handler:(HandlerWithBool)handler;
 
+-(void) replyPrivateMessageWithId:(NSString*)pmId andMessage:(NSString*) message handler:(Handler)handler;
+
 // 获取收藏的论坛板块
 -(void) listfavoriteForms:(Handler) handler;
 

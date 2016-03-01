@@ -16,15 +16,19 @@
  
     [self GET:[url absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-        callback(html);
-    } failure:nil];
+        callback(YES, html);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callback(NO, @"网络异常");
+    }];
 }
 
 -(void)POSTWithURL:(NSURL *)url parameters:(id)parameters requestCallback:(RequestCallback)callback{
     [self POST:[url absoluteString] parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-        callback(html);
-    } failure:nil];
+        callback(YES,html);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callback(NO, @"网络异常");
+    }];
 }
 
 -(void)POSTWithURL:(NSURL *)url parameters:(id)parameters constructingBodyWithBlock:(void (^)(id<AFMultipartFormData>))block requestCallback:(RequestCallback)callback{
@@ -37,10 +41,11 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
-        callback(html);
+        callback(YES, html);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"AFHTTPSessionManager+SimpleAction POSTWithURL  %@", error);
+        callback(NO, @"网络异常");
     }];
 }
 

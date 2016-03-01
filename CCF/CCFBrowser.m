@@ -47,15 +47,18 @@
 
 -(void)browseWithUrl:(NSURL *)url :(success)callBack{
     
-    [_browser GETWithURL:url requestCallback:^(NSString *html) {
-        CCFParser * parser = [[CCFParser alloc]init];
-        NSString * token = [parser parseSecurityToken:html];
-        if (token != nil) {
-            [self saveSecurityToken:token];
+    [_browser GETWithURL:url requestCallback:^(BOOL isSuccess, NSString *html) {
+        if (isSuccess) {
+            CCFParser * parser = [[CCFParser alloc]init];
+            NSString * token = [parser parseSecurityToken:html];
+            if (token != nil) {
+                [self saveSecurityToken:token];
+            }
+            callBack(html);
+        } else{
+            callBack(html);
         }
-        callBack(html);
     }];
-    
 }
 
 -(void) loginWithName:(NSString *)name andPassWord:(NSString *)passWord :(success)callBack{
@@ -73,10 +76,15 @@
     [parameters setValue:md5pwd forKey:@"vb_login_md5password"];
     [parameters setValue:md5pwd forKey:@"vb_login_md5password_utf"];
     
-    [_browser POSTWithURL:loginUrl parameters:parameters requestCallback:^(NSString *html) {
-        callBack(html);
-        // 保存Cookie
-        [self saveCookie];
+    [_browser POSTWithURL:loginUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+        if (isSuccess) {
+            callBack(html);
+            // 保存Cookie
+            [self saveCookie];
+        } else{
+            callBack(html);
+        }
+        
         
     }];
 }
@@ -182,12 +190,16 @@
     
     [parameters setValue:@"" forKey:@"s"];
     
-    [_browser POSTWithURL:loginUrl parameters:parameters requestCallback:^(NSString *html) {
-        // 保存Cookie
-        [self saveCookie];
-        
-        result(html);
-        
+    [_browser POSTWithURL:loginUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+        if (isSuccess) {
+            // 保存Cookie
+            [self saveCookie];
+            
+            result(html);
+
+        } else{
+            result(html);
+        }
     }];
 }
 
@@ -219,23 +231,30 @@
     [parameters setValue:@"1" forKey:@"childforums"];
     [parameters setValue:@"1" forKey:@"saveprefs"];
     
-    [_browser GETWithURL:searchUrl requestCallback:^(NSString *html) {
-        CCFParser * parser = [[CCFParser alloc]init];
-        NSString * token = [parser parseSecurityToken:html];
-        if (token != nil) {
-            [self saveSecurityToken:token];
+    [_browser GETWithURL:searchUrl requestCallback:^(BOOL isSuccess, NSString *html) {
+        
+        if (isSuccess) {
+            CCFParser * parser = [[CCFParser alloc]init];
+            NSString * token = [parser parseSecurityToken:html];
+            if (token != nil) {
+                [self saveSecurityToken:token];
+            }
+            
+            NSString * securitytoken = [self readSecurityToken];
+            [parameters setValue:securitytoken forKey:@"securitytoken"];
+            
+            [_browser POSTWithURL:searchUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+                if (isSuccess) {
+                    [self saveCookie];
+                    
+                    callback(html);
+                }
+                
+            }];
+        } else{
+            callback(html);
         }
         
-        NSString * securitytoken = [self readSecurityToken];
-        [parameters setValue:securitytoken forKey:@"securitytoken"];
-
-        [_browser POSTWithURL:searchUrl parameters:parameters requestCallback:^(NSString *html) {
-            
-            [self saveCookie];
-            
-            callback(html);
-
-        }];
     }];
     
 }
@@ -319,9 +338,10 @@
     
     NSURL * newPostUrl = [CCFUrlBuilder buildNewThreadURL:fId];
     
-    [_browser POSTWithURL:newPostUrl parameters:parameters requestCallback:^(NSString *html) {
-        
-        [self saveCookie];
+    [_browser POSTWithURL:newPostUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+        if (isSuccess) {
+            [self saveCookie];
+        }
         handler(html);
         
     }];
@@ -332,7 +352,7 @@
 -(void)uploadImagePrepair:(NSString*)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(success) callback{
     NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
     
-    [_browser GETWithURL:url requestCallback:^(NSString *html) {
+    [_browser GETWithURL:url requestCallback:^(BOOL isSuccess, NSString *html) {
       callback(html);
     }];
 }
@@ -383,7 +403,7 @@
         
         //[formData appendPartWithFormData:data name:fileName];
         
-    } requestCallback:^(NSString *html) {
+    } requestCallback:^(BOOL isSuccess, NSString *html) {
         
         NSLog(@"上传结果-------->>>>>>>> :   %@", html);
         NSLog(@"上传结果-------->>>>>>>> 上传结束");
@@ -397,14 +417,20 @@
     
     NSURL * newThreadUrl = [CCFUrlBuilder buildNewThreadURL:formId];
     
-    [_browser GETWithURL:newThreadUrl requestCallback:^(NSString *html) {
-        CCFParser * parser = [[CCFParser alloc]init];
+    [_browser GETWithURL:newThreadUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         
-        NSString * token = [parser parseSecurityToken:html];
-        NSString * postTime = [[token componentsSeparatedByString:@"-"] firstObject];
-        NSString * hash = [parser parsePostHash:html];
+        if (isSuccess) {
+            CCFParser * parser = [[CCFParser alloc]init];
+            
+            NSString * token = [parser parseSecurityToken:html];
+            NSString * postTime = [[token componentsSeparatedByString:@"-"] firstObject];
+            NSString * hash = [parser parsePostHash:html];
+            
+            callback(token, hash, postTime);
+        } else{
+            callback(nil, nil, nil);
+        }
         
-        callback(token, hash, postTime);
     }];
 
 }
@@ -493,88 +519,111 @@
 }
 
 -(void)privateMessageWithType:(int)type andpage:(int)page handler:(success)handler{
-    [_browser GETWithURL:[CCFUrlBuilder buildPrivateMessageWithType:type andPage:page] requestCallback:^(NSString *html) {
+    [_browser GETWithURL:[CCFUrlBuilder buildPrivateMessageWithType:type andPage:page] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(html);
     }];
 }
 
 -(void)showPrivateContentById:(NSString *)pmId handler:(success)handler{
-    [_browser GETWithURL:[CCFUrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(NSString *html) {
+    [_browser GETWithURL:[CCFUrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(html);
     }];
 }
 
--(void)replyPrivateMessageWithId:(NSString *)pmId toUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(success)handler{
+-(void)replyPrivateMessageWithId:(NSString *)pmId andMessage:(NSString *)message handler:(success)handler{
 
-    NSURL * replyUrl = [CCFUrlBuilder buildReplyPrivateMessageURLWithReplyedID:pmId];
-    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     
-    
-    [parameters setValue:message forKey:@"message"];
-    [parameters setValue:@"0" forKey:@"wysiwyg"];
-    
-    [parameters setValue:@"6" forKey:@"styleid"];
-    
-    [parameters setValue:@"1" forKey:@"fromquickreply"];
-    
-    [parameters setValue:@"" forKey:@"s"];
-    
-    [parameters setValue:@"0" forKey:@"securitytoken"];//===
-    [parameters setValue:@"insertpm" forKey:@"do"];
-    
-    [parameters setValue:pmId forKey:@"pmid"];
-    
-    [parameters setValue:@"0" forKey:@"loggedinuser"];//===
-    
-    [parameters setValue:@"1" forKey:@"parseurl"];
-    
-    [parameters setValue:@"1" forKey:@"signature"];
-    
-    [parameters setValue:title forKey:@"title"];
-    
-    NSString * fixName = [name stringByAppendingString:@" ;"];
-    [parameters setValue:fixName forKey:@"recipients"];
-    
-    [parameters setValue:@"0" forKey:@"forward"];
-    [parameters setValue:@"1" forKey:@"savecopy"];
-    [parameters setValue:@"提交信息" forKey:@"sbutton"];
-    
-    [_browser POSTWithURL:replyUrl parameters:parameters requestCallback:^(NSString *html) {
+    [_browser GETWithURL:[CCFUrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
+        
+        if (isSuccess) {
+            CCFParser * parser = [[CCFParser alloc]init];
+            NSString * token = [parser parseSecurityToken:html];
+            
+            NSString * quote = [parser parseQuickReplyQuoteContent:html];
+            
+            NSString * title = [parser parseQuickReplyTitle:html];
+            NSString * name = [parser parseQuickReplyTo:html];
+            
+            
+            NSURL * replyUrl = [CCFUrlBuilder buildReplyPrivateMessageURLWithReplyedID:pmId];
+            NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+            
+            NSString * realMessage = [[quote stringByAppendingString:@"\n"] stringByAppendingString:message];
+            
+            [parameters setValue:realMessage forKey:@"message"];
+            [parameters setValue:@"0" forKey:@"wysiwyg"];
+            [parameters setValue:@"6" forKey:@"styleid"];
+            [parameters setValue:@"1" forKey:@"fromquickreply"];
+            [parameters setValue:@"" forKey:@"s"];
+            [parameters setValue:token forKey:@"securitytoken"];
+            [parameters setValue:@"insertpm" forKey:@"do"];
+            [parameters setValue:pmId forKey:@"pmid"];
+            //[parameters setValue:@"0" forKey:@"loggedinuser"]; 经过测试，这个参数不写也行
+            [parameters setValue:@"1" forKey:@"parseurl"];
+            [parameters setValue:@"1" forKey:@"signature"];
+            [parameters setValue:title forKey:@"title"];
+            [parameters setValue:name forKey:@"recipients"];
+            
+            [parameters setValue:@"0" forKey:@"forward"];
+            [parameters setValue:@"1" forKey:@"savecopy"];
+            [parameters setValue:@"提交信息" forKey:@"sbutton"];
+            
+            [_browser POSTWithURL:replyUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+                if (isSuccess) {
+                    handler(html);
+                } else {
+                    handler(nil);
+                }
+            }];
+        } else{
+            handler(nil);
+        }
         
     }];
+    
+    
     
 }
 
 -(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(success)handler{
 
     
-    [_browser GETWithURL:[CCFUrlBuilder buildNewPMUR] requestCallback:^(NSString *html) {
-        CCFParser * parser = [[CCFParser alloc]init];
-        NSString * token = [parser parseSecurityToken:html];
+    [_browser GETWithURL:[CCFUrlBuilder buildNewPMUR] requestCallback:^(BOOL isSuccess,NSString *html) {
+        if (isSuccess) {
+            CCFParser * parser = [[CCFParser alloc]init];
+            NSString * token = [parser parseSecurityToken:html];
+            
+            
+            NSURL * sendPMUrl = [CCFUrlBuilder buildSendPrivateMessageURL];
+            NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+            
+            
+            [parameters setValue:message forKey:@"message"];
+            [parameters setValue:title forKey:@"title"];
+            [parameters setValue:@"0" forKey:@"pmid"];
+            [parameters setValue:name forKey:@"recipients"];
+            [parameters setValue:@"0" forKey:@"wysiwyg"];
+            [parameters setValue:@"" forKey:@"s"];
+            [parameters setValue:token forKey:@"securitytoken"];
+            [parameters setValue:@"0" forKey:@"forward"];
+            [parameters setValue:@"1" forKey:@"savecopy"];
+            [parameters setValue:@"提交信息" forKey:@"sbutton"];
+            [parameters setValue:@"1" forKey:@"parseurl"];
+            [parameters setValue:@"insertpm" forKey:@"do"];
+            [parameters setValue:@"" forKey:@"bccrecipients"];
+            [parameters setValue:@"0" forKey:@"iconid"];
+            
+            [_browser POSTWithURL:sendPMUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *sendresult) {
+                if (isSuccess) {
+                    handler(sendresult);
+                }else{
+                    handler(nil);
+                }
+            }];
+        } else{
+            handler(nil);
+        }
         
-    
-        NSURL * sendPMUrl = [CCFUrlBuilder buildSendPrivateMessageURL];
-        NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
-        
-        
-        [parameters setValue:message forKey:@"message"];
-        [parameters setValue:title forKey:@"title"];
-        [parameters setValue:@"0" forKey:@"pmid"];
-        [parameters setValue:name forKey:@"recipients"];
-        [parameters setValue:@"0" forKey:@"wysiwyg"];
-        [parameters setValue:@"" forKey:@"s"];
-        [parameters setValue:token forKey:@"securitytoken"];
-        [parameters setValue:@"0" forKey:@"forward"];
-        [parameters setValue:@"1" forKey:@"savecopy"];
-        [parameters setValue:@"提交信息" forKey:@"sbutton"];
-        [parameters setValue:@"1" forKey:@"parseurl"];
-        [parameters setValue:@"insertpm" forKey:@"do"];
-        [parameters setValue:@"" forKey:@"bccrecipients"];
-        [parameters setValue:@"0" forKey:@"iconid"];
-        
-        [_browser POSTWithURL:sendPMUrl parameters:parameters requestCallback:^(NSString *sendresult) {
-            handler(sendresult);
-        }];
     
     }];
     

@@ -185,4 +185,10 @@
     }];
 }
 
+- (void)replyPrivateMessageWithId:(NSString *)pmId andMessage:(NSString *)message handler:(Handler)handler{
+    [_browser replyPrivateMessageWithId:pmId andMessage:message handler:^(NSString* result) {
+        NSLog(@"回复----》 %@", result);
+    }];
+}
+
 @end

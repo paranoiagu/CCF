@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
 
-typedef void(^RequestCallback) (NSString* html);
+typedef void(^RequestCallback) (BOOL isSuccess, NSString* html);
 
 @interface AFHTTPSessionManager(SimpleAction)
 

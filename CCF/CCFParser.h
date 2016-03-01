@@ -43,4 +43,11 @@
 
 - (NSString *) parsePrivateMessageContent:(NSString*) html;
 
+- (NSString *) parseQuickReplyQuoteContent:(NSString*) html;
+
+- (NSString *) parseQuickReplyTitle:(NSString *)html;
+
+- (NSString *) parseQuickReplyTo:(NSString *)html;
+
+
 @end

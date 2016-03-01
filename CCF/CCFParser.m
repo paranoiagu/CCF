@@ -528,10 +528,30 @@
     return [[contentNodeSet firstObject]html];
 }
 
+-(NSString *)parseQuickReplyQuoteContent:(NSString *)html{
+    
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
+    IGXMLNodeSet * nodeSet = [document queryWithXPath:@"//*[@id='vB_Editor_QR_textarea']"];
+    NSString * node = [[nodeSet firstObject] text];
+    return node;
+}
 
 
+-(NSString *)parseQuickReplyTitle:(NSString *)html{
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
+    IGXMLNodeSet * nodeSet = [document queryWithXPath:@"//*[@id='message_form']/div[1]/div/div/div[3]/input[9]"];
+    
+    NSString * node = [[nodeSet firstObject] attribute:@"value"];
+    return node;
+    
+}
 
-
+-(NSString *)parseQuickReplyTo:(NSString *)html{
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
+    IGXMLNodeSet * nodeSet = [document queryWithXPath:@"//*[@id='message_form']/div[1]/div/div/div[3]/input[10]"];
+    NSString * node = [[nodeSet firstObject] attribute:@"value"];
+    return node;
+}
 
 
 

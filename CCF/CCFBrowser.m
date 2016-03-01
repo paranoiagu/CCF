@@ -572,9 +572,8 @@
         [parameters setValue:@"" forKey:@"bccrecipients"];
         [parameters setValue:@"0" forKey:@"iconid"];
         
-        [_browser POSTWithURL:sendPMUrl parameters:parameters requestCallback:^(NSString *html) {
-        NSLog(@"发送私信结果 %@", html);
-            
+        [_browser POSTWithURL:sendPMUrl parameters:parameters requestCallback:^(NSString *sendresult) {
+            handler(sendresult);
         }];
     
     }];

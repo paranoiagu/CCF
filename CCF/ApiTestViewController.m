@@ -21,7 +21,11 @@
     
     CCFApi * api = [[CCFApi alloc] init];
     [api sendPrivateMessageToUserName:@"马小甲" andTitle:@"2222222" andMessage:@"ppppp" handler:^(BOOL isSuccess, id message) {
-        
+        if (isSuccess) {
+            NSLog(@"发送成功 %@", message);
+        } else{
+            NSLog(@"发送失败 %@", message);
+        }
     }];
     
 }

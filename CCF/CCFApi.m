@@ -177,7 +177,11 @@
 
 -(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(HandlerWithBool)handler{
     [_browser sendPrivateMessageToUserName:name andTitle:title andMessage:message handler:^(NSString *result) {
-        
+        if ([result containsString:@"信息提交时发生如下错误:"] || [result containsString:@"訊息提交時發生如下錯誤:" ]) {
+            handler(NO,@"收件人未找到或者未填写标题");
+        } else{
+            handler(YES,@"");
+        }
     }];
 }
 

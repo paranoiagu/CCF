@@ -45,7 +45,7 @@
 
 
 
--(void)browseWithUrl:(NSURL *)url :(success)callBack{
+-(void)browseWithUrl:(NSURL *)url :(Handler)callBack{
     
     [_browser GETWithURL:url requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
@@ -54,14 +54,14 @@
             if (token != nil) {
                 [self saveSecurityToken:token];
             }
-            callBack(html);
+            callBack(YES,html);
         } else{
-            callBack(html);
+            callBack(NO, html);
         }
     }];
 }
 
--(void) loginWithName:(NSString *)name andPassWord:(NSString *)passWord :(success)callBack{
+-(void) loginWithName:(NSString *)name andPassWord:(NSString *)passWord :(Handler)callBack{
     NSURL * loginUrl = [CCFUrlBuilder buildLoginURL];
     NSString * md5pwd = [passWord md5HexDigest];
     
@@ -78,11 +78,11 @@
     
     [_browser POSTWithURL:loginUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            callBack(html);
+            callBack(YES,html);
             // 保存Cookie
             [self saveCookie];
         } else{
-            callBack(html);
+            callBack(NO,html);
         }
         
         
@@ -155,7 +155,7 @@
 }
 
 
--(void)replyThreadWithId:(NSString *)threadId withMessage:(NSString *)message handler:(success)result{
+-(void)replyThreadWithId:(NSString *)threadId withMessage:(NSString *)message handler:(Handler)result{
     //NSString * testMesage = @"\n:blush;\n\n\n\n\n\n\n\n\n\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?p=16695603\"]Test For CCF iPhone Client[/URL][/RIGHT]";
     
     NSString * testMesage = @"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"][COLOR=\"Silver\"][I]SENDBY『CCF客户端』[/I][/COLOR][/URL][/RIGHT]";
@@ -195,16 +195,16 @@
             // 保存Cookie
             [self saveCookie];
             
-            result(html);
+            result(YES,html);
 
         } else{
-            result(html);
+            result(NO,html);
         }
     }];
 }
 
 
--(void)searchWithKeyWord:(NSString *)keyWord searchDone:(success)callback{
+-(void)searchWithKeyWord:(NSString *)keyWord searchDone:(Handler)callback{
 
     NSURL * searchUrl = [CCFUrlBuilder buildSearchUrl];
     
@@ -247,12 +247,14 @@
                 if (isSuccess) {
                     [self saveCookie];
                     
-                    callback(html);
+                    callback(YES, html);
+                } else{
+                    callback(NO, html);
                 }
                 
             }];
         } else{
-            callback(html);
+            callback(NO,html);
         }
         
     }];
@@ -277,7 +279,7 @@
     return nil;
 }
 
--(void)createNewThreadWithFormId:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *)image handler:(success)handler{
+-(void)createNewThreadWithFormId:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *)image handler:(Handler)handler{
     message = [message stringByAppendingString:@"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"]Test For: CCF Client[/URL][/RIGHT]"];
     
     // 准备发帖
@@ -285,12 +287,12 @@
         
         if (image != nil) {
             // 没有图片，直接发送主题
-            [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time handler:^(id result) {
-                handler(result);
+            [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time handler:^(BOOL isSuccess, id result) {
+                handler(isSuccess,result);
             }];
         } else{
             // 如果有图片，先传图片
-            [self uploadImagePrepair:fId startPostTime:time postHash:hash :^(NSString* result) {
+            [self uploadImagePrepair:fId startPostTime:time postHash:hash :^(BOOL isSuccess, NSString* result) {
                 
                 // 解析出上传图片需要的参数
                 CCFParser * parser = [[CCFParser alloc]init];
@@ -298,9 +300,9 @@
                 NSString * uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
                 NSString * uploadHash = [parser parsePostHash:result];
                 
-                [self uploadImage:[CCFUrlBuilder buildUploadFileURL] :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image callback:^(id result) {
-                    [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time handler:^(id result) {
-                        handler(result);
+                [self uploadImage:[CCFUrlBuilder buildUploadFileURL] :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id result) {
+                    [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time handler:^(BOOL isSuccess ,id result) {
+                        handler(isSuccess, result);
                     }];
                 }];
                 
@@ -314,7 +316,7 @@
 
 
 // 正式开始发送
--(void) doPostThread:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash postTime:(NSString*)time handler:(success) handler{
+-(void) doPostThread:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash postTime:(NSString*)time handler:(Handler) handler{
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     [parameters setValue:subject forKey:@"subject"];
     [parameters setValue:message forKey:@"message"];
@@ -342,18 +344,18 @@
         if (isSuccess) {
             [self saveCookie];
         }
-        handler(html);
+        handler(isSuccess, html);
         
     }];
 }
 
 
 // 进入图片管理页面，准备上传图片
--(void)uploadImagePrepair:(NSString*)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(success) callback{
+-(void)uploadImagePrepair:(NSString*)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(Handler) callback{
     NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
     
     [_browser GETWithURL:url requestCallback:^(BOOL isSuccess, NSString *html) {
-      callback(html);
+      callback(isSuccess, html);
     }];
 }
 
@@ -435,7 +437,7 @@
 
 }
 
--(void) uploadImage:(NSURL *)url :(NSString *)token fId:(NSString *)fId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData callback:(success)callback{
+-(void) uploadImage:(NSURL *)url :(NSString *)token fId:(NSString *)fId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData callback:(Handler)callback{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
 //    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
@@ -511,26 +513,26 @@
         if(data.length > 0) {
             //success
             NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            callback(responseString);
+            callback(YES, responseString);
         } else{
-            callback(@"failed");
+            callback(NO, @"failed");
         }
     }];
 }
 
--(void)privateMessageWithType:(int)type andpage:(int)page handler:(success)handler{
+-(void)privateMessageWithType:(int)type andpage:(int)page handler:(Handler)handler{
     [_browser GETWithURL:[CCFUrlBuilder buildPrivateMessageWithType:type andPage:page] requestCallback:^(BOOL isSuccess, NSString *html) {
-        handler(html);
+        handler(isSuccess, html);
     }];
 }
 
--(void)showPrivateContentById:(NSString *)pmId handler:(success)handler{
+-(void)showPrivateContentById:(NSString *)pmId handler:(Handler)handler{
     [_browser GETWithURL:[CCFUrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
-        handler(html);
+        handler(isSuccess, html);
     }];
 }
 
--(void)replyPrivateMessageWithId:(NSString *)pmId andMessage:(NSString *)message handler:(success)handler{
+-(void)replyPrivateMessageWithId:(NSString *)pmId andMessage:(NSString *)message handler:(Handler)handler{
 
     
     [_browser GETWithURL:[CCFUrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
@@ -569,14 +571,10 @@
             [parameters setValue:@"提交信息" forKey:@"sbutton"];
             
             [_browser POSTWithURL:replyUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
-                if (isSuccess) {
-                    handler(html);
-                } else {
-                    handler(nil);
-                }
+                handler(isSuccess, html);
             }];
         } else{
-            handler(nil);
+            handler(NO, nil);
         }
         
     }];
@@ -585,7 +583,7 @@
     
 }
 
--(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(success)handler{
+-(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(Handler)handler{
 
     
     [_browser GETWithURL:[CCFUrlBuilder buildNewPMUR] requestCallback:^(BOOL isSuccess,NSString *html) {
@@ -614,14 +612,10 @@
             [parameters setValue:@"0" forKey:@"iconid"];
             
             [_browser POSTWithURL:sendPMUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *sendresult) {
-                if (isSuccess) {
-                    handler(sendresult);
-                }else{
-                    handler(nil);
-                }
+                handler(isSuccess, sendresult);
             }];
         } else{
-            handler(nil);
+            handler(NO, nil);
         }
         
     

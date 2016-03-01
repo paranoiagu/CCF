@@ -82,7 +82,7 @@
     if (totalPage == 0 || currentPage < totalPage) {
         NSString * pageStr = [NSString stringWithFormat:@"%d", page];
         
-        [self.browser browseWithUrl:[CCFUrlBuilder buildFormURL:entry.urlId withPage:pageStr ]:^(NSString* result) {
+        [self.browser browseWithUrl:[CCFUrlBuilder buildFormURL:entry.urlId withPage:pageStr ]:^(BOOL isSuccess, NSString* result) {
             
             CCFParser *parser = [[CCFParser alloc]init];
             

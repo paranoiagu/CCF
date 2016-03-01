@@ -75,7 +75,7 @@
     if (users == nil || users.count == 0) {
         NSURL * url = [CCFUrlBuilder buildMemberURL:threadList.threadAuthorID];
         
-        [_browser browseWithUrl:url :^(NSString* result) {
+        [_browser browseWithUrl:url :^(BOOL isSuccess, NSString* result) {
             
             NSString * regular = [NSString stringWithFormat:@"/avatar%@_(\\d+).gif", threadList.threadAuthorID];
             

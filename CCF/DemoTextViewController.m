@@ -179,7 +179,7 @@
 
     
     CCFBrowser * browser = [[CCFBrowser alloc]init];
-    [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:@"1328962" withPage:@"1"]:^(NSString* result) {
+    [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:@"1328962" withPage:@"1"]:^(BOOL isSuccess, NSString* result) {
         
         CCFParser *parser = [[CCFParser alloc]init];
         

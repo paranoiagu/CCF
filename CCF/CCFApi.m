@@ -41,14 +41,19 @@
 
 
 -(void)loginWithName:(NSString *)name andPassWord:(NSString *)passWord handler:(HandlerWithBool)handler{
-    [_browser loginWithName:name andPassWord:passWord :^(NSString* result) {
-        LoginCCFUser *user = [self getLoginUser];
-        if (user.userID == nil) {
-            NSString* faildMessage = [_praser parseLoginErrorMessage:result];
-            handler(NO, faildMessage);
+    [_browser loginWithName:name andPassWord:passWord :^(BOOL isSuccess, NSString* result) {
+        if (isSuccess) {
+            LoginCCFUser *user = [self getLoginUser];
+            if (user.userID == nil) {
+                NSString* faildMessage = [_praser parseLoginErrorMessage:result];
+                handler(NO, faildMessage);
+            } else{
+                handler(YES, @"登录成功");
+            }
         } else{
-            handler(YES, @"登录成功");
+            handler(NO,result);
         }
+        
     }];
 }
 
@@ -76,118 +81,153 @@
 }
 
 -(void)createNewThreadWithFormId:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *)image handler:(HandlerWithBool)handler{
-    [_browser createNewThreadWithFormId:fId withSubject:subject andMessage:message withImages:image handler:^(NSString* result) {
-        NSString * error = kErrorMessageTimeTooShort;
-        NSRange range = [result rangeOfString:error];
-        if (range.location != NSNotFound) {
-            handler(NO, error);
-            return;
-        }
-        
-        error = kErrorMessageTooShort;
-        range = [result rangeOfString:error];
-        if (range.location != NSNotFound) {
-            handler(NO, error);
-            return;
-        }
-        
-        CCFThreadDetail * thread = [_praser parseShowThreadWithHtml:result];
-        
-        
-        
-        if(thread.threadPosts.count > 0){
-            handler(YES, thread);
+    [_browser createNewThreadWithFormId:fId withSubject:subject andMessage:message withImages:image handler:^(BOOL isSuccess, NSString* result) {
+        if (isSuccess) {
+            NSString * error = kErrorMessageTimeTooShort;
+            NSRange range = [result rangeOfString:error];
+            if (range.location != NSNotFound) {
+                handler(NO, error);
+                return;
+            }
             
+            error = kErrorMessageTooShort;
+            range = [result rangeOfString:error];
+            if (range.location != NSNotFound) {
+                handler(NO, error);
+                return;
+            }
+            
+            CCFThreadDetail * thread = [_praser parseShowThreadWithHtml:result];
+            
+            
+            
+            if(thread.threadPosts.count > 0){
+                handler(YES, thread);
+                
+            } else{
+                handler(NO, @"未知错误");
+            }
         } else{
-            handler(NO, @"未知错误");
+            handler(NO, result);
         }
+        
+        
     }];
 
 }
 
 
 -(void)replyThreadWithId:(NSString *)threadId andMessage:(NSString *)message handler:(HandlerWithBool)handler{
-    [_browser replyThreadWithId:threadId withMessage:message handler:^(NSString* result) {
-        NSString * error = kErrorMessageTimeTooShort;
-        NSRange range = [result rangeOfString:error];
-        if (range.location != NSNotFound) {
-            handler(NO, error);
-            return;
-        }
+    [_browser replyThreadWithId:threadId withMessage:message handler:^(BOOL isSuccess, NSString* result) {
         
-        error = kErrorMessageTooShort;
-        range = [result rangeOfString:error];
-        if (range.location != NSNotFound) {
-            handler(NO, error);
-            return;
-        }
-
-        CCFThreadDetail * thread = [_praser parseShowThreadWithHtml:result];
-        
-        
-        
-        if(thread.threadPosts.count > 0){
-            handler(YES, thread);
+        if (isSuccess) {
+            NSString * error = kErrorMessageTimeTooShort;
+            NSRange range = [result rangeOfString:error];
+            if (range.location != NSNotFound) {
+                handler(NO, error);
+                return;
+            }
             
+            error = kErrorMessageTooShort;
+            range = [result rangeOfString:error];
+            if (range.location != NSNotFound) {
+                handler(NO, error);
+                return;
+            }
+            
+            CCFThreadDetail * thread = [_praser parseShowThreadWithHtml:result];
+            
+            
+            
+            if(thread.threadPosts.count > 0){
+                handler(YES, thread);
+                
+            } else{
+                handler(NO, @"未知错误");
+            }
         } else{
-            handler(NO, @"未知错误");
+            handler(NO, result);
         }
+        
     }];
 }
 
 
 -(void)searchWithKeyWord:(NSString *)keyWord handler:(HandlerWithBool)handler{
-    [_browser searchWithKeyWord:keyWord searchDone:^(NSString* result) {
+    [_browser searchWithKeyWord:keyWord searchDone:^(BOOL isSuccess, NSString* result) {
         
-        NSRange range = [result rangeOfString:kSearchErrorTooshort];
-        if (range.location != NSNotFound) {
-            handler(NO,kSearchErrorTooshort);
-            return;
+        if (isSuccess) {
+            
+            NSRange range = [result rangeOfString:kSearchErrorTooshort];
+            if (range.location != NSNotFound) {
+                handler(NO,kSearchErrorTooshort);
+                return;
+            }
+            
+            range = [result rangeOfString:kSearchErrorTooFast];
+            if (range.location != NSNotFound) {
+                handler(NO, kSearchErrorTooFast);
+                return;
+            }
+            
+            CCFSearchResultPage * page = [_praser parseSearchPageFromHtml:result];
+            
+            if (page != nil && page.searchResults != nil && page.searchResults.count > 0) {
+                handler(YES, page);
+            } else{
+                handler(NO, @"未知错误");
+            }
+        } else{
+            handler(NO, result);
         }
         
-        range = [result rangeOfString:kSearchErrorTooFast];
-        if (range.location != NSNotFound) {
-            handler(NO, kSearchErrorTooFast);
-            return;
-        }
+    }];
+}
 
-        CCFSearchResultPage * page = [_praser parseSearchPageFromHtml:result];
+-(void)privateMessageWithType:(int)type andPage:(int)page handler:(HandlerWithBool)handler{
+    [_browser privateMessageWithType:type andpage:page handler:^(BOOL isSuccess, id result) {
         
-        if (page != nil && page.searchResults != nil && page.searchResults.count > 0) {
+        if (isSuccess) {
+            PrivateMessagePage * page = [_praser parseInboxMessageFormHtml:result];
             handler(YES, page);
         } else{
-            handler(NO, @"未知错误");
+            handler(NO, result);
         }
+        
     }];
 }
 
--(void)privateMessageWithType:(int)type andPage:(int)page handler:(Handler)handler{
-    [_browser privateMessageWithType:type andpage:page handler:^(id result) {
-        PrivateMessagePage * page = [_praser parseInboxMessageFormHtml:result];
-        handler(page);
-    }];
-}
-
--(void)showPrivateContentById:(NSString *)pmId handler:(Handler)handler{
-    [_browser showPrivateContentById:pmId handler:^(NSString* result) {
-        NSString * content = [_praser parsePrivateMessageContent:result];
-        handler(content);
+-(void)showPrivateContentById:(NSString *)pmId handler:(HandlerWithBool)handler{
+    [_browser showPrivateContentById:pmId handler:^(BOOL isSuccess, NSString* result) {
+        if (isSuccess) {
+            NSString * content = [_praser parsePrivateMessageContent:result];
+            handler(YES, content);
+        } else {
+            handler(NO, result);
+        }
+        
     }];
 }
 
 -(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(HandlerWithBool)handler{
-    [_browser sendPrivateMessageToUserName:name andTitle:title andMessage:message handler:^(NSString *result) {
-        if ([result containsString:@"信息提交时发生如下错误:"] || [result containsString:@"訊息提交時發生如下錯誤:" ]) {
-            handler(NO,@"收件人未找到或者未填写标题");
+    [_browser sendPrivateMessageToUserName:name andTitle:title andMessage:message handler:^(BOOL isSuccess, NSString *result) {
+        if (isSuccess) {
+            if ([result containsString:@"信息提交时发生如下错误:"] || [result containsString:@"訊息提交時發生如下錯誤:" ]) {
+                handler(NO,@"收件人未找到或者未填写标题");
+            } else{
+                handler(YES,@"");
+            }
         } else{
-            handler(YES,@"");
+            handler(NO, result);
         }
+        
     }];
 }
 
-- (void)replyPrivateMessageWithId:(NSString *)pmId andMessage:(NSString *)message handler:(Handler)handler{
-    [_browser replyPrivateMessageWithId:pmId andMessage:message handler:^(NSString* result) {
-        NSLog(@"回复----》 %@", result);
+- (void)replyPrivateMessageWithId:(NSString *)pmId andMessage:(NSString *)message handler:(HandlerWithBool)handler{
+    [_browser replyPrivateMessageWithId:pmId andMessage:message handler:^(BOOL isSuccess, NSString* result) {
+        handler(isSuccess, result);
+       
     }];
 }
 

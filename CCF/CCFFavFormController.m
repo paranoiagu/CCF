@@ -41,7 +41,7 @@
     NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
     
     if (userDef.favFormIds == nil) {
-        [_browser browseWithUrl:[CCFUrlBuilder buildFavFormURL] :^(NSString* result) {
+        [_browser browseWithUrl:[CCFUrlBuilder buildFavFormURL] :^(BOOL isSuccess, NSString* result) {
             CCFParser * parser = [[CCFParser alloc]init];
             _favForms = [parser parseFavFormFormHtml:result];
             [self.tableView reloadData];

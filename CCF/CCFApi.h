@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "LoginCCFUser.h"
 
-typedef void (^Handler) (id handler);
-
 typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 
 @interface CCFApi : NSObject
@@ -35,18 +33,18 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void) searchWithKeyWord:(NSString*) keyWord handler:(HandlerWithBool) handler;
 
 // 读取论坛站内私信List   type 0 表示收件箱   -1表示发件箱
--(void) privateMessageWithType:(int) type andPage:(int)page handler:(Handler) handler;
+-(void) privateMessageWithType:(int) type andPage:(int)page handler:(HandlerWithBool) handler;
 
 // 根据PM ID 显示一条私信内容
--(void) showPrivateContentById:(NSString*)pmId handler:(Handler)handler;
+-(void) showPrivateContentById:(NSString*)pmId handler:(HandlerWithBool)handler;
 
 // 发送站内短信
 -(void) sendPrivateMessageToUserName:(NSString*)name andTitle:(NSString*)title andMessage:(NSString*) message handler:(HandlerWithBool)handler;
 
--(void) replyPrivateMessageWithId:(NSString*)pmId andMessage:(NSString*) message handler:(Handler)handler;
+-(void) replyPrivateMessageWithId:(NSString*)pmId andMessage:(NSString*) message handler:(HandlerWithBool)handler;
 
 // 获取收藏的论坛板块
--(void) listfavoriteForms:(Handler) handler;
+-(void) listfavoriteForms:(HandlerWithBool) handler;
 
 // 收藏这个论坛
 -(void) favoriteFormsWithId:(NSString*)formId;
@@ -56,7 +54,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 
 
 // 获取收藏的主题帖子
--(void)listfavoriteThreadPosts:(Handler)handler;
+-(void)listfavoriteThreadPosts:(HandlerWithBool)handler;
 
 // 收藏一个主题帖子
 -(void)favoriteThreadPostWithId:(NSString *)threadPostId;
@@ -66,16 +64,16 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 
 
 // 查看新帖
--(void) fetchNewThreads:(Handler)handler;
+-(void) fetchNewThreads:(HandlerWithBool)handler;
 
 // 查看今日新帖
--(void) fetchTodayNewThreads:(Handler)handler;
+-(void) fetchTodayNewThreads:(HandlerWithBool)handler;
 
 // 显示我的回帖
--(void) listMyAllThreadPost:(Handler)handler;
+-(void) listMyAllThreadPost:(HandlerWithBool)handler;
 
 // 显示我发表的主题
--(void) listMyAllThreads:(Handler)handler;
+-(void) listMyAllThreads:(HandlerWithBool)handler;
 
 
 

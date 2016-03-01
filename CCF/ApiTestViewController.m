@@ -29,7 +29,7 @@
 //    }];
 
     
-    [api replyPrivateMessageWithId:@"2022896" andMessage:@"ttttttttt" handler:^(id handler) {
+    [api replyPrivateMessageWithId:@"2022896" andMessage:@"ttttttttt" handler:^(BOOL isSuccess, id handler) {
         
     }];
 }

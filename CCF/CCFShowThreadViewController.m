@@ -149,7 +149,7 @@
     
         NSString * pageStr = [NSString stringWithFormat:@"%d", page];
         
-        [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:entry.urlId withPage:pageStr]:^(NSString* result) {
+        [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:entry.urlId withPage:pageStr]:^(BOOL isSuccess, NSString* result) {
             
             CCFParser *parser = [[CCFParser alloc]init];
             

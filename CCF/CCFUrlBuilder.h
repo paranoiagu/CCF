@@ -48,4 +48,7 @@
 
 + (NSURL *) buildReplyPrivateMessageURLWithReplyedID:(NSString*) pmId;
 
+// 获取security-token用的
++ (NSURL *) buildNewPMUR;
+
 @end

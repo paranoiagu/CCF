@@ -175,5 +175,10 @@
     }];
 }
 
+-(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(HandlerWithBool)handler{
+    [_browser sendPrivateMessageToUserName:name andTitle:title andMessage:message handler:^(NSString *result) {
+        
+    }];
+}
 
 @end

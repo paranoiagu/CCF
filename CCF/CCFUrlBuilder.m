@@ -116,7 +116,13 @@
 }
 
 +(NSURL *)buildSendPrivateMessageURL{
+    //
     NSString * url = @"https://bbs.et8.net/bbs/private.php?do=insertpm&pmid=0";
+    return [NSURL URLWithString:url];
+}
+
++(NSURL *)buildNewPMUR{
+    NSString * url = @"https://bbs.et8.net/bbs/private.php?do=newpm";
     return [NSURL URLWithString:url];
 }
 

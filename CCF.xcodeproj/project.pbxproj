@@ -84,6 +84,8 @@
 		4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF91C44BE7800B3C62D /* CoreDataManager.m */; };
 		4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */; };
 		4D796C051C460D4200B3C62D /* NSUserDefaults+CCF.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */; };
+		4D93CFD71C85355D00852D28 /* ApiTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D93CFD51C85355D00852D28 /* ApiTestViewController.m */; };
+		4D93CFD81C85355D00852D28 /* ApiTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */; };
 		4DB98FB31C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB98FB01C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m */; };
 		4DB98FB41C4E0F5A0081AF87 /* CCFUserEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB98FB21C4E0F5A0081AF87 /* CCFUserEntry.m */; };
 		4DB98FB61C4E33E00081AF87 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DB98FB51C4E33E00081AF87 /* logo.jpg */; };
@@ -243,6 +245,9 @@
 		4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFCoreDataManager.m; sourceTree = "<group>"; };
 		4D796C031C460D4200B3C62D /* NSUserDefaults+CCF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+CCF.h"; sourceTree = "<group>"; };
 		4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+CCF.m"; sourceTree = "<group>"; };
+		4D93CFD41C85355D00852D28 /* ApiTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiTestViewController.h; sourceTree = "<group>"; };
+		4D93CFD51C85355D00852D28 /* ApiTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiTestViewController.m; sourceTree = "<group>"; };
+		4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApiTestViewController.xib; sourceTree = "<group>"; };
 		4DB98FAF1C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCFUserEntry+CoreDataProperties.h"; sourceTree = "<group>"; };
 		4DB98FB01C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCFUserEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
 		4DB98FB11C4E0F5A0081AF87 /* CCFUserEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUserEntry.h; sourceTree = "<group>"; };
@@ -398,6 +403,9 @@
 			children = (
 				3AF86A761C82EECE0036AD61 /* CCFApi.h */,
 				3AF86A771C82EECE0036AD61 /* CCFApi.m */,
+				4D93CFD41C85355D00852D28 /* ApiTestViewController.h */,
+				4D93CFD51C85355D00852D28 /* ApiTestViewController.m */,
+				4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */,
 			);
 			name = CCFAPI;
 			sourceTree = "<group>";
@@ -725,6 +733,7 @@
 				4D796B681C3BDCA800B3C62D /* DrawerView.xib in Resources */,
 				4DB98FB61C4E33E00081AF87 /* logo.jpg in Resources */,
 				3AA2D5181C3610C400F312CC /* carat-open.png in Resources */,
+				4D93CFD81C85355D00852D28 /* ApiTestViewController.xib in Resources */,
 				4D1EEBBC1C33D4FD0084F6E9 /* LoginViewController.xib in Resources */,
 				4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */,
 				4D339D9E1C31454B0022A6A4 /* Assets.xcassets in Resources */,
@@ -858,6 +867,7 @@
 				4D796BED1C44A43B00B3C62D /* CCFNavigationController.m in Sources */,
 				3A9FEDD61C341E2E00F30885 /* CCFUrlBuilder.m in Sources */,
 				3A0A997D1C4A5AFC00086DAB /* RoundCornerUITextView.m in Sources */,
+				4D93CFD71C85355D00852D28 /* ApiTestViewController.m in Sources */,
 				3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */,
 				4D796BC11C3DF93D00B3C62D /* CAShapeLayer+WCPullRefresh.m in Sources */,
 				3A187B361C40B4EE003DA5C2 /* AlertProgressViewController.m in Sources */,

@@ -14,10 +14,12 @@
 #import "CCFCoreDataManager.h"
 #import "FormEntry.h"
 #import "NSUserDefaults+CCF.h"
+#import "ApiTestViewController.h"
 
 
-@interface AppDelegate ()
-
+@interface AppDelegate (){
+    BOOL API_DEBUG;
+}
 @end
 
 @implementation AppDelegate
@@ -25,7 +27,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    API_DEBUG = YES;
     
+    if (API_DEBUG) {
+        ApiTestViewController * testController = [[ApiTestViewController alloc] init];
+        self.window.rootViewController = testController;
+        return YES;
+    }
     
     
     CCFBrowser * browser = [[CCFBrowser alloc]init];

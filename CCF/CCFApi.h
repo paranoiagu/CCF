@@ -41,7 +41,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void) showPrivateContentById:(NSString*)pmId handler:(Handler)handler;
 
 // 发送站内短信
--(void) sendPrivateMessageToUserName:(NSString*)name andTitle:(NSString*)title andMessage:(NSString*) message handler:(Handler)handler;
+-(void) sendPrivateMessageToUserName:(NSString*)name andTitle:(NSString*)title andMessage:(NSString*) message handler:(HandlerWithBool)handler;
 
 // 获取收藏的论坛板块
 -(void) listfavoriteForms:(Handler) handler;

@@ -548,33 +548,41 @@
 -(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(success)handler{
 
     
-    NSURL * sendPMUrl = [CCFUrlBuilder buildSendPrivateMessageURL];
-    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
-    
-    
-    [parameters setValue:message forKey:@"message"];
-    [parameters setValue:title forKey:@"title"];
-    [parameters setValue:@"0" forKey:@"pmid"];
-    NSString * fixName = [name stringByAppendingString:@" ;"];
-    [parameters setValue:fixName forKey:@"recipients"];
-    [parameters setValue:@"0" forKey:@"wysiwyg"];
-    [parameters setValue:@"" forKey:@"s"];
-    [parameters setValue:@"0" forKey:@"securitytoken"];//===
-    [parameters setValue:@"0" forKey:@"forward"];
-    [parameters setValue:@"1" forKey:@"savecopy"];
-    [parameters setValue:@"提交信息" forKey:@"sbutton"];
-    [parameters setValue:@"1" forKey:@"parseurl"];
-    [parameters setValue:@"insertpm" forKey:@"do"];
-    [parameters setValue:@"" forKey:@"bccrecipients"];//===
-    [parameters setValue:@"0" forKey:@"iconid"];
-    
-    
-    
-    
-    
-    [_browser POSTWithURL:sendPMUrl parameters:parameters requestCallback:^(NSString *html) {
+    [_browser GETWithURL:[CCFUrlBuilder buildNewPMUR] requestCallback:^(NSString *html) {
+        CCFParser * parser = [[CCFParser alloc]init];
+        NSString * token = [parser parseSecurityToken:html];
         
+    
+        NSURL * sendPMUrl = [CCFUrlBuilder buildSendPrivateMessageURL];
+        NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+        
+        
+        [parameters setValue:message forKey:@"message"];
+        [parameters setValue:title forKey:@"title"];
+        [parameters setValue:@"0" forKey:@"pmid"];
+        [parameters setValue:name forKey:@"recipients"];
+        [parameters setValue:@"0" forKey:@"wysiwyg"];
+        [parameters setValue:@"" forKey:@"s"];
+        [parameters setValue:token forKey:@"securitytoken"];
+        [parameters setValue:@"0" forKey:@"forward"];
+        [parameters setValue:@"1" forKey:@"savecopy"];
+        [parameters setValue:@"提交信息" forKey:@"sbutton"];
+        [parameters setValue:@"1" forKey:@"parseurl"];
+        [parameters setValue:@"insertpm" forKey:@"do"];
+        [parameters setValue:@"" forKey:@"bccrecipients"];
+        [parameters setValue:@"0" forKey:@"iconid"];
+        
+        [_browser POSTWithURL:sendPMUrl parameters:parameters requestCallback:^(NSString *html) {
+        NSLog(@"发送私信结果 %@", html);
+            
+        }];
+    
     }];
+    
+    
+    
+    
+    
     
 
 }

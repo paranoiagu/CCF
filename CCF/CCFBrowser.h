@@ -53,5 +53,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 // 发送站内短信
 -(void) sendPrivateMessageToUserName:(NSString*)name andTitle:(NSString*)title andMessage:(NSString*) message handler:(Handler)handler;
 
+// 获取收藏的论坛板块
+-(void) listfavoriteForms:(Handler) handler;
 
 @end

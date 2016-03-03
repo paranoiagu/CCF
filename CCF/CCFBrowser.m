@@ -620,16 +620,17 @@
         
     
     }];
-    
-    
-    
-    
-    
-    
-
 }
 
-
+-(void)listfavoriteForms:(Handler)handler{
+    [_browser GETWithURL:[CCFUrlBuilder buildFavFormURL] requestCallback:^(BOOL isSuccess, NSString *html) {
+        if (isSuccess) {
+            handler(YES, html);
+        } else{
+            handler(NO, html);
+        }
+    }];
+}
 
 
 

@@ -231,4 +231,15 @@
     }];
 }
 
+-(void)listfavoriteForms:(HandlerWithBool)handler{
+    [_browser listfavoriteForms:^(BOOL isSuccess, id result) {
+        if (isSuccess) {
+            NSMutableArray<CCFForm *> * favForms = [_praser parseFavFormFormHtml:result];
+            handler(YES, favForms);
+        } else{
+            handler(NO, nil);
+        }
+    }];
+}
+
 @end

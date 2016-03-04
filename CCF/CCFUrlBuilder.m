@@ -126,4 +126,13 @@
     return [NSURL URLWithString:url];
 }
 
++(NSURL *)buildMyThreadPostsURLWithUserId:(NSString*)Id{
+    NSString * url = [@"https://bbs.et8.net/bbs/search.php?do=finduser&userid=" stringByAppendingString:Id];
+    return [NSURL URLWithString:url];
+}
+
++(NSURL *)buildMyThreadWithName:(NSString *)name{
+    NSString * url = [@"https://bbs.et8.net/bbs/search.php?do=process&showposts=0&starteronly=1&exactname=1&searchuser=" stringByAppendingString:name];
+    return [NSURL URLWithString:url];
+}
 @end

@@ -18,7 +18,7 @@
 #import "CCFThreadDetail.h"
 #import "NSUserDefaults+CCF.h"
 #import "AFHTTPSessionManager+SimpleAction.h"
-
+#import "LoginCCFUser.h"
 
 #define kCCFCookie_User @"bbuserid"
 #define kCCFCookie_LastVisit @"bblastvisit"
@@ -632,7 +632,32 @@
     }];
 }
 
+-(void)listMyAllThreadPost:(Handler)handler{
+    LoginCCFUser * user = [self getCurrentCCFUser];
+    if (user == nil || user.userID == nil) {
+        handler(NO,@"未登录");
+        return;
+    }
+    
+    NSString * userId = user.userID;
+    
+    [_browser POSTWithURL:[CCFUrlBuilder buildMyThreadPostsURLWithUserId:userId] parameters:nil requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess, html);
+    }];
+}
 
+-(void)listMyAllThreads:(Handler)handler{
+    LoginCCFUser * user = [self getCurrentCCFUser];
+    if (user == nil || user.userID == nil) {
+        handler(NO,@"未登录");
+        return;
+    }
+    NSString * userName = user.userName;
+    
+    [_browser POSTWithURL:[CCFUrlBuilder buildMyThreadWithName:userName] parameters:nil requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess, html);
+    }];
+}
 
 
 

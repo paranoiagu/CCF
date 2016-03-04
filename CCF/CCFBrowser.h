@@ -56,4 +56,10 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 // 获取收藏的论坛板块
 -(void) listfavoriteForms:(Handler) handler;
 
+// 显示我的回帖
+-(void) listMyAllThreadPost:(Handler)handler;
+
+// 显示我发表的主题
+-(void) listMyAllThreads:(Handler)handler;
+
 @end

@@ -51,4 +51,8 @@
 // 获取security-token用的
 + (NSURL *) buildNewPMUR;
 
++ (NSURL *) buildMyThreadPostsURLWithUserId:(NSString*)Id;
+
++ (NSURL *) buildMyThreadWithName:(NSString*)name;
+
 @end

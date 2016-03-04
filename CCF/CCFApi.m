@@ -242,4 +242,8 @@
     }];
 }
 
+-(void)listMyAllThreadPost:(HandlerWithBool)handler{
+    
+}
+
 @end

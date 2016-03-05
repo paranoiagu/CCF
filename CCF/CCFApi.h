@@ -41,6 +41,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 发送站内短信
 -(void) sendPrivateMessageToUserName:(NSString*)name andTitle:(NSString*)title andMessage:(NSString*) message handler:(HandlerWithBool)handler;
 
+// 回复站内短信
 -(void) replyPrivateMessageWithId:(NSString*)pmId andMessage:(NSString*) message handler:(HandlerWithBool)handler;
 
 // 获取收藏的论坛板块
@@ -52,7 +53,6 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 取消收藏论坛
 -(void) unfavoriteFormsWithId:(NSString*)formId handler:(HandlerWithBool)handler;
 
-
 // 获取收藏的主题帖子
 -(void)listfavoriteThreadPosts:(HandlerWithBool)handler;
 
@@ -61,7 +61,6 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 
 // 取消收藏一个主题帖子
 -(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler;
-
 
 // 查看新帖
 -(void) fetchNewThreadPosts:(HandlerWithBool)handler;
@@ -75,8 +74,10 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 显示我发表的主题
 -(void) listMyAllThreads:(HandlerWithBool)handler;
 
+// 显示主题帖子和所有回帖
+-(void) showThreadWithId:(NSString *) threadId andPage:(NSString*)page handler:(HandlerWithBool)handler;
 
-
+-(void) forumDisplayWithId:(NSString *) formId andPage:(NSString*)page handler:(HandlerWithBool)handler;
 
 
 @end

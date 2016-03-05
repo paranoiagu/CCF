@@ -296,7 +296,28 @@
     }];
 }
 
+-(void)showThreadWithId:(NSString *)threadId andPage:(NSString *)page handler:(HandlerWithBool)handler{
+    [_browser showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, NSString* html) {
+        if (isSuccess) {
+            CCFThreadDetail * detail = [_praser parseShowThreadWithHtml:html];
+            handler(isSuccess, detail);
+        } else{
+            handler(NO, html);
+        }
+        
+    }];
+}
 
+-(void)forumDisplayWithId:(NSString *)formId andPage:(NSString *)page handler:(HandlerWithBool)handler{
+    [_browser forumDisplayWithId:formId andPage:page handler:^(BOOL isSuccess, id result) {
+        if (isSuccess) {
+            NSMutableArray<CCFThreadList *> * threadList = [_praser parseThreadListFromHtml:result withThread:formId andContainsTop:YES];
+            handler(isSuccess, threadList);
+        } else{
+            handler(NO, result);
+        }
+    }];
+}
 @end
 
 

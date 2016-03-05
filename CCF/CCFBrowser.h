@@ -78,4 +78,8 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 -(void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler) handler;
 
+-(void)showThreadWithId:(NSString *)threadId andPage:(NSString *)page handler:(Handler) handler;
+
+-(void) forumDisplayWithId:(NSString *) formId andPage:(NSString*)page handler:(Handler)handler;
+
 @end

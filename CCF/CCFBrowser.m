@@ -774,6 +774,16 @@
     }];
 }
 
+-(void)showThreadWithId:(NSString *)threadId andPage:(NSString *)page handler:(Handler)handler{
+    [self browseWithUrl:[CCFUrlBuilder buildThreadURL:threadId withPage:page] :^(BOOL isSuccess, id result) {
+        handler(isSuccess, result);
+    }];
+}
 
+-(void)forumDisplayWithId:(NSString *)formId andPage:(NSString *)page handler:(Handler)handler{
+    [self browseWithUrl:[CCFUrlBuilder buildFormURL:formId withPage:page] :^(BOOL isSuccess, id result) {
+        handler(isSuccess, result);
+    }];
+}
 
 @end

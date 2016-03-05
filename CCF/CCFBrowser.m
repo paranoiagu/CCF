@@ -677,7 +677,37 @@
     }];
 }
 
-
+-(void)favoriteFormsWithId:(NSString *)formId handler:(Handler)handler{
+    NSString* preUrl = [@"https://bbs.et8.net/bbs/subscription.php?do=addsubscription&f=" stringByAppendingString:formId];
+    
+    [_browser GETWithURLString:preUrl requestCallback:^(BOOL isSuccess, NSString *html) {
+        if (!isSuccess) {
+            handler(NO, html);
+        } else{
+            CCFParser * parser = [[CCFParser alloc]init];
+            NSString * token = [parser parseSecurityToken:html];
+            
+            NSString * url = [@"https://bbs.et8.net/bbs/subscription.php?do=doaddsubscription&forumid=" stringByAppendingString:formId];
+            
+            NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+            
+            NSString * paramUrl = [@"https://bbs.et8.net/bbs/forumdisplay.php?f=" stringByAppendingString:formId];
+            
+            [parameters setValue:@"" forKey:@"s"];
+            [parameters setValue:token forKey:@"securitytoken"];
+            [parameters setValue:@"doaddsubscription" forKey:@"do"];
+            [parameters setValue:formId forKey:@"formid"];
+            [parameters setValue:paramUrl forKey:@"url"];
+            [parameters setValue:@")" forKey:@"emailupdate"];
+            
+            
+            [_browser POSTWithURLString:url parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+                handler(isSuccess, html);
+            }];
+           
+        }
+    }];
+}
 
 
 

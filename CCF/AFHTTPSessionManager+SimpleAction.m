@@ -51,8 +51,22 @@
 
 
 
+-(void)GETWithURLString:(NSString *)url requestCallback:(RequestCallback)callback{
+    NSURL * nsurl = [NSURL URLWithString:url];
+    [self GETWithURL:nsurl requestCallback:callback];
+}
 
 
+-(void)POSTWithURLString:(NSString *)url parameters:(id)parameters constructingBodyWithBlock:(void (^)(id<AFMultipartFormData>))block requestCallback:(RequestCallback)callback{
+    NSURL * nsurl = [NSURL URLWithString:url];
+    
+    [self POSTWithURL:nsurl parameters:parameters constructingBodyWithBlock:block requestCallback:callback];
+}
 
+
+-(void)POSTWithURLString:(NSString *)url parameters:(id)parameters requestCallback:(RequestCallback)callback{
+    NSURL * nsurl = [NSURL URLWithString:url];
+    [self POSTWithURL:nsurl parameters:parameters requestCallback:callback];
+}
 
 @end

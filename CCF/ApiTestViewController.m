@@ -42,9 +42,13 @@
 //    }];
     
     
-    [api listMyAllThreadPost:^(BOOL isSuccess, id message) {
-        NSLog(@"listMyAllThreadPost %@", message);
-    }];
+//    [api listMyAllThreadPost:^(BOOL isSuccess, id message) {
+//        NSLog(@"listMyAllThreadPost %@", message);
+//    }];
+    
+    
+    [api favoriteFormsWithId:@"19"];
+    
 }
 
 

@@ -62,4 +62,6 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 // 显示我发表的主题
 -(void) listMyAllThreads:(Handler)handler;
 
+-(void)favoriteFormsWithId:(NSString *)formId handler:(Handler) handler;
+
 @end

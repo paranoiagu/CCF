@@ -253,6 +253,16 @@
         handler(isSuccess,result);
     }];
 }
+
+-(void)favoriteFormsWithId:(NSString *)formId{
+    [_browser favoriteFormsWithId:formId handler:^(BOOL isSuccess, id result) {
+       
+        NSLog(@"   result %@", result);
+    }];
+}
+-(void)unfavoriteFormsWithId:(NSString *)formId{
+    
+}
 @end
 
 

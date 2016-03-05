@@ -718,7 +718,10 @@
 }
 
 -(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler)handler{
-    
+    NSString * url = [@"https://bbs.et8.net/bbs/subscription.php?do=removesubscription&t=" stringByAppendingString:threadPostId];
+    [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess,html);
+    }];
 }
 
 
@@ -729,7 +732,47 @@
 }
 
 
+-(void)fetchNewThreadPosts:(Handler)handler{
+    [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getnew" requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess, html);
+    }];
+}
 
+
+-(void)fetchTodayNewThreads:(Handler)handler{
+    [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getdaily" requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess, html);
+    }];
+}
+
+
+-(void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler)handler{
+    NSString * preUrl = [@"https://bbs.et8.net/bbs/subscription.php?do=addsubscription&t=" stringByAppendingString:threadPostId];
+    [_browser GETWithURLString:preUrl requestCallback:^(BOOL isSuccess, NSString *html) {
+        if (!isSuccess) {
+            handler(NO, html);
+        } else{
+            CCFParser * parser = [[CCFParser alloc]init];
+            NSString * token = [parser parseSecurityToken:html];
+            
+            NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+            [parameters setValue:@"" forKey:@"s"];
+            [parameters setValue:token forKey:@"securitytoken"];
+            [parameters setValue:@"doaddsubscription" forKey:@"do"];
+            [parameters setValue:threadPostId forKey:@"threadid"];
+            NSString * urlPram = [@"https://bbs.et8.net/bbs/showthread.php?t=" stringByAppendingString:threadPostId];
+            
+            [parameters setValue:urlPram forKey:@"url"];
+            [parameters setValue:@"0" forKey:@"emailupdate"];
+            [parameters setValue:@"0" forKey:@"folderid"];
+            
+            NSString * fav = [@"https://bbs.et8.net/bbs/subscription.php?do=doaddsubscription&threadid=" stringByAppendingString:threadPostId];
+            [_browser POSTWithURLString:fav parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+                handler(isSuccess, html);
+            }];
+        }
+    }];
+}
 
 
 

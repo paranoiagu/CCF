@@ -271,6 +271,32 @@
         handler(isSuccess, result);
     }];
 }
+
+-(void)fetchNewThreadPosts:(HandlerWithBool)handler{
+    [_browser fetchNewThreadPosts:^(BOOL isSuccess, id result) {
+        handler(isSuccess, result);
+    }];
+}
+
+-(void)fetchTodayNewThreads:(HandlerWithBool)handler{
+    [_browser fetchTodayNewThreads:^(BOOL isSuccess, id result) {
+        handler(isSuccess, result);
+    }];
+}
+
+-(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler{
+    [_browser unfavoriteThreadPostWithId:threadPostId handler:^(BOOL isSuccess, id result) {
+        handler(isSuccess, result);
+    }];
+}
+
+-(void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler{
+    [_browser favoriteThreadPostWithId:threadPostId handler:^(BOOL isSuccess, id result) {
+        handler(isSuccess, result);
+    }];
+}
+
+
 @end
 
 

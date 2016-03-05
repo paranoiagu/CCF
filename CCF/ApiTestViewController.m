@@ -56,10 +56,26 @@
 //        
 //    }];
     
-    [api listfavoriteThreadPosts:^(BOOL isSuccess, NSString* message) {
-        NSLog(@"listfavoriteThreadPosts %@", message);
-    }];
+//    [api listfavoriteThreadPosts:^(BOOL isSuccess, NSString* message) {
+//        NSLog(@"listfavoriteThreadPosts %@", message);
+//    }];
     
+    
+    
+//    [api fetchNewThreadPosts:^(BOOL isSuccess, id message) {
+//        NSLog(@"fetchNewThreadPosts %@", message);
+//    }];
+    
+    
+    
+//    [api fetchTodayNewThreads:^(BOOL isSuccess, id message) {
+//        NSLog(@"fetchTodayNewThreads %@", message);
+//    }];
+    
+    
+    [api favoriteThreadPostWithId:@"1335339" handler:^(BOOL isSuccess, id message) {
+        NSLog(@"favoriteThreadPostWithId %@", message);
+    }];
 }
 
 

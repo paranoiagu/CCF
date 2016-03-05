@@ -57,14 +57,14 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void)listfavoriteThreadPosts:(HandlerWithBool)handler;
 
 // 收藏一个主题帖子
--(void)favoriteThreadPostWithId:(NSString *)threadPostId;
+-(void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler;
 
 // 取消收藏一个主题帖子
--(void)unfavoriteThreadPostWithId:(NSString *)threadPostId;
+-(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler;
 
 
 // 查看新帖
--(void) fetchNewThreads:(HandlerWithBool)handler;
+-(void) fetchNewThreadPosts:(HandlerWithBool)handler;
 
 // 查看今日新帖
 -(void) fetchTodayNewThreads:(HandlerWithBool)handler;

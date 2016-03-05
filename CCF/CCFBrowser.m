@@ -710,6 +710,23 @@
 }
 
 
+-(void)unfavoriteFormsWithId:(NSString *)formId handler:(Handler)handler{
+    NSString * url = [@"https://bbs.et8.net/bbs/subscription.php?do=removesubscription&f=" stringByAppendingString:formId];
+    [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess,html);
+    }];
+}
+
+-(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler)handler{
+    
+}
+
+
+-(void)listfavoriteThreadPosts:(Handler)handler{
+    [_browser GETWithURLString:@"https://bbs.et8.net/bbs/subscription.php" requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess,html);
+    }];
+}
 
 
 

@@ -47,7 +47,18 @@
 //    }];
     
     
-    [api favoriteFormsWithId:@"19"];
+//    [api favoriteFormsWithId:@"123" handler:^(BOOL isSuccess, id message) {
+//        
+//    }];
+//    
+//    
+//    [api unfavoriteFormsWithId:@"19" handler:^(BOOL isSuccess, id message) {
+//        
+//    }];
+    
+    [api listfavoriteThreadPosts:^(BOOL isSuccess, NSString* message) {
+        NSLog(@"listfavoriteThreadPosts %@", message);
+    }];
     
 }
 

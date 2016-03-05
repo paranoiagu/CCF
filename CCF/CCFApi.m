@@ -254,14 +254,22 @@
     }];
 }
 
--(void)favoriteFormsWithId:(NSString *)formId{
+-(void)favoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool)handler{
     [_browser favoriteFormsWithId:formId handler:^(BOOL isSuccess, id result) {
-       
-        NSLog(@"   result %@", result);
+        handler(isSuccess, result);
     }];
 }
--(void)unfavoriteFormsWithId:(NSString *)formId{
-    
+-(void)unfavoriteFormsWithId:(NSString *)formId handler:(HandlerWithBool)handler{
+    [_browser unfavoriteFormsWithId:formId handler:^(BOOL isSuccess, id result) {
+        handler(isSuccess, result);
+    }];
+}
+
+
+-(void)listfavoriteThreadPosts:(HandlerWithBool)handler{
+    [_browser listfavoriteThreadPosts:^(BOOL isSuccess, NSString* result) {
+        handler(isSuccess, result);
+    }];
 }
 @end
 

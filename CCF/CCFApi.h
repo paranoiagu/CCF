@@ -47,10 +47,10 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void) listfavoriteForms:(HandlerWithBool) handler;
 
 // 收藏这个论坛
--(void) favoriteFormsWithId:(NSString*)formId;
+-(void) favoriteFormsWithId:(NSString*)formId handler:(HandlerWithBool)handler;
 
 // 取消收藏论坛
--(void) unfavoriteFormsWithId:(NSString*)formId;
+-(void) unfavoriteFormsWithId:(NSString*)formId handler:(HandlerWithBool)handler;
 
 
 // 获取收藏的主题帖子

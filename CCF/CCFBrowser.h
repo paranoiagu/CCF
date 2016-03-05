@@ -64,4 +64,12 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 -(void)favoriteFormsWithId:(NSString *)formId handler:(Handler) handler;
 
+-(void)unfavoriteFormsWithId:(NSString *)formId handler:(Handler) handler;
+
+// 取消收藏一个主题帖子
+-(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler) handler;
+
+// 获取收藏的主题帖子
+-(void)listfavoriteThreadPosts:(Handler)handler;
+
 @end

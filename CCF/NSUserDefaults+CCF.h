@@ -9,15 +9,6 @@
 #import <Foundation/Foundation.h>
 
 
-#define kCCFCookie @"CCF-Cookies"
-#define kCCFFavFormIds @"CCF-FavIds"
-
-#define kCCFInsertAllForms @"InsertAllForms"
-
-
-
-
-
 @interface NSUserDefaults(CCF)
 
 -(NSString *)loadCookie;
@@ -34,4 +25,7 @@
 
 -(void) clearCookie;
 
+-(void) saveUserName:(NSString*)name;
+
+-(NSString*)userName;
 @end

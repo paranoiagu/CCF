@@ -133,6 +133,7 @@
 
 +(NSURL *)buildMyThreadWithName:(NSString *)name{
     NSString * url = [@"https://bbs.et8.net/bbs/search.php?do=process&showposts=0&starteronly=1&exactname=1&searchuser=" stringByAppendingString:name];
+    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return [NSURL URLWithString:url];
 }
 @end

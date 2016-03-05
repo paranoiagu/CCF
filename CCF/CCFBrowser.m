@@ -8,6 +8,7 @@
 
 #import "CCFBrowser.h"
 #import "NSString+Kit.h"
+#import "NSString+Regular.h"
 #import "CCFUrlBuilder.h"
 #import <AFImageDownloader.h>
 #import <UIImageView+AFNetworking.h>
@@ -79,6 +80,13 @@
     [_browser POSTWithURL:loginUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             callBack(YES,html);
+            
+            NSString * userName = [html stringWithRegular:@"<p><strong>.*</strong></p>" andChild:@"，.*。"];
+            
+            userName = [userName substringWithRange:NSMakeRange(1, [userName length] -2)];
+            
+            [self saveUserName:userName];
+
             // 保存Cookie
             [self saveCookie];
         } else{
@@ -122,6 +130,7 @@
     NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     
     LoginCCFUser * user = [[LoginCCFUser alloc] init];
+    user.userName = [self userName];
     
     for (int i = 0; i < cookies.count; i ++) {
         NSHTTPCookie * cookie = cookies[i];
@@ -135,6 +144,15 @@
         }
     }
     return user;
+}
+
+
+-(void) saveUserName:(NSString*) name{
+    [[NSUserDefaults standardUserDefaults] saveUserName:name];
+}
+
+-(NSString*) userName{
+    return [[NSUserDefaults standardUserDefaults] userName];
 }
 
 -(void) saveCookie{
@@ -641,7 +659,7 @@
     
     NSString * userId = user.userID;
     
-    [_browser POSTWithURL:[CCFUrlBuilder buildMyThreadPostsURLWithUserId:userId] parameters:nil requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURL:[CCFUrlBuilder buildMyThreadPostsURLWithUserId:userId] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }
@@ -653,8 +671,8 @@
         return;
     }
     NSString * userName = user.userName;
-    
-    [_browser POSTWithURL:[CCFUrlBuilder buildMyThreadWithName:userName] parameters:nil requestCallback:^(BOOL isSuccess, NSString *html) {
+
+    [_browser GETWithURL:[CCFUrlBuilder buildMyThreadWithName:userName] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }

@@ -8,6 +8,14 @@
 
 #import "NSUserDefaults+CCF.h"
 
+#define kCCFCookie @"CCF-Cookies"
+#define kCCFFavFormIds @"CCF-FavIds"
+
+#define kCCFInsertAllForms @"InsertAllForms"
+#define kUserName @"CCF-UserName"
+
+
+
 @implementation NSUserDefaults(CCF)
 
 -(NSString *)loadCookie{
@@ -21,9 +29,6 @@
         for (cookie in cookies) {
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
         }
-        
-        
-        NSLog(@"=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>   %@    &&&&&&&&&&&&&&&&&&", cookies);
     }
     
     
@@ -37,7 +42,7 @@
 -(void)saveCookie{
     NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:kCCFCookie];
+    [self setObject:data forKey:kCCFCookie];
 }
 
 -(void)saveFavFormIds:(NSArray *)ids{
@@ -58,7 +63,15 @@
 }
 
 -(void)clearCookie{
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kCCFCookie];
+    [self removeObjectForKey:kCCFCookie];
 }
 
+
+-(void)saveUserName:(NSString *)name{
+    [self setValue:name forKey:kUserName];
+}
+
+-(NSString*)userName{
+    return [self valueForKey:kUserName];
+}
 @end

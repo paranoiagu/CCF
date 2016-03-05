@@ -243,7 +243,37 @@
 }
 
 -(void)listMyAllThreadPost:(HandlerWithBool)handler{
-    
+    [_browser listMyAllThreadPost:^(BOOL isSuccess, id result) {
+        handler(isSuccess, result);
+    }];
 }
 
+-(void)listMyAllThreads:(HandlerWithBool)handler{
+    [_browser listMyAllThreads:^(BOOL isSuccess, id result) {
+        handler(isSuccess,result);
+    }];
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

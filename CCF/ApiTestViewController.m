@@ -20,6 +20,10 @@
     
     
     CCFApi * api = [[CCFApi alloc] init];
+//     [api loginWithName:@"马小甲" andPassWord:@"CCF!@#456" handler:^(BOOL isSuccess, id message) {
+//         
+//     }];
+    
 //    [api sendPrivateMessageToUserName:@"马小甲" andTitle:@"2222222" andMessage:@"ppppp" handler:^(BOOL isSuccess, id message) {
 //        if (isSuccess) {
 //            NSLog(@"发送成功 %@", message);
@@ -29,8 +33,17 @@
 //    }];
 
     
-    [api replyPrivateMessageWithId:@"2022896" andMessage:@"ttttttttt" handler:^(BOOL isSuccess, id handler) {
-        
+//    [api replyPrivateMessageWithId:@"2022896" andMessage:@"ttttttttt" handler:^(BOOL isSuccess, id handler) {
+//        
+//    }];
+    
+//    [api listMyAllThreads:^(BOOL isSuccess, id message) {
+//        NSLog(@"我的Thread %@", message);
+//    }];
+    
+    
+    [api listMyAllThreadPost:^(BOOL isSuccess, id message) {
+        NSLog(@"listMyAllThreadPost %@", message);
     }];
 }
 

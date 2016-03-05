@@ -8,7 +8,6 @@
 
 #import "CCFFavFormController.h"
 #import "CCFUrlBuilder.h"
-#import "CCFBrowser.h"
 #import "CCFParser.h"
 #import "CCFCoreDataManager.h"
 #import "NSUserDefaults+CCF.h"
@@ -16,9 +15,11 @@
 #import "CCFForm.h"
 #import "CCFThreadListTableViewController.h"
 #import "CCFNavigationController.h"
+#import "CCFApi.h"
 
 @interface CCFFavFormController (){
-    CCFBrowser *_browser;
+
+    CCFApi * ccfapi;
     NSMutableArray<CCFForm *> * _favForms;
 }
 
@@ -33,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _favForms = [NSMutableArray array];
-    _browser = [[CCFBrowser alloc]init];
+    ccfapi = [[CCFApi alloc]init];
     
     
     
@@ -41,11 +42,9 @@
     NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
     
     if (userDef.favFormIds == nil) {
-        [_browser browseWithUrl:[CCFUrlBuilder buildFavFormURL] :^(BOOL isSuccess, NSString* result) {
-            CCFParser * parser = [[CCFParser alloc]init];
-            _favForms = [parser parseFavFormFormHtml:result];
+        [ccfapi listfavoriteForms:^(BOOL isSuccess, NSMutableArray<CCFForm *> * message) {
+            _favForms = message;
             [self.tableView reloadData];
-            
         }];
     } else{
         CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];

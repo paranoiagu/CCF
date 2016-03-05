@@ -552,7 +552,11 @@
     NSString * node = [[nodeSet firstObject] attribute:@"value"];
     return node;
 }
-
+-(NSString *)parseUserAvatar:(NSString *)html userId:(NSString *)userId{
+    NSString * regular = [NSString stringWithFormat:@"/avatar%@_(\\d+).gif", userId];
+    NSString * avatar = [html stringWithRegular:regular];
+    return avatar;
+}
 
 
 

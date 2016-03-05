@@ -8,7 +8,6 @@
 
 #import "CCFShowThreadViewController.h"
 #import "CCFThreadDetailCell.h"
-#import "CCFBrowser.h"
 #import "CCFUrlBuilder.h"
 #import "CCFParser.h"
 
@@ -22,6 +21,8 @@
 #import "AlertProgressViewController.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 
+#import "CCFApi.h"
+
 
 @interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate>{
     
@@ -29,7 +30,7 @@
     int currentPage;
     int totalPage;
     
-    CCFBrowser * browser;
+    CCFApi * ccfapi;
     CCFUITextView * field;
     CCFApi *_api;
 }
@@ -87,7 +88,7 @@
     
     _api = [[CCFApi alloc] init];
     
-    browser = [[CCFBrowser alloc]init];
+    ccfapi = [[CCFApi alloc]init];
     
     cellHeightDictionary = [NSMutableDictionary<NSIndexPath *, NSNumber *> dictionary];
     
@@ -149,11 +150,8 @@
     
         NSString * pageStr = [NSString stringWithFormat:@"%d", page];
         
-        [browser browseWithUrl:[CCFUrlBuilder buildThreadURL:entry.urlId withPage:pageStr]:^(BOOL isSuccess, NSString* result) {
-            
-            CCFParser *parser = [[CCFParser alloc]init];
-            
-            CCFThreadDetail * thread = [parser parseShowThreadWithHtml:result];
+        
+        [ccfapi showThreadWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, CCFThreadDetail * thread) {
             totalPage = (int)thread.threadTotalPage;
             
             NSMutableArray<CCFPost *> * parsedPosts = thread.threadPosts;
@@ -175,7 +173,6 @@
             }
             
             [self.tableView reloadData];
-            
         }];
     }
     

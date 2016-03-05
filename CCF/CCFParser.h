@@ -49,5 +49,6 @@
 
 - (NSString *) parseQuickReplyTo:(NSString *)html;
 
+- (NSString *) parseUserAvatar:(NSString *)html userId:(NSString*) userId;
 
 @end

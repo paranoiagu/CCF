@@ -26,7 +26,6 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 @property (nonatomic, strong) AFHTTPSessionManager * browser;
 
--(void) browseWithUrl:(NSURL*) url : (Handler) callBack ;
 
 -(void) loginWithName:(NSString*)name andPassWord:(NSString*)passWord : (Handler) callBack;
 
@@ -81,5 +80,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 -(void)showThreadWithId:(NSString *)threadId andPage:(NSString *)page handler:(Handler) handler;
 
 -(void) forumDisplayWithId:(NSString *) formId andPage:(NSString*)page handler:(Handler)handler;
+
+-(void)fetchUserWithUserId:(NSString *)userId handler:(Handler)handler;
 
 @end

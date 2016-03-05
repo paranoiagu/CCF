@@ -8,8 +8,6 @@
 
 #import "CCFThreadListTableViewController.h"
 
-
-#import "CCFBrowser.h"
 #import "CCFUrlBuilder.h"
 #import "CCFParser.h"
 #import "CCFThreadListCell.h"
@@ -18,6 +16,8 @@
 #import "WCPullRefreshControl.h"
 #import "CCFNewThreadViewController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
+#import "CCFApi.h"
+
 
 #define TypePullRefresh 0
 #define TypeLoadMore 1
@@ -28,7 +28,7 @@
 }
 
 @property (strong,nonatomic)WCPullRefreshControl * pullRefresh;
-@property (nonatomic, strong) CCFBrowser * browser;
+@property (nonatomic, strong) CCFApi * ccfapi;
 @end
 
 @implementation CCFThreadListTableViewController
@@ -53,8 +53,8 @@
         self.threadTopList = [NSMutableArray array];
     }
     
-    if (self.browser == nil) {
-        self.browser = [[CCFBrowser alloc]init];
+    if (self.ccfapi == nil) {
+        self.ccfapi = [[CCFApi alloc]init];
     }
     
     
@@ -82,12 +82,7 @@
     if (totalPage == 0 || currentPage < totalPage) {
         NSString * pageStr = [NSString stringWithFormat:@"%d", page];
         
-        [self.browser browseWithUrl:[CCFUrlBuilder buildFormURL:entry.urlId withPage:pageStr ]:^(BOOL isSuccess, NSString* result) {
-            
-            CCFParser *parser = [[CCFParser alloc]init];
-            
-            NSMutableArray<CCFThreadList *> * threadList = [parser parseThreadListFromHtml:result withThread:entry.urlId andContainsTop:YES];
-            //logo
+        [self.ccfapi forumDisplayWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, NSMutableArray<CCFThreadList *> * threadList) {
             totalPage = (int)threadList.lastObject.threadTotalListPage;
             
             if (page == 1) {
@@ -112,6 +107,7 @@
                 [self.tableView.mj_footer endRefreshing];
             }
         }];
+
     } else{
         if (pullOrLoadMore == TypePullRefresh) {
             [self.pullRefresh finishRefreshingSuccessully:NO];

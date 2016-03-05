@@ -23,7 +23,6 @@
 		3A7569AD1C42B179000486F4 /* CCFFavFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7569AC1C42B179000486F4 /* CCFFavFormController.m */; };
 		3A842CA11C469AC1002944A9 /* CCFNewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */; };
 		3A93298D1C39648900A26249 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A93298C1C39648900A26249 /* CoreText.framework */; };
-		3A9E18F71C39563500AAB751 /* DemoTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E18F61C39563500AAB751 /* DemoTextViewController.m */; };
 		3A9FEDD61C341E2E00F30885 /* CCFUrlBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FEDD51C341E2E00F30885 /* CCFUrlBuilder.m */; };
 		3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FEDD91C342CB800F30885 /* CCFParser.m */; };
 		3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FEDDD1C3430A500F30885 /* CCFBrowser.m */; };
@@ -130,8 +129,6 @@
 		3A842C9F1C469AC1002944A9 /* CCFNewThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFNewThreadViewController.h; sourceTree = "<group>"; };
 		3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFNewThreadViewController.m; sourceTree = "<group>"; };
 		3A93298C1C39648900A26249 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		3A9E18F51C39563500AAB751 /* DemoTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTextViewController.h; sourceTree = "<group>"; };
-		3A9E18F61C39563500AAB751 /* DemoTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTextViewController.m; sourceTree = "<group>"; };
 		3A9FEDD41C341E2E00F30885 /* CCFUrlBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUrlBuilder.h; sourceTree = "<group>"; };
 		3A9FEDD51C341E2E00F30885 /* CCFUrlBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUrlBuilder.m; sourceTree = "<group>"; };
 		3A9FEDD81C342CB800F30885 /* CCFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFParser.h; sourceTree = "<group>"; };
@@ -281,15 +278,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A9E18F41C39561D00AAB751 /* RichText */ = {
-			isa = PBXGroup;
-			children = (
-				3A9E18F51C39563500AAB751 /* DemoTextViewController.h */,
-				3A9E18F61C39563500AAB751 /* DemoTextViewController.m */,
-			);
-			name = RichText;
-			sourceTree = "<group>";
-		};
 		3A9FEDD31C341DE200F30885 /* CCFURL */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,7 +347,6 @@
 		3AEA1F341C365E2100710BD6 /* CCFControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3A9E18F41C39561D00AAB751 /* RichText */,
 				4D1EEBB81C33D4FD0084F6E9 /* LoginViewController.h */,
 				4D1EEBB91C33D4FD0084F6E9 /* LoginViewController.m */,
 				3A187B341C40B4EE003DA5C2 /* AlertProgressViewController.h */,
@@ -809,7 +796,6 @@
 				3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */,
 				4D796BE41C437C5000B3C62D /* NSString+Regular.m in Sources */,
 				3AF86A7B1C8329710036AD61 /* PrivateMessagePage.m in Sources */,
-				3A9E18F71C39563500AAB751 /* DemoTextViewController.m in Sources */,
 				3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */,
 				4D796BC91C3DFA6400B3C62D /* WCGraintCircleLayer.m in Sources */,
 				3AA2D5061C36103C00F312CC /* CCFFormSectionInfo.m in Sources */,

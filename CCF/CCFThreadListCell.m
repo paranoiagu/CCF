@@ -8,18 +8,17 @@
 
 #import "CCFThreadListCell.h"
 #import "CCFThreadList.h"
-#import "CCFBrowser.h"
 #import "CCFUrlBuilder.h"
 #import "NSString+Regular.h"
 #import <UIImageView+AFNetworking.h>
 #import "CCFCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
-
+#import "CCFApi.h"
 
 @implementation CCFThreadListCell{
-    CCFBrowser *_browser;
+
     CCFCoreDataManager *_coreDateManager;
-    
+    CCFApi * ccfapi;
 }
 
 @synthesize threadAuthor = _threadAuthor;
@@ -33,7 +32,8 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-        _browser = [[CCFBrowser alloc]init];
+
+        ccfapi = [[CCFApi alloc] init];
         _coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
         
         [self.avatarImage setContentScaleFactor:[[UIScreen mainScreen] scale]];
@@ -73,14 +73,8 @@
     }] copy];
     
     if (users == nil || users.count == 0) {
-        NSURL * url = [CCFUrlBuilder buildMemberURL:threadList.threadAuthorID];
-        
-        [_browser browseWithUrl:url :^(BOOL isSuccess, NSString* result) {
-            
-            NSString * regular = [NSString stringWithFormat:@"/avatar%@_(\\d+).gif", threadList.threadAuthorID];
-            
-            NSString * avatar = [result stringWithRegular:regular];
-            
+
+        [ccfapi fetchUserWithUserId:threadList.threadAuthorID handler:^(BOOL isSuccess, NSString * avatar) {
             [_coreDateManager insertOneData:^(id src) {
                 
                 CCFUserEntry * user =(CCFUserEntry *)src;
@@ -90,7 +84,6 @@
             }];
             
             [self.avatarImage setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
-           
         }];
 
     } else{

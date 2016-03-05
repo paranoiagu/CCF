@@ -786,4 +786,11 @@
     }];
 }
 
+-(void)fetchUserWithUserId:(NSString *)userId handler:(Handler)handler{
+    NSURL * url = [CCFUrlBuilder buildMemberURL:userId];
+    
+    [self browseWithUrl:url :^(BOOL isSuccess, id result) {
+        handler(isSuccess, result);
+    }];
+}
 @end

@@ -184,7 +184,7 @@
     }];
 }
 
--(void)privateMessageWithType:(int)type andPage:(int)page handler:(HandlerWithBool)handler{
+-(void)listPrivateMessageWithType:(int)type andPage:(int)page handler:(HandlerWithBool)handler{
     [_browser privateMessageWithType:type andpage:page handler:^(BOOL isSuccess, id result) {
         
         if (isSuccess) {
@@ -231,7 +231,7 @@
     }];
 }
 
--(void)listfavoriteForms:(HandlerWithBool)handler{
+-(void)listFavoriteForms:(HandlerWithBool)handler{
     [_browser listfavoriteForms:^(BOOL isSuccess, id result) {
         if (isSuccess) {
             NSMutableArray<CCFForm *> * favForms = [_praser parseFavFormFormHtml:result];
@@ -266,19 +266,19 @@
 }
 
 
--(void)listfavoriteThreadPosts:(HandlerWithBool)handler{
+-(void)listFavoriteThreadPosts:(HandlerWithBool)handler{
     [_browser listfavoriteThreadPosts:^(BOOL isSuccess, NSString* result) {
         handler(isSuccess, result);
     }];
 }
 
--(void)fetchNewThreadPosts:(HandlerWithBool)handler{
+-(void)listNewThreadPosts:(HandlerWithBool)handler{
     [_browser fetchNewThreadPosts:^(BOOL isSuccess, id result) {
         handler(isSuccess, result);
     }];
 }
 
--(void)fetchTodayNewThreads:(HandlerWithBool)handler{
+-(void)listTodayNewThreads:(HandlerWithBool)handler{
     [_browser fetchTodayNewThreads:^(BOOL isSuccess, id result) {
         handler(isSuccess, result);
     }];

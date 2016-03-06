@@ -11,8 +11,10 @@
 #define kCCFRootController @"CCFNavigationController"
 
 //所有的论坛
-#define kCCFFavFormController @"CCFFavFormController"
+
 //收藏的论坛
+#define kCCFFavFormController @"CCFFavFormController"
+
 @interface UIStoryboard(CCF)
 
 +(UIStoryboard *)mainStoryboard;

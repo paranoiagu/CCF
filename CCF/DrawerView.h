@@ -65,6 +65,8 @@ typedef NS_ENUM(NSInteger, DrawerIndex) {
 - (IBAction)showNewThread:(id)sender;
 - (IBAction)showMyPost:(id)sender;
 - (IBAction)showMyThread:(id)sender;
+- (IBAction)showAllForms:(id)sender;
+
 
 @property (weak, nonatomic) IBOutlet LeftDrawerItem *favForm;
 @property (weak, nonatomic) IBOutlet LeftDrawerItem *allForm;

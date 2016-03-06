@@ -18,6 +18,8 @@
 #import <UIImageView+AFNetworking.h>
 #import "CCFUrlBuilder.h"
 #import "LoginCCFUser.h"
+#import "CCFFormTableViewController.h"
+
 
 @interface DrawerView(){
 
@@ -278,6 +280,17 @@
 }
 
 - (IBAction)showMyThread:(id)sender {
+}
+
+- (IBAction)showAllForms:(id)sender {
+    
+    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        
+        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        CCFFormTableViewController * favController = [storyboard instantiateViewControllerWithIdentifier:@"CCFFormTableViewController"];
+        [controller setRootViewController:favController];
+    }
 }
 
 - (void) showRightDrawerWithAdim:(UIView *)view{

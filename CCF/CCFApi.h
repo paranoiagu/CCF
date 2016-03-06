@@ -32,9 +32,6 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 搜索论坛
 -(void) searchWithKeyWord:(NSString*) keyWord handler:(HandlerWithBool) handler;
 
-// 读取论坛站内私信List   type 0 表示收件箱   -1表示发件箱
--(void) privateMessageWithType:(int) type andPage:(int)page handler:(HandlerWithBool) handler;
-
 // 根据PM ID 显示一条私信内容
 -(void) showPrivateContentById:(NSString*)pmId handler:(HandlerWithBool)handler;
 
@@ -44,17 +41,11 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 回复站内短信
 -(void) replyPrivateMessageWithId:(NSString*)pmId andMessage:(NSString*) message handler:(HandlerWithBool)handler;
 
-// 获取收藏的论坛板块
--(void) listfavoriteForms:(HandlerWithBool) handler;
-
 // 收藏这个论坛
 -(void) favoriteFormsWithId:(NSString*)formId handler:(HandlerWithBool)handler;
 
 // 取消收藏论坛
 -(void) unfavoriteFormsWithId:(NSString*)formId handler:(HandlerWithBool)handler;
-
-// 获取收藏的主题帖子
--(void)listfavoriteThreadPosts:(HandlerWithBool)handler;
 
 // 收藏一个主题帖子
 -(void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler;
@@ -62,11 +53,21 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 取消收藏一个主题帖子
 -(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(HandlerWithBool)handler;
 
+//------------------------------读取API-----------------------------------------//
+// 读取论坛站内私信List   type 0 表示收件箱   -1表示发件箱
+-(void) listPrivateMessageWithType:(int) type andPage:(int)page handler:(HandlerWithBool) handler;
+
+// 获取收藏的论坛板块
+-(void) listFavoriteForms:(HandlerWithBool) handler;
+
+// 获取收藏的主题帖子
+-(void)listFavoriteThreadPosts:(HandlerWithBool)handler;
+
 // 查看新帖
--(void) fetchNewThreadPosts:(HandlerWithBool)handler;
+-(void) listNewThreadPosts:(HandlerWithBool)handler;
 
 // 查看今日新帖
--(void) fetchTodayNewThreads:(HandlerWithBool)handler;
+-(void) listTodayNewThreads:(HandlerWithBool)handler;
 
 // 显示我的回帖
 -(void) listMyAllThreadPost:(HandlerWithBool)handler;

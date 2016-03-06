@@ -42,7 +42,7 @@
     NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
     
     if (userDef.favFormIds == nil) {
-        [ccfapi listfavoriteForms:^(BOOL isSuccess, NSMutableArray<CCFForm *> * message) {
+        [ccfapi listFavoriteForms:^(BOOL isSuccess, NSMutableArray<CCFForm *> * message) {
             _favForms = message;
             [self.tableView reloadData];
         }];

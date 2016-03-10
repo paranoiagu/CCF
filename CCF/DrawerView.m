@@ -19,7 +19,11 @@
 #import "CCFUrlBuilder.h"
 #import "LoginCCFUser.h"
 #import "CCFFormTableViewController.h"
-
+#import "CCFPrivateMessageTableViewController.h"
+#import "CCFMyThreadPostTableViewController.h"
+#import "CCFMyThreadTableViewController.h"
+#import "CCFShowNewThreadPostTableViewController.h"
+#import "CCFShowTodayNewThreadPostTableViewController.h"
 
 @interface DrawerView(){
 
@@ -256,6 +260,13 @@
     }
 }
 
+
+
+
+
+
+
+// 切换Controller
 - (IBAction)showMyFavForm:(id)sender {
     if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
         
@@ -268,18 +279,63 @@
 }
 
 - (IBAction)showMessage:(id)sender {
+    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        
+        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        
+        CCFPrivateMessageTableViewController * privateMessageController = [storyboard instantiateViewControllerWithIdentifier:@"CCFPrivateMessageTableViewController"];
+        
+        [controller setRootViewController:privateMessageController];
+    }
 }
 
 - (IBAction)showFavThread:(id)sender {
+    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        
+        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        
+        CCFMyThreadTableViewController * favThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyThreadTableViewController"];
+        
+        [controller setRootViewController:favThreadController];
+    }
 }
 
 - (IBAction)showNewThread:(id)sender {
+    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        
+        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        
+        CCFShowNewThreadPostTableViewController * showNewThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFShowNewThreadPostTableViewController"];
+        
+        [controller setRootViewController:showNewThreadController];
+    }
 }
 
 - (IBAction)showMyPost:(id)sender {
+    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        
+        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        
+        CCFMyThreadPostTableViewController * myThreadPostController = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyThreadPostTableViewController"];
+        
+        [controller setRootViewController:myThreadPostController];
+    }
 }
 
 - (IBAction)showMyThread:(id)sender {
+    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        
+        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        
+        CCFMyThreadTableViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyThreadTableViewController"];
+        
+        [controller setRootViewController:myThreadController];
+    }
 }
 
 - (IBAction)showAllForms:(id)sender {
@@ -292,6 +348,11 @@
         [controller setRootViewController:favController];
     }
 }
+// 切换Controller结束
+
+
+
+
 
 - (void) showRightDrawerWithAdim:(UIView *)view{
     

@@ -89,6 +89,7 @@
 		4D796C051C460D4200B3C62D /* NSUserDefaults+CCF.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */; };
 		4D93CFD71C85355D00852D28 /* ApiTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D93CFD51C85355D00852D28 /* ApiTestViewController.m */; };
 		4D93CFD81C85355D00852D28 /* ApiTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */; };
+		4DAFF55A1C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAFF5591C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m */; };
 		4DB98FB31C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB98FB01C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m */; };
 		4DB98FB41C4E0F5A0081AF87 /* CCFUserEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB98FB21C4E0F5A0081AF87 /* CCFUserEntry.m */; };
 		4DB98FB61C4E33E00081AF87 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DB98FB51C4E33E00081AF87 /* logo.jpg */; };
@@ -257,6 +258,8 @@
 		4D93CFD41C85355D00852D28 /* ApiTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiTestViewController.h; sourceTree = "<group>"; };
 		4D93CFD51C85355D00852D28 /* ApiTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiTestViewController.m; sourceTree = "<group>"; };
 		4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApiTestViewController.xib; sourceTree = "<group>"; };
+		4DAFF5581C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFPrivateMessageTableViewController.h; sourceTree = "<group>"; };
+		4DAFF5591C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFPrivateMessageTableViewController.m; sourceTree = "<group>"; };
 		4DB98FAF1C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCFUserEntry+CoreDataProperties.h"; sourceTree = "<group>"; };
 		4DB98FB01C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCFUserEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
 		4DB98FB11C4E0F5A0081AF87 /* CCFUserEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUserEntry.h; sourceTree = "<group>"; };
@@ -401,6 +404,8 @@
 				3A23462F1C8C62C2009A2537 /* CCFShowNewThreadPostTableViewController.m */,
 				3A23462B1C8C5C73009A2537 /* CCFShowTodayNewThreadPostTableViewController.h */,
 				3A23462C1C8C5C73009A2537 /* CCFShowTodayNewThreadPostTableViewController.m */,
+				4DAFF5581C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.h */,
+				4DAFF5591C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m */,
 			);
 			name = CCFControllers;
 			sourceTree = "<group>";
@@ -840,6 +845,7 @@
 				3A1CF8761C54F8AB002E52EE /* CommonUtils.m in Sources */,
 				4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */,
 				4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */,
+				4DAFF55A1C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m in Sources */,
 				4D796BF71C44BBA000B3C62D /* FormEntry.m in Sources */,
 				3A7569AD1C42B179000486F4 /* CCFFavFormController.m in Sources */,
 				4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */,

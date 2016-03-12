@@ -106,7 +106,7 @@
 }
 
 - (IBAction)showLeftDrawer:(id)sender {
-    CCFNavigationController * rootController = self.navigationController;
+    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
     [rootController showLeftDrawer];
 }
 @end

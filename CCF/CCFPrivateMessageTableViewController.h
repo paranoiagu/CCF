@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CCFPrivateMessageTableViewController : UITableViewController
+- (IBAction)showLeftDrawer:(id)sender;
 
 @end

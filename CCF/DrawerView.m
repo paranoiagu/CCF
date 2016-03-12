@@ -26,11 +26,14 @@
 #import "CCFShowTodayNewThreadPostTableViewController.h"
 #import "CCFFavThreadPostTableViewController.h"
 
+#import "CCFApi.h"
+
+
 @interface DrawerView(){
 
     UIButton *_drawerMaskView;
     
-    
+    CCFApi * _ccfapi;
 
     UIView *_rightEageView;
 }
@@ -47,6 +50,7 @@
 -(id)init{
     if (self = [super init]) {
         
+        _ccfapi = [[CCFApi alloc] init];
         [self setDrawerType:DrawerViewTypeLeft];
         
         [self initLeftDrawerView];
@@ -71,6 +75,7 @@
 
 -(id)initWithDrawerType:(DrawerViewType)drawerType andXib:(NSString *)name{
         if (self = [super init]) {
+            _ccfapi = [[CCFApi alloc] init];
             
             // 和 xib 绑定
             [[NSBundle mainBundle] loadNibNamed:name owner:self options:nil];
@@ -121,6 +126,9 @@
 -(id)initWithDrawerType:(DrawerViewType)drawerType{
    
     if (self = [super init]) {
+        
+        _ccfapi = [[CCFApi alloc] init];
+        
         [self setDrawerType:drawerType];
         
         switch (_drawerType) {
@@ -175,6 +183,17 @@
 
 -(void)didAddSubview:(UIView *)subview{
     NSLog(@"didAddSubview");
+    LoginCCFUser * user = [_ccfapi getLoginUser];
+    [_ccfapi getAvatarWithUserId:user.userID handler:^(BOOL isSuccess, id message) {
+        if (isSuccess) {
+            [self.avatarUIImageView setImageWithURL:[NSURL URLWithString:message]];
+        } else{
+            
+        }
+        
+    }];
+    
+    
 }
 
 -(void)didMoveToSuperview{

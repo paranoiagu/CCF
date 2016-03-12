@@ -290,7 +290,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Wz-HJ-cHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4609" y="-8220"/>
+            <point key="canvasLocation" x="-4609" y="-2228"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dNf-ra-XwN">
@@ -306,7 +306,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnC-iZ-zjM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5307" y="-8220"/>
+            <point key="canvasLocation" x="-5307" y="-2228"/>
         </scene>
         <!--设置选项-->
         <scene sceneID="cD6-Oh-uV2">
@@ -390,7 +390,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="收藏板块" id="Mhk-pJ-bvf" userLabel="收藏板块">
                         <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="AyA-ib-x17">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="showLeftDrawer:" destination="Jit-bj-gGf" id="tNe-Zb-Lcz"/>
                             </connections>
@@ -814,7 +814,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrp-3y-fYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3106" y="-5163"/>
+            <point key="canvasLocation" x="-3344" y="-7047"/>
         </scene>
         <!--高级回帖-->
         <scene sceneID="0ad-k0-Qjn">
@@ -924,7 +924,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4C-zz-DaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2342" y="-5163"/>
+            <point key="canvasLocation" x="-2938" y="-6211"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rsw-tr-lOi">
@@ -1632,6 +1632,7 @@
                                     <outlet property="threadPostCount" destination="LU9-V0-KcS" id="lOj-YQ-sNW"/>
                                     <outlet property="threadTitle" destination="CNV-8I-H0Z" id="rLV-fW-mTL"/>
                                     <outlet property="threadType" destination="mBx-k6-S2b" id="MvD-iC-GmH"/>
+                                    <segue destination="TcI-Mw-KoO" kind="show" id="sZk-ob-9sx"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1671,6 +1672,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="BtX-d5-2Dd"/>
-        <segue reference="NPx-fh-Klt"/>
+        <segue reference="sZk-ob-9sx"/>
     </inferredMetricsTieBreakers>
 </document>

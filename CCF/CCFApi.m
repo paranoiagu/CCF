@@ -319,7 +319,7 @@
     }];
 }
 
--(void)fetchUserWithUserId:(NSString *)userId handler:(HandlerWithBool)handler{
+-(void)getAvatarWithUserId:(NSString *)userId handler:(HandlerWithBool)handler{
     [_browser fetchUserWithUserId:userId handler:^(BOOL isSuccess, NSString* result) {
         NSString * avatar = [_praser parseUserAvatar:result userId:userId];
         handler(isSuccess, avatar);

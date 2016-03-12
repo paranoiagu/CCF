@@ -74,7 +74,7 @@
     
     if (users == nil || users.count == 0) {
 
-        [ccfapi fetchUserWithUserId:threadList.threadAuthorID handler:^(BOOL isSuccess, NSString * avatar) {
+        [ccfapi getAvatarWithUserId:threadList.threadAuthorID handler:^(BOOL isSuccess, NSString * avatar) {
             [_coreDateManager insertOneData:^(id src) {
                 
                 CCFUserEntry * user =(CCFUserEntry *)src;

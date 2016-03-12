@@ -80,5 +80,5 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 
 -(void) forumDisplayWithId:(NSString *) formId andPage:(NSString*)page handler:(HandlerWithBool)handler;
 
--(void) fetchUserWithUserId:(NSString*)userId handler:(HandlerWithBool)handler;
+-(void) getAvatarWithUserId:(NSString*)userId handler:(HandlerWithBool)handler;
 @end

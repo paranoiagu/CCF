@@ -17,6 +17,7 @@
                 <outlet property="myThread" destination="zsm-8B-AfT" id="bmI-gU-jgn"/>
                 <outlet property="rightDrawerView" destination="dJQ-C7-qpp" id="SHy-gC-DGq"/>
                 <outlet property="showNewThread" destination="4GR-Q0-M8U" id="HCQ-ZI-HNN"/>
+                <outlet property="userName" destination="bCv-xg-GdF" id="RYQ-CP-wkt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -36,7 +37,7 @@
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opA-uL-w8P" customClass="LeftDrawerItem">
                     <rect key="frame" x="109" y="257" width="60" height="30"/>
-                    <state key="normal" title="我的私信"/>
+                    <state key="normal" title="站内私信"/>
                     <connections>
                         <action selector="showMessage:" destination="-1" eventType="touchUpInside" id="s9W-AM-CU8"/>
                     </connections>
@@ -73,12 +74,6 @@
                     <rect key="frame" x="213" y="14" width="72" height="22"/>
                     <state key="normal" image="ic_settings_18pt"/>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCv-xg-GdF">
-                    <rect key="frame" x="119" y="133" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WfO-5s-LdN" customClass="LeftDrawerItem">
                     <rect key="frame" x="109" y="213" width="60" height="30"/>
                     <state key="normal" title="所有论坛"/>
@@ -86,10 +81,16 @@
                         <action selector="showAllForms:" destination="-1" eventType="touchUpInside" id="SWf-4T-ZIU"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCv-xg-GdF">
+                    <rect key="frame" x="100" y="133" width="82" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="627" y="360"/>
+            <point key="canvasLocation" x="257" y="366"/>
         </view>
         <view contentMode="scaleToFill" id="dJQ-C7-qpp" userLabel="RightDrawerView">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>

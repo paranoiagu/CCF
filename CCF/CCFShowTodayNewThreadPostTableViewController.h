@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CCFShowTodayNewThreadPostTableViewController : UITableViewController
+- (IBAction)back:(UIBarButtonItem *)sender;
 
 @end

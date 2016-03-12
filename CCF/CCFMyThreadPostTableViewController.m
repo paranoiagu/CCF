@@ -41,4 +41,7 @@
 }
 
 
+- (IBAction)back:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

@@ -10,4 +10,5 @@
 
 @interface CCFMyThreadPostTableViewController : UITableViewController
 
+- (IBAction)back:(UIBarButtonItem *)sender;
 @end

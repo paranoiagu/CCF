@@ -24,6 +24,7 @@
 #import "CCFMyThreadTableViewController.h"
 #import "CCFShowNewThreadPostTableViewController.h"
 #import "CCFShowTodayNewThreadPostTableViewController.h"
+#import "CCFFavThreadPostTableViewController.h"
 
 @interface DrawerView(){
 
@@ -296,7 +297,7 @@
         CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
         
-        CCFMyThreadTableViewController * favThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyThreadTableViewController"];
+        CCFFavThreadPostTableViewController * favThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFFavThreadPostTableViewController"];
         
         [controller setRootViewController:favThreadController];
     }

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CCFMyThreadTableViewController : UITableViewController
-- (IBAction)back:(UIBarButtonItem *)sender;
+
+- (IBAction)showLeftDrawer:(id)sender;
 
 @end

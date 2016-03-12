@@ -20,7 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-- (IBAction)onLeftBarButtonItemClick:(UIBarButtonItem *)sender;
+- (IBAction)showLeftDrawer:(id)sender;
 
 @property (nonatomic, strong) NSMutableArray<CCFForm *> *forms;
 

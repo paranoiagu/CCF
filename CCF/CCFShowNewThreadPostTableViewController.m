@@ -7,6 +7,7 @@
 //
 
 #import "CCFShowNewThreadPostTableViewController.h"
+#import "CCFNavigationController.h"
 
 @interface CCFShowNewThreadPostTableViewController ()
 
@@ -37,7 +38,8 @@
 }
 
 
-- (IBAction)back:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+- (IBAction)showLeftDrawer:(id)sender {
+    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
+    [rootController showLeftDrawer];
 }
 @end

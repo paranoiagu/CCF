@@ -10,6 +10,8 @@
 
 @interface CCFFavThreadPostTableViewController : UITableViewController
 
-- (IBAction)back:(UIBarButtonItem *)sender;
+
+- (IBAction)showLeftDrawer:(id)sender;
+
 
 @end

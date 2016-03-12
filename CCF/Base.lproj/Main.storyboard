@@ -61,7 +61,7 @@
                         <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="KW9-ec-X8l">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="onLeftBarButtonItemClick:" destination="YRy-KR-zZm" id="Hra-w6-T2x"/>
+                                <action selector="showLeftDrawer:" destination="YRy-KR-zZm" id="kbs-S1-BKE"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_qu_search" id="bkL-dF-juG" userLabel="搜索">
@@ -249,7 +249,7 @@
                     </scrollView>
                     <navigationItem key="navigationItem" title="我的页面" id="8T4-uM-jNf">
                         <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="2ri-7j-ZtT" userLabel="菜单">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_settings_18pt" id="KRh-vX-gMa" userLabel="设置">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1073,10 +1073,10 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="今日新帖" id="jud-XU-hYm">
-                        <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="dg0-Ug-6To" userLabel="返回">
+                        <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="dg0-Ug-6To" userLabel="返回">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="back:" destination="bma-y8-6Ng" id="n3R-t0-e9c"/>
+                                <action selector="showLeftDrawer:" destination="bma-y8-6Ng" id="ZJL-yH-gYC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1215,10 +1215,10 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="查看新帖" id="Xt5-DD-sbP">
-                        <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="ame-JO-TAq" userLabel="返回">
+                        <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="ame-JO-TAq" userLabel="返回">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="back:" destination="7vz-bY-utM" id="kT2-tO-LWf"/>
+                                <action selector="showLeftDrawer:" destination="7vz-bY-utM" id="5Rf-h8-8aw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1357,10 +1357,10 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="我的主题" id="TtW-M6-tnu">
-                        <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="byI-aj-gWJ" userLabel="返回">
+                        <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="byI-aj-gWJ" userLabel="返回">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="back:" destination="hfo-fP-cuO" id="Ljv-9N-uwY"/>
+                                <action selector="showLeftDrawer:" destination="hfo-fP-cuO" id="33q-V6-CoH"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_mode_edit_18pt" id="PcP-Nj-20o" userLabel="新主题">
@@ -1505,10 +1505,10 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="我的回帖" id="TkL-RL-BoM">
-                        <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="1bi-eE-DQI" userLabel="返回">
+                        <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="1bi-eE-DQI" userLabel="返回">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="back:" destination="HcJ-3E-ScV" id="Kbp-ji-1IO"/>
+                                <action selector="showLeftDrawer:" destination="HcJ-3E-ScV" id="zir-pF-qQO"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_mode_edit_18pt" id="vl2-UE-YIc" userLabel="新主题">
@@ -1653,14 +1653,17 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="收藏帖子" id="cqw-6R-qgm">
-                        <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="tBM-ff-6Wf" userLabel="返回">
+                        <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="tBM-ff-6Wf" userLabel="返回">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="back:" destination="jyV-h3-MEG" id="6QK-NN-G5H"/>
+                                <action selector="showLeftDrawer:" destination="jyV-h3-MEG" id="G8n-Sf-mJ1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="showLeftDrawer" destination="tBM-ff-6Wf" id="Tua-Sv-GrY"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxh-51-trb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1682,6 +1685,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ezQ-PD-8mT"/>
-        <segue reference="dhi-aq-8HI"/>
+        <segue reference="sZk-ob-9sx"/>
     </inferredMetricsTieBreakers>
 </document>

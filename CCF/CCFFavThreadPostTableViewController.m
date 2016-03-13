@@ -8,8 +8,12 @@
 
 #import "CCFFavThreadPostTableViewController.h"
 #import "CCFNavigationController.h"
+#import "CCFThreadList.h"
+#import "CCFThreadListCell.h"
 
-@interface CCFFavThreadPostTableViewController ()
+@interface CCFFavThreadPostTableViewController (){
+    NSMutableArray<CCFThreadList*> * dataSourceList;
+}
 
 @end
 
@@ -17,9 +21,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    dataSourceList = [NSMutableArray array];
     
-    [self.ccfApi listFavoriteThreadPosts:^(BOOL isSuccess, id message) {
+    [self.ccfApi listFavoriteThreadPosts:^(BOOL isSuccess, NSMutableArray<CCFThreadList *> *message) {
         NSLog(@" 收藏的帖子---》 %@", message);
+        
+        [dataSourceList addObjectsFromArray:message];
+        
+        [self.tableView reloadData];
+        
     }];
 
 }
@@ -28,14 +38,21 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return dataSourceList.count;
+}
 
-    return 0;
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString * identifier = @"CCFThreadListCellIdentifier";
+    CCFThreadListCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    CCFThreadList * list = dataSourceList[indexPath.row];
+    [cell setThreadList:list];
+    
+    return cell;
 }
 
 

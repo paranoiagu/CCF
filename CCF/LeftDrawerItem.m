@@ -48,7 +48,7 @@
         [self setBackgroundImage:highLight forState:UIControlStateSelected];
 
         
-        self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        //self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         
         
     }
@@ -87,7 +87,7 @@
 
         
         
-        self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        //self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 
         
     }
@@ -95,4 +95,16 @@
     return self;
 }
 
+
+-(void)didMoveToSuperview{
+    UIView * superView = [self superview];
+    CGRect rect = superView.frame;
+    
+    NSLog(@"SUper ----> didMoveToSuperview %lf", rect.size.width);
+    CGRect selfFrame = self.frame;
+    NSLog(@"Self ---> didMoveToSuperview %lf", selfFrame.size.width);
+    selfFrame.size.width = rect.size.width;
+    
+    self.frame = selfFrame;
+}
 @end

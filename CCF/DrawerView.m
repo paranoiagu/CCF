@@ -25,6 +25,7 @@
 #import "CCFShowNewThreadPostTableViewController.h"
 #import "CCFShowTodayNewThreadPostTableViewController.h"
 #import "CCFFavThreadPostTableViewController.h"
+#import "LeftDrawerItem.h"
 
 #import "CCFApi.h"
 
@@ -182,7 +183,8 @@
 }
 
 -(void)didAddSubview:(UIView *)subview{
-    NSLog(@"didAddSubview");
+    NSLog(@"添加 didAddSubview          %@", subview);
+    
     LoginCCFUser * user = [_ccfapi getLoginUser];
     [_ccfapi getAvatarWithUserId:user.userID handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
@@ -195,6 +197,7 @@
     
     
 }
+
 
 -(void)didMoveToSuperview{
     
@@ -242,6 +245,20 @@
         leftEdgePanRecognizer.edges = UIRectEdgeLeft;
         
         [self addGestureRecognizer:leftEdgePanRecognizer];
+        
+        NSArray *subViews = _leftDrawerView.subviews;
+        
+        int width = self.frame.size.width;
+        
+        for (UIView * view in subViews) {
+            if ([view isKindOfClass:[LeftDrawerItem class]]) {
+                CGRect childFrame = view.frame;
+                childFrame.size.width = width;
+                view.frame = childFrame;
+                
+            }
+        }
+        NSLog(@"左侧     %@", subViews);
     }
 
     if (_drawerType != DrawerViewTypeLeft) {
@@ -658,7 +675,7 @@
     CGPoint currentCenter = _leftDrawerView.center;
 
     
-    NSLog(@"dragLeftDrawer %f             %f " , currentCenter.x, translation.x);
+    //NSLog(@"dragLeftDrawer %f             %f " , currentCenter.x, translation.x);
     
     
     CGFloat x = currentCenter.x + translation.x;

@@ -1630,8 +1630,8 @@
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
-                                            <exclude reference="mbK-m7-Jj4"/>
                                             <exclude reference="GYR-IL-s8h"/>
+                                            <exclude reference="mbK-m7-Jj4"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>

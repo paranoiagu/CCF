@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrawerView">
@@ -25,46 +26,67 @@
             <rect key="frame" x="0.0" y="0.0" width="280" height="570"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8QK-XE-rwX" customClass="LeftDrawerItem">
+                <button opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8QK-XE-rwX" customClass="LeftDrawerItem">
                     <rect key="frame" x="0.0" y="175" width="280" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="8QK-XE-rwX" secondAttribute="height" multiplier="7:1" id="GwA-dg-35p"/>
+                    </constraints>
                     <state key="normal" title="收藏板块"/>
                     <connections>
                         <action selector="showMyFavForm:" destination="-1" eventType="touchUpInside" id="MDc-7L-0j5"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="EMP-9K-WJf">
-                    <rect key="frame" x="100" y="45" width="80" height="80"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="EMP-9K-WJf">
+                    <rect key="frame" x="92.5" y="45" width="95" height="95"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="EMP-9K-WJf" secondAttribute="height" multiplier="1:1" id="imi-FL-ZCa"/>
+                    </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opA-uL-w8P" customClass="LeftDrawerItem">
-                    <rect key="frame" x="0.0" y="257" width="280" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opA-uL-w8P" customClass="LeftDrawerItem">
+                    <rect key="frame" x="0.0" y="255" width="280" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="opA-uL-w8P" secondAttribute="height" multiplier="7:1" id="JG0-7a-mUA"/>
+                    </constraints>
                     <state key="normal" title="站内私信"/>
                     <connections>
                         <action selector="showMessage:" destination="-1" eventType="touchUpInside" id="s9W-AM-CU8"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Dj-gl-lyY" customClass="LeftDrawerItem">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Dj-gl-lyY" customClass="LeftDrawerItem">
                     <rect key="frame" x="0.0" y="295" width="280" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="5Dj-gl-lyY" secondAttribute="height" multiplier="7:1" id="QS3-qU-QH6"/>
+                    </constraints>
                     <state key="normal" title="收藏帖子"/>
                     <connections>
                         <action selector="showFavThread:" destination="-1" eventType="touchUpInside" id="vJ5-4X-jxj"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4GR-Q0-M8U" customClass="LeftDrawerItem">
-                    <rect key="frame" x="0.0" y="340" width="280" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4GR-Q0-M8U" customClass="LeftDrawerItem">
+                    <rect key="frame" x="0.0" y="335" width="280" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="4GR-Q0-M8U" secondAttribute="height" multiplier="7:1" id="nPh-Gf-IWu"/>
+                    </constraints>
                     <state key="normal" title="查看新帖"/>
                     <connections>
                         <action selector="showNewThread:" destination="-1" eventType="touchUpInside" id="um0-qo-gNh"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCu-GK-wSI" customClass="LeftDrawerItem">
-                    <rect key="frame" x="0.0" y="385" width="280" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCu-GK-wSI" customClass="LeftDrawerItem">
+                    <rect key="frame" x="0.0" y="375" width="280" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="MCu-GK-wSI" secondAttribute="height" multiplier="7:1" id="c8j-33-w5E"/>
+                    </constraints>
                     <state key="normal" title="我的回帖"/>
                     <connections>
                         <action selector="showMyPost:" destination="-1" eventType="touchUpInside" id="6GU-Nq-09o"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsm-8B-AfT" customClass="LeftDrawerItem">
-                    <rect key="frame" x="0.0" y="428" width="280" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsm-8B-AfT" customClass="LeftDrawerItem">
+                    <rect key="frame" x="0.0" y="415" width="280" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="zsm-8B-AfT" secondAttribute="height" multiplier="7:1" id="S7x-01-5GI"/>
+                    </constraints>
                     <state key="normal" title="我的主题"/>
                     <connections>
                         <action selector="showMyThread:" destination="-1" eventType="touchUpInside" id="1KT-qx-UQn"/>
@@ -74,21 +96,54 @@
                     <rect key="frame" x="213" y="14" width="72" height="22"/>
                     <state key="normal" image="ic_settings_18pt"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WfO-5s-LdN" customClass="LeftDrawerItem">
-                    <rect key="frame" x="0.0" y="213" width="280" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WfO-5s-LdN" customClass="LeftDrawerItem">
+                    <rect key="frame" x="0.0" y="215" width="280" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="WfO-5s-LdN" secondAttribute="height" multiplier="7:1" id="3rm-ee-01W"/>
+                    </constraints>
                     <state key="normal" title="所有论坛"/>
                     <connections>
                         <action selector="showAllForms:" destination="-1" eventType="touchUpInside" id="SWf-4T-ZIU"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCv-xg-GdF">
-                    <rect key="frame" x="100" y="133" width="82" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCv-xg-GdF">
+                    <rect key="frame" x="99" y="133" width="81.5" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="bCv-xg-GdF" secondAttribute="height" multiplier="82:21" id="fpU-sp-DNC"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="5Dj-gl-lyY" secondAttribute="trailing" id="0hM-2O-4CL"/>
+                <constraint firstItem="8QK-XE-rwX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="51M-yg-n93"/>
+                <constraint firstItem="MCu-GK-wSI" firstAttribute="top" secondItem="4GR-Q0-M8U" secondAttribute="bottom" id="5ii-O2-EG3"/>
+                <constraint firstItem="MCu-GK-wSI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="79H-Pg-6tH"/>
+                <constraint firstItem="WfO-5s-LdN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AZn-YB-l59"/>
+                <constraint firstItem="8QK-XE-rwX" firstAttribute="top" secondItem="bCv-xg-GdF" secondAttribute="bottom" constant="21" id="Hut-qE-Fwv"/>
+                <constraint firstItem="opA-uL-w8P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JqM-hd-xEt"/>
+                <constraint firstItem="WfO-5s-LdN" firstAttribute="top" secondItem="8QK-XE-rwX" secondAttribute="bottom" id="PAg-Lh-waX"/>
+                <constraint firstItem="opA-uL-w8P" firstAttribute="top" secondItem="WfO-5s-LdN" secondAttribute="bottom" id="QqD-p5-RfG"/>
+                <constraint firstItem="4GR-Q0-M8U" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VTb-sy-7nT"/>
+                <constraint firstItem="zsm-8B-AfT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Xi4-ab-61p"/>
+                <constraint firstItem="5Dj-gl-lyY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="YBM-0i-meV"/>
+                <constraint firstAttribute="trailing" secondItem="WfO-5s-LdN" secondAttribute="trailing" id="ZMT-bq-PlC"/>
+                <constraint firstItem="8QK-XE-rwX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="175" id="aow-G5-vuq"/>
+                <constraint firstAttribute="trailing" secondItem="4GR-Q0-M8U" secondAttribute="trailing" id="e2w-uH-tqW"/>
+                <constraint firstItem="4GR-Q0-M8U" firstAttribute="top" secondItem="5Dj-gl-lyY" secondAttribute="bottom" id="f9k-xw-x8T"/>
+                <constraint firstItem="bCv-xg-GdF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="j6k-cV-fhY"/>
+                <constraint firstItem="5Dj-gl-lyY" firstAttribute="top" secondItem="opA-uL-w8P" secondAttribute="bottom" id="mFo-M6-qMC"/>
+                <constraint firstAttribute="trailing" secondItem="opA-uL-w8P" secondAttribute="trailing" id="pdR-kY-lF3"/>
+                <constraint firstItem="EMP-9K-WJf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="45" id="rvq-Zx-eQF"/>
+                <constraint firstItem="EMP-9K-WJf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="um7-hG-j4u"/>
+                <constraint firstAttribute="trailing" secondItem="MCu-GK-wSI" secondAttribute="trailing" id="wJB-Sm-F0x"/>
+                <constraint firstItem="zsm-8B-AfT" firstAttribute="top" secondItem="MCu-GK-wSI" secondAttribute="bottom" id="wbO-XA-Rx6"/>
+                <constraint firstAttribute="trailing" secondItem="8QK-XE-rwX" secondAttribute="trailing" id="x7p-RM-m5b"/>
+                <constraint firstAttribute="trailing" secondItem="zsm-8B-AfT" secondAttribute="trailing" id="zLp-lB-sAL"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-132" y="152"/>
         </view>

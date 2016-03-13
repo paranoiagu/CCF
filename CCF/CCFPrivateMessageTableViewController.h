@@ -10,6 +10,9 @@
 #import "CCFApiBaseTableViewController.h"
 
 @interface CCFPrivateMessageTableViewController : CCFApiBaseTableViewController
+
+@property (nonatomic, strong) NSMutableArray *privateMessageList;;
+
 - (IBAction)showLeftDrawer:(id)sender;
 
 @end

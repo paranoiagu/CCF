@@ -16,7 +16,6 @@
 #import "CCFUITextView.h"
 
 #import "CCFThreadDetail.h"
-#import "CCFApi.h"
 
 #import "AlertProgressViewController.h"
 #import <UITableView+FDTemplateLayoutCell.h>

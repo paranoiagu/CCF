@@ -267,18 +267,57 @@
         <scene sceneID="gWe-PG-MSc">
             <objects>
                 <tableViewController storyboardIdentifier="CCFPrivateMessageTableViewController" id="21g-L2-eCr" customClass="CCFPrivateMessageTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1sA-lp-kRb">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="119" sectionHeaderHeight="28" sectionFooterHeight="28" id="1sA-lp-kRb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6dg-Y9-eXc">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PrivateMessageTableViewCell" rowHeight="119" id="6dg-Y9-eXc" customClass="PrivateMessageTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="600" height="119"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6dg-Y9-eXc" id="fzf-9p-l9N">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="118.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好人一生平安" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gb4-mY-qKc">
+                                            <rect key="frame" x="8" y="8" width="584" height="73"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="gb4-mY-qKc" secondAttribute="height" multiplier="8:1" id="pMO-PT-Bqp"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="马小甲" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFj-EO-eeN">
+                                            <rect key="frame" x="8" y="89" width="51" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-30-04 11:12:13" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kg-4B-J4g">
+                                            <rect key="frame" x="433" y="89" width="159" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.0" green="0.61176470589999998" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="IFj-EO-eeN" firstAttribute="top" secondItem="gb4-mY-qKc" secondAttribute="bottom" constant="8" id="M8I-kh-arL"/>
+                                        <constraint firstItem="gb4-mY-qKc" firstAttribute="centerX" secondItem="fzf-9p-l9N" secondAttribute="centerX" id="NSc-Ij-hvk"/>
+                                        <constraint firstAttribute="topMargin" secondItem="gb4-mY-qKc" secondAttribute="top" id="ccK-Dm-uQQ"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="gb4-mY-qKc" secondAttribute="leading" id="hqC-tM-cOh"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="IFj-EO-eeN" secondAttribute="leading" id="rAr-51-eVt"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="gb4-mY-qKc" secondAttribute="trailing" id="sgV-Dp-sbK"/>
+                                        <constraint firstItem="1kg-4B-J4g" firstAttribute="top" secondItem="gb4-mY-qKc" secondAttribute="bottom" constant="8" id="syl-Gx-WAr"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="1kg-4B-J4g" secondAttribute="trailing" id="tzB-J9-EaZ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="privateMessageAuthor" destination="IFj-EO-eeN" id="U9I-B6-Fxt"/>
+                                    <outlet property="privateMessageTime" destination="1kg-4B-J4g" id="8gz-jv-uiX"/>
+                                    <outlet property="privateMessageTitle" destination="gb4-mY-qKc" id="99v-zE-IpQ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

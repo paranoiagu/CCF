@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LoginCCFUser.h"
+#import "PrivateMessagePage.h"
 
 typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 

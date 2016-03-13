@@ -16,7 +16,7 @@
 #import "WCPullRefreshControl.h"
 #import "CCFNewThreadViewController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
-#import "CCFApi.h"
+
 
 
 #define TypePullRefresh 0

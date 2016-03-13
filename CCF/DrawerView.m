@@ -309,6 +309,7 @@
 // 切换Controller
 - (IBAction)showMyFavForm:(id)sender {
     if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        [self closeLeftDrawer];
         
         CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
@@ -320,6 +321,7 @@
 
 - (IBAction)showMessage:(id)sender {
     if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        [self closeLeftDrawer];
         
         CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
@@ -332,6 +334,7 @@
 
 - (IBAction)showFavThread:(id)sender {
     if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        [self closeLeftDrawer];
         
         CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
@@ -344,6 +347,7 @@
 
 - (IBAction)showNewThread:(id)sender {
     if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        [self closeLeftDrawer];
         
         CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
@@ -356,6 +360,7 @@
 
 - (IBAction)showMyPost:(id)sender {
     if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        [self closeLeftDrawer];
         
         CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
@@ -368,6 +373,7 @@
 
 - (IBAction)showMyThread:(id)sender {
     if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        [self closeLeftDrawer];
         
         CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
@@ -381,6 +387,7 @@
 - (IBAction)showAllForms:(id)sender {
     
     if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        [self closeLeftDrawer];
         
         CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];

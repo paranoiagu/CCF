@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFEntry.h"
+#import "CCFApiBaseTableViewController.h"
 
-@interface CCFThreadListTableViewController : UITableViewController
+@interface CCFThreadListTableViewController : CCFApiBaseTableViewController
 
 
 

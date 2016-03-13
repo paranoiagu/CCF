@@ -20,12 +20,13 @@
 
 }
 
-
+@synthesize ccfApi = _ccfApi;
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
+    
     return 0;
 }
 

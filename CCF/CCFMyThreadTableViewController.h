@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CCFApiBaseTableViewController.h"
 
-@interface CCFMyThreadTableViewController : UITableViewController
+@interface CCFMyThreadTableViewController : CCFApiBaseTableViewController
 
 - (IBAction)showLeftDrawer:(id)sender;
 

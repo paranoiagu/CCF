@@ -88,9 +88,7 @@
     
     if ([avatar isEqualToString:@"no_avatar.gif"]) {
         
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"jpg"];
-        NSURL* url = [NSURL fileURLWithPath:path];
-        [self.avatarImage setImageWithURL:url];
+        [self.avatarImage setImage:[UIImage imageNamed:@"logo.jpg"]];
         
     } else{
         [self.avatarImage setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];

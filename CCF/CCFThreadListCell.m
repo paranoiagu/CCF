@@ -90,10 +90,12 @@
         
         CCFUserEntry * user = users.firstObject;
         if (user.userAvatar == nil) {
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"jpg"];
-            NSURL* url = [NSURL fileURLWithPath:path];
-
-            [self.avatarImage setImageWithURL:url];
+//            NSString *path = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"jpg"];
+//            NSURL* url = [NSURL fileURLWithPath:path];
+//
+//            [self.avatarImage setImageWithURL:url];
+            
+            [self.avatarImage setImage:[UIImage imageNamed:@"logo.jpg"]];
         } else{
             
             NSLog(@"+++++++++++++++++++++++++++++++++++++++++++%@", user.userAvatar);

@@ -36,7 +36,7 @@
                         <action selector="showMyFavForm:" destination="-1" eventType="touchUpInside" id="MDc-7L-0j5"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="EMP-9K-WJf">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="EMP-9K-WJf">
                     <rect key="frame" x="92.5" y="45" width="95" height="95"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="EMP-9K-WJf" secondAttribute="height" multiplier="1:1" id="imi-FL-ZCa"/>
@@ -116,7 +116,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.1843137255" green="0.27058823529999998" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="5Dj-gl-lyY" secondAttribute="trailing" id="0hM-2O-4CL"/>
                 <constraint firstItem="8QK-XE-rwX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="51M-yg-n93"/>
@@ -150,14 +150,8 @@
         <view autoresizesSubviews="NO" contentMode="scaleToFill" id="dJQ-C7-qpp" userLabel="RightDrawerView">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.1843137255" green="0.27058823529999998" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
             <point key="canvasLocation" x="464" y="327"/>
-        </view>
-        <view autoresizesSubviews="NO" contentMode="scaleToFill" id="uRT-fe-TzT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="507" y="878"/>
         </view>
         <viewController id="R6y-yd-XVV">
             <layoutGuides>
@@ -171,15 +165,9 @@
             </view>
             <point key="canvasLocation" x="1257" y="399"/>
         </viewController>
-        <view autoresizesSubviews="NO" contentMode="scaleToFill" id="UBh-6W-hgy">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="451" y="969"/>
-        </view>
     </objects>
     <resources>
         <image name="ic_settings_18pt" width="18" height="18"/>
-        <image name="logo.jpg" width="95" height="95"/>
+        <image name="logo" width="95" height="95"/>
     </resources>
 </document>

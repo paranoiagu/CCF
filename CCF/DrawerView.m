@@ -121,8 +121,12 @@
 
             [self initMaskView];
             
-            // 设置登录用户的头像
+            
             LoginCCFUser * user = [_ccfapi getLoginUser];
+            // 设置登录名称
+            NSString * userName = user.userName;
+            [self.userName setText:userName];
+            // 设置登录用户的头像
             [_ccfapi getAvatarWithUserId:user.userID handler:^(BOOL isSuccess, id message) {
                 if (isSuccess) {
                     NSURL * url = [CCFUrlBuilder buildAvatarURL:message];

@@ -58,22 +58,7 @@
 }
 
 -(LoginCCFUser *)getLoginUser{
-    NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
-    
-    LoginCCFUser * user = [[LoginCCFUser alloc] init];
-    
-    for (int i = 0; i < cookies.count; i ++) {
-        NSHTTPCookie * cookie = cookies[i];
-        
-        if ([cookie.name isEqualToString:kCCFCookie_LastVisit]) {
-            user.lastVisit = cookie.value;
-        } else if([cookie.name isEqualToString:kCCFCookie_User]){
-            user.userID = cookie.value;
-        } else if ([cookie.name isEqualToString:kCCFCookie_IDStack]){
-            user.expireTime = cookie.expiresDate;
-        }
-    }
-    return user;
+    return [_browser getCurrentCCFUser];
 }
 
 -(void)logout{

@@ -73,8 +73,12 @@
 //    }];
     
     
-    [api favoriteThreadPostWithId:@"1335339" handler:^(BOOL isSuccess, id message) {
-        NSLog(@"favoriteThreadPostWithId %@", message);
+//    [api favoriteThreadPostWithId:@"1335339" handler:^(BOOL isSuccess, id message) {
+//        NSLog(@"favoriteThreadPostWithId %@", message);
+//    }];
+    
+    [api listFavoriteThreadPosts:^(BOOL isSuccess, id message) {
+        
     }];
 }
 

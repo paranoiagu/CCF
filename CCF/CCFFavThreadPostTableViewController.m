@@ -17,10 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.ccfApi listFavoriteThreadPosts:^(BOOL isSuccess, id message) {
+        NSLog(@" 收藏的帖子---》 %@", message);
+    }];
 
 }
 
-@synthesize ccfApi = _ccfApi;
 
 #pragma mark - Table view data source
 

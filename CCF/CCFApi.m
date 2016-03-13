@@ -253,7 +253,9 @@
 
 -(void)listFavoriteThreadPosts:(HandlerWithBool)handler{
     [_browser listfavoriteThreadPosts:^(BOOL isSuccess, NSString* result) {
-        handler(isSuccess, result);
+        
+        NSArray * threadList = [_praser parseFavThreadListFormHtml:result];
+        handler(isSuccess, threadList);
     }];
 }
 

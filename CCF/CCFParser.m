@@ -342,10 +342,75 @@
 }
 
 -(NSMutableArray<CCFThreadList *> *)parseFavThreadListFormHtml:(NSString *)html{
+    NSString * path = @"/html/body/div[2]/div/div/table[3]/tr/td[3]/form[2]/table/tr[position()>2]";
     
-    //*[@id="collapseobj_usercp_forums"]/tr[*]/td[2]
+    //*[@id="threadbits_forum_147"]/tr[1]
     
-    return nil;
+    NSMutableArray<CCFThreadList *> * threadList = [NSMutableArray<CCFThreadList *> array];
+    
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
+    IGXMLNodeSet* contents = [document queryWithXPath: path];
+    
+    NSInteger totaleListCount = -1;
+    
+    for (int i = 0; i < contents.count; i++){
+        IGXMLNode * threadListNode = contents[i];
+        
+        if (threadListNode.children.count > 4) { // 要大于4的原因是：过滤已经被删除的帖子
+            
+            CCFThreadList * ccfthreadlist = [[CCFThreadList alloc]init];
+            
+            // title
+            IGXMLNode * threadTitleNode = threadListNode.children [2];
+            
+            NSString * titleInnerHtml = [threadTitleNode innerHtml];
+            
+            ccfthreadlist.isTopThread = NO;
+            
+            
+            NSString *title = [self parseTitle: titleInnerHtml];
+            
+            IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:title error:nil];
+            
+            //[@"showthread.php?t=" length]    17的由来
+            ccfthreadlist.threadID = [[titleTemp attribute:@"href"] substringFromIndex: 17];
+            ccfthreadlist.threadTitle = [titleTemp text];
+            
+            
+            IGXMLNode * authorNode = threadListNode.children [3];
+            
+            NSString * authorIdStr = [authorNode innerHtml];
+            ccfthreadlist.threadAuthorID = [authorIdStr stringWithRegular:@"\\d+"];
+            
+            ccfthreadlist.threadAuthorName = [authorNode text];
+            
+            
+            IGXMLNode * commentCountNode = threadListNode.children [5];
+            ccfthreadlist.threadTotalPostCount = [[commentCountNode text] intValue];
+            // 总页数
+            if (totaleListCount == -1) {
+                IGXMLNodeSet* totalPageSet = [document queryWithXPath:@"//*[@id='inlinemodform']/table[4]/tr[1]/td[2]/div/table/tr/td[1]"];
+                
+                if (totalPageSet == nil) {
+                    totaleListCount = 1;
+                    ccfthreadlist.threadTotalListPage = 1;
+                }else{
+                    IGXMLNode * totalPage = totalPageSet.firstObject;
+                    NSString * pageText = [totalPage innerHtml];
+                    NSString * numberText = [[pageText componentsSeparatedByString:@"，"]lastObject];
+                    NSUInteger totalNumber = [numberText integerValue];
+                    NSLog(@"总页数：   %@", pageText);
+                    ccfthreadlist.threadTotalListPage = totalNumber;
+                    totaleListCount = totalNumber;
+                }
+                
+            } else{
+                ccfthreadlist.threadTotalListPage = totaleListCount;
+            }
+            [threadList addObject:ccfthreadlist];
+        }
+    }
+    return threadList;
 }
 
 

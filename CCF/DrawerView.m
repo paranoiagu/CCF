@@ -68,7 +68,9 @@
         
         LoginCCFUser * user = [[LoginCCFUser alloc] init];
         
-        [_avatarUIImageView setImageWithURL:[CCFUrlBuilder buildAvatarURL:user.userID]];
+        NSURL * url = [CCFUrlBuilder buildAvatarURL:user.userID];
+        NSLog(@"头像-----------> %@", url);
+        [_avatarUIImageView setImageWithURL:url];
 
     }
     return self;
@@ -118,6 +120,18 @@
             }
 
             [self initMaskView];
+            
+            // 设置登录用户的头像
+            LoginCCFUser * user = [_ccfapi getLoginUser];
+            [_ccfapi getAvatarWithUserId:user.userID handler:^(BOOL isSuccess, id message) {
+                if (isSuccess) {
+                    NSURL * url = [CCFUrlBuilder buildAvatarURL:message];
+                    [self.avatarUIImageView setImageWithURL:url];
+                } else{
+                    
+                }
+                
+            }];
             
         }
     
@@ -182,21 +196,6 @@
     return type == DrawerViewTypeLeft ? _leftDrawerView : _rightDrawerView;
 }
 
--(void)didAddSubview:(UIView *)subview{
-    NSLog(@"添加 didAddSubview          %@", subview);
-    
-    LoginCCFUser * user = [_ccfapi getLoginUser];
-    [_ccfapi getAvatarWithUserId:user.userID handler:^(BOOL isSuccess, id message) {
-        if (isSuccess) {
-            [self.avatarUIImageView setImageWithURL:[NSURL URLWithString:message]];
-        } else{
-            
-        }
-        
-    }];
-    
-    
-}
 
 
 -(void)didMoveToSuperview{

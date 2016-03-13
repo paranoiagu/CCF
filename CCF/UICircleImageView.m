@@ -1,23 +1,24 @@
 //
-//  UIImageView+Circle.m
+//  UICircleImageView.m
 //  CCF
 //
-//  Created by 迪远 王 on 16/2/28.
+//  Created by 迪远 王 on 16/3/13.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "UIImageView+Circle.h"
+#import "UICircleImageView.h"
 
-@implementation UIImageView(Circle)
+@implementation UICircleImageView
+
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super initWithCoder:aDecoder]) {
-        
         self.layer.masksToBounds = YES;
         self.layer.cornerRadius = self.bounds.size.width * 0.5;
-        self.layer.borderWidth = 5.0;
+        self.layer.borderWidth = 5.5;
         self.layer.borderColor = [UIColor whiteColor].CGColor;
     }
     return self;
 }
+
 @end

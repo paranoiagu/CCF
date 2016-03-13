@@ -8,8 +8,12 @@
 
 #import "CCFShowNewThreadPostTableViewController.h"
 #import "CCFNavigationController.h"
+#import "CCFSearchResultPage.h"
+#import "CCFSearchResult.h"
 
-@interface CCFShowNewThreadPostTableViewController ()
+@interface CCFShowNewThreadPostTableViewController (){
+    NSMutableArray<CCFSearchResult*> * dataSourceList;
+}
 
 @end
 
@@ -17,6 +21,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    dataSourceList = [NSMutableArray array];
+    
+    [self.ccfApi listNewThreadPosts:^(BOOL isSuccess, CCFSearchResultPage *message) {
+        
+        if (isSuccess) {
+            [dataSourceList addObjectsFromArray:message.searchResults];
+        }
+        
+    }];
 
 }
 
@@ -29,12 +43,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 0;
+    return dataSourceList.count;
 }
 
 

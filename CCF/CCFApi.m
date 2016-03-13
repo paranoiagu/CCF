@@ -261,7 +261,8 @@
 
 -(void)listNewThreadPosts:(HandlerWithBool)handler{
     [_browser fetchNewThreadPosts:^(BOOL isSuccess, id result) {
-        handler(isSuccess, result);
+        CCFSearchResultPage* sarchPage = [_praser parseSearchPageFromHtml:result];
+        handler(isSuccess, sarchPage);
     }];
 }
 

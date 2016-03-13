@@ -77,9 +77,15 @@
 //        NSLog(@"favoriteThreadPostWithId %@", message);
 //    }];
     
-    [api listFavoriteThreadPosts:^(BOOL isSuccess, id message) {
-        
+//    [api listFavoriteThreadPosts:^(BOOL isSuccess, id message) {
+//        
+//    }];
+
+
+    [api listNewThreadPosts:^(BOOL isSuccess, id message) {
+        NSLog(@"listNewThreadPosts %@", message);
     }];
+
 }
 
 

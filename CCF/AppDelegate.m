@@ -27,7 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    API_DEBUG = YES;
+    API_DEBUG = NO;
     
     if (API_DEBUG) {
         ApiTestViewController * testController = [[ApiTestViewController alloc] init];

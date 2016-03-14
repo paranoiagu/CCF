@@ -82,8 +82,17 @@
 //    }];
 
 
-    [api listNewThreadPosts:^(BOOL isSuccess, id message) {
-        NSLog(@"listNewThreadPosts %@", message);
+//    [api listNewThreadPosts:^(BOOL isSuccess, id message) {
+//        NSLog(@"listNewThreadPosts %@", message);
+//    }];
+
+//    [api listTodayNewThreads:^(BOOL isSuccess, CCFSearchResultPage* message) {
+//        NSLog(@"listTodayNewThreads %ld", message.searchResults.count);
+//    }];
+
+
+    [api listMyAllThreads:^(BOOL isSuccess, CCFSearchResultPage* message) {
+       NSLog(@"listMyAllThreads %ld", message.searchResults.count);
     }];
 
 }

@@ -235,7 +235,8 @@
 
 -(void)listMyAllThreads:(HandlerWithBool)handler{
     [_browser listMyAllThreads:^(BOOL isSuccess, id result) {
-        handler(isSuccess,result);
+        CCFSearchResultPage* sarchPage = [_praser parseSearchPageFromHtml:result];
+        handler(isSuccess, sarchPage);
     }];
 }
 
@@ -268,7 +269,8 @@
 
 -(void)listTodayNewThreads:(HandlerWithBool)handler{
     [_browser fetchTodayNewThreads:^(BOOL isSuccess, id result) {
-        handler(isSuccess, result);
+        CCFSearchResultPage* sarchPage = [_praser parseSearchPageFromHtml:result];
+        handler(isSuccess, sarchPage);
     }];
 }
 

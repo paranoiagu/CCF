@@ -7,7 +7,7 @@
 //
 
 #import "CCFThreadListCell.h"
-#import "CCFThreadList.h"
+#import "CCFNormalThread.h"
 #import "CCFUrlBuilder.h"
 #import "NSString+Regular.h"
 #import <UIImageView+AFNetworking.h>
@@ -57,7 +57,7 @@
     // Configure the view for the selected state
 }
 
--(void)setThreadList:(CCFThreadList *)threadList{
+-(void)setThreadList:(CCFNormalThread *)threadList{
     self.threadAuthor.text = threadList.threadAuthorName;
     
     NSString * type = [threadList.threadTitle stringWithRegular:@"【.{1,4}】"];

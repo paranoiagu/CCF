@@ -7,22 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CCFThread.h"
 
-@interface CCFThreadList : NSObject
+@interface CCFNormalThread : CCFThread
 
 @property (nonatomic, assign) BOOL isTopThread;
-
-@property (nonatomic, strong) NSString* threadTitle;
-
-@property (nonatomic, strong) NSString* threadID;
-
 @property (nonatomic, assign) NSInteger threadTotalPostCount;
-
-@property (nonatomic, strong) NSString* threadAuthorName;
-
 @property (nonatomic, strong) NSString* threadAuthorID;
-
-
 @property (nonatomic, assign) NSInteger threadTotalListPage;
 
 @end

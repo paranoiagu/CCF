@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CCFSearchThread.h"
 
-@class CCFSearchResult;
 
 @interface CCFSearchResultCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *postTitle;
@@ -17,6 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *postBelongForm;
 
 
--(void) setSearchResult:(CCFSearchResult *) result;
+-(void) setSearchResult:(CCFSearchThread *) result;
 
 @end

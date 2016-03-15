@@ -301,7 +301,7 @@
 -(void)forumDisplayWithId:(NSString *)formId andPage:(NSString *)page handler:(HandlerWithBool)handler{
     [_browser forumDisplayWithId:formId andPage:page handler:^(BOOL isSuccess, id result) {
         if (isSuccess) {
-            NSMutableArray<CCFThreadList *> * threadList = [_praser parseThreadListFromHtml:result withThread:formId andContainsTop:YES];
+            NSMutableArray<CCFNormalThread *> * threadList = [_praser parseThreadListFromHtml:result withThread:formId andContainsTop:YES];
             handler(isSuccess, threadList);
         } else{
             handler(NO, result);

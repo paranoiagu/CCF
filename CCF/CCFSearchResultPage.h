@@ -7,15 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
-
-
-@class CCFSearchResult;
+#import "CCFSearchThread.h"
 
 @interface CCFSearchResultPage : NSObject
 
 
-@property (nonatomic, strong) NSMutableArray<CCFSearchResult *> * searchResults;
+@property (nonatomic, strong) NSMutableArray<CCFSearchThread *> * searchResults;
 
 @property (nonatomic, assign) NSUInteger searchResultTotalCount;
 

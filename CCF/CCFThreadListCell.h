@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class CCFThreadList;
+@class CCFNormalThread;
 
 @interface CCFThreadListCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *threadAuthor;
@@ -19,6 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *threadCreateTime;
 
 @property (weak, nonatomic) IBOutlet UILabel *threadType;
--(void) setThreadList:(CCFThreadList *) threadList;
+-(void) setThreadList:(CCFNormalThread *) threadList;
 
 @end

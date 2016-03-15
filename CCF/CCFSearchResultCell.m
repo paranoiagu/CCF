@@ -7,11 +7,11 @@
 //
 
 #import "CCFSearchResultCell.h"
-#import "CCFSearchResult.h"
+#import "CCFSearchThread.h"
 
 
 @implementation CCFSearchResultCell{
-    CCFSearchResult *_result;
+    CCFSearchThread *_result;
 }
 
 - (void)awakeFromNib {
@@ -24,12 +24,12 @@
     // Configure the view for the selected state
 }
 
--(void)setSearchResult:(CCFSearchResult *)result{
+-(void)setSearchResult:(CCFSearchThread *)result{
     if (_result != result) {
         _result = result;
         
         _postTitle.text = _result.threadTitle;
-        _postAuthor.text = _result.threadAuthor;
+        _postAuthor.text = _result.threadAuthorName;
         _postTime.text = _result.threadCreateTime;
         _postBelongForm.text = _result.threadBelongForm;
     }

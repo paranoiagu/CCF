@@ -6,8 +6,8 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFThreadList.h"
+#import "CCFNormalThread.h"
 
-@implementation CCFThreadList
+@implementation CCFNormalThread
 
 @end

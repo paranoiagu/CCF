@@ -8,7 +8,7 @@
 
 #import "CCFSearchViewController.h"
 #import "CCFBrowser.h"
-#import "CCFSearchResult.h"
+#import "CCFSearchThread.h"
 #import "CCFSearchResultPage.h"
 #import "CCFApi.h"
 
@@ -16,7 +16,7 @@
 
 
 @interface CCFSearchViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>{
-    NSMutableArray<CCFSearchResult *> * searchResult;
+    NSMutableArray<CCFSearchThread *> * searchResult;
     int currentPage;
     int maxPage;
     CCFBrowser * browser;

@@ -9,10 +9,10 @@
 #import "CCFShowNewThreadPostTableViewController.h"
 #import "CCFNavigationController.h"
 #import "CCFSearchResultPage.h"
-#import "CCFSearchResult.h"
+#import "CCFSearchThread.h"
 
 @interface CCFShowNewThreadPostTableViewController (){
-    NSMutableArray<CCFSearchResult*> * dataSourceList;
+    NSMutableArray<CCFSearchThread*> * dataSourceList;
 }
 
 @end

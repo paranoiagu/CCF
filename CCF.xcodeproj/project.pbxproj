@@ -20,7 +20,7 @@
 		3A2346331C8C6A6C009A2537 /* CCFMyThreadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2346321C8C6A6C009A2537 /* CCFMyThreadTableViewController.m */; };
 		3A2346361C8C6AE2009A2537 /* CCFMyThreadPostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2346351C8C6AE2009A2537 /* CCFMyThreadPostTableViewController.m */; };
 		3A27EA331C9424EB004D30EB /* CCFFavThreadPostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A27EA321C9424EB004D30EB /* CCFFavThreadPostTableViewController.m */; };
-		3A2ECF541C36C0EB00CD3968 /* CCFThreadList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2ECF531C36C0EB00CD3968 /* CCFThreadList.m */; };
+		3A2ECF541C36C0EB00CD3968 /* CCFNormalThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2ECF531C36C0EB00CD3968 /* CCFNormalThread.m */; };
 		3A2FCC771C953FCD00B469E4 /* UICircleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FCC761C953FCD00B469E4 /* UICircleImageView.m */; };
 		3A2FCC7A1C9558F100B469E4 /* CCFApiBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FCC791C9558F100B469E4 /* CCFApiBaseTableViewController.m */; };
 		3A2FCC7E1C956DB100B469E4 /* PrivateMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FCC7D1C956DB100B469E4 /* PrivateMessageTableViewCell.m */; };
@@ -79,7 +79,7 @@
 		4D796BD21C3FC8ED00B3C62D /* CCFUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BD11C3FC8ED00B3C62D /* CCFUITextView.m */; };
 		4D796BD81C43576700B3C62D /* CCFSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BD71C43576700B3C62D /* CCFSearchViewController.m */; };
 		4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BDA1C43666C00B3C62D /* CCFSearchResultCell.m */; };
-		4D796BDE1C43675100B3C62D /* CCFSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BDD1C43675100B3C62D /* CCFSearchResult.m */; };
+		4D796BDE1C43675100B3C62D /* CCFSearchThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BDD1C43675100B3C62D /* CCFSearchThread.m */; };
 		4D796BE11C436A5400B3C62D /* CCFSearchResultPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BE01C436A5400B3C62D /* CCFSearchResultPage.m */; };
 		4D796BE41C437C5000B3C62D /* NSString+Regular.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BE31C437C5000B3C62D /* NSString+Regular.m */; };
 		4D796BEA1C44992700B3C62D /* UIStoryboard+CCF.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BE91C44992700B3C62D /* UIStoryboard+CCF.m */; };
@@ -90,6 +90,7 @@
 		4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF91C44BE7800B3C62D /* CoreDataManager.m */; };
 		4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */; };
 		4D796C051C460D4200B3C62D /* NSUserDefaults+CCF.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */; };
+		4D852A1D1C97E2A7009121B2 /* CCFThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D852A1C1C97E2A7009121B2 /* CCFThread.m */; };
 		4D93CFD71C85355D00852D28 /* ApiTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D93CFD51C85355D00852D28 /* ApiTestViewController.m */; };
 		4D93CFD81C85355D00852D28 /* ApiTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */; };
 		4DAFF55A1C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAFF5591C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m */; };
@@ -132,8 +133,8 @@
 		3A2346351C8C6AE2009A2537 /* CCFMyThreadPostTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFMyThreadPostTableViewController.m; sourceTree = "<group>"; };
 		3A27EA311C9424EB004D30EB /* CCFFavThreadPostTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFavThreadPostTableViewController.h; sourceTree = "<group>"; };
 		3A27EA321C9424EB004D30EB /* CCFFavThreadPostTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFavThreadPostTableViewController.m; sourceTree = "<group>"; };
-		3A2ECF521C36C0EB00CD3968 /* CCFThreadList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadList.h; sourceTree = "<group>"; };
-		3A2ECF531C36C0EB00CD3968 /* CCFThreadList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadList.m; sourceTree = "<group>"; };
+		3A2ECF521C36C0EB00CD3968 /* CCFNormalThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFNormalThread.h; sourceTree = "<group>"; };
+		3A2ECF531C36C0EB00CD3968 /* CCFNormalThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFNormalThread.m; sourceTree = "<group>"; };
 		3A2FCC751C953FCD00B469E4 /* UICircleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICircleImageView.h; sourceTree = "<group>"; };
 		3A2FCC761C953FCD00B469E4 /* UICircleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICircleImageView.m; sourceTree = "<group>"; };
 		3A2FCC781C9558F100B469E4 /* CCFApiBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFApiBaseTableViewController.h; sourceTree = "<group>"; };
@@ -242,8 +243,8 @@
 		4D796BD71C43576700B3C62D /* CCFSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSearchViewController.m; sourceTree = "<group>"; };
 		4D796BD91C43666C00B3C62D /* CCFSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSearchResultCell.h; sourceTree = "<group>"; };
 		4D796BDA1C43666C00B3C62D /* CCFSearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSearchResultCell.m; sourceTree = "<group>"; };
-		4D796BDC1C43675100B3C62D /* CCFSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSearchResult.h; sourceTree = "<group>"; };
-		4D796BDD1C43675100B3C62D /* CCFSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSearchResult.m; sourceTree = "<group>"; };
+		4D796BDC1C43675100B3C62D /* CCFSearchThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSearchThread.h; sourceTree = "<group>"; };
+		4D796BDD1C43675100B3C62D /* CCFSearchThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSearchThread.m; sourceTree = "<group>"; };
 		4D796BDF1C436A5400B3C62D /* CCFSearchResultPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSearchResultPage.h; sourceTree = "<group>"; };
 		4D796BE01C436A5400B3C62D /* CCFSearchResultPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSearchResultPage.m; sourceTree = "<group>"; };
 		4D796BE21C437C5000B3C62D /* NSString+Regular.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Regular.h"; sourceTree = "<group>"; };
@@ -263,6 +264,8 @@
 		4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFCoreDataManager.m; sourceTree = "<group>"; };
 		4D796C031C460D4200B3C62D /* NSUserDefaults+CCF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+CCF.h"; sourceTree = "<group>"; };
 		4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+CCF.m"; sourceTree = "<group>"; };
+		4D852A1B1C97E2A7009121B2 /* CCFThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThread.h; sourceTree = "<group>"; };
+		4D852A1C1C97E2A7009121B2 /* CCFThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThread.m; sourceTree = "<group>"; };
 		4D93CFD41C85355D00852D28 /* ApiTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiTestViewController.h; sourceTree = "<group>"; };
 		4D93CFD51C85355D00852D28 /* ApiTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiTestViewController.m; sourceTree = "<group>"; };
 		4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApiTestViewController.xib; sourceTree = "<group>"; };
@@ -642,10 +645,12 @@
 				4D1EEBAD1C3251E70084F6E9 /* CCFPost.m */,
 				4D1EEBAF1C3260130084F6E9 /* CCFThreadDetail.h */,
 				4D1EEBB01C3260130084F6E9 /* CCFThreadDetail.m */,
-				3A2ECF521C36C0EB00CD3968 /* CCFThreadList.h */,
-				3A2ECF531C36C0EB00CD3968 /* CCFThreadList.m */,
+				3A2ECF521C36C0EB00CD3968 /* CCFNormalThread.h */,
+				3A2ECF531C36C0EB00CD3968 /* CCFNormalThread.m */,
 				3AB3F5361C53939300B7FA98 /* CCFForm.h */,
 				3AB3F5371C53939300B7FA98 /* CCFForm.m */,
+				4D852A1B1C97E2A7009121B2 /* CCFThread.h */,
+				4D852A1C1C97E2A7009121B2 /* CCFThread.m */,
 			);
 			name = "Thread-Normal";
 			sourceTree = "<group>";
@@ -667,8 +672,8 @@
 		4D796C021C45F99000B3C62D /* Thread-Search */ = {
 			isa = PBXGroup;
 			children = (
-				4D796BDC1C43675100B3C62D /* CCFSearchResult.h */,
-				4D796BDD1C43675100B3C62D /* CCFSearchResult.m */,
+				4D796BDC1C43675100B3C62D /* CCFSearchThread.h */,
+				4D796BDD1C43675100B3C62D /* CCFSearchThread.m */,
 				4D796BDF1C436A5400B3C62D /* CCFSearchResultPage.h */,
 				4D796BE01C436A5400B3C62D /* CCFSearchResultPage.m */,
 			);
@@ -857,7 +862,7 @@
 				3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */,
 				4D1EEBB11C3260130084F6E9 /* CCFThreadDetail.m in Sources */,
 				3A2FCC7A1C9558F100B469E4 /* CCFApiBaseTableViewController.m in Sources */,
-				4D796BDE1C43675100B3C62D /* CCFSearchResult.m in Sources */,
+				4D796BDE1C43675100B3C62D /* CCFSearchThread.m in Sources */,
 				4D796BF11C44B6F800B3C62D /* Form.xcdatamodeld in Sources */,
 				4DF824BA1C34C4C6005BB858 /* CCFFormJSONModel.m in Sources */,
 				4DB98FB41C4E0F5A0081AF87 /* CCFUserEntry.m in Sources */,
@@ -880,11 +885,12 @@
 				3AB3F5351C535B3200B7FA98 /* CCFFavFormControllerCell.m in Sources */,
 				4D796C051C460D4200B3C62D /* NSUserDefaults+CCF.m in Sources */,
 				4DB98FB31C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m in Sources */,
-				3A2ECF541C36C0EB00CD3968 /* CCFThreadList.m in Sources */,
+				3A2ECF541C36C0EB00CD3968 /* CCFNormalThread.m in Sources */,
 				3AA2D50F1C36105100F312CC /* CCFFormTableViewController.m in Sources */,
 				3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */,
 				3AA2D5091C36103C00F312CC /* APLHighlightingTextView.m in Sources */,
 				3AB3F5381C53939300B7FA98 /* CCFForm.m in Sources */,
+				4D852A1D1C97E2A7009121B2 /* CCFThread.m in Sources */,
 				4D796BCD1C3E4BDD00B3C62D /* CCFUtils.m in Sources */,
 				3AF86A741C82CAB50036AD61 /* LoginCCFUser.m in Sources */,
 				3A2FCC7E1C956DB100B469E4 /* PrivateMessageTableViewCell.m in Sources */,

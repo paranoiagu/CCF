@@ -7,13 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CCFThread.h"
 
-@interface CCFSearchResult : NSObject
+@interface CCFSearchThread : CCFThread
 
-
-@property (nonatomic, strong) NSString* threadID;
-@property (nonatomic, strong) NSString* threadTitle;
-@property (nonatomic, strong) NSString* threadAuthor;
 @property (nonatomic, strong) NSString* threadCreateTime;
 @property (nonatomic, strong) NSString* threadBelongForm;
 

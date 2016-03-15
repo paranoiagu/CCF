@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CCFPost.h"
 #import "CCFUser.h"
-#import "CCFThreadList.h"
+#import "CCFNormalThread.h"
 #import "FormEntry+CoreDataProperties.h"
 
 
@@ -25,9 +25,9 @@
 - (CCFThreadDetail *) parseShowThreadWithHtml:(NSString*)html;
 
 
-- (NSMutableArray<CCFThreadList*> *) parseThreadListFromHtml: (NSString *) html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop;
+- (NSMutableArray<CCFNormalThread*> *) parseThreadListFromHtml: (NSString *) html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop;
 
-- (NSMutableArray<CCFThreadList*> *) parseFavThreadListFormHtml: (NSString *) html;
+- (NSMutableArray<CCFNormalThread*> *) parseFavThreadListFormHtml: (NSString *) html;
 
 - (NSString *) parseSecurityToken:(NSString *)html;
 

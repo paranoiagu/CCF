@@ -10,7 +10,7 @@
 #import "LoginCCFUser.h"
 #import "PrivateMessagePage.h"
 #import "CCFSearchResultPage.h"
-#import "CCFSearchResult.h"
+#import "CCFSearchThread.h"
 
 typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 

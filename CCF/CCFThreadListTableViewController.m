@@ -82,14 +82,14 @@
     if (totalPage == 0 || currentPage < totalPage) {
         NSString * pageStr = [NSString stringWithFormat:@"%d", page];
         
-        [self.ccfapi forumDisplayWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, NSMutableArray<CCFThreadList *> * threadList) {
+        [self.ccfapi forumDisplayWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, NSMutableArray<CCFNormalThread *> * threadList) {
             totalPage = (int)threadList.lastObject.threadTotalListPage;
             
             if (page == 1) {
                 [self.dataList removeAllObjects];
                 [self.threadTopList removeAllObjects];
             }
-            for (CCFThreadList * thread in threadList) {
+            for (CCFNormalThread * thread in threadList) {
                 if (thread.isTopThread) {
                     [self.threadTopList addObject:thread];
                 }else{
@@ -154,10 +154,10 @@
     CCFThreadListCell *cell = (CCFThreadListCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
     
     if (indexPath.section == 0) {
-        CCFThreadList *play = self.threadTopList[indexPath.row];
+        CCFNormalThread *play = self.threadTopList[indexPath.row];
         [cell setThreadList:play];
     } else{
-        CCFThreadList *play = self.dataList[indexPath.row];
+        CCFNormalThread *play = self.dataList[indexPath.row];
         [cell setThreadList:play];
     }
 
@@ -209,7 +209,7 @@
             
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
             
-            CCFThreadList * thread = nil;
+            CCFNormalThread * thread = nil;
             
             if (indexPath.section == 0) {
                 thread = self.threadTopList[indexPath.row];

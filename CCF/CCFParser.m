@@ -9,7 +9,7 @@
 #import "CCFParser.h"
 #import <IGHTMLQuery.h>
 #import "CCFThreadDetail.h"
-#import "CCFSearchResult.h"
+#import "CCFSearchThread.h"
 #import "CCFSearchResultPage.h"
 #import "FormEntry+CoreDataProperties.h"
 #import "CCFCoreDataManager.h"
@@ -22,12 +22,12 @@
 
 @implementation CCFParser
 
--(NSMutableArray<CCFThreadList *> *)parseThreadListFromHtml:(NSString *)html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop{
+-(NSMutableArray<CCFNormalThread *> *)parseThreadListFromHtml:(NSString *)html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop{
     NSString * path = [NSString stringWithFormat:@"//*[@id='threadbits_forum_%@']/tr", threadId];
     
     //*[@id="threadbits_forum_147"]/tr[1]
     
-    NSMutableArray<CCFThreadList *> * threadList = [NSMutableArray<CCFThreadList *> array];
+    NSMutableArray<CCFNormalThread *> * threadList = [NSMutableArray<CCFNormalThread *> array];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet* contents = [document queryWithXPath: path];
@@ -39,7 +39,7 @@
         
         if (threadListNode.children.count > 4) { // 要大于4的原因是：过滤已经被删除的帖子
             
-            CCFThreadList * ccfthreadlist = [[CCFThreadList alloc]init];
+            CCFNormalThread * ccfthreadlist = [[CCFNormalThread alloc]init];
             
             // title
             IGXMLNode * threadTitleNode = threadListNode.children [2];
@@ -341,12 +341,12 @@
     
 }
 
--(NSMutableArray<CCFThreadList *> *)parseFavThreadListFormHtml:(NSString *)html{
+-(NSMutableArray<CCFNormalThread *> *)parseFavThreadListFormHtml:(NSString *)html{
     NSString * path = @"/html/body/div[2]/div/div/table[3]/tr/td[3]/form[2]/table/tr[position()>2]";
     
     //*[@id="threadbits_forum_147"]/tr[1]
     
-    NSMutableArray<CCFThreadList *> * threadList = [NSMutableArray<CCFThreadList *> array];
+    NSMutableArray<CCFNormalThread *> * threadList = [NSMutableArray<CCFNormalThread *> array];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet* contents = [document queryWithXPath: path];
@@ -358,7 +358,7 @@
         
         if (threadListNode.children.count > 4) { // 要大于4的原因是：过滤已经被删除的帖子
             
-            CCFThreadList * ccfthreadlist = [[CCFThreadList alloc]init];
+            CCFNormalThread * ccfthreadlist = [[CCFNormalThread alloc]init];
             
             // title
             IGXMLNode * threadTitleNode = threadListNode.children [2];
@@ -445,14 +445,14 @@
         resultPage.searchResultTotalPage = [[pageNode.text stringWithRegular:@"共 \\d+ 页" andChild:@"\\d+"] integerValue];
     }
     
-    NSMutableArray<CCFSearchResult*>* post = [NSMutableArray array];
+    NSMutableArray<CCFSearchThread*>* post = [NSMutableArray array];
     
     for (IGXMLNode *node in searchNodeSet) {
         
         
         if (node.children.count == 9) {
             // 9个节点是正确的输出结果
-            CCFSearchResult * result = [[CCFSearchResult alloc]init];
+            CCFSearchThread * result = [[CCFSearchThread alloc]init];
             
             NSString * postIdNode = [node.children[2] html];
             NSString * postId = [postIdNode stringWithRegular:@"id=\"thread_title_\\d+\"" andChild:@"\\d+"];
@@ -465,7 +465,7 @@
             
             result.threadID = postId;
             result.threadTitle = [postTitle trim];
-            result.threadAuthor = postAuthor;
+            result.threadAuthorName = postAuthor;
             result.threadCreateTime = [postTime trim];
             result.threadBelongForm = postBelongForm;
             

@@ -8,11 +8,11 @@
 
 #import "CCFFavThreadPostTableViewController.h"
 #import "CCFNavigationController.h"
-#import "CCFThreadList.h"
+#import "CCFNormalThread.h"
 #import "CCFThreadListCell.h"
 
 @interface CCFFavThreadPostTableViewController (){
-    NSMutableArray<CCFThreadList*> * dataSourceList;
+    NSMutableArray<CCFNormalThread*> * dataSourceList;
 }
 
 @end
@@ -23,7 +23,7 @@
     [super viewDidLoad];
     dataSourceList = [NSMutableArray array];
     
-    [self.ccfApi listFavoriteThreadPosts:^(BOOL isSuccess, NSMutableArray<CCFThreadList *> *message) {
+    [self.ccfApi listFavoriteThreadPosts:^(BOOL isSuccess, NSMutableArray<CCFNormalThread *> *message) {
         NSLog(@" 收藏的帖子---》 %@", message);
         
         [dataSourceList addObjectsFromArray:message];
@@ -49,7 +49,7 @@
     static NSString * identifier = @"CCFThreadListCellIdentifier";
     CCFThreadListCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
-    CCFThreadList * list = dataSourceList[indexPath.row];
+    CCFNormalThread * list = dataSourceList[indexPath.row];
     [cell setThreadList:list];
     
     return cell;

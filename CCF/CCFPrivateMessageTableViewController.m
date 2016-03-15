@@ -48,11 +48,6 @@
         }];
     }];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(-64, 0, 0, 0);
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

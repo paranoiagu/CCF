@@ -60,15 +60,21 @@
         
     }];
     
-    self.pullRefresh.delegate = self;
-    
-    
-    self.pullRefresh = [[WCPullRefreshControl alloc] initWithScrollview:self.tableView Action:^{
+    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
         [self browserThreadList:1 type:TypePullRefresh];
     }];
     
-    [self.pullRefresh startPullRefresh];
+    [self.tableView.mj_header beginRefreshing];
     
+//    self.pullRefresh.delegate = self;
+//    
+//    
+//    self.pullRefresh = [[WCPullRefreshControl alloc] initWithScrollview:self.tableView Action:^{
+//        [self browserThreadList:1 type:TypePullRefresh];
+//    }];
+//    
+//    [self.pullRefresh startPullRefresh];
+//    
 }
 
 -(void) browserThreadList:(int) page type:(int) pullOrLoadMore{

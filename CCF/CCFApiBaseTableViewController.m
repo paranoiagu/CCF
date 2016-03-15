@@ -14,32 +14,48 @@
 
 @implementation CCFApiBaseTableViewController
 
+#pragma mark initData
+- (void)initData {
+    self.ccfApi = [[CCFApi alloc]init];
+    self.dataList =[[NSMutableArray alloc]init];
+}
+
+
+#pragma mark override-init
 -(instancetype)init{
     if (self = [super init]) {
-        _ccfApi = [[CCFApi alloc] init];
+        [self initData];
     }
     return self;
 }
 
+#pragma mark overide-initWithCoder
 -(instancetype)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super initWithCoder:aDecoder]) {
-        _ccfApi = [[CCFApi alloc] init];
+        [self initData];
     }
     return self;
 }
 
+#pragma mark overide-initWithName
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        _ccfApi = [[CCFApi alloc] init];
+        [self initData];
     }
     return self;
 }
 
+#pragma mark overide-initWithStyle
 -(instancetype)initWithStyle:(UITableViewStyle)style{
     if (self = [super initWithStyle:style]) {
-        _ccfApi = [[CCFApi alloc] init];
+        [self initData];
     }
     return self;
+}
+
+#pragma mark overide-numberOfRowsInSection
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataList.count;
 }
 
 

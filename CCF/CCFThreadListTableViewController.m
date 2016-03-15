@@ -33,7 +33,6 @@
 
 @implementation CCFThreadListTableViewController
 
-@synthesize threadList = _threadList;
 @synthesize threadTopList = _threadTopList;
 @synthesize entry;
 
@@ -43,11 +42,6 @@
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 180.0;
-    
-    
-    if (self.threadList == nil) {
-        self.threadList = [NSMutableArray array];
-    }
     
     if (self.threadTopList == nil) {
         self.threadTopList = [NSMutableArray array];
@@ -86,14 +80,14 @@
             totalPage = (int)threadList.lastObject.threadTotalListPage;
             
             if (page == 1) {
-                [self.threadList removeAllObjects];
+                [self.dataList removeAllObjects];
                 [self.threadTopList removeAllObjects];
             }
             for (CCFThreadList * thread in threadList) {
                 if (thread.isTopThread) {
                     [self.threadTopList addObject:thread];
                 }else{
-                    [self.threadList addObject:thread];
+                    [self.dataList addObject:thread];
                 }
             }
             
@@ -144,7 +138,7 @@
     if (section == 0) {
         return self.threadTopList.count;
     }
-    return self.threadList.count;
+    return self.dataList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -157,7 +151,7 @@
         CCFThreadList *play = self.threadTopList[indexPath.row];
         [cell setThreadList:play];
     } else{
-        CCFThreadList *play = self.threadList[indexPath.row];
+        CCFThreadList *play = self.dataList[indexPath.row];
         [cell setThreadList:play];
     }
 
@@ -174,7 +168,7 @@
 - (void)configureCell:(CCFThreadListCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
     
-    [cell setThreadList:self.threadList[indexPath.row]];
+    [cell setThreadList:self.dataList[indexPath.row]];
 }
 
 
@@ -214,7 +208,7 @@
             if (indexPath.section == 0) {
                 thread = self.threadTopList[indexPath.row];
             } else{
-                thread = self.threadList[indexPath.row];
+                thread = self.dataList[indexPath.row];
             }
             
             

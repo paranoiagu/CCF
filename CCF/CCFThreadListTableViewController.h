@@ -17,8 +17,6 @@
 // 置顶
 @property (nonatomic, strong) NSMutableArray * threadTopList;
 
-@property (nonatomic, strong) NSMutableArray * threadList;
-
 @property (nonatomic, strong) CCFEntry * entry;
 
 - (IBAction)back:(UIBarButtonItem *)sender;

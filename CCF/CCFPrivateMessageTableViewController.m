@@ -18,18 +18,12 @@
 
 @implementation CCFPrivateMessageTableViewController
 
-@synthesize privateMessageList = _privateMessageList;
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.privateMessageList = [NSMutableArray array];
-    
     [self.ccfApi listPrivateMessageWithType:0 andPage:1 handler:^(BOOL isSuccess, PrivateMessagePage *message) {
         if (isSuccess) {
-            [self.privateMessageList addObjectsFromArray:message.inboxMessages];
+            [self.dataList addObjectsFromArray:message.inboxMessages];
             [self.tableView reloadData];
         }
     }];
@@ -47,24 +41,18 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return self.privateMessageList.count;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *identifier = @"PrivateMessageTableViewCell";
     
     PrivateMessageTableViewCell *cell = (PrivateMessageTableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
-    
-    BOOL isNil = (cell == nil);
-    
+
     NSLog(@"++++++++++++++++++++++++++++++++++++++++++++++++%@", cell);
     
     
     
-    PrivateMessage *message = self.privateMessageList[indexPath.row];
+    PrivateMessage *message = self.dataList[indexPath.row];
     [cell setData:message];
     
     

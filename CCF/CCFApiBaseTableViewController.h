@@ -14,5 +14,6 @@
 
 
 @property (nonatomic, strong) CCFApi *ccfApi;
+@property (nonatomic, strong) NSMutableArray *dataList;
 
 @end

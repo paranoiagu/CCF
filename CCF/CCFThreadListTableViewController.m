@@ -57,7 +57,7 @@
     
     NSLog(@"viewDidLoad    %@   %@", entry.urlId, entry.page);
     
-    self.tableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         int page = currentPage +1;
         [self browserThreadList:page type:TypeLoadMore];
         

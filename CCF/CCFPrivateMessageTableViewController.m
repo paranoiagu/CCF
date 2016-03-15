@@ -11,7 +11,9 @@
 #import "PrivateMessageTableViewCell.h"
 #import "PrivateMessage.h"
 
-@interface CCFPrivateMessageTableViewController ()
+@interface CCFPrivateMessageTableViewController (){
+    int currentPage;
+}
 
 @end
 
@@ -20,11 +22,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    currentPage = 1;
     
     self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
-        [self.ccfApi listPrivateMessageWithType:0 andPage:1 handler:^(BOOL isSuccess, PrivateMessagePage *message) {
+        [self.ccfApi listPrivateMessageWithType:0 andPage:currentPage handler:^(BOOL isSuccess, PrivateMessagePage *message) {
             if (isSuccess) {
+                currentPage ++;
+                [self.dataList addObjectsFromArray:message.inboxMessages];
+                
+                [self.tableView reloadData];
+            }
+        }];
+    }];
+    
+    [self.tableView.mj_header beginRefreshing];
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self.ccfApi listPrivateMessageWithType:0 andPage:currentPage handler:^(BOOL isSuccess, PrivateMessagePage *message) {
+            [self.tableView.mj_footer endRefreshing];
+            if (isSuccess) {
+                currentPage++;
                 [self.dataList addObjectsFromArray:message.inboxMessages];
                 [self.tableView reloadData];
             }

@@ -21,12 +21,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.ccfApi listPrivateMessageWithType:0 andPage:1 handler:^(BOOL isSuccess, PrivateMessagePage *message) {
-        if (isSuccess) {
-            [self.dataList addObjectsFromArray:message.inboxMessages];
-            [self.tableView reloadData];
-        }
+    
+    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        [self.ccfApi listPrivateMessageWithType:0 andPage:1 handler:^(BOOL isSuccess, PrivateMessagePage *message) {
+            if (isSuccess) {
+                [self.dataList addObjectsFromArray:message.inboxMessages];
+                [self.tableView reloadData];
+            }
+        }];
     }];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(-64, 0, 0, 0);
+    
+    
     
 }
 

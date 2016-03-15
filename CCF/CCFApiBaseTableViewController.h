@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "CCFApi.h"
+#import "MJRefresh.h"
 
 @interface CCFApiBaseTableViewController : UITableViewController
 

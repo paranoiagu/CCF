@@ -25,6 +25,7 @@
 @interface CCFThreadListTableViewController ()<WCPullRefreshControlDelegate>{
     int currentPage;
     int totalPage;
+    float verticalContentOffset;
 }
 
 @property (strong,nonatomic)WCPullRefreshControl * pullRefresh;
@@ -40,6 +41,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    verticalContentOffset = 0;
+    
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 180.0;
     
@@ -54,31 +57,38 @@
     
     NSLog(@"viewDidLoad    %@   %@", entry.urlId, entry.page);
     
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
         int page = currentPage +1;
         [self browserThreadList:page type:TypeLoadMore];
         
     }];
     
-    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self.tableView.mj_header endRefreshing];
+        
         [self browserThreadList:1 type:TypePullRefresh];
     }];
     
     [self.tableView.mj_header beginRefreshing];
     
+    
 //    self.pullRefresh.delegate = self;
-//    
-//    
 //    self.pullRefresh = [[WCPullRefreshControl alloc] initWithScrollview:self.tableView Action:^{
 //        [self browserThreadList:1 type:TypePullRefresh];
 //    }];
-//    
 //    [self.pullRefresh startPullRefresh];
+    
 //    
+//    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
+//    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(-64, 0, 0, 0);
+//
 }
+
 
 -(void) browserThreadList:(int) page type:(int) pullOrLoadMore{
 
+    
     if (totalPage == 0 || currentPage < totalPage) {
         NSString * pageStr = [NSString stringWithFormat:@"%d", page];
         
@@ -97,8 +107,16 @@
                 }
             }
             
+//            CGFloat oldTableViewHeight = self.tableView.contentSize.height;
+//            CGFloat currentContentOffsetY = self.tableView.contentOffset.y;
             
             [self.tableView reloadData];
+            
+//？】            CGFloat newTableViewHeight = self.tableView.contentSize.height;
+            
+//            [self.tableView setContentOffset:CGPointMake(0, verticalContentOffset)];
+//            self.tableView.contentOffset = CGPointMake(0, currentContentOffsetY + newTableViewHeight -oldTableViewHeight);
+
             
             currentPage = page;
             if (pullOrLoadMore == TypePullRefresh) {

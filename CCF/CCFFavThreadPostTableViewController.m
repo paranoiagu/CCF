@@ -21,7 +21,6 @@
     [self.ccfApi listFavoriteThreadPostsWithPage:1 handler:^(BOOL isSuccess, CCFPage* resultPage) {
         
         [self.tableView.mj_header endRefreshing];
-        
         if (isSuccess) {
             
             [self.tableView.mj_footer endRefreshing];

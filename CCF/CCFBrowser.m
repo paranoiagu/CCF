@@ -30,6 +30,8 @@
 
 @implementation CCFBrowser{
     NSString * listMyThreadRedirectUrl;
+    
+    NSString *todayNewThreadPostRedirectUrl;
 }
 
 
@@ -760,9 +762,22 @@
 
 
 -(void)listTodayNewThreadsWithPage:(int)page handler:(Handler)handler{
-    [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getdaily" requestCallback:^(BOOL isSuccess, NSString *html) {
-        handler(isSuccess, html);
-    }];
+    if (todayNewThreadPostRedirectUrl == nil) {
+        [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getdaily" requestCallback:^(BOOL isSuccess, NSString *html) {
+            if (todayNewThreadPostRedirectUrl == nil) {
+                CCFParser * parser = [[CCFParser alloc]init];
+                todayNewThreadPostRedirectUrl = [parser parseListMyThreadRedirectUrl:html];
+            }
+            
+            handler(isSuccess, html);
+        }];
+    } else{
+        NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net%@&pp=30&page=%d", todayNewThreadPostRedirectUrl, page];
+        [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
+            handler(isSuccess, html);
+        }];
+    }
+
 }
 
 

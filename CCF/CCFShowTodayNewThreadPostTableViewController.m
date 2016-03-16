@@ -8,6 +8,8 @@
 
 #import "CCFShowTodayNewThreadPostTableViewController.h"
 #import "CCFNavigationController.h"
+#import "CCFThreadListCell.h"
+#import "CCFNormalThread.h"
 
 @interface CCFShowTodayNewThreadPostTableViewController ()
 
@@ -16,26 +18,55 @@
 @implementation CCFShowTodayNewThreadPostTableViewController
 
 
+
 -(void)onPullRefresh{
-    [self.ccfApi listTodayNewThreadsWithPage:1 handler:^(BOOL isSuccess, id message) {
+    [self.ccfApi listTodayNewThreadsWithPage:1 handler:^(BOOL isSuccess, CCFPage* resultPage) {
         
+        [self.tableView.mj_header endRefreshing];
+        
+        if (isSuccess) {
+            
+            [self.tableView.mj_footer endRefreshing];
+            
+            self.currentPage = 1;
+            self.totalPage = (int)resultPage.totalPageCount;
+            [self.dataList removeAllObjects];
+            [self.dataList addObjectsFromArray:resultPage.dataList];
+            [self.tableView reloadData];
+        }
     }];
 }
 
 -(void)onLoadMore{
-    [self.ccfApi listTodayNewThreadsWithPage:self.currentPage handler:^(BOOL isSuccess, id message) {
+    [self.ccfApi listTodayNewThreadsWithPage:self.currentPage handler:^(BOOL isSuccess, CCFPage* resultPage) {
         
+        [self.tableView.mj_footer endRefreshing];
+        
+        if (isSuccess) {
+            self.totalPage = (int)resultPage.totalPageCount;
+            self.currentPage ++;
+            if (self.currentPage >= self.totalPage) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+            [self.dataList addObjectsFromArray:resultPage.dataList];
+            
+            [self.tableView reloadData];
+        }
     }];
 }
 
 
+
 #pragma mark - Table view data source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return self.dataList.count;
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString * identifier = @"CCFThreadListCellIdentifier";
+    CCFThreadListCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    CCFNormalThread * list = self.dataList[indexPath.row];
+    [cell setThreadList:list];
+    
+    return cell;
 }
-
 
 
 - (IBAction)showLeftDrawer:(id)sender {

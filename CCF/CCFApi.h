@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "LoginCCFUser.h"
-#import "PrivateMessagePage.h"
-#import "CCFPage.h"
 #import "CCFPage.h"
 #import "CCFSearchThread.h"
 

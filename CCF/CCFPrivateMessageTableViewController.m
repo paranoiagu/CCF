@@ -10,6 +10,7 @@
 #import "CCFNavigationController.h"
 #import "PrivateMessageTableViewCell.h"
 #import "PrivateMessage.h"
+#import "CCFPage.h"
 
 @interface CCFPrivateMessageTableViewController (){
     int currentPage;
@@ -25,10 +26,10 @@
     currentPage = 1;
     
     self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
-        [self.ccfApi listPrivateMessageWithType:0 andPage:currentPage handler:^(BOOL isSuccess, PrivateMessagePage *message) {
+        [self.ccfApi listPrivateMessageWithType:0 andPage:currentPage handler:^(BOOL isSuccess, CCFPage *message) {
             if (isSuccess) {
                 currentPage ++;
-                [self.dataList addObjectsFromArray:message.inboxMessages];
+                [self.dataList addObjectsFromArray:message.dataList];
                 
                 [self.tableView reloadData];
             }
@@ -38,11 +39,11 @@
     [self.tableView.mj_header beginRefreshing];
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [self.ccfApi listPrivateMessageWithType:0 andPage:currentPage handler:^(BOOL isSuccess, PrivateMessagePage *message) {
+        [self.ccfApi listPrivateMessageWithType:0 andPage:currentPage handler:^(BOOL isSuccess, CCFPage *message) {
             [self.tableView.mj_footer endRefreshing];
             if (isSuccess) {
                 currentPage++;
-                [self.dataList addObjectsFromArray:message.inboxMessages];
+                [self.dataList addObjectsFromArray:message.dataList];
                 [self.tableView reloadData];
             }
         }];

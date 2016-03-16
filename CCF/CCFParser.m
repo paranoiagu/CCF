@@ -16,7 +16,6 @@
 #import "NSUserDefaults+CCF.h"
 #import "NSString+Regular.h"
 #import "CCFForm.h"
-#import "PrivateMessagePage.h"
 #import "PrivateMessage.h"
 
 
@@ -519,7 +518,7 @@
 
 
 -(PrivateMessagePage *)parseInboxMessageFormHtml:(NSString *)html{
-    PrivateMessagePage * page = [[PrivateMessagePage alloc] init];
+    CCFPage * page = [[CCFPage alloc] init];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
 
@@ -536,7 +535,7 @@
     
     IGXMLNodeSet * totalCount = [document queryWithXPath:@"//*[@id='pmform']/table[1]/tr/td/div/table/tr/td[7]"];
     NSString * totalCountStr = [[[totalCount firstObject] html] stringWithRegular:@"共计 \\d+" andChild:@"\\d+"];
-    page.inboxMessageCount = [totalCountStr integerValue];
+    page.totalCount = [totalCountStr integerValue];
     
     
     
@@ -578,7 +577,7 @@
         }
     }
     
-    page.inboxMessages = messagesList;
+    page.dataList = messagesList;
     
     return page;
     

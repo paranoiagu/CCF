@@ -8,7 +8,7 @@
 
 #import "CCFShowNewThreadPostTableViewController.h"
 #import "CCFNavigationController.h"
-#import "CCFSearchResultPage.h"
+#import "CCFPage.h"
 #import "CCFSearchThread.h"
 
 @interface CCFShowNewThreadPostTableViewController (){
@@ -24,10 +24,10 @@
     
     dataSourceList = [NSMutableArray array];
     
-    [self.ccfApi listNewThreadPosts:^(BOOL isSuccess, CCFSearchResultPage *message) {
+    [self.ccfApi listNewThreadPosts:^(BOOL isSuccess, CCFPage *message) {
         
         if (isSuccess) {
-            [dataSourceList addObjectsFromArray:message.searchResults];
+            [dataSourceList addObjectsFromArray:message.dataList];
         }
         
     }];

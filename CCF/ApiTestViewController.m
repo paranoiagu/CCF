@@ -91,8 +91,8 @@
 //    }];
 
 
-    [api listMyAllThreads:^(BOOL isSuccess, CCFSearchResultPage* message) {
-       NSLog(@"listMyAllThreads %ld", message.searchResults.count);
+    [api listMyAllThreads:^(BOOL isSuccess, CCFPage* message) {
+       NSLog(@"listMyAllThreads %ld", message.dataList.count);
     }];
 
 }

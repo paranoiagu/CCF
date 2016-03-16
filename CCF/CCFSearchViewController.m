@@ -9,7 +9,6 @@
 #import "CCFSearchViewController.h"
 #import "CCFBrowser.h"
 #import "CCFSearchThread.h"
-#import "CCFSearchResultPage.h"
 #import "CCFApi.h"
 
 #import "CCFSearchResultCell.h"
@@ -57,9 +56,9 @@
     NSLog(@"searchBarSearchButtonClicked");
     [_api searchWithKeyWord:searchBar.text handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
-            CCFSearchResultPage* result = message;
+            CCFPage* result = message;
             [searchResult removeAllObjects ];
-            [searchResult addObjectsFromArray:result.searchResults];
+            [searchResult addObjectsFromArray:result.dataList];
             [self.tableView reloadData];
         } else{
             NSLog(@"searchBarSearchButtonClicked   ERROR %@", message);

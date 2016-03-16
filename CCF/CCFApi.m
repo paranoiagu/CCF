@@ -11,7 +11,7 @@
 #import "CCFParser.h"
 #import "NSUserDefaults+CCF.h"
 #import "CCFThreadDetail.h"
-#import "CCFSearchResultPage.h"
+#import "CCFPage.h"
 
 
 #define kCCFCookie_User @"bbuserid"
@@ -155,9 +155,9 @@
                 return;
             }
             
-            CCFSearchResultPage * page = [_praser parseSearchPageFromHtml:result];
+            CCFPage * page = [_praser parseSearchPageFromHtml:result];
             
-            if (page != nil && page.searchResults != nil && page.searchResults.count > 0) {
+            if (page != nil && page.dataList != nil && page.dataList.count > 0) {
                 handler(YES, page);
             } else{
                 handler(NO, @"未知错误");

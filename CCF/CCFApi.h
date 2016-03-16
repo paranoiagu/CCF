@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "LoginCCFUser.h"
 #import "PrivateMessagePage.h"
-#import "CCFSearchResultPage.h"
+#import "CCFPage.h"
+#import "CCFPage.h"
 #import "CCFSearchThread.h"
 
 typedef void (^HandlerWithBool) (BOOL isSuccess, id message);

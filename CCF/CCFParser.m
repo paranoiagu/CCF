@@ -10,7 +10,7 @@
 #import <IGHTMLQuery.h>
 #import "CCFThreadDetail.h"
 #import "CCFSearchThread.h"
-#import "CCFSearchResultPage.h"
+#import "CCFPage.h"
 #import "FormEntry+CoreDataProperties.h"
 #import "CCFCoreDataManager.h"
 #import "NSUserDefaults+CCF.h"
@@ -414,7 +414,7 @@
 }
 
 
--(CCFSearchResultPage*)parseSearchPageFromHtml:(NSString *)html{
+-(CCFPage*)parseSearchPageFromHtml:(NSString *)html{
     
     
     
@@ -428,21 +428,21 @@
     }
     
     
-    CCFSearchResultPage * resultPage = [[CCFSearchResultPage alloc]init];
+    CCFPage * resultPage = [[CCFPage alloc]init];
 
     IGXMLNode * postTotalCountNode = [document queryWithXPath:@"//*[@id='threadslist']/tr[1]/td/span[1]"].firstObject;
 
     NSString * postTotalCount = [postTotalCountNode.text stringWithRegular:@"共计 \\d+ 条" andChild:@"\\d+"];
-    resultPage.searchResultTotalPage = [postTotalCount integerValue];
+    resultPage.totalPageCount = [postTotalCount integerValue];
     
     IGXMLNode * pageNode = [document queryWithXPath:@"/html/body/div[2]/div/div/table[3]/tr/td/div/table/tr/td[1]"].firstObject;
     //    第 1 页，共 67 页
     if (pageNode == nil) {
-        resultPage.searchCurrentPage = 1;
-        resultPage.searchResultTotalPage = 1;
+        resultPage.currentPage = 1;
+        resultPage.totalPageCount = 1;
     } else{
-        resultPage.searchCurrentPage = [[pageNode.text stringWithRegular:@"第 \\d+ 页" andChild:@"\\d+"] integerValue];
-        resultPage.searchResultTotalPage = [[pageNode.text stringWithRegular:@"共 \\d+ 页" andChild:@"\\d+"] integerValue];
+        resultPage.currentPage = [[pageNode.text stringWithRegular:@"第 \\d+ 页" andChild:@"\\d+"] integerValue];
+        resultPage.totalPageCount = [[pageNode.text stringWithRegular:@"共 \\d+ 页" andChild:@"\\d+"] integerValue];
     }
     
     NSMutableArray<CCFSearchThread*>* post = [NSMutableArray array];
@@ -475,7 +475,7 @@
     }
     
     
-    resultPage.searchResults = post;
+    resultPage.dataList = post;
     
     return resultPage;
 }

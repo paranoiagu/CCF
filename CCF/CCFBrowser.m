@@ -759,7 +759,7 @@
 }
 
 
--(void)fetchTodayNewThreads:(Handler)handler{
+-(void)listTodayNewThreadsWithPage:(int)page handler:(Handler)handler{
     [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getdaily" requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];

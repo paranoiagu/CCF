@@ -69,7 +69,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void) listNewThreadPosts:(HandlerWithBool)handler;
 
 // 查看今日新帖
--(void) listTodayNewThreads:(HandlerWithBool)handler;
+-(void) listTodayNewThreadsWithPage:(int) page handler:(HandlerWithBool)handler;
 
 // 显示我的回帖
 -(void) listMyAllThreadPost:(HandlerWithBool)handler;

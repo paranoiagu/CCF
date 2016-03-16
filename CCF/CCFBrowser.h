@@ -73,7 +73,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 -(void)fetchNewThreadPosts:(Handler)handler;
 
--(void)fetchTodayNewThreads:(Handler)handler;
+-(void)listTodayNewThreadsWithPage:(int)page handler:(Handler)handler;
 
 -(void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler) handler;
 

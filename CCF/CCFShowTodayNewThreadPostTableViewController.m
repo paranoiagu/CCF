@@ -15,25 +15,25 @@
 
 @implementation CCFShowTodayNewThreadPostTableViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
 
+-(void)onPullRefresh{
+    [self.ccfApi listTodayNewThreadsWithPage:1 handler:^(BOOL isSuccess, id message) {
+        
+    }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)onLoadMore{
+    [self.ccfApi listTodayNewThreadsWithPage:self.currentPage handler:^(BOOL isSuccess, id message) {
+        
+    }];
 }
+
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 0;
+    return self.dataList.count;
 }
 
 

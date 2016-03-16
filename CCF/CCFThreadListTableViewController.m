@@ -92,14 +92,16 @@
     if (totalPage == 0 || currentPage < totalPage) {
         NSString * pageStr = [NSString stringWithFormat:@"%d", page];
         
-        [self.ccfapi forumDisplayWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, NSMutableArray<CCFNormalThread *> * threadList) {
-            totalPage = (int)threadList.lastObject.threadTotalListPage;
+        [self.ccfapi forumDisplayWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, CCFPage *resultPage) {
+            totalPage = (int)resultPage.totalPageCount;
             
             if (page == 1) {
                 [self.dataList removeAllObjects];
                 [self.threadTopList removeAllObjects];
             }
-            for (CCFNormalThread * thread in threadList) {
+            
+            
+            for (CCFNormalThread * thread in resultPage.dataList) {
                 if (thread.isTopThread) {
                     [self.threadTopList addObject:thread];
                 }else{

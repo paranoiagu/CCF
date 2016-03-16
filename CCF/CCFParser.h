@@ -22,9 +22,9 @@
 - (CCFShowThreadPage *) parseShowThreadWithHtml:(NSString*)html;
 
 
-- (NSMutableArray<CCFNormalThread*> *) parseThreadListFromHtml: (NSString *) html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop;
+- (CCFPage *) parseThreadListFromHtml: (NSString *) html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop;
 
-- (NSMutableArray<CCFNormalThread*> *) parseFavThreadListFormHtml: (NSString *) html;
+- (CCFPage *) parseFavThreadListFormHtml: (NSString *) html;
 
 - (NSString *) parseSecurityToken:(NSString *)html;
 

@@ -252,9 +252,9 @@
 }
 
 -(void)listFavoriteThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler{
-    [_browser listFavoriteThreadPostsWithPage:page handler:^(BOOL isSuccess, id result) {
-        NSArray * threadList = [_praser parseFavThreadListFormHtml:result];
-        handler(isSuccess, threadList);
+    [_browser listFavoriteThreadPostsWithPage:page handler:^(BOOL isSuccess, NSString* result) {
+        CCFPage * page = [_praser parseFavThreadListFormHtml:result];
+        handler(isSuccess, page);
     }];
 }
 
@@ -297,10 +297,10 @@
 }
 
 -(void)forumDisplayWithId:(NSString *)formId andPage:(NSString *)page handler:(HandlerWithBool)handler{
-    [_browser forumDisplayWithId:formId andPage:page handler:^(BOOL isSuccess, id result) {
+    [_browser forumDisplayWithId:formId andPage:page handler:^(BOOL isSuccess, NSString* result) {
         if (isSuccess) {
-            NSMutableArray<CCFNormalThread *> * threadList = [_praser parseThreadListFromHtml:result withThread:formId andContainsTop:YES];
-            handler(isSuccess, threadList);
+            CCFPage* page = [_praser parseThreadListFromHtml:result withThread:formId andContainsTop:YES];
+            handler(isSuccess, page);
         } else{
             handler(NO, result);
         }

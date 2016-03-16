@@ -21,10 +21,11 @@
 
 @implementation CCFParser
 
--(NSMutableArray<CCFNormalThread *> *)parseThreadListFromHtml:(NSString *)html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop{
-    NSString * path = [NSString stringWithFormat:@"//*[@id='threadbits_forum_%@']/tr", threadId];
+-(CCFPage *)parseThreadListFromHtml:(NSString *)html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop{
     
-    //*[@id="threadbits_forum_147"]/tr[1]
+    CCFPage * page = [[CCFPage alloc] init];
+    
+    NSString * path = [NSString stringWithFormat:@"//*[@id='threadbits_forum_%@']/tr", threadId];
     
     NSMutableArray<CCFNormalThread *> * threadList = [NSMutableArray<CCFNormalThread *> array];
     
@@ -71,30 +72,34 @@
             
             IGXMLNode * commentCountNode = threadListNode.children [5];
             ccfthreadlist.threadTotalPostCount = [[commentCountNode text] intValue];
-            // 总页数
-            if (totaleListCount == -1) {
-                IGXMLNodeSet* totalPageSet = [document queryWithXPath:@"//*[@id='inlinemodform']/table[4]/tr[1]/td[2]/div/table/tr/td[1]"];
-                
-                if (totalPageSet == nil) {
-                    totaleListCount = 1;
-                    ccfthreadlist.threadTotalListPage = 1;
-                }else{
-                    IGXMLNode * totalPage = totalPageSet.firstObject;
-                    NSString * pageText = [totalPage innerHtml];
-                    NSString * numberText = [[pageText componentsSeparatedByString:@"，"]lastObject];
-                    NSUInteger totalNumber = [numberText integerValue];
-                    NSLog(@"总页数：   %@", pageText);
-                    ccfthreadlist.threadTotalListPage = totalNumber;
-                    totaleListCount = totalNumber;
-                }
-                
-            } else{
-                ccfthreadlist.threadTotalListPage = totaleListCount;
-            }
+            
             [threadList addObject:ccfthreadlist];
         }
     }
-    return threadList;
+    
+    // 总页数
+    if (totaleListCount == -1) {
+        IGXMLNodeSet* totalPageSet = [document queryWithXPath:@"//*[@id='inlinemodform']/table[4]/tr[1]/td[2]/div/table/tr/td[1]"];
+        
+        if (totalPageSet == nil) {
+            totaleListCount = 1;
+            page.totalPageCount = 1;
+        }else{
+            IGXMLNode * totalPage = totalPageSet.firstObject;
+            NSString * pageText = [totalPage innerHtml];
+            NSString * numberText = [[pageText componentsSeparatedByString:@"，"]lastObject];
+            NSUInteger totalNumber = [numberText integerValue];
+            //NSLog(@"总页数：   %@", pageText);
+            page.totalPageCount = totalNumber;
+            totaleListCount = totalNumber;
+        }
+        
+    } else{
+        page.totalPageCount = totaleListCount;
+    }
+    page.dataList = threadList;
+    
+    return page;
     
 }
 
@@ -340,7 +345,9 @@
     
 }
 
--(NSMutableArray<CCFNormalThread *> *)parseFavThreadListFormHtml:(NSString *)html{
+-(CCFPage *)parseFavThreadListFormHtml:(NSString *)html{
+    CCFPage * page = [[CCFPage alloc] init];
+    
     NSString * path = @"/html/body/div[2]/div/div/table[3]/tr/td[3]/form[2]/table/tr[position()>2]";
     
     //*[@id="threadbits_forum_147"]/tr[1]
@@ -386,30 +393,34 @@
             
             IGXMLNode * commentCountNode = threadListNode.children [5];
             ccfthreadlist.threadTotalPostCount = [[commentCountNode text] intValue];
-            // 总页数
-            if (totaleListCount == -1) {
-                IGXMLNodeSet* totalPageSet = [document queryWithXPath:@"//*[@id='inlinemodform']/table[4]/tr[1]/td[2]/div/table/tr/td[1]"];
-                
-                if (totalPageSet == nil) {
-                    totaleListCount = 1;
-                    ccfthreadlist.threadTotalListPage = 1;
-                }else{
-                    IGXMLNode * totalPage = totalPageSet.firstObject;
-                    NSString * pageText = [totalPage innerHtml];
-                    NSString * numberText = [[pageText componentsSeparatedByString:@"，"]lastObject];
-                    NSUInteger totalNumber = [numberText integerValue];
-                    NSLog(@"总页数：   %@", pageText);
-                    ccfthreadlist.threadTotalListPage = totalNumber;
-                    totaleListCount = totalNumber;
-                }
-                
-            } else{
-                ccfthreadlist.threadTotalListPage = totaleListCount;
-            }
+        
             [threadList addObject:ccfthreadlist];
         }
     }
-    return threadList;
+    
+    // 总页数
+    if (totaleListCount == -1) {
+        IGXMLNodeSet* totalPageSet = [document queryWithXPath:@"//*[@id='inlinemodform']/table[4]/tr[1]/td[2]/div/table/tr/td[1]"];
+        
+        if (totalPageSet == nil) {
+            totaleListCount = 1;
+            page.totalPageCount = 1;
+        }else{
+            IGXMLNode * totalPage = totalPageSet.firstObject;
+            NSString * pageText = [totalPage innerHtml];
+            NSString * numberText = [[pageText componentsSeparatedByString:@"，"]lastObject];
+            NSUInteger totalNumber = [numberText integerValue];
+            NSLog(@"总页数：   %@", pageText);
+            page.totalPageCount = totalNumber;
+            totaleListCount = totalNumber;
+        }
+        
+    } else{
+        page.totalPageCount = totaleListCount;
+    }
+    page.dataList = threadList;
+    
+    return page;
 }
 
 

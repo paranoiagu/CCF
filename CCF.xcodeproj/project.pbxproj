@@ -90,6 +90,7 @@
 		4D796C051C460D4200B3C62D /* NSUserDefaults+CCF.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */; };
 		4D852A1D1C97E2A7009121B2 /* CCFThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D852A1C1C97E2A7009121B2 /* CCFThread.m */; };
 		4D852A201C991294009121B2 /* CCFPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D852A1F1C991294009121B2 /* CCFPage.m */; };
+		4D852A231C991B59009121B2 /* CCFForumDisplayPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D852A221C991B59009121B2 /* CCFForumDisplayPage.m */; };
 		4D93CFD71C85355D00852D28 /* ApiTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D93CFD51C85355D00852D28 /* ApiTestViewController.m */; };
 		4D93CFD81C85355D00852D28 /* ApiTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */; };
 		4DAFF55A1C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAFF5591C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m */; };
@@ -263,6 +264,8 @@
 		4D852A1C1C97E2A7009121B2 /* CCFThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThread.m; sourceTree = "<group>"; };
 		4D852A1E1C991294009121B2 /* CCFPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFPage.h; sourceTree = "<group>"; };
 		4D852A1F1C991294009121B2 /* CCFPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFPage.m; sourceTree = "<group>"; };
+		4D852A211C991B59009121B2 /* CCFForumDisplayPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForumDisplayPage.h; sourceTree = "<group>"; };
+		4D852A221C991B59009121B2 /* CCFForumDisplayPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForumDisplayPage.m; sourceTree = "<group>"; };
 		4D93CFD41C85355D00852D28 /* ApiTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiTestViewController.h; sourceTree = "<group>"; };
 		4D93CFD51C85355D00852D28 /* ApiTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiTestViewController.m; sourceTree = "<group>"; };
 		4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApiTestViewController.xib; sourceTree = "<group>"; };
@@ -640,6 +643,8 @@
 				4D1EEBAD1C3251E70084F6E9 /* CCFPost.m */,
 				4D1EEBAF1C3260130084F6E9 /* CCFShowThreadPage.h */,
 				4D1EEBB01C3260130084F6E9 /* CCFShowThreadPage.m */,
+				4D852A211C991B59009121B2 /* CCFForumDisplayPage.h */,
+				4D852A221C991B59009121B2 /* CCFForumDisplayPage.m */,
 				3A2ECF521C36C0EB00CD3968 /* CCFNormalThread.h */,
 				3A2ECF531C36C0EB00CD3968 /* CCFNormalThread.m */,
 				3AB3F5361C53939300B7FA98 /* CCFForm.h */,
@@ -868,6 +873,7 @@
 				3A7569AD1C42B179000486F4 /* CCFFavFormController.m in Sources */,
 				4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */,
 				3A2FCC771C953FCD00B469E4 /* UICircleImageView.m in Sources */,
+				4D852A231C991B59009121B2 /* CCFForumDisplayPage.m in Sources */,
 				4D32560D1C4754E700053288 /* SelectPhotoCollectionViewCell.m in Sources */,
 				4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */,
 				3AEA1F371C365EA400710BD6 /* CCFShowThreadViewController.m in Sources */,

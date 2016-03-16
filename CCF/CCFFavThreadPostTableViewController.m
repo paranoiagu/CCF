@@ -23,13 +23,13 @@
     [super viewDidLoad];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self.ccfApi listFavoriteThreadPostsWithPage:currentPage handler:^(BOOL isSuccess, id message) {
+        [self.ccfApi listFavoriteThreadPostsWithPage:currentPage handler:^(BOOL isSuccess, CCFPage* resultPage) {
             
             [self.tableView.mj_header endRefreshing];
             
             if (isSuccess) {
                 currentPage++;
-                [self.dataList addObjectsFromArray:message];
+                [self.dataList addObjectsFromArray:resultPage.dataList];
                 
                 [self.tableView reloadData];
             }
@@ -40,13 +40,13 @@
     
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [self.ccfApi listFavoriteThreadPostsWithPage:currentPage handler:^(BOOL isSuccess, id message) {
+        [self.ccfApi listFavoriteThreadPostsWithPage:currentPage handler:^(BOOL isSuccess, CCFPage* resultPage) {
             
             [self.tableView.mj_header endRefreshing];
             
             if (isSuccess) {
                 currentPage++;
-                [self.dataList addObjectsFromArray:message];
+                [self.dataList addObjectsFromArray:resultPage.dataList];
                 
                 [self.tableView reloadData];
             }

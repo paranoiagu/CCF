@@ -12,8 +12,9 @@
 @interface CCFNormalThread : CCFThread
 
 @property (nonatomic, assign) BOOL isTopThread;
-@property (nonatomic, assign) NSInteger threadTotalPostCount;
 @property (nonatomic, strong) NSString* threadAuthorID;
-@property (nonatomic, assign) NSInteger threadTotalListPage;
+
+@property (nonatomic, assign) NSInteger threadTotalPostCount;   // 回复数量
+//@property (nonatomic, assign) NSInteger threadTotalListPage;
 
 @end

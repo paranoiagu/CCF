@@ -16,5 +16,13 @@
 
 @property (nonatomic, strong) CCFApi *ccfApi;
 @property (nonatomic, strong) NSMutableArray *dataList;
+@property (nonatomic, assign) int currentPage;
+@property (nonatomic, assign) int totalPage;
+
+
+-(void)onPullRefresh;
+
+
+-(void)onLoadMore;
 
 @end

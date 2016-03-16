@@ -16,11 +16,26 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onPullRefresh)];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(-64, 0, 0, 0);
+    [self.tableView.mj_header beginRefreshing];
+    
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(onLoadMore)];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(-44, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(-44, 0, 0, 0);
+}
+
+-(void)onPullRefresh{
     
 }
+
+-(void)onLoadMore{
+    
+}
+
+
 #pragma mark initData
 - (void)initData {
     self.ccfApi = [[CCFApi alloc]init];

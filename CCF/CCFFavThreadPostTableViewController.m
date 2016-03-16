@@ -11,58 +11,51 @@
 #import "CCFNormalThread.h"
 #import "CCFThreadListCell.h"
 
-@interface CCFFavThreadPostTableViewController (){
-    int currentPage;
-}
+@interface CCFFavThreadPostTableViewController ()
 
 @end
 
 @implementation CCFFavThreadPostTableViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self.ccfApi listFavoriteThreadPostsWithPage:currentPage handler:^(BOOL isSuccess, CCFPage* resultPage) {
-            
-            [self.tableView.mj_header endRefreshing];
-            
-            if (isSuccess) {
-                currentPage++;
-                [self.dataList addObjectsFromArray:resultPage.dataList];
-                
-                [self.tableView reloadData];
-            }
-        }];
-    }];
-    
-    [self.tableView.mj_header beginRefreshing];
-    
-    
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [self.ccfApi listFavoriteThreadPostsWithPage:currentPage handler:^(BOOL isSuccess, CCFPage* resultPage) {
-            
-            [self.tableView.mj_header endRefreshing];
-            
-            if (isSuccess) {
-                currentPage++;
-                [self.dataList addObjectsFromArray:resultPage.dataList];
-                
-                [self.tableView reloadData];
-            }
-        }];
+-(void)onPullRefresh{
+    [self.ccfApi listFavoriteThreadPostsWithPage:1 handler:^(BOOL isSuccess, CCFPage* resultPage) {
         
+        [self.tableView.mj_header endRefreshing];
+        
+        if (isSuccess) {
+            
+            [self.tableView.mj_footer endRefreshing];
+            
+            self.currentPage = 1;
+            self.totalPage = (int)resultPage.totalPageCount;
+            [self.dataList removeAllObjects];
+            [self.dataList addObjectsFromArray:resultPage.dataList];
+            [self.tableView reloadData];
+        }
     }];
-    
-    
-    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(-64, 0, 0, 0);
+}
 
+-(void)onLoadMore{
+    [self.ccfApi listFavoriteThreadPostsWithPage:self.currentPage handler:^(BOOL isSuccess, CCFPage* resultPage) {
+        
+        [self.tableView.mj_footer endRefreshing];
+        
+        if (isSuccess) {
+            self.totalPage = (int)resultPage.totalPageCount;
+            self.currentPage ++;
+            if (self.currentPage >= self.totalPage) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+            [self.dataList addObjectsFromArray:resultPage.dataList];
+            
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 
-#pragma mark - Table view data source
 
+#pragma mark - Table view data source
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * identifier = @"CCFThreadListCellIdentifier";
     CCFThreadListCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];

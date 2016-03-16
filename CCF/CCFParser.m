@@ -517,7 +517,7 @@
 }
 
 
--(PrivateMessagePage *)parseInboxMessageFormHtml:(NSString *)html{
+-(CCFPage *)parseInboxMessageFormHtml:(NSString *)html{
     CCFPage * page = [[CCFPage alloc] init];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];

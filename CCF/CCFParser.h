@@ -11,13 +11,10 @@
 #import "CCFUser.h"
 #import "CCFNormalThread.h"
 #import "FormEntry+CoreDataProperties.h"
+#import "CCFPage.h"
+#import "CCFThreadDetail.h"
+#import "CCFForm.h"
 
-
-
-@class CCFThreadDetail;
-@class CCFSearchResultPage;
-@class CCFForm;
-@class PrivateMessagePage;
 
 @interface CCFParser : NSObject
 
@@ -35,11 +32,11 @@
 
 - (NSString *) parseLoginErrorMessage:(NSString *)html;
 
-- (CCFSearchResultPage *) parseSearchPageFromHtml:( NSString*) html;
+- (CCFPage *) parseSearchPageFromHtml:( NSString*) html;
 
 - (NSMutableArray<CCFForm *> *) parseFavFormFormHtml:(NSString *)html;
 
-- (PrivateMessagePage*) parseInboxMessageFormHtml:(NSString*) html;
+- (CCFPage*) parseInboxMessageFormHtml:(NSString*) html;
 
 - (NSString *) parsePrivateMessageContent:(NSString*) html;
 

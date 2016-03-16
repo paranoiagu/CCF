@@ -173,7 +173,7 @@
     [_browser privateMessageWithType:type andpage:page handler:^(BOOL isSuccess, id result) {
         
         if (isSuccess) {
-            PrivateMessagePage * page = [_praser parseInboxMessageFormHtml:result];
+            CCFPage * page = [_praser parseInboxMessageFormHtml:result];
             handler(YES, page);
         } else{
             handler(NO, result);
@@ -235,7 +235,7 @@
 
 -(void)listMyAllThreads:(HandlerWithBool)handler{
     [_browser listMyAllThreads:^(BOOL isSuccess, id result) {
-        CCFSearchResultPage* sarchPage = [_praser parseSearchPageFromHtml:result];
+        CCFPage* sarchPage = [_praser parseSearchPageFromHtml:result];
         handler(isSuccess, sarchPage);
     }];
 }
@@ -260,14 +260,14 @@
 
 -(void)listNewThreadPosts:(HandlerWithBool)handler{
     [_browser fetchNewThreadPosts:^(BOOL isSuccess, id result) {
-        CCFSearchResultPage* sarchPage = [_praser parseSearchPageFromHtml:result];
+        CCFPage* sarchPage = [_praser parseSearchPageFromHtml:result];
         handler(isSuccess, sarchPage);
     }];
 }
 
 -(void)listTodayNewThreads:(HandlerWithBool)handler{
     [_browser fetchTodayNewThreads:^(BOOL isSuccess, id result) {
-        CCFSearchResultPage* sarchPage = [_praser parseSearchPageFromHtml:result];
+        CCFPage* sarchPage = [_praser parseSearchPageFromHtml:result];
         handler(isSuccess, sarchPage);
     }];
 }

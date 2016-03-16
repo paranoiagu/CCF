@@ -7,22 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "CCFPage.h"
 #import "CCFPost.h"
 
-@interface CCFThreadDetail : NSObject
+@interface CCFThreadDetail : CCFPage
 
 @property (nonatomic, strong) NSString* threadID;
 @property (nonatomic, strong) NSString* threadLink;
-
 @property (nonatomic, strong) NSString * threadTitle;
-
-@property (nonatomic, strong) NSMutableArray<CCFPost *> * threadPosts;
-
-@property (nonatomic, assign) NSUInteger threadTotalPostCount;
-
-@property (nonatomic, assign) NSUInteger threadTotalPage;
-
-@property (nonatomic, assign) NSUInteger threadCurrentPage;
 
 @end

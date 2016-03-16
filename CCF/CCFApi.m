@@ -86,7 +86,7 @@
             
             
             
-            if(thread.threadPosts.count > 0){
+            if(thread.dataList.count > 0){
                 handler(YES, thread);
                 
             } else{
@@ -124,7 +124,7 @@
             
             
             
-            if(thread.threadPosts.count > 0){
+            if(thread.dataList.count > 0){
                 handler(YES, thread);
                 
             } else{

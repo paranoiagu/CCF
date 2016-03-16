@@ -120,7 +120,7 @@
     
     CCFThreadDetail * thread = [[CCFThreadDetail alloc]init];
     
-    thread.threadPosts = [self parseShowThreadPosts:document];
+    thread.dataList = [self parseShowThreadPosts:document];
     
 
     IGXMLNode * titleNode = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/strong"].firstObject;
@@ -146,23 +146,23 @@
     
     
     if (threadInfoSet == nil || threadInfoSet.count == 0) {
-        thread.threadTotalPage = 1;
-        thread.threadCurrentPage = 1;
-        thread.threadTotalPostCount = thread.threadPosts.count;
+        thread.totalPageCount = 1;
+        thread.currentPage = 1;
+        thread.totalCount = thread.dataList.count;
         
     } else{
         IGXMLNode *currentPageAndTotalPageNode = threadInfoSet.firstObject.firstChild;
         NSString * currentPageAndTotalPageString = currentPageAndTotalPageNode.text;
         NSArray *pageAndTotalPage = [currentPageAndTotalPageString componentsSeparatedByString:@"页，共"];
         
-        thread.threadTotalPage = [[[pageAndTotalPage.lastObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"页" withString:@""] intValue];
-        thread.threadCurrentPage = [[[pageAndTotalPage.firstObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"第" withString:@""] intValue];
+        thread.totalPageCount = [[[pageAndTotalPage.lastObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"页" withString:@""] intValue];
+        thread.currentPage = [[[pageAndTotalPage.firstObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"第" withString:@""] intValue];
         
         IGXMLNode *totalPostCount = [threadInfoSet.firstObject children][1];
         
         NSString * totalPostString = [totalPostCount.firstChild attribute:@"title"];
         NSString *tmp = [totalPostString componentsSeparatedByString:@"共计 "].lastObject;
-        thread.threadTotalPostCount = [[tmp stringByReplacingOccurrencesOfString:@" 条." withString:@""] intValue];
+        thread.totalPageCount = [[tmp stringByReplacingOccurrencesOfString:@" 条." withString:@""] intValue];
         
     }
     

@@ -151,9 +151,9 @@
         
         
         [ccfapi showThreadWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, CCFThreadDetail * thread) {
-            totalPage = (int)thread.threadTotalPage;
+            totalPage = (int)thread.totalPageCount;
             
-            NSMutableArray<CCFPost *> * parsedPosts = thread.threadPosts;
+            NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
             
             
             if (self.posts == nil) {
@@ -254,10 +254,10 @@
             
             CCFThreadDetail * thread = message;
             
-            [self.posts addObjectsFromArray:thread.threadPosts];
+            [self.posts addObjectsFromArray:thread.dataList];
             
-            totalPage = (int)thread.threadTotalPage;
-            currentPage = (int)thread.threadCurrentPage;
+            totalPage = (int)thread.totalPageCount;
+            currentPage = (int)thread.currentPage;
             
             [self.tableView reloadData];
             

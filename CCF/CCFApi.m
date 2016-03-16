@@ -251,10 +251,8 @@
     }];
 }
 
-
--(void)listFavoriteThreadPosts:(HandlerWithBool)handler{
-    [_browser listfavoriteThreadPosts:^(BOOL isSuccess, NSString* result) {
-        
+-(void)listFavoriteThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler{
+    [_browser listFavoriteThreadPostsWithPage:page handler:^(BOOL isSuccess, id result) {
         NSArray * threadList = [_praser parseFavThreadListFormHtml:result];
         handler(isSuccess, threadList);
     }];

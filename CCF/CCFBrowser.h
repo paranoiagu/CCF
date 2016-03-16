@@ -69,7 +69,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 -(void)unfavoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler) handler;
 
 // 获取收藏的主题帖子
--(void)listfavoriteThreadPosts:(Handler)handler;
+-(void)listFavoriteThreadPostsWithPage:(int)page handler:(Handler)handler;
 
 -(void)fetchNewThreadPosts:(Handler)handler;
 

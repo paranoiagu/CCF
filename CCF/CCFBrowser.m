@@ -724,9 +724,11 @@
     }];
 }
 
-
--(void)listfavoriteThreadPosts:(Handler)handler{
-    [_browser GETWithURLString:@"https://bbs.et8.net/bbs/subscription.php" requestCallback:^(BOOL isSuccess, NSString *html) {
+-(void)listFavoriteThreadPostsWithPage:(int)page handler:(Handler)handler{
+    NSString * pageString = [NSString stringWithFormat:@"%d", page];
+    NSString * url = [@"https://bbs.et8.net/bbs/subscription.php?do=viewsubscription&pp=35&folderid=0&sort=lastpost&order=desc&page=" stringByAppendingString:pageString];
+    
+    [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess,html);
     }];
 }

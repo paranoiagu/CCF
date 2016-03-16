@@ -64,7 +64,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void) listFavoriteForms:(HandlerWithBool) handler;
 
 // 获取收藏的主题帖子
--(void)listFavoriteThreadPosts:(HandlerWithBool)handler;
+-(void)listFavoriteThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler;
 
 // 查看新帖
 -(void) listNewThreadPosts:(HandlerWithBool)handler;

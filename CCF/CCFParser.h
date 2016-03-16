@@ -48,4 +48,6 @@
 
 - (NSString *) parseUserAvatar:(NSString *)html userId:(NSString*) userId;
 
+- (NSString *) parseListMyThreadRedirectUrl:(NSString *)html;
+
 @end

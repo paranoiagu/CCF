@@ -233,8 +233,8 @@
     }];
 }
 
--(void)listMyAllThreads:(HandlerWithBool)handler{
-    [_browser listMyAllThreads:^(BOOL isSuccess, id result) {
+-(void)listMyAllThreadsWithPage:(int)page handler:(HandlerWithBool)handler{
+    [_browser listMyAllThreadsWithPage:page handler:^(BOOL isSuccess, id result) {
         CCFPage* sarchPage = [_praser parseSearchPageFromHtml:result];
         handler(isSuccess, sarchPage);
     }];

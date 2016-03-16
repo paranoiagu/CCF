@@ -28,7 +28,9 @@
 
 
 
-@implementation CCFBrowser
+@implementation CCFBrowser{
+    NSString * listMyThreadRedirectUrl;
+}
 
 
 -(id)init{
@@ -664,17 +666,33 @@
     }];
 }
 
--(void)listMyAllThreads:(Handler)handler{
+-(void)listMyAllThreadsWithPage:(int)page handler:(Handler)handler{
     LoginCCFUser * user = [self getCurrentCCFUser];
     if (user == nil || user.userID == nil) {
         handler(NO,@"未登录");
         return;
     }
-    NSString * userName = user.userName;
-
-    [_browser GETWithURL:[CCFUrlBuilder buildMyThreadWithName:userName] requestCallback:^(BOOL isSuccess, NSString *html) {
-        handler(isSuccess, html);
-    }];
+    
+    if (listMyThreadRedirectUrl == nil) {
+        
+        NSURL * myUrl = [CCFUrlBuilder buildMyThreadWithName:user.userName];
+        [_browser GETWithURL:myUrl requestCallback:^(BOOL isSuccess, NSString *html) {
+            
+            if (listMyThreadRedirectUrl == nil) {
+                CCFParser * parser = [[CCFParser alloc]init];
+                listMyThreadRedirectUrl = [parser parseListMyThreadRedirectUrl:html];
+            }
+            
+            handler(isSuccess, html);
+        }];
+    } else{
+        //   /bbs/search.php?searchid=7873716
+        NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net%@&pp=30&page=%d", listMyThreadRedirectUrl, page];
+        [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
+            handler(isSuccess, html);
+        }];
+    }
+    
 }
 
 -(void)favoriteFormsWithId:(NSString *)formId handler:(Handler)handler{

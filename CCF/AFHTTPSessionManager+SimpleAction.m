@@ -13,9 +13,9 @@
 
 
 -(void)GETWithURL:(NSURL *)url requestCallback:(RequestCallback)callback{
- 
+
     [self GET:[url absoluteString] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-       NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
+        NSString *html = [[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] replaceUnicode];
         callback(YES, html);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         callback(NO, @"网络异常");

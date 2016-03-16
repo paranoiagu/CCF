@@ -91,8 +91,8 @@
 //    }];
 
 
-    [api listMyAllThreads:^(BOOL isSuccess, CCFPage* message) {
-       NSLog(@"listMyAllThreads %ld", message.dataList.count);
+    [api listMyAllThreadsWithPage:1 handler:^(BOOL isSuccess, id message) {
+        NSLog(@"listMyAllThreadWithPage ---- %@", message);
     }];
 
 }

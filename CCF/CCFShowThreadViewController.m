@@ -15,7 +15,7 @@
 #import "WCPullRefreshControl.h"
 #import "CCFUITextView.h"
 
-#import "CCFThreadDetail.h"
+#import "CCFShowThreadPage.h"
 
 #import "AlertProgressViewController.h"
 #import <UITableView+FDTemplateLayoutCell.h>
@@ -150,7 +150,7 @@
         NSString * pageStr = [NSString stringWithFormat:@"%d", page];
         
         
-        [ccfapi showThreadWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, CCFThreadDetail * thread) {
+        [ccfapi showThreadWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
             totalPage = (int)thread.totalPageCount;
             
             NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
@@ -252,7 +252,7 @@
             
             [self.posts removeAllObjects];
             
-            CCFThreadDetail * thread = message;
+            CCFShowThreadPage * thread = message;
             
             [self.posts addObjectsFromArray:thread.dataList];
             

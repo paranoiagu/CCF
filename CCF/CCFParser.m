@@ -8,7 +8,7 @@
 
 #import "CCFParser.h"
 #import <IGHTMLQuery.h>
-#import "CCFThreadDetail.h"
+#import "CCFShowThreadPage.h"
 #import "CCFSearchThread.h"
 #import "CCFPage.h"
 #import "FormEntry+CoreDataProperties.h"
@@ -115,10 +115,10 @@
 
 
 
--(CCFThreadDetail *)parseShowThreadWithHtml:(NSString *)html{
+-(CCFShowThreadPage *)parseShowThreadWithHtml:(NSString *)html{
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     
-    CCFThreadDetail * thread = [[CCFThreadDetail alloc]init];
+    CCFShowThreadPage * thread = [[CCFShowThreadPage alloc]init];
     
     thread.dataList = [self parseShowThreadPosts:document];
     

@@ -10,7 +10,7 @@
 #import "CCFPage.h"
 #import "CCFPost.h"
 
-@interface CCFThreadDetail : CCFPage
+@interface CCFShowThreadPage : CCFPage
 
 @property (nonatomic, strong) NSString* threadID;
 @property (nonatomic, strong) NSString* threadLink;

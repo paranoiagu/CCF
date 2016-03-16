@@ -17,7 +17,7 @@
 #import <IGHTMLQuery.h>
 #import "CCFUser.h"
 #import "CCFPost.h"
-#import "CCFThreadDetail.h"
+#import "CCFShowThreadPage.h"
 
 #import "LoginViewController.h"
 

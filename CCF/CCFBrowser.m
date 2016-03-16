@@ -16,7 +16,7 @@
 #import "CCFParser.h"
 
 #import "CCFPost.h"
-#import "CCFThreadDetail.h"
+#import "CCFShowThreadPage.h"
 #import "NSUserDefaults+CCF.h"
 #import "AFHTTPSessionManager+SimpleAction.h"
 #import "LoginCCFUser.h"

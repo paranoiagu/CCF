@@ -12,14 +12,14 @@
 #import "CCFNormalThread.h"
 #import "FormEntry+CoreDataProperties.h"
 #import "CCFPage.h"
-#import "CCFThreadDetail.h"
+#import "CCFShowThreadPage.h"
 #import "CCFForm.h"
 
 
 @interface CCFParser : NSObject
 
 
-- (CCFThreadDetail *) parseShowThreadWithHtml:(NSString*)html;
+- (CCFShowThreadPage *) parseShowThreadWithHtml:(NSString*)html;
 
 
 - (NSMutableArray<CCFNormalThread*> *) parseThreadListFromHtml: (NSString *) html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop;

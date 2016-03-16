@@ -12,7 +12,7 @@
 
 #import "LoginCCFUser.h"
 
-@class CCFThreadDetail;
+@class CCFShowThreadPage;
 
 
 typedef void(^Handler) (BOOL isSuccess, id result);

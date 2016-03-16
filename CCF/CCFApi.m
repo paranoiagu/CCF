@@ -10,7 +10,7 @@
 #import "CCFBrowser.h"
 #import "CCFParser.h"
 #import "NSUserDefaults+CCF.h"
-#import "CCFThreadDetail.h"
+#import "CCFShowThreadPage.h"
 #import "CCFPage.h"
 
 
@@ -82,7 +82,7 @@
                 return;
             }
             
-            CCFThreadDetail * thread = [_praser parseShowThreadWithHtml:result];
+            CCFShowThreadPage * thread = [_praser parseShowThreadWithHtml:result];
             
             
             
@@ -120,7 +120,7 @@
                 return;
             }
             
-            CCFThreadDetail * thread = [_praser parseShowThreadWithHtml:result];
+            CCFShowThreadPage * thread = [_praser parseShowThreadWithHtml:result];
             
             
             
@@ -287,7 +287,7 @@
 -(void)showThreadWithId:(NSString *)threadId andPage:(NSString *)page handler:(HandlerWithBool)handler{
     [_browser showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, NSString* html) {
         if (isSuccess) {
-            CCFThreadDetail * detail = [_praser parseShowThreadWithHtml:html];
+            CCFShowThreadPage * detail = [_praser parseShowThreadWithHtml:html];
             handler(isSuccess, detail);
         } else{
             handler(NO, html);

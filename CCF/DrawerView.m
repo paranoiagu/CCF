@@ -395,6 +395,17 @@
         [controller setRootViewController:favController];
     }
 }
+
+- (IBAction)showTodayNewThreadPost:(LeftDrawerItem *)sender {
+    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        [self closeLeftDrawer];
+        
+        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        CCFShowTodayNewThreadPostTableViewController * todayNewThreadPostController = [storyboard instantiateViewControllerWithIdentifier:@"CCFShowTodayNewThreadPostTableViewController"];
+        [controller setRootViewController:todayNewThreadPostController];
+    }
+}
 // 切换Controller结束
 
 
@@ -708,5 +719,6 @@
     [self showOrHideLeftAfterPan:recognizer :_leftDrawerView];
     
 }
+
 
 @end

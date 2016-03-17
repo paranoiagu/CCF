@@ -66,7 +66,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void)listFavoriteThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler;
 
 // 查看新帖
--(void) listNewThreadPosts:(HandlerWithBool)handler;
+-(void) listNewThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler;
 
 // 查看今日新帖
 -(void) listTodayNewThreadsWithPage:(int) page handler:(HandlerWithBool)handler;

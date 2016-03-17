@@ -10,45 +10,56 @@
 #import "CCFNavigationController.h"
 #import "CCFPage.h"
 #import "CCFSearchThread.h"
+#import "CCFSearchResultCell.h"
+#import "CCFSearchThread.h"
 
-@interface CCFShowNewThreadPostTableViewController (){
-    NSMutableArray<CCFSearchThread*> * dataSourceList;
-}
+@interface CCFShowNewThreadPostTableViewController ()
 
 @end
 
 @implementation CCFShowNewThreadPostTableViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    dataSourceList = [NSMutableArray array];
-    
-    [self.ccfApi listNewThreadPosts:^(BOOL isSuccess, CCFPage *message) {
-        
+-(void)onPullRefresh{
+    [self.ccfApi listNewThreadPostsWithPage:1 handler:^(BOOL isSuccess, CCFPage *message) {
+        [self.tableView.mj_header endRefreshing];
         if (isSuccess) {
-            [dataSourceList addObjectsFromArray:message.dataList];
+            [self.tableView.mj_footer endRefreshing];
+            
+            self.currentPage = 1;
+            self.totalPage = (int)message.totalPageCount;
+            [self.dataList removeAllObjects];
+            [self.dataList addObjectsFromArray:message.dataList];
+            [self.tableView reloadData];
         }
         
     }];
-
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
+-(void)onLoadMore{
+    [self.ccfApi listNewThreadPostsWithPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFPage *message) {
+        [self.tableView.mj_footer endRefreshing];
+        if (isSuccess) {
+            self.currentPage++;
+            self.totalPage = (int)message.totalPageCount;
+            if (self.currentPage >= self.totalPage) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+            [self.dataList addObjectsFromArray:message.dataList];
+            [self.tableView reloadData];
+        }
+        
+    }];
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return dataSourceList.count;
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString * cellId = @"CCFSearchResultCell";
+    CCFSearchResultCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    CCFSearchThread * thread = self.dataList[indexPath.row];
+    [cell setSearchResult:thread];
+    
+    return cell;
 }
 
 

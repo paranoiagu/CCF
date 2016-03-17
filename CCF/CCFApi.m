@@ -258,8 +258,8 @@
     }];
 }
 
--(void)listNewThreadPosts:(HandlerWithBool)handler{
-    [_browser fetchNewThreadPosts:^(BOOL isSuccess, id result) {
+-(void)listNewThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler{
+    [_browser listNewThreadPostsWithPage:page handler:^(BOOL isSuccess, id result) {
         CCFPage* sarchPage = [_praser parseSearchPageFromHtml:result];
         handler(isSuccess, sarchPage);
     }];

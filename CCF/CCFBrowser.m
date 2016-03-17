@@ -30,8 +30,10 @@
 
 @implementation CCFBrowser{
     NSString * listMyThreadRedirectUrl;
-    
     NSString *todayNewThreadPostRedirectUrl;
+    NSString *newThreadPostRedirectUrl;
+    
+    CCFParser * parser;
 }
 
 
@@ -42,6 +44,7 @@
         _browser.responseSerializer = [AFHTTPResponseSerializer serializer];
         _browser.responseSerializer.acceptableContentTypes = [_browser.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
         
+        parser = [[CCFParser alloc] init];
         [self loadCookie];
     }
     
@@ -54,7 +57,6 @@
     
     [_browser GETWithURL:url requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-            CCFParser * parser = [[CCFParser alloc]init];
             NSString * token = [parser parseSecurityToken:html];
             if (token != nil) {
                 [self saveSecurityToken:token];
@@ -256,7 +258,6 @@
     [_browser GETWithURL:searchUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         
         if (isSuccess) {
-            CCFParser * parser = [[CCFParser alloc]init];
             NSString * token = [parser parseSecurityToken:html];
             if (token != nil) {
                 [self saveSecurityToken:token];
@@ -317,7 +318,6 @@
             [self uploadImagePrepair:fId startPostTime:time postHash:hash :^(BOOL isSuccess, NSString* result) {
                 
                 // 解析出上传图片需要的参数
-                CCFParser * parser = [[CCFParser alloc]init];
                 NSString * uploadToken = [parser parseSecurityToken:result];
                 NSString * uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
                 NSString * uploadHash = [parser parsePostHash:result];
@@ -444,8 +444,6 @@
     [_browser GETWithURL:newThreadUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         
         if (isSuccess) {
-            CCFParser * parser = [[CCFParser alloc]init];
-            
             NSString * token = [parser parseSecurityToken:html];
             NSString * postTime = [[token componentsSeparatedByString:@"-"] firstObject];
             NSString * hash = [parser parsePostHash:html];
@@ -560,7 +558,6 @@
     [_browser GETWithURL:[CCFUrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
         
         if (isSuccess) {
-            CCFParser * parser = [[CCFParser alloc]init];
             NSString * token = [parser parseSecurityToken:html];
             
             NSString * quote = [parser parseQuickReplyQuoteContent:html];
@@ -610,9 +607,7 @@
     
     [_browser GETWithURL:[CCFUrlBuilder buildNewPMUR] requestCallback:^(BOOL isSuccess,NSString *html) {
         if (isSuccess) {
-            CCFParser * parser = [[CCFParser alloc]init];
             NSString * token = [parser parseSecurityToken:html];
-            
             
             NSURL * sendPMUrl = [CCFUrlBuilder buildSendPrivateMessageURL];
             NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
@@ -681,7 +676,6 @@
         [_browser GETWithURL:myUrl requestCallback:^(BOOL isSuccess, NSString *html) {
             
             if (listMyThreadRedirectUrl == nil) {
-                CCFParser * parser = [[CCFParser alloc]init];
                 listMyThreadRedirectUrl = [parser parseListMyThreadRedirectUrl:html];
             }
             
@@ -704,7 +698,6 @@
         if (!isSuccess) {
             handler(NO, html);
         } else{
-            CCFParser * parser = [[CCFParser alloc]init];
             NSString * token = [parser parseSecurityToken:html];
             
             NSString * url = [@"https://bbs.et8.net/bbs/subscription.php?do=doaddsubscription&forumid=" stringByAppendingString:formId];
@@ -754,21 +747,32 @@
 }
 
 
--(void)fetchNewThreadPosts:(Handler)handler{
-    [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getnew" requestCallback:^(BOOL isSuccess, NSString *html) {
-        handler(isSuccess, html);
-    }];
+-(void)listNewThreadPostsWithPage:(int)page handler:(Handler)handler{
+    if (newThreadPostRedirectUrl == nil) {
+        [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getnew" requestCallback:^(BOOL isSuccess, NSString *html) {
+            if (isSuccess) {
+                newThreadPostRedirectUrl = [parser parseListMyThreadRedirectUrl:html];
+            }
+            handler(isSuccess, html);
+        }];
+    } else{
+        NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net%@&pp=30&page=%d", newThreadPostRedirectUrl, page];
+        [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
+            handler(isSuccess, html);
+        }];
+    }
+    
+
 }
 
 
 -(void)listTodayNewThreadsWithPage:(int)page handler:(Handler)handler{
     if (todayNewThreadPostRedirectUrl == nil) {
         [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php?do=getdaily" requestCallback:^(BOOL isSuccess, NSString *html) {
-            if (todayNewThreadPostRedirectUrl == nil) {
-                CCFParser * parser = [[CCFParser alloc]init];
+            
+            if (isSuccess) {
                 todayNewThreadPostRedirectUrl = [parser parseListMyThreadRedirectUrl:html];
             }
-            
             handler(isSuccess, html);
         }];
     } else{
@@ -787,7 +791,6 @@
         if (!isSuccess) {
             handler(NO, html);
         } else{
-            CCFParser * parser = [[CCFParser alloc]init];
             NSString * token = [parser parseSecurityToken:html];
             
             NSMutableDictionary * parameters = [NSMutableDictionary dictionary];

@@ -1525,7 +1525,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFThreadListCellIdentifier" rowHeight="110" id="4VT-px-BbA" customClass="CCFThreadListCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFSearchResultCell" rowHeight="110" id="4VT-px-BbA" customClass="CCFSearchResultCell">
                                 <rect key="frame" x="0.0" y="50" width="600" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4VT-px-BbA" id="4Wk-Y8-9ns">
@@ -1562,8 +1562,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="threadAuthor" destination="4Ci-6T-IGF" id="o30-Ey-gu6"/>
-                                    <outlet property="threadCreateTime" destination="FJ8-Di-G2H" id="5Cj-46-91N"/>
+                                    <outlet property="postBelongForm" destination="eVA-vw-IZI" id="Z9q-4H-fr8"/>
+                                    <outlet property="postTime" destination="FJ8-Di-G2H" id="LAm-K7-3D2"/>
+                                    <outlet property="postTitle" destination="4Ci-6T-IGF" id="fme-1p-EpT"/>
                                     <segue destination="TcI-Mw-KoO" kind="show" id="Rce-Ic-WUt"/>
                                 </connections>
                             </tableViewCell>
@@ -1603,7 +1604,7 @@
         <image name="ic_settings_18pt" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sZk-ob-9sx"/>
         <segue reference="BtX-d5-2Dd"/>
+        <segue reference="sZk-ob-9sx"/>
     </inferredMetricsTieBreakers>
 </document>

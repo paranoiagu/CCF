@@ -71,7 +71,7 @@
             
             
             IGXMLNode * commentCountNode = threadListNode.children [5];
-            ccfthreadlist.threadTotalPostCount = [[commentCountNode text] intValue];
+            ccfthreadlist.postCount = [commentCountNode text];
             
             [threadList addObject:ccfthreadlist];
         }
@@ -392,7 +392,7 @@
             
             
             IGXMLNode * commentCountNode = threadListNode.children [5];
-            ccfthreadlist.threadTotalPostCount = [[commentCountNode text] intValue];
+            ccfthreadlist.postCount = [commentCountNode text];
         
             [threadList addObject:ccfthreadlist];
         }

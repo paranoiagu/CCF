@@ -66,7 +66,7 @@
     
     self.threadType.text = type == nil ? @"【讨论】" : type;
     
-    self.threadPostCount.text = [NSString stringWithFormat:@"%ld", threadList.threadTotalPostCount];
+    self.threadPostCount.text = threadList.postCount;
     
     NSMutableArray * users = [[_coreDateManager selectData:^NSPredicate *{
        return [NSPredicate predicateWithFormat:@"userID = %@", threadList.threadAuthorID];

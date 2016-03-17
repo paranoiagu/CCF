@@ -8,6 +8,7 @@
 
 #import "CCFMyThreadTableViewController.h"
 #import "CCFNavigationController.h"
+#import "CCFSearchResultCell.h"
 
 @interface CCFMyThreadTableViewController ()
 
@@ -15,31 +16,53 @@
 
 @implementation CCFMyThreadTableViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+-(void)onPullRefresh{
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+       [self.ccfApi listMyAllThreadsWithPage:1 handler:^(BOOL isSuccess, CCFPage *message) {
+           [self.tableView.mj_header endRefreshing];
+           
+           if (isSuccess) {
+               [self.tableView.mj_footer endRefreshing];
+               
+               self.currentPage = 1;
+               [self.dataList removeAllObjects];
+               
+               [self.dataList addObjectsFromArray:message.dataList];
+               [self.tableView reloadData];
+               
+           }
+           
+       }];
+    }];
+}
+
+-(void)onLoadMore{
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self.ccfApi listMyAllThreadsWithPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFPage *message) {
+            [self.tableView.mj_footer endRefreshing];
+            
+            if (isSuccess) {
+                self.currentPage ++;
+                if (self.currentPage >= message.totalPageCount) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }
+                [self.dataList addObjectsFromArray:message.dataList];
+                [self.tableView reloadData];
+                
+            }
+        }];
+    }];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString * cellId = @"CCFSearchResultCell";
+    CCFSearchResultCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    CCFSearchThread * thread = self.dataList[indexPath.row];
+    [cell setSearchResult:thread];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    return cell;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
-}
-
 
 - (IBAction)showLeftDrawer:(id)sender {
     CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;

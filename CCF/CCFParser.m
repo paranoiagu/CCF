@@ -476,8 +476,8 @@
             result.threadID = postId;
             result.threadTitle = [postTitle trim];
             result.threadAuthorName = postAuthor;
-            result.threadCreateTime = [postTime trim];
-            result.threadBelongForm = postBelongForm;
+            result.lastPostTime = [postTime trim];
+            result.fromFormName = postBelongForm;
             
             
             [post addObject:result];

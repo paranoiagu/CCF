@@ -30,8 +30,8 @@
         
         _postTitle.text = _result.threadTitle;
         _postAuthor.text = _result.threadAuthorName;
-        _postTime.text = _result.threadCreateTime;
-        _postBelongForm.text = _result.threadBelongForm;
+        _postTime.text = _result.lastPostTime;
+        _postBelongForm.text = _result.fromFormName;
     }
 }
 

@@ -11,7 +11,6 @@
 
 @interface CCFSearchThread : CCFThread
 
-@property (nonatomic, strong) NSString* threadCreateTime;
-@property (nonatomic, strong) NSString* threadBelongForm;
+@property (nonatomic, strong) NSString* fromFormName;       // 所属论坛名称
 
 @end

@@ -21,6 +21,9 @@
 }
 
 -(void)setData:(CCFSimpleThread *)simpleThread{
-    
+    self.threadTitle.text = simpleThread.threadTitle;
+    self.threadAuthorName.text = simpleThread.threadAuthorName;
+    self.lastPostTime.text = simpleThread.lastPostTime;
+    self.threadCategory.text = simpleThread.threadCategory;
 }
 @end

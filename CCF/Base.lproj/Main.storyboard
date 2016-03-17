@@ -1472,14 +1472,10 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="ThreadAuthorAvatar" destination="ccN-8z-6ln" id="UNK-kX-GbE"/>
-                                    <outlet property="avatarImage" destination="ccN-8z-6ln" id="8hU-Hb-mfn"/>
                                     <outlet property="lastPostTime" destination="bwN-fU-jcI" id="1cL-BQ-VMU"/>
-                                    <outlet property="threadAuthor" destination="3aK-fj-Kur" id="pFx-gU-ePW"/>
                                     <outlet property="threadAuthorName" destination="3aK-fj-Kur" id="lvD-YD-pNc"/>
                                     <outlet property="threadCategory" destination="mBx-k6-S2b" id="Umw-31-8Lg"/>
-                                    <outlet property="threadCreateTime" destination="bwN-fU-jcI" id="gft-BY-lWV"/>
                                     <outlet property="threadTitle" destination="CNV-8I-H0Z" id="hhK-Yj-j9s"/>
-                                    <outlet property="threadType" destination="mBx-k6-S2b" id="MvD-iC-GmH"/>
                                     <segue destination="TcI-Mw-KoO" kind="show" id="sZk-ob-9sx"/>
                                 </connections>
                             </tableViewCell>

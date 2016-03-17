@@ -8,7 +8,7 @@
 
 #import "CCFFavThreadPostTableViewController.h"
 #import "CCFNavigationController.h"
-#import "CCFThreadListCell.h"
+#import "CCFSimpleThreadTableViewCell.h"
 
 @interface CCFFavThreadPostTableViewController ()
 
@@ -22,7 +22,7 @@
         [self.tableView.mj_header endRefreshing];
         if (isSuccess) {
             
-            [self.tableView.mj_footer endRefreshing];
+            [self.tableView.mj_header endRefreshing];
             
             self.currentPage = 1;
             self.totalPage = (int)resultPage.totalPageCount;
@@ -55,11 +55,11 @@
 
 #pragma mark - Table view data source
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString * identifier = @"CCFThreadListCellIdentifier";
-    CCFThreadListCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    static NSString * identifier = @"CCFSimpleThreadTableViewCell";
+    CCFSimpleThreadTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     CCFSimpleThread * list = self.dataList[indexPath.row];
-    [cell setThreadList:list];
+    [cell setData:list];
     
     return cell;
 }

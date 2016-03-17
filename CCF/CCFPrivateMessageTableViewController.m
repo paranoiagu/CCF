@@ -12,9 +12,7 @@
 #import "PrivateMessage.h"
 #import "CCFPage.h"
 
-@interface CCFPrivateMessageTableViewController (){
-    int currentPage;
-}
+@interface CCFPrivateMessageTableViewController ()
 
 @end
 
@@ -23,56 +21,46 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    currentPage = 1;
-    
-    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
-        [self.ccfApi listPrivateMessageWithType:0 andPage:currentPage handler:^(BOOL isSuccess, CCFPage *message) {
-            if (isSuccess) {
-                currentPage ++;
-                [self.dataList addObjectsFromArray:message.dataList];
-                
-                [self.tableView reloadData];
-            }
-        }];
-    }];
-    
-    [self.tableView.mj_header beginRefreshing];
-    
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [self.ccfApi listPrivateMessageWithType:0 andPage:currentPage handler:^(BOOL isSuccess, CCFPage *message) {
+}
+
+-(void)onPullRefresh{
+    [self.ccfApi listPrivateMessageWithType:0 andPage:1 handler:^(BOOL isSuccess, CCFPage *message) {
+        [self.tableView.mj_header endRefreshing];
+        
+        if (isSuccess) {
+            
             [self.tableView.mj_footer endRefreshing];
-            if (isSuccess) {
-                currentPage++;
-                [self.dataList addObjectsFromArray:message.dataList];
-                [self.tableView reloadData];
-            }
-        }];
+            
+            self.currentPage = 1;
+            [self.dataList addObjectsFromArray:message.dataList];
+            
+            [self.tableView reloadData];
+        }
     }];
-    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+
+-(void)onLoadMore{
+    [self.ccfApi listPrivateMessageWithType:0 andPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFPage *message) {
+        [self.tableView.mj_footer endRefreshing];
+        if (isSuccess) {
+            self.currentPage++;
+            
+            if (self.currentPage >= message.totalPageCount) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+            [self.dataList addObjectsFromArray:message.dataList];
+            [self.tableView reloadData];
+        }
+    }];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 1;
-}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *identifier = @"PrivateMessageTableViewCell";
-    
     PrivateMessageTableViewCell *cell = (PrivateMessageTableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
-
-    NSLog(@"++++++++++++++++++++++++++++++++++++++++++++++++%@", cell);
-    
-    
-    
     PrivateMessage *message = self.dataList[indexPath.row];
     [cell setData:message];
     
@@ -80,9 +68,6 @@
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
-}
 
 - (IBAction)showLeftDrawer:(id)sender {
     CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;

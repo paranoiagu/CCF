@@ -16,12 +16,18 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onPullRefresh)];
+    
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self onPullRefresh];
+    }];
     
     [self.tableView.mj_header beginRefreshing];
     
     
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(onLoadMore)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self onLoadMore];
+    }];
     
     self.tableView.contentInset = UIEdgeInsetsMake(-44, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(-44, 0, 0, 0);

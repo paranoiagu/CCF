@@ -28,8 +28,7 @@
 @synthesize threadType = _threadType;
 @synthesize avatarImage = _avatarImage;
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
+- (instancetype)initWithCoder:(NSCoder *)coder{
     self = [super initWithCoder:coder];
     if (self) {
 
@@ -46,27 +45,12 @@
 }
 
 
-
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 -(void)setThreadList:(CCFNormalThread *)threadList{
     self.threadAuthor.text = threadList.threadAuthorName;
-    
-    NSString * type = [threadList.threadTitle stringWithRegular:@"【.{1,4}】"];
-    
-    self.threadTitle.text = type == nil ? threadList.threadTitle : [threadList.threadTitle substringFromIndex:type.length];
-    
-    self.threadType.text = type == nil ? @"【讨论】" : type;
-    
+    self.threadTitle.text = threadList.threadTitle;
+    self.threadType.text = threadList.threadCategory;
     self.threadPostCount.text = threadList.postCount;
+    
     
     NSMutableArray * users = [[_coreDateManager selectData:^NSPredicate *{
        return [NSPredicate predicateWithFormat:@"userID = %@", threadList.threadAuthorID];
@@ -92,7 +76,6 @@
         if (user.userAvatar == nil) {
 //            NSString *path = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"jpg"];
 //            NSURL* url = [NSURL fileURLWithPath:path];
-//
 //            [self.avatarImage setImageWithURL:url];
             
             [self.avatarImage setImage:[UIImage imageNamed:@"logo.jpg"]];

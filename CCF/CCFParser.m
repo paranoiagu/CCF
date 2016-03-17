@@ -17,6 +17,7 @@
 #import "NSString+Regular.h"
 #import "CCFForm.h"
 #import "PrivateMessage.h"
+#import "CCFSimpleThread.h"
 
 
 @implementation CCFParser
@@ -51,11 +52,16 @@
                 continue;
             }
             ccfthreadlist.isTopThread = !(range.location == NSNotFound);
-  
+
             
-            NSString *title = [self parseTitle: titleInnerHtml];
+            NSString *titleAndCategory = [self parseTitle: titleInnerHtml];
+            //分离出Title 和 Category
+            NSString * type = [titleAndCategory stringWithRegular:@"【.{1,4}】"];
+            ccfthreadlist.threadTitle = type == nil ? titleAndCategory : [titleAndCategory substringFromIndex:type.length];
+            ccfthreadlist.threadCategory = type == nil ? @"【讨论】" : type;
+
             
-            IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:title error:nil];
+            IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:titleAndCategory error:nil];
             
             //[@"showthread.php?t=" length]    17的由来
             ccfthreadlist.threadID = [[titleTemp attribute:@"href"] substringFromIndex: 17];
@@ -133,22 +139,6 @@
     
 
     IGXMLNodeSet * threadInfoSet = [document queryWithXPath:@"/html/body/div[4]/div/div/table[1]/tr/td[2]/div/table/tr"];
-    
-//    <tr>
-//    <td class="vbmenu_control" style="font-weight:normal">第 1 页，共 9 页</td>
-//    
-//    
-//    <td class="alt2"><span class="smallfont" title="显示结果从 1 到 15, 共计 127 条."><strong>1</strong></span></td>
-//    <td class="alt1"><a class="smallfont" href="showthread.php?t=1317973&amp;page=2" title="显示结果从 16 到 30, 共计 127 条.">2</a></td>
-//    <td class="alt1"><a class="smallfont" href="showthread.php?t=1317973&amp;page=3" title="显示结果从 31 到 45, 共计 127 条.">3</a></td>
-//    <td class="alt1"><a class="smallfont" href="showthread.php?t=1317973&amp;page=4" title="显示结果从 46 到 60, 共计 127 条.">4</a></td>
-//    <td class="alt1"><a class="smallfont" href="showthread.php?t=1317973&amp;page=5" title="显示结果从 61 到 75, 共计 127 条.">5</a></td>
-//    <td class="alt1"><a rel="next" class="smallfont" href="showthread.php?t=1317973&amp;page=2" title="下一页 - 结果从 16 到 30, 共计 127">&gt;</a></td>
-//    <td class="alt1" nowrap><a class="smallfont" href="showthread.php?t=1317973&amp;page=9" title="尾页 - 结果从 121 到 127, 共计 127">最后一页 <strong>»</strong></a></td>
-//    
-//    </tr>
-    
-    
     
     if (threadInfoSet == nil || threadInfoSet.count == 0) {
         thread.totalPageCount = 1;
@@ -352,7 +342,7 @@
     
     //*[@id="threadbits_forum_147"]/tr[1]
     
-    NSMutableArray<CCFNormalThread *> * threadList = [NSMutableArray<CCFNormalThread *> array];
+    NSMutableArray<CCFSimpleThread *> * threadList = [NSMutableArray<CCFSimpleThread *> array];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet* contents = [document queryWithXPath: path];
@@ -364,19 +354,21 @@
         
         if (threadListNode.children.count > 4) { // 要大于4的原因是：过滤已经被删除的帖子
             
-            CCFNormalThread * ccfthreadlist = [[CCFNormalThread alloc]init];
+            CCFSimpleThread * ccfthreadlist = [[CCFSimpleThread alloc]init];
             
             // title
             IGXMLNode * threadTitleNode = threadListNode.children [2];
             
             NSString * titleInnerHtml = [threadTitleNode innerHtml];
+
+            NSString *titleAndCategory = [self parseTitle: titleInnerHtml];
+            //分离出Title 和 Category
+            NSString * type = [titleAndCategory stringWithRegular:@"【.{1,4}】"];
+            ccfthreadlist.threadTitle = type == nil ? titleAndCategory : [titleAndCategory substringFromIndex:type.length];
+            ccfthreadlist.threadCategory = type == nil ? @"【讨论】" : type;
             
-            ccfthreadlist.isTopThread = NO;
             
-            
-            NSString *title = [self parseTitle: titleInnerHtml];
-            
-            IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:title error:nil];
+            IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:titleAndCategory error:nil];
             
             //[@"showthread.php?t=" length]    17的由来
             ccfthreadlist.threadID = [[titleTemp attribute:@"href"] substringFromIndex: 17];
@@ -389,10 +381,6 @@
             ccfthreadlist.threadAuthorID = [authorIdStr stringWithRegular:@"\\d+"];
             
             ccfthreadlist.threadAuthorName = [authorNode text];
-            
-            
-            IGXMLNode * commentCountNode = threadListNode.children [5];
-            ccfthreadlist.postCount = [commentCountNode text];
         
             [threadList addObject:ccfthreadlist];
         }

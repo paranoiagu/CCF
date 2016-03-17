@@ -8,7 +8,6 @@
 
 #import "CCFFavThreadPostTableViewController.h"
 #import "CCFNavigationController.h"
-#import "CCFNormalThread.h"
 #import "CCFThreadListCell.h"
 
 @interface CCFFavThreadPostTableViewController ()
@@ -59,7 +58,7 @@
     static NSString * identifier = @"CCFThreadListCellIdentifier";
     CCFThreadListCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
-    CCFNormalThread * list = self.dataList[indexPath.row];
+    CCFSimpleThread * list = self.dataList[indexPath.row];
     [cell setThreadList:list];
     
     return cell;

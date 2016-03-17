@@ -10,15 +10,15 @@
 @class CCFNormalThread;
 
 @interface CCFThreadListCell : UITableViewCell
+
+
 @property (weak, nonatomic) IBOutlet UILabel *threadAuthor;
-
 @property (weak, nonatomic) IBOutlet UILabel *threadTitle;
-
 @property (weak, nonatomic) IBOutlet UILabel *threadPostCount;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property (weak, nonatomic) IBOutlet UILabel *threadCreateTime;
-
 @property (weak, nonatomic) IBOutlet UILabel *threadType;
+
 -(void) setThreadList:(CCFNormalThread *) threadList;
 
 @end

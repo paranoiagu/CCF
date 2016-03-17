@@ -1392,7 +1392,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFThreadListCellIdentifier" rowHeight="110" id="G8W-Mh-s5G" customClass="CCFThreadListCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFSimpleThreadTableViewCell" rowHeight="110" id="G8W-Mh-s5G" customClass="CCFSimpleThreadTableViewCell">
                                 <rect key="frame" x="0.0" y="50" width="600" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G8W-Mh-s5G" id="lwl-vg-DhI">
@@ -1422,12 +1422,6 @@
                                             <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LU9-V0-KcS">
-                                            <rect key="frame" x="570" y="8" width="22" height="16"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNV-8I-H0Z">
                                             <rect key="frame" x="8" y="61" width="584" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1444,23 +1438,22 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-01-01，12:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwN-fU-jcI">
-                                            <rect key="frame" x="462" y="84" width="130" height="18"/>
+                                            <rect key="frame" x="61" y="35" width="130" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="bwN-fU-jcI" secondAttribute="trailing" id="4Du-jT-68L"/>
                                         <constraint firstItem="3aK-fj-Kur" firstAttribute="leading" secondItem="ccN-8z-6ln" secondAttribute="trailing" constant="8" id="8Zn-2e-VXM"/>
-                                        <constraint firstItem="mBx-k6-S2b" firstAttribute="top" secondItem="LU9-V0-KcS" secondAttribute="bottom" constant="11" id="B0t-Ot-dRq"/>
+                                        <constraint firstItem="bwN-fU-jcI" firstAttribute="leading" secondItem="ccN-8z-6ln" secondAttribute="trailing" constant="8" id="9jp-R0-lUn"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="CNV-8I-H0Z" secondAttribute="leading" id="C8Z-y5-s8D"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="CNV-8I-H0Z" secondAttribute="trailing" id="Doa-6j-SIX"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="CNV-8I-H0Z" secondAttribute="bottom" constant="20" id="GYR-IL-s8h"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="bwN-fU-jcI" secondAttribute="bottom" id="NQd-lc-OKX"/>
+                                        <constraint firstItem="mBx-k6-S2b" firstAttribute="baseline" secondItem="bwN-fU-jcI" secondAttribute="baseline" id="H0c-Oc-RZC"/>
+                                        <constraint firstItem="bwN-fU-jcI" firstAttribute="top" secondItem="3aK-fj-Kur" secondAttribute="bottom" constant="8" id="SIn-me-2Ka"/>
                                         <constraint firstItem="CNV-8I-H0Z" firstAttribute="top" secondItem="ccN-8z-6ln" secondAttribute="bottom" constant="8" id="X9t-30-E4u"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="CNV-8I-H0Z" secondAttribute="bottom" constant="20" id="YjK-0j-b7E"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="LU9-V0-KcS" secondAttribute="trailing" id="aXT-6I-eHQ"/>
                                         <constraint firstItem="ccN-8z-6ln" firstAttribute="top" secondItem="fEl-ak-Bka" secondAttribute="bottom" constant="7" id="ety-qw-vH2"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="fEl-ak-Bka" secondAttribute="trailing" constant="-8" id="fQK-Zz-gVY"/>
                                         <constraint firstItem="fEl-ak-Bka" firstAttribute="top" secondItem="lwl-vg-DhI" secondAttribute="topMargin" constant="-8" id="g0u-Bu-o7X"/>
@@ -1469,7 +1462,6 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="mBx-k6-S2b" secondAttribute="trailing" id="qmF-9y-8i9"/>
                                         <constraint firstItem="3aK-fj-Kur" firstAttribute="top" secondItem="fEl-ak-Bka" secondAttribute="bottom" constant="8" id="u4R-ey-3KW"/>
                                         <constraint firstItem="fEl-ak-Bka" firstAttribute="leading" secondItem="lwl-vg-DhI" secondAttribute="leadingMargin" constant="-8" id="wgU-8w-4cG"/>
-                                        <constraint firstItem="LU9-V0-KcS" firstAttribute="top" secondItem="fEl-ak-Bka" secondAttribute="bottom" constant="7" id="yeH-QU-8FV"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
@@ -1479,11 +1471,14 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="ThreadAuthorAvatar" destination="ccN-8z-6ln" id="UNK-kX-GbE"/>
                                     <outlet property="avatarImage" destination="ccN-8z-6ln" id="8hU-Hb-mfn"/>
+                                    <outlet property="lastPostTime" destination="bwN-fU-jcI" id="1cL-BQ-VMU"/>
                                     <outlet property="threadAuthor" destination="3aK-fj-Kur" id="pFx-gU-ePW"/>
+                                    <outlet property="threadAuthorName" destination="3aK-fj-Kur" id="lvD-YD-pNc"/>
+                                    <outlet property="threadCategory" destination="mBx-k6-S2b" id="Umw-31-8Lg"/>
                                     <outlet property="threadCreateTime" destination="bwN-fU-jcI" id="gft-BY-lWV"/>
-                                    <outlet property="threadPostCount" destination="LU9-V0-KcS" id="lOj-YQ-sNW"/>
-                                    <outlet property="threadTitle" destination="CNV-8I-H0Z" id="rLV-fW-mTL"/>
+                                    <outlet property="threadTitle" destination="CNV-8I-H0Z" id="hhK-Yj-j9s"/>
                                     <outlet property="threadType" destination="mBx-k6-S2b" id="MvD-iC-GmH"/>
                                     <segue destination="TcI-Mw-KoO" kind="show" id="sZk-ob-9sx"/>
                                 </connections>

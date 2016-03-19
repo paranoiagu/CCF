@@ -173,7 +173,7 @@
     [_browser privateMessageWithType:type andpage:page handler:^(BOOL isSuccess, id result) {
         
         if (isSuccess) {
-            CCFPage * page = [_praser parseInboxMessageFormHtml:result];
+            CCFPage * page = [_praser parsePrivateMessageFormHtml:result];
             handler(YES, page);
         } else{
             handler(NO, result);

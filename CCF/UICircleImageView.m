@@ -15,8 +15,8 @@
     if (self = [super initWithCoder:aDecoder]) {
         self.layer.masksToBounds = YES;
         self.layer.cornerRadius = self.bounds.size.width * 0.5;
-        self.layer.borderWidth = 5.5;
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
+//        self.layer.borderWidth = 4;
+//        self.layer.borderColor = [UIColor redColor].CGColor;
     }
     return self;
 }

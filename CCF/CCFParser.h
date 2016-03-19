@@ -36,7 +36,7 @@
 
 - (NSMutableArray<CCFForm *> *) parseFavFormFormHtml:(NSString *)html;
 
-- (CCFPage*) parseInboxMessageFormHtml:(NSString*) html;
+- (CCFPage*) parsePrivateMessageFormHtml:(NSString*) html;
 
 - (NSString *) parsePrivateMessageContent:(NSString*) html;
 

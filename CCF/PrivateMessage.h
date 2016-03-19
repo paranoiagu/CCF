@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString *pmID;
 @property (nonatomic, strong) NSString *pmTitle;
 @property (nonatomic, strong) NSString *pmAuthor;
+@property (nonatomic, strong) NSString *pmAuthorId;
 
 @property (nonatomic, strong) NSString *pmTime;
 

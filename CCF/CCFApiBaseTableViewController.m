@@ -29,8 +29,8 @@
         [self onLoadMore];
     }];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(-44, 0, 0, 0);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(-44, 0, 0, 0);
+//    self.tableView.contentInset = UIEdgeInsetsMake(-44, 0, 0, 0);
+//    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(-44, 0, 0, 0);
 }
 
 -(void)onPullRefresh{

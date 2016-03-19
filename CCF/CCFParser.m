@@ -516,7 +516,7 @@
 }
 
 
--(CCFPage *)parseInboxMessageFormHtml:(NSString *)html{
+-(CCFPage *)parsePrivateMessageFormHtml:(NSString *)html{
     CCFPage * page = [[CCFPage alloc] init];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
@@ -563,11 +563,25 @@
             
             NSString * timeDay = [[title children] [0] text];
             
-            
+            // 3. 发送PM作者
             IGXMLNode * author = [children[2] children][1];
             NSString * authorText = [[author children] [1] text];
             message.pmAuthor = authorText;
             
+            // 4. 发送者ID
+            NSString *authorId;
+            if (message.isReaded) {
+                authorId = [[author children][1] attribute:@"onclick"];
+                authorId = [authorId stringWithRegular:@"\\d+"];
+            } else{
+                IGXMLNode *strongNode = [author children][1];
+                strongNode = [strongNode children][0];
+                authorId = [strongNode attribute:@"onclick"];
+                authorId = [authorId stringWithRegular:@"\\d+"];
+            }
+            message.pmAuthorId = authorId;
+
+            // 5. 时间
             NSString * timeHour = [[author children] [0] text];
             message.pmTime = [[timeDay stringByAppendingString:@" "] stringByAppendingString:timeHour];
             

@@ -57,7 +57,8 @@
             NSString *titleAndCategory = [self parseTitle: titleInnerHtml];
             //分离出Title 和 Category
             NSString * type = [titleAndCategory stringWithRegular:@"【.{1,4}】"];
-            ccfthreadlist.threadCategory = type == nil ? @"【讨论】" : type;
+            NSString * category = [type substringWithRange:NSMakeRange(1, type.length - 2)];
+            ccfthreadlist.threadCategory = type == nil ? @"讨论" : category;
 
             
             IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:titleAndCategory error:nil];

@@ -99,7 +99,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 30;
+    return 10;
 }
 
 #pragma mark - Table view data source

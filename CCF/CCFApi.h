@@ -80,7 +80,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 显示主题帖子和所有回帖
 -(void) showThreadWithId:(NSString *) threadId andPage:(NSString*)page handler:(HandlerWithBool)handler;
 
--(void) forumDisplayWithId:(NSString *) formId andPage:(NSString*)page handler:(HandlerWithBool)handler;
+-(void) forumDisplayWithId:(NSString *) formId andPage:(int)page handler:(HandlerWithBool)handler;
 
 -(void) getAvatarWithUserId:(NSString*)userId handler:(HandlerWithBool)handler;
 @end

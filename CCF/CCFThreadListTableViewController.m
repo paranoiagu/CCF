@@ -22,26 +22,18 @@
 #define TypePullRefresh 0
 #define TypeLoadMore 1
 
-@interface CCFThreadListTableViewController ()<WCPullRefreshControlDelegate>{
-    int currentPage;
-    int totalPage;
-    float verticalContentOffset;
-}
+@interface CCFThreadListTableViewController ()
 
-@property (strong,nonatomic)WCPullRefreshControl * pullRefresh;
-@property (nonatomic, strong) CCFApi * ccfapi;
 @end
 
 @implementation CCFThreadListTableViewController
 
-@synthesize threadTopList = _threadTopList;
 @synthesize entry;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    verticalContentOffset = 0;
+
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 180.0;
@@ -49,59 +41,25 @@
     if (self.threadTopList == nil) {
         self.threadTopList = [NSMutableArray array];
     }
-    
-    if (self.ccfapi == nil) {
-        self.ccfapi = [[CCFApi alloc]init];
-    }
-    
-    
-    NSLog(@"viewDidLoad    %@   %@", entry.urlId, entry.page);
-    
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        int page = currentPage +1;
-        [self browserThreadList:page type:TypeLoadMore];
-        
-    }];
-    
-    
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self.tableView.mj_header endRefreshing];
-        
-        [self browserThreadList:1 type:TypePullRefresh];
-    }];
-    
-    [self.tableView.mj_header beginRefreshing];
-    
-    
-//    self.pullRefresh.delegate = self;
-//    self.pullRefresh = [[WCPullRefreshControl alloc] initWithScrollview:self.tableView Action:^{
-//        [self browserThreadList:1 type:TypePullRefresh];
-//    }];
-//    [self.pullRefresh startPullRefresh];
-    
-//    
-//    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-//    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(-64, 0, 0, 0);
-//
 }
 
 
--(void) browserThreadList:(int) page type:(int) pullOrLoadMore{
-
-    
-    if (totalPage == 0 || currentPage < totalPage) {
-        NSString * pageStr = [NSString stringWithFormat:@"%d", page];
+-(void)onPullRefresh{
+    [self.ccfApi forumDisplayWithId:entry.urlId andPage:1 handler:^(BOOL isSuccess, CCFPage *page) {
         
-        [self.ccfapi forumDisplayWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, CCFPage *resultPage) {
-            totalPage = (int)resultPage.totalPageCount;
-            
-            if (page == 1) {
-                [self.dataList removeAllObjects];
-                [self.threadTopList removeAllObjects];
+        [self.tableView.mj_header endRefreshing];
+        
+        if (isSuccess) {
+            self.totalPage = (int)page.totalPageCount;
+            self.currentPage = 1;
+            if (self.currentPage >= self.totalPage) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
             
+            [self.threadTopList removeAllObjects];
+            [self.dataList removeAllObjects];
             
-            for (CCFNormalThread * thread in resultPage.dataList) {
+            for (CCFNormalThread * thread in page.dataList) {
                 if (thread.isTopThread) {
                     [self.threadTopList addObject:thread];
                 }else{
@@ -109,46 +67,33 @@
                 }
             }
             
-//            CGFloat oldTableViewHeight = self.tableView.contentSize.height;
-//            CGFloat currentContentOffsetY = self.tableView.contentOffset.y;
+            [self.tableView reloadData];
+        }
+    }];
+}
+
+-(void)onLoadMore{
+    [self.ccfApi forumDisplayWithId:entry.urlId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFPage *page) {
+        
+        [self.tableView.mj_footer endRefreshing];
+        
+        if (isSuccess) {
+            self.totalPage = (int)page.totalPageCount;
+            self.currentPage ++;
+            if (self.currentPage >= self.totalPage) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+            
+            [self.threadTopList removeAllObjects];
+            [self.dataList removeAllObjects];
+            
+            for (CCFNormalThread * thread in page.dataList) {
+                [self.dataList addObject:thread];
+            }
             
             [self.tableView reloadData];
-            
-//？】            CGFloat newTableViewHeight = self.tableView.contentSize.height;
-            
-//            [self.tableView setContentOffset:CGPointMake(0, verticalContentOffset)];
-//            self.tableView.contentOffset = CGPointMake(0, currentContentOffsetY + newTableViewHeight -oldTableViewHeight);
-
-            
-            currentPage = page;
-            if (pullOrLoadMore == TypePullRefresh) {
-                [self.pullRefresh finishRefreshingSuccessully:YES];
-            } else{
-                [self.tableView.mj_footer endRefreshing];
-            }
-        }];
-
-    } else{
-        if (pullOrLoadMore == TypePullRefresh) {
-            [self.pullRefresh finishRefreshingSuccessully:NO];
-        } else{
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
-        
-
-    }
-    
-}
-
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    [self.pullRefresh updateWhenScrollDidEndDraging];
-}
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.pullRefresh updateWhenScrollviewScroll];
-}
--(void)DidStartRefreshingWithScrollview:(UIScrollView *)scrollview{
-    //[self performSelector:@selector(reset) withObject:nil afterDelay:2.0];
-    //[self.pullRefresh finishRefreshingSuccessully:YES];
+    }];
 }
 
 
@@ -202,9 +147,6 @@
 
 #pragma mark Controller跳转
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    
-    NSLog(@"prepareForSegue&&&&&&&&                 %@", sender);
     
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         

@@ -125,10 +125,10 @@
     
     if (indexPath.section == 0) {
         CCFNormalThread *play = self.threadTopList[indexPath.row];
-        [cell setThreadList:play];
+        [cell setData:play];
     } else{
         CCFNormalThread *play = self.dataList[indexPath.row];
-        [cell setThreadList:play];
+        [cell setData:play];
     }
 
     
@@ -144,7 +144,7 @@
 - (void)configureCell:(CCFThreadListCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
     
-    [cell setThreadList:self.dataList[indexPath.row]];
+    [cell setData:self.dataList[indexPath.row]];
 }
 
 

@@ -21,6 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 180.0;
 }
 
 -(void)onPullRefresh{
@@ -67,6 +70,21 @@
     
     return cell;
 }
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [tableView fd_heightForCellWithIdentifier:@"PrivateMessageTableViewCell" configuration:^(PrivateMessageTableViewCell *cell) {
+        [self configureCell:cell atIndexPath:indexPath];
+    }];
+}
+
+- (void)configureCell:(PrivateMessageTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
+    
+    [cell setData:self.dataList[indexPath.row]];
+}
+
+
 
 
 - (IBAction)showLeftDrawer:(id)sender {

@@ -63,7 +63,7 @@
     CCFThreadListCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     CCFNormalThread * list = self.dataList[indexPath.row];
-    [cell setThreadList:list];
+    [cell setData:list];
     
     return cell;
 }

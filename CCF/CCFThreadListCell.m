@@ -44,52 +44,13 @@
     return self;
 }
 
-
--(void)setThreadList:(CCFNormalThread *)threadList{
-    self.threadAuthor.text = threadList.threadAuthorName;
-    self.threadTitle.text = threadList.threadTitle;
-    self.threadType.text = threadList.threadCategory;
-    self.threadPostCount.text = threadList.postCount;
-    
-    
-    NSMutableArray * users = [[_coreDateManager selectData:^NSPredicate *{
-       return [NSPredicate predicateWithFormat:@"userID = %@", threadList.threadAuthorID];
-    }] copy];
-    
-    if (users == nil || users.count == 0) {
-
-        [ccfapi getAvatarWithUserId:threadList.threadAuthorID handler:^(BOOL isSuccess, NSString * avatar) {
-            [_coreDateManager insertOneData:^(id src) {
-                
-                CCFUserEntry * user =(CCFUserEntry *)src;
-                
-                user.userID = threadList.threadAuthorID;
-                user.userAvatar = avatar;
-            }];
-            
-            [self.avatarImage setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
-        }];
-
-    } else{
-        
-        CCFUserEntry * user = users.firstObject;
-        if (user.userAvatar == nil) {
-//            NSString *path = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"jpg"];
-//            NSURL* url = [NSURL fileURLWithPath:path];
-//            [self.avatarImage setImageWithURL:url];
-            
-            [self.avatarImage setImage:[UIImage imageNamed:@"logo.jpg"]];
-        } else{
-            
-            NSLog(@"+++++++++++++++++++++++++++++++++++++++++++%@", user.userAvatar);
-            
-            NSURL * url = [CCFUrlBuilder buildAvatarURL:user.userAvatar];
-            
-            [self.avatarImage setImageWithURL:url];
-        }
-        
-    }
-    
-    
+-(void)setData:(CCFNormalThread *)data{
+    self.threadAuthor.text = data.threadAuthorName;
+    self.threadTitle.text = data.threadTitle;
+    self.threadType.text = data.threadCategory;
+    self.threadPostCount.text = data.postCount;
+    [self showAvatar:self.avatarImage userId:data.threadAuthorID];
 }
+
+
 @end

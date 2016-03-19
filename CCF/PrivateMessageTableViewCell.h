@@ -9,11 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "PrivateMessage.h"
 
-@interface PrivateMessageTableViewCell : UITableViewCell
+#import "CCFNormalThread.h"
+#import "CCFUrlBuilder.h"
+#import "NSString+Regular.h"
+#import <UIImageView+AFNetworking.h>
+#import "CCFCoreDataManager.h"
+#import "CCFUserEntry+CoreDataProperties.h"
+#import "CCFApi.h"
+#import "BaseCCFTableViewCell.h"
+
+@interface PrivateMessageTableViewCell : BaseCCFTableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *privateMessageTitle;
 @property (weak, nonatomic) IBOutlet UILabel *privateMessageAuthor;
 @property (weak, nonatomic) IBOutlet UILabel *privateMessageTime;
+@property (weak, nonatomic) IBOutlet UIImageView *privateMessageAuthorAvatar;
 
-
--(void) setData:(PrivateMessage*) data;
 @end

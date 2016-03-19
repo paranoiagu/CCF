@@ -10,6 +10,7 @@
 
 #import "CCFApi.h"
 #import "MJRefresh.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 @interface CCFApiBaseTableViewController : UITableViewController
 

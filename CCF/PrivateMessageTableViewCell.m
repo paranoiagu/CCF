@@ -10,24 +10,25 @@
 
 @implementation PrivateMessageTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
+- (instancetype)initWithCoder:(NSCoder *)coder{
+    self = [super initWithCoder:coder];
+    if (self) {
+
+        UIEdgeInsets edgeInset =  self.separatorInset;
+        edgeInset.left = 40 + 8 + 8;
+        [self setSeparatorInset:edgeInset];
+        
+    }
+    return self;
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
-
 
 -(void)setData:(PrivateMessage *)data{
+
     
-    NSLog(@"设置 data %@", data);
     [self.privateMessageTitle setText:data.pmTitle];
     [self.privateMessageAuthor setText:data.pmAuthor];
     [self.privateMessageTime setText:data.pmTime];
+    [self showAvatar:self.privateMessageAuthorAvatar userId:data.pmAuthorId];
     
 }
 @end

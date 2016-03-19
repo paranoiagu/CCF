@@ -84,11 +84,10 @@
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
             
-            [self.threadTopList removeAllObjects];
-            [self.dataList removeAllObjects];
-            
             for (CCFNormalThread * thread in page.dataList) {
-                [self.dataList addObject:thread];
+                if (!thread.isTopThread) {
+                    [self.dataList addObject:thread];
+                }
             }
             
             [self.tableView reloadData];

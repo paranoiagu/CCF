@@ -57,7 +57,6 @@
             NSString *titleAndCategory = [self parseTitle: titleInnerHtml];
             //分离出Title 和 Category
             NSString * type = [titleAndCategory stringWithRegular:@"【.{1,4}】"];
-            ccfthreadlist.threadTitle = type == nil ? titleAndCategory : [titleAndCategory substringFromIndex:type.length];
             ccfthreadlist.threadCategory = type == nil ? @"【讨论】" : type;
 
             
@@ -65,7 +64,7 @@
             
             //[@"showthread.php?t=" length]    17的由来
             ccfthreadlist.threadID = [[titleTemp attribute:@"href"] substringFromIndex: 17];
-            ccfthreadlist.threadTitle = [titleTemp text];
+            ccfthreadlist.threadTitle = type == nil ? [titleTemp text] : [[titleTemp text] substringFromIndex:type.length];;
             
             
             IGXMLNode * authorNode = threadListNode.children [3];
@@ -94,6 +93,7 @@
             IGXMLNode * totalPage = totalPageSet.firstObject;
             NSString * pageText = [totalPage innerHtml];
             NSString * numberText = [[pageText componentsSeparatedByString:@"，"]lastObject];
+            numberText = [numberText stringWithRegular:@"\\d+"];
             NSUInteger totalNumber = [numberText integerValue];
             //NSLog(@"总页数：   %@", pageText);
             page.totalPageCount = totalNumber;

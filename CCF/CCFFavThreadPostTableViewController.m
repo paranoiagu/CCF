@@ -65,6 +65,18 @@
 }
 
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [tableView fd_heightForCellWithIdentifier:@"CCFSimpleThreadTableViewCell" configuration:^(CCFSimpleThreadTableViewCell *cell) {
+        [self configureCell:cell atIndexPath:indexPath];
+    }];
+}
+
+- (void)configureCell:(CCFSimpleThreadTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
+    
+    [cell setData:self.dataList[indexPath.row]];
+}
+
 
 - (IBAction)showLeftDrawer:(id)sender {
     CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;

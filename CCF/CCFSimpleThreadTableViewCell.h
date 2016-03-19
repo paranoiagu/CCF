@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFSimpleThread.h"
+#import "BaseCCFTableViewCell.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
-@interface CCFSimpleThreadTableViewCell : UITableViewCell
+@interface CCFSimpleThreadTableViewCell : BaseCCFTableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *threadAuthorName;
 @property (weak, nonatomic) IBOutlet UILabel *lastPostTime;
 @property (weak, nonatomic) IBOutlet UILabel *threadTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *ThreadAuthorAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *threadCategory;
-
--(void) setData:(CCFSimpleThread*)simpleThread;
 
 @end

@@ -20,10 +20,12 @@
     // Configure the view for the selected state
 }
 
--(void)setData:(CCFSimpleThread *)simpleThread{
-    self.threadTitle.text = simpleThread.threadTitle;
-    self.threadAuthorName.text = simpleThread.threadAuthorName;
-    self.lastPostTime.text = simpleThread.lastPostTime;
-    self.threadCategory.text = simpleThread.threadCategory;
+-(void)setData:(CCFSimpleThread *)data{
+    self.threadTitle.text = data.threadTitle;
+    self.threadAuthorName.text = data.threadAuthorName;
+    self.lastPostTime.text = data.lastPostTime;
+    self.threadCategory.text = data.threadCategory;
+    
+    [self showAvatar:self.ThreadAuthorAvatar userId:data.threadAuthorID];
 }
 @end

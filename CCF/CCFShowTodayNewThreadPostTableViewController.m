@@ -8,8 +8,8 @@
 
 #import "CCFShowTodayNewThreadPostTableViewController.h"
 #import "CCFNavigationController.h"
-#import "CCFThreadListCell.h"
-#import "CCFNormalThread.h"
+#import "CCFSearchResultCell.h"
+#import "CCFSearchThread.h"
 
 @interface CCFShowTodayNewThreadPostTableViewController ()
 
@@ -59,13 +59,26 @@
 
 #pragma mark - Table view data source
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString * identifier = @"CCFThreadListCellIdentifier";
-    CCFThreadListCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    static NSString * identifier = @"CCFSearchResultCell";
+    CCFSearchResultCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
-    CCFNormalThread * list = self.dataList[indexPath.row];
+    CCFSearchThread * list = self.dataList[indexPath.row];
     [cell setData:list];
     
     return cell;
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [tableView fd_heightForCellWithIdentifier:@"CCFSearchResultCell" configuration:^(CCFSearchResultCell *cell) {
+        [self configureCell:cell atIndexPath:indexPath];
+    }];
+}
+
+- (void)configureCell:(CCFSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
+    
+    [cell setData:self.dataList[indexPath.row]];
 }
 
 

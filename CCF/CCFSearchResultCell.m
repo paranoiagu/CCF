@@ -10,30 +10,16 @@
 #import "CCFSearchThread.h"
 
 
-@implementation CCFSearchResultCell{
-    CCFSearchThread *_result;
+@implementation CCFSearchResultCell
+
+
+-(void)setData:(CCFSearchThread*)data{
+    self.postTitle.text = data.threadTitle;
+    self.postAuthor.text = data.threadAuthorName;
+    self.postTime.text = data.lastPostTime;
+    self.postBelongForm.text = data.fromFormName;
+    
+    [self showAvatar:self.postAuthorAvatar userId:data.threadAuthorID];
 }
-
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
--(void)setSearchResult:(CCFSearchThread *)result{
-    if (_result != result) {
-        _result = result;
-        
-        _postTitle.text = _result.threadTitle;
-        _postAuthor.text = _result.threadAuthorName;
-        _postTime.text = _result.lastPostTime;
-        _postBelongForm.text = _result.fromFormName;
-    }
-}
-
 
 @end

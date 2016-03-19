@@ -55,9 +55,21 @@
     CCFSearchResultCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     CCFSearchThread * thread = self.dataList[indexPath.row];
-    [cell setSearchResult:thread];
+    [cell setData:thread];
     
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [tableView fd_heightForCellWithIdentifier:@"CCFSearchResultCell" configuration:^(CCFSearchResultCell *cell) {
+        [self configureCell:cell atIndexPath:indexPath];
+    }];
+}
+
+- (void)configureCell:(CCFSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
+    
+    [cell setData:self.dataList[indexPath.row]];
 }
 
 - (IBAction)showLeftDrawer:(id)sender {

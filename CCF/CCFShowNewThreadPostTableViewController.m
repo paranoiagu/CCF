@@ -57,7 +57,7 @@
     CCFSearchResultCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     CCFSearchThread * thread = self.dataList[indexPath.row];
-    [cell setSearchResult:thread];
+    [cell setData:thread];
     
     return cell;
 }

@@ -8,15 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFSearchThread.h"
+#import "UICircleImageView.h"
+#import "BaseCCFTableViewCell.h"
 
 
-@interface CCFSearchResultCell : UITableViewCell
+@interface CCFSearchResultCell : BaseCCFTableViewCell
+
+
 @property (weak, nonatomic) IBOutlet UILabel *postTitle;
 @property (weak, nonatomic) IBOutlet UILabel *postAuthor;
 @property (weak, nonatomic) IBOutlet UILabel *postTime;
 @property (weak, nonatomic) IBOutlet UILabel *postBelongForm;
-
-
--(void) setSearchResult:(CCFSearchThread *) result;
+@property (weak, nonatomic) IBOutlet UICircleImageView *postAuthorAvatar;
+@property (weak, nonatomic) IBOutlet UILabel *postCategory;
 
 @end

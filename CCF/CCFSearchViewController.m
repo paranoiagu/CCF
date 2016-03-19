@@ -83,7 +83,7 @@
     static NSString *QuoteCellIdentifier = @"CCFSearchResultCell";
     
     CCFSearchResultCell *cell = (CCFSearchResultCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-    [cell setSearchResult:searchResult[indexPath.row]];
+    [cell setData:searchResult[indexPath.row]];
     
     
     return cell;

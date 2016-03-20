@@ -665,7 +665,7 @@
     profile.profileRank = [self queryText:document withXPath:rankXPath];
     
     // 注册日期
-    NSString * registerXPath = @"//*[@id='collapseobj_stats_mini']/div[1]/table/tr/td[1]/dl/dd[2]";
+    NSString * registerXPath = @"//*[@id='collapseobj_stats_mini']/div[1]/table/tr/td[1]/dl/dd[1]";
     profile.profileRegisterDate = [self queryText:document withXPath:registerXPath];
     
     // 最近活动时间
@@ -674,13 +674,20 @@
     
     NSString * lastLoginTimeXPath = @"//*[@id='collapseobj_stats']/div/fieldset[2]/ul/li[1]/span[2]";
     NSString * lastTime = [[self queryText:document withXPath:lastLoginTimeXPath] trim];
-    profile.profileRecentLoginDate = [NSString stringWithFormat:@"%@ %@", lastDay, lastTime];
+    if (lastTime == nil) {
+        lastTime = @"隐私";
+        profile.profileRecentLoginDate = lastTime;
+    } else{
+        profile.profileRecentLoginDate = [NSString stringWithFormat:@"%@ %@", lastDay, lastTime];
+    }
+    
     
     // 帖子总数
-    NSString * postCountXPath = @"//*[@id='collapseobj_stats_mini']/div[1]/table/tr/td[1]/dl/dd[3]";
+    NSString * postCountXPath = @"//*[@id='collapseobj_stats_mini']/div[1]/table/tr/td[1]/dl/dd[2]";
     NSString * postCount = [self queryText:document withXPath:postCountXPath];
     profile.profileTotalPostCount = postCount;
     
+    profile.profileUserId = userId;
     return profile;
 }
 

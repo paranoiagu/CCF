@@ -9,8 +9,9 @@
 #import "CCFProfileTableViewController.h"
 #import "CCFProfileTableViewCell.h"
 
-@interface CCFProfileTableViewController (){
+@interface CCFProfileTableViewController ()<TransValueDelegate>{
     CCFUserProfile * userProfile;
+    int userId;
 }
 
 @end
@@ -19,15 +20,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.transValueDelegate = self;
+    
 }
 
 -(BOOL)setLoadMore:(BOOL)enable{
     return NO;
 }
 
+-(void)transValue:(int)value{
+    userId = value;
+}
+
+
 -(void)onPullRefresh{
-    [self.ccfApi showProfileWithUserId:@"72567" handler:^(BOOL isSuccess, CCFUserProfile* message) {
+    NSString * userIdString = [NSString stringWithFormat:@"%d", userId];
+    [self.ccfApi showProfileWithUserId:userIdString handler:^(BOOL isSuccess, CCFUserProfile* message) {
         userProfile = message;
         
         [self.tableView.mj_header endRefreshing];

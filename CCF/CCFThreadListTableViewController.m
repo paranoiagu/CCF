@@ -16,6 +16,7 @@
 #import "WCPullRefreshControl.h"
 #import "CCFNewThreadViewController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
+#import "CCFProfileTableViewController.h"
 
 
 
@@ -194,6 +195,23 @@
             [controller setValue:transEntry forKey:@"entry"];
             
         }
+    } else if ([sender isKindOfClass:[UIButton class]]){
+        CCFProfileTableViewController * controller = segue.destinationViewController;
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        CCFNormalThread * thread = nil;
+        
+        if (indexPath.section == 0) {
+            thread = self.threadTopList[indexPath.row];
+        } else{
+            thread = self.dataList[indexPath.row];
+        }
+
+        
+        [self.transValueDelegate transValue:[thread.threadAuthorID intValue]];
+        
     }
     
 

@@ -130,6 +130,7 @@
 		3A1C2CD31C9EA1010068AF6B /* CCFUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUserProfile.m; sourceTree = "<group>"; };
 		3A1C2CD51C9EB2C10068AF6B /* CCFProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFProfileTableViewCell.h; sourceTree = "<group>"; };
 		3A1C2CD61C9EB2C10068AF6B /* CCFProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFProfileTableViewCell.m; sourceTree = "<group>"; };
+		3A1C2CD81C9EE6150068AF6B /* TransValueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransValueDelegate.h; sourceTree = "<group>"; };
 		3A1CF86D1C54F88C002E52EE /* LeftDrawerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftDrawerItem.h; sourceTree = "<group>"; };
 		3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftDrawerItem.m; sourceTree = "<group>"; };
 		3A1CF8701C54F8AB002E52EE /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
@@ -462,6 +463,7 @@
 				3A1C2CD01C9E9B740068AF6B /* CCFProfileTableViewController.m */,
 				3A2FCC781C9558F100B469E4 /* CCFApiBaseTableViewController.h */,
 				3A2FCC791C9558F100B469E4 /* CCFApiBaseTableViewController.m */,
+				3A1C2CD81C9EE6150068AF6B /* TransValueDelegate.h */,
 			);
 			name = CCFControllers;
 			sourceTree = "<group>";

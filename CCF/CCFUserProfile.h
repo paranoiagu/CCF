@@ -10,6 +10,7 @@
 
 @interface CCFUserProfile : NSObject
 
+@property (nonatomic, strong) NSString * profileUserId;
 @property (nonatomic, strong) NSString * profileRank;
 @property (nonatomic, strong) NSString * profileName;
 @property (nonatomic, strong) NSString * profileRegisterDate;

@@ -155,7 +155,7 @@
                 return;
             }
             
-            CCFPage * page = [_praser parseSearchPageFromHtml:result];
+            CCFSearchPage * page = [_praser parseSearchPageFromHtml:result];
             
             if (page != nil && page.dataList != nil && page.dataList.count > 0) {
                 handler(YES, page);
@@ -311,6 +311,35 @@
     [_browser fetchUserWithUserId:userId handler:^(BOOL isSuccess, NSString* result) {
         NSString * avatar = [_praser parseUserAvatar:result userId:userId];
         handler(isSuccess, avatar);
+    }];
+}
+
+-(void)listSearchResultWithUrl:(NSString *)url andPage:(int)page handler:(HandlerWithBool)handler{
+    [_browser listSearchResultWithUrl:url andPage:page handler:^(BOOL isSuccess, id result) {
+        if (isSuccess) {
+            
+            NSRange range = [result rangeOfString:kSearchErrorTooshort];
+            if (range.location != NSNotFound) {
+                handler(NO,kSearchErrorTooshort);
+                return;
+            }
+            
+            range = [result rangeOfString:kSearchErrorTooFast];
+            if (range.location != NSNotFound) {
+                handler(NO, kSearchErrorTooFast);
+                return;
+            }
+            
+            CCFSearchPage * page = [_praser parseSearchPageFromHtml:result];
+            
+            if (page != nil && page.dataList != nil && page.dataList.count > 0) {
+                handler(YES, page);
+            } else{
+                handler(NO, @"未知错误");
+            }
+        } else{
+            handler(NO, result);
+        }
     }];
 }
 @end

@@ -10,6 +10,7 @@
 #import "LoginCCFUser.h"
 #import "CCFPage.h"
 #import "CCFSearchThread.h"
+#import "CCFSearchPage.h"
 
 typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 
@@ -83,4 +84,6 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void) forumDisplayWithId:(NSString *) formId andPage:(int)page handler:(HandlerWithBool)handler;
 
 -(void) getAvatarWithUserId:(NSString*)userId handler:(HandlerWithBool)handler;
+
+-(void) listSearchResultWithUrl:(NSString *) url andPage:(int) page handler:(HandlerWithBool)handler;
 @end

@@ -10,55 +10,65 @@
 #import "CCFBrowser.h"
 #import "CCFSearchThread.h"
 #import "CCFApi.h"
-
+#import "CCFSearchPage.h"
 #import "CCFSearchResultCell.h"
 
 
 @interface CCFSearchViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>{
-    NSMutableArray<CCFSearchThread *> * searchResult;
-    int currentPage;
-    int maxPage;
-    CCFBrowser * browser;
-    CCFApi * _api;
+    NSString * redirectUrl;
 }
 
 @end
 
 @implementation CCFSearchViewController
 
-
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    [self initData];
-    browser = [[CCFBrowser alloc]init];
-    _api = [[CCFApi alloc] init];
-    
+-(void)viewDidLoad{
     self.searchBar.delegate = self;
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    
-
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self onLoadMore];
+    }];
 }
 
--(void) initData{
-    searchResult = [NSMutableArray array];
-    currentPage = 0;
-    maxPage = 0;
+-(void)onLoadMore{
+
+    if (redirectUrl == nil) {
+        [self.tableView.mj_footer endRefreshing];
+        return;
+    }
+    [self.ccfApi listSearchResultWithUrl:redirectUrl andPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFSearchPage* message) {
+        [self.tableView.mj_footer endRefreshing];
+        
+        if (isSuccess) {
+
+            self.currentPage++;
+            self.totalPage = (int)message.totalPageCount;
+            
+            if (self.currentPage >= self.totalPage) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+            
+            [self.dataList addObjectsFromArray:message.dataList];
+            [self.tableView reloadData];
+        } else{
+            NSLog(@"searchBarSearchButtonClicked   ERROR %@", message);
+        }
+    }];
+    
 }
 
 #pragma mark UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    
-    NSLog(@"searchBarSearchButtonClicked");
-    [_api searchWithKeyWord:searchBar.text handler:^(BOOL isSuccess, id message) {
+
+    [self.ccfApi searchWithKeyWord:searchBar.text handler:^(BOOL isSuccess, CCFSearchPage* message) {
         if (isSuccess) {
-            CCFPage* result = message;
-            [searchResult removeAllObjects ];
-            [searchResult addObjectsFromArray:result.dataList];
+            redirectUrl = message.redirectUrl;
+            
+            self.currentPage = (int)message.currentPage;
+            self.totalPage = (int)message.totalPageCount;
+            
+            [self.dataList removeAllObjects ];
+            [self.dataList addObjectsFromArray:message.dataList];
             [self.tableView reloadData];
         } else{
             NSLog(@"searchBarSearchButtonClicked   ERROR %@", message);
@@ -70,9 +80,6 @@
 
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
     NSLog(@"searchBarShouldBeginEditing");
-    
-
-    
     return YES;
 }
 
@@ -83,26 +90,24 @@
     static NSString *QuoteCellIdentifier = @"CCFSearchResultCell";
     
     CCFSearchResultCell *cell = (CCFSearchResultCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-    [cell setData:searchResult[indexPath.row]];
+    [cell setData:self.dataList[indexPath.row]];
     
     
     return cell;
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return 1;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    return searchResult.count;
-}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 150;
+    return [tableView fd_heightForCellWithIdentifier:@"CCFSearchResultCell" configuration:^(CCFSearchResultCell *cell) {
+        [self configureCell:cell atIndexPath:indexPath];
+    }];
 }
 
+- (void)configureCell:(CCFSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
+    
+    [cell setData:self.dataList[indexPath.row]];
+}
 
 
 - (IBAction)back:(id)sender {

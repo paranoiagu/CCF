@@ -227,6 +227,12 @@
     }];
 }
 
+-(void)listSearchResultWithUrl:(NSString *)url andPage:(int)page handler:(Handler)handler{
+    NSString * searchedUrl = [NSString stringWithFormat:@"https://bbs.et8.net%@&pp=30&page=%d", url, page];
+    [_browser GETWithURLString:searchedUrl requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess,html);
+    }];
+}
 
 -(void)searchWithKeyWord:(NSString *)keyWord searchDone:(Handler)callback{
 
@@ -255,8 +261,7 @@
     [parameters setValue:@"1" forKey:@"childforums"];
     [parameters setValue:@"1" forKey:@"saveprefs"];
     
-    [_browser GETWithURL:searchUrl requestCallback:^(BOOL isSuccess, NSString *html) {
-        
+    [_browser GETWithURLString:@"https://bbs.et8.net/bbs/search.php" requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             NSString * token = [parser parseSecurityToken:html];
             if (token != nil) {
@@ -279,7 +284,6 @@
         } else{
             callback(NO,html);
         }
-        
     }];
     
 }

@@ -14,6 +14,7 @@
 #import "CCFPage.h"
 #import "CCFShowThreadPage.h"
 #import "CCFForm.h"
+#import "CCFSearchPage.h"
 
 
 @interface CCFParser : NSObject
@@ -32,7 +33,7 @@
 
 - (NSString *) parseLoginErrorMessage:(NSString *)html;
 
-- (CCFPage *) parseSearchPageFromHtml:( NSString*) html;
+- (CCFSearchPage *) parseSearchPageFromHtml:( NSString*) html;
 
 - (NSMutableArray<CCFForm *> *) parseFavFormFormHtml:(NSString *)html;
 

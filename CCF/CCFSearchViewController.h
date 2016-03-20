@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CCFApiBaseTableViewController.h"
 
-@interface CCFSearchViewController : UITableViewController
+@interface CCFSearchViewController : CCFApiBaseTableViewController
 
 
 

@@ -83,4 +83,6 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 -(void)fetchUserWithUserId:(NSString *)userId handler:(Handler)handler;
 
+-(void) listSearchResultWithUrl:(NSString *) url andPage:(int) page handler:(Handler)handler;
+
 @end

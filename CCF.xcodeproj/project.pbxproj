@@ -11,6 +11,7 @@
 		3A0A99801C4A6A4E00086DAB /* RoundCornerUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A997F1C4A6A4E00086DAB /* RoundCornerUIView.m */; };
 		3A0A99831C4A71B600086DAB /* CCFSeniorNewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */; };
 		3A187B361C40B4EE003DA5C2 /* AlertProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A187B351C40B4EE003DA5C2 /* AlertProgressViewController.m */; };
+		3A1C2CCE1C9E3D4E0068AF6B /* CCFSearchPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C2CCD1C9E3D4E0068AF6B /* CCFSearchPage.m */; };
 		3A1CF86F1C54F88C002E52EE /* LeftDrawerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */; };
 		3A1CF8761C54F8AB002E52EE /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF8711C54F8AB002E52EE /* CommonUtils.m */; };
 		3A1CF8771C54F8AB002E52EE /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF8731C54F8AB002E52EE /* UIImage+Tint.m */; };
@@ -118,6 +119,8 @@
 		3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSeniorNewPostViewController.m; sourceTree = "<group>"; };
 		3A187B341C40B4EE003DA5C2 /* AlertProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertProgressViewController.h; sourceTree = "<group>"; };
 		3A187B351C40B4EE003DA5C2 /* AlertProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertProgressViewController.m; sourceTree = "<group>"; };
+		3A1C2CCC1C9E3D4E0068AF6B /* CCFSearchPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSearchPage.h; sourceTree = "<group>"; };
+		3A1C2CCD1C9E3D4E0068AF6B /* CCFSearchPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSearchPage.m; sourceTree = "<group>"; };
 		3A1CF86D1C54F88C002E52EE /* LeftDrawerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftDrawerItem.h; sourceTree = "<group>"; };
 		3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftDrawerItem.m; sourceTree = "<group>"; };
 		3A1CF8701C54F8AB002E52EE /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
@@ -696,6 +699,8 @@
 			children = (
 				4D796BDC1C43675100B3C62D /* CCFSearchThread.h */,
 				4D796BDD1C43675100B3C62D /* CCFSearchThread.m */,
+				3A1C2CCC1C9E3D4E0068AF6B /* CCFSearchPage.h */,
+				3A1C2CCD1C9E3D4E0068AF6B /* CCFSearchPage.m */,
 			);
 			name = "Thread-Search";
 			sourceTree = "<group>";
@@ -900,6 +905,7 @@
 				3A1CF86F1C54F88C002E52EE /* LeftDrawerItem.m in Sources */,
 				4D796BC21C3DF93D00B3C62D /* NSDate+WCPullRefresh.m in Sources */,
 				4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */,
+				3A1C2CCE1C9E3D4E0068AF6B /* CCFSearchPage.m in Sources */,
 				4D796BD81C43576700B3C62D /* CCFSearchViewController.m in Sources */,
 				4D796BF61C44BBA000B3C62D /* FormEntry+CoreDataProperties.m in Sources */,
 				3AB3F5351C535B3200B7FA98 /* CCFFavFormControllerCell.m in Sources */,

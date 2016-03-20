@@ -18,6 +18,7 @@
 #import "CCFForm.h"
 #import "PrivateMessage.h"
 #import "CCFSimpleThread.h"
+#import "CCFSearchPage.h"
 
 
 @implementation CCFParser
@@ -413,7 +414,7 @@
 }
 
 
--(CCFPage*)parseSearchPageFromHtml:(NSString *)html{
+-(CCFSearchPage*)parseSearchPageFromHtml:(NSString *)html{
     
     
     
@@ -427,7 +428,7 @@
     }
     
     
-    CCFPage * resultPage = [[CCFPage alloc]init];
+    CCFSearchPage * resultPage = [[CCFSearchPage alloc]init];
 
     IGXMLNode * postTotalCountNode = [document queryWithXPath:@"//*[@id='threadslist']/tr[1]/td/span[1]"].firstObject;
 
@@ -473,7 +474,7 @@
         }
     }
     
-    
+    resultPage.redirectUrl = [self parseListMyThreadRedirectUrl: html];
     resultPage.dataList = post;
     
     return resultPage;

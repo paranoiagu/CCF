@@ -15,6 +15,7 @@
 #import "CCFShowThreadPage.h"
 #import "CCFForm.h"
 #import "CCFSearchPage.h"
+#import "CCFUserProfile.h"
 
 
 @interface CCFParser : NSObject
@@ -50,5 +51,7 @@
 - (NSString *) parseUserAvatar:(NSString *)html userId:(NSString*) userId;
 
 - (NSString *) parseListMyThreadRedirectUrl:(NSString *)html;
+
+- (CCFUserProfile *) parserProfile:(NSString*)html userId:(NSString*)userId;
 
 @end

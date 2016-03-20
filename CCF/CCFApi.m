@@ -308,7 +308,7 @@
 }
 
 -(void)getAvatarWithUserId:(NSString *)userId handler:(HandlerWithBool)handler{
-    [_browser fetchUserWithUserId:userId handler:^(BOOL isSuccess, NSString* result) {
+    [_browser showProfileWithUserId:userId handler:^(BOOL isSuccess, NSString* result) {
         NSString * avatar = [_praser parseUserAvatar:result userId:userId];
         handler(isSuccess, avatar);
     }];
@@ -339,6 +339,17 @@
             }
         } else{
             handler(NO, result);
+        }
+    }];
+}
+
+-(void)showProfileWithUserId:(NSString *)userId handler:(HandlerWithBool)handler{
+    [_browser showProfileWithUserId:userId handler:^(BOOL isSuccess, id result) {
+        if (isSuccess) {
+            CCFUserProfile * profile = [_praser parserProfile:result userId:userId];
+            handler(YES, profile);
+        } else{
+            handler(NO, @"未知错误");
         }
     }];
 }

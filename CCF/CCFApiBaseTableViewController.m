@@ -8,7 +8,11 @@
 
 #import "CCFApiBaseTableViewController.h"
 
-@interface CCFApiBaseTableViewController ()
+@interface CCFApiBaseTableViewController (){
+    BOOL disablePullrefresh;
+    
+    BOOL disableLoadMore;
+}
 
 @end
 
@@ -18,19 +22,22 @@
     [super viewDidLoad];
     
     
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self onPullRefresh];
-    }];
+    if ([self setPullRefresh:YES]) {
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [self onPullRefresh];
+        }];
+        
+        [self.tableView.mj_header beginRefreshing];
+    }
+
     
-    [self.tableView.mj_header beginRefreshing];
-    
-    
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [self onLoadMore];
-    }];
-    
-//    self.tableView.contentInset = UIEdgeInsetsMake(-44, 0, 0, 0);
-//    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(-44, 0, 0, 0);
+    if ([self setLoadMore:YES]) {
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            [self onLoadMore];
+        }];
+    }
+
+
 }
 
 -(void)onPullRefresh{
@@ -39,6 +46,14 @@
 
 -(void)onLoadMore{
     
+}
+
+-(BOOL)setPullRefresh:(BOOL)enable{
+    return YES;
+}
+
+-(BOOL)setLoadMore:(BOOL)enable{
+    return YES;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

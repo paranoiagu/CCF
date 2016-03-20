@@ -11,6 +11,7 @@
 #import "CCFPage.h"
 #import "CCFSearchThread.h"
 #import "CCFSearchPage.h"
+#import "CCFUserProfile.h"
 
 typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 
@@ -86,4 +87,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void) getAvatarWithUserId:(NSString*)userId handler:(HandlerWithBool)handler;
 
 -(void) listSearchResultWithUrl:(NSString *) url andPage:(int) page handler:(HandlerWithBool)handler;
+
+// 显示用户信息页面
+-(void) showProfileWithUserId:(NSString*)userId handler:(HandlerWithBool) handler;
 @end

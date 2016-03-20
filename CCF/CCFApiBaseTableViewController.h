@@ -26,4 +26,8 @@
 
 -(void)onLoadMore;
 
+-(BOOL)setPullRefresh:(BOOL) enable;
+
+-(BOOL)setLoadMore:(BOOL) enable;
+
 @end

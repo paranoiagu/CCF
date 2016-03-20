@@ -91,8 +91,11 @@
 //    }];
 
 
-    [api listMyAllThreadsWithPage:1 handler:^(BOOL isSuccess, id message) {
-        NSLog(@"listMyAllThreadWithPage ---- %@", message);
+//    [api listMyAllThreadsWithPage:1 handler:^(BOOL isSuccess, id message) {
+//        NSLog(@"listMyAllThreadWithPage ---- %@", message);
+//    }];
+    [api showProfileWithUserId:@"71250" handler:^(BOOL isSuccess, id message) {
+        
     }];
 
 }

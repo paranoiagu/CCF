@@ -653,11 +653,43 @@
     
 }
 
+-(CCFUserProfile *)parserProfile:(NSString *)html userId:(NSString *)userId{
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
+    CCFUserProfile * profile = [[CCFUserProfile alloc] init];
+    // 用户名
+    NSString * userNameXPath = @"//*[@id='username_box']/h1/text()";
+    profile.profileName = [[self queryText:document withXPath:userNameXPath] trim];
+    
+    // 用户等级
+    NSString * rankXPath = @"//*[@id='username_box']/h2";
+    profile.profileRank = [self queryText:document withXPath:rankXPath];
+    
+    // 注册日期
+    NSString * registerXPath = @"//*[@id='collapseobj_stats_mini']/div[1]/table/tr/td[1]/dl/dd[2]";
+    profile.profileRegisterDate = [self queryText:document withXPath:registerXPath];
+    
+    // 最近活动时间
+    NSString * lastLoginDayXPath = @"//*[@id='collapseobj_stats']/div/fieldset[2]/ul/li[1]/text()";
+    NSString * lastDay = [[self queryText:document withXPath:lastLoginDayXPath] trim];
+    
+    NSString * lastLoginTimeXPath = @"//*[@id='collapseobj_stats']/div/fieldset[2]/ul/li[1]/span[2]";
+    NSString * lastTime = [[self queryText:document withXPath:lastLoginTimeXPath] trim];
+    profile.profileRecentLoginDate = [NSString stringWithFormat:@"%@ %@", lastDay, lastTime];
+    
+    // 帖子总数
+    NSString * postCountXPath = @"//*[@id='collapseobj_stats_mini']/div[1]/table/tr/td[1]/dl/dd[3]";
+    NSString * postCount = [self queryText:document withXPath:postCountXPath];
+    profile.profileTotalPostCount = postCount;
+    
+    return profile;
+}
 
 
-
-
-
+-(NSString *)queryText:(IGHTMLDocument*)document withXPath:(NSString*)xpath{
+    IGXMLNodeSet * nodeSet = [document queryWithXPath:xpath];
+    NSString * text = [nodeSet.firstObject text];
+    return text;
+}
 
 
 

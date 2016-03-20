@@ -56,18 +56,17 @@
 
             
             NSString *titleAndCategory = [self parseTitle: titleInnerHtml];
-            //分离出Title 和 Category
-            NSString * type = [titleAndCategory stringWithRegular:@"【.{1,4}】"];
-            NSString * category = [type substringWithRange:NSMakeRange(1, type.length - 2)];
-            ccfthreadlist.threadCategory = type == nil ? @"讨论" : category;
-
-            
             IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:titleAndCategory error:nil];
+            
+            NSString * titleText = [titleTemp text];
+            
+            //分离出Title 和 Category
+            ccfthreadlist.threadCategory = [self spliteCategory:titleText];
+            
+            ccfthreadlist.threadTitle = [self spliteTitle:titleText];
             
             //[@"showthread.php?t=" length]    17的由来
             ccfthreadlist.threadID = [[titleTemp attribute:@"href"] substringFromIndex: 17];
-            ccfthreadlist.threadTitle = type == nil ? [titleTemp text] : [[titleTemp text] substringFromIndex:type.length];;
-            
             
             IGXMLNode * authorNode = threadListNode.children [3];
 
@@ -365,11 +364,9 @@
 
             NSString *titleAndCategory = [self parseTitle: titleInnerHtml];
             //分离出Title 和 Category
-            NSString * type = [titleAndCategory stringWithRegular:@"【.{1,4}】"];
-            ccfthreadlist.threadTitle = type == nil ? titleAndCategory : [titleAndCategory substringFromIndex:type.length];
-            ccfthreadlist.threadCategory = type == nil ? @"【讨论】" : type;
-            
-            
+            ccfthreadlist.threadTitle = [self spliteTitle:titleAndCategory];
+            ccfthreadlist.threadCategory = [self spliteCategory:titleAndCategory];
+
             IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:titleAndCategory error:nil];
             
             //[@"showthread.php?t=" length]    17的由来
@@ -415,12 +412,7 @@
 
 
 -(CCFSearchPage*)parseSearchPageFromHtml:(NSString *)html{
-    
-    
-    
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
-    
-    
     IGXMLNodeSet * searchNodeSet = [document queryWithXPath:@"//*[@id='threadslist']/tr[*]"];
     
     if (searchNodeSet == nil || searchNodeSet.count == 0) {
@@ -433,10 +425,11 @@
     IGXMLNode * postTotalCountNode = [document queryWithXPath:@"//*[@id='threadslist']/tr[1]/td/span[1]"].firstObject;
 
     NSString * postTotalCount = [postTotalCountNode.text stringWithRegular:@"共计 \\d+ 条" andChild:@"\\d+"];
+    // 1. 结果总条数
     resultPage.totalPageCount = [postTotalCount integerValue];
     
     IGXMLNode * pageNode = [document queryWithXPath:@"/html/body/div[2]/div/div/table[3]/tr/td/div/table/tr/td[1]"].firstObject;
-    //    第 1 页，共 67 页
+    // 2. 当前页数 和 总页数
     if (pageNode == nil) {
         resultPage.currentPage = 1;
         resultPage.totalPageCount = 1;
@@ -449,7 +442,6 @@
     
     for (IGXMLNode *node in searchNodeSet) {
         
-        
         if (node.children.count == 9) {
             // 9个节点是正确的输出结果
             CCFSearchThread * result = [[CCFSearchThread alloc]init];
@@ -460,12 +452,16 @@
             
             NSString * postTitle = [[[node.children[2] text] trim] componentsSeparatedByString:@"\n"].firstObject;
             NSString * postAuthor = [node.children[3] text];
+            NSString * postAuthorId = [[node.children[3] html] stringWithRegular:@"=\\d+" andChild:@"\\d+"];
             NSString * postTime = [node.children[4] text];
             NSString * postBelongForm = [node.children[8] text];
+            
+            result.threadCategory = [self spliteCategory:postTitle];
             
             result.threadID = postId;
             result.threadTitle = [postTitle trim];
             result.threadAuthorName = postAuthor;
+            result.threadAuthorID = postAuthorId;
             result.lastPostTime = [postTime trim];
             result.fromFormName = postBelongForm;
             
@@ -480,7 +476,16 @@
     return resultPage;
 }
 
+-(NSString *) spliteCategory:(NSString*)fullTitle{
+    NSString * type = [fullTitle stringWithRegular:@"【.{1,4}】"];
+    NSString * category = [type substringWithRange:NSMakeRange(1, type.length - 2)];
+    return type == nil ? @"讨论" : category;
+}
 
+-(NSString *) spliteTitle:(NSString*)fullTitle{
+    NSString * type = [fullTitle stringWithRegular:@"【.{1,4}】"];
+    return type == nil ? fullTitle : [fullTitle substringFromIndex:type.length];
+}
 
 -(NSMutableArray<CCFForm *> *)parseFavFormFormHtml:(NSString *)html{
     

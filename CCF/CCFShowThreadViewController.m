@@ -206,7 +206,9 @@
     NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
     if (nsheight == nil) {
         [cellHeightDictionary setObject:[NSNumber numberWithFloat:height] forKey:indexPath];
-        [self.tableView reloadData];
+//        [self.tableView reloadData];
+        NSIndexPath *indexPathReload=[NSIndexPath indexPathForRow:indexPath.row inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPathReload,nil] withRowAnimation:UITableViewRowAnimationNone];
     }
 
 }

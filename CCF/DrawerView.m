@@ -25,6 +25,7 @@
 #import "CCFShowNewThreadPostTableViewController.h"
 #import "CCFShowTodayNewThreadPostTableViewController.h"
 #import "CCFFavThreadPostTableViewController.h"
+#import "CCFMyProfileUITableViewController.h"
 #import "LeftDrawerItem.h"
 
 #import "CCFApi.h"
@@ -405,6 +406,19 @@
         CCFShowTodayNewThreadPostTableViewController * todayNewThreadPostController = [storyboard instantiateViewControllerWithIdentifier:@"CCFShowTodayNewThreadPostTableViewController"];
         [controller setRootViewController:todayNewThreadPostController];
     }
+}
+
+- (IBAction)showMyProfile:(id)sender {
+    
+    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+        [self closeLeftDrawer];
+        
+        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        CCFMyProfileUITableViewController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileUITableViewController"];
+        [controller setRootViewController:myProfileControllder];
+    }
+    
 }
 // 切换Controller结束
 

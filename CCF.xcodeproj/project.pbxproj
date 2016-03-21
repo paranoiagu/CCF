@@ -34,6 +34,7 @@
 		3A690A481C3792D00076C8F1 /* CCFThreadDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A690A471C3792D00076C8F1 /* CCFThreadDetailCell.xib */; };
 		3A7569AD1C42B179000486F4 /* CCFFavFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7569AC1C42B179000486F4 /* CCFFavFormController.m */; };
 		3A842CA11C469AC1002944A9 /* CCFNewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */; };
+		3A92E7F71CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */; };
 		3A93298D1C39648900A26249 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A93298C1C39648900A26249 /* CoreText.framework */; };
 		3A9ADC691C9D8BD4006055A8 /* UISquareRoundCornerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ADC681C9D8BD4006055A8 /* UISquareRoundCornerImageView.m */; };
 		3A9ADC6C1C9D8F2C006055A8 /* BaseCCFTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ADC6B1C9D8F2C006055A8 /* BaseCCFTableViewCell.m */; };
@@ -162,6 +163,8 @@
 		3A7569AC1C42B179000486F4 /* CCFFavFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFavFormController.m; sourceTree = "<group>"; };
 		3A842C9F1C469AC1002944A9 /* CCFNewThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFNewThreadViewController.h; sourceTree = "<group>"; };
 		3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFNewThreadViewController.m; sourceTree = "<group>"; };
+		3A92E7F51CA0386C000FD0B2 /* CCFMyProfileUITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFMyProfileUITableViewController.h; sourceTree = "<group>"; };
+		3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFMyProfileUITableViewController.m; sourceTree = "<group>"; };
 		3A93298C1C39648900A26249 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		3A9ADC671C9D8BD4006055A8 /* UISquareRoundCornerImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISquareRoundCornerImageView.h; sourceTree = "<group>"; };
 		3A9ADC681C9D8BD4006055A8 /* UISquareRoundCornerImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISquareRoundCornerImageView.m; sourceTree = "<group>"; };
@@ -440,6 +443,8 @@
 				3A27EA321C9424EB004D30EB /* CCFFavThreadPostTableViewController.m */,
 				3A1C2CCF1C9E9B740068AF6B /* CCFProfileTableViewController.h */,
 				3A1C2CD01C9E9B740068AF6B /* CCFProfileTableViewController.m */,
+				3A92E7F51CA0386C000FD0B2 /* CCFMyProfileUITableViewController.h */,
+				3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */,
 				3A2FCC781C9558F100B469E4 /* CCFApiBaseTableViewController.h */,
 				3A2FCC791C9558F100B469E4 /* CCFApiBaseTableViewController.m */,
 				3A1C2CD81C9EE6150068AF6B /* TransValueDelegate.h */,
@@ -917,6 +922,7 @@
 				4D6B11C81C9A536600E073A1 /* CCFSimpleThread.m in Sources */,
 				3A187B361C40B4EE003DA5C2 /* AlertProgressViewController.m in Sources */,
 				3AA2D50A1C36103C00F312CC /* CCFThreadViewCell.m in Sources */,
+				3A92E7F71CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m in Sources */,
 				3A6736C31C400EAA008D51EC /* CCFToolbar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

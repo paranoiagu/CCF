@@ -118,6 +118,16 @@
                         <action selector="showFavThread:" destination="-1" eventType="touchUpInside" id="vJ5-4X-jxj"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SC-OU-YuA">
+                    <rect key="frame" x="93" y="45" width="95" height="95"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="95" id="UqX-f1-GvA"/>
+                        <constraint firstAttribute="width" secondItem="7SC-OU-YuA" secondAttribute="height" multiplier="1:1" id="ZiV-Pw-3jG"/>
+                    </constraints>
+                    <connections>
+                        <action selector="showMyProfile:" destination="-1" eventType="touchUpInside" id="PFV-pR-2f2"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -142,7 +152,9 @@
                 <constraint firstItem="8QK-XE-rwX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="175" id="aow-G5-vuq"/>
                 <constraint firstAttribute="trailing" secondItem="4GR-Q0-M8U" secondAttribute="trailing" id="e2w-uH-tqW"/>
                 <constraint firstItem="4GR-Q0-M8U" firstAttribute="top" secondItem="5Dj-gl-lyY" secondAttribute="bottom" id="f9k-xw-x8T"/>
+                <constraint firstItem="7SC-OU-YuA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hln-Sh-HKD"/>
                 <constraint firstItem="5Dj-gl-lyY" firstAttribute="top" secondItem="opA-uL-w8P" secondAttribute="bottom" id="mFo-M6-qMC"/>
+                <constraint firstItem="7SC-OU-YuA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="45" id="oqw-0b-NH8"/>
                 <constraint firstAttribute="trailing" secondItem="opA-uL-w8P" secondAttribute="trailing" id="pdR-kY-lF3"/>
                 <constraint firstItem="EMP-9K-WJf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="45" id="rvq-Zx-eQF"/>
                 <constraint firstItem="EMP-9K-WJf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="um7-hG-j4u"/>

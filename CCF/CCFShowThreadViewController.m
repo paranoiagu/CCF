@@ -46,8 +46,6 @@
     [super viewDidLoad];
     
     
-//    self.tableView.rowHeight = UITableViewAutomaticDimension;
-//    self.tableView.estimatedRowHeight = 180.0;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     field = [[CCFUITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
@@ -92,26 +90,73 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    currentPage = 1;
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        NSString * pageStr = [NSString stringWithFormat:@"%d", currentPage];
+        [ccfapi showThreadWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+            [self.tableView.mj_header endRefreshing];
+            
+            if (isSuccess) {
+                currentPage ++;
+                totalPage = (int)thread.totalPageCount;
+                
+                if (currentPage >= totalPage) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }
+                
+                
+                NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
+                
+                
+                if (self.posts == nil) {
+                    self.posts = [NSMutableArray array];
+                }
+                
+                [self.posts removeAllObjects];
+                [self.posts addObjectsFromArray:parsedPosts];
+                [self.tableView reloadData];
+            }
+            
+        }];
+    }];
+    
+    
     self.tableView.mj_footer = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
-        int page = currentPage +1;
-        [self browserThreadPosts:page];
+        
+        NSString * pageStr = [NSString stringWithFormat:@"%d", currentPage + 1];
+        
+        [ccfapi showThreadWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+            
+            [self.tableView.mj_footer endRefreshing];
+            
+            if (isSuccess) {
+                currentPage ++;
+                totalPage = (int)thread.totalPageCount;
+                
+                if (currentPage >= totalPage) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }
+                NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
+                
+                if (self.posts == nil) {
+                    self.posts = [NSMutableArray array];
+                }
+                
+                [self.posts addObjectsFromArray:parsedPosts];
+                [self.tableView reloadData];
+            }
+            
+        }];
         
     }];
 
-//    self.pullRefresh = [[WCPullRefreshControl alloc] initWithScrollview:self.tableView Action:^{
-//        [self browserThreadPosts:1];
-//    }];
-//    
-//    [self.pullRefresh startPullRefresh];
     
-    [self browserThreadPosts:1];
+    
+    [self.tableView.mj_header beginRefreshing];
     
 }
-
-
-
-
-
 
 
 -(void)textViewDidChange:(UITextView *)textView{
@@ -136,39 +181,6 @@
         UIEdgeInsets insets = item.imageInsets;
         insets.bottom = - CGRectGetHeight(_floatToolbar.frame) + 44;
         item.imageInsets = insets;
-    }
-    
-}
-
--(void) browserThreadPosts:(int)page{
-    if (totalPage == 0 || currentPage < totalPage) {
-    
-        NSString * pageStr = [NSString stringWithFormat:@"%d", page];
-        
-        
-        [ccfapi showThreadWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
-            totalPage = (int)thread.totalPageCount;
-            
-            NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
-            
-            
-            if (self.posts == nil) {
-                self.posts = [NSMutableArray array];
-            }
-            
-            [self.posts addObjectsFromArray:parsedPosts];
-            
-            currentPage = page;
-            
-            if (currentPage < totalPage) {
-                [self.tableView.mj_footer endRefreshing];
-            } else{
-                [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                
-            }
-            
-            [self.tableView reloadData];
-        }];
     }
     
 }

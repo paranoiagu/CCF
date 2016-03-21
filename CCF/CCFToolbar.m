@@ -34,7 +34,7 @@
     [UIView setAnimationDuration:0.3];
     // 将toolBar的位置放到键盘上方
     CGRect frame = self.frame;
-    frame.origin.y = CGRectGetHeight(screenSize) - CGRectGetHeight(keyboardFrame) - CGRectGetHeight(self.frame) ;
+    frame.origin.y = CGRectGetHeight(screenSize) - CGRectGetHeight(keyboardFrame) - CGRectGetHeight(self.frame) - 64 ;
     self.frame = frame;
     
     [UIView commitAnimations];
@@ -51,7 +51,10 @@
     [UIView setAnimationDuration:0.3];
     
     CGRect frame = self.frame;
-    frame.origin.y += CGRectGetHeight(keyboardFrame);
+    float screenHeight = CGRectGetHeight(screenSize);
+    float toolbarHeight = CGRectGetHeight(self.frame);
+    frame.origin.y = screenHeight - toolbarHeight - 64;
+    
     self.frame = frame;
 
     

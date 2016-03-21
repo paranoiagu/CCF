@@ -12,7 +12,6 @@
 #import "CCFParser.h"
 
 #import "MJRefresh.h"
-#import "WCPullRefreshControl.h"
 #import "CCFUITextView.h"
 
 #import "CCFShowThreadPage.h"
@@ -33,9 +32,6 @@
     CCFUITextView * field;
     CCFApi *_api;
 }
-
-
-@property (strong,nonatomic)WCPullRefreshControl * pullRefresh;
 
 @end
 

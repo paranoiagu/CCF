@@ -75,13 +75,6 @@
 		4D6B11CB1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6B11CA1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m */; };
 		4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796B5F1C3BC17800B3C62D /* DrawerView.m */; };
 		4D796B681C3BDCA800B3C62D /* DrawerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D796B671C3BDCA800B3C62D /* DrawerView.xib */; };
-		4D796BC11C3DF93D00B3C62D /* CAShapeLayer+WCPullRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BB61C3DF93D00B3C62D /* CAShapeLayer+WCPullRefresh.m */; };
-		4D796BC21C3DF93D00B3C62D /* NSDate+WCPullRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BB81C3DF93D00B3C62D /* NSDate+WCPullRefresh.m */; };
-		4D796BC31C3DF93D00B3C62D /* WCMagicSquareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BBA1C3DF93D00B3C62D /* WCMagicSquareView.m */; };
-		4D796BC41C3DF93D00B3C62D /* WCProgressItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BBC1C3DF93D00B3C62D /* WCProgressItem.m */; };
-		4D796BC51C3DF93D00B3C62D /* WCPullRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BBE1C3DF93D00B3C62D /* WCPullRefreshControl.m */; };
-		4D796BC61C3DF93D00B3C62D /* WCRefreshingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BC01C3DF93D00B3C62D /* WCRefreshingItem.m */; };
-		4D796BC91C3DFA6400B3C62D /* WCGraintCircleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BC81C3DFA6400B3C62D /* WCGraintCircleLayer.m */; };
 		4D796BCD1C3E4BDD00B3C62D /* CCFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BCC1C3E4BDD00B3C62D /* CCFUtils.m */; };
 		4D796BD21C3FC8ED00B3C62D /* CCFUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BD11C3FC8ED00B3C62D /* CCFUITextView.m */; };
 		4D796BD81C43576700B3C62D /* CCFSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BD71C43576700B3C62D /* CCFSearchViewController.m */; };
@@ -244,20 +237,6 @@
 		4D796B5F1C3BC17800B3C62D /* DrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerView.m; sourceTree = "<group>"; };
 		4D796B601C3BC17800B3C62D /* DrawerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewDelegate.h; sourceTree = "<group>"; };
 		4D796B671C3BDCA800B3C62D /* DrawerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawerView.xib; sourceTree = "<group>"; };
-		4D796BB51C3DF93D00B3C62D /* CAShapeLayer+WCPullRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAShapeLayer+WCPullRefresh.h"; sourceTree = "<group>"; };
-		4D796BB61C3DF93D00B3C62D /* CAShapeLayer+WCPullRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAShapeLayer+WCPullRefresh.m"; sourceTree = "<group>"; };
-		4D796BB71C3DF93D00B3C62D /* NSDate+WCPullRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+WCPullRefresh.h"; sourceTree = "<group>"; };
-		4D796BB81C3DF93D00B3C62D /* NSDate+WCPullRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+WCPullRefresh.m"; sourceTree = "<group>"; };
-		4D796BB91C3DF93D00B3C62D /* WCMagicSquareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCMagicSquareView.h; sourceTree = "<group>"; };
-		4D796BBA1C3DF93D00B3C62D /* WCMagicSquareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCMagicSquareView.m; sourceTree = "<group>"; };
-		4D796BBB1C3DF93D00B3C62D /* WCProgressItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCProgressItem.h; sourceTree = "<group>"; };
-		4D796BBC1C3DF93D00B3C62D /* WCProgressItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCProgressItem.m; sourceTree = "<group>"; };
-		4D796BBD1C3DF93D00B3C62D /* WCPullRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCPullRefreshControl.h; sourceTree = "<group>"; };
-		4D796BBE1C3DF93D00B3C62D /* WCPullRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCPullRefreshControl.m; sourceTree = "<group>"; };
-		4D796BBF1C3DF93D00B3C62D /* WCRefreshingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCRefreshingItem.h; sourceTree = "<group>"; };
-		4D796BC01C3DF93D00B3C62D /* WCRefreshingItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCRefreshingItem.m; sourceTree = "<group>"; };
-		4D796BC71C3DFA6400B3C62D /* WCGraintCircleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCGraintCircleLayer.h; sourceTree = "<group>"; };
-		4D796BC81C3DFA6400B3C62D /* WCGraintCircleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCGraintCircleLayer.m; sourceTree = "<group>"; };
 		4D796BCB1C3E4BDD00B3C62D /* CCFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUtils.h; sourceTree = "<group>"; };
 		4D796BCC1C3E4BDD00B3C62D /* CCFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUtils.m; sourceTree = "<group>"; };
 		4D796BD01C3FC8ED00B3C62D /* CCFUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUITextView.h; sourceTree = "<group>"; };
@@ -592,32 +571,10 @@
 		4D796BB31C3DF88F00B3C62D /* Addons */ = {
 			isa = PBXGroup;
 			children = (
-				4D796BB41C3DF89D00B3C62D /* PullRefresh */,
 				4DEB34C41C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.h */,
 				4DEB34C51C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m */,
 			);
 			name = Addons;
-			sourceTree = "<group>";
-		};
-		4D796BB41C3DF89D00B3C62D /* PullRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				4D796BC71C3DFA6400B3C62D /* WCGraintCircleLayer.h */,
-				4D796BC81C3DFA6400B3C62D /* WCGraintCircleLayer.m */,
-				4D796BB51C3DF93D00B3C62D /* CAShapeLayer+WCPullRefresh.h */,
-				4D796BB61C3DF93D00B3C62D /* CAShapeLayer+WCPullRefresh.m */,
-				4D796BB71C3DF93D00B3C62D /* NSDate+WCPullRefresh.h */,
-				4D796BB81C3DF93D00B3C62D /* NSDate+WCPullRefresh.m */,
-				4D796BB91C3DF93D00B3C62D /* WCMagicSquareView.h */,
-				4D796BBA1C3DF93D00B3C62D /* WCMagicSquareView.m */,
-				4D796BBB1C3DF93D00B3C62D /* WCProgressItem.h */,
-				4D796BBC1C3DF93D00B3C62D /* WCProgressItem.m */,
-				4D796BBD1C3DF93D00B3C62D /* WCPullRefreshControl.h */,
-				4D796BBE1C3DF93D00B3C62D /* WCPullRefreshControl.m */,
-				4D796BBF1C3DF93D00B3C62D /* WCRefreshingItem.h */,
-				4D796BC01C3DF93D00B3C62D /* WCRefreshingItem.m */,
-			);
-			name = PullRefresh;
 			sourceTree = "<group>";
 		};
 		4D796BCA1C3E4BA700B3C62D /* Utils */ = {
@@ -886,13 +843,10 @@
 				3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */,
 				4D796BE41C437C5000B3C62D /* NSString+Regular.m in Sources */,
 				3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */,
-				4D796BC91C3DFA6400B3C62D /* WCGraintCircleLayer.m in Sources */,
 				3AA2D5061C36103C00F312CC /* CCFFormSectionInfo.m in Sources */,
 				3AF86A7F1C8329C40036AD61 /* PrivateMessage.m in Sources */,
 				3A9FEDE21C3438AC00F30885 /* NSString+Kit.m in Sources */,
 				4DF824BF1C34E9EF005BB858 /* CCFFormTreeJSONModel.m in Sources */,
-				4D796BC31C3DF93D00B3C62D /* WCMagicSquareView.m in Sources */,
-				4D796BC61C3DF93D00B3C62D /* WCRefreshingItem.m in Sources */,
 				3AF86A781C82EECE0036AD61 /* CCFApi.m in Sources */,
 				4D1EEBBB1C33D4FD0084F6E9 /* LoginViewController.m in Sources */,
 				3A2346331C8C6A6C009A2537 /* CCFMyThreadTableViewController.m in Sources */,
@@ -920,7 +874,6 @@
 				4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */,
 				3AEA1F371C365EA400710BD6 /* CCFShowThreadViewController.m in Sources */,
 				3A1CF86F1C54F88C002E52EE /* LeftDrawerItem.m in Sources */,
-				4D796BC21C3DF93D00B3C62D /* NSDate+WCPullRefresh.m in Sources */,
 				4D1EEBAE1C3251E70084F6E9 /* CCFPost.m in Sources */,
 				3A1C2CD11C9E9B740068AF6B /* CCFProfileTableViewController.m in Sources */,
 				3A1C2CCE1C9E3D4E0068AF6B /* CCFSearchPage.m in Sources */,
@@ -942,7 +895,6 @@
 				3AF86A741C82CAB50036AD61 /* LoginCCFUser.m in Sources */,
 				3A2FCC7E1C956DB100B469E4 /* PrivateMessageTableViewCell.m in Sources */,
 				4D1EEBAB1C32502A0084F6E9 /* CCFUser.m in Sources */,
-				4D796BC51C3DF93D00B3C62D /* WCPullRefreshControl.m in Sources */,
 				4D796BD21C3FC8ED00B3C62D /* CCFUITextView.m in Sources */,
 				3A1CF8781C54F8AB002E52EE /* UIColor+MyColor.m in Sources */,
 				4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */,
@@ -963,9 +915,7 @@
 				3A23462D1C8C5C73009A2537 /* CCFShowTodayNewThreadPostTableViewController.m in Sources */,
 				3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */,
 				4D6B11C81C9A536600E073A1 /* CCFSimpleThread.m in Sources */,
-				4D796BC11C3DF93D00B3C62D /* CAShapeLayer+WCPullRefresh.m in Sources */,
 				3A187B361C40B4EE003DA5C2 /* AlertProgressViewController.m in Sources */,
-				4D796BC41C3DF93D00B3C62D /* WCProgressItem.m in Sources */,
 				3AA2D50A1C36103C00F312CC /* CCFThreadViewCell.m in Sources */,
 				3A6736C31C400EAA008D51EC /* CCFToolbar.m in Sources */,
 			);

@@ -13,7 +13,6 @@
 #import "CCFThreadListCell.h"
 #import "CCFShowThreadViewController.h"
 #import "MJRefresh.h"
-#import "WCPullRefreshControl.h"
 #import "CCFNewThreadViewController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "CCFProfileTableViewController.h"

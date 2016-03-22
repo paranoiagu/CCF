@@ -180,9 +180,9 @@
 
 
 -(void)replyThreadWithId:(NSString *)threadId withMessage:(NSString *)message handler:(Handler)result{
-    //NSString * testMesage = @"\n:blush;\n\n\n\n\n\n\n\n\n\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?p=16695603\"]Test For CCF iPhone Client[/URL][/RIGHT]";
     
-    NSString * testMesage = @"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"][COLOR=\"Silver\"][I]SENDBY『CCF客户端』[/I][/COLOR][/URL][/RIGHT]";
+    
+    NSString * testMesage = @"\n发自 iPhone5s 使用 [URL=\"https://bbs.et8.net/bbs/showthread.php?t=1335973\"]CCF客户端[/URL]";
     
     NSString *test = [message stringByAppendingString:testMesage];
     

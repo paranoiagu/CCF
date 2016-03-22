@@ -176,12 +176,12 @@
     
     _floatToolbar.frame = rect;
     
-    NSArray<UIBarButtonItem*> * items  = _floatToolbar.items;
-    for (UIBarButtonItem * item in items) {
-        UIEdgeInsets insets = item.imageInsets;
-        insets.bottom = - CGRectGetHeight(_floatToolbar.frame) + 44;
-        item.imageInsets = insets;
-    }
+//    NSArray<UIBarButtonItem*> * items  = _floatToolbar.items;
+//    for (UIBarButtonItem * item in items) {
+//        UIEdgeInsets insets = item.imageInsets;
+//        insets.bottom = -_floatToolbar.frame.size.height / 2;
+//        item.imageInsets = insets;
+//    }
     
 }
 

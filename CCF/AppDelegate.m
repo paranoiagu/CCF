@@ -35,7 +35,11 @@
         return YES;
     }
     
+    //[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+
+
     CCFBrowser * browser = [[CCFBrowser alloc]init];
     LoginCCFUser * loginUser = [browser getCurrentCCFUser];
     

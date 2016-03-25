@@ -26,6 +26,15 @@
 
     
     [self.privateMessageTitle setText:data.pmTitle];
+    if (!data.isReaded) {
+        self.privateMessageTitle.font = [UIFont boldSystemFontOfSize:17.0];
+        self.privateMessageTitle.textColor = [UIColor blackColor];
+    } else{
+        self.privateMessageTitle.font = [UIFont fontWithName:@"Helvetica Neue" size:17.0];
+        self.privateMessageTitle.textColor = [UIColor grayColor];
+    }
+
+    
     [self.privateMessageAuthor setText:data.pmAuthor];
     [self.privateMessageTime setText:data.pmTime];
     [self showAvatar:self.privateMessageAuthorAvatar userId:data.pmAuthorId];

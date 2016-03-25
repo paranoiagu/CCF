@@ -97,7 +97,7 @@
             </objects>
             <point key="canvasLocation" x="-5318" y="1634"/>
         </scene>
-        <!--站内私信-->
+        <!--Private Message Table View Controller-->
         <scene sceneID="gWe-PG-MSc">
             <objects>
                 <tableViewController storyboardIdentifier="CCFPrivateMessageTableViewController" id="21g-L2-eCr" customClass="CCFPrivateMessageTableViewController" sceneMemberID="viewController">
@@ -165,13 +165,23 @@
                             <outlet property="delegate" destination="21g-L2-eCr" id="AEP-yF-nfJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="站内私信" id="Pwi-td-9IN">
+                    <navigationItem key="navigationItem" id="Pwi-td-9IN">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="ic_left_menu" id="CoU-jM-yef">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="showLeftDrawer:" destination="21g-L2-eCr" id="B3b-UQ-OoY"/>
                             </connections>
                         </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="h6s-Jp-9xf">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="收件箱"/>
+                                <segment title="发件箱"/>
+                            </segments>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" image="ic_mode_edit_18pt" id="IGF-H1-1Rt">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>

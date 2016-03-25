@@ -16,6 +16,7 @@
 #import "CCFForm.h"
 #import "CCFSearchPage.h"
 #import "CCFUserProfile.h"
+#import "CCFShowPM.h"
 
 
 @interface CCFParser : NSObject
@@ -40,7 +41,7 @@
 
 - (CCFPage*) parsePrivateMessageFormHtml:(NSString*) html;
 
-- (NSString *) parsePrivateMessageContent:(NSString*) html;
+- (CCFShowPM *) parsePrivateMessageContent:(NSString*) html;
 
 - (NSString *) parseQuickReplyQuoteContent:(NSString*) html;
 

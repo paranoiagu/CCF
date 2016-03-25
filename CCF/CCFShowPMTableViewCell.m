@@ -1,12 +1,12 @@
 //
-//  CCFThreadDetailCell.m
+//  CCFShowPMTableViewCell.m
 //  CCF
 //
-//  Created by 迪远 王 on 16/1/2.
+//  Created by 迪远 王 on 16/3/26.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFThreadDetailCell.h"
+#import "CCFShowPMTableViewCell.h"
 #import "CCFUrlBuilder.h"
 #import "CCFPost.h"
 #import <UIImageView+AFNetworking.h>
@@ -14,8 +14,7 @@
 #import "CCFCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
 
-
-@interface CCFThreadDetailCell (){
+@implementation CCFShowPMTableViewCell{
     NSURL *baseURL;
     
     // private
@@ -26,13 +25,6 @@
     
     BOOL _needsAdjustInsetsOnLayout;
 }
-@end
-
-
-@implementation CCFThreadDetailCell
-
-@synthesize lastActionLink;
-@synthesize baseURL;
 
 @synthesize htmlView = _htmlView;
 @synthesize username = _username;
@@ -41,7 +33,7 @@
 @synthesize avatarImage = _avatarImage;
 
 - (void)awakeFromNib {
-
+    
     self.htmlView.shouldDrawImages = NO;
     self.htmlView.shouldDrawLinks = NO;
     
@@ -56,22 +48,20 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
-
-- (void)setPost:(CCFPost *)newPost forIndexPath:(NSIndexPath *)indexPath{
+-(void)setData:(CCFShowPM *)privateMessage forIndexPath:(NSIndexPath *)indexPath{
     currentPath = indexPath;
     
-    NSString * html = newPost.postContent;
+    NSString * html = privateMessage.pmContent;
     self.htmlView.attributedString = [self showHtml:html];
     
-    self.username.text = newPost.postUserInfo.userName;
-    self.louCeng.text = newPost.postLouCeng;
-    self.postTime.text = newPost.postTime;
+    self.username.text = privateMessage.pmUserInfo.userName;
+    self.postTime.text = privateMessage.pmTime;
     
-    NSString * avatar = newPost.postUserInfo.userAvatar;
+    NSString * avatar = privateMessage.pmUserInfo.userAvatar;
     
     if ([avatar isEqualToString:@"no_avatar.gif"]) {
         
@@ -84,13 +74,12 @@
             
             CCFUserEntry * user =(CCFUserEntry *)src;
             
-            user.userID = newPost.postUserInfo.userID;
-            user.userAvatar = newPost.postUserInfo.userAvatar;
+            user.userID = privateMessage.pmUserInfo.userID;
+            user.userAvatar = privateMessage.pmUserInfo.userAvatar;
         }];
     }
-    
-    
 }
+
 
 
 - (NSAttributedString *)showHtml:(NSString *)html{
@@ -132,11 +121,11 @@
 -(void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView willDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context{
     
     
-//    CGSize size = [attributedTextContentView suggestedFrameSizeToFitEntireStringConstraintedToWidth:layoutFrame.frame.size.width];
-//    
-//    CGRect frame = self.htmlView.frame;
-//    frame.size.height = size.height;
-//    self.htmlView.frame = frame;
+    //    CGSize size = [attributedTextContentView suggestedFrameSizeToFitEntireStringConstraintedToWidth:layoutFrame.frame.size.width];
+    //
+    //    CGRect frame = self.htmlView.frame;
+    //    frame.size.height = size.height;
+    //    self.htmlView.frame = frame;
     
     [self.delegate relayoutContentHeigt:currentPath with:CGRectGetHeight(layoutFrame.frame) + 65];
 }
@@ -307,12 +296,12 @@
         {
             
             // possibly a local anchor link
-//            NSString *fragment = [URL fragment];
+            //            NSString *fragment = [URL fragment];
             
-//            if (fragment)
-//            {
-//                [self.htmlView scrollToAnchorNamed:fragment animated:NO];
-//            }
+            //            if (fragment)
+            //            {
+            //                [self.htmlView scrollToAnchorNamed:fragment animated:NO];
+            //            }
         }
     }
 }
@@ -324,12 +313,12 @@
     {
         DTLinkButton *button = (id)[gesture view];
         button.highlighted = NO;
-        self.lastActionLink = button.URL;
+        //self.lastActionLink = button.URL;
         
         if ([[UIApplication sharedApplication] canOpenURL:[button.URL absoluteURL]])
         {
-//            UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:[[button.URL absoluteURL] description] delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", nil];
-//            [action showFromRect:button.frame inView:button.superview animated:YES];
+            //            UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:[[button.URL absoluteURL] description] delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", nil];
+            //            [action showFromRect:button.frame inView:button.superview animated:YES];
         }
     }
 }
@@ -362,4 +351,5 @@
 -(CGSize)sizeThatFits:(CGSize)size{
     return CGSizeMake(size.width, self.frame.size.height);
 }
+
 @end

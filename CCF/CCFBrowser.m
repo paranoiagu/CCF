@@ -550,7 +550,7 @@
     }];
 }
 
--(void)showPrivateContentById:(NSString *)pmId handler:(Handler)handler{
+-(void)showPrivateContentById:(int)pmId handler:(Handler)handler{
     [_browser GETWithURL:[CCFUrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];

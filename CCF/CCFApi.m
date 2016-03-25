@@ -182,7 +182,7 @@
     }];
 }
 
--(void)showPrivateContentById:(NSString *)pmId handler:(HandlerWithBool)handler{
+-(void)showPrivateContentById:(int)pmId handler:(HandlerWithBool)handler{
     [_browser showPrivateContentById:pmId handler:^(BOOL isSuccess, NSString* result) {
         if (isSuccess) {
             NSString * content = [_praser parsePrivateMessageContent:result];

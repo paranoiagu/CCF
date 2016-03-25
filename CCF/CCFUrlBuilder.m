@@ -105,8 +105,8 @@
     return [NSURL URLWithString:url];
 }
 
-+(NSURL *)buildShowPrivateMessageURLWithId:(NSString*)messageId{
-    NSString * url = [@"https://bbs.et8.net/bbs/private.php?do=showpm&pmid=" stringByAppendingString:messageId];
++(NSURL *)buildShowPrivateMessageURLWithId:(int)messageId{
+    NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/private.php?do=showpm&pmid=%d", messageId];
     return [NSURL URLWithString:url];
 }
 

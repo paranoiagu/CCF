@@ -604,7 +604,7 @@
 }
 
 
--(NSString *)parsePrivateMessageContent:(NSString *)html{
+-(CCFShowPM *)parsePrivateMessageContent:(NSString *)html{
     //*[@id="post_message_"]
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet * contentNodeSet = [document queryWithXPath:@"//*[@id='post_message_']"];

@@ -44,7 +44,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 -(void) privateMessageWithType:(int) type andpage:(int)page handler:(Handler) handler;
 
 // 根据PM ID 显示一条私信内容
--(void) showPrivateContentById:(NSString*)pmId handler:(Handler)handler;
+-(void) showPrivateContentById:(int)pmId handler:(Handler)handler;
 
 // 回复站内短信
 -(void) replyPrivateMessageWithId:(NSString*)pmId andMessage:(NSString*) message handler:(Handler)handler;
@@ -77,7 +77,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 -(void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler) handler;
 
--(void)showThreadWithId:(NSString *)threadId andPage:(NSString *)page handler:(Handler) handler;
+-(void)showThreadWithId:(int)threadId andPage:(NSString *)page handler:(Handler) handler;
 
 -(void) forumDisplayWithId:(NSString *) formId andPage:(int)page handler:(Handler)handler;
 

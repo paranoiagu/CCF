@@ -42,7 +42,7 @@
 
 + (NSURL *) buildPrivateMessageWithType:(int) type andPage:(int) page;
 
-+ (NSURL *) buildShowPrivateMessageURLWithId:(NSString*) messageId;
++ (NSURL *) buildShowPrivateMessageURLWithId:(int) messageId;
 
 + (NSURL *) buildSendPrivateMessageURL;
 

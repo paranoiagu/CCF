@@ -1,15 +1,14 @@
 //
-//  CCFThreadDetailCell.h
+//  CCFShowPMTableViewCell.h
 //  CCF
 //
-//  Created by 迪远 王 on 16/1/2.
+//  Created by 迪远 王 on 16/3/26.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <DTCoreText/DTCoreText.h>
-
-#import "CCFPost.h"
+#import "CCFShowPM.h"
 
 @protocol CCFThreadDetailCellDelegate <NSObject>
 
@@ -19,9 +18,7 @@
 @end
 
 
-
-@interface CCFThreadDetailCell : UITableViewCell<DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate>
-
+@interface CCFShowPMTableViewCell : UITableViewCell<DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate>
 
 
 @property (weak, nonatomic) IBOutlet DTAttributedTextContentView *htmlView;
@@ -32,10 +29,6 @@
 
 @property (nonatomic, strong) id<CCFThreadDetailCellDelegate> delegate;
 
--(void) setPost:(CCFPost *)post forIndexPath:(NSIndexPath*)indexPath;
-
-@property (nonatomic, strong) NSURL *lastActionLink;
-
-@property (nonatomic, strong) NSURL *baseURL;
+-(void) setData:(CCFShowPM *)privateMessage forIndexPath:(NSIndexPath*)indexPath;
 
 @end

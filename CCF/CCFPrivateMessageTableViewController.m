@@ -12,7 +12,9 @@
 #import "PrivateMessage.h"
 #import "CCFPage.h"
 
-@interface CCFPrivateMessageTableViewController ()
+@interface CCFPrivateMessageTableViewController (){
+    int messageType;
+}
 
 @end
 
@@ -24,10 +26,38 @@
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 180.0;
+    
+    [self.messageSegmentedControl addTarget:self action:@selector(didClicksegmentedControlAction:) forControlEvents:UIControlEventValueChanged];
+}
+
+-(void)didClicksegmentedControlAction:(UISegmentedControl *)Seg{
+    NSInteger index = Seg.selectedSegmentIndex;
+    switch (index) {
+        case 0:
+            messageType = 0;
+            [self.tableView.mj_header beginRefreshing];
+            [self refreshMessage:1];
+            break;
+        case 1:
+            messageType = -1;
+            [self.tableView.mj_header beginRefreshing];
+            [self refreshMessage:1];
+            break;
+        default:
+            messageType = 0;
+            [self.tableView.mj_header beginRefreshing];
+            [self refreshMessage:1];
+            break;
+    }
 }
 
 -(void)onPullRefresh{
-    [self.ccfApi listPrivateMessageWithType:0 andPage:1 handler:^(BOOL isSuccess, CCFPage *message) {
+    [self refreshMessage:1];
+}
+
+
+-(void) refreshMessage:(int)page{
+    [self.ccfApi listPrivateMessageWithType:messageType andPage:page handler:^(BOOL isSuccess, CCFPage *message) {
         [self.tableView.mj_header endRefreshing];
         
         if (isSuccess) {
@@ -35,6 +65,8 @@
             [self.tableView.mj_footer endRefreshing];
             
             self.currentPage = 1;
+            
+            [self.dataList removeAllObjects];
             [self.dataList addObjectsFromArray:message.dataList];
             
             [self.tableView reloadData];
@@ -43,8 +75,9 @@
 }
 
 
+
 -(void)onLoadMore{
-    [self.ccfApi listPrivateMessageWithType:0 andPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFPage *message) {
+    [self.ccfApi listPrivateMessageWithType:messageType andPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFPage *message) {
         [self.tableView.mj_footer endRefreshing];
         if (isSuccess) {
             self.currentPage++;

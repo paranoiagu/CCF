@@ -12,5 +12,6 @@
 @interface CCFPrivateMessageTableViewController : CCFApiBaseTableViewController
 
 - (IBAction)showLeftDrawer:(id)sender;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *messageSegmentedControl;
 
 @end

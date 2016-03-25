@@ -187,6 +187,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="messageSegmentedControl" destination="h6s-Jp-9xf" id="wkw-0R-Sp8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Wz-HJ-cHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

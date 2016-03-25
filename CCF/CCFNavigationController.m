@@ -38,4 +38,8 @@
     [_leftDrawerView openLeftDrawer];
 }
 
+-(BOOL)shouldAutorotate{
+    return NO;
+}
+
 @end

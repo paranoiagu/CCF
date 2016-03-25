@@ -11,7 +11,7 @@
 #import "CCFParser.h"
 #import "CCFCoreDataManager.h"
 #import "NSUserDefaults+CCF.h"
-#import "CCFFavFormControllerCell.h"
+
 #import "CCFForm.h"
 #import "CCFThreadListTableViewController.h"
 #import "CCFNavigationController.h"
@@ -96,11 +96,11 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * ID = @"CCFFavFormControllerCell";
-    CCFFavFormControllerCell * cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
     CCFForm * form = _favForms[indexPath.row];
     
-    cell.form.text = form.formName;
+    cell.textLabel.text = form.formName;
     
     return cell;
 }

@@ -53,7 +53,6 @@
 		3AA2D5181C3610C400F312CC /* carat-open.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5141C3610C400F312CC /* carat-open.png */; };
 		3AA2D5191C3610C400F312CC /* carat.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5151C3610C400F312CC /* carat.png */; };
 		3AA2D51A1C3610C400F312CC /* TVAnimationsGestures-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5161C3610C400F312CC /* TVAnimationsGestures-Info.plist */; };
-		3AB3F5351C535B3200B7FA98 /* CCFFavFormControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3F5341C535B3200B7FA98 /* CCFFavFormControllerCell.m */; };
 		3AB3F5381C53939300B7FA98 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3F5371C53939300B7FA98 /* CCFForm.m */; };
 		3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */; };
 		3AEA1F331C365CB600710BD6 /* CCFEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F321C365CB600710BD6 /* CCFEntry.m */; };
@@ -195,8 +194,6 @@
 		3AA2D5141C3610C400F312CC /* carat-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "carat-open.png"; sourceTree = "<group>"; };
 		3AA2D5151C3610C400F312CC /* carat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carat.png; sourceTree = "<group>"; };
 		3AA2D5161C3610C400F312CC /* TVAnimationsGestures-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TVAnimationsGestures-Info.plist"; sourceTree = "<group>"; };
-		3AB3F5331C535B3200B7FA98 /* CCFFavFormControllerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFavFormControllerCell.h; sourceTree = "<group>"; };
-		3AB3F5341C535B3200B7FA98 /* CCFFavFormControllerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFavFormControllerCell.m; sourceTree = "<group>"; };
 		3AB3F5361C53939300B7FA98 /* CCFForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForm.h; sourceTree = "<group>"; };
 		3AB3F5371C53939300B7FA98 /* CCFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForm.m; sourceTree = "<group>"; };
 		3AEA1F2D1C364E7E00710BD6 /* CCFThreadListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTableViewController.h; sourceTree = "<group>"; };
@@ -317,8 +314,6 @@
 				3A9ADC6B1C9D8F2C006055A8 /* BaseCCFTableViewCell.m */,
 				4D32560B1C4754E700053288 /* SelectPhotoCollectionViewCell.h */,
 				4D32560C1C4754E700053288 /* SelectPhotoCollectionViewCell.m */,
-				3AB3F5331C535B3200B7FA98 /* CCFFavFormControllerCell.h */,
-				3AB3F5341C535B3200B7FA98 /* CCFFavFormControllerCell.m */,
 				3A690A411C3755C00076C8F1 /* CCFThreadListCell.h */,
 				3A690A421C3755C00076C8F1 /* CCFThreadListCell.m */,
 				4D6B11C91C9A582100E073A1 /* CCFSimpleThreadTableViewCell.h */,
@@ -884,7 +879,6 @@
 				3A1C2CCE1C9E3D4E0068AF6B /* CCFSearchPage.m in Sources */,
 				4D796BD81C43576700B3C62D /* CCFSearchViewController.m in Sources */,
 				4D796BF61C44BBA000B3C62D /* FormEntry+CoreDataProperties.m in Sources */,
-				3AB3F5351C535B3200B7FA98 /* CCFFavFormControllerCell.m in Sources */,
 				4D796C051C460D4200B3C62D /* NSUserDefaults+CCF.m in Sources */,
 				4D852A201C991294009121B2 /* CCFPage.m in Sources */,
 				3A9ADC6C1C9D8F2C006055A8 /* BaseCCFTableViewCell.m in Sources */,

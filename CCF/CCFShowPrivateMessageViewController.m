@@ -168,14 +168,21 @@
     
 }
 
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [tableView fd_heightForCellWithIdentifier:@"CCFShowPMTableViewCell" configuration:^(CCFShowPMTableViewCell *cell) {
-        CCFShowPM *privateMessage = self.dataList[indexPath.row];
-        
-        [cell setData:privateMessage forIndexPath:indexPath];
-    }];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
+    if (nsheight == nil) {
+        return  115.0;
+    }
+    return nsheight.floatValue;
 }
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return [tableView fd_heightForCellWithIdentifier:@"CCFShowPMTableViewCell" configuration:^(CCFShowPMTableViewCell *cell) {
+//        CCFShowPM *privateMessage = self.dataList[indexPath.row];
+//        
+//        [cell setData:privateMessage forIndexPath:indexPath];
+//    }];
+//}
 
 
 - (IBAction)back:(UIBarButtonItem *)sender {

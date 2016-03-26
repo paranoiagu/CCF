@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) IBOutlet UILabel *postTime;
-@property (weak, nonatomic) IBOutlet UILabel *pmTitle;
+//@property (weak, nonatomic) IBOutlet UILabel *pmTitle;
 
 @property (nonatomic, strong) id<CCFThreadDetailCellDelegate> delegate;
 

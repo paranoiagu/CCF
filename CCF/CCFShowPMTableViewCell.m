@@ -59,7 +59,7 @@
     
     self.username.text = privateMessage.pmUserInfo.userName;
     self.postTime.text = privateMessage.pmTime;
-    self.pmTitle.text = privateMessage.pmTitle;
+    //self.pmTitle.text = privateMessage.pmTitle;
     
     NSString * avatar = privateMessage.pmUserInfo.userAvatar;
     
@@ -127,7 +127,7 @@
     //    frame.size.height = size.height;
     //    self.htmlView.frame = frame;
     
-    [self.delegate relayoutContentHeigt:currentPath with:CGRectGetHeight(layoutFrame.frame) + 65];
+    [self.delegate relayoutContentHeigt:currentPath with:CGRectGetHeight(layoutFrame.frame) + 109];
 }
 
 

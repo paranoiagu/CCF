@@ -201,7 +201,21 @@
         
         ccfpost.postContent = message.html;
         
+        // 添加的图片
+        NSString * imagesXpath = [NSString stringWithFormat:@"//*[@id='post_message_%@']/img[position()>0]", postId];
+        IGXMLNodeSet *images  = [postDocument queryWithXPath:imagesXpath];
+        NSString * pattern = @"<img src=\"%@\" width=\"300\" height=\"300\" />";
+        for (IGXMLNode *imageNode in images) {
+            if (![[imageNode attribute:@"alt"] isEqualToString:@""]) {
+                NSString * html = [imageNode html];
+                NSString * src = [imageNode attribute:@"src"];
+                NSString *fixedImage = [NSString stringWithFormat:pattern, src];
+                ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:html withString:fixedImage];
+            }
+        }
         
+        
+        // 上传的附件
         NSString *xPathAttImage = [NSString stringWithFormat:@"//*[@id='td_post_%@']/div[2]/fieldset/div", postId];
         IGXMLNode *attImage = [postDocument queryWithXPath:xPathAttImage].firstObject;
 

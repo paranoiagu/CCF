@@ -275,7 +275,9 @@
     int postPointer = 0;
     for (IGXMLNode * userInfoNode in postUserInfo) {
         
-        
+        if(userInfoNode.children.count < 5){
+            continue;
+        }
         IGXMLNode *nameNode = userInfoNode.firstChild.firstChild;
         
         CCFUser* ccfuser = [[CCFUser alloc]init];

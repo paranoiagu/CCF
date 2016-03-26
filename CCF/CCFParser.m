@@ -206,7 +206,7 @@
         IGXMLNodeSet *images  = [postDocument queryWithXPath:imagesXpath];
         NSString * pattern = @"<img src=\"%@\" width=\"300\" height=\"300\" />";
         for (IGXMLNode *imageNode in images) {
-            if (![[imageNode attribute:@"alt"] isEqualToString:@""]) {
+            if (![[imageNode attribute:@"class"] isEqualToString:@"inlineimg"]) {
                 NSString * html = [imageNode html];
                 NSString * src = [imageNode attribute:@"src"];
                 NSString *fixedImage = [NSString stringWithFormat:pattern, src];

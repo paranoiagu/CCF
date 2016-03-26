@@ -201,20 +201,23 @@
         
         ccfpost.postContent = message.html;
         
+        
+        NSString * pattern = @"<img %@ width=\"300\" height=\"300\" />";
+        NSString * reg = @"<img src=\"http.*\" border=\"0\" alt=\"(.*)?(\n*)?(\\W*)?.*(\\W*)?(.*)\"><br>";
+        
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:reg options:NSRegularExpressionCaseInsensitive error:nil];
+        
         // 添加的图片
-        NSString * imagesXpath = [NSString stringWithFormat:@"//*[@id='post_message_%@']/img[position()>0]", postId];
-        IGXMLNodeSet *images  = [postDocument queryWithXPath:imagesXpath];
-        NSString * pattern = @"<img src=\"%@\" width=\"300\" height=\"300\" />";
-        for (IGXMLNode *imageNode in images) {
-            if (![[imageNode attribute:@"class"] isEqualToString:@"inlineimg"]) {
-                NSString * html = [imageNode html];
-                NSString * src = [imageNode attribute:@"src"];
-                NSString *fixedImage = [NSString stringWithFormat:pattern, src];
-                ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:html withString:fixedImage];
-            }
+        NSString * html = message.html;
+        NSArray * result = [regex matchesInString:html options:0 range:NSMakeRange(0, html.length)];
+        for (NSTextCheckingResult *tmpresult in result) {
+            
+            NSString * image = [html substringWithRange:tmpresult.range];
+            NSString * src = [image stringWithRegular:@"src=\"\\S*\""];
+            NSString *fixedImage = [NSString stringWithFormat:pattern, src];
+            ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:image withString:fixedImage];
         }
-        
-        
+
         // 上传的附件
         NSString *xPathAttImage = [NSString stringWithFormat:@"//*[@id='td_post_%@']/div[2]/fieldset/div", postId];
         IGXMLNode *attImage = [postDocument queryWithXPath:xPathAttImage].firstObject;

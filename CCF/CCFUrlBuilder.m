@@ -55,8 +55,8 @@
     return [NSURL URLWithString:kCCFIndex];
 }
 
-+(NSURL *)buildThreadURL:(NSString *)threadId withPage:(NSString *)page{
-    return [NSURL URLWithString:[NSString stringWithFormat:kCCFShowThread, threadId, page]];
++(NSURL *)buildThreadURL:(int)threadId withPage:(int)page{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"https://bbs.et8.net/bbs/showthread.php?t=%d&page=%d", threadId, page]];
 }
 
 +(NSURL *)buildLoginURL{
@@ -110,8 +110,8 @@
     return [NSURL URLWithString:url];
 }
 
-+(NSURL *)buildReplyPrivateMessageURLWithReplyedID:(NSString *)pmId{
-    NSString * url = [@"https://bbs.et8.net/bbs/private.php?do=insertpm&pmid=" stringByAppendingString:pmId];
++(NSURL *)buildReplyPrivateMessageURLWithReplyedID:(int)pmId{
+    NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/private.php?do=insertpm&pmid=%d" ,pmId];
     return [NSURL URLWithString:url];
 }
 

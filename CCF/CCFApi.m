@@ -12,6 +12,7 @@
 #import "NSUserDefaults+CCF.h"
 #import "CCFShowThreadPage.h"
 #import "CCFPage.h"
+#import "CCFShowPM.h"
 
 
 #define kCCFCookie_User @"bbuserid"
@@ -185,7 +186,7 @@
 -(void)showPrivateContentById:(int)pmId handler:(HandlerWithBool)handler{
     [_browser showPrivateContentById:pmId handler:^(BOOL isSuccess, NSString* result) {
         if (isSuccess) {
-            NSString * content = [_praser parsePrivateMessageContent:result];
+            CCFShowPM * content = [_praser parsePrivateMessageContent:result];
             handler(YES, content);
         } else {
             handler(NO, result);
@@ -209,7 +210,7 @@
     }];
 }
 
-- (void)replyPrivateMessageWithId:(NSString *)pmId andMessage:(NSString *)message handler:(HandlerWithBool)handler{
+- (void)replyPrivateMessageWithId:(int)pmId andMessage:(NSString *)message handler:(HandlerWithBool)handler{
     [_browser replyPrivateMessageWithId:pmId andMessage:message handler:^(BOOL isSuccess, NSString* result) {
         handler(isSuccess, result);
        
@@ -284,7 +285,7 @@
     }];
 }
 
--(void)showThreadWithId:(NSString *)threadId andPage:(NSString *)page handler:(HandlerWithBool)handler{
+-(void)showThreadWithId:(int)threadId andPage:(int)page handler:(HandlerWithBool)handler{
     [_browser showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, NSString* html) {
         if (isSuccess) {
             CCFShowThreadPage * detail = [_praser parseShowThreadWithHtml:html];

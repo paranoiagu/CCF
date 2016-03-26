@@ -556,7 +556,7 @@
     }];
 }
 
--(void)replyPrivateMessageWithId:(NSString *)pmId andMessage:(NSString *)message handler:(Handler)handler{
+-(void)replyPrivateMessageWithId:(int)pmId andMessage:(NSString *)message handler:(Handler)handler{
 
     
     [_browser GETWithURL:[CCFUrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
@@ -582,7 +582,7 @@
             [parameters setValue:@"" forKey:@"s"];
             [parameters setValue:token forKey:@"securitytoken"];
             [parameters setValue:@"insertpm" forKey:@"do"];
-            [parameters setValue:pmId forKey:@"pmid"];
+            [parameters setValue:[NSString stringWithFormat:@"%d", pmId] forKey:@"pmid"];
             //[parameters setValue:@"0" forKey:@"loggedinuser"]; 经过测试，这个参数不写也行
             [parameters setValue:@"1" forKey:@"parseurl"];
             [parameters setValue:@"1" forKey:@"signature"];
@@ -816,7 +816,8 @@
     }];
 }
 
--(void)showThreadWithId:(NSString *)threadId andPage:(NSString *)page handler:(Handler)handler{
+-(void)showThreadWithId:(int)threadId andPage:(int)page handler:(Handler)handler{
+    
     [self browseWithUrl:[CCFUrlBuilder buildThreadURL:threadId withPage:page] :^(BOOL isSuccess, id result) {
         handler(isSuccess, result);
     }];

@@ -15,7 +15,7 @@
 
 + (NSURL *) buildFormURL:(NSString *)formId withPage:(NSString*) page;
 
-+ (NSURL *) buildThreadURL: (NSString *) threadId withPage:(NSString *) page;
++ (NSURL *) buildThreadURL: (int) threadId withPage:(int) page;
 
 + (NSURL *) buildIndexURL;
 
@@ -46,7 +46,7 @@
 
 + (NSURL *) buildSendPrivateMessageURL;
 
-+ (NSURL *) buildReplyPrivateMessageURLWithReplyedID:(NSString*) pmId;
++ (NSURL *) buildReplyPrivateMessageURLWithReplyedID:(int) pmId;
 
 // 获取security-token用的
 + (NSURL *) buildNewPMUR;

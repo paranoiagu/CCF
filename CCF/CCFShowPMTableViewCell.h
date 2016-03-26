@@ -9,13 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <DTCoreText/DTCoreText.h>
 #import "CCFShowPM.h"
+#import "CCFThreadDetailCell.h"
 
-@protocol CCFThreadDetailCellDelegate <NSObject>
-
-@required
--(void) relayoutContentHeigt:(NSIndexPath*) indexPath with:(CGFloat) height;
-
-@end
 
 
 @interface CCFShowPMTableViewCell : UITableViewCell<DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate>

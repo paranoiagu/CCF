@@ -94,8 +94,7 @@
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        NSString * pageStr = [NSString stringWithFormat:@"%d", currentPage];
-        [ccfapi showThreadWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+        [ccfapi showThreadWithId:[entry.urlId intValue] andPage:currentPage handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
             [self.tableView.mj_header endRefreshing];
             
             if (isSuccess) {
@@ -125,9 +124,7 @@
     
     self.tableView.mj_footer = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
         
-        NSString * pageStr = [NSString stringWithFormat:@"%d", currentPage + 1];
-        
-        [ccfapi showThreadWithId:entry.urlId andPage:pageStr handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+        [ccfapi showThreadWithId:[entry.urlId intValue] andPage:currentPage + 1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
             
             [self.tableView.mj_footer endRefreshing];
             

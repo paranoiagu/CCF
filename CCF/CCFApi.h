@@ -43,7 +43,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void) sendPrivateMessageToUserName:(NSString*)name andTitle:(NSString*)title andMessage:(NSString*) message handler:(HandlerWithBool)handler;
 
 // 回复站内短信
--(void) replyPrivateMessageWithId:(NSString*)pmId andMessage:(NSString*) message handler:(HandlerWithBool)handler;
+-(void) replyPrivateMessageWithId:(int)pmId andMessage:(NSString*) message handler:(HandlerWithBool)handler;
 
 // 收藏这个论坛
 -(void) favoriteFormsWithId:(NSString*)formId handler:(HandlerWithBool)handler;
@@ -80,7 +80,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void) listMyAllThreadsWithPage:(int)page handler:(HandlerWithBool)handler;
 
 // 显示主题帖子和所有回帖
--(void) showThreadWithId:(NSString *) threadId andPage:(NSString*)page handler:(HandlerWithBool)handler;
+-(void) showThreadWithId:(int) threadId andPage:(int)page handler:(HandlerWithBool)handler;
 
 -(void) forumDisplayWithId:(NSString *) formId andPage:(int)page handler:(HandlerWithBool)handler;
 

@@ -190,7 +190,7 @@
     
     [self presentViewController:alertProgress animated:YES completion:nil];
     
-    [_api replyPrivateMessageWithId:@""  andMessage:@"" handler:^(BOOL isSuccess, id message) {
+    [_api replyPrivateMessageWithId:123  andMessage:@"" handler:^(BOOL isSuccess, id message) {
         [alertProgress dismissViewControllerAnimated:NO completion:nil];
         
         if (isSuccess) {

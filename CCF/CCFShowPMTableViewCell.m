@@ -28,7 +28,6 @@
 
 @synthesize htmlView = _htmlView;
 @synthesize username = _username;
-@synthesize louCeng = _louCeng;
 @synthesize postTime = _postTime;
 @synthesize avatarImage = _avatarImage;
 
@@ -38,7 +37,7 @@
     self.htmlView.shouldDrawLinks = NO;
     
     self.htmlView.delegate = self;
-    
+
     self.htmlView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.htmlView.relayoutMask = DTAttributedTextContentViewRelayoutOnHeightChanged | DTAttributedTextContentViewRelayoutOnWidthChanged;
     
@@ -60,6 +59,7 @@
     
     self.username.text = privateMessage.pmUserInfo.userName;
     self.postTime.text = privateMessage.pmTime;
+    self.pmTitle.text = privateMessage.pmTitle;
     
     NSString * avatar = privateMessage.pmUserInfo.userAvatar;
     

@@ -14,8 +14,6 @@
 @interface CCFShowPrivateMessageViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 
-@property(nonatomic, weak) id<TransValueDelegate> transValueDelegate;
-
 @property (nonatomic, strong) NSMutableArray<CCFShowPM *> * dataList;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

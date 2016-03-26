@@ -613,16 +613,16 @@
     IGXMLNodeSet * contentNodeSet = [document queryWithXPath:@"//*[@id='post_message_']"];
     privateMessage.pmContent = [[contentNodeSet firstObject] html];
     // 回帖时间
-    IGXMLNodeSet * privateSendTimeSet = [document queryWithXPath:@"//*[@id='table1']/tbody/tr/td[1]/div/text()"];
-    privateMessage.pmTime = [[privateSendTimeSet firstObject] text];
+    IGXMLNodeSet * privateSendTimeSet = [document queryWithXPath:@"//*[@id='table1']/tr/td[1]/div/text()"];
+    privateMessage.pmTime = [[privateSendTimeSet [2] text] trim];
     // PM ID
     IGXMLNodeSet * privateMessageIdSet = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/a"];
     NSString * pmId = [[[privateMessageIdSet firstObject] attribute:@"href"] stringWithRegular:@"\\d+"];
     privateMessage.pmID = pmId;
     
     // PM Title
-    IGXMLNodeSet * pmTitleSet = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tbody/tr/td[1]/table/tbody/tr[2]/td/strong"];
-    NSString * pmTitle = [[pmTitleSet firstObject] text];
+    IGXMLNodeSet * pmTitleSet = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/strong"];
+    NSString * pmTitle = [[[pmTitleSet firstObject] text] trim];
     privateMessage.pmTitle = pmTitle;
     
     

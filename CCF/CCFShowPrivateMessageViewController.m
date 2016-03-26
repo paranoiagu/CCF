@@ -43,6 +43,7 @@
 -(void)transValue:(int)value{
     messageId = value;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -175,7 +176,6 @@
     }
     return nsheight.floatValue;
 }
-
 
 
 - (IBAction)back:(UIBarButtonItem *)sender {

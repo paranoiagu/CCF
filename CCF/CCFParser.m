@@ -19,6 +19,8 @@
 #import "PrivateMessage.h"
 #import "CCFSimpleThread.h"
 #import "CCFSearchPage.h"
+#import "IGHTMLDocument+QueryNode.h"
+#import "IGXMLNode+Children.h"
 
 
 @implementation CCFParser
@@ -181,8 +183,6 @@
     NSString * xPathTime = @"//*[@id='table1']/tr/td[1]/div";
     
     
-//    int i = 0;
-    
     for (IGXMLNode * node in postMessages) {
         
         CCFPost * ccfpost = [[CCFPost alloc]init];
@@ -253,6 +253,7 @@
     // 发帖账户信息 table -> td
     //*[@id='posts']/div[1]/div/div/div/table/tr[1]/td[1]
     IGXMLNodeSet *postUserInfo = [document queryWithXPath:@"//*[@id='posts']/div[*]/div/div/div/table/tr[1]/td[1]"];
+    //*[@id="post"]/tbody/tr[1]/td[1]
     
     int postPointer = 0;
     for (IGXMLNode * userInfoNode in postUserInfo) {
@@ -605,11 +606,56 @@
 
 
 -(CCFShowPM *)parsePrivateMessageContent:(NSString *)html{
-    //*[@id="post_message_"]
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
-    IGXMLNodeSet * contentNodeSet = [document queryWithXPath:@"//*[@id='post_message_']"];
     
-    return [[contentNodeSet firstObject]html];
+    // message content
+    CCFShowPM * privateMessage = [[CCFShowPM alloc] init];
+    IGXMLNodeSet * contentNodeSet = [document queryWithXPath:@"//*[@id='post_message_']"];
+    privateMessage.pmContent = [[contentNodeSet firstObject] html];
+    // 回帖时间
+    IGXMLNodeSet * privateSendTimeSet = [document queryWithXPath:@"//*[@id='table1']/tbody/tr/td[1]/div/text()"];
+    privateMessage.pmTime = [[privateSendTimeSet firstObject] text];
+    // PM ID
+    IGXMLNodeSet * privateMessageIdSet = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/a"];
+    NSString * pmId = [[[privateMessageIdSet firstObject] attribute:@"href"] stringWithRegular:@"\\d+"];
+    privateMessage.pmID = pmId;
+    
+    // PM Title
+    IGXMLNodeSet * pmTitleSet = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tbody/tr/td[1]/table/tbody/tr[2]/td/strong"];
+    NSString * pmTitle = [[pmTitleSet firstObject] text];
+    privateMessage.pmTitle = pmTitle;
+    
+    
+    // User Info
+    CCFUser * pmAuthor = [[CCFUser alloc] init];
+    IGXMLNode *userInfoNode = [document queryNodeWithXPath:@"//*[@id='post']/tr[1]/td[1]"];
+    // 用户名
+    NSString * name = [[[userInfoNode childrenAtPosition:0] childrenAtPosition:0] text];
+    pmAuthor.userName = name;
+    // 用户ID
+    NSString * userId = [[[[userInfoNode childrenAtPosition:0] childrenAtPosition:0] attribute:@"href"] stringWithRegular:@"\\d+"];
+    pmAuthor.userID = userId;
+    
+    // 用户头像
+    NSString* userAvatar = [[[[[[userInfoNode childrenAtPosition:1] childrenAtPosition:1] childrenAtPosition:0] attribute:@"src"] componentsSeparatedByString:@"/"] lastObject];
+    pmAuthor.userAvatar = userAvatar;
+    
+    // 用户等级
+    NSString * userRank = [[ userInfoNode childrenAtPosition:3] text];
+    pmAuthor.userRank = userRank;
+    // 注册日期
+    NSString * userSignDate = [[[[[[userInfoNode childrenAtPosition:4] childrenAtPosition:1] childrenAtPosition:1] text] componentsSeparatedByString:@": "] lastObject];
+    pmAuthor.userSignDate = userSignDate;
+    // 帖子数量
+    NSString * postCount = [[[[[[[userInfoNode childrenAtPosition:4] childrenAtPosition:1] childrenAtPosition:2] text] trim] componentsSeparatedByString:@": "] lastObject];
+    pmAuthor.userPostCount = postCount;
+    
+    // 精华 和 解答
+
+    //===========
+    
+    privateMessage.pmUserInfo = pmAuthor;
+    return privateMessage;
 }
 
 -(NSString *)parseQuickReplyQuoteContent:(NSString *)html{

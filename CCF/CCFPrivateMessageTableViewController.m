@@ -9,6 +9,7 @@
 #import "CCFPrivateMessageTableViewController.h"
 #import "CCFNavigationController.h"
 #import "PrivateMessageTableViewCell.h"
+#import "CCFShowPrivateMessageViewController.h"
 #import "PrivateMessage.h"
 #import "CCFPage.h"
 
@@ -117,7 +118,23 @@
     [cell setData:self.dataList[indexPath.row]];
 }
 
+#pragma mark Controller跳转
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([sender isKindOfClass:[UITableViewCell class]]){
+        CCFShowPrivateMessageViewController * controller = segue.destinationViewController;
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        PrivateMessage *message = self.dataList[indexPath.row];
 
+        int pmId = [message.pmID intValue];
+        
+        [self.transValueDelegate transValue:pmId];
+        
+    }
+}
 
 
 - (IBAction)showLeftDrawer:(id)sender {

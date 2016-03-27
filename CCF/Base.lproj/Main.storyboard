@@ -767,11 +767,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wio-Ec-b1f">
-                                <rect key="frame" x="0.0" y="200" width="600" height="292"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Wio-Ec-b1f" secondAttribute="height" multiplier="150:73" id="UBd-x2-C7c"/>
-                                </constraints>
+                                <rect key="frame" x="20" y="200" width="560" height="292"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="yv2-E6-k1Q">
                                     <size key="itemSize" width="92" height="90"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -786,9 +784,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="92" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5zx-1O-NMB">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5zx-1O-NMB">
                                                     <rect key="frame" x="2" y="1" width="88" height="88"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGh-ft-PHI">
+                                                    <rect key="frame" x="62" y="8" width="22" height="22"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" image="ic_clear_18pt"/>
+                                                    <connections>
+                                                        <action selector="deleteCurrentImage:" destination="jxW-rR-4fd" eventType="touchUpInside" id="thf-RX-SZa"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -804,6 +810,15 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="高级回帖" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="acq-4R-1JW" userLabel="replyContentView">
+                                <rect key="frame" x="20" y="8" width="560" height="184"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="184" id="cw7-Fe-abd"/>
+                                </constraints>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="-64" maxX="0.0" maxY="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6QA-fG-IbD" customClass="CCFToolbar">
                                 <rect key="frame" x="0.0" y="492" width="600" height="44"/>
                                 <items>
@@ -812,36 +827,23 @@
                                             <action selector="insertPhoto:" destination="pPN-ZQ-aHh" id="dXY-DG-eaE"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="WyL-EN-iv0"/>
-                                    <barButtonItem image="ic_mood_18pt" id="8r0-IS-vLu" userLabel="表情">
-                                        <connections>
-                                            <action selector="insertSmile:" destination="pPN-ZQ-aHh" id="Zik-sU-FhF"/>
-                                        </connections>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="高级回帖" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="acq-4R-1JW" userLabel="replyContentView">
-                                <rect key="frame" x="20" y="64" width="560" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="scrollIndicatorInsets" minX="0.0" minY="-64" maxX="0.0" maxY="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="acq-4R-1JW" firstAttribute="top" secondItem="8ZP-Ks-ema" secondAttribute="bottom" constant="8" id="0pK-8F-rKL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6QA-fG-IbD" secondAttribute="trailing" constant="-20" id="947-2f-Qwc"/>
                             <constraint firstItem="6QA-fG-IbD" firstAttribute="leading" secondItem="mOC-MK-2JQ" secondAttribute="leadingMargin" constant="-20" id="9HQ-ul-WBy"/>
-                            <constraint firstItem="Wio-Ec-b1f" firstAttribute="top" secondItem="acq-4R-1JW" secondAttribute="bottom" constant="8" id="Hfx-jn-ock"/>
-                            <constraint firstItem="acq-4R-1JW" firstAttribute="trailing" secondItem="mOC-MK-2JQ" secondAttribute="trailingMargin" id="UDf-IP-iGf"/>
-                            <constraint firstItem="acq-4R-1JW" firstAttribute="top" secondItem="mOC-MK-2JQ" secondAttribute="topMargin" constant="64" id="VbI-7X-yxV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Wio-Ec-b1f" secondAttribute="trailing" constant="-20" id="Yy0-Yi-5OP"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Wio-Ec-b1f" secondAttribute="leading" id="AB6-HK-G4n"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="acq-4R-1JW" secondAttribute="trailing" id="DJs-lx-H4Z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Wio-Ec-b1f" secondAttribute="trailing" id="JzP-2S-tUe"/>
                             <constraint firstItem="dCe-aI-mg4" firstAttribute="top" secondItem="6QA-fG-IbD" secondAttribute="bottom" id="Z57-fo-NwC"/>
-                            <constraint firstItem="dCe-aI-mg4" firstAttribute="top" secondItem="Wio-Ec-b1f" secondAttribute="bottom" constant="44" id="duJ-pH-MiR"/>
-                            <constraint firstItem="Wio-Ec-b1f" firstAttribute="leading" secondItem="mOC-MK-2JQ" secondAttribute="leadingMargin" constant="-20" id="f93-V9-Sek"/>
-                            <constraint firstItem="acq-4R-1JW" firstAttribute="leading" secondItem="mOC-MK-2JQ" secondAttribute="leadingMargin" id="kNw-cp-cdN"/>
+                            <constraint firstItem="dCe-aI-mg4" firstAttribute="top" secondItem="Wio-Ec-b1f" secondAttribute="bottom" constant="44" id="aik-LA-PL7"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="acq-4R-1JW" secondAttribute="leading" id="jqH-n1-JZc"/>
                             <constraint firstItem="6QA-fG-IbD" firstAttribute="leading" secondItem="mOC-MK-2JQ" secondAttribute="leadingMargin" constant="-20" id="tVo-Jf-RV4"/>
+                            <constraint firstItem="Wio-Ec-b1f" firstAttribute="top" secondItem="acq-4R-1JW" secondAttribute="bottom" constant="8" id="uS0-rr-WVv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="高级回帖" id="5fd-YQ-uSr">
@@ -863,7 +865,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4C-zz-DaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2938" y="-6211"/>
+            <point key="canvasLocation" x="-3084" y="-6397"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rsw-tr-lOi">
@@ -2472,11 +2474,11 @@
     <resources>
         <image name="ic_arrow_back_18pt" width="18" height="18"/>
         <image name="ic_camera_enhance_18pt" width="18" height="18"/>
+        <image name="ic_clear_18pt" width="18" height="18"/>
         <image name="ic_control_point_18pt" width="18" height="18"/>
         <image name="ic_insert_photo_18pt" width="18" height="18"/>
         <image name="ic_left_menu" width="24" height="24"/>
         <image name="ic_mode_edit_18pt" width="18" height="18"/>
-        <image name="ic_mood_18pt" width="18" height="18"/>
         <image name="ic_qu_search" width="24" height="24"/>
         <image name="ic_reply_all_18pt" width="18" height="18"/>
         <image name="ic_send_18pt" width="18" height="18"/>

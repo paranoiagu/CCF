@@ -11,7 +11,7 @@
 #import "SelectPhotoCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface CCFSeniorNewPostViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>{
+@interface CCFSeniorNewPostViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate>{
     
     UIImagePickerController *pickControl;
     
@@ -140,13 +140,19 @@
 }
 
 
+-(void)deleteCurrentImageForIndexPath:(NSIndexPath *)indexPath{
+    [images removeObjectAtIndex:indexPath.row];
+    [self.insertCollectionView reloadData];
+}
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *QuoteCellIdentifier = @"CCFSeniorNewPostViewControllerCell";
+    static NSString *Identifier = @"CCFSeniorNewPostViewControllerCell";
     
-    SelectPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:QuoteCellIdentifier forIndexPath:indexPath];
-    cell.imageView.image = images[indexPath.row];
+    SelectPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:Identifier forIndexPath:indexPath];
+    cell.deleteImageDelete = self;
+    
+    [cell setData:images[indexPath.row] forIndexPath:indexPath];
     
     return cell;
     

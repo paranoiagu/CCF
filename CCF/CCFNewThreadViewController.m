@@ -14,13 +14,13 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 
-@interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,
-                                                    UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, TransValueDelegate>{
+@interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, TransValueDelegate, DeleteDelegate>{
     
 
     CCFBrowser * broswer;
     CCFApi *_api;
-                                                        CCFForm * transForm;
+                                                        
+    CCFForm * transForm;
     UIImagePickerController *pickControl;
     
     
@@ -185,13 +185,16 @@
     static NSString *QuoteCellIdentifier = @"SelectPhotoCollectionViewCell";
     
     SelectPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:QuoteCellIdentifier forIndexPath:indexPath];
-    cell.imageView.image = images[indexPath.row];
-    
+    cell.deleteImageDelete = self;
+    [cell setData:images[indexPath.row] forIndexPath:indexPath];
     return cell;
     
 }
 
-
+-(void)deleteCurrentImageForIndexPath:(NSIndexPath *)indexPath{
+    [images removeObjectAtIndex:indexPath.row];
+    [self.selectPhotos reloadData];
+}
 
 
 - (IBAction)createThread:(id)sender {
@@ -199,7 +202,7 @@
     NSString *title = self.subject.text;
     NSString *message = self.message.text;
     
-    [_api createNewThreadWithFormId:transForm.formId withSubject:title andMessage:message withImages:nil handler:^(BOOL isSuccess, id message) {
+    [_api createNewThreadWithFormId:transForm.formId withSubject:title andMessage:message withImages:[images copy] handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             NSLog(@"createNewThreadWithFormId %@", @"发帖成功");
         } else{
@@ -215,6 +218,34 @@
 
 - (IBAction)pickPhoto:(id)sender {
     
-    [self presentViewController:pickControl animated:YES completion:nil];
+    UIAlertController * insertPhotoController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *photo = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        //设置照片源
+        [pickControl setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        
+        [self presentViewController:pickControl animated:YES completion:nil];
+    }];
+    
+    UIAlertAction *camera = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        //设置照片源
+        [pickControl setSourceType:UIImagePickerControllerSourceTypeCamera];
+        
+        [self presentViewController:pickControl animated:YES completion:nil];
+        
+    }];
+    
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }];
+    
+    
+    [insertPhotoController addAction:photo];
+    [insertPhotoController addAction:camera];
+    [insertPhotoController addAction:cancel];
+    
+    [self presentViewController:insertPhotoController animated:YES completion:nil];
+
 }
 @end

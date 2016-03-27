@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFPost.h"
+#include "SelectPhotoCollectionViewCell.h"
 
 @interface CCFShowThreadViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 

@@ -66,8 +66,8 @@
     [[NSUserDefaults standardUserDefaults] clearCookie];
 }
 
--(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *)image handler:(HandlerWithBool)handler{
-    [_browser createNewThreadWithFormId:fId withSubject:subject andMessage:message withImages:image handler:^(BOOL isSuccess, NSString* result) {
+-(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(HandlerWithBool)handler{
+    [_browser createNewThreadWithFormId:fId withSubject:subject andMessage:message withImages:images handler:^(BOOL isSuccess, NSString* result) {
         if (isSuccess) {
             NSString * error = kErrorMessageTimeTooShort;
             NSRange range = [result rangeOfString:error];

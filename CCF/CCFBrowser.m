@@ -306,7 +306,7 @@
     return nil;
 }
 
--(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *)image handler:(Handler)handler{
+-(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(Handler)handler{
     NSString * testMesage = @"\n\n发自 iPhone5s 使用 [URL=\"https://bbs.et8.net/bbs/showthread.php?t=1335973\"]CCF客户端[/URL]";
     
     message = [message stringByAppendingString:testMesage];
@@ -314,7 +314,7 @@
     // 准备发帖
     [self createNewThreadPrepair:fId :^(NSString *token, NSString *hash, NSString *time) {
         
-        if (image != nil) {
+        if (images == nil || images.count == 0) {
             // 没有图片，直接发送主题
             [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time handler:^(BOOL isSuccess, id result) {
                 handler(isSuccess,result);
@@ -328,11 +328,24 @@
                 NSString * uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
                 NSString * uploadHash = [parser parsePostHash:result];
                 
-                [self uploadImage:[CCFUrlBuilder buildUploadFileURL] :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id result) {
-                    [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time handler:^(BOOL isSuccess ,id result) {
-                        handler(isSuccess, result);
+                __block BOOL uploadSuccess = YES;
+                for (int i = 0; i < images.count && uploadSuccess; i++) {
+                    NSData * image = images[i];
+                    
+                    [self uploadImage:[CCFUrlBuilder buildUploadFileURL] :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id result) {
+                        uploadSuccess = isSuccess;
+                        
+                        if (i == images.count -1) {
+                            [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time handler:^(BOOL isSuccess ,id result) {
+                                handler(isSuccess, result);
+                            }];
+                        }
                     }];
-                }];
+                }
+                
+                if (!uploadSuccess) {
+                    handler(NO, @"上传图片失败！");
+                }
                 
             }];
         }
@@ -519,8 +532,10 @@
     
     // add image data
     if (imageData) {
+        
+        float date = [[NSDate date] timeIntervalSince1970];
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"222222.jpg\"\r\n", @"attachment[]"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%f.jpg\"\r\n", @"attachment[]", date] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:imageData];
         [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];

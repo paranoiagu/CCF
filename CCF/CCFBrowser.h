@@ -38,7 +38,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 -(void) searchWithKeyWord:(NSString*) keyWord searchDone:(Handler) callback;
 
 
--(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *)image handler:(Handler)handler;
+-(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(Handler)handler;
 
 // 读取论坛站内私信   type 0 表示收件箱   1表示发件箱
 -(void) privateMessageWithType:(int) type andpage:(int)page handler:(Handler) handler;

@@ -208,7 +208,13 @@
         return;
     }    
     [SVProgressHUD showWithStatus:@"正在发送"];
-    [_api createNewThreadWithFormId:transForm.formId withSubject:title andMessage:message withImages:[images copy] handler:^(BOOL isSuccess, id message) {
+    NSMutableArray<NSData*> * uploadData = [NSMutableArray array];
+    for (UIImage * image in images) {
+        NSData * data = UIImageJPEGRepresentation(image, 1.0);
+        [uploadData addObject:data];
+    }
+    
+    [_api createNewThreadWithFormId:transForm.formId withSubject:title andMessage:message withImages:[uploadData copy] handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             NSLog(@"createNewThreadWithFormId %@", @"发帖成功");
             [SVProgressHUD showSuccessWithStatus:@"发帖成功"];

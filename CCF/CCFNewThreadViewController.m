@@ -33,7 +33,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    fId = _entry.urlId;
     broswer = [[CCFBrowser alloc]init];
     _api = [[CCFApi alloc] init];
     

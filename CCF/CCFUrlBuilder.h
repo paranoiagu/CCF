@@ -13,7 +13,7 @@
 
 + (NSURL *) buildMemberURL:(NSString*)userId;
 
-+ (NSURL *) buildFormURL:(NSString *)formId withPage:(NSString*) page;
++ (NSURL *) buildFormURL:(int)formId withPage:(int) page;
 
 + (NSURL *) buildThreadURL: (int) threadId withPage:(int) page;
 

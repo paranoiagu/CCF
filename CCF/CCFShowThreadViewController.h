@@ -7,14 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFEntry.h"
 #import "CCFPost.h"
 
 @interface CCFShowThreadViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray<CCFPost *> * posts;
 
-@property (nonatomic, strong) CCFEntry* entry;
 
 @property (strong, nonatomic) IBOutlet UIToolbar *floatToolbar;
 

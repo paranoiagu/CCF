@@ -7,14 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFEntry.h"
 #import "RoundCornerUITextView.h"
 
 @interface CCFNewThreadViewController : UIViewController
-
-
-
-@property (nonatomic, strong) CCFEntry* entry;
 
 
 

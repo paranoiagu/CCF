@@ -30,7 +30,6 @@
 
 #import "CCFFormTableViewController.h"
 #import "CCFThreadListTableViewController.h"
-#import "CCFEntry.h"
 #import "DrawerView.h"
 
 #import "CCFUtils.h"
@@ -85,13 +84,6 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
     
     return YES;
 }
-
-
-#pragma mark CCFEntryDelegate
--(void)transValue:(CCFEntry *)value{
-    
-}
-
 
 
 #pragma mark - Life Cycle
@@ -163,27 +155,17 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
     CCFThreadListTableViewController * controller = segue.destinationViewController;
     
-    if ([controller respondsToSelector:@selector(setEntry:)]) {
-        
-        
-        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        NSLog(@"prepareForSegue %ld      %ld   ", path.section, path.row);
-        
-        CCFForm * select = self.forms[path.section].childForms[path.row];
-        
-        CCFEntry * entry = [[CCFEntry alloc]init];
-        
-        entry.urlId = [NSString stringWithFormat:@"%d", select.formId];
-        
-        entry.page = @"1";
-        
-        [controller setValue:entry forKey:@"entry"];
-
-        NSLog(@"prepareForSegue ");
-        
-    }
+    self.transValueDelegate = (id<TransValueDelegate>)controller;
+    
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+    
+    CCFForm * select = self.forms[path.section].childForms[path.row];
+    
+    [self.transValueDelegate transValue:select];
+    
 }
 
 

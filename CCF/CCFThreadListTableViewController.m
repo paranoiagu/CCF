@@ -22,13 +22,18 @@
 #define TypePullRefresh 0
 #define TypeLoadMore 1
 
-@interface CCFThreadListTableViewController ()
+@interface CCFThreadListTableViewController ()<TransValueDelegate>{
+    CCFForm * transForm;
+}
 
 @end
 
 @implementation CCFThreadListTableViewController
 
-@synthesize entry;
+#pragma mark trans value
+-(void)transValue:(CCFForm *)value{
+    transForm = value;
+}
 
 
 - (void)viewDidLoad {
@@ -45,7 +50,7 @@
 
 
 -(void)onPullRefresh{
-    [self.ccfApi forumDisplayWithId:entry.urlId andPage:1 handler:^(BOOL isSuccess, CCFPage *page) {
+    [self.ccfApi forumDisplayWithId:transForm.formId andPage:1 handler:^(BOOL isSuccess, CCFPage *page) {
         
         [self.tableView.mj_header endRefreshing];
         
@@ -73,7 +78,7 @@
 }
 
 -(void)onLoadMore{
-    [self.ccfApi forumDisplayWithId:entry.urlId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFPage *page) {
+    [self.ccfApi forumDisplayWithId:transForm.formId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFPage *page) {
         
         [self.tableView.mj_footer endRefreshing];
         
@@ -156,44 +161,25 @@
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         
         CCFNewThreadViewController * newPostController = segue.destinationViewController;
-        
-        if ([newPostController respondsToSelector:@selector(setEntry:)]) {
-
-            CCFEntry * transEntry = [[CCFEntry alloc]init];
-            
-            transEntry.urlId = entry.urlId;
-            
-            [newPostController setValue:transEntry forKey:@"entry"];
-            
-        }
+        self.transValueDelegate = (id<TransValueDelegate>)newPostController;
+        [self.transValueDelegate transValue:transForm];
         
         
     } else if([sender isKindOfClass:[UITableViewCell class]]){
         CCFShowThreadViewController * controller = segue.destinationViewController;
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        [self.transValueDelegate transValue:transForm];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        if ([controller respondsToSelector:@selector(setEntry:)]) {
-            
-            
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            
-            CCFNormalThread * thread = nil;
-            
-            if (indexPath.section == 0) {
-                thread = self.threadTopList[indexPath.row];
-            } else{
-                thread = self.dataList[indexPath.row];
-            }
-            
-            
-            CCFEntry * transEntry = [[CCFEntry alloc]init];
-            
-            transEntry.urlId = thread.threadID;
-            
-            transEntry.page = @"1";
-            
-            [controller setValue:transEntry forKey:@"entry"];
-            
+        CCFNormalThread * thread = nil;
+        
+        if (indexPath.section == 0) {
+            thread = self.threadTopList[indexPath.row];
+        } else{
+            thread = self.dataList[indexPath.row];
         }
+        [self.transValueDelegate transValue:thread];
+        
     } else if ([sender isKindOfClass:[UIButton class]]){
         CCFProfileTableViewController * controller = segue.destinationViewController;
         self.transValueDelegate = (id<TransValueDelegate>)controller;
@@ -208,8 +194,7 @@
             thread = self.dataList[indexPath.row];
         }
 
-        
-        [self.transValueDelegate transValue:[thread.threadAuthorID intValue]];
+        [self.transValueDelegate transValue:thread];
         
     }
     

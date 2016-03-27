@@ -11,7 +11,6 @@
 
 @interface CCFProfileTableViewController : CCFApiBaseTableViewController
 
-@property(nonatomic, weak) id<TransValueDelegate> transValueDelegate;
 
 
 - (IBAction)back:(id)sender;

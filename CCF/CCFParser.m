@@ -25,11 +25,11 @@
 
 @implementation CCFParser
 
--(CCFPage *)parseThreadListFromHtml:(NSString *)html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop{
+-(CCFPage *)parseThreadListFromHtml:(NSString *)html withThread:(int) threadId andContainsTop:(BOOL)containTop{
     
     CCFPage * page = [[CCFPage alloc] init];
     
-    NSString * path = [NSString stringWithFormat:@"//*[@id='threadbits_forum_%@']/tr", threadId];
+    NSString * path = [NSString stringWithFormat:@"//*[@id='threadbits_forum_%d']/tr", threadId];
     
     NSMutableArray<CCFNormalThread *> * threadList = [NSMutableArray<CCFNormalThread *> array];
     

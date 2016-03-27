@@ -18,11 +18,12 @@
 
 #import "AlertProgressViewController.h"
 #import <UITableView+FDTemplateLayoutCell.h>
-
+#import "TransValueDelegate.h"
 #import "CCFApi.h"
+#import "CCFThread.h"
 
 
-@interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate>{
+@interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate>{
     
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
     int currentPage;
@@ -31,16 +32,21 @@
     CCFApi * ccfapi;
     CCFUITextView * field;
     CCFApi *_api;
+    
+    CCFThread * transThread;
 }
 
 @end
 
 @implementation CCFShowThreadViewController
 
-@synthesize entry;
 @synthesize posts = _posts;
 
 
+#pragma mark trans value
+-(void)transValue:(CCFThread *)value{
+    transThread = value;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -85,8 +91,6 @@
     
     cellHeightDictionary = [NSMutableDictionary<NSIndexPath *, NSNumber *> dictionary];
     
-    
-    NSLog(@"CCFThreadDetailTableViewController viewDidLoad    %@   %@", entry.urlId, entry.page);
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -94,7 +98,7 @@
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [ccfapi showThreadWithId:[entry.urlId intValue] andPage:1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
             [self.tableView.mj_header endRefreshing];
             
             if (isSuccess) {
@@ -127,7 +131,7 @@
     
     self.tableView.mj_footer = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
         
-        [ccfapi showThreadWithId:[entry.urlId intValue] andPage:currentPage + 1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:currentPage + 1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
             
             [self.tableView.mj_footer endRefreshing];
             
@@ -254,7 +258,7 @@
     
     [self presentViewController:alertProgress animated:YES completion:nil];
     
-    [_api replyThreadWithId:entry.urlId andMessage:field.text handler:^(BOOL isSuccess, id message) {
+    [_api replyThreadWithId:transThread.threadID andMessage:field.text handler:^(BOOL isSuccess, id message) {
         [alertProgress dismissViewControllerAnimated:NO completion:nil];
         if (isSuccess) {
             

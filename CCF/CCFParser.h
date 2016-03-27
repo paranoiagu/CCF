@@ -25,7 +25,7 @@
 - (CCFShowThreadPage *) parseShowThreadWithHtml:(NSString*)html;
 
 
-- (CCFPage *) parseThreadListFromHtml: (NSString *) html withThread:(NSString *) threadId andContainsTop:(BOOL)containTop;
+- (CCFPage *) parseThreadListFromHtml: (NSString *) html withThread:(int) threadId andContainsTop:(BOOL)containTop;
 
 - (CCFPage *) parseFavThreadListFormHtml: (NSString *) html;
 

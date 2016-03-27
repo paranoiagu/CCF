@@ -10,6 +10,7 @@
 #import "CCFProfileTableViewCell.h"
 
 @interface CCFProfileTableViewController ()<TransValueDelegate>{
+    
     CCFUserProfile * userProfile;
     int userId;
 }
@@ -20,17 +21,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.transValueDelegate = self;
-    
 }
 
 -(BOOL)setLoadMore:(BOOL)enable{
     return NO;
 }
 
--(void)transValue:(int)value{
-    userId = value;
+-(void)transValue:(CCFThread *)value{
+    userId = [value.threadAuthorID intValue];
 }
 
 

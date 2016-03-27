@@ -128,10 +128,8 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         PrivateMessage *message = self.dataList[indexPath.row];
-
-        int pmId = [message.pmID intValue];
         
-        [self.transValueDelegate transValue:pmId];
+        [self.transValueDelegate transValue:message];
         
     }
 }

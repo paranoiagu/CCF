@@ -297,7 +297,7 @@
     }];
 }
 
--(void)forumDisplayWithId:(NSString *)formId andPage:(int)page handler:(HandlerWithBool)handler{
+-(void)forumDisplayWithId:(int)formId andPage:(int)page handler:(HandlerWithBool)handler{
     [_browser forumDisplayWithId:formId andPage:page handler:^(BOOL isSuccess, NSString* result) {
         if (isSuccess) {
             CCFPage* page = [_praser parseThreadListFromHtml:result withThread:formId andContainsTop:YES];

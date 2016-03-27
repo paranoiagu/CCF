@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFEntry.h"
 #import "CCFApiBaseTableViewController.h"
 #import "TransValueDelegate.h"
 
@@ -18,12 +17,9 @@
 // 置顶
 @property (nonatomic, strong) NSMutableArray * threadTopList;
 
-@property (nonatomic, strong) CCFEntry * entry;
-
 - (IBAction)back:(UIBarButtonItem *)sender;
 - (IBAction)createThread:(id)sender;
 
-
-@property(nonatomic, assign) id<TransValueDelegate> transValueDelegate;
+@property (nonatomic, strong) id<TransValueDelegate> transValueDelegate;
 
 @end

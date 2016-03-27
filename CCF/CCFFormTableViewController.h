@@ -10,13 +10,12 @@
 #import <Foundation/Foundation.h>
 #import <MessageUI/MessageUI.h>     // for MFMailComposeViewControllerDelegate
 #import "CCFFormHeaderView.h"    // for SectionHeaderViewDelegate
-
-#import "CCFEntryDelegate.h"
+#import "TransValueDelegate.h"
 #import "CCFForm.h"
 
 #import "DrawerView.h"
 
-@interface CCFFormTableViewController : UIViewController<MFMailComposeViewControllerDelegate, SectionHeaderViewDelegate, CCFEntryDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface CCFFormTableViewController : UIViewController<MFMailComposeViewControllerDelegate, SectionHeaderViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -24,5 +23,6 @@
 
 @property (nonatomic, strong) NSMutableArray<CCFForm *> *forms;
 
+@property (nonatomic, strong) id<TransValueDelegate> transValueDelegate;
 
 @end

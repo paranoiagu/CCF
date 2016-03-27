@@ -823,9 +823,8 @@
     }];
 }
 
--(void)forumDisplayWithId:(NSString *)formId andPage:(int)page handler:(Handler)handler{
-    NSString * pageStr = [NSString stringWithFormat:@"%d", page];
-    [self browseWithUrl:[CCFUrlBuilder buildFormURL:formId withPage:pageStr] :^(BOOL isSuccess, id result) {
+-(void)forumDisplayWithId:(int)formId andPage:(int)page handler:(Handler)handler{
+    [self browseWithUrl:[CCFUrlBuilder buildFormURL:formId withPage:page] :^(BOOL isSuccess, id result) {
         handler(isSuccess, result);
     }];
 }

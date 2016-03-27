@@ -17,7 +17,7 @@
 #import "CCFNavigationController.h"
 #import "CCFApi.h"
 
-@interface CCFFavFormController (){
+@interface CCFFavFormController ()<TransValueDelegate>{
 
     CCFApi * ccfapi;
     NSMutableArray<CCFForm *> * _favForms;
@@ -29,7 +29,9 @@
 
 
 
-
+-(void)transValue:(CCFForm *)value{
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,27 +60,16 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
     CCFThreadListTableViewController * controller = segue.destinationViewController;
     
-    if ([controller respondsToSelector:@selector(setEntry:)]) {
-        
-        
-        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        NSLog(@"prepareForSegue %ld      %ld   ", path.section, path.row);
-        
-        CCFForm * select = _favForms[path.row];
-        
-        CCFEntry * entry = [[CCFEntry alloc]init];
-        
-        entry.urlId = [NSString stringWithFormat:@"%d", select.formId];
-        
-        entry.page = @"1";
-        
-        [controller setValue:entry forKey:@"entry"];
-        
-        NSLog(@"prepareForSegue ");
-        
-    }
+    self.transValueDelegate = (id<TransValueDelegate>)controller;
+    
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+    
+    CCFForm * select = _favForms[path.row];
+    
+    [self.transValueDelegate transValue:select];
 }
 
 

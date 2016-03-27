@@ -21,9 +21,8 @@
 
 #import "UIStoryboard+CCF.h"
 
-@interface CCFMyProfileUITableViewController ()<TransValueDelegate>{
+@interface CCFMyProfileUITableViewController (){
     CCFUserProfile * userProfile;
-    int userId;
     
 }
 
@@ -34,17 +33,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.transValueDelegate = self;
 }
 
 -(BOOL)setLoadMore:(BOOL)enable{
     return NO;
 }
-
--(void)transValue:(int)value{
-    userId = value;
-}
-
 
 -(void)onPullRefresh{
     [self.ccfApi showProfileWithUserId:self.ccfApi.getLoginUser.userID handler:^(BOOL isSuccess, CCFUserProfile* message) {

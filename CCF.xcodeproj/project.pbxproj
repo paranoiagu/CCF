@@ -60,7 +60,6 @@
 		3AA2D51A1C3610C400F312CC /* TVAnimationsGestures-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5161C3610C400F312CC /* TVAnimationsGestures-Info.plist */; };
 		3AB3F5381C53939300B7FA98 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3F5371C53939300B7FA98 /* CCFForm.m */; };
 		3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */; };
-		3AEA1F331C365CB600710BD6 /* CCFEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F321C365CB600710BD6 /* CCFEntry.m */; };
 		3AEA1F371C365EA400710BD6 /* CCFShowThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */; };
 		3AF86A741C82CAB50036AD61 /* LoginCCFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF86A731C82CAB50036AD61 /* LoginCCFUser.m */; };
 		3AF86A781C82EECE0036AD61 /* CCFApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF86A771C82EECE0036AD61 /* CCFApi.m */; };
@@ -213,9 +212,6 @@
 		3AB3F5371C53939300B7FA98 /* CCFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForm.m; sourceTree = "<group>"; };
 		3AEA1F2D1C364E7E00710BD6 /* CCFThreadListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTableViewController.h; sourceTree = "<group>"; };
 		3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTableViewController.m; sourceTree = "<group>"; };
-		3AEA1F301C365CA600710BD6 /* CCFEntryDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCFEntryDelegate.h; sourceTree = "<group>"; };
-		3AEA1F311C365CB600710BD6 /* CCFEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFEntry.h; sourceTree = "<group>"; };
-		3AEA1F321C365CB600710BD6 /* CCFEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFEntry.m; sourceTree = "<group>"; };
 		3AEA1F351C365EA400710BD6 /* CCFShowThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowThreadViewController.h; sourceTree = "<group>"; };
 		3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFShowThreadViewController.m; sourceTree = "<group>"; };
 		3AF86A721C82CAB50036AD61 /* LoginCCFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCCFUser.h; sourceTree = "<group>"; };
@@ -529,9 +525,6 @@
 				4D796BB31C3DF88F00B3C62D /* Addons */,
 				4D796B5D1C3BC15D00B3C62D /* Public Views */,
 				3AEA1F341C365E2100710BD6 /* CCFControllers */,
-				3AEA1F301C365CA600710BD6 /* CCFEntryDelegate.h */,
-				3AEA1F311C365CB600710BD6 /* CCFEntry.h */,
-				3AEA1F321C365CB600710BD6 /* CCFEntry.m */,
 				3AA2D4F51C36101E00F312CC /* FoldTableView */,
 				3A9FEDDF1C34382E00F30885 /* Category */,
 				3A9FEDDB1C34306600F30885 /* CCFBrowser */,
@@ -864,7 +857,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A842CA11C469AC1002944A9 /* CCFNewThreadViewController.m in Sources */,
-				3AEA1F331C365CB600710BD6 /* CCFEntry.m in Sources */,
 				3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */,
 				4D796BE41C437C5000B3C62D /* NSString+Regular.m in Sources */,
 				3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */,

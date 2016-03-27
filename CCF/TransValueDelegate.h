@@ -12,6 +12,6 @@
 
 
 @required
--(void)transValue:(int)value;
+-(void)transValue:(id)value;
 
 @end

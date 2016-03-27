@@ -21,6 +21,7 @@
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "CCFShowPM.h"
 #import "CCFShowPMTableViewCell.h"
+#import "PrivateMessage.h"
 
 
 #import "CCFApi.h"
@@ -28,7 +29,7 @@
 @interface CCFShowPrivateMessageViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate>{
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
 
-    int messageId;
+    PrivateMessage * transPrivateMessage;
     
     CCFApi * ccfapi;
     CCFUITextView * field;
@@ -40,8 +41,8 @@
 @implementation CCFShowPrivateMessageViewController
 
 
--(void)transValue:(int)value{
-    messageId = value;
+-(void)transValue:(PrivateMessage *)value{
+    transPrivateMessage = value;
 }
 
 - (void)viewDidLoad {
@@ -94,7 +95,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         
-        [ccfapi showPrivateContentById:messageId handler:^(BOOL isSuccess, CCFShowPM* message) {
+        [ccfapi showPrivateContentById:[transPrivateMessage.pmID intValue] handler:^(BOOL isSuccess, CCFShowPM* message) {
             [self.tableView.mj_header endRefreshing];
             
             if (isSuccess) {

@@ -33,7 +33,6 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.7.9):
     - DTFoundation/Core
-  - hpple (0.2.0)
   - IGHTMLQuery (0.8.4):
     - IGHTMLQuery/Core (= 0.8.4)
   - IGHTMLQuery/Core (0.8.4):
@@ -46,7 +45,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - DTCoreText (~> 1.6.17)
-  - hpple (~> 0.2.0)
   - IGHTMLQuery (~> 0.8.4)
   - JSONModel (~> 1.1.2)
   - MJRefresh (~> 3.0.8)
@@ -58,7 +56,6 @@ SPEC CHECKSUMS:
   CSSSelectorConverter: 0fda7454165e40e668dd297b44cdb1c341cd53ae
   DTCoreText: 3ea8bba23dd2141ba18adb227a7dd33a822df1c4
   DTFoundation: 70a0765e3596f82dd421832e95c65e2166eb3102
-  hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
   IGHTMLQuery: 6176bcb88ad36f80ee984dbfde5592bb3ccc921f
   JSONModel: 216584d0311b053ff714f1d6cb700dbf890847bc
   MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056

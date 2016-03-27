@@ -16,4 +16,6 @@
 
 -(NSString*) trim;
 
+-(NSArray*) arrayWithRegulat:(NSString *) regular;
+
 @end

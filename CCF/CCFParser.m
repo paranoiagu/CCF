@@ -130,7 +130,20 @@
 
 
 -(CCFShowThreadPage *)parseShowThreadWithHtml:(NSString *)html{
-    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
+    
+//    <font size="7"><font color="Red">楼主你常常来这边做调查，是不是到你回馈的时候了？ 赶紧去发个帖自爆吧。<br>
+//    要不然你再做调查，大家要开始收钱了。</font></font>
+    
+    // 查找设置了字体的回帖
+    NSArray * fontSetString = [html arrayWithRegulat:@"<font size=\"\\d+\">"];
+    
+    NSString * fixFontSizeHTML= html;
+    
+    for (NSString * tmp in fontSetString) {
+        fixFontSizeHTML = [fixFontSizeHTML stringByReplacingOccurrencesOfString:tmp withString:@"<font size=\"\2\">"];
+    }
+    
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:fixFontSizeHTML error:nil];
     
     CCFShowThreadPage * thread = [[CCFShowThreadPage alloc]init];
     

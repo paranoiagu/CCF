@@ -45,4 +45,20 @@
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
+-(NSArray *)arrayWithRegulat:(NSString *)regular{
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regular options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSArray * result = [regex matchesInString:self options:0 range:NSMakeRange(0, self.length)];
+    
+    NSMutableArray *stringArray = [NSMutableArray array];
+    
+    for (NSTextCheckingResult *tmpresult in result) {
+        
+        NSString * str = [self substringWithRange:tmpresult.range];
+        [stringArray addObject:str];
+        
+    }
+    return [stringArray copy];
+}
 @end

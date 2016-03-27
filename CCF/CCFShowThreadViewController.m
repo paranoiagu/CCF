@@ -98,6 +98,9 @@
             [self.tableView.mj_header endRefreshing];
             
             if (isSuccess) {
+                
+                [cellHeightDictionary removeAllObjects];
+                
                 totalPage = (int)thread.totalPageCount;
                 
                 if (currentPage >= totalPage) {

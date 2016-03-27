@@ -245,6 +245,38 @@
 //    }];
 //}
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIAlertController * insertPhotoController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *photo = [UIAlertAction actionWithTitle:@"引用回复" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        //设置照片源
+        
+        
+    }];
+    
+    UIAlertAction *camera = [UIAlertAction actionWithTitle:@"@作者" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        //设置照片源
+        
+        
+        
+    }];
+    
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }];
+    
+    
+    [insertPhotoController addAction:photo];
+    [insertPhotoController addAction:camera];
+    [insertPhotoController addAction:cancel];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    [self presentViewController:insertPhotoController animated:YES completion:nil];
+}
+
+
 
 - (IBAction)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];

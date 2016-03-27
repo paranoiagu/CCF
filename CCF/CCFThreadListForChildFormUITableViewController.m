@@ -1,12 +1,12 @@
 //
-//  CCFThreadTableViewController.m
+//  CCFThreadListForChildFormUITableViewController.m
 //  CCF
 //
-//  Created by 迪远 王 on 16/1/1.
+//  Created by 迪远 王 on 16/3/27.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFThreadListTableViewController.h"
+#import "CCFThreadListForChildFormUITableViewController.h"
 
 #import "CCFUrlBuilder.h"
 #import "CCFParser.h"
@@ -16,14 +16,9 @@
 #import "CCFNewThreadViewController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "CCFProfileTableViewController.h"
-#import "CCFThreadListForChildFormUITableViewController.h"
 
 
-
-#define TypePullRefresh 0
-#define TypeLoadMore 1
-
-@interface CCFThreadListTableViewController ()<TransValueDelegate>{
+@interface CCFThreadListForChildFormUITableViewController (){
     CCFForm * transForm;
     
     NSArray * childForms;
@@ -31,7 +26,7 @@
 
 @end
 
-@implementation CCFThreadListTableViewController
+@implementation CCFThreadListForChildFormUITableViewController
 
 #pragma mark trans value
 -(void)transValue:(CCFForm *)value{
@@ -41,7 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
     childForms = [[manager selectChildFormsForId:transForm.formId] mutableCopy];
     
@@ -115,16 +110,13 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 3;
+    
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    if (section == 0) {
-        // 子论坛列表
-        return childForms.count;
-    } else if (section == 1){
+    
+    if (section == 0){
         return self.threadTopList.count;
     } else{
         return self.dataList.count;
@@ -133,39 +125,25 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    // 帖子内容
+    static NSString *reusedIdentifier = @"CCFThreadListCellIdentifier";
+    
+    CCFThreadListCell *cell = (CCFThreadListCell*)[tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
+    
     if (indexPath.section == 0) {
-        // 子论坛
-        static NSString *reusedIdentifierForm = @"CCFThreadListCellShowChildForm";
-        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:reusedIdentifierForm];
-        
-        CCFForm * form = childForms[indexPath.row];
-        cell.textLabel.text = form.formName;
-        return cell;
+        CCFNormalThread *play = self.threadTopList[indexPath.row];
+        [cell setData:play];
     } else{
-        // 帖子内容
-        static NSString *reusedIdentifier = @"CCFThreadListCellIdentifier";
-        
-        CCFThreadListCell *cell = (CCFThreadListCell*)[tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
-        
-        if (indexPath.section == 1) {
-            CCFNormalThread *play = self.threadTopList[indexPath.row];
-            [cell setData:play];
-        } else if(indexPath.section == 2){
-            CCFNormalThread *play = self.dataList[indexPath.row];
-            [cell setData:play];
-        }
-        return cell;
+        CCFNormalThread *play = self.dataList[indexPath.row];
+        [cell setData:play];
     }
+    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return 44;
-    } else{
-        return [tableView fd_heightForCellWithIdentifier:@"CCFThreadListCellIdentifier" configuration:^(CCFThreadListCell *cell) {
-            [self configureCell:cell atIndexPath:indexPath];
-        }];
-    }
+    return [tableView fd_heightForCellWithIdentifier:@"CCFThreadListCellIdentifier" configuration:^(CCFThreadListCell *cell) {
+        [self configureCell:cell atIndexPath:indexPath];
+    }];
 }
 
 - (void)configureCell:(CCFThreadListCell *)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -187,7 +165,7 @@
         [self.transValueDelegate transValue:transForm];
         
         
-    } else if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
+    } else if([sender isKindOfClass:[UITableViewCell class]]){
         CCFShowThreadViewController * controller = segue.destinationViewController;
         self.transValueDelegate = (id<TransValueDelegate>)controller;
         [self.transValueDelegate transValue:transForm];
@@ -202,19 +180,7 @@
         }
         [self.transValueDelegate transValue:thread];
         
-    } else if ([segue.identifier isEqualToString:@"ShowChildForm"]){
-        CCFThreadListForChildFormUITableViewController * controller = segue.destinationViewController;
-        self.transValueDelegate = (id<TransValueDelegate>)controller;
-        [self.transValueDelegate transValue:transForm];
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        [self.transValueDelegate transValue:childForms[indexPath.row]];
-        
-    }
-    
-    
-    
-    
-    else if ([sender isKindOfClass:[UIButton class]]){
+    } else if ([sender isKindOfClass:[UIButton class]]){
         CCFProfileTableViewController * controller = segue.destinationViewController;
         self.transValueDelegate = (id<TransValueDelegate>)controller;
         
@@ -227,12 +193,12 @@
         } else{
             thread = self.dataList[indexPath.row];
         }
-
+        
         [self.transValueDelegate transValue:thread];
         
     }
     
-
+    
 }
 
 
@@ -242,4 +208,6 @@
 
 - (IBAction)createThread:(id)sender {
 }
+
+
 @end

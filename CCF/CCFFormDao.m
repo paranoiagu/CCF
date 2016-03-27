@@ -46,9 +46,11 @@
     form.isNeedLogin = [[model valueForKey:@"isNeedLogin"] intValue];
     
     NSArray<CCFFormJSONModel*> * childModels = [model valueForKey:@"childForms"];
-    if (childModels != nil) {
+    
+    if (childModels != nil && childModels.count > 0) {
         
         NSMutableArray<CCFForm*> * childForms = [NSMutableArray arrayWithCapacity:childModels.count];
+        
         for (CCFFormJSONModel * child in childModels) {
 
             [childForms addObject:[self model2Form:child]];

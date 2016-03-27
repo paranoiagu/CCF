@@ -43,6 +43,24 @@
 }
 
 
+-(NSArray<CCFForm *> *)selectChildFormsForId:(int)formId{
+    
+    NSArray<FormEntry *> *entrys = [self selectData:^NSPredicate *{
+        return [NSPredicate predicateWithFormat:@"parentFormId = %d", formId];
+    }];
+    
+    NSMutableArray<CCFForm *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];
+    
+    for (FormEntry *entry in entrys) {
+        CCFForm * form = [[CCFForm alloc] init];
+        form.formName = entry.formName;
+        form.formId = [entry.formId intValue];
+        form.parentFormId = [entry.parentFormId intValue];
+        [forms addObject:form];
+    }
+    return [forms copy];
+}
+
 
 
 @end

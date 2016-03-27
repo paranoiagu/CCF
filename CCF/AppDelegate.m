@@ -59,19 +59,13 @@
         NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
         NSArray<CCFForm*> * forms = [[[CCFFormDao alloc]init] parseCCFForms:path];
         
+        
+        
+        
         NSMutableArray<CCFForm *> * needInsert = [NSMutableArray array];
         
         for (CCFForm *form in forms) {
-            [needInsert addObject:form];
-            
-            NSMutableArray<CCFForm*> * childForms = form.childForms;
-            
-            if (childForms != nil && childForms.count > 0) {
-                
-                for (CCFForm * child in childForms) {
-                    [needInsert addObject:child];
-                }
-            }
+            [needInsert addObjectsFromArray:[self flatForm:form]];
         }
         
         CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
@@ -81,6 +75,7 @@
             newsInfo.formId = [src valueForKey:@"formId"];
             newsInfo.formName = [src valueForKey:@"formName"];
             newsInfo.parentFormId = [src valueForKey:@"parentFormId"];
+            newsInfo.isNeedLogin = [src valueForKey:@"isNeedLogin"];
         }];
         
         [data setInserAllForms:YES];
@@ -90,6 +85,15 @@
 
     
     return YES;
+}
+
+- (NSArray*) flatForm:(CCFForm*) form{
+    NSMutableArray * resultArray = [NSMutableArray array];
+    [resultArray addObject:form];
+    for (CCFForm * childForm in form.childForms) {
+        [resultArray addObjectsFromArray:[self flatForm:childForm]];
+    }
+    return resultArray;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -131,9 +131,6 @@
 
 -(CCFShowThreadPage *)parseShowThreadWithHtml:(NSString *)html{
     
-//    <font size="7"><font color="Red">楼主你常常来这边做调查，是不是到你回馈的时候了？ 赶紧去发个帖自爆吧。<br>
-//    要不然你再做调查，大家要开始收钱了。</font></font>
-    
     // 查找设置了字体的回帖
     NSArray * fontSetString = [html arrayWithRegulat:@"<font size=\"\\d+\">"];
     
@@ -142,8 +139,21 @@
     for (NSString * tmp in fontSetString) {
         fixFontSizeHTML = [fixFontSizeHTML stringByReplacingOccurrencesOfString:tmp withString:@"<font size=\"\2\">"];
     }
+    // 去掉_http hxxp
+    NSString * fuxkHttp = fixFontSizeHTML;
+    NSArray * httpArray = [fixFontSizeHTML arrayWithRegulat:@"(_http|hxxp)://[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?"];
+    NSString * httpPattern = @"<a href=\"%@\" target=\"_blank\">%@</a>";
+    for (NSString * http in httpArray) {
+        NSString * fixedHttp = [http stringByReplacingOccurrencesOfString:@"_http://" withString:@"http://"];
+        fixedHttp = [fixedHttp stringByReplacingOccurrencesOfString:@"hxxp://" withString:@"http://"];
+        NSString * patterned = [NSString stringWithFormat:httpPattern, fixedHttp, fixedHttp];
+        fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:http withString:patterned];
+        
+    }
     
-    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:fixFontSizeHTML error:nil];
+    
+    
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:fuxkHttp error:nil];
     
     CCFShowThreadPage * thread = [[CCFShowThreadPage alloc]init];
     

@@ -94,10 +94,11 @@
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [ccfapi showThreadWithId:[entry.urlId intValue] andPage:currentPage handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+        [ccfapi showThreadWithId:[entry.urlId intValue] andPage:1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
             [self.tableView.mj_header endRefreshing];
             
             if (isSuccess) {
+                currentPage = 1;
                 
                 [cellHeightDictionary removeAllObjects];
                 

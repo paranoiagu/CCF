@@ -160,7 +160,7 @@
         
         NSString * totalPostString = [totalPostCount.firstChild attribute:@"title"];
         NSString *tmp = [totalPostString componentsSeparatedByString:@"共计 "].lastObject;
-        thread.totalPageCount = [[tmp stringByReplacingOccurrencesOfString:@" 条." withString:@""] intValue];
+        thread.totalCount = [[tmp stringByReplacingOccurrencesOfString:@" 条." withString:@""] intValue];
         
     }
     

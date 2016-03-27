@@ -98,7 +98,6 @@
             [self.tableView.mj_header endRefreshing];
             
             if (isSuccess) {
-                currentPage ++;
                 totalPage = (int)thread.totalPageCount;
                 
                 if (currentPage >= totalPage) {

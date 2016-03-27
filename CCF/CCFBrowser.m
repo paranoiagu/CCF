@@ -182,7 +182,7 @@
 -(void)replyThreadWithId:(NSString *)threadId withMessage:(NSString *)message handler:(Handler)result{
     
     
-    NSString * testMesage = @"\n发自 iPhone5s 使用 [URL=\"https://bbs.et8.net/bbs/showthread.php?t=1335973\"]CCF客户端[/URL]";
+    NSString * testMesage = @"\n\n发自 iPhone5s 使用 [URL=\"https://bbs.et8.net/bbs/showthread.php?t=1335973\"]CCF客户端[/URL]";
     
     NSString *test = [message stringByAppendingString:testMesage];
     
@@ -307,7 +307,9 @@
 }
 
 -(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *)image handler:(Handler)handler{
-    message = [message stringByAppendingString:@"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"]Test For: CCF Client[/URL][/RIGHT]"];
+    NSString * testMesage = @"\n\n发自 iPhone5s 使用 [URL=\"https://bbs.et8.net/bbs/showthread.php?t=1335973\"]CCF客户端[/URL]";
+    
+    message = [message stringByAppendingString:testMesage];
     
     // 准备发帖
     [self createNewThreadPrepair:fId :^(NSString *token, NSString *hash, NSString *time) {

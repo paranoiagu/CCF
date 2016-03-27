@@ -12,6 +12,7 @@
 #import "SelectPhotoCollectionViewCell.h"
 #import "CCFForm.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <SVProgressHUD.h>
 
 
 @interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, TransValueDelegate, DeleteDelegate>{
@@ -202,11 +203,18 @@
     NSString *title = self.subject.text;
     NSString *message = self.message.text;
     
+    if (title.length < 1) {
+        [SVProgressHUD showErrorWithStatus:@"标题太短"];
+        return;
+    }    
+    [SVProgressHUD showWithStatus:@"正在发送"];
     [_api createNewThreadWithFormId:transForm.formId withSubject:title andMessage:message withImages:[images copy] handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             NSLog(@"createNewThreadWithFormId %@", @"发帖成功");
+            [SVProgressHUD showSuccessWithStatus:@"发帖成功"];
         } else{
             NSLog(@"createNewThreadWithFormId %@", message);
+            [SVProgressHUD showErrorWithStatus:@"发帖成功"];
         }
     }];
 

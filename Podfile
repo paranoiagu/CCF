@@ -7,3 +7,4 @@ pod 'JSONModel', '~> 1.1.2' #json解:析
 pod 'DTCoreText', '~> 1.6.17'
 pod 'MJRefresh', '~> 3.0.8'
 pod 'UITableView+FDTemplateLayoutCell', '~> 1.4'
+pod 'SVProgressHUD', '~> 1.1.3'

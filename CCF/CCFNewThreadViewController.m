@@ -10,16 +10,17 @@
 #import "CCFBrowser.h"
 #import "CCFApi.h"
 #import "SelectPhotoCollectionViewCell.h"
+#import "CCFForm.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 
-@interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>{
+@interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,
+                                                    UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, TransValueDelegate>{
     
-    
-    NSString * fId;
+
     CCFBrowser * broswer;
     CCFApi *_api;
-    
+                                                        CCFForm * transForm;
     UIImagePickerController *pickControl;
     
     
@@ -55,7 +56,9 @@
 }
 
 
-
+-(void)transValue:(CCFForm *)value{
+    transForm = value;
+}
 
 
 
@@ -192,14 +195,11 @@
 
 
 - (IBAction)createThread:(id)sender {
-
-    //NSData * date = UIImageJPEGRepresentation(images[0], 1);
     
-    NSString *title = @"客户端api容错处理【需删除】";
-    NSString *message = @"容错处理";
+    NSString *title = self.subject.text;
+    NSString *message = self.message.text;
     
-    
-    [_api createNewThreadWithFormId:fId withSubject:title andMessage:message withImages:nil handler:^(BOOL isSuccess, id message) {
+    [_api createNewThreadWithFormId:transForm.formId withSubject:title andMessage:message withImages:nil handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             NSLog(@"createNewThreadWithFormId %@", @"发帖成功");
         } else{
@@ -207,10 +207,6 @@
         }
     }];
 
-//    
-//    [_api showPrivateContentById:@"2022619" handler:^(NSString* handler) {
-//        NSLog(@"读取短信息具体的内容--   %@", handler);
-//    }];
 }
 
 - (IBAction)back:(id)sender {

@@ -24,11 +24,7 @@
 
 #define kCCFSearch @"https://bbs.et8.net/bbs/search.php"
 
-#define kCCFNewThread @"https://bbs.et8.net/bbs/newthread.php?do=newthread&f=%@"
-
 #define kCCFUploadFile @"https://bbs.et8.net/bbs/newattachment.php?do=manageattach&p="
-
-#define kCCFManageFile @"https://bbs.et8.net/bbs/newattachment.php?f=%@&poststarttime=%@&posthash=%@"
 
 #define kCCFThreadFloor @"https://bbs.et8.net/bbs/showpost.php?p=%@&postcount=1"
 
@@ -77,16 +73,16 @@
     return [NSURL URLWithString:kCCFSearch];
 }
 
-+(NSURL *)buildNewThreadURL:(NSString *)formId{
-    return [NSURL URLWithString:[NSString stringWithFormat:kCCFNewThread, formId]];
++(NSURL *)buildNewThreadURL:(int)formId{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"https://bbs.et8.net/bbs/newthread.php?do=newthread&f=%d", formId]];
 }
 
 +(NSURL *)buildUploadFileURL{
     return [NSURL URLWithString:kCCFUploadFile];
 }
 
-+(NSURL *)buildManageFileURL:(NSString *)formId postTime:(NSString *)time postHash:(NSString *)hash{
-    return [NSURL URLWithString:[NSString stringWithFormat:kCCFManageFile, formId, time, hash]];
++(NSURL *)buildManageFileURL:(int)formId postTime:(NSString *)time postHash:(NSString *)hash{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"https://bbs.et8.net/bbs/newattachment.php?f=%d&poststarttime=%@&posthash=%@", formId, time, hash]];
 }
 
 +(NSURL *)buildThreadFirtFloorByThreadId:(NSString *)threadID{

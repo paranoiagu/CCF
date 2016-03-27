@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RoundCornerUITextView.h"
+#import "TransValueDelegate.h"
 
 @interface CCFNewThreadViewController : UIViewController
 

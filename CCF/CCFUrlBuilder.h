@@ -29,9 +29,9 @@
 
 + (NSURL *) buildSearchUrl;
 
-+ (NSURL *) buildNewThreadURL:(NSString *)formId;
++ (NSURL *) buildNewThreadURL:(int)formId;
 
-+ (NSURL *) buildManageFileURL:(NSString *)formId postTime:(NSString *)time postHash:(NSString *)hash;
++ (NSURL *) buildManageFileURL:(int)formId postTime:(NSString *)time postHash:(NSString *)hash;
 
 + (NSURL *) buildUploadFileURL;
 

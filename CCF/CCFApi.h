@@ -28,7 +28,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void) logout;
 
 // 发表一个新的帖子
--(void) createNewThreadWithFormId:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *) image handler:(HandlerWithBool) handler;
+-(void) createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *) image handler:(HandlerWithBool) handler;
 
 // 发表一个回帖
 -(void) replyThreadWithId:(NSString*) threadId andMessage:(NSString*) message handler:(HandlerWithBool) handler;

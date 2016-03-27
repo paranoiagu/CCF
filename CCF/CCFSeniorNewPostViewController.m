@@ -197,4 +197,7 @@
 - (IBAction)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (IBAction)sendSeniorMessage:(UIBarButtonItem *)sender {
+}
 @end

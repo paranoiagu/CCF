@@ -306,7 +306,7 @@
     return nil;
 }
 
--(void)createNewThreadWithFormId:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *)image handler:(Handler)handler{
+-(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSData *)image handler:(Handler)handler{
     message = [message stringByAppendingString:@"\n[RIGHT][URL=\"https://bbs.et8.net/bbs/showthread.php?t=1332499\"]Test For: CCF Client[/URL][/RIGHT]"];
     
     // 准备发帖
@@ -342,7 +342,7 @@
 
 
 // 正式开始发送
--(void) doPostThread:(NSString *)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash postTime:(NSString*)time handler:(Handler) handler{
+-(void) doPostThread:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withToken:(NSString*) token withHash:(NSString*) hash postTime:(NSString*)time handler:(Handler) handler{
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     [parameters setValue:subject forKey:@"subject"];
     [parameters setValue:message forKey:@"message"];
@@ -350,7 +350,8 @@
     [parameters setValue:@"0" forKey:@"iconid"];
     [parameters setValue:@"" forKey:@"s"];
     [parameters setValue:token forKey:@"securitytoken"];
-    [parameters setValue:fId forKey:@"f"];
+    NSString * formId = [NSString stringWithFormat:@"%d", fId];
+    [parameters setValue:formId forKey:@"f"];
     [parameters setValue:@"postthread" forKey:@"do"];
     [parameters setValue:hash forKey:@"posthash"];
     
@@ -377,7 +378,7 @@
 
 
 // 进入图片管理页面，准备上传图片
--(void)uploadImagePrepair:(NSString*)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(Handler) callback{
+-(void)uploadImagePrepair:(int)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(Handler) callback{
     NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
     
     [_browser GETWithURL:url requestCallback:^(BOOL isSuccess, NSString *html) {
@@ -441,7 +442,7 @@
 
 
 // 获取发新帖子的Posttime hash 和token
--(void) createNewThreadPrepair:(NSString *)formId :(CallBack) callback{
+-(void) createNewThreadPrepair:(int)formId :(CallBack) callback{
     
     NSURL * newThreadUrl = [CCFUrlBuilder buildNewThreadURL:formId];
     
@@ -461,7 +462,7 @@
 
 }
 
--(void) uploadImage:(NSURL *)url :(NSString *)token fId:(NSString *)fId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData callback:(Handler)callback{
+-(void) uploadImage:(NSURL *)url :(NSString *)token fId:(int)fId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData callback:(Handler)callback{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
 //    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
@@ -495,7 +496,8 @@
     [parameters setValue:token forKey:@"securitytoken"];
     [parameters setValue:@"manageattach" forKey:@"do"];
     [parameters setValue:@"" forKey:@"t"];
-    [parameters setValue:fId forKey:@"f"];
+    NSString * formID = [NSString stringWithFormat:@"%d", fId];
+    [parameters setValue:formID forKey:@"f"];
     [parameters setValue:@"" forKey:@"p"];
     [parameters setValue:postTime forKey:@"poststarttime"];
     [parameters setValue:@"0" forKey:@"editpost"];

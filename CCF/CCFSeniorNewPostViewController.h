@@ -19,6 +19,7 @@
 
 - (IBAction)back:(id)sender;
 
+- (IBAction)sendSeniorMessage:(UIBarButtonItem *)sender;
 @property (weak, nonatomic) IBOutlet UICollectionView *insertCollectionView;
 
 @end

@@ -10,7 +10,9 @@
 #import "CCFSearchThread.h"
 
 
-@implementation CCFSearchResultCell
+@implementation CCFSearchResultCell{
+    NSIndexPath * selectIndexPath;
+}
 
 
 -(void)setData:(CCFSearchThread*)data{
@@ -20,6 +22,15 @@
     self.postBelongForm.text = data.fromFormName;
     
     [self showAvatar:self.postAuthorAvatar userId:data.threadAuthorID];
+}
+
+-(void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath{
+    selectIndexPath = indexPath;
+    [self setData:data];
+}
+
+- (IBAction)showUserProfile:(UIButton *)sender {
+    [self.delegate showUserProfile:selectIndexPath];
 }
 
 @end

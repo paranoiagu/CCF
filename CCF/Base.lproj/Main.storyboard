@@ -1736,6 +1736,7 @@
                                                         <constraint firstAttribute="width" constant="40" id="ob5-YM-RpS"/>
                                                     </constraints>
                                                     <connections>
+                                                        <action selector="showUserProfile:" destination="8dL-lA-YQ5" eventType="touchUpInside" id="gqw-1M-iR0"/>
                                                         <segue destination="ZvQ-yC-kHJ" kind="show" identifier="ShowUserProfile" id="COb-Rj-ddk"/>
                                                     </connections>
                                                 </button>

@@ -22,4 +22,8 @@
 @property (weak, nonatomic) IBOutlet UICircleImageView *postAuthorAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *postCategory;
 
+-(void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath;
+
+- (IBAction)showUserProfile:(UIButton *)sender;
+
 @end

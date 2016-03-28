@@ -12,8 +12,11 @@
 #import "CCFSearchThread.h"
 #import "CCFSearchResultCell.h"
 #import "CCFSearchThread.h"
+#import "CCFProfileTableViewController.h"
 
-@interface CCFShowNewThreadPostTableViewController ()
+@interface CCFShowNewThreadPostTableViewController ()<CCFThreadListCellDelegate>{
+    UIStoryboardSegue * selectSegue;
+}
 
 @end
 
@@ -55,11 +58,20 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * cellId = @"CCFSearchResultCell";
     CCFSearchResultCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    cell.delegate = self;
     
     CCFSearchThread * thread = self.dataList[indexPath.row];
-    [cell setData:thread];
-    
+    [cell setData:thread forIndexPath:indexPath];
     return cell;
+}
+
+-(void)showUserProfile:(NSIndexPath *)indexPath{
+    CCFProfileTableViewController * controller = selectSegue.destinationViewController;
+    self.transValueDelegate = (id<TransValueDelegate>)controller;
+    
+    CCFNormalThread * thread = self.dataList[indexPath.row];
+    
+    [self.transValueDelegate transValue:thread];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -71,7 +83,7 @@
 - (void)configureCell:(CCFSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
     
-    [cell setData:self.dataList[indexPath.row]];
+    [cell setData:self.dataList[indexPath.row] forIndexPath:indexPath];
 }
 
 
@@ -89,7 +101,7 @@
         [self.transValueDelegate transValue:thread];
         
     } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
-        //selectSegue = segue;
+        selectSegue = segue;
     }
 }
 

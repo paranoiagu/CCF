@@ -13,10 +13,19 @@
 #import <UIImageView+AFNetworking.h>
 #import "CCFUrlBuilder.h"
 
+@protocol CCFThreadListCellDelegate <NSObject>
+
+@required
+-(void) showUserProfile:(NSIndexPath*)indexPath;
+
+@end
+
 @interface BaseCCFTableViewCell : UITableViewCell
 
 -(void) setData:(id) data;
 
 -(void) showAvatar:(UIImageView *)avatarImageView userId:(NSString*)userId;
+
+@property (weak, nonatomic) id<CCFThreadListCellDelegate> delegate;
 
 @end

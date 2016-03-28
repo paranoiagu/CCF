@@ -23,10 +23,12 @@
 #define TypePullRefresh 0
 #define TypeLoadMore 1
 
-@interface CCFThreadListTableViewController ()<TransValueDelegate>{
+@interface CCFThreadListTableViewController ()<TransValueDelegate, CCFThreadListCellDelegate>{
     CCFForm * transForm;
     
     NSArray * childForms;
+    
+    UIStoryboardSegue * selectSegue;
 }
 
 @end
@@ -149,11 +151,15 @@
         
         if (indexPath.section == 1) {
             CCFNormalThread *play = self.threadTopList[indexPath.row];
-            [cell setData:play];
+            
+            [cell setData:play forIndexPath:indexPath];
         } else if(indexPath.section == 2){
             CCFNormalThread *play = self.dataList[indexPath.row];
-            [cell setData:play];
+            
+            [cell setData:play forIndexPath:indexPath];
         }
+        cell.delegate = self;
+        
         return cell;
     }
 }
@@ -175,7 +181,22 @@
 }
 
 
-
+-(void)showUserProfile:(NSIndexPath *)indexPath{
+    
+    CCFProfileTableViewController * controller = selectSegue.destinationViewController;
+    self.transValueDelegate = (id<TransValueDelegate>)controller;
+    
+    CCFNormalThread * thread = nil;
+    
+    if (indexPath.section == 1) {
+        thread = self.threadTopList[indexPath.row];
+    } else{
+        thread = self.dataList[indexPath.row];
+    }
+    
+    [self.transValueDelegate transValue:thread];
+    
+}
 
 #pragma mark Controller跳转
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -209,10 +230,9 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         [self.transValueDelegate transValue:childForms[indexPath.row]];
         
+    } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
+        selectSegue = segue;
     }
-    
-    
-    
     
     else if ([sender isKindOfClass:[UIButton class]]){
         CCFProfileTableViewController * controller = segue.destinationViewController;

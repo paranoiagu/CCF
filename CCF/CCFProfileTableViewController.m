@@ -27,7 +27,7 @@
     return NO;
 }
 
--(void)transValue:(CCFThread *)value{
+-(void)transValue:(CCFNormalThread *)value{
     userId = [value.threadAuthorID intValue];
 }
 
@@ -63,7 +63,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (section == 0) {
-        return 1;
+        return userProfile == nil ? 0: 1;
     } else if (section == 1){
         return 2;
     } else{

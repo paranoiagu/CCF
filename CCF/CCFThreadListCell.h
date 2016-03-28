@@ -10,6 +10,13 @@
 #import "BaseCCFTableViewCell.h"
 #import "CCFNormalThread.h"
 
+@protocol CCFThreadListCellDelegate <NSObject>
+
+@required
+-(void) showUserProfile:(NSIndexPath*)indexPath;
+
+@end
+
 @interface CCFThreadListCell : BaseCCFTableViewCell
 
 
@@ -20,5 +27,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *threadCreateTime;
 @property (weak, nonatomic) IBOutlet UILabel *threadType;
 
+@property (weak, nonatomic) id<CCFThreadListCellDelegate> delegate;
 
+- (IBAction)showUserProfile:(UIButton *)sender;
+
+-(void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath;
 @end

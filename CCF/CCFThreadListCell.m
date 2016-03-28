@@ -19,6 +19,7 @@
 
     CCFCoreDataManager *_coreDateManager;
     CCFApi * ccfapi;
+    NSIndexPath * selectIndexPath;
 }
 
 @synthesize threadAuthor = _threadAuthor;
@@ -52,5 +53,12 @@
     [self showAvatar:self.avatarImage userId:data.threadAuthorID];
 }
 
+-(void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath{
+    selectIndexPath = indexPath;
+    [self setData:data];
+}
 
+- (IBAction)showUserProfile:(UIButton *)sender {
+    [self.delegate showUserProfile:selectIndexPath];
+}
 @end

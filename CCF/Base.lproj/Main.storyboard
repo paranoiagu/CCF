@@ -241,7 +241,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEs-qd-k2x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4620" y="1634"/>
+            <point key="canvasLocation" x="-3538" y="984"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aAN-Vu-hDm">
@@ -762,7 +762,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrp-3y-fYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1240" y="-2773"/>
+            <point key="canvasLocation" x="-2938" y="-23"/>
         </scene>
         <!--高级回帖-->
         <scene sceneID="0ad-k0-Qjn">
@@ -1336,7 +1336,7 @@
                                                         <constraint firstAttribute="width" constant="40" id="nhg-1h-2ef"/>
                                                     </constraints>
                                                     <connections>
-                                                        <segue destination="ZvQ-yC-kHJ" kind="show" id="1S5-oz-xPP"/>
+                                                        <segue destination="ZvQ-yC-kHJ" kind="show" identifier="ShowUserProfile" id="1S5-oz-xPP"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1374,7 +1374,7 @@
                                     <outlet property="threadAuthorName" destination="k4V-Lv-0uf" id="dF1-aZ-Hoq"/>
                                     <outlet property="threadCategory" destination="vAr-Lb-cTl" id="Hc3-2L-VTn"/>
                                     <outlet property="threadTitle" destination="b5k-wg-bKA" id="7ZJ-1Q-jOn"/>
-                                    <segue destination="TcI-Mw-KoO" kind="show" id="l30-na-XLg"/>
+                                    <segue destination="TcI-Mw-KoO" kind="show" identifier="ShowThreadPosts" id="l30-na-XLg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1403,7 +1403,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7KZ-yH-XHm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4620" y="195"/>
+            <point key="canvasLocation" x="-3944" y="-23"/>
         </scene>
         <!--我的主题-->
         <scene sceneID="NgB-yq-feA">
@@ -2042,6 +2042,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="8su-O0-ar6" kind="show" id="dSv-Wa-WMB"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Luz-bg-g6M" rowHeight="88" style="IBUITableViewCellStyleDefault" id="UGd-nD-FNp">
                                 <rect key="frame" x="0.0" y="221" width="600" height="88"/>
@@ -2076,6 +2079,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="3SN-sr-Skg" kind="show" id="7WD-fp-g2w"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="FOC-Lv-R2a" rowHeight="88" style="IBUITableViewCellStyleDefault" id="jUc-HN-2Eb">
                                 <rect key="frame" x="0.0" y="397" width="600" height="88"/>
@@ -2093,6 +2099,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Js1-U2-h0I" kind="show" id="mei-dA-mbe"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CCFProfileShowCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFProfileShowCell" textLabel="md9-bz-hFP" detailTextLabel="BSN-3z-bcg" rowHeight="44" style="IBUITableViewCellStyleValue1" id="p8Y-r7-GDG">
                                 <rect key="frame" x="0.0" y="485" width="600" height="44"/>
@@ -2184,7 +2193,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pb0-Ku-lbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4609" y="-1214"/>
+            <point key="canvasLocation" x="-3969" y="-1261"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gxC-ve-Imz">
@@ -2497,8 +2506,11 @@
         <image name="ic_send_18pt" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DvH-7R-cWn"/>
-        <segue reference="COb-Rj-ddk"/>
+        <segue reference="7WD-fp-g2w"/>
+        <segue reference="dSv-Wa-WMB"/>
+        <segue reference="mei-dA-mbe"/>
+        <segue reference="pHT-fe-nHJ"/>
+        <segue reference="SEK-jh-z7A"/>
         <segue reference="BtX-d5-2Dd"/>
     </inferredMetricsTieBreakers>
 </document>

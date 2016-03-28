@@ -21,6 +21,7 @@
 @property (nonatomic, assign) int currentPage;
 @property (nonatomic, assign) int totalPage;
 
+@property (weak, nonatomic) id<TransValueDelegate> transValueDelegate;
 
 -(void)onPullRefresh;
 

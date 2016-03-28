@@ -9,6 +9,7 @@
 #import "CCFFavThreadPostTableViewController.h"
 #import "CCFNavigationController.h"
 #import "CCFSimpleThreadTableViewCell.h"
+#import "CCFShowThreadViewController.h"
 
 @interface CCFFavThreadPostTableViewController ()
 
@@ -77,9 +78,27 @@
     [cell setData:self.dataList[indexPath.row]];
 }
 
+#pragma mark Controller跳转
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
+        CCFShowThreadViewController * controller = segue.destinationViewController;
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        CCFThread * thread = self.dataList[indexPath.row];
+        
+        [self.transValueDelegate transValue:thread];
+        
+    } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
+        //selectSegue = segue;
+    }
+}
 
 - (IBAction)showLeftDrawer:(id)sender {
-    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
-    [rootController showLeftDrawer];
+//    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
+//    [rootController showLeftDrawer];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

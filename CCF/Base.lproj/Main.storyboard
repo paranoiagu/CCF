@@ -1602,7 +1602,7 @@
                                                         <constraint firstAttribute="width" constant="40" id="jCz-hB-EOT"/>
                                                     </constraints>
                                                     <connections>
-                                                        <segue destination="ZvQ-yC-kHJ" kind="show" id="hwp-U5-tBG"/>
+                                                        <segue destination="ZvQ-yC-kHJ" kind="show" identifier="ShowUserProfile" id="hwp-U5-tBG"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1642,7 +1642,7 @@
                                     <outlet property="postCategory" destination="ahf-UT-CyK" id="prr-mf-jgb"/>
                                     <outlet property="postTime" destination="ykB-gW-gUJ" id="f4e-K1-45h"/>
                                     <outlet property="postTitle" destination="0Ad-wC-oPV" id="wt8-yg-3f2"/>
-                                    <segue destination="TcI-Mw-KoO" kind="show" id="cLm-7D-Fzu"/>
+                                    <segue destination="TcI-Mw-KoO" kind="show" identifier="ShowThreadPosts" id="cLm-7D-Fzu"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1671,7 +1671,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ak7-N4-q62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4537" y="-5345"/>
+            <point key="canvasLocation" x="-2558" y="-3500"/>
         </scene>
         <!--今日新帖-->
         <scene sceneID="dxa-uR-I0g">
@@ -2496,8 +2496,8 @@
         <image name="ic_send_18pt" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2Ik-S0-l6f"/>
+        <segue reference="cLm-7D-Fzu"/>
+        <segue reference="hwp-U5-tBG"/>
         <segue reference="BtX-d5-2Dd"/>
-        <segue reference="TtZ-MJ-Rft"/>
     </inferredMetricsTieBreakers>
 </document>

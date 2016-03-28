@@ -249,10 +249,7 @@
         }
 
         [self.transValueDelegate transValue:thread];
-        
     }
-    
-
 }
 
 

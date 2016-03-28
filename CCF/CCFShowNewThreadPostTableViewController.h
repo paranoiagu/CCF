@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFApiBaseTableViewController.h"
+#import "CCFShowThreadViewController.h"
 
 @interface CCFShowNewThreadPostTableViewController : CCFApiBaseTableViewController
 
 - (IBAction)showLeftDrawer:(id)sender;
+
+@property (weak, nonatomic) id<TransValueDelegate> transValueDelegate;
 
 @end

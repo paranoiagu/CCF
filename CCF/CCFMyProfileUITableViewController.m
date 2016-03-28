@@ -14,7 +14,6 @@
 #import "CCFMyThreadPostTableViewController.h"
 #import "CCFMyThreadTableViewController.h"
 #import "CCFShowNewThreadPostTableViewController.h"
-#import "CCFShowTodayNewThreadPostTableViewController.h"
 #import "CCFFavThreadPostTableViewController.h"
 #import "CCFMyProfileUITableViewController.h"
 #import "CCFNavigationController.h"

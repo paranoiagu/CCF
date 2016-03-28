@@ -23,7 +23,6 @@
 #import "CCFMyThreadPostTableViewController.h"
 #import "CCFMyThreadTableViewController.h"
 #import "CCFShowNewThreadPostTableViewController.h"
-#import "CCFShowTodayNewThreadPostTableViewController.h"
 #import "CCFFavThreadPostTableViewController.h"
 #import "CCFMyProfileUITableViewController.h"
 #import "LeftDrawerItem.h"
@@ -403,7 +402,7 @@
         
         CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        CCFShowTodayNewThreadPostTableViewController * todayNewThreadPostController = [storyboard instantiateViewControllerWithIdentifier:@"CCFShowTodayNewThreadPostTableViewController"];
+        CCFShowNewThreadPostTableViewController * todayNewThreadPostController = [storyboard instantiateViewControllerWithIdentifier:@"CCFShowTodayNewThreadPostTableViewController"];
         [controller setRootViewController:todayNewThreadPostController];
     }
 }

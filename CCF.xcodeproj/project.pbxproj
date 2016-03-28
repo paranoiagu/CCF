@@ -19,7 +19,6 @@
 		3A1CF8761C54F8AB002E52EE /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF8711C54F8AB002E52EE /* CommonUtils.m */; };
 		3A1CF8771C54F8AB002E52EE /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF8731C54F8AB002E52EE /* UIImage+Tint.m */; };
 		3A1CF8781C54F8AB002E52EE /* UIColor+MyColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF8751C54F8AB002E52EE /* UIColor+MyColor.m */; };
-		3A23462D1C8C5C73009A2537 /* CCFShowTodayNewThreadPostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A23462C1C8C5C73009A2537 /* CCFShowTodayNewThreadPostTableViewController.m */; };
 		3A2346301C8C62C2009A2537 /* CCFShowNewThreadPostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A23462F1C8C62C2009A2537 /* CCFShowNewThreadPostTableViewController.m */; };
 		3A2346331C8C6A6C009A2537 /* CCFMyThreadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2346321C8C6A6C009A2537 /* CCFMyThreadTableViewController.m */; };
 		3A2346361C8C6AE2009A2537 /* CCFMyThreadPostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2346351C8C6AE2009A2537 /* CCFMyThreadPostTableViewController.m */; };
@@ -138,8 +137,6 @@
 		3A1CF8741C54F8AB002E52EE /* UIColor+MyColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyColor.h"; sourceTree = "<group>"; };
 		3A1CF8751C54F8AB002E52EE /* UIColor+MyColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MyColor.m"; sourceTree = "<group>"; };
 		3A1CF8791C54F8CD002E52EE /* Constances.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constances.h; sourceTree = "<group>"; };
-		3A23462B1C8C5C73009A2537 /* CCFShowTodayNewThreadPostTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowTodayNewThreadPostTableViewController.h; sourceTree = "<group>"; };
-		3A23462C1C8C5C73009A2537 /* CCFShowTodayNewThreadPostTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFShowTodayNewThreadPostTableViewController.m; sourceTree = "<group>"; };
 		3A23462E1C8C62C2009A2537 /* CCFShowNewThreadPostTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowNewThreadPostTableViewController.h; sourceTree = "<group>"; };
 		3A23462F1C8C62C2009A2537 /* CCFShowNewThreadPostTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFShowNewThreadPostTableViewController.m; sourceTree = "<group>"; };
 		3A2346311C8C6A6C009A2537 /* CCFMyThreadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFMyThreadTableViewController.h; sourceTree = "<group>"; };
@@ -448,8 +445,6 @@
 				3A2346321C8C6A6C009A2537 /* CCFMyThreadTableViewController.m */,
 				3A23462E1C8C62C2009A2537 /* CCFShowNewThreadPostTableViewController.h */,
 				3A23462F1C8C62C2009A2537 /* CCFShowNewThreadPostTableViewController.m */,
-				3A23462B1C8C5C73009A2537 /* CCFShowTodayNewThreadPostTableViewController.h */,
-				3A23462C1C8C5C73009A2537 /* CCFShowTodayNewThreadPostTableViewController.m */,
 				4DAFF5581C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.h */,
 				4DAFF5591C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m */,
 				3A256F9F1CA57F4000419D67 /* CCFShowPrivateMessageViewController.h */,
@@ -939,7 +934,6 @@
 				4D93CFD71C85355D00852D28 /* ApiTestViewController.m in Sources */,
 				3A1C2CD41C9EA1010068AF6B /* CCFUserProfile.m in Sources */,
 				3A62DB621CA7D31800AF5E0A /* CCFThreadListForChildFormUITableViewController.m in Sources */,
-				3A23462D1C8C5C73009A2537 /* CCFShowTodayNewThreadPostTableViewController.m in Sources */,
 				3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */,
 				4D6B11C81C9A536600E073A1 /* CCFSimpleThread.m in Sources */,
 				3A187B361C40B4EE003DA5C2 /* AlertProgressViewController.m in Sources */,

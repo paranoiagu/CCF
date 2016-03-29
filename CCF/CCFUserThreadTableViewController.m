@@ -9,6 +9,7 @@
 #import "CCFUserThreadTableViewController.h"
 #import "CCFNavigationController.h"
 #import "CCFSearchResultCell.h"
+#import "CCFShowThreadViewController.h"
 
 
 @interface CCFUserThreadTableViewController ()<TransValueDelegate>{
@@ -70,6 +71,23 @@
     return [tableView fd_heightForCellWithIdentifier:@"CCFSearchResultCell" configuration:^(CCFSearchResultCell *cell) {
         [self configureCell:cell atIndexPath:indexPath];
     }];
+}
+
+#pragma mark Controller跳转
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
+        CCFShowThreadViewController * controller = segue.destinationViewController;
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        CCFSearchThread * thread = self.dataList[indexPath.row];
+
+        [self.transValueDelegate transValue:thread];
+        
+    }
 }
 
 - (void)configureCell:(CCFSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {

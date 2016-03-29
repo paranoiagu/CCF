@@ -2569,7 +2569,7 @@
                                     <outlet property="postCategory" destination="p0p-3B-jVQ" id="pl9-CE-yDK"/>
                                     <outlet property="postTime" destination="xcf-qy-dS5" id="NoW-cd-T5y"/>
                                     <outlet property="postTitle" destination="dRH-AD-n11" id="UtM-ef-nEZ"/>
-                                    <segue destination="TcI-Mw-KoO" kind="show" id="CYC-I7-A8v"/>
+                                    <segue destination="TcI-Mw-KoO" kind="show" identifier="ShowThreadPosts" id="CYC-I7-A8v"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

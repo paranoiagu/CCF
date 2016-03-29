@@ -211,7 +211,8 @@
     } else if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
         CCFShowThreadViewController * controller = segue.destinationViewController;
         self.transValueDelegate = (id<TransValueDelegate>)controller;
-        [self.transValueDelegate transValue:transForm];
+
+        
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         CCFNormalThread * thread = nil;

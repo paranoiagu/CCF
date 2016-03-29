@@ -69,7 +69,7 @@
     CCFProfileTableViewController * controller = selectSegue.destinationViewController;
     self.transValueDelegate = (id<TransValueDelegate>)controller;
     
-    CCFNormalThread * thread = self.dataList[indexPath.row];
+    CCFSearchThread * thread = self.dataList[indexPath.row];
     
     [self.transValueDelegate transValue:thread];
 }

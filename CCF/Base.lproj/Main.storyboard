@@ -2232,6 +2232,7 @@
                                                         <constraint firstAttribute="width" secondItem="V6D-g1-Tf2" secondAttribute="height" multiplier="1:1" id="iUu-Dy-9I6"/>
                                                     </constraints>
                                                     <connections>
+                                                        <action selector="showUserProfile:" destination="n9Y-eu-FWx" eventType="touchUpInside" id="JQ6-PZ-oaW"/>
                                                         <segue destination="ZvQ-yC-kHJ" kind="show" identifier="ShowUserProfile" id="6mX-Rg-TFH"/>
                                                     </connections>
                                                 </button>
@@ -2478,7 +2479,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ezQ-PD-8mT"/>
-        <segue reference="AYk-cS-hLp"/>
+        <segue reference="6mX-Rg-TFH"/>
         <segue reference="DvH-7R-cWn"/>
     </inferredMetricsTieBreakers>
 </document>

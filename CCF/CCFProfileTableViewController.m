@@ -9,6 +9,7 @@
 #import "CCFProfileTableViewController.h"
 #import "CCFProfileTableViewCell.h"
 #import "PrivateMessage.h"
+#import "CCFShowPM.h"
 
 @interface CCFProfileTableViewController ()<TransValueDelegate>{
     
@@ -37,6 +38,9 @@
     } else if ([value isKindOfClass:[CCFNormalThread class]]){
         CCFNormalThread * thread = value;
         userId = [thread.threadAuthorID intValue];
+    } else if([value isKindOfClass:[CCFShowPM class]]){
+        CCFShowPM * message = value;
+        userId = [message.pmUserInfo.userID intValue];
     }
 }
 

@@ -22,11 +22,12 @@
 #import "CCFShowPM.h"
 #import "CCFShowPMTableViewCell.h"
 #import "PrivateMessage.h"
+#import "CCFProfileTableViewController.h"
 
 
 #import "CCFApi.h"
 
-@interface CCFShowPrivateMessageViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate>{
+@interface CCFShowPrivateMessageViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
 
     PrivateMessage * transPrivateMessage;
@@ -34,6 +35,8 @@
     CCFApi * ccfapi;
     CCFUITextView * field;
     CCFApi *_api;
+    
+    UIStoryboardSegue * selectSegue;
 }
 
 @end
@@ -150,6 +153,7 @@
     
     CCFShowPMTableViewCell *cell = (CCFShowPMTableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
     cell.delegate = self;
+    cell.showProfileDelegate = self;
     
     CCFShowPM *privateMessage = self.dataList[indexPath.row];
     
@@ -185,6 +189,22 @@
 //    }];
 //}
 
+-(void)showUserProfile:(NSIndexPath *)indexPath{
+    CCFProfileTableViewController * controller = (CCFProfileTableViewController *)selectSegue.destinationViewController;
+    self.transValueDelegate = (id<TransValueDelegate>)controller;
+    
+    CCFShowPM * message = self.dataList[indexPath.row];
+    
+    [self.transValueDelegate transValue:message];
+}
+
+#pragma mark Controller跳转
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
+        selectSegue = segue;
+    }
+}
 
 - (IBAction)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];

@@ -10,6 +10,7 @@
 #import <DTCoreText/DTCoreText.h>
 #import "CCFShowPM.h"
 #import "CCFThreadDetailCell.h"
+#import "BaseCCFTableViewCell.h"
 
 
 
@@ -24,6 +25,9 @@
 
 @property (nonatomic, strong) id<CCFThreadDetailCellDelegate> delegate;
 
+@property (nonatomic, strong) id<CCFThreadListCellDelegate> showProfileDelegate;
+
 -(void) setData:(CCFShowPM *)privateMessage forIndexPath:(NSIndexPath*)indexPath;
+- (IBAction)showUserProfile:(id)sender;
 
 @end

@@ -80,6 +80,10 @@
     }
 }
 
+- (IBAction)showUserProfile:(id)sender {
+    [self.showProfileDelegate showUserProfile:currentPath];
+}
+
 
 
 - (NSAttributedString *)showHtml:(NSString *)html{

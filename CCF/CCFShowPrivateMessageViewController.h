@@ -20,4 +20,6 @@
 @property (weak, nonatomic) IBOutlet CCFToolbar *floatToolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *back;
 
+@property (weak, nonatomic) id<TransValueDelegate> transValueDelegate;
+
 @end

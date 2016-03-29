@@ -19,7 +19,6 @@
 - (IBAction)back:(UIBarButtonItem *)sender;
 - (IBAction)createThread:(id)sender;
 
-@property (nonatomic, strong) id<TransValueDelegate> transValueDelegate;
 
 
 @end

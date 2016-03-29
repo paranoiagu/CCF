@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFApiBaseTableViewController.h"
-#import "TransValueDelegate.h"
+
 
 @interface CCFThreadListTableViewController : CCFApiBaseTableViewController
 
@@ -19,7 +19,5 @@
 
 - (IBAction)back:(UIBarButtonItem *)sender;
 - (IBAction)createThread:(id)sender;
-
-@property (nonatomic, strong) id<TransValueDelegate> transValueDelegate;
 
 @end

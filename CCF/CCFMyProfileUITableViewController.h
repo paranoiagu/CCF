@@ -7,11 +7,10 @@
 //
 
 #import "CCFApiBaseTableViewController.h"
-#import "TransValueDelegate.h"
+
 
 @interface CCFMyProfileUITableViewController : CCFApiBaseTableViewController
 
-@property(nonatomic, weak) id<TransValueDelegate> transValueDelegate;
 - (IBAction)back:(id)sender;
 
 @end

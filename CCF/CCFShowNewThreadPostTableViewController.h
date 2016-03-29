@@ -14,6 +14,4 @@
 
 - (IBAction)showLeftDrawer:(id)sender;
 
-@property (weak, nonatomic) id<TransValueDelegate> transValueDelegate;
-
 @end

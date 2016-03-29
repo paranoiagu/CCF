@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFApiBaseTableViewController.h"
-#import "TransValueDelegate.h"
+
 
 @interface CCFPrivateMessageTableViewController : CCFApiBaseTableViewController
 
 - (IBAction)showLeftDrawer:(id)sender;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *messageSegmentedControl;
-@property (nonatomic , strong) id<TransValueDelegate> transValueDelegate;
+
 
 @end

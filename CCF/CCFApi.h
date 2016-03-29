@@ -79,6 +79,9 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 显示我发表的主题
 -(void) listMyAllThreadsWithPage:(int)page handler:(HandlerWithBool)handler;
 
+// 显示用户发表的主题
+-(void) listAllUserThreads:(int)userId withPage:(int)page handler:(HandlerWithBool)handler;
+
 // 显示主题帖子和所有回帖
 -(void) showThreadWithId:(int) threadId andPage:(int)page handler:(HandlerWithBool)handler;
 

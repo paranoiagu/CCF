@@ -12,15 +12,11 @@
 #import "CCFApi.h"
 #import <UIImageView+AFNetworking.h>
 #import "CCFUrlBuilder.h"
+#import "TransValueUITableViewCell.h"
 
-@protocol CCFThreadListCellDelegate <NSObject>
 
-@required
--(void) showUserProfile:(NSIndexPath*)indexPath;
 
-@end
-
-@interface BaseCCFTableViewCell : UITableViewCell
+@interface BaseCCFTableViewCell : TransValueUITableViewCell
 
 -(void) setData:(id) data;
 
@@ -30,6 +26,5 @@
 
 @property(nonatomic,weak) NSIndexPath * selectIndexPath;
 
-@property (weak, nonatomic) id<CCFThreadListCellDelegate> delegate;
 
 @end

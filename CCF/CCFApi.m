@@ -354,4 +354,11 @@
         }
     }];
 }
+
+-(void)listAllUserThreads:(int)userId withPage:(int)page handler:(HandlerWithBool)handler{
+    [_browser listAllUserThreads:userId withPage:page handler:^(BOOL isSuccess, id result) {
+        CCFPage* sarchPage = [_praser parseSearchPageFromHtml:result];
+        handler(isSuccess, sarchPage);
+    }];
+}
 @end

@@ -11,6 +11,8 @@
 #import "PrivateMessage.h"
 #import "CCFShowPM.h"
 #import "CCFSearchThread.h"
+#import "TransValueUITableViewCell.h"
+#import "CCFUserThreadTableViewController.h"
 
 @interface CCFProfileTableViewController ()<TransValueDelegate>{
     
@@ -88,6 +90,15 @@
     }
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    CCFUserThreadTableViewController * controller = segue.destinationViewController;
+    
+    self.transValueDelegate = (id<TransValueDelegate>)controller;
+    
+    [self.transValueDelegate transValue:userProfile];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
@@ -97,7 +108,8 @@
         return cell;
     } else if (indexPath.section == 1){
         static NSString *QuoteCellIdentifier = @"CCFProfileActionCell";
-        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+        TransValueUITableViewCell *cell = (TransValueUITableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+
         
         if (indexPath.row == 0) {
             cell.textLabel.text = @"发表的主题";

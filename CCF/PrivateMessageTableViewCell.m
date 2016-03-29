@@ -40,4 +40,12 @@
     [self showAvatar:self.privateMessageAuthorAvatar userId:data.pmAuthorId];
     
 }
+
+-(void) setData:(id)data forIndexPath:(NSIndexPath *)indexPath{
+    self.selectIndexPath = indexPath;
+    [self setData:data];
+}
+- (IBAction)showUserProfile:(UIButton *)sender {
+    [self.delegate showUserProfile:self.selectIndexPath];
+}
 @end

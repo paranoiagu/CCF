@@ -129,6 +129,7 @@
                                                 <constraint firstAttribute="width" secondItem="vQ0-2H-nuD" secondAttribute="height" multiplier="1:1" id="Zc8-cu-b46"/>
                                             </constraints>
                                             <connections>
+                                                <action selector="showUserProfile:" destination="6dg-Y9-eXc" eventType="touchUpInside" id="DvD-Km-dfE"/>
                                                 <segue destination="ZvQ-yC-kHJ" kind="show" identifier="ShowUserProfile" id="AYk-cS-hLp"/>
                                             </connections>
                                         </button>
@@ -2476,8 +2477,8 @@
         <image name="ic_send_18pt" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DvH-7R-cWn"/>
-        <segue reference="1S5-oz-xPP"/>
         <segue reference="ezQ-PD-8mT"/>
+        <segue reference="AYk-cS-hLp"/>
+        <segue reference="DvH-7R-cWn"/>
     </inferredMetricsTieBreakers>
 </document>

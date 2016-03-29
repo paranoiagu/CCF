@@ -24,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *privateMessageAuthor;
 @property (weak, nonatomic) IBOutlet UILabel *privateMessageTime;
 @property (weak, nonatomic) IBOutlet UIImageView *privateMessageAuthorAvatar;
+- (IBAction)showUserProfile:(UIButton *)sender;
 
 @end

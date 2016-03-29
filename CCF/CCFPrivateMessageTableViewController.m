@@ -12,9 +12,11 @@
 #import "CCFShowPrivateMessageViewController.h"
 #import "PrivateMessage.h"
 #import "CCFPage.h"
+#import "CCFProfileTableViewController.h"
 
-@interface CCFPrivateMessageTableViewController (){
+@interface CCFPrivateMessageTableViewController ()<CCFThreadListCellDelegate>{
     int messageType;
+    UIStoryboardSegue * selectSegue;
 }
 
 @end
@@ -98,13 +100,25 @@
     
     static NSString *identifier = @"PrivateMessageTableViewCell";
     PrivateMessageTableViewCell *cell = (PrivateMessageTableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+    cell.delegate = self;
+    
     PrivateMessage *message = self.dataList[indexPath.row];
-    [cell setData:message];
+    
+    [cell setData:message forIndexPath:indexPath];
     
     
     return cell;
 }
 
+#pragma mark CCFThreadListCellDelegate
+-(void)showUserProfile:(NSIndexPath *)indexPath{
+    CCFProfileTableViewController * controller = (CCFProfileTableViewController *)selectSegue.destinationViewController;
+    self.transValueDelegate = (id<TransValueDelegate>)controller;
+    
+    PrivateMessage * message = self.dataList[indexPath.row];
+
+    [self.transValueDelegate transValue:message];
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [tableView fd_heightForCellWithIdentifier:@"PrivateMessageTableViewCell" configuration:^(PrivateMessageTableViewCell *cell) {
@@ -131,6 +145,8 @@
         
         [self.transValueDelegate transValue:message];
         
+    }else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
+        selectSegue = segue;
     }
 }
 

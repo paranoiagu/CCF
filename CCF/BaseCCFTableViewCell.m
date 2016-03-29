@@ -43,7 +43,11 @@
 
 
 -(void)setData:(id)data{
-    [self setData:data];
+    
+}
+
+-(void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
 -(void)showAvatar:(UIImageView *)avatarImageView userId:(NSString*)userId{

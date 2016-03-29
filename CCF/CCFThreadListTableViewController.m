@@ -183,7 +183,7 @@
 
 -(void)showUserProfile:(NSIndexPath *)indexPath{
     
-    CCFProfileTableViewController * controller = selectSegue.destinationViewController;
+    CCFProfileTableViewController * controller = (CCFProfileTableViewController *)selectSegue.destinationViewController;
     self.transValueDelegate = (id<TransValueDelegate>)controller;
     
     CCFNormalThread * thread = nil;

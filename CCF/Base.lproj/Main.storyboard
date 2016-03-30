@@ -43,7 +43,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="quotationTextView" destination="GJh-xh-Azw" id="5b2-6Q-1Vi"/>
-                                            <segue destination="owK-Jl-7fO" kind="show" id="ezQ-PD-8mT"/>
+                                            <segue destination="owK-Jl-7fO" kind="show" identifier="ShowThreadList" id="ezQ-PD-8mT"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -67,7 +67,7 @@
                         <barButtonItem key="rightBarButtonItem" image="ic_qu_search" id="bkL-dF-juG" userLabel="搜索">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="9ek-Pz-X45" kind="show" id="hub-Sd-Fvh"/>
+                                <segue destination="9ek-Pz-X45" kind="show" identifier="ShowSearchViewController" id="hub-Sd-Fvh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2607,8 +2607,8 @@
         <image name="ic_send_18pt" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ezQ-PD-8mT"/>
-        <segue reference="SEK-jh-z7A"/>
         <segue reference="CYC-I7-A8v"/>
+        <segue reference="SEK-jh-z7A"/>
+        <segue reference="ezQ-PD-8mT"/>
     </inferredMetricsTieBreakers>
 </document>

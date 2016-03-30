@@ -155,16 +155,20 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    CCFThreadListTableViewController * controller = segue.destinationViewController;
-    
-    self.transValueDelegate = (id<TransValueDelegate>)controller;
-    
-    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-    
-    CCFForm * select = self.forms[path.section].childForms[path.row];
-    
-    [self.transValueDelegate transValue:select];
+    if ([segue.identifier isEqualToString:@"ShowThreadList"]) {
+        CCFThreadListTableViewController * controller = segue.destinationViewController;
+        
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        
+        CCFForm * select = self.forms[path.section].childForms[path.row];
+        
+        [self.transValueDelegate transValue:select];
+    } else if ([segue.identifier isEqualToString:@"ShowSearchViewController"]){
+        
+    }
+
     
 }
 

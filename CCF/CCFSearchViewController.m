@@ -12,10 +12,13 @@
 #import "CCFApi.h"
 #import "CCFSearchPage.h"
 #import "CCFSearchResultCell.h"
+#import "CCFShowThreadViewController.h"
+#import "CCFProfileTableViewController.h"
 
 
-@interface CCFSearchViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>{
+@interface CCFSearchViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, CCFThreadListCellDelegate>{
     NSString * redirectUrl;
+    UIStoryboardSegue * selectSegue;
 }
 
 @end
@@ -77,6 +80,14 @@
     
 }
 
+-(void)showUserProfile:(NSIndexPath *)indexPath{
+    CCFProfileTableViewController * controller = (CCFProfileTableViewController *)selectSegue.destinationViewController;
+    self.transValueDelegate = (id<TransValueDelegate>)controller;
+    
+    CCFSearchThread * thread = self.dataList[indexPath.row];
+    
+    [self.transValueDelegate transValue:thread];
+}
 
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
     NSLog(@"searchBarShouldBeginEditing");
@@ -90,6 +101,7 @@
     static NSString *QuoteCellIdentifier = @"CCFSearchResultCell";
     
     CCFSearchResultCell *cell = (CCFSearchResultCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+    cell.delegate = self;
     [cell setData:self.dataList[indexPath.row]];
     
     
@@ -109,6 +121,23 @@
     [cell setData:self.dataList[indexPath.row]];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
+        CCFShowThreadViewController * controller = segue.destinationViewController;
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        CCFSearchThread * thread = self.dataList[indexPath.row];
+        
+        [self.transValueDelegate transValue:thread];
+        
+    } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
+        selectSegue = segue;
+    }
+}
 
 - (IBAction)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];

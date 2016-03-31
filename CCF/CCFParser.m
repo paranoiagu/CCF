@@ -141,11 +141,14 @@
     }
     // 去掉_http hxxp
     NSString * fuxkHttp = fixFontSizeHTML;
-    NSArray * httpArray = [fixFontSizeHTML arrayWithRegulat:@"(_http|hxxp)://[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?"];
+    NSArray * httpArray = [fixFontSizeHTML arrayWithRegulat:@"(_http|hxxp|_https|hxxps)://[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?"];
     NSString * httpPattern = @"<a href=\"%@\" target=\"_blank\">%@</a>";
     for (NSString * http in httpArray) {
         NSString * fixedHttp = [http stringByReplacingOccurrencesOfString:@"_http://" withString:@"http://"];
         fixedHttp = [fixedHttp stringByReplacingOccurrencesOfString:@"hxxp://" withString:@"http://"];
+        fixedHttp = [fixedHttp stringByReplacingOccurrencesOfString:@"hxxps://" withString:@"https://"];
+        fixedHttp = [fixedHttp stringByReplacingOccurrencesOfString:@"_https://" withString:@"https://"];
+        
         NSString * patterned = [NSString stringWithFormat:httpPattern, fixedHttp, fixedHttp];
         fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:http withString:patterned];
         
@@ -308,8 +311,8 @@
         NSString *name = nameNode.innerHtml;
         ccfuser.userName = name;
         NSString *nameLink = [nameNode attribute:@"href"];
-        ccfuser.userLink = [@"https://bbs.et8.net/bbs/" stringByAppendingString:@"member.php?u=70961"];
-        ccfuser.userID = [nameLink componentsSeparatedByString:@"member.php?u="].firstObject;
+        ccfuser.userLink = [@"https://bbs.et8.net/bbs/" stringByAppendingString:nameLink];
+        ccfuser.userID = [nameLink stringWithRegular:@"\\d+"];
         //avatar
         IGXMLNode * avatarNode = userInfoNode.children[1];
         NSString * avatarLink = [[[avatarNode children] [1] firstChild] attribute:@"src"];

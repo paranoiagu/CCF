@@ -10,6 +10,7 @@
 #import <DTCoreText/DTCoreText.h>
 
 #import "CCFPost.h"
+#import "TransValueUITableViewCell.h"
 
 @protocol CCFThreadDetailCellDelegate <NSObject>
 
@@ -20,7 +21,7 @@
 
 
 
-@interface CCFThreadDetailCell : UITableViewCell<DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate>
+@interface CCFThreadDetailCell : TransValueUITableViewCell<DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate>
 
 
 
@@ -30,12 +31,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *louCeng;
 @property (weak, nonatomic) IBOutlet UILabel *postTime;
 
-@property (nonatomic, strong) id<CCFThreadDetailCellDelegate> delegate;
+@property (nonatomic, strong) id<CCFThreadDetailCellDelegate> detailDelegate;
 
 -(void) setPost:(CCFPost *)post forIndexPath:(NSIndexPath*)indexPath;
 
 @property (nonatomic, strong) NSURL *lastActionLink;
 
 @property (nonatomic, strong) NSURL *baseURL;
+
+- (IBAction)showUserProfile:(UIButton *)sender;
 
 @end

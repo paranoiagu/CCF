@@ -661,6 +661,7 @@
                                                         <constraint firstAttribute="width" constant="40" id="Jqy-eF-ndm"/>
                                                     </constraints>
                                                     <connections>
+                                                        <action selector="showUserProfile:" destination="seh-aM-qcp" eventType="touchUpInside" id="wFb-0x-Vy4"/>
                                                         <segue destination="ZvQ-yC-kHJ" kind="show" identifier="ShowUserProfile" id="bg3-ce-qf3"/>
                                                     </connections>
                                                 </button>
@@ -2602,8 +2603,8 @@
         <image name="ic_send_18pt" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mih-bE-Vyo"/>
         <segue reference="ezQ-PD-8mT"/>
-        <segue reference="Mau-kQ-vq9"/>
+        <segue reference="Mih-bE-Vyo"/>
+        <segue reference="bg3-ce-qf3"/>
     </inferredMetricsTieBreakers>
 </document>

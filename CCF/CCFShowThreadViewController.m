@@ -21,9 +21,11 @@
 #import "TransValueDelegate.h"
 #import "CCFApi.h"
 #import "CCFThread.h"
+#import "TransValueUITableViewCell.h"
+#import "CCFProfileTableViewController.h"
 
 
-@interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate>{
+@interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
     
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
     int currentPage;
@@ -34,6 +36,8 @@
     CCFApi *_api;
     
     CCFThread * transThread;
+    
+    UIStoryboardSegue * selectSegue;
 }
 
 @end
@@ -208,6 +212,7 @@
     
     CCFThreadDetailCell *cell = (CCFThreadDetailCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
     cell.delegate = self;
+    cell.detailDelegate = self;
     
     CCFPost *post = self.posts[indexPath.row];
     
@@ -276,7 +281,21 @@
     [self presentViewController:insertPhotoController animated:YES completion:nil];
 }
 
-
+-(void)showUserProfile:(NSIndexPath *)indexPath{
+    CCFProfileTableViewController * controller = selectSegue.destinationViewController;
+    self.transValueDelegate = (id<TransValueDelegate>)controller;
+    
+    CCFPost * post = self.posts[indexPath.row];
+    
+    [self.transValueDelegate transValue:post];
+}
+#pragma mark Controller跳转
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
+        selectSegue = segue;
+    }
+}
 
 - (IBAction)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];

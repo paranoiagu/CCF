@@ -13,6 +13,7 @@
 #import "CCFSearchThread.h"
 #import "TransValueUITableViewCell.h"
 #import "CCFUserThreadTableViewController.h"
+#import "CCFPost.h"
 
 @interface CCFProfileTableViewController ()<TransValueDelegate>{
     
@@ -47,6 +48,9 @@
     } else if ([value isKindOfClass:[CCFSearchThread class]]){
         CCFSearchThread * message = value;
         userId = [message.threadAuthorID intValue];
+    } else if([value isKindOfClass:[CCFPost class]]){
+        CCFPost * message = value;
+        userId = [message.postUserInfo.userID intValue];
     }
 }
 

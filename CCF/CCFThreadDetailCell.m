@@ -138,7 +138,7 @@
 //    frame.size.height = size.height;
 //    self.htmlView.frame = frame;
     
-    [self.delegate relayoutContentHeigt:currentPath with:CGRectGetHeight(layoutFrame.frame) + 65];
+    [self.detailDelegate relayoutContentHeigt:currentPath with:CGRectGetHeight(layoutFrame.frame) + 65];
 }
 
 
@@ -361,5 +361,8 @@
 
 -(CGSize)sizeThatFits:(CGSize)size{
     return CGSizeMake(size.width, self.frame.size.height);
+}
+- (IBAction)showUserProfile:(UIButton *)sender {
+    [self.delegate showUserProfile:currentPath];
 }
 @end

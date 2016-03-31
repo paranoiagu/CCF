@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFPost.h"
+#import "TransValueDelegate.h"
 #include "SelectPhotoCollectionViewCell.h"
 
 @interface CCFShowThreadViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
@@ -24,5 +25,7 @@
 
 
 - (IBAction)back:(UIBarButtonItem *)sender;
+
+@property (nonatomic, weak) id<TransValueDelegate> transValueDelegate;
 
 @end

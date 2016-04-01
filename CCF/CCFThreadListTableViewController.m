@@ -135,6 +135,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    // 帖子内容
+    static NSString *reusedIdentifier = @"CCFThreadListCellIdentifier";
+    
     if (indexPath.section == 0) {
         // 子论坛
         static NSString *reusedIdentifierForm = @"CCFThreadListCellShowChildForm";
@@ -143,21 +146,25 @@
         CCFForm * form = childForms[indexPath.row];
         cell.textLabel.text = form.formName;
         return cell;
-    } else{
-        // 帖子内容
-        static NSString *reusedIdentifier = @"CCFThreadListCellIdentifier";
+    } else if(indexPath.section == 1){
         
         CCFThreadListCell *cell = (CCFThreadListCell*)[tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
         
-        if (indexPath.section == 1) {
-            CCFNormalThread *play = self.threadTopList[indexPath.row];
-            
-            [cell setData:play forIndexPath:indexPath];
-        } else if(indexPath.section == 2){
-            CCFNormalThread *play = self.dataList[indexPath.row];
-            
-            [cell setData:play forIndexPath:indexPath];
-        }
+        CCFNormalThread *play = self.threadTopList[indexPath.row];
+        
+        [cell setData:play forIndexPath:indexPath];
+        
+        cell.delegate = self;
+        
+        return cell;
+    } else{
+        
+        CCFThreadListCell *cell = (CCFThreadListCell*)[tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
+        
+        CCFNormalThread *play = self.dataList[indexPath.row];
+        
+        [cell setData:play forIndexPath:indexPath];
+        
         cell.delegate = self;
         
         return cell;
@@ -188,11 +195,20 @@
     
     CCFNormalThread * thread = nil;
     
-    if (indexPath.section == 1) {
-        thread = self.threadTopList[indexPath.row];
+    if (childForms.count == 0) {
+        if (indexPath.section == 0) {
+            thread = self.threadTopList[indexPath.row];
+        } else{
+            thread = self.dataList[indexPath.row];
+        }
     } else{
-        thread = self.dataList[indexPath.row];
+        if (indexPath.section == 1) {
+            thread = self.threadTopList[indexPath.row];
+        } else{
+            thread = self.dataList[indexPath.row];
+        }
     }
+
     
     [self.transValueDelegate transValue:thread];
     
@@ -217,11 +233,15 @@
         
         CCFNormalThread * thread = nil;
         
-        if (indexPath.section == 0) {
+        NSInteger section = indexPath.section;
+        
+        if ( section == 1) {
             thread = self.threadTopList[indexPath.row];
-        } else{
+        } else if(section == 2){
             thread = self.dataList[indexPath.row];
         }
+        
+        
         [self.transValueDelegate transValue:thread];
         
     } else if ([segue.identifier isEqualToString:@"ShowChildForm"]){

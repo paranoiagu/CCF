@@ -77,6 +77,8 @@
             
             ccfthreadlist.threadAuthorName = [authorNode text];
             
+            IGXMLNode * lastPostTime = [threadListNode childrenAtPosition:4];
+            ccfthreadlist.lastPostTime = [[lastPostTime text] trim];
             
             IGXMLNode * commentCountNode = threadListNode.children [5];
             ccfthreadlist.postCount = [commentCountNode text];

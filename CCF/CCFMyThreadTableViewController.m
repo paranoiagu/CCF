@@ -73,7 +73,6 @@
 }
 
 - (IBAction)showLeftDrawer:(id)sender {
-    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
-    [rootController showLeftDrawer];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

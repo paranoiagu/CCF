@@ -765,7 +765,7 @@
         <!--高级回帖-->
         <scene sceneID="0ad-k0-Qjn">
             <objects>
-                <viewController id="pPN-ZQ-aHh" customClass="CCFSeniorNewPostViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CCFSeniorNewPostViewController" id="pPN-ZQ-aHh" customClass="CCFSeniorNewPostViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8ZP-Ks-ema"/>
                         <viewControllerLayoutGuide type="bottom" id="dCe-aI-mg4"/>

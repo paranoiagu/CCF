@@ -23,6 +23,9 @@
 #import "CCFThread.h"
 #import "TransValueUITableViewCell.h"
 #import "CCFProfileTableViewController.h"
+#import "CCFNavigationController.h"
+#import "UIStoryboard+CCF.h"
+#import "CCFSeniorNewPostViewController.h"
 
 
 @interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
@@ -254,15 +257,21 @@
     UIAlertController * insertPhotoController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *photo = [UIAlertAction actionWithTitle:@"引用回复" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //设置照片源
         
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        
+        CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
+        [self.navigationController pushViewController:myThreadController animated:YES];
+
         
     }];
     
     UIAlertAction *camera = [UIAlertAction actionWithTitle:@"@作者" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //设置照片源
         
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
         
+        CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
+        [self.navigationController pushViewController:myThreadController animated:YES];
         
     }];
     

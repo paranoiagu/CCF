@@ -17,6 +17,7 @@
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "CCFProfileTableViewController.h"
 #import "CCFThreadListForChildFormUITableViewController.h"
+#import "NSUserDefaults+Setting.h"
 
 
 
@@ -129,7 +130,13 @@
         // 子论坛列表
         return childForms.count;
     } else if (section == 1){
-        return self.threadTopList.count;
+        if ([[NSUserDefaults standardUserDefaults] isTopThreadPostCanShow]) {
+            return self.threadTopList.count;
+        } else{
+            return 0;
+        }
+        
+        
     } else{
         return self.dataList.count;
     }

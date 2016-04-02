@@ -19,11 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.signatureSwitch setOn:[NSUserDefaults standardUserDefaults].isSignatureEnabled];
+    [self.topThreadPostSwitch setOn:[NSUserDefaults standardUserDefaults].isTopThreadPostCanShow];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,4 +53,5 @@
 - (IBAction)switchTopThread:(UISwitch *)sender {
     [[NSUserDefaults standardUserDefaults] setTopThreadPost:sender.isOn];
 }
+
 @end

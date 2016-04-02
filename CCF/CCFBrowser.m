@@ -20,13 +20,15 @@
 #import "NSUserDefaults+CCF.h"
 #import "AFHTTPSessionManager+SimpleAction.h"
 #import "LoginCCFUser.h"
+#import "NSUserDefaults+Setting.h"
+
+
 
 #define kCCFCookie_User @"bbuserid"
 #define kCCFCookie_LastVisit @"bblastvisit"
 #define kCCFCookie_IDStack @"IDstack"
 #define kCCFSecurityToken @"securitytoken"
-
-
+#import <SDiOSVersion.h>
 
 @implementation CCFBrowser{
     NSString * listMyThreadRedirectUrl;
@@ -37,6 +39,8 @@
     NSString *newThreadPostRedirectUrl;
     
     CCFParser * parser;
+    
+    NSString * iPhoneName;
 }
 
 
@@ -48,6 +52,10 @@
         _browser.responseSerializer.acceptableContentTypes = [_browser.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
         
         parser = [[CCFParser alloc] init];
+        
+        DeviceVersion version = [SDiOSVersion deviceVersion];
+        iPhoneName =  stringFromDeviceVersion(version);
+        
         [self loadCookie];
     }
     
@@ -181,13 +189,17 @@
     return [[NSUserDefaults standardUserDefaults] valueForKey:kCCFSecurityToken];
 }
 
-
+-(NSString *) buildSignature{
+    NSString * sigature = [NSString stringWithFormat:@"\n\n发自 %@ 使用 [URL=\"https://bbs.et8.net/bbs/showthread.php?t=1335973\"]CCF客户端[/URL]", iPhoneName];
+    return sigature;
+    
+}
 -(void)replyThreadWithId:(NSString *)threadId withMessage:(NSString *)message handler:(Handler)result{
     
+    if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
+        message = [message stringByAppendingString:[self buildSignature]];
+    }
     
-    NSString * testMesage = @"\n\n发自 iPhone5s 使用 [URL=\"https://bbs.et8.net/bbs/showthread.php?t=1335973\"]CCF客户端[/URL]";
-    
-    NSString *test = [message stringByAppendingString:testMesage];
     
     NSURL * loginUrl = [CCFUrlBuilder buildReplyURL:threadId];
     
@@ -196,7 +208,7 @@
     NSString * securitytoken = [self readSecurityToken];
     
     [parameters setValue:securitytoken forKey:@"securitytoken"];
-    [parameters setValue:test forKey:@"message"];
+    [parameters setValue:message forKey:@"message"];
     
     [parameters setValue:@"postreply" forKey:@"do"];
     [parameters setValue:threadId forKey:@"t"];
@@ -310,9 +322,13 @@
 }
 
 -(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(Handler)handler{
-    NSString * testMesage = @"\n\n发自 iPhone5s 使用 [URL=\"https://bbs.et8.net/bbs/showthread.php?t=1335973\"]CCF客户端[/URL]";
     
-    message = [message stringByAppendingString:testMesage];
+    if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
+        message = [message stringByAppendingString:[self buildSignature]];
+        
+    }
+
+    
     
     // 准备发帖
     [self createNewThreadPrepair:fId :^(NSString *token, NSString *hash, NSString *time) {

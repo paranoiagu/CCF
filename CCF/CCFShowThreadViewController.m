@@ -174,6 +174,8 @@
     
     [self.tableView.mj_header beginRefreshing];
     
+    self.titleNavigationItem.title = transThread.threadTitle;
+    
 }
 
 

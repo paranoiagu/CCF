@@ -53,6 +53,8 @@
     if (self.threadTopList == nil) {
         self.threadTopList = [NSMutableArray array];
     }
+    
+    self.titleNavigationItem.title = transForm.formName;
 }
 
 

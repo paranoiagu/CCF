@@ -83,13 +83,15 @@
     [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
     
     CGRect focusedFrame = currentFocused.frame;
-    CGFloat hideHeight = (focusedFrame.origin.y + CGRectGetHeight(focusedFrame)) - (CGRectGetHeight(screenSize) - CGRectGetHeight(keyboardFrame));
+    int bottom = focusedFrame.origin.y + CGRectGetHeight(focusedFrame) + self.view.frame.origin.y;
     
-    if (hideHeight > 0) {
+    int keyboardTop = CGRectGetHeight(screenSize) - CGRectGetHeight(keyboardFrame);
+    
+    if (bottom > keyboardTop) {
         // 键盘被挡住了
         [UIView animateWithDuration:0.2 animations:^{
             CGRect frame = self.view.frame;
-            frame.origin.y  -= hideHeight + 10;
+            frame.origin.y  -=  (bottom - keyboardTop) + 10;
             self.view.frame = frame;
         }];
     }

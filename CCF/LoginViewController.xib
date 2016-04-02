@@ -83,11 +83,12 @@
                 <constraint firstItem="cmi-2m-SRN" firstAttribute="top" secondItem="KW9-CB-Ybn" secondAttribute="bottom" constant="52" id="YI3-i9-MJK"/>
                 <constraint firstItem="Oul-TD-2GN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bmd-A9-SB7"/>
             </constraints>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <point key="canvasLocation" x="185" y="589"/>
         </view>
     </objects>
     <resources>
         <image name="ccfLogo" width="274" height="71"/>
-        <image name="logo" width="200" height="78"/>
+        <image name="logo" width="95" height="95"/>
     </resources>
 </document>

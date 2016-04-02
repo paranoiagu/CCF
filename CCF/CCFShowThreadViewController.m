@@ -26,6 +26,7 @@
 #import "CCFNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import "CCFSeniorNewPostViewController.h"
+#import "TransValueBundle.h"
 
 
 @interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
@@ -41,6 +42,8 @@
     CCFThread * transThread;
     
     UIStoryboardSegue * selectSegue;
+    
+    CCFShowThreadPage * currentThreadPage;
 }
 
 @end
@@ -127,6 +130,8 @@
                     self.posts = [NSMutableArray array];
                 }
                 
+                currentThreadPage = thread;
+                
                 [self.posts removeAllObjects];
                 [self.posts addObjectsFromArray:parsedPosts];
                 [self.tableView reloadData];
@@ -154,6 +159,8 @@
                 if (self.posts == nil) {
                     self.posts = [NSMutableArray array];
                 }
+                
+                currentThreadPage = thread;
                 
                 [self.posts addObjectsFromArray:parsedPosts];
                 [self.tableView reloadData];
@@ -261,6 +268,22 @@
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
         
         CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
+        self.transValueDelegate = (id<TransValueDelegate>)myThreadController;
+        
+        TransValueBundle * bundle = [[TransValueBundle alloc] init];
+        
+        [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+        
+        CCFPost * selectPost = self.posts[indexPath.row];
+        
+        [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
+        NSString * token = currentThreadPage.securityToken;
+        
+        [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
+        [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+        
+        [self.transValueDelegate transValue: bundle];
+        
         [self.navigationController pushViewController:myThreadController animated:YES];
 
         

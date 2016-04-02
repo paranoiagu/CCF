@@ -9,19 +9,31 @@
 #import "CCFSeniorNewPostViewController.h"
 
 #import "SelectPhotoCollectionViewCell.h"
+#import "TransValueDelegate.h"
+#import "CCFThread.h"
+#import "CCFPost.h"
+#import "TransValueBundle.h"
+
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface CCFSeniorNewPostViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate>{
+@interface CCFSeniorNewPostViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate, TransValueDelegate>{
     
     UIImagePickerController *pickControl;
-    
-    
     NSMutableArray<UIImage*> *images;
+    TransValueBundle * bundle;
 }
 
 @end
 
 @implementation CCFSeniorNewPostViewController
+
+
+
+
+-(void)transValue:(id)value{
+    bundle = value;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -199,5 +211,12 @@
 }
 
 - (IBAction)sendSeniorMessage:(UIBarButtonItem *)sender {
+    int threadId = [bundle getIntValue:@"THREAD_ID"];
+    int postId = [bundle getIntValue:@"POST_ID"];
+    NSString * securityToken = [bundle getStringValue:@"SECYRITY_TOKEN"];
+    NSString * ajaxLastPost = [bundle getStringValue:@"AJAX_LAST_POST"];
+    [self.ccfApi quickReplyPostWithThreadId:threadId forPostId:postId andMessage:self.replyContent.text securitytoken:securityToken ajaxLastPost:ajaxLastPost handler:^(BOOL isSuccess, id message) {
+        NSString * html = message;
+    }];
 }
 @end

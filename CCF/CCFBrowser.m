@@ -810,9 +810,11 @@
 
 }
 
--(void)quickReplyPostWithId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString *)ajax_lastpost handler:(Handler)handler{
+-(void)quickReplyPostWithThreadId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString *)ajax_lastpost handler:(Handler)handler{
     NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/newreply.php?do=postreply&t=%d", threadId];
     
+    message = [message stringByAppendingString:@"\n\n发自 iPhone5s 使用 [URL=\"https://bbs.et8.net/bbs/showthread.php?t=1335973\"]CCF客户端[/URL]"];
+
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     
     [parameters setValue:token forKey:@"securitytoken"];

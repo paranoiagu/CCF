@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CCFApiBaseViewController.h"
 
-@interface CCFSeniorNewPostViewController : UIViewController
+@interface CCFSeniorNewPostViewController : CCFApiBaseViewController
 
 
 @property (weak, nonatomic) IBOutlet UITextView *replyContent;

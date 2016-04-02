@@ -161,6 +161,11 @@
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:fuxkHttp error:nil];
     
     CCFShowThreadPage * thread = [[CCFShowThreadPage alloc]init];
+    NSString * securityToken = [self parseSecurityToken:html];
+    thread.securityToken = securityToken;
+    
+    NSString * ajaxLastPost = [self parseAjaxLastPost:html];
+    thread.ajaxLastPost = ajaxLastPost;
     
     thread.dataList = [self parseShowThreadPosts:document];
     
@@ -351,7 +356,10 @@
 }
 
 
-
+-(NSString *)parseAjaxLastPost:(NSString *)html{
+    NSString *searchText = [html stringWithRegular:@"var ajax_last_post = \\d+;" andChild:@"\\d+"];
+    return searchText;
+}
 
 
 -(NSString *)parseSecurityToken:(NSString *)html{

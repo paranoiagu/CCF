@@ -33,6 +33,9 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 发表一个回帖
 -(void) replyThreadWithId:(NSString*) threadId andMessage:(NSString*) message handler:(HandlerWithBool) handler;
 
+// 快速回复
+-(void) quickReplyPostWithId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString*)ajax_lastpost handler:(HandlerWithBool) handler;
+
 // 搜索论坛
 -(void) searchWithKeyWord:(NSString*) keyWord handler:(HandlerWithBool) handler;
 

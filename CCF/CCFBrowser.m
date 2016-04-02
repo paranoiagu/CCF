@@ -810,6 +810,37 @@
 
 }
 
+-(void)quickReplyPostWithId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString *)ajax_lastpost handler:(Handler)handler{
+    NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/newreply.php?do=postreply&t=%d", threadId];
+    
+    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+    
+    [parameters setValue:token forKey:@"securitytoken"];
+    
+    [parameters setValue:@"1" forKey:@"ajax"];
+    [parameters setValue:ajax_lastpost forKey:@"ajax_lastpost"];
+    
+    [parameters setValue:message forKey:@"message"];
+    [parameters setValue:@"0" forKey:@"wysiwyg"];
+    [parameters setValue:@"0" forKey:@"styleid"];
+    [parameters setValue:@"1" forKey:@"quickreply"];
+    [parameters setValue:@"1" forKey:@"fromquickreply"];
+    
+    [parameters setValue:@"postreply" forKey:@"do"];
+    [parameters setValue:[NSString stringWithFormat:@"%d",threadId] forKey:@"t"];
+    [parameters setValue:[NSString stringWithFormat:@"%d",postId] forKey:@"p"];
+    [parameters setValue:@"1" forKey:@"specifiedpost"];
+    [parameters setValue:@"1" forKey:@"parseurl"];
+    
+    LoginCCFUser * user = [self getCurrentCCFUser];
+    
+    [parameters setValue:user.userID forKey:@"loggedinuser"];
+    
+    
+    [_browser POSTWithURLString:url parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess, html);
+    }];
+}
 
 -(void)favoriteThreadPostWithId:(NSString *)threadPostId handler:(Handler)handler{
     NSString * preUrl = [@"https://bbs.et8.net/bbs/subscription.php?do=addsubscription&t=" stringByAppendingString:threadPostId];

@@ -16,5 +16,8 @@
 @property (nonatomic, assign) NSUInteger totalPageCount;
 @property (nonatomic, assign) NSUInteger currentPage;
 
+@property (nonatomic, assign) NSString * securityToken;
+@property (nonatomic, assign) NSString * ajaxLastPost;
+
 
 @end

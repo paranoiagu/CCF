@@ -15,6 +15,7 @@
 #import "FormEntry.h"
 #import "NSUserDefaults+CCF.h"
 #import "ApiTestViewController.h"
+#import "NSUserDefaults+Setting.h"
 
 
 @interface AppDelegate (){
@@ -40,6 +41,15 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
 
 
+    // 设置默认数值
+    NSUserDefaults * setting = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary * dictonary = [NSMutableDictionary dictionary];
+    [dictonary setValue:[NSNumber numberWithInt:1] forKey:kSIGNATURE];
+    [dictonary setValue:[NSNumber numberWithInt:1] forKey:kTOP_THREAD];
+    [setting registerDefaults:dictonary];
+    
+    
+    
     CCFBrowser * browser = [[CCFBrowser alloc]init];
     LoginCCFUser * loginUser = [browser getCurrentCCFUser];
     

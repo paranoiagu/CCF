@@ -13,6 +13,8 @@
 #import "CCFThread.h"
 #import "CCFPost.h"
 #import "TransValueBundle.h"
+#import <SVProgressHUD.h>
+#import "CCFShowThreadPage.h"
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
@@ -211,12 +213,19 @@
 }
 
 - (IBAction)sendSeniorMessage:(UIBarButtonItem *)sender {
+    [SVProgressHUD showWithStatus:@"正在回复"];
+    
     int threadId = [bundle getIntValue:@"THREAD_ID"];
     int postId = [bundle getIntValue:@"POST_ID"];
     NSString * securityToken = [bundle getStringValue:@"SECYRITY_TOKEN"];
     NSString * ajaxLastPost = [bundle getStringValue:@"AJAX_LAST_POST"];
-    [self.ccfApi quickReplyPostWithThreadId:threadId forPostId:postId andMessage:self.replyContent.text securitytoken:securityToken ajaxLastPost:ajaxLastPost handler:^(BOOL isSuccess, id message) {
-        NSString * html = message;
+    [self.ccfApi quickReplyPostWithThreadId:threadId forPostId:postId andMessage:self.replyContent.text securitytoken:securityToken ajaxLastPost:ajaxLastPost handler:^(BOOL isSuccess, CCFShowThreadPage* message) {
+        if (isSuccess && message != nil) {
+            [SVProgressHUD showSuccessWithStatus:@"回复成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        } else{
+            [SVProgressHUD showErrorWithStatus:@"回复失败"];
+        }
     }];
 }
 @end

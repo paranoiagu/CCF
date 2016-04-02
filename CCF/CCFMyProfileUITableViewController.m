@@ -17,6 +17,7 @@
 #import "CCFFavThreadPostTableViewController.h"
 #import "CCFMyProfileUITableViewController.h"
 #import "CCFNavigationController.h"
+#import "CCFSettingTableViewController.h"
 
 #import "UIStoryboard+CCF.h"
 
@@ -122,6 +123,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
+        
+        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+        CCFSettingTableViewController *settingController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSettingTableViewController"];
+        [self.navigationController pushViewController:settingController animated:YES];
+        
         
     } else if (indexPath.row == 1){
         

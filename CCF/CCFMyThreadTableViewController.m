@@ -9,6 +9,7 @@
 #import "CCFMyThreadTableViewController.h"
 #import "CCFNavigationController.h"
 #import "CCFSearchResultCell.h"
+#import "CCFShowThreadViewController.h"
 
 @interface CCFMyThreadTableViewController ()
 
@@ -66,11 +67,31 @@
     }];
 }
 
+
+
 - (void)configureCell:(CCFSearchResultCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
     
     [cell setData:self.dataList[indexPath.row]];
 }
+
+#pragma mark Controller跳转
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
+        CCFShowThreadViewController * controller = segue.destinationViewController;
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        CCFSearchThread * thread = self.dataList[indexPath.row];
+        
+        [self.transValueDelegate transValue:thread];
+        
+    }
+}
+
 
 - (IBAction)showLeftDrawer:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];

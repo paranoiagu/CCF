@@ -1477,7 +1477,7 @@
                                     <outlet property="postCategory" destination="eZd-0C-zlA" id="oQu-d4-7aF"/>
                                     <outlet property="postTime" destination="HmW-kW-PkX" id="CWI-Of-s1i"/>
                                     <outlet property="postTitle" destination="GTQ-Re-22k" id="0J9-DJ-KPC"/>
-                                    <segue destination="TcI-Mw-KoO" kind="show" id="pHT-fe-nHJ"/>
+                                    <segue destination="TcI-Mw-KoO" kind="show" identifier="ShowThreadPosts" id="pHT-fe-nHJ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

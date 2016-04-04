@@ -117,8 +117,13 @@
         }
     };
     
-    NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:1.25], NSTextSizeMultiplierDocumentOption, [NSValue valueWithCGSize:maxImageSize], DTMaxImageSize,
-                                    @"Helvetica Neue", DTDefaultFontFamily,  @"purple", DTDefaultLinkColor, @"red", DTDefaultLinkHighlightColor, callBackBlock, DTWillFlushBlockCallBack, nil];
+    NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                    [NSNumber numberWithFloat:1.25], NSTextSizeMultiplierDocumentOption,
+                                    [NSValue valueWithCGSize:maxImageSize], DTMaxImageSize,
+                                    @"Helvetica Neue", DTDefaultFontFamily,
+                                    @"gray", DTDefaultLinkColor,
+                                    @"blue", DTDefaultLinkHighlightColor,
+                                    callBackBlock,DTWillFlushBlockCallBack, nil];
     
     
     //[options setObject:[NSURL fileURLWithPath:readmePath] forKey:NSBaseURLDocumentOption];
@@ -243,9 +248,9 @@
 
 - (BOOL)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView shouldDrawBackgroundForTextBlock:(DTTextBlock *)textBlock frame:(CGRect)frame context:(CGContextRef)context forLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame
 {
-    UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(frame,1,1) cornerRadius:10];
+    UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(frame,1,1) cornerRadius:1];
     
-    CGColorRef color = [textBlock.backgroundColor CGColor];
+    CGColorRef color = [[UIColor colorWithRed:246/255.0 green:246/255.0 blue:248/255.0 alpha:1] CGColor];
     if (color)
     {
         CGContextSetFillColorWithColor(context, color);
@@ -253,7 +258,7 @@
         CGContextFillPath(context);
         
         CGContextAddPath(context, [roundedRect CGPath]);
-        CGContextSetRGBStrokeColor(context, 0, 0, 0, 1);
+        CGContextSetRGBStrokeColor(context, 207/255.0, 207/255.0, 209/255.0, 1);
         CGContextStrokePath(context);
         return NO;
     }

@@ -68,7 +68,6 @@
     
     if (avatarInArray == nil) {
         
-        NSLog(@"====================================================================");
         [ccfapi getAvatarWithUserId:userId handler:^(BOOL isSuccess, NSString *avatar) {
             // 存入数据库
             [coreDateManager insertOneData:^(id src) {
@@ -87,7 +86,6 @@
             }
         }];
     } else{
-        NSLog(@"--------------------------------------------------------------------");
         if ([avatarInArray isEqualToString:@"defaultAvatar"]) {
             [avatarImageView setImage:defaultAvatar];
         } else{

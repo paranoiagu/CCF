@@ -25,6 +25,7 @@
 
 
 - (IBAction)back:(UIBarButtonItem *)sender;
+- (IBAction)showMoreAction:(UIBarButtonItem *)sender;
 
 @property (nonatomic, weak) id<TransValueDelegate> transValueDelegate;
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleNavigationItem;

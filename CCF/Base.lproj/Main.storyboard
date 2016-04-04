@@ -701,6 +701,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_more_horiz_18pt" id="BGr-tZ-mr8">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="showMoreAction:" destination="TcI-Mw-KoO" id="eVr-nr-j7u"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>

@@ -28,6 +28,7 @@
 #import "CCFSeniorNewPostViewController.h"
 #import "TransValueBundle.h"
 #import <LCActionSheet.h>
+#import "ActionSheetPicker.h"
 
 
 @interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
@@ -340,6 +341,42 @@
 
 - (IBAction)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)showMoreAction:(UIBarButtonItem *)sender {
+    itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"复制帖子链接", @"在浏览器中查看",@"选择页码"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
+        if (buttonIndex == 0) {
+            
+        } else if (buttonIndex == 1){
+            
+        } else if (buttonIndex == 2){
+            
+            NSMutableArray<NSString*> * pages = [NSMutableArray array];
+            for (int i = 0 ; i < currentThreadPage.totalPageCount; i++) {
+                NSString * page = [NSString stringWithFormat:@"第 %d 页", i + 1];
+                [pages addObject:page];
+            }
+            
+            ActionSheetStringPicker * picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择页面" rows:pages initialSelection:currentPage - 1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                
+            } cancelBlock:^(ActionSheetStringPicker *picker) {
+                
+            } origin:sender];
+            
+            UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc] init];
+            cancelItem.title = @"取消";
+            [picker setCancelButton:cancelItem];
+            
+            UIBarButtonItem * queding = [[UIBarButtonItem alloc] init];
+            queding.title = @"确定";
+            [picker setDoneButton:queding];
+            
+            
+            [picker showActionSheetPicker];
+        }
+    }];
+    
+    [itemActionSheet show];
 }
 - (IBAction)floatReplyClick:(id)sender {
     

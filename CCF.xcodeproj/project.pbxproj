@@ -113,7 +113,7 @@
 		4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DF824BB1C34E5EF005BB858 /* ccf.json */; };
 		4DF824BF1C34E9EF005BB858 /* CCFFormTreeJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824BE1C34E9EF005BB858 /* CCFFormTreeJSONModel.m */; };
 		4DF824C31C34F0B2005BB858 /* CCFFormDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824C21C34F0B2005BB858 /* CCFFormDao.m */; };
-		FF75782265EC6BD32854A29B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7066804BD439AE15BAD99B97 /* libPods.a */; };
+		F98D9EA68FB327B72FDB5083 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A2A0B6B96C76030E628C93 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -318,7 +318,7 @@
 		4DF824BE1C34E9EF005BB858 /* CCFFormTreeJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormTreeJSONModel.m; sourceTree = "<group>"; };
 		4DF824C11C34F0B2005BB858 /* CCFFormDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFormDao.h; sourceTree = "<group>"; };
 		4DF824C21C34F0B2005BB858 /* CCFFormDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFormDao.m; sourceTree = "<group>"; };
-		7066804BD439AE15BAD99B97 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		57A2A0B6B96C76030E628C93 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45EAE323577337DE9983928 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -329,7 +329,7 @@
 			files = (
 				4DEB34C31C47BBE400063CBB /* AssetsLibrary.framework in Frameworks */,
 				3A93298D1C39648900A26249 /* CoreText.framework in Frameworks */,
-				FF75782265EC6BD32854A29B /* libPods.a in Frameworks */,
+				F98D9EA68FB327B72FDB5083 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,7 +756,7 @@
 			children = (
 				4DEB34C21C47BBE400063CBB /* AssetsLibrary.framework */,
 				3A93298C1C39648900A26249 /* CoreText.framework */,
-				7066804BD439AE15BAD99B97 /* libPods.a */,
+				57A2A0B6B96C76030E628C93 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

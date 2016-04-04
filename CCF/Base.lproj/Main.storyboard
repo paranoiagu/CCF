@@ -301,6 +301,12 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[↑]" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVv-lQ-EpM">
+                                                    <rect key="frame" x="523" y="30.5" width="26" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.90588235289999997" green="0.3294117647" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-01-01，12:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2z-b0-4ds">
                                                     <rect key="frame" x="64" y="31" width="130" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -350,6 +356,8 @@
                                                 <constraint firstItem="r2N-cl-LNu" firstAttribute="leading" secondItem="dfy-nA-zkI" secondAttribute="leading" constant="16" id="5Ch-cW-Pkh"/>
                                                 <constraint firstItem="Bes-18-nrk" firstAttribute="top" secondItem="dfy-nA-zkI" secondAttribute="top" constant="9" id="822-uF-XbB"/>
                                                 <constraint firstItem="QEa-K2-7Zg" firstAttribute="top" secondItem="dfy-nA-zkI" secondAttribute="top" constant="9" id="93e-pH-x0F"/>
+                                                <constraint firstItem="pCz-aC-8JN" firstAttribute="leading" secondItem="lVv-lQ-EpM" secondAttribute="trailing" constant="4" id="DzU-bw-4k6"/>
+                                                <constraint firstItem="lVv-lQ-EpM" firstAttribute="top" secondItem="Bes-18-nrk" secondAttribute="bottom" constant="7" id="EAZ-Eb-lVl"/>
                                                 <constraint firstItem="ncf-ad-v1F" firstAttribute="leading" secondItem="dfy-nA-zkI" secondAttribute="leading" constant="16" id="EBY-8U-2La"/>
                                                 <constraint firstItem="K3F-Iw-2CI" firstAttribute="top" secondItem="dfy-nA-zkI" secondAttribute="top" constant="10" id="IFt-RO-k7C"/>
                                                 <constraint firstItem="pCz-aC-8JN" firstAttribute="top" secondItem="Bes-18-nrk" secondAttribute="bottom" constant="8" id="MBY-6b-neS"/>
@@ -383,6 +391,7 @@
                                     <outlet property="threadOpenCount" destination="QEa-K2-7Zg" id="usR-wu-s4o"/>
                                     <outlet property="threadPostCount" destination="8lM-BK-ZZE" id="rKQ-ha-8YZ"/>
                                     <outlet property="threadTitle" destination="ncf-ad-v1F" id="XPz-ay-uen"/>
+                                    <outlet property="threadTopFlag" destination="lVv-lQ-EpM" id="WSz-qH-dtB"/>
                                     <outlet property="threadType" destination="pCz-aC-8JN" id="0HN-F8-N1t"/>
                                     <segue destination="TcI-Mw-KoO" kind="show" identifier="ShowThreadPosts" id="2Ik-S0-l6f"/>
                                 </connections>

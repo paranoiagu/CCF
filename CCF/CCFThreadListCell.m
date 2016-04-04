@@ -52,6 +52,8 @@
     self.threadPostCount.text = data.postCount;
     self.threadOpenCount.text = data.openCount;
     self.threadCreateTime.text = data.lastPostTime;
+    self.threadTopFlag.hidden = !data.isTopThread;
+
     [self showAvatar:self.avatarImage userId:data.threadAuthorID];
 }
 

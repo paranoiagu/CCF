@@ -30,6 +30,7 @@
 #import <LCActionSheet.h>
 #import <SVProgressHUD.h>
 #import "ActionSheetPicker.h"
+#import "NSString+Regular.h"
 
 
 @interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
@@ -273,7 +274,7 @@
     
     CCFPost * selectPost = self.posts[indexPath.row];
 
-    itemActionSheet = [LCActionSheet sheetWithTitle:selectPost.postUserInfo.userName buttonTitles:@[@"快速回复", @"@作者"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+    itemActionSheet = [LCActionSheet sheetWithTitle:selectPost.postUserInfo.userName buttonTitles:@[@"快速回复", @"@作者", @"复制链接"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
             UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
             
@@ -316,6 +317,16 @@
             [self.transValueDelegate transValue: bundle];
             
             [self.navigationController pushViewController:myThreadController animated:YES];
+        } else if (buttonIndex == 2){
+            NSString * louceng = [selectPost.postLouCeng stringWithRegular:@"\\d+"];
+            
+            NSString * postUrl = [NSString stringWithFormat: @"https://bbs.et8.net/bbs/showpost.php?p=%@&postcount=%@", transThread.threadID, louceng];
+            
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = postUrl;
+            
+            [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
+            
         }
     }];
     

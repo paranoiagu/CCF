@@ -699,6 +699,9 @@
                                 <action selector="back:" destination="TcI-Mw-KoO" id="ycU-Pq-XO8"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="ic_more_horiz_18pt" id="BGr-tZ-mr8">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
@@ -2616,6 +2619,7 @@
         <image name="ic_control_point_18pt" width="18" height="18"/>
         <image name="ic_menu_18pt" width="18" height="18"/>
         <image name="ic_mode_edit_18pt" width="18" height="18"/>
+        <image name="ic_more_horiz_18pt" width="18" height="18"/>
         <image name="ic_reply_all_18pt" width="18" height="18"/>
         <image name="ic_search_18pt" width="18" height="18"/>
         <image name="ic_send_18pt" width="18" height="18"/>
@@ -2623,7 +2627,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="FiC-V2-LqH"/>
         <segue reference="cLm-7D-Fzu"/>
-        <segue reference="hwp-U5-tBG"/>
+        <segue reference="bg3-ce-qf3"/>
         <segue reference="BtX-d5-2Dd"/>
     </inferredMetricsTieBreakers>
 </document>

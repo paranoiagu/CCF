@@ -27,6 +27,7 @@
 #import "UIStoryboard+CCF.h"
 #import "CCFSeniorNewPostViewController.h"
 #import "TransValueBundle.h"
+#import <LCActionSheet.h>
 
 
 @interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
@@ -44,6 +45,8 @@
     UIStoryboardSegue * selectSegue;
     
     CCFShowThreadPage * currentThreadPage;
+    
+    LCActionSheet * itemActionSheet;
 }
 
 @end
@@ -60,7 +63,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -262,57 +264,62 @@
 //    }];
 //}
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIAlertController * insertPhotoController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction *photo = [UIAlertAction actionWithTitle:@"引用回复" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        
-        CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
-        self.transValueDelegate = (id<TransValueDelegate>)myThreadController;
-        
-        TransValueBundle * bundle = [[TransValueBundle alloc] init];
-        
-        [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
-        
-        CCFPost * selectPost = self.posts[indexPath.row];
-        
-        [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
-        NSString * token = currentThreadPage.securityToken;
-        
-        [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
-        [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
-        
-        [self.transValueDelegate transValue: bundle];
-        
-        [self.navigationController pushViewController:myThreadController animated:YES];
+#pragma mark LCActionSheetDelegate
 
-        
-    }];
-    
-    UIAlertAction *camera = [UIAlertAction actionWithTitle:@"@作者" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        
-        CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
-        [self.navigationController pushViewController:myThreadController animated:YES];
-        
-    }];
-    
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        
-    }];
-    
-    
-    [insertPhotoController addAction:photo];
-    [insertPhotoController addAction:camera];
-    [insertPhotoController addAction:cancel];
-    
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    [self presentViewController:insertPhotoController animated:YES completion:nil];
+    CCFPost * selectPost = self.posts[indexPath.row];
+
+    itemActionSheet = [LCActionSheet sheetWithTitle:selectPost.postUserInfo.userName buttonTitles:@[@"快速回复", @"@作者"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+        if (buttonIndex == 0) {
+            UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+            
+            CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
+            self.transValueDelegate = (id<TransValueDelegate>)myThreadController;
+            
+            TransValueBundle * bundle = [[TransValueBundle alloc] init];
+            
+            [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+            
+            CCFPost * selectPost = self.posts[indexPath.row];
+            
+            [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
+            NSString * token = currentThreadPage.securityToken;
+            
+            [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
+            [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+            
+            [self.transValueDelegate transValue: bundle];
+            
+            [self.navigationController pushViewController:myThreadController animated:YES];
+        } else if (buttonIndex == 1){
+            UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+            
+            CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
+            self.transValueDelegate = (id<TransValueDelegate>)myThreadController;
+            
+            TransValueBundle * bundle = [[TransValueBundle alloc] init];
+            
+            [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+            
+            CCFPost * selectPost = self.posts[indexPath.row];
+            
+            [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
+            NSString * token = currentThreadPage.securityToken;
+            
+            [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
+            [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+            
+            [self.transValueDelegate transValue: bundle];
+            
+            [self.navigationController pushViewController:myThreadController animated:YES];
+        }
+    }];
+    
+    [itemActionSheet show];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
 }
 
 -(void)showUserProfile:(NSIndexPath *)indexPath{

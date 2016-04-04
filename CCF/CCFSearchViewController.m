@@ -14,6 +14,7 @@
 #import "CCFSearchResultCell.h"
 #import "CCFShowThreadViewController.h"
 #import "CCFProfileTableViewController.h"
+#import <SVProgressHUD.h>
 
 
 @interface CCFSearchViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, CCFThreadListCellDelegate>{
@@ -63,7 +64,11 @@
 #pragma mark UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
 
+    [SVProgressHUD showWithStatus:@"搜索中" maskType:SVProgressHUDMaskTypeBlack];
+    
     [self.ccfApi searchWithKeyWord:searchBar.text handler:^(BOOL isSuccess, CCFSearchPage* message) {
+        [SVProgressHUD dismiss];
+        
         if (isSuccess) {
             redirectUrl = message.redirectUrl;
             

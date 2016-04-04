@@ -440,14 +440,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="五个字" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lnk-2g-A1b" customClass="RoundCornerUITextView">
-                                <rect key="frame" x="20" y="52" width="560" height="140"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="五个字" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lnk-2g-A1b" customClass="RoundCornerUITextView">
+                                <rect key="frame" x="20" y="72" width="560" height="184"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="标题:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G9m-d8-4BV">
-                                <rect key="frame" x="20" y="14" width="560" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="标题:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G9m-d8-4BV">
+                                <rect key="frame" x="20" y="34" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -474,7 +474,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYC-OL-Iyd">
                                                     <rect key="frame" x="60" y="8" width="22" height="22"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" image="ic_clear_18pt"/>
+                                                    <state key="normal" image="ic_close_18pt"/>
                                                     <connections>
                                                         <action selector="deleteCurrentImage:" destination="umc-Pe-6dc" eventType="touchUpInside" id="iGc-vF-sjB"/>
                                                     </connections>
@@ -723,8 +723,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wio-Ec-b1f">
-                                <rect key="frame" x="20" y="200" width="560" height="292"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wio-Ec-b1f">
+                                <rect key="frame" x="20" y="220" width="560" height="336"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="yv2-E6-k1Q">
@@ -747,7 +747,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGh-ft-PHI">
                                                     <rect key="frame" x="62" y="8" width="22" height="22"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" image="ic_clear_18pt"/>
+                                                    <state key="normal" image="ic_close_18pt"/>
                                                     <connections>
                                                         <action selector="deleteCurrentImage:" destination="jxW-rR-4fd" eventType="touchUpInside" id="thf-RX-SZa"/>
                                                     </connections>
@@ -767,8 +767,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="高级回帖" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="acq-4R-1JW" userLabel="replyContentView">
-                                <rect key="frame" x="20" y="8" width="560" height="184"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="高级回帖" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="acq-4R-1JW" userLabel="replyContentView">
+                                <rect key="frame" x="20" y="28" width="560" height="184"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="184" id="cw7-Fe-abd"/>
                                 </constraints>
@@ -2594,7 +2594,7 @@
     <resources>
         <image name="ic_arrow_back_18pt" width="18" height="18"/>
         <image name="ic_camera_enhance_18pt" width="18" height="18"/>
-        <image name="ic_clear_18pt" width="18" height="18"/>
+        <image name="ic_close_18pt" width="18" height="18"/>
         <image name="ic_control_point_18pt" width="18" height="18"/>
         <image name="ic_menu_18pt" width="18" height="18"/>
         <image name="ic_mode_edit_18pt" width="18" height="18"/>

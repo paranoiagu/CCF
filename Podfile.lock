@@ -40,6 +40,7 @@ PODS:
     - CSSSelectorConverter (>= 1.2.0)
   - JSONModel (1.1.2)
   - LCActionSheet (1.1.3)
+  - LGAlertView (2.0.13)
   - MJRefresh (3.0.8)
   - NUIParse (1.3)
   - SDVersion (2.5.2)
@@ -53,6 +54,7 @@ DEPENDENCIES:
   - IGHTMLQuery (~> 0.8.4)
   - JSONModel (~> 1.1.2)
   - LCActionSheet
+  - LGAlertView
   - MJRefresh (~> 3.0.8)
   - SDVersion
   - SVProgressHUD (~> 1.1.3)
@@ -68,6 +70,7 @@ SPEC CHECKSUMS:
   IGHTMLQuery: 6176bcb88ad36f80ee984dbfde5592bb3ccc921f
   JSONModel: 216584d0311b053ff714f1d6cb700dbf890847bc
   LCActionSheet: 9b81ff2a7e3ac00aafa68d320f11ef1fa6baca88
+  LGAlertView: 9a5dcbf4f81b02b718083539d7f222280adc9547
   MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
   NUIParse: 2e3885ba7807477266396292626bd387d34c2338
   SDVersion: 52f2641db3a580616936b0ce66f4769706570654

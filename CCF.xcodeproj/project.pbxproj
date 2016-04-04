@@ -10,7 +10,6 @@
 		3A0A997D1C4A5AFC00086DAB /* RoundCornerUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A997C1C4A5AFC00086DAB /* RoundCornerUITextView.m */; };
 		3A0A99801C4A6A4E00086DAB /* RoundCornerUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A997F1C4A6A4E00086DAB /* RoundCornerUIView.m */; };
 		3A0A99831C4A71B600086DAB /* CCFSeniorNewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */; };
-		3A187B361C40B4EE003DA5C2 /* AlertProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A187B351C40B4EE003DA5C2 /* AlertProgressViewController.m */; };
 		3A1C2CCE1C9E3D4E0068AF6B /* CCFSearchPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C2CCD1C9E3D4E0068AF6B /* CCFSearchPage.m */; };
 		3A1C2CD11C9E9B740068AF6B /* CCFProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C2CD01C9E9B740068AF6B /* CCFProfileTableViewController.m */; };
 		3A1C2CD41C9EA1010068AF6B /* CCFUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C2CD31C9EA1010068AF6B /* CCFUserProfile.m */; };
@@ -123,8 +122,6 @@
 		3A0A997F1C4A6A4E00086DAB /* RoundCornerUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundCornerUIView.m; sourceTree = "<group>"; };
 		3A0A99811C4A71B600086DAB /* CCFSeniorNewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSeniorNewPostViewController.h; sourceTree = "<group>"; };
 		3A0A99821C4A71B600086DAB /* CCFSeniorNewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSeniorNewPostViewController.m; sourceTree = "<group>"; };
-		3A187B341C40B4EE003DA5C2 /* AlertProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertProgressViewController.h; sourceTree = "<group>"; };
-		3A187B351C40B4EE003DA5C2 /* AlertProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertProgressViewController.m; sourceTree = "<group>"; };
 		3A1C2CCC1C9E3D4E0068AF6B /* CCFSearchPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSearchPage.h; sourceTree = "<group>"; };
 		3A1C2CCD1C9E3D4E0068AF6B /* CCFSearchPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSearchPage.m; sourceTree = "<group>"; };
 		3A1C2CCF1C9E9B740068AF6B /* CCFProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFProfileTableViewController.h; sourceTree = "<group>"; };
@@ -448,8 +445,6 @@
 				3A2FCC7B1C956D5C00B469E4 /* TableViewCell */,
 				4D1EEBB81C33D4FD0084F6E9 /* LoginViewController.h */,
 				4D1EEBB91C33D4FD0084F6E9 /* LoginViewController.m */,
-				3A187B341C40B4EE003DA5C2 /* AlertProgressViewController.h */,
-				3A187B351C40B4EE003DA5C2 /* AlertProgressViewController.m */,
 				4D1EEBBA1C33D4FD0084F6E9 /* LoginViewController.xib */,
 				4D796BEB1C44A43B00B3C62D /* CCFNavigationController.h */,
 				4D796BEC1C44A43B00B3C62D /* CCFNavigationController.m */,
@@ -979,7 +974,6 @@
 				3A62DB621CA7D31800AF5E0A /* CCFThreadListForChildFormUITableViewController.m in Sources */,
 				3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */,
 				4D6B11C81C9A536600E073A1 /* CCFSimpleThread.m in Sources */,
-				3A187B361C40B4EE003DA5C2 /* AlertProgressViewController.m in Sources */,
 				3A3672AD1CAF713200756D8B /* TransValueBundle.m in Sources */,
 				3AA2D50A1C36103C00F312CC /* CCFThreadViewCell.m in Sources */,
 				3A92E7F71CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m in Sources */,

@@ -16,7 +16,7 @@
 
 #import "CCFShowThreadPage.h"
 
-#import "AlertProgressViewController.h"
+
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "TransValueDelegate.h"
 #import "CCFApi.h"
@@ -29,6 +29,7 @@
 #import "TransValueBundle.h"
 #import <LCActionSheet.h>
 #import "ActionSheetPicker.h"
+#import "LGAlertView.h"
 
 
 @interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
@@ -348,8 +349,10 @@
         if (buttonIndex == 0) {
             
         } else if (buttonIndex == 1){
-            
+            [[UIApplication sharedApplication] openURL:[CCFUrlBuilder buildThreadURL:[currentThreadPage.threadID intValue] withPage:1]];
         } else if (buttonIndex == 2){
+
+            
             
             NSMutableArray<NSString*> * pages = [NSMutableArray array];
             for (int i = 0 ; i < currentThreadPage.totalPageCount; i++) {
@@ -357,9 +360,49 @@
                 [pages addObject:page];
             }
             
+            
+            
             ActionSheetStringPicker * picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择页面" rows:pages initialSelection:currentPage - 1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                 
+                
+                LGAlertView * alertView = [[LGAlertView alloc] initWithActivityIndicatorAndTitle:nil message:@"正在跳转" style:LGAlertViewStyleAlert buttonTitles:nil cancelButtonTitle:nil destructiveButtonTitle:nil];
+                [alertView showAnimated:YES completionHandler:nil];
+                
+                
+                [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:(int)selectedIndex handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+                    
+                    [alertView dismissAnimated:YES completionHandler:nil];
+                    
+                    if (isSuccess) {
+                        currentPage = (int)selectedIndex;
+                        
+                        [cellHeightDictionary removeAllObjects];
+                        
+                        totalPage = (int)thread.totalPageCount;
+                        
+                        if (currentPage >= totalPage) {
+                            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                        }
+                        
+                        
+                        NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
+                        
+                        
+                        if (self.posts == nil) {
+                            self.posts = [NSMutableArray array];
+                        }
+                        
+                        currentThreadPage = thread;
+                        
+                        [self.posts removeAllObjects];
+                        [self.posts addObjectsFromArray:parsedPosts];
+                        [self.tableView reloadData];
+                    }
+                    
+                }];
+                
             } cancelBlock:^(ActionSheetStringPicker *picker) {
+
                 
             } origin:sender];
             
@@ -382,13 +425,15 @@
     
     [field resignFirstResponder];
     
+    LGAlertView * alertView = [[LGAlertView alloc] initWithActivityIndicatorAndTitle:nil message:@"正在回复" style:LGAlertViewStyleAlert buttonTitles:nil cancelButtonTitle:nil destructiveButtonTitle:nil];
+    [alertView showAnimated:YES completionHandler:nil];
     
-    AlertProgressViewController * alertProgress = [AlertProgressViewController alertControllerWithTitle:@"" message:@"\n\n\n正在回复" preferredStyle:UIAlertControllerStyleAlert];
-    
-    [self presentViewController:alertProgress animated:YES completion:nil];
+
     
     [_api replyThreadWithId:transThread.threadID andMessage:field.text handler:^(BOOL isSuccess, id message) {
-        [alertProgress dismissViewControllerAnimated:NO completion:nil];
+        
+        [alertView dismissAnimated:YES completionHandler:nil];
+        
         if (isSuccess) {
             
             field.text = @"";

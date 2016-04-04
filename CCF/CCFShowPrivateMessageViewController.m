@@ -17,12 +17,13 @@
 
 #import "CCFShowThreadPage.h"
 
-#import "AlertProgressViewController.h"
+
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "CCFShowPM.h"
 #import "CCFShowPMTableViewCell.h"
 #import "PrivateMessage.h"
 #import "CCFProfileTableViewController.h"
+#import "LGAlertView.h"
 
 
 #import "CCFApi.h"
@@ -213,15 +214,15 @@
     
     [field resignFirstResponder];
     
+    LGAlertView * alertView = [[LGAlertView alloc] initWithActivityIndicatorAndTitle:nil message:@"正在回复" style:LGAlertViewStyleAlert buttonTitles:nil cancelButtonTitle:nil destructiveButtonTitle:nil];
+    [alertView showAnimated:YES completionHandler:nil];
     
-    AlertProgressViewController * alertProgress = [AlertProgressViewController alertControllerWithTitle:@"" message:@"\n\n\n正在回复" preferredStyle:UIAlertControllerStyleAlert];
     
-    [self presentViewController:alertProgress animated:YES completion:nil];
     
     [_api replyPrivateMessageWithId:123  andMessage:@"" handler:^(BOOL isSuccess, id message) {
-        [alertProgress dismissViewControllerAnimated:NO completion:nil];
-        
-        if (isSuccess) {
+        [alertView dismissAnimated:YES completionHandler:nil];
+         
+         if (isSuccess) {
             
             field.text = @"";
             

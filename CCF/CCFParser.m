@@ -137,7 +137,7 @@
 -(CCFShowThreadPage *)parseShowThreadWithHtml:(NSString *)html{
 
     // 修改引用帖子的样式
-    html = [html stringByReplacingOccurrencesOfString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\">引用:</div>" withString:@""];
+    html = [html stringByReplacingOccurrencesOfString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\">引用:</div>" withString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\"> </div>"];
     
     // 查找设置了字体的回帖
     NSArray * fontSetString = [html arrayWithRegulat:@"<font size=\"\\d+\">"];

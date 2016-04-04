@@ -14,7 +14,7 @@
 #import<Foundation/Foundation.h>
 
 #import "CCFBrowser.h"
-#import "AlertProgressViewController.h"
+#import "LGAlertView.h"
 #import "CCFParser.h"
 #import "CCFFormTableViewController.h"
 #import "AppDelegate.h"
@@ -123,8 +123,6 @@
     NSString *password = _password.text;
     if ([name isEqualToString:@""] || [password isEqualToString:@""]) {
         
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Default Alert View" message:@"Defalut" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-//        [alertView show];
         
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"错误" message:@"\n用户名或密码为空" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
@@ -137,8 +135,9 @@
         return;
     }
     
-    AlertProgressViewController * progress = [AlertProgressViewController alertControllerWithTitle:@"提示" message:@"\n\n\n正在登录" preferredStyle:UIAlertControllerStyleAlert];
-    [self presentViewController:progress animated:YES completion:nil];
+    LGAlertView * alertView = [[LGAlertView alloc] initWithActivityIndicatorAndTitle:@"提示" message:@"正在登录" style:LGAlertViewStyleAlert buttonTitles:nil cancelButtonTitle:nil destructiveButtonTitle:nil];
+    [alertView showAnimated:YES completionHandler:nil];
+
     
     
     [_ccfApi loginWithName:name andPassWord:password handler:^(BOOL isSuccess, NSString *message) {
@@ -146,12 +145,7 @@
             UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
             [stortboard changeRootViewControllerTo:kCCFRootController];
         } else{
-            [progress dismissViewControllerAnimated:NO completion:nil];
-            
-            
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"错误" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            
-            [alertView show];
+            [LGAlertView alertViewWithTitle:@"" message:@"失败" style:LGAlertViewStyleAlert buttonTitles:nil cancelButtonTitle:@"确定" destructiveButtonTitle:nil];
         }
         
     }];

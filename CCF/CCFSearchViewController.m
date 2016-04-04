@@ -20,6 +20,7 @@
 @interface CCFSearchViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, CCFThreadListCellDelegate>{
     NSString * redirectUrl;
     UIStoryboardSegue * selectSegue;
+    NSString * searchText;
 }
 
 @end
@@ -32,6 +33,8 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self onLoadMore];
     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 -(void)onLoadMore{
@@ -61,12 +64,11 @@
     
 }
 
-#pragma mark UISearchBarDelegate
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
 
+-(void)keyboardDidHide:(id)sender{
     [SVProgressHUD showWithStatus:@"搜索中" maskType:SVProgressHUDMaskTypeBlack];
     
-    [self.ccfApi searchWithKeyWord:searchBar.text handler:^(BOOL isSuccess, CCFSearchPage* message) {
+    [self.ccfApi searchWithKeyWord:searchText handler:^(BOOL isSuccess, CCFSearchPage* message) {
         [SVProgressHUD dismiss];
         
         if (isSuccess) {
@@ -82,6 +84,13 @@
             NSLog(@"searchBarSearchButtonClicked   ERROR %@", message);
         }
     }];
+}
+
+#pragma mark UISearchBarDelegate
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    searchText = searchBar.text;
+    
+    [searchBar resignFirstResponder];
     
 }
 

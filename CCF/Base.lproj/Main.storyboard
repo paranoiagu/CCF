@@ -290,19 +290,19 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="马小甲" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBZ-R7-k5T">
-                                                    <rect key="frame" x="64" y="10" width="48" height="20"/>
+                                                    <rect key="frame" x="64" y="10" width="48" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                     <color key="textColor" red="0.90588235289999997" green="0.3294117647" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="讨论" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCz-aC-8JN">
-                                                    <rect key="frame" x="553" y="32" width="30" height="18"/>
+                                                    <rect key="frame" x="553" y="31" width="30" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-01-01，12:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2z-b0-4ds">
-                                                    <rect key="frame" x="64" y="32" width="130" height="18"/>
+                                                    <rect key="frame" x="64" y="31" width="130" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -311,12 +311,6 @@
                                                     <rect key="frame" x="16" y="58" width="567" height="62"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.39607843139999999" green="0.39607843139999999" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lM-BK-ZZE">
-                                                    <rect key="frame" x="561" y="10" width="22" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2N-cl-LNu">
@@ -330,18 +324,40 @@
                                                         <segue destination="ZvQ-yC-kHJ" kind="show" identifier="ShowUserProfile" id="TtZ-MJ-Rft"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEa-K2-7Zg">
+                                                    <rect key="frame" x="562" y="9" width="20.5" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bes-18-nrk">
+                                                    <rect key="frame" x="556" y="9" width="4.5" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lM-BK-ZZE">
+                                                    <rect key="frame" x="534.5" y="9" width="20.5" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="QEa-K2-7Zg" firstAttribute="leading" secondItem="Bes-18-nrk" secondAttribute="trailing" constant="1" id="29U-4A-xgz"/>
+                                                <constraint firstItem="8lM-BK-ZZE" firstAttribute="top" secondItem="dfy-nA-zkI" secondAttribute="top" constant="9" id="3d5-ma-sOd"/>
                                                 <constraint firstItem="r2N-cl-LNu" firstAttribute="leading" secondItem="dfy-nA-zkI" secondAttribute="leading" constant="16" id="5Ch-cW-Pkh"/>
-                                                <constraint firstItem="8lM-BK-ZZE" firstAttribute="top" secondItem="dfy-nA-zkI" secondAttribute="top" constant="10" id="9ma-cn-oy0"/>
+                                                <constraint firstItem="Bes-18-nrk" firstAttribute="top" secondItem="dfy-nA-zkI" secondAttribute="top" constant="9" id="822-uF-XbB"/>
+                                                <constraint firstItem="QEa-K2-7Zg" firstAttribute="top" secondItem="dfy-nA-zkI" secondAttribute="top" constant="9" id="93e-pH-x0F"/>
                                                 <constraint firstItem="ncf-ad-v1F" firstAttribute="leading" secondItem="dfy-nA-zkI" secondAttribute="leading" constant="16" id="EBY-8U-2La"/>
                                                 <constraint firstItem="K3F-Iw-2CI" firstAttribute="top" secondItem="dfy-nA-zkI" secondAttribute="top" constant="10" id="IFt-RO-k7C"/>
+                                                <constraint firstItem="pCz-aC-8JN" firstAttribute="top" secondItem="Bes-18-nrk" secondAttribute="bottom" constant="8" id="MBY-6b-neS"/>
                                                 <constraint firstItem="bBZ-R7-k5T" firstAttribute="leading" secondItem="K3F-Iw-2CI" secondAttribute="trailing" constant="8" id="Mxn-z7-DXd"/>
                                                 <constraint firstItem="K3F-Iw-2CI" firstAttribute="leading" secondItem="dfy-nA-zkI" secondAttribute="leading" constant="16" id="POW-5R-zRN"/>
-                                                <constraint firstAttribute="trailing" secondItem="8lM-BK-ZZE" secondAttribute="trailing" constant="17" id="VaC-C1-uGW"/>
-                                                <constraint firstItem="pCz-aC-8JN" firstAttribute="top" secondItem="8lM-BK-ZZE" secondAttribute="bottom" constant="6" id="YcV-U9-Pvf"/>
+                                                <constraint firstAttribute="trailing" secondItem="QEa-K2-7Zg" secondAttribute="trailing" constant="17" id="Wbt-9I-Kxb"/>
                                                 <constraint firstItem="ncf-ad-v1F" firstAttribute="top" secondItem="K3F-Iw-2CI" secondAttribute="bottom" constant="8" id="Ycq-H0-qEm"/>
+                                                <constraint firstItem="Bes-18-nrk" firstAttribute="leading" secondItem="8lM-BK-ZZE" secondAttribute="trailing" constant="1.5" id="Z0j-Ni-b2R"/>
                                                 <constraint firstItem="r2N-cl-LNu" firstAttribute="top" secondItem="dfy-nA-zkI" secondAttribute="top" constant="9" id="ZjB-Dr-74c"/>
                                                 <constraint firstItem="bBZ-R7-k5T" firstAttribute="top" secondItem="dfy-nA-zkI" secondAttribute="top" constant="10" id="ghu-j8-8Jf"/>
                                                 <constraint firstItem="r2z-b0-4ds" firstAttribute="top" secondItem="bBZ-R7-k5T" secondAttribute="bottom" constant="2" id="lYU-Pd-B79"/>
@@ -364,6 +380,7 @@
                                     <outlet property="avatarImage" destination="K3F-Iw-2CI" id="ZWg-Dl-KcH"/>
                                     <outlet property="threadAuthor" destination="bBZ-R7-k5T" id="xDY-TF-QMZ"/>
                                     <outlet property="threadCreateTime" destination="r2z-b0-4ds" id="jvI-CT-h7v"/>
+                                    <outlet property="threadOpenCount" destination="QEa-K2-7Zg" id="usR-wu-s4o"/>
                                     <outlet property="threadPostCount" destination="8lM-BK-ZZE" id="rKQ-ha-8YZ"/>
                                     <outlet property="threadTitle" destination="ncf-ad-v1F" id="XPz-ay-uen"/>
                                     <outlet property="threadType" destination="pCz-aC-8JN" id="0HN-F8-N1t"/>
@@ -526,11 +543,11 @@
                         <viewControllerLayoutGuide type="bottom" id="UVw-IG-2nz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="t8e-xG-jrA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="128" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7bA-9M-9JM">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFThreadDetailCellIdentifier" rowHeight="128" id="seh-aM-qcp" customClass="CCFThreadDetailCell">
@@ -628,7 +645,7 @@
                                 </prototypes>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jom-RI-cJC" customClass="CCFToolbar">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="492" width="600" height="44"/>
                                 <items>
                                     <barButtonItem image="ic_control_point_18pt" id="jf0-ac-fQI">
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -694,11 +711,11 @@
                         <viewControllerLayoutGuide type="bottom" id="dCe-aI-mg4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mOC-MK-2JQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wio-Ec-b1f">
-                                <rect key="frame" x="20" y="220" width="560" height="336"/>
+                                <rect key="frame" x="20" y="200" width="560" height="292"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="yv2-E6-k1Q">
@@ -742,7 +759,7 @@
                                 </cells>
                             </collectionView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="高级回帖" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="acq-4R-1JW" userLabel="replyContentView">
-                                <rect key="frame" x="20" y="28" width="560" height="184"/>
+                                <rect key="frame" x="20" y="8" width="560" height="184"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="184" id="cw7-Fe-abd"/>
                                 </constraints>
@@ -751,7 +768,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6QA-fG-IbD" customClass="CCFToolbar">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="492" width="600" height="44"/>
                                 <items>
                                     <barButtonItem image="ic_camera_enhance_18pt" id="em2-BS-wZ8" userLabel="照片">
                                         <connections>
@@ -964,7 +981,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="CCFProfileTableViewController" id="ZvQ-yC-kHJ" customClass="CCFProfileTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="32g-Uj-cQx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -2444,7 +2461,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="CCFUserThreadTableViewController" id="l3g-AL-GdG" customClass="CCFUserThreadTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="XcW-xB-IIx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -2578,7 +2595,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ezQ-PD-8mT"/>
-        <segue reference="bg3-ce-qf3"/>
-        <segue reference="CYC-I7-A8v"/>
+        <segue reference="2Ik-S0-l6f"/>
+        <segue reference="TtZ-MJ-Rft"/>
     </inferredMetricsTieBreakers>
 </document>

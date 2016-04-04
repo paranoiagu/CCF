@@ -83,6 +83,9 @@
             IGXMLNode * commentCountNode = threadListNode.children [5];
             ccfthreadlist.postCount = [commentCountNode text];
             
+            IGHTMLDocument * openCountNode = threadListNode.children[6];
+            ccfthreadlist.openCount = [openCountNode text];
+            
             [threadList addObject:ccfthreadlist];
         }
     }

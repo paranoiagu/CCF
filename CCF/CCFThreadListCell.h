@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *threadAuthor;
 @property (weak, nonatomic) IBOutlet UILabel *threadTitle;
 @property (weak, nonatomic) IBOutlet UILabel *threadPostCount;
+@property (weak, nonatomic) IBOutlet UILabel *threadOpenCount;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property (weak, nonatomic) IBOutlet UILabel *threadCreateTime;
 @property (weak, nonatomic) IBOutlet UILabel *threadType;

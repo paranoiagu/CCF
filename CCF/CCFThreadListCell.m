@@ -50,6 +50,7 @@
     self.threadTitle.text = data.threadTitle;
     self.threadType.text = data.threadCategory;
     self.threadPostCount.text = data.postCount;
+    self.threadOpenCount.text = data.openCount;
     self.threadCreateTime.text = data.lastPostTime;
     [self showAvatar:self.avatarImage userId:data.threadAuthorID];
 }

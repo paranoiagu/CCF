@@ -15,6 +15,8 @@
     CCFApi * ccfapi;
     
     NSMutableDictionary * avatarCache;
+    
+    NSMutableArray<CCFUserEntry*> * cacheUsers;
 }
 
 -(instancetype)init{
@@ -37,6 +39,16 @@
     ccfapi = [[CCFApi alloc] init];
     coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
     avatarCache = [NSMutableDictionary dictionary];
+    
+    if (cacheUsers == nil) {
+        cacheUsers = [[coreDateManager selectData:^NSPredicate *{
+            return [NSPredicate predicateWithFormat:@"userID > %d", 0];
+        }] copy];
+    }
+    
+    for (CCFUserEntry * user in cacheUsers) {
+        [avatarCache setValue:user.userAvatar forKey:user.userID];
+    }
 }
 
 
@@ -52,47 +64,30 @@
 
 -(void)showAvatar:(UIImageView *)avatarImageView userId:(NSString*)userId{
     
-    NSString * avatarInArray = [avatarCache objectForKey:userId];
+    NSString * avatarInArray = [avatarCache valueForKey:userId];
     
     if (avatarInArray == nil) {
-        NSMutableArray * users = [[coreDateManager selectData:^NSPredicate *{
-            return [NSPredicate predicateWithFormat:@"userID = %@", userId];
-        }] copy];
         
-        if (users == nil || users.count == 0) {
-            
-            [ccfapi getAvatarWithUserId:userId handler:^(BOOL isSuccess, NSString * avatar) {
-                [coreDateManager insertOneData:^(id src) {
-                    
-                    CCFUserEntry * user =(CCFUserEntry *)src;
-                    
-                    user.userID = userId;
-                    user.userAvatar = avatar;
-                }];
-                
-                [avatarImageView setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
-                
-                [avatarCache setObject:avatar == nil ? @"defaultAvatar": avatar forKey:userId];
+        NSLog(@"====================================================================");
+        [ccfapi getAvatarWithUserId:userId handler:^(BOOL isSuccess, NSString *avatar) {
+            // 存入数据库
+            [coreDateManager insertOneData:^(id src) {
+                CCFUserEntry * user =(CCFUserEntry *)src;
+                user.userID = userId;
+                user.userAvatar = avatar;
             }];
+            // 添加到Cache中
+            [avatarCache setValue:avatar == nil ? @"defaultAvatar": avatar forKey:userId];
             
-        } else{
-            
-            CCFUserEntry * user = users.firstObject;
-            if (user.userAvatar == nil) {
+            // 显示头像
+            if (avatar == nil) {
                 [avatarImageView setImage:defaultAvatar];
-                
-                [avatarCache setValue:@"defaultAvatar" forKey:user.userID];
-                
             } else{
-                NSURL * url = [CCFUrlBuilder buildAvatarURL:user.userAvatar];
-                [avatarImageView setImageWithURL:url];
-                
-                [avatarCache setValue:user.userAvatar forKey:user.userID];
+                [avatarImageView setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
             }
-            
-            
-        }
+        }];
     } else{
+        NSLog(@"--------------------------------------------------------------------");
         if ([avatarInArray isEqualToString:@"defaultAvatar"]) {
             [avatarImageView setImage:defaultAvatar];
         } else{

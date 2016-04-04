@@ -347,16 +347,18 @@
 - (IBAction)showMoreAction:(UIBarButtonItem *)sender {
     
 
-    itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"复制帖子链接", @"在浏览器中查看",@"选择页码"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
+    itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"复制帖子链接", @"在浏览器中查看",@"选择页码", @"刷新本页"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = [[CCFUrlBuilder buildThreadURL:[currentThreadPage.threadID intValue] withPage:0] absoluteString];
+            
+            [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
+            
             
         } else if (buttonIndex == 1){
             [[UIApplication sharedApplication] openURL:[CCFUrlBuilder buildThreadURL:[currentThreadPage.threadID intValue] withPage:1]];
         } else if (buttonIndex == 2){
 
-            
-            
-            
             NSMutableArray<NSString*> * pages = [NSMutableArray array];
             for (int i = 0 ; i < currentThreadPage.totalPageCount; i++) {
                 NSString * page = [NSString stringWithFormat:@"第 %d 页", i + 1];
@@ -424,6 +426,43 @@
             
             
             [picker showActionSheetPicker];
+        } else if(buttonIndex == 3){
+            // 刷新本页
+            [SVProgressHUD showWithStatus:@"正在刷新" maskType:SVProgressHUDMaskTypeBlack];
+            
+            
+            [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:currentPage handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+                
+                [SVProgressHUD dismiss];
+                
+                if (isSuccess) {
+                    
+                    
+                    [cellHeightDictionary removeAllObjects];
+                    
+                    totalPage = (int)thread.totalPageCount;
+                    
+                    if (currentPage >= totalPage) {
+                        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                    }
+                    
+                    
+                    NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
+                    
+                    
+                    if (self.posts == nil) {
+                        self.posts = [NSMutableArray array];
+                    }
+                    
+                    currentThreadPage = thread;
+                    
+                    [self.posts removeAllObjects];
+                    [self.posts addObjectsFromArray:parsedPosts];
+                    [self.tableView reloadData];
+                }
+                
+            }];
+            
         }
     }];
     

@@ -18,6 +18,7 @@
 #import "CCFProfileTableViewController.h"
 #import "CCFThreadListForChildFormUITableViewController.h"
 #import "NSUserDefaults+Setting.h"
+#import <SVProgressHUD.h>
 
 
 
@@ -56,6 +57,7 @@
     }
     
     self.titleNavigationItem.title = transForm.formName;
+
 }
 
 

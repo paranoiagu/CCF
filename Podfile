@@ -9,7 +9,6 @@ pod 'MJRefresh', '~> 3.0.8'
 pod 'UITableView+FDTemplateLayoutCell', '~> 1.4'
 pod 'SVProgressHUD', '~> 1.1.3'
 
-pod 'LGAlertView'
 pod 'SDVersion'
 pod 'LCActionSheet'
 pod 'ActionSheetPicker-3.0'

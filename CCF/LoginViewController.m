@@ -14,13 +14,13 @@
 #import<Foundation/Foundation.h>
 
 #import "CCFBrowser.h"
-#import "LGAlertView.h"
 #import "CCFParser.h"
 #import "CCFFormTableViewController.h"
 #import "AppDelegate.h"
 
 #import "UIStoryboard+CCF.h"
 #import "CCFApi.h"
+#import <SVProgressHUD.h>
 
 @interface LoginViewController ()<UITextFieldDelegate>{
 
@@ -135,17 +135,23 @@
         return;
     }
     
-    LGAlertView * alertView = [[LGAlertView alloc] initWithActivityIndicatorAndTitle:@"提示" message:@"正在登录" style:LGAlertViewStyleAlert buttonTitles:nil cancelButtonTitle:nil destructiveButtonTitle:nil];
-    [alertView showAnimated:YES completionHandler:nil];
-
-    
+    [SVProgressHUD showInfoWithStatus:@"正在登录" maskType:SVProgressHUDMaskTypeBlack];
     
     [_ccfApi loginWithName:name andPassWord:password handler:^(BOOL isSuccess, NSString *message) {
+        
+        [SVProgressHUD dismiss];
+
         if (isSuccess) {
             UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
             [stortboard changeRootViewControllerTo:kCCFRootController];
         } else{
-            [LGAlertView alertViewWithTitle:@"" message:@"失败" style:LGAlertViewStyleAlert buttonTitles:nil cancelButtonTitle:@"确定" destructiveButtonTitle:nil];
+            
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"错误" message:message preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+            
+            [alert addAction:action];
+            
+            [self presentViewController:alert animated:YES completion:nil];
         }
         
     }];

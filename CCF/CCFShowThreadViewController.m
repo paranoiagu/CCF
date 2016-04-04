@@ -28,8 +28,8 @@
 #import "CCFSeniorNewPostViewController.h"
 #import "TransValueBundle.h"
 #import <LCActionSheet.h>
+#import <SVProgressHUD.h>
 #import "ActionSheetPicker.h"
-#import "LGAlertView.h"
 
 
 @interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
@@ -345,6 +345,8 @@
 }
 
 - (IBAction)showMoreAction:(UIBarButtonItem *)sender {
+    
+
     itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"复制帖子链接", @"在浏览器中查看",@"选择页码"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
             
@@ -352,6 +354,7 @@
             [[UIApplication sharedApplication] openURL:[CCFUrlBuilder buildThreadURL:[currentThreadPage.threadID intValue] withPage:1]];
         } else if (buttonIndex == 2){
 
+            
             
             
             NSMutableArray<NSString*> * pages = [NSMutableArray array];
@@ -364,42 +367,47 @@
             
             ActionSheetStringPicker * picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择页面" rows:pages initialSelection:currentPage - 1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                 
-                
-                LGAlertView * alertView = [[LGAlertView alloc] initWithActivityIndicatorAndTitle:nil message:@"正在跳转" style:LGAlertViewStyleAlert buttonTitles:nil cancelButtonTitle:nil destructiveButtonTitle:nil];
-                [alertView showAnimated:YES completionHandler:nil];
-                
-                
-                [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:(int)selectedIndex handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+
+                if (selectedIndex +1 != currentPage) {
                     
-                    [alertView dismissAnimated:YES completionHandler:nil];
+
                     
-                    if (isSuccess) {
-                        currentPage = (int)selectedIndex;
+                    [SVProgressHUD showWithStatus:@"正在切换" maskType:SVProgressHUDMaskTypeBlack];
+                    
+                    
+                    [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:(int)selectedIndex + 1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
                         
-                        [cellHeightDictionary removeAllObjects];
+                        [SVProgressHUD dismiss];
                         
-                        totalPage = (int)thread.totalPageCount;
-                        
-                        if (currentPage >= totalPage) {
-                            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                        if (isSuccess) {
+                            currentPage = (int)selectedIndex + 1;
+                            
+                            [cellHeightDictionary removeAllObjects];
+                            
+                            totalPage = (int)thread.totalPageCount;
+                            
+                            if (currentPage >= totalPage) {
+                                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                            }
+                            
+                            
+                            NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
+                            
+                            
+                            if (self.posts == nil) {
+                                self.posts = [NSMutableArray array];
+                            }
+                            
+                            currentThreadPage = thread;
+                            
+                            [self.posts removeAllObjects];
+                            [self.posts addObjectsFromArray:parsedPosts];
+                            [self.tableView reloadData];
                         }
                         
-                        
-                        NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
-                        
-                        
-                        if (self.posts == nil) {
-                            self.posts = [NSMutableArray array];
-                        }
-                        
-                        currentThreadPage = thread;
-                        
-                        [self.posts removeAllObjects];
-                        [self.posts addObjectsFromArray:parsedPosts];
-                        [self.tableView reloadData];
-                    }
-                    
-                }];
+                    }];
+                }
+                
                 
             } cancelBlock:^(ActionSheetStringPicker *picker) {
 
@@ -425,14 +433,11 @@
     
     [field resignFirstResponder];
     
-    LGAlertView * alertView = [[LGAlertView alloc] initWithActivityIndicatorAndTitle:nil message:@"正在回复" style:LGAlertViewStyleAlert buttonTitles:nil cancelButtonTitle:nil destructiveButtonTitle:nil];
-    [alertView showAnimated:YES completionHandler:nil];
-    
-
+    [SVProgressHUD showSuccessWithStatus:@"正在回复" maskType:SVProgressHUDMaskTypeBlack];
     
     [_api replyThreadWithId:transThread.threadID andMessage:field.text handler:^(BOOL isSuccess, id message) {
         
-        [alertView dismissAnimated:YES completionHandler:nil];
+        [SVProgressHUD dismiss];
         
         if (isSuccess) {
             

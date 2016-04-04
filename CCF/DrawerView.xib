@@ -88,14 +88,6 @@
                         <action selector="showTodayNewThreadPost:" destination="-1" eventType="touchUpInside" id="Gk0-vC-kqy"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gwl-fW-8Z8" customClass="LeftDrawerItem">
-                    <rect key="frame" x="8" y="522" width="40" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="Gwl-fW-8Z8" secondAttribute="height" multiplier="1:1" id="L58-p1-MDi"/>
-                        <constraint firstAttribute="width" constant="40" id="PPb-d4-r6a"/>
-                    </constraints>
-                    <state key="normal" image="ic_settings_18pt"/>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SC-OU-YuA">
                     <rect key="frame" x="93" y="45" width="95" height="95"/>
                     <constraints>
@@ -122,7 +114,6 @@
                 <constraint firstItem="WfO-5s-LdN" firstAttribute="top" secondItem="8QK-XE-rwX" secondAttribute="bottom" id="Po7-LO-dd2"/>
                 <constraint firstItem="opA-uL-w8P" firstAttribute="top" secondItem="WfO-5s-LdN" secondAttribute="bottom" id="QQZ-9b-cYR"/>
                 <constraint firstItem="8QK-XE-rwX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QgE-Hi-gVv"/>
-                <constraint firstAttribute="bottom" secondItem="Gwl-fW-8Z8" secondAttribute="bottom" constant="8" id="ScX-hz-2PA"/>
                 <constraint firstAttribute="trailing" secondItem="opA-uL-w8P" secondAttribute="trailing" id="abH-xf-PIU"/>
                 <constraint firstItem="4GR-Q0-M8U" firstAttribute="top" secondItem="opA-uL-w8P" secondAttribute="bottom" id="gSE-cr-djH"/>
                 <constraint firstItem="7SC-OU-YuA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hln-Sh-HKD"/>
@@ -132,7 +123,6 @@
                 <constraint firstItem="EMP-9K-WJf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="45" id="rvq-Zx-eQF"/>
                 <constraint firstItem="EMP-9K-WJf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="um7-hG-j4u"/>
                 <constraint firstItem="8QK-XE-rwX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vLY-uH-URg"/>
-                <constraint firstItem="Gwl-fW-8Z8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="vbe-Ly-hYf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-630" y="266"/>
@@ -157,7 +147,6 @@
         </viewController>
     </objects>
     <resources>
-        <image name="ic_settings_18pt" width="18" height="18"/>
         <image name="logo" width="95" height="95"/>
     </resources>
 </document>

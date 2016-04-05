@@ -8,7 +8,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
-                <outlet property="doorImageView" destination="cPG-4D-zZW" id="wJS-LI-VL1"/>
                 <outlet property="password" destination="fxb-5T-kYp" id="CMM-Jp-2ZN"/>
                 <outlet property="userName" destination="cmi-2m-SRN" id="JUi-76-tbc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -27,26 +26,6 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dvc-zj-zCe">
-                    <rect key="frame" x="112" y="1000" width="97" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <action selector="login:" destination="-1" eventType="editingDidEnd" id="wvo-7N-wlc"/>
-                    </connections>
-                </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cPG-4D-zZW">
-                    <rect key="frame" x="134" y="1000" width="53" height="20"/>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhN-5e-IX5">
-                    <rect key="frame" x="110" y="210" width="100" height="0.0"/>
-                    <connections>
-                        <action selector="refreshDoor:" destination="-1" eventType="touchUpInside" id="lbx-dR-8mW"/>
-                    </connections>
-                </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Aq8-bR-V6W" userLabel="logo">
-                    <rect key="frame" x="110" y="1000" width="100" height="39"/>
-                </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cmi-2m-SRN">
                     <rect key="frame" x="225" y="313" width="150" height="30"/>
                     <constraints>
@@ -89,6 +68,5 @@
     </objects>
     <resources>
         <image name="ccfLogo" width="274" height="71"/>
-        <image name="logo" width="95" height="95"/>
     </resources>
 </document>

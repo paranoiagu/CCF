@@ -60,16 +60,19 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+    if ([segue.identifier isEqualToString:@"CCFThreadListTableViewController"]) {
+        CCFThreadListTableViewController * controller = segue.destinationViewController;
+        
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        
+        CCFForm * select = _favForms[path.row];
+        
+        [self.transValueDelegate transValue:select];
+    }
     
-    CCFThreadListTableViewController * controller = segue.destinationViewController;
-    
-    self.transValueDelegate = (id<TransValueDelegate>)controller;
-    
-    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-    
-    CCFForm * select = _favForms[path.row];
-    
-    [self.transValueDelegate transValue:select];
 }
 
 

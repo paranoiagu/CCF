@@ -15,7 +15,7 @@
 #import "TransValueBundle.h"
 #import <SVProgressHUD.h>
 #import "CCFShowThreadPage.h"
-
+#import "LCActionSheet.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 @interface CCFSeniorNewPostViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate, TransValueDelegate>{
@@ -54,6 +54,8 @@
     //选完图片之后回到的视图界面
     
     images = [NSMutableArray array];
+    
+    [self.replyContent becomeFirstResponder];
     
 }
 
@@ -177,34 +179,21 @@
 }
 
 - (IBAction)insertPhoto:(id)sender {
-    UIAlertController * insertPhotoController = [UIAlertController alertControllerWithTitle:@"添加图片" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     
-    UIAlertAction *photo = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //设置照片源
-        [pickControl setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-        
-        [self presentViewController:pickControl animated:YES completion:nil];
+    LCActionSheet *itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"相册", @"拍照"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+        if (buttonIndex == 0) {
+            [pickControl setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+            
+            [self presentViewController:pickControl animated:YES completion:nil];
+        } else if (buttonIndex == 1){
+            [pickControl setSourceType:UIImagePickerControllerSourceTypeCamera];
+            
+            [self presentViewController:pickControl animated:YES completion:nil];
+        }
     }];
     
-    UIAlertAction *camera = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //设置照片源
-        [pickControl setSourceType:UIImagePickerControllerSourceTypeCamera];
-        
-        [self presentViewController:pickControl animated:YES completion:nil];
-        
-    }];
-    
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        
-    }];
-    
-    
-    [insertPhotoController addAction:photo];
-    [insertPhotoController addAction:camera];
-    [insertPhotoController addAction:cancel];
-    
-    [self presentViewController:insertPhotoController animated:YES completion:nil];
+    [itemActionSheet show];
 
 }
 

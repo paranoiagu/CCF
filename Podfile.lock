@@ -34,6 +34,7 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.7.9):
     - DTFoundation/Core
+  - FDFullscreenPopGesture (1.1)
   - IGHTMLQuery (0.8.4):
     - IGHTMLQuery/Core (= 0.8.4)
   - IGHTMLQuery/Core (0.8.4):
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0
   - AFNetworking (~> 3.0)
   - DTCoreText (~> 1.6.17)
+  - FDFullscreenPopGesture (= 1.1)
   - IGHTMLQuery (~> 0.8.4)
   - JSONModel (~> 1.1.2)
   - LCActionSheet
@@ -65,6 +67,7 @@ SPEC CHECKSUMS:
   CSSSelectorConverter: 0fda7454165e40e668dd297b44cdb1c341cd53ae
   DTCoreText: 3ea8bba23dd2141ba18adb227a7dd33a822df1c4
   DTFoundation: 70a0765e3596f82dd421832e95c65e2166eb3102
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   IGHTMLQuery: 6176bcb88ad36f80ee984dbfde5592bb3ccc921f
   JSONModel: 216584d0311b053ff714f1d6cb700dbf890847bc
   LCActionSheet: 9b81ff2a7e3ac00aafa68d320f11ef1fa6baca88

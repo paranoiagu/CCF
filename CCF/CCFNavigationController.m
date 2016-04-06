@@ -23,6 +23,7 @@
     
     _leftDrawerView = [[DrawerView alloc] initWithDrawerType:DrawerViewTypeLeft andXib:@"DrawerView"];
     [self.view addSubview:_leftDrawerView];
+    
 }
 
 

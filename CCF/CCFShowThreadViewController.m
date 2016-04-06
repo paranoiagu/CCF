@@ -72,7 +72,8 @@
     field = [[CCFUITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
     field.heightDelegate = self;
     field.delegate = self;
-
+    field.scrollsToTop = NO;
+    
     [_floatToolbar sizeToFit];
 
     

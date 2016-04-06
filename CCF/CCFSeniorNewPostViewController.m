@@ -57,6 +57,12 @@
     
     [self.replyContent becomeFirstResponder];
     
+    NSString * user = [bundle getStringValue:@"USER_NAME"];
+    
+    if (user != nil) {
+        self.replyContent.text = [NSString stringWithFormat:@"@%@\n", user];
+    }
+    
 }
 
 

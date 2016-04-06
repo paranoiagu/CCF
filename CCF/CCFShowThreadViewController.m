@@ -313,6 +313,7 @@
             
             [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
             [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+            [bundle putStringValue:selectPost.postUserInfo.userName forKey:@"USER_NAME"];
             
             [self.transValueDelegate transValue: bundle];
             
@@ -361,13 +362,13 @@
     itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"复制帖子链接", @"在浏览器中查看",@"选择页码", @"刷新本页"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-            pasteboard.string = [[CCFUrlBuilder buildThreadURL:[currentThreadPage.threadID intValue] withPage:0] absoluteString];
+            pasteboard.string = [[CCFUrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:0] absoluteString];
             
             [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
             
             
         } else if (buttonIndex == 1){
-            [[UIApplication sharedApplication] openURL:[CCFUrlBuilder buildThreadURL:[currentThreadPage.threadID intValue] withPage:1]];
+            [[UIApplication sharedApplication] openURL:[CCFUrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:1]];
         } else if (buttonIndex == 2){
 
             NSMutableArray<NSString*> * pages = [NSMutableArray array];

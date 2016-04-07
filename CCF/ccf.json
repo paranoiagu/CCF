@@ -29,8 +29,8 @@
                                 ]
                                 },
                                 {
-                                "formId": 240,
-                                "formName": "【CCF平台改革专版】",
+                                "formId": 62,
+                                "formName": "『回收站』",
                                 "parentFormId": 1,
                                 "isNeedLogin": 1,
                                 "childForms": []
@@ -544,6 +544,20 @@
                                                "parentFormId": 161,
                                                "isNeedLogin": 1,
                                                "childForms": []
+                                               },
+                                               {
+                                               "formId": 204,
+                                               "formName": "【交易区版务】",
+                                               "parentFormId": 161,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 186,
+                                               "formName": "【交易区版务】",
+                                               "parentFormId": 161,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
                                                }
                                                ]
                                 }
@@ -581,7 +595,72 @@
                                 "formName": "CCF活动历史记录",
                                 "parentFormId": 155,
                                 "isNeedLogin": 1,
-                                "childForms": []
+                                "childForms": [
+                                               {
+                                               "formId": 240,
+                                               "formName": "【2013年CCF平台改革】",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 176,
+                                               "formName": "CCF十周年活动记录",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 215,
+                                               "formName": "精品十周年活动之“寻找联想红气球挑战赛”",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 228,
+                                               "formName": "CCF 纪念衫2011",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 201,
+                                               "formName": "CCF 车标2009",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 34,
+                                               "formName": "CCF车标设计",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 166,
+                                               "formName": "CCF U盘2008",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 118,
+                                               "formName": "精品衫2005",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               },
+                                               {
+                                               "formId": 100,
+                                               "formName": "精品衫2002",
+                                               "parentFormId": 182,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                
+                                ]
                                 }
                                 ]
                  },
@@ -591,6 +670,13 @@
                  "parentFormId": -1,
                  "isNeedLogin": 1,
                  "childForms": [
+                                {
+                                "formId": 192,
+                                "formName": "〖 热会事务版 〗",
+                                "parentFormId": 128,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
                                 {
                                 "formId": 165,
                                 "formName": "『会员事物版』",
@@ -604,6 +690,43 @@
                                 "parentFormId": 128,
                                 "isNeedLogin": 1,
                                 "childForms": []
+                                },
+                                {
+                                "formId": 145,
+                                "formName": "『沉默会员激活版务』",
+                                "parentFormId": 128,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                }
+                                ]
+                 },
+                 {
+                 "formId": 64,
+                 "formName": "管理团队",
+                 "parentFormId": -1,
+                 "isNeedLogin": 1,
+                 "childForms": [
+                                {
+                                "formId": 47,
+                                "formName": "『版主专区』",
+                                "parentFormId": 64,
+                                "isNeedLogin": 1,
+                                "childForms": []
+                                },
+                                {
+                                "formId": 151,
+                                "formName": "旧版",
+                                "parentFormId": 64,
+                                "isNeedLogin": 1,
+                                "childForms": [
+                                               {
+                                               "formId": 156,
+                                               "formName": "『LIVE版主专区』",
+                                               "parentFormId": 151,
+                                               "isNeedLogin": 1,
+                                               "childForms": []
+                                               }
+                                ]
                                 }
                                 ]
                  }

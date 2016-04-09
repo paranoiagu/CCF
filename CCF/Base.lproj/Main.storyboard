@@ -574,25 +574,33 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFThreadTitleId" textLabel="Zfd-gp-3Ua" style="IBUITableViewCellStyleDefault" id="seh-aM-qcp">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="128"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFThreadTitleId" rowHeight="110" id="seh-aM-qcp" customClass="CCFThreadListTitleCell">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="seh-aM-qcp" id="0Cc-Qp-g1k">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="127.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zfd-gp-3Ua">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="127.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nG8-lg-P8d">
+                                                    <rect key="frame" x="20" y="8" width="559" height="93.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="nG8-lg-P8d" secondAttribute="trailing" constant="13" id="6xl-lI-bRD"/>
+                                                <constraint firstAttribute="topMargin" secondItem="nG8-lg-P8d" secondAttribute="top" id="QHw-Ed-B5E"/>
+                                                <constraint firstItem="nG8-lg-P8d" firstAttribute="leading" secondItem="0Cc-Qp-g1k" secondAttribute="leadingMargin" constant="12" id="esD-tG-Tn7"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="nG8-lg-P8d" secondAttribute="bottom" id="tzB-10-uhj"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="threadTitle" destination="nG8-lg-P8d" id="2TI-m8-dAM"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFThreadDetailCellIdentifier" rowHeight="128" id="oXX-AQ-Zeh" customClass="CCFThreadDetailCell">
-                                        <rect key="frame" x="0.0" y="156" width="600" height="128"/>
+                                        <rect key="frame" x="0.0" y="138" width="600" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oXX-AQ-Zeh" id="eDf-AR-3fZ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="127.5"/>

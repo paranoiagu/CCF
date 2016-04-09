@@ -31,6 +31,7 @@
 #import <SVProgressHUD.h>
 #import "ActionSheetPicker.h"
 #import "NSString+Regular.h"
+#import "CCFThreadListTitleCell.h"
 
 
 @interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
@@ -228,8 +229,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        UITableViewCell *cell = (CCFThreadDetailCell*)[tableView dequeueReusableCellWithIdentifier:@"CCFThreadTitleId"];
-        cell.textLabel.text = transThread.threadTitle;
+        CCFThreadListTitleCell *cell = (CCFThreadListTitleCell*)[tableView dequeueReusableCellWithIdentifier:@"CCFThreadTitleId"];
+        cell.threadTitle.text = transThread.threadTitle;
         return cell;
         
     } else{
@@ -264,7 +265,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 44;
+        return [tableView fd_heightForCellWithIdentifier:@"CCFThreadTitleId" configuration:^(CCFThreadListTitleCell *cell) {
+            
+                    cell.threadTitle.text = transThread.threadTitle;
+                }];
     } else{
         NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
         if (nsheight == nil) {

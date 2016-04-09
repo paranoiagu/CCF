@@ -19,6 +19,15 @@
     
     CCFUserProfile * userProfile;
     int userId;
+    
+    UIImage * defaultAvatar;
+    
+    CCFCoreDataManager *coreDateManager;
+    CCFApi * ccfapi;
+    
+    NSMutableDictionary * avatarCache;
+    
+    NSMutableArray<CCFUserEntry*> * cacheUsers;
 }
 
 @end
@@ -27,6 +36,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    defaultAvatar = [UIImage imageNamed:@"logo.jpg"];
+    
+    ccfapi = [[CCFApi alloc] init];
+    coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+    avatarCache = [NSMutableDictionary dictionary];
+    
+    if (cacheUsers == nil) {
+        cacheUsers = [[coreDateManager selectData:^NSPredicate *{
+            return [NSPredicate predicateWithFormat:@"userID > %d", 0];
+        }] copy];
+    }
+    
+    for (CCFUserEntry * user in cacheUsers) {
+        [avatarCache setValue:user.userAvatar forKey:user.userID];
+    }
+    
 }
 
 -(BOOL)setLoadMore:(BOOL)enable{
@@ -62,6 +88,16 @@
         
         [self.tableView.mj_header endRefreshing];
         
+        
+        
+        
+        [self showAvatar:self.userAvatar userId:userProfile.profileUserId];
+        self.userName.text = userProfile.profileName;
+        self.userRankName.text = userProfile.profileRank;
+        self.userSignDate.text = userProfile.profileRegisterDate;
+        self.userCurrentLoginDate.text = userProfile.profileRecentLoginDate;
+        self.userPostCount.text = userProfile.profileTotalPostCount;
+        
         [self.tableView reloadData];
     }];
 }
@@ -69,15 +105,15 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 1;
+    return 5;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 10;
 }
-
-#pragma mark - Table view data source
-
+//
+//#pragma mark - Table view data source
+//
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     return 3;
@@ -103,51 +139,86 @@
     [self.transValueDelegate transValue:userProfile];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(void)showAvatar:(UIImageView *)avatarImageView userId:(NSString*)profileUserId{
     
-    if (indexPath.section == 0) {
-        static NSString *QuoteCellIdentifier = @"CCFProfileTableViewCell";
-        CCFProfileTableViewCell *cell = (CCFProfileTableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-        [cell setData:userProfile];
-        return cell;
-    } else if (indexPath.section == 1){
-        static NSString *QuoteCellIdentifier = @"CCFProfileActionCell";
-        TransValueUITableViewCell *cell = (TransValueUITableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-
+    NSString * avatarInArray = [avatarCache valueForKey:profileUserId];
+    
+    if (avatarInArray == nil) {
         
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"发表的主题";
-        } else if (indexPath.row == 1){
-            cell.textLabel.text = @"给TA发站内短信";
-        }
-        return cell;
-        
+        [ccfapi getAvatarWithUserId:profileUserId handler:^(BOOL isSuccess, NSString *avatar) {
+            // 存入数据库
+            [coreDateManager insertOneData:^(id src) {
+                CCFUserEntry * user =(CCFUserEntry *)src;
+                user.userID = profileUserId;
+                user.userAvatar = avatar;
+            }];
+            // 添加到Cache中
+            [avatarCache setValue:avatar == nil ? @"defaultAvatar": avatar forKey:profileUserId];
+            
+            // 显示头像
+            if (avatar == nil) {
+                [avatarImageView setImage:defaultAvatar];
+            } else{
+                [avatarImageView setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
+            }
+        }];
     } else{
-        static NSString *QuoteCellIdentifier = @"CCFProfileShowCell";
-        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"注册日期";
-            cell.detailTextLabel.text = userProfile.profileRegisterDate;
-        } else if (indexPath.row == 1){
-            cell.textLabel.text = @"最近活动时间";
-            cell.detailTextLabel.text = userProfile.profileRecentLoginDate;
-        } else if (indexPath.row == 2){
-            cell.textLabel.text = @"帖子总数";
-            cell.detailTextLabel.text = userProfile.profileTotalPostCount;
+        if ([avatarInArray isEqualToString:@"defaultAvatar"]) {
+            [avatarImageView setImage:defaultAvatar];
+        } else{
+            NSURL * url = [CCFUrlBuilder buildAvatarURL:avatarInArray];
+            [avatarImageView setImageWithURL:url];
         }
-        return cell;
     }
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return 56;
-    } else if (indexPath.section == 1){
-        return 44;
-    } else{
-        return 44;
-    }
-}
+
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    if (indexPath.section == 0) {
+//        static NSString *QuoteCellIdentifier = @"CCFProfileTableViewCell";
+//        CCFProfileTableViewCell *cell = (CCFProfileTableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+//        [cell setData:userProfile];
+//        return cell;
+//    } else if (indexPath.section == 1){
+//        static NSString *QuoteCellIdentifier = @"CCFProfileActionCell";
+//        TransValueUITableViewCell *cell = (TransValueUITableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+//
+//        
+//        if (indexPath.row == 0) {
+//            cell.textLabel.text = @"发表的主题";
+//        } else if (indexPath.row == 1){
+//            cell.textLabel.text = @"给TA发站内短信";
+//        }
+//        return cell;
+//        
+//    } else{
+//        static NSString *QuoteCellIdentifier = @"CCFProfileShowCell";
+//        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+//        if (indexPath.row == 0) {
+//            cell.textLabel.text = @"注册日期";
+//            cell.detailTextLabel.text = userProfile.profileRegisterDate;
+//        } else if (indexPath.row == 1){
+//            cell.textLabel.text = @"最近活动时间";
+//            cell.detailTextLabel.text = userProfile.profileRecentLoginDate;
+//        } else if (indexPath.row == 2){
+//            cell.textLabel.text = @"帖子总数";
+//            cell.detailTextLabel.text = userProfile.profileTotalPostCount;
+//        }
+//        return cell;
+//    }
+//  
+//}
+//
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.section == 0) {
+//        return 56;
+//    } else if (indexPath.section == 1){
+//        return 44;
+//    } else{
+//        return 44;
+//    }
+//}
 
 
 - (IBAction)back:(id)sender {

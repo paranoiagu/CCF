@@ -122,6 +122,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if (indexPath.row == 0) {
         
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
@@ -133,24 +134,17 @@
         
     } else if (indexPath.row == 2){
         
-        //CCFNavigationController * controller = (CCFNavigationController*)[UIApplication sharedApplication].keyWindow.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        
         CCFFavThreadPostTableViewController * favThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFFavThreadPostTableViewController"];
-        
         [self.navigationController pushViewController:favThreadController animated:YES];
-//        [controller setRootViewController:favThreadController];
-        
         
     } else if (indexPath.row == 3){
-//        CCFNavigationController * controller = (CCFNavigationController*)[UIApplication sharedApplication].keyWindow.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        
         CCFMyThreadTableViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyThreadTableViewController"];
-        
         [self.navigationController pushViewController:myThreadController animated:YES];
-//        [controller setRootViewController:myThreadController];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
 }
 
 #pragma mark Controller跳转

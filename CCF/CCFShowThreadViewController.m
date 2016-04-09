@@ -216,29 +216,38 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    if (section == 0) {
+        return 1;
+    }
     return self.posts.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *QuoteCellIdentifier = @"CCFThreadDetailCellIdentifier";
-    
-    CCFThreadDetailCell *cell = (CCFThreadDetailCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-    cell.delegate = self;
-    cell.detailDelegate = self;
-    
-    CCFPost *post = self.posts[indexPath.row];
-    
-//    [cell.content loadHTMLString:post.postContent baseURL:[CCFUrlBuilder buildIndexURL]];
-//    [cell setPost:post];
-    [cell setPost:post forIndexPath:indexPath];
-    
-    return cell;
+    if (indexPath.section == 0) {
+        UITableViewCell *cell = (CCFThreadDetailCell*)[tableView dequeueReusableCellWithIdentifier:@"CCFThreadTitleId"];
+        cell.textLabel.text = transThread.threadTitle;
+        return cell;
+        
+    } else{
+        static NSString *QuoteCellIdentifier = @"CCFThreadDetailCellIdentifier";
+        
+        CCFThreadDetailCell *cell = (CCFThreadDetailCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+        cell.delegate = self;
+        cell.detailDelegate = self;
+        
+        CCFPost *post = self.posts[indexPath.row];
+        
+        //    [cell.content loadHTMLString:post.postContent baseURL:[CCFUrlBuilder buildIndexURL]];
+        //    [cell setPost:post];
+        [cell setPost:post forIndexPath:indexPath];
+        
+        return cell;
+    }
+
 }
 
 -(void)relayoutContentHeigt:(NSIndexPath *)indexPath with:(CGFloat)height{
@@ -246,7 +255,7 @@
     if (nsheight == nil) {
         [cellHeightDictionary setObject:[NSNumber numberWithFloat:height] forKey:indexPath];
 //        [self.tableView reloadData];
-        NSIndexPath *indexPathReload=[NSIndexPath indexPathForRow:indexPath.row inSection:0];
+        NSIndexPath *indexPathReload=[NSIndexPath indexPathForRow:indexPath.row inSection:1];
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPathReload,nil] withRowAnimation:UITableViewRowAnimationNone];
     }
 
@@ -254,11 +263,16 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
-    if (nsheight == nil) {
-        return  115.0;
+    if (indexPath.section == 0) {
+        return 44;
+    } else{
+        NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
+        if (nsheight == nil) {
+            return  115.0;
+        }
+        return nsheight.floatValue;
     }
-    return nsheight.floatValue;
+
 }
 
 //-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

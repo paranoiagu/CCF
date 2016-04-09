@@ -2340,19 +2340,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qn0-zc-xUs">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qn0-zc-xUs" customClass="UISquareRoundCornerImageView">
                                                     <rect key="frame" x="15" y="1" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="Wk3-1v-fn1"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="核心会员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5j-FN-Jsj">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="核心会员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5j-FN-Jsj">
                                                     <rect key="frame" x="63" y="25" width="52" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="会员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXD-O3-ofH">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="会员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXD-O3-ofH">
                                                     <rect key="frame" x="63" y="1" width="28" height="17"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <color key="textColor" red="0.90588235289999997" green="0.3294117647" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -2360,8 +2360,12 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="xXD-O3-ofH" firstAttribute="top" secondItem="fFV-Dp-QGq" secondAttribute="topMargin" constant="-7" id="2mG-T5-xzq"/>
                                                 <constraint firstItem="Qn0-zc-xUs" firstAttribute="leading" secondItem="fFV-Dp-QGq" secondAttribute="leadingMargin" constant="7" id="7Nl-4g-XxD"/>
+                                                <constraint firstItem="xXD-O3-ofH" firstAttribute="leading" secondItem="Qn0-zc-xUs" secondAttribute="trailing" constant="8" id="CCI-aA-Uzq"/>
                                                 <constraint firstItem="Qn0-zc-xUs" firstAttribute="centerY" secondItem="fFV-Dp-QGq" secondAttribute="centerY" id="MHU-S4-GBo"/>
+                                                <constraint firstItem="s5j-FN-Jsj" firstAttribute="leading" secondItem="Qn0-zc-xUs" secondAttribute="trailing" constant="8" id="UsG-4y-G2I"/>
+                                                <constraint firstItem="s5j-FN-Jsj" firstAttribute="top" secondItem="xXD-O3-ofH" secondAttribute="bottom" constant="7" id="atj-Me-GtW"/>
                                                 <constraint firstItem="Qn0-zc-xUs" firstAttribute="top" secondItem="fFV-Dp-QGq" secondAttribute="topMargin" constant="-7" id="tab-Ac-J0T"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -2386,6 +2390,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="l3g-AL-GdG" kind="show" id="Ex9-Ym-Hz9"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bhY-mF-1Rk" style="IBUITableViewCellStyleDefault" id="FWU-fn-cTK">
                                         <rect key="frame" x="0.0" y="88" width="600" height="44"/>
@@ -2514,7 +2521,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="CCFUserThreadTableViewController" id="l3g-AL-GdG" customClass="CCFUserThreadTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="XcW-xB-IIx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -2632,7 +2639,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFy-0V-jDn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2643" y="-2918"/>
+            <point key="canvasLocation" x="2229" y="-3938"/>
         </scene>
     </scenes>
     <resources>
@@ -2650,8 +2657,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ezQ-PD-8mT"/>
-        <segue reference="mAb-gQ-mZT"/>
         <segue reference="pSi-Wm-mtG"/>
         <segue reference="jGj-df-43N"/>
+        <segue reference="CYC-I7-A8v"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -172,53 +172,10 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    if (indexPath.section == 0) {
-//        static NSString *QuoteCellIdentifier = @"CCFProfileTableViewCell";
-//        CCFProfileTableViewCell *cell = (CCFProfileTableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-//        [cell setData:userProfile];
-//        return cell;
-//    } else if (indexPath.section == 1){
-//        static NSString *QuoteCellIdentifier = @"CCFProfileActionCell";
-//        TransValueUITableViewCell *cell = (TransValueUITableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-//
-//        
-//        if (indexPath.row == 0) {
-//            cell.textLabel.text = @"发表的主题";
-//        } else if (indexPath.row == 1){
-//            cell.textLabel.text = @"给TA发站内短信";
-//        }
-//        return cell;
-//        
-//    } else{
-//        static NSString *QuoteCellIdentifier = @"CCFProfileShowCell";
-//        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-//        if (indexPath.row == 0) {
-//            cell.textLabel.text = @"注册日期";
-//            cell.detailTextLabel.text = userProfile.profileRegisterDate;
-//        } else if (indexPath.row == 1){
-//            cell.textLabel.text = @"最近活动时间";
-//            cell.detailTextLabel.text = userProfile.profileRecentLoginDate;
-//        } else if (indexPath.row == 2){
-//            cell.textLabel.text = @"帖子总数";
-//            cell.detailTextLabel.text = userProfile.profileTotalPostCount;
-//        }
-//        return cell;
-//    }
-//  
-//}
-//
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.section == 0) {
-//        return 56;
-//    } else if (indexPath.section == 1){
-//        return 44;
-//    } else{
-//        return 44;
-//    }
-//}
 
 
 - (IBAction)back:(id)sender {

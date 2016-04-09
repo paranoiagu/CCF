@@ -2391,7 +2391,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="l3g-AL-GdG" kind="show" id="Ex9-Ym-Hz9"/>
+                                            <segue destination="l3g-AL-GdG" kind="show" identifier="ShowCCFUserThreadTableViewController" id="Ex9-Ym-Hz9"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bhY-mF-1Rk" style="IBUITableViewCellStyleDefault" id="FWU-fn-cTK">
@@ -2410,6 +2410,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="ldC-Z2-cxV" kind="show" identifier="ShowCCFWritePMViewController" id="TNg-nK-9Ko"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -2515,6 +2518,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ISW-8d-bNM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1241" y="-3938"/>
+        </scene>
+        <!--发送私信-->
+        <scene sceneID="sMo-OX-hpQ">
+            <objects>
+                <viewController id="ldC-Z2-cxV" customClass="CCFWritePMViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ctd-kT-T9G"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfK-sM-R3G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ct4-mp-Lue">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="发送私信" id="pDa-5Y-CnW">
+                        <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="SHf-ul-qv2">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="back:" destination="ldC-Z2-cxV" id="7bt-51-wvj"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="发送" id="uHI-IC-dUA">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Sr-o4-WcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1978" y="-4853"/>
         </scene>
         <!--他的主题-->
         <scene sceneID="kwO-6c-899">
@@ -2658,7 +2690,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="ezQ-PD-8mT"/>
         <segue reference="pSi-Wm-mtG"/>
-        <segue reference="jGj-df-43N"/>
         <segue reference="CYC-I7-A8v"/>
+        <segue reference="jGj-df-43N"/>
     </inferredMetricsTieBreakers>
 </document>

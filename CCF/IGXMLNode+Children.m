@@ -15,6 +15,6 @@
 }
 
 -(int)childrenCount{
-    return [self.children count];
+    return (int)[self.children count];
 }
 @end

@@ -14,6 +14,7 @@
 #import "TransValueUITableViewCell.h"
 #import "CCFUserThreadTableViewController.h"
 #import "CCFPost.h"
+#import "CCFWritePMViewController.h"
 
 @interface CCFProfileTableViewController ()<TransValueDelegate>{
     
@@ -130,13 +131,23 @@
     }
 }
 
+#pragma mark 跳转
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    CCFUserThreadTableViewController * controller = segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"ShowCCFUserThreadTableViewController"]) {
+        CCFUserThreadTableViewController * controller = segue.destinationViewController;
+        
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        
+        [self.transValueDelegate transValue:userProfile];
+    } else if ([segue.identifier isEqualToString:@"ShowCCFWritePMViewController"]){
+        CCFWritePMViewController * controller = segue.destinationViewController;
+        
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        
+        [self.transValueDelegate transValue:userProfile];
+    }
     
-    self.transValueDelegate = (id<TransValueDelegate>)controller;
-    
-    [self.transValueDelegate transValue:userProfile];
 }
 
 -(void)showAvatar:(UIImageView *)avatarImageView userId:(NSString*)profileUserId{

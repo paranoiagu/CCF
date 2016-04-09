@@ -15,6 +15,7 @@
 		3A1C2CD41C9EA1010068AF6B /* CCFUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C2CD31C9EA1010068AF6B /* CCFUserProfile.m */; };
 		3A1C2CD71C9EB2C10068AF6B /* CCFProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C2CD61C9EB2C10068AF6B /* CCFProfileTableViewCell.m */; };
 		3A1CC3B11CB8F8B5007A0B97 /* paperclip.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A1CC3B01CB8F8B5007A0B97 /* paperclip.gif */; };
+		3A1CC3E01CB922F5007A0B97 /* CCFWritePMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CC3DF1CB922F5007A0B97 /* CCFWritePMViewController.m */; };
 		3A1CF86F1C54F88C002E52EE /* LeftDrawerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */; };
 		3A1CF8761C54F8AB002E52EE /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF8711C54F8AB002E52EE /* CommonUtils.m */; };
 		3A1CF8771C54F8AB002E52EE /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1CF8731C54F8AB002E52EE /* UIImage+Tint.m */; };
@@ -133,6 +134,8 @@
 		3A1C2CD61C9EB2C10068AF6B /* CCFProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFProfileTableViewCell.m; sourceTree = "<group>"; };
 		3A1C2CD81C9EE6150068AF6B /* TransValueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransValueDelegate.h; sourceTree = "<group>"; };
 		3A1CC3B01CB8F8B5007A0B97 /* paperclip.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = paperclip.gif; sourceTree = "<group>"; };
+		3A1CC3DE1CB922F5007A0B97 /* CCFWritePMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFWritePMViewController.h; sourceTree = "<group>"; };
+		3A1CC3DF1CB922F5007A0B97 /* CCFWritePMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFWritePMViewController.m; sourceTree = "<group>"; };
 		3A1CF86D1C54F88C002E52EE /* LeftDrawerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftDrawerItem.h; sourceTree = "<group>"; };
 		3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftDrawerItem.m; sourceTree = "<group>"; };
 		3A1CF8701C54F8AB002E52EE /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
@@ -486,6 +489,8 @@
 				3A1C2CD01C9E9B740068AF6B /* CCFProfileTableViewController.m */,
 				3A92E7F51CA0386C000FD0B2 /* CCFMyProfileUITableViewController.h */,
 				3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */,
+				3A1CC3DE1CB922F5007A0B97 /* CCFWritePMViewController.h */,
+				3A1CC3DF1CB922F5007A0B97 /* CCFWritePMViewController.m */,
 				3A2FCC781C9558F100B469E4 /* CCFApiBaseTableViewController.h */,
 				3A2FCC791C9558F100B469E4 /* CCFApiBaseTableViewController.m */,
 				3A3672A81CAF6AF000756D8B /* CCFApiBaseViewController.h */,
@@ -945,6 +950,7 @@
 				3A3672B01CAFDC7000756D8B /* CCFSettingTableViewController.m in Sources */,
 				4D852A201C991294009121B2 /* CCFPage.m in Sources */,
 				3A9ADC6C1C9D8F2C006055A8 /* BaseCCFTableViewCell.m in Sources */,
+				3A1CC3E01CB922F5007A0B97 /* CCFWritePMViewController.m in Sources */,
 				4DB98FB31C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m in Sources */,
 				4D6B11CB1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m in Sources */,
 				3A2ECF541C36C0EB00CD3968 /* CCFNormalThread.m in Sources */,

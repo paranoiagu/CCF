@@ -2535,6 +2535,22 @@
             </objects>
             <point key="canvasLocation" x="1241" y="-3938"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Vzn-Ca-9nS">
+            <objects>
+                <navigationController id="dkE-IT-7Hu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OWc-LO-Jlk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ldC-Z2-cxV" kind="relationship" relationship="rootViewController" id="4St-La-YTe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eU8-BS-mhB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1978" y="-5627"/>
+        </scene>
         <!--发送私信-->
         <scene sceneID="sMo-OX-hpQ">
             <objects>
@@ -2546,7 +2562,53 @@
                     <view key="view" contentMode="scaleToFill" id="ct4-mp-Lue">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Igx-4r-jvZ">
+                                <rect key="frame" x="79" y="72" width="501" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r2g-cS-zqn">
+                                <rect key="frame" x="79" y="110" width="501" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="短信内容" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Euj-Dd-XgL">
+                                <rect key="frame" x="20" y="148" width="560" height="432"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="给谁：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ9-qS-riP">
+                                <rect key="frame" x="20" y="76" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1X-Sw-AdD">
+                                <rect key="frame" x="20" y="114" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="r2g-cS-zqn" firstAttribute="leading" secondItem="z1X-Sw-AdD" secondAttribute="trailing" constant="8" id="0Nm-p2-Dhv"/>
+                            <constraint firstItem="z1X-Sw-AdD" firstAttribute="top" secondItem="ZQ9-qS-riP" secondAttribute="bottom" constant="17" id="8MB-N1-P1e"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Euj-Dd-XgL" secondAttribute="trailing" id="LoV-T6-53j"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="r2g-cS-zqn" secondAttribute="trailing" id="MpV-DN-ufo"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ZQ9-qS-riP" secondAttribute="leading" id="RaC-ie-ewU"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Euj-Dd-XgL" secondAttribute="leading" id="Tkx-CE-a51"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="z1X-Sw-AdD" secondAttribute="leading" id="UT2-2t-ikj"/>
+                            <constraint firstItem="Euj-Dd-XgL" firstAttribute="top" secondItem="r2g-cS-zqn" secondAttribute="bottom" constant="8" id="UWN-eq-f9O"/>
+                            <constraint firstItem="ZQ9-qS-riP" firstAttribute="top" secondItem="ctd-kT-T9G" secondAttribute="bottom" constant="12" id="UtO-vn-PjO"/>
+                            <constraint firstItem="Igx-4r-jvZ" firstAttribute="top" secondItem="ctd-kT-T9G" secondAttribute="bottom" constant="8" id="cyW-mT-4e0"/>
+                            <constraint firstItem="wfK-sM-R3G" firstAttribute="top" secondItem="Euj-Dd-XgL" secondAttribute="bottom" constant="20" id="g5B-Bo-huT"/>
+                            <constraint firstItem="Igx-4r-jvZ" firstAttribute="leading" secondItem="ZQ9-qS-riP" secondAttribute="trailing" constant="8" id="guh-U0-ZE8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Igx-4r-jvZ" secondAttribute="trailing" id="p2B-F9-Go3"/>
+                            <constraint firstItem="r2g-cS-zqn" firstAttribute="top" secondItem="Igx-4r-jvZ" secondAttribute="bottom" constant="8" id="tIh-7W-blL"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="发送私信" id="pDa-5Y-CnW">
                         <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_18pt" id="SHf-ul-qv2">
@@ -2705,9 +2767,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ezQ-PD-8mT"/>
-        <segue reference="Vok-Rm-1py"/>
         <segue reference="b8A-CD-rhQ"/>
         <segue reference="CYC-I7-A8v"/>
+        <segue reference="4St-La-YTe"/>
         <segue reference="jGj-df-43N"/>
     </inferredMetricsTieBreakers>
 </document>

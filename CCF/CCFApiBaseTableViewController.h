@@ -32,4 +32,5 @@
 
 -(BOOL)setLoadMore:(BOOL) enable;
 
+- (BOOL) autoPullfresh;
 @end

@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CCFApiBaseTableViewController.h"
 #import "TransValueDelegate.h"
 
-@interface CCFFavFormController : UITableViewController
+@interface CCFFavFormController : CCFApiBaseTableViewController
 
 - (IBAction)showLeftDrawer:(id)sender;
-
-@property (nonatomic, strong) id<TransValueDelegate> transValueDelegate;
 
 @end

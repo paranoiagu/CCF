@@ -27,7 +27,9 @@
             [self onPullRefresh];
         }];
         
-        [self.tableView.mj_header beginRefreshing];
+        if ([self autoPullfresh]) {
+            [self.tableView.mj_header beginRefreshing];
+        }
     }
 
     
@@ -46,6 +48,10 @@
 
 -(void)onLoadMore{
     
+}
+
+-(BOOL)autoPullfresh{
+    return YES;
 }
 
 -(BOOL)setPullRefresh:(BOOL)enable{

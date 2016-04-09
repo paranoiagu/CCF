@@ -19,8 +19,6 @@
 
 @interface CCFFavFormController ()<TransValueDelegate>{
 
-    CCFApi * ccfapi;
-    NSMutableArray<CCFForm *> * _favForms;
 }
 
 @end
@@ -33,26 +31,50 @@
     
 }
 
+-(BOOL)setPullRefresh:(BOOL)enable{
+    return YES;
+}
+
+-(BOOL)setLoadMore:(BOOL)enable{
+    return NO;
+}
+
+-(BOOL)autoPullfresh{
+    return NO;
+}
+
+
+-(void)onPullRefresh{
+    
+    [self.ccfApi listFavoriteForms:^(BOOL isSuccess, NSMutableArray<CCFForm *> * message) {
+        
+        
+        [self.tableView.mj_header endRefreshing];
+        
+        if (isSuccess) {
+            self.dataList = message;
+            [self.tableView reloadData];
+        }
+
+    }];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _favForms = [NSMutableArray array];
-    ccfapi = [[CCFApi alloc]init];
-    
-    
-    
     
     NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
     
     if (userDef.favFormIds == nil) {
-        [ccfapi listFavoriteForms:^(BOOL isSuccess, NSMutableArray<CCFForm *> * message) {
-            _favForms = message;
+        [self.ccfApi listFavoriteForms:^(BOOL isSuccess, NSMutableArray<CCFForm *> * message) {
+            self.dataList = message;
             [self.tableView reloadData];
         }];
     } else{
         CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
         NSArray* forms = [[manager selectFavForms:userDef.favFormIds] mutableCopy];
         
-        [_favForms addObjectsFromArray:forms];
+        [self.dataList addObjectsFromArray:forms];
         
         [self.tableView reloadData];
     }
@@ -68,7 +90,7 @@
         
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         
-        CCFForm * select = _favForms[path.row];
+        CCFForm * select = self.dataList[path.row];
         
         [self.transValueDelegate transValue:select];
     }
@@ -85,7 +107,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return _favForms.count;
+    return self.dataList.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -96,7 +118,7 @@
     static NSString * ID = @"CCFFavFormControllerCell";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
-    CCFForm * form = _favForms[indexPath.row];
+    CCFForm * form = self.dataList[indexPath.row];
     
     cell.textLabel.text = form.formName;
     

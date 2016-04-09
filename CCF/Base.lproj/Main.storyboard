@@ -130,7 +130,7 @@
                                             </constraints>
                                             <connections>
                                                 <action selector="showUserProfile:" destination="6dg-Y9-eXc" eventType="touchUpInside" id="DvD-Km-dfE"/>
-                                                <segue destination="Kd2-6b-uhY" kind="show" id="b8A-CD-rhQ"/>
+                                                <segue destination="Kd2-6b-uhY" kind="show" identifier="ShowUserProfile" id="b8A-CD-rhQ"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -2775,9 +2775,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ezQ-PD-8mT"/>
+        <segue reference="Vok-Rm-1py"/>
         <segue reference="b8A-CD-rhQ"/>
         <segue reference="CYC-I7-A8v"/>
-        <segue reference="4St-La-YTe"/>
         <segue reference="jGj-df-43N"/>
     </inferredMetricsTieBreakers>
 </document>

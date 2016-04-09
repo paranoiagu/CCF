@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *threadCreateTime;
 @property (weak, nonatomic) IBOutlet UILabel *threadType;
 @property (weak, nonatomic) IBOutlet UILabel *threadTopFlag;
+@property (weak, nonatomic) IBOutlet UIImageView *threadContainsImage;
 
 
 

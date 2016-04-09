@@ -55,6 +55,9 @@
     
     self.threadTopFlag.hidden = !data.isTopThread;
 
+    
+    self.threadContainsImage.hidden = !data.isContainsImage;
+    
     if (data.isGoodNess) {
         NSString * goodNessTitle = [@"[精]" stringByAppendingString:data.threadTitle];
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:goodNessTitle];

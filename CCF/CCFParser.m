@@ -506,29 +506,34 @@
         
         if (node.children.count == 9) {
             // 9个节点是正确的输出结果
-            CCFSearchThread * result = [[CCFSearchThread alloc]init];
+            CCFSearchThread * searchThread = [[CCFSearchThread alloc]init];
             
-            NSString * postIdNode = [node.children[2] html];
+            IGXMLNode * postForNode = [node childrenAtPosition:2];
+            
+            NSLog(@"--------------------- %ld", [postForNode children].count);
+            
+            NSString * postIdNode = [postForNode html];
             NSString * postId = [postIdNode stringWithRegular:@"id=\"thread_title_\\d+\"" andChild:@"\\d+"];
-            
-            
-            NSString * postTitle = [[[node.children[2] text] trim] componentsSeparatedByString:@"\n"].firstObject;
-            NSString * postAuthor = [node.children[3] text];
+
+            NSString * postTitle = [[[postForNode text] trim] componentsSeparatedByString:@"\n"].firstObject;
+            NSString * postAuthor = [[node childrenAtPosition:3] text];
             NSString * postAuthorId = [[node.children[3] html] stringWithRegular:@"=\\d+" andChild:@"\\d+"];
             NSString * postTime = [node.children[4] text];
             NSString * postBelongForm = [node.children[8] text];
             
-            result.threadCategory = [self spliteCategory:postTitle];
+            searchThread.threadID = postId;
             
-            result.threadID = postId;
-            result.threadTitle = [postTitle trim];
-            result.threadAuthorName = postAuthor;
-            result.threadAuthorID = postAuthorId;
-            result.lastPostTime = [postTime trim];
-            result.fromFormName = postBelongForm;
+            NSString * fullTitle = [postTitle trim];
+            
+            searchThread.threadTitle = [self spliteTitle:fullTitle];
+            searchThread.threadCategory = [self spliteCategory:fullTitle];
+            searchThread.threadAuthorName = postAuthor;
+            searchThread.threadAuthorID = postAuthorId;
+            searchThread.lastPostTime = [postTime trim];
+            searchThread.fromFormName = postBelongForm;
             
             
-            [post addObject:result];
+            [post addObject:searchThread];
         }
     }
     

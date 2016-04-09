@@ -30,6 +30,11 @@
             
             self.currentPage = 1;
             self.totalPage = (int)message.totalPageCount;
+            
+            if (self.currentPage >= self.totalPage) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+            
             [self.dataList removeAllObjects];
             [self.dataList addObjectsFromArray:message.dataList];
             [self.tableView reloadData];

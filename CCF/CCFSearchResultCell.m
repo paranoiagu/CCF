@@ -20,6 +20,7 @@
     self.postAuthor.text = data.threadAuthorName;
     self.postTime.text = data.lastPostTime;
     self.postBelongForm.text = data.fromFormName;
+    self.postCategory.text = data.threadCategory;
     
     [self showAvatar:self.postAuthorAvatar userId:data.threadAuthorID];
 }

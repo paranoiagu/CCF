@@ -88,6 +88,10 @@
     return _favForms.count;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * ID = @"CCFFavFormControllerCell";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:ID];

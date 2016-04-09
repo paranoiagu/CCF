@@ -225,6 +225,9 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
 #pragma mark Controller跳转
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     

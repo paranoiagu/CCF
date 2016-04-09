@@ -10,5 +10,9 @@
 
 @interface CCFWritePMViewController : CCFApiBaseViewController
 - (IBAction)back:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *toWho;
+@property (weak, nonatomic) IBOutlet UITextField *privateMessageTitle;
+@property (weak, nonatomic) IBOutlet UITextView *privateMessageContent;
+- (IBAction)sendPrivateMessage:(id)sender;
 
 @end

@@ -2573,7 +2573,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="短信内容" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Euj-Dd-XgL">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Euj-Dd-XgL">
                                 <rect key="frame" x="20" y="148" width="560" height="432"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2581,13 +2581,13 @@
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="给谁：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ9-qS-riP">
                                 <rect key="frame" x="20" y="76" width="51" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1X-Sw-AdD">
                                 <rect key="frame" x="20" y="114" width="51" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2619,8 +2619,16 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="发送" id="uHI-IC-dUA">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="sendPrivateMessage:" destination="ldC-Z2-cxV" id="EwV-gc-Y1o"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="privateMessageContent" destination="Euj-Dd-XgL" id="8bo-mT-M6h"/>
+                        <outlet property="privateMessageTitle" destination="r2g-cS-zqn" id="ZDY-Y9-Hh6"/>
+                        <outlet property="toWho" destination="Igx-4r-jvZ" id="n4h-9V-FCj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Sr-o4-WcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

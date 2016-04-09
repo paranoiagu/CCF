@@ -803,8 +803,9 @@
     profile.profileRank = [self queryText:document withXPath:rankXPath];
     
     // 注册日期
-    NSString * registerXPath = @"//*[@id='collapseobj_stats_mini']/div[1]/table/tr/td[1]/dl/dd[1]";
-    profile.profileRegisterDate = [self queryText:document withXPath:registerXPath];
+    NSString * signDatePattern = @"<li><span class=\"shade\">注册日期:</span> \\d{4}-\\d{2}-\\d{2}</li>";
+    
+    profile.profileRegisterDate = [html stringWithRegular:signDatePattern andChild:@"\\d{4}-\\d{2}-\\d{2}"];
     
     // 最近活动时间
     NSString * lastLoginDayXPath = @"//*[@id='collapseobj_stats']/div/fieldset[2]/ul/li[1]/text()";
@@ -821,8 +822,7 @@
     
     
     // 帖子总数
-    NSString * postCountXPath = @"//*[@id='collapseobj_stats_mini']/div[1]/table/tr/td[1]/dl/dd[2]";
-    NSString * postCount = [self queryText:document withXPath:postCountXPath];
+    NSString * postCount = [html stringWithRegular:@"<li><span class=\"shade\">帖子总数:</span> ([0-9][,]?)+</li>" andChild:@"([0-9][,]?)+"];
     profile.profileTotalPostCount = postCount;
     
     profile.profileUserId = userId;

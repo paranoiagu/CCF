@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *threadTopFlag;
 
 
+
 - (IBAction)showUserProfile:(UIButton *)sender;
 
 -(void)setData:(id)data forIndexPath:(NSIndexPath *)indexPath;

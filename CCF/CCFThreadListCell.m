@@ -47,13 +47,23 @@
 
 -(void)setData:(CCFNormalThread *)data{
     self.threadAuthor.text = data.threadAuthorName;
-    self.threadTitle.text = data.threadTitle;
+    
     self.threadType.text = data.threadCategory;
     self.threadPostCount.text = data.postCount;
     self.threadOpenCount.text = data.openCount;
     self.threadCreateTime.text = data.lastPostTime;
+    
     self.threadTopFlag.hidden = !data.isTopThread;
 
+    if (data.isGoodNess) {
+        NSString * goodNessTitle = [@"[精]" stringByAppendingString:data.threadTitle];
+        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:goodNessTitle];
+        [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 3)];
+        
+        self.threadTitle.attributedText = attrStr;
+    } else{
+        self.threadTitle.text = data.threadTitle;
+    }
     [self showAvatar:self.avatarImage userId:data.threadAuthorID];
 }
 

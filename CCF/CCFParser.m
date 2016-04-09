@@ -50,6 +50,9 @@
 
             // title all html
             NSString * titleHtml = [threadTitleNode html];
+            
+            // 回帖页数
+            normalThread.totalPostPageCount = [self threadPostPageCount:titleHtml];
         
             // title inner html
             NSString * titleInnerHtml = [threadTitleNode innerHtml];
@@ -137,6 +140,17 @@
 // 判断是否包含图片
 -(BOOL) isContainsImagesThread:(NSString *) postTitlehtml{
     return [postTitlehtml containsString:@"images/CCFStyle/misc/paperclip.gif"];
+}
+
+// 获取回帖的页数
+-(int) threadPostPageCount:(NSString *) postTitlehtml{
+    NSArray * postPages = [postTitlehtml arrayWithRegulat:@"page=\\d+"];
+    if (postPages == nil || postPages.count == 0) {
+        return 1;
+    } else{
+        NSString * countStr = [postPages.lastObject stringWithRegular:@"\\d+"];
+        return [countStr intValue];
+    }
 }
 
 

@@ -43,50 +43,57 @@
         
         if (threadListNode.children.count > 4) { // 要大于4的原因是：过滤已经被删除的帖子
             
-            CCFNormalThread * ccfthreadlist = [[CCFNormalThread alloc]init];
+            CCFNormalThread * normalThread = [[CCFNormalThread alloc]init];
             
-            // title
-            IGXMLNode * threadTitleNode = threadListNode.children [2];
-            
+            // title Node
+            IGXMLNode * threadTitleNode = [threadListNode childrenAtPosition:2];
+
+            // title all html
+            NSString * titleHtml = [threadTitleNode html];
+        
+            // title inner html
             NSString * titleInnerHtml = [threadTitleNode innerHtml];
             
-            NSRange range = [titleInnerHtml rangeOfString:@"<font color=\"red\"><b>[置顶]</b></font>"];
-            if (!containTop && !(range.location == NSNotFound)) {
-                continue;
-            }
-            ccfthreadlist.isTopThread = !(range.location == NSNotFound);
-
+            // 判断是不是置顶主题
+            normalThread.isTopThread = [self isStickyThread:titleHtml];
             
+            // 判断是不是精华帖子
+            normalThread.isGoodNess = [self isGoodNessThread:titleHtml];
+            
+            // 是否包含小别针
+            normalThread.isContainsImage = [self isContainsImagesThread:titleHtml];
+
+            // 主题和分类
             NSString *titleAndCategory = [self parseTitle: titleInnerHtml];
             IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:titleAndCategory error:nil];
             
             NSString * titleText = [titleTemp text];
             
-            //分离出Title 和 Category
-            ccfthreadlist.threadCategory = [self spliteCategory:titleText];
-            
-            ccfthreadlist.threadTitle = [self spliteTitle:titleText];
+            // 分离出主题分类
+            normalThread.threadCategory = [self spliteCategory:titleText];
+            // 分离出主题
+            normalThread.threadTitle = [self spliteTitle:titleText];
             
             //[@"showthread.php?t=" length]    17的由来
-            ccfthreadlist.threadID = [[titleTemp attribute:@"href"] substringFromIndex: 17];
+            normalThread.threadID = [[titleTemp attribute:@"href"] substringFromIndex: 17];
             
             IGXMLNode * authorNode = threadListNode.children [3];
 
             NSString * authorIdStr = [authorNode innerHtml];
-            ccfthreadlist.threadAuthorID = [authorIdStr stringWithRegular:@"\\d+"];
+            normalThread.threadAuthorID = [authorIdStr stringWithRegular:@"\\d+"];
             
-            ccfthreadlist.threadAuthorName = [authorNode text];
+            normalThread.threadAuthorName = [authorNode text];
             
             IGXMLNode * lastPostTime = [threadListNode childrenAtPosition:4];
-            ccfthreadlist.lastPostTime = [[lastPostTime text] trim];
+            normalThread.lastPostTime = [[lastPostTime text] trim];
             
             IGXMLNode * commentCountNode = threadListNode.children [5];
-            ccfthreadlist.postCount = [commentCountNode text];
+            normalThread.postCount = [commentCountNode text];
             
             IGHTMLDocument * openCountNode = threadListNode.children[6];
-            ccfthreadlist.openCount = [openCountNode text];
+            normalThread.openCount = [openCountNode text];
             
-            [threadList addObject:ccfthreadlist];
+            [threadList addObject:normalThread];
         }
     }
     
@@ -116,6 +123,22 @@
     return page;
     
 }
+
+// 判断是不是置顶帖子
+-(BOOL) isStickyThread:(NSString *) postTitleHtml{
+    return [postTitleHtml containsString:@"images/CCFStyle/misc/sticky.gif"];
+}
+
+// 判断是不是精华帖子
+-(BOOL) isGoodNessThread:(NSString *) postTitleHtml{
+    return [postTitleHtml containsString:@"images/CCFStyle/misc/goodnees.gif"];
+}
+
+// 判断是否包含图片
+-(BOOL) isContainsImagesThread:(NSString *) postTitlehtml{
+    return [postTitlehtml containsString:@"images/CCFStyle/misc/paperclip.gif"];
+}
+
 
 -(NSString *) parseTitle:(NSString *) html {
     NSString *searchText = html;

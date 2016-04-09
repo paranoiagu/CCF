@@ -11,4 +11,6 @@
 @interface IGXMLNode(Children)
 
 -(IGXMLNode*) childrenAtPosition:(int)position;
+
+- (int) childrenCount;
 @end

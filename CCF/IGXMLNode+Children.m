@@ -14,4 +14,7 @@
     return self.children [position];
 }
 
+-(int)childrenCount{
+    return [self.children count];
+}
 @end

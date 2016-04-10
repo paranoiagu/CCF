@@ -439,20 +439,19 @@
     
     ActionSheetStringPicker * picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择页面" rows:pages initialSelection:currentPageNumber - 1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         
+        int selectPage = (int)selectedIndex + 1;
         
-        if (selectedIndex +1 != currentPageNumber) {
-            
-            
-            
+        if (selectPage != currentPageNumber) {
+
             [SVProgressHUD showWithStatus:@"正在切换" maskType:SVProgressHUDMaskTypeBlack];
             
             
-            [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:(int)selectedIndex + 1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+            [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:selectPage handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
                 
                 [SVProgressHUD dismiss];
                 
                 if (isSuccess) {
-                    currentPageNumber = (int)selectedIndex + 1;
+                    currentPageNumber = (int)thread.currentPage;
                     
                     totalPageCount = (int)thread.totalPageCount;
                     
@@ -469,31 +468,6 @@
                     [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPageNumber]];
                     
                     [self.tableView reloadData];
-                    
-                    [self.tableView layoutIfNeeded];
-                    
-                    
-                    NSIndexPath * scrolltoIndex = [NSIndexPath indexPathForRow: 0 inSection: currentPageNumber - 1];
-                    
-                    [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-                    
-//
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        
-//                        NSIndexPath * scrolltoIndex = [NSIndexPath indexPathForRow: 0 inSection: currentPageNumber - 1];
-//                        
-//                        [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionTop animated:YES];
-//                        
-//                    });
-                    
-                    
-//                    [UIView animateWithDuration:0 animations:^{
-//                        [self.tableView reloadData];
-//                    } completion:^(BOOL finished) {
-//                        NSIndexPath * scrolltoIndex = [NSIndexPath indexPathForRow: 0 inSection: currentPageNumber];
-//                        
-//                        [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionTop animated:YES];
-//                    }];
                 }
                 
             }];
@@ -516,6 +490,14 @@
     
     [picker showActionSheetPicker];
 }
+
+
+//-(void) scrollToNewSection:(NSString*) a{
+//    NSIndexPath * scrolltoIndex = [NSIndexPath indexPathForRow: 0 inSection: currentPageNumber - 1];
+//    
+//    [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionTop animated:NO];
+//}
+
 - (IBAction)showMoreAction:(UIBarButtonItem *)sender {
     
 

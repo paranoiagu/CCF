@@ -215,23 +215,17 @@
     [field resignFirstResponder];
     
     
-    [SVProgressHUD showInfoWithStatus:@"正在回复" maskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD showWithStatus:@"正在回复" maskType:SVProgressHUDMaskTypeBlack];
     
-    [_api replyPrivateMessageWithId:123  andMessage:@"" handler:^(BOOL isSuccess, id message) {
+    [_api replyPrivateMessageWithId:[transPrivateMessage.pmID intValue]  andMessage:field.text handler:^(BOOL isSuccess, id message) {
         
         [SVProgressHUD dismiss];
          
          if (isSuccess) {
             
             field.text = @"";
-            
-            [self.dataList removeAllObjects];
-            
-            CCFShowThreadPage * thread = message;
-            
-            [self.dataList addObjectsFromArray:thread.dataList];
-            
-            [self.tableView reloadData];
+
+             [SVProgressHUD showSuccessWithStatus:@"发送成功" maskType:SVProgressHUDMaskTypeBlack];
             
             
         } else{

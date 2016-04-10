@@ -248,6 +248,7 @@
 		3AA5B99C1CBA7D690008175A /* CCFSimpleReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSimpleReplyViewController.m; sourceTree = "<group>"; };
 		3AA5B99E1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSimpleReplyNavigationController.h; sourceTree = "<group>"; };
 		3AA5B99F1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSimpleReplyNavigationController.m; sourceTree = "<group>"; };
+		3AA5B9A11CBAA38A0008175A /* SimpleReplyTransValueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleReplyTransValueDelegate.h; sourceTree = "<group>"; };
 		3AB3F5361C53939300B7FA98 /* CCFForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForm.h; sourceTree = "<group>"; };
 		3AB3F5371C53939300B7FA98 /* CCFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForm.m; sourceTree = "<group>"; };
 		3ABAFE3C1CAACCD300803085 /* CCFUserThreadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUserThreadTableViewController.h; sourceTree = "<group>"; };
@@ -542,6 +543,7 @@
 				3A3672A81CAF6AF000756D8B /* CCFApiBaseViewController.h */,
 				3A3672A91CAF6AF000756D8B /* CCFApiBaseViewController.m */,
 				3A1C2CD81C9EE6150068AF6B /* TransValueDelegate.h */,
+				3AA5B9A11CBAA38A0008175A /* SimpleReplyTransValueDelegate.h */,
 				3A3672AB1CAF713200756D8B /* TransValueBundle.h */,
 				3A3672AC1CAF713200756D8B /* TransValueBundle.m */,
 			);

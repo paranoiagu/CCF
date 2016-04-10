@@ -7,17 +7,18 @@
 //
 
 #import "CCFSimpleReplyNavigationController.h"
-#import "TransValueDelegate.h"
+#import "SimpleReplyTransValueDelegate.h"
 
-@interface CCFSimpleReplyNavigationController ()<TransValueDelegate>
+@interface CCFSimpleReplyNavigationController ()<SimpleReplyTransValueDelegate>
 
 @end
 
 @implementation CCFSimpleReplyNavigationController
 
 
--(void)transValue:(id)value{
-    self.transThread = value;
+-(void)transValue:(CCFShowThreadViewController *)controller withThread:(CCFThread *)thread{
+    self.controller = controller;
+    self.transThread = thread;
 }
 
 

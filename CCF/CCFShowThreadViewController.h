@@ -10,6 +10,7 @@
 #import "CCFPost.h"
 #import "TransValueDelegate.h"
 #include "SelectPhotoCollectionViewCell.h"
+#import "SimpleReplyTransValueDelegate.h"
 
 @interface CCFShowThreadViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
@@ -29,6 +30,10 @@
 - (IBAction)showMoreAction:(UIBarButtonItem *)sender;
 
 @property (nonatomic, weak) id<TransValueDelegate> transValueDelegate;
+
+@property (nonatomic, weak) id<SimpleReplyTransValueDelegate> simpleTransDelegate;
+
+
 
 - (IBAction)changeNumber:(id)sender;
 

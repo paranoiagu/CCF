@@ -828,7 +828,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="35x-4s-y14" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1480" y="-1944"/>
+            <point key="canvasLocation" x="1994" y="-1966"/>
         </scene>
         <!--快速回复-->
         <scene sceneID="wwL-t1-EVb">
@@ -843,33 +843,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="A9X-cc-IIf">
-                                <rect key="frame" x="20" y="72" width="560" height="508"/>
+                                <rect key="frame" x="20" y="0.0" width="560" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="A9X-cc-IIf" firstAttribute="top" secondItem="3h9-jV-PLj" secondAttribute="bottom" constant="8" id="Le5-TG-JaZ"/>
-                            <constraint firstItem="JrQ-CG-sbj" firstAttribute="top" secondItem="A9X-cc-IIf" secondAttribute="bottom" constant="20" id="c8x-Bj-FrJ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="A9X-cc-IIf" secondAttribute="trailing" id="mDa-z3-l1M"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="A9X-cc-IIf" secondAttribute="leading" id="pEn-Xs-0An"/>
+                            <constraint firstItem="A9X-cc-IIf" firstAttribute="top" secondItem="3h9-jV-PLj" secondAttribute="bottom" constant="-64" id="5zW-Wb-m8W"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="A9X-cc-IIf" secondAttribute="trailing" id="ELN-K2-abk"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="A9X-cc-IIf" secondAttribute="leading" id="Rht-EK-TNA"/>
+                            <constraint firstItem="JrQ-CG-sbj" firstAttribute="top" secondItem="A9X-cc-IIf" secondAttribute="bottom" constant="20" id="gh2-ST-m5C"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="快速回复" id="22a-xL-i18">
                         <barButtonItem key="leftBarButtonItem" title="取消" id="EqQ-qd-QEh">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="back:" destination="dRe-ho-YY5" id="HOE-b5-yxT"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="发送" id="DkE-Rq-VUX">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="sendSimpleReply:" destination="dRe-ho-YY5" id="FFN-bG-q8P"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="replyContent" destination="A9X-cc-IIf" id="4GZ-Mu-dgx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dLc-AP-Jpt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2135" y="-1935"/>
+            <point key="canvasLocation" x="2633" y="-1966"/>
         </scene>
         <!--高级回帖-->
         <scene sceneID="0ad-k0-Qjn">

@@ -35,10 +35,11 @@
 #import "PageHeaderView.h"
 #import "CCFThreadNotLoadTableViewCell.h"
 #import "CCFSimpleReplyNavigationController.h"
+#import "CCFSimpleReplyViewController.h"
 
 #import "XibInflater.h"
 
-@interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
+@interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate, SimpleReplyDelegate>{
     
     
     int currentPageNumber;
@@ -68,12 +69,15 @@
     transThread = value;
 }
 
+
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super initWithCoder:aDecoder]) {
+        postSet = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    postSet = [NSMutableDictionary dictionary];
-
-    
     
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -481,9 +485,9 @@
         selectSegue = segue;
     } else if ([segue.identifier isEqualToString:@"ShowSimpleReply"]){
         CCFSimpleReplyNavigationController * controller = segue.destinationViewController;
-        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        self.simpleTransDelegate = (id<SimpleReplyTransValueDelegate>)controller;
         
-        [self.transValueDelegate transValue:transThread];
+        [self.simpleTransDelegate transValue:self withThread:transThread];
     }
 }
 
@@ -562,6 +566,23 @@
     NSIndexPath * scrolltoIndex = [NSIndexPath indexPathForRow: 0 inSection: currentPageNumber];
     
     [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+-(void)transReplyValue:(CCFShowThreadPage *)value{
+    
+    currentThreadPage = value;
+    
+    currentPageNumber = (int)value.currentPage;
+    totalPageCount = (int)value.totalPageCount;
+    
+    NSMutableArray<CCFPost *> * parsedPosts = value.dataList;
+    
+    [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPageNumber]];
+    
+    [self.tableView reloadData];
+    
+    [self scrollToNewSection];
+    
 }
 
 - (IBAction)showMoreAction:(UIBarButtonItem *)sender {

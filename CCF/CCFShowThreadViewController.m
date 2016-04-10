@@ -33,6 +33,7 @@
 #import "NSString+Regular.h"
 #import "CCFThreadListTitleCell.h"
 #import "PageHeaderView.h"
+#import "CCFThreadNotLoadTableViewCell.h"
 
 #import "XibInflater.h"
 
@@ -280,7 +281,13 @@
     if (section == 0) {
         return 1;
     } else{
-        return [[postSet objectForKey:[NSNumber numberWithInteger:section]] count];
+        
+        int count = (int)[[postSet objectForKey:[NSNumber numberWithInteger:section]] count];
+        if (count == 0) {
+            return 1;
+        } else{
+            return count;
+        }
     }
 
 }
@@ -293,18 +300,29 @@
         return cell;
         
     } else{
-        static NSString *QuoteCellIdentifier = @"CCFThreadDetailCellIdentifier";
-        
-        CCFThreadDetailCell *cell = (CCFThreadDetailCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-        cell.delegate = self;
-        cell.detailDelegate = self;
-        NSArray * posts = [postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]];
-        
-        
-        CCFPost *post = posts[indexPath.row];
-        [cell setPost:post forIndexPath:indexPath];
-        
-        return cell;
+        int count = (int)[[postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]] count];
+        if (count == 0) {
+            
+            static NSString *cellId = @"CCFThreadDetailNotLoadId";
+            
+            CCFThreadNotLoadTableViewCell * cell = (CCFThreadNotLoadTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellId];
+            
+            return cell;
+        } else{
+            static NSString *QuoteCellIdentifier = @"CCFThreadDetailCellIdentifier";
+            
+            CCFThreadDetailCell *cell = (CCFThreadDetailCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
+            cell.delegate = self;
+            cell.detailDelegate = self;
+            NSArray * posts = [postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]];
+            
+            
+            CCFPost *post = posts[indexPath.row];
+            [cell setPost:post forIndexPath:indexPath];
+            
+            return cell;
+        }
+
     }
 
 }
@@ -327,11 +345,17 @@
                     cell.threadTitle.text = transThread.threadTitle;
                 }];
     } else{
-        NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
-        if (nsheight == nil) {
-            return  115.0;
+        int count = (int)[[postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]] count];
+        if (count == 0) {
+            return 44;
+        } else{
+            NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
+            if (nsheight == nil) {
+                return  115.0;
+            }
+            return nsheight.floatValue;
         }
-        return nsheight.floatValue;
+
     }
 
 }
@@ -341,69 +365,103 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-     NSArray * posts = [postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]];
+    int count = (int)[[postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]] count];
     
-    CCFPost * selectPost = posts[indexPath.row];
-
-    itemActionSheet = [LCActionSheet sheetWithTitle:selectPost.postUserInfo.userName buttonTitles:@[@"快速回复", @"@作者", @"复制链接"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
-        if (buttonIndex == 0) {
-            UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+    if (count == 0) {
+        [SVProgressHUD showWithStatus:@"正在加载" maskType:SVProgressHUDMaskTypeBlack];
+        
+        
+        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:(int)indexPath.section handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
             
-            CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
-            self.transValueDelegate = (id<TransValueDelegate>)myThreadController;
+            [SVProgressHUD dismiss];
             
-            TransValueBundle * bundle = [[TransValueBundle alloc] init];
+            if (isSuccess) {
+                currentPageNumber = (int)thread.currentPage;
+                
+                totalPageCount = (int)thread.totalPageCount;
+                
+                if (currentPageNumber >= totalPageCount) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }
+                
+                
+                NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
+                
+                
+                currentThreadPage = thread;
+                
+                [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPageNumber]];
+                
+                [self.tableView reloadData];
+            }
             
-            [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
-            
-            CCFPost * selectPost = posts[indexPath.row];
-            
-            [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
-            NSString * token = currentThreadPage.securityToken;
-            
-            [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
-            [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
-            
-            [self.transValueDelegate transValue: bundle];
-            
-            [self.navigationController pushViewController:myThreadController animated:YES];
-        } else if (buttonIndex == 1){
-            UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-            
-            CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
-            self.transValueDelegate = (id<TransValueDelegate>)myThreadController;
-            
-            TransValueBundle * bundle = [[TransValueBundle alloc] init];
-            
-            [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
-            
-            CCFPost * selectPost = posts[indexPath.row];
-            
-            [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
-            NSString * token = currentThreadPage.securityToken;
-            
-            [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
-            [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
-            [bundle putStringValue:selectPost.postUserInfo.userName forKey:@"USER_NAME"];
-            
-            [self.transValueDelegate transValue: bundle];
-            
-            [self.navigationController pushViewController:myThreadController animated:YES];
-        } else if (buttonIndex == 2){
-            NSString * louceng = [selectPost.postLouCeng stringWithRegular:@"\\d+"];
-            
-            NSString * postUrl = [NSString stringWithFormat: @"https://bbs.et8.net/bbs/showpost.php?p=%@&postcount=%@", transThread.threadID, louceng];
-            
-            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-            pasteboard.string = postUrl;
-            
-            [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
-            
-        }
-    }];
+        }];
+        
+    } else{
+        NSArray * posts = [postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]];
+        
+        CCFPost * selectPost = posts[indexPath.row];
+        
+        itemActionSheet = [LCActionSheet sheetWithTitle:selectPost.postUserInfo.userName buttonTitles:@[@"快速回复", @"@作者", @"复制链接"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+            if (buttonIndex == 0) {
+                UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+                
+                CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
+                self.transValueDelegate = (id<TransValueDelegate>)myThreadController;
+                
+                TransValueBundle * bundle = [[TransValueBundle alloc] init];
+                
+                [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+                
+                CCFPost * selectPost = posts[indexPath.row];
+                
+                [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
+                NSString * token = currentThreadPage.securityToken;
+                
+                [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
+                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+                
+                [self.transValueDelegate transValue: bundle];
+                
+                [self.navigationController pushViewController:myThreadController animated:YES];
+            } else if (buttonIndex == 1){
+                UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+                
+                CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
+                self.transValueDelegate = (id<TransValueDelegate>)myThreadController;
+                
+                TransValueBundle * bundle = [[TransValueBundle alloc] init];
+                
+                [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+                
+                CCFPost * selectPost = posts[indexPath.row];
+                
+                [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
+                NSString * token = currentThreadPage.securityToken;
+                
+                [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
+                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+                [bundle putStringValue:selectPost.postUserInfo.userName forKey:@"USER_NAME"];
+                
+                [self.transValueDelegate transValue: bundle];
+                
+                [self.navigationController pushViewController:myThreadController animated:YES];
+            } else if (buttonIndex == 2){
+                NSString * louceng = [selectPost.postLouCeng stringWithRegular:@"\\d+"];
+                
+                NSString * postUrl = [NSString stringWithFormat: @"https://bbs.et8.net/bbs/showpost.php?p=%@&postcount=%@", transThread.threadID, louceng];
+                
+                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                pasteboard.string = postUrl;
+                
+                [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
+                
+            }
+        }];
+        
+        [itemActionSheet show];
+    }
     
-    [itemActionSheet show];
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
 }
 

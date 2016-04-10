@@ -691,6 +691,43 @@
                                             <outlet property="username" destination="wSI-L8-ULb" id="rXx-eB-0p5"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCFThreadDetailNotLoadId" rowHeight="44" id="sb9-Y7-bN8" customClass="CCFThreadNotLoadTableViewCell">
+                                        <rect key="frame" x="0.0" y="287.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sb9-Y7-bN8" id="UmH-7D-VlH">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tcj-7X-0kt" userLabel="devider">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.61176470589999998" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="Jhj-bb-5hT"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击加载本页" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngo-En-oUz">
+                                                    <rect key="frame" x="249" y="11" width="102" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Tcj-7X-0kt" firstAttribute="leading" secondItem="UmH-7D-VlH" secondAttribute="leadingMargin" constant="-8" id="9ou-H7-cL0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Tcj-7X-0kt" secondAttribute="trailing" constant="-8" id="A2J-JO-vdG"/>
+                                                <constraint firstItem="Tcj-7X-0kt" firstAttribute="top" secondItem="UmH-7D-VlH" secondAttribute="topMargin" id="OQC-QX-XZD"/>
+                                                <constraint firstItem="Tcj-7X-0kt" firstAttribute="centerX" secondItem="UmH-7D-VlH" secondAttribute="centerX" id="Xdk-vY-Hrm"/>
+                                                <constraint firstItem="ngo-En-oUz" firstAttribute="centerX" secondItem="UmH-7D-VlH" secondAttribute="centerX" id="YS3-lj-Vm5"/>
+                                                <constraint firstItem="ngo-En-oUz" firstAttribute="top" secondItem="UmH-7D-VlH" secondAttribute="topMargin" constant="3" id="efL-f9-eRk"/>
+                                                <constraint firstItem="Tcj-7X-0kt" firstAttribute="top" secondItem="UmH-7D-VlH" secondAttribute="top" id="oJg-TL-n6N"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="OQC-QX-XZD"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jom-RI-cJC" customClass="CCFToolbar">

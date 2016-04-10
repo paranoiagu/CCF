@@ -214,12 +214,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    for (int i = totalPageCount - 1; i >= 0; i--) {
+    for (int i = totalPageCount; i >= 0; i--) {
         
         
         int count = (int)[[postSet objectForKey:[NSNumber numberWithInteger:i]] count];
         if (count > 0) {
-            return 1 + i + 1;
+            return 1 + i;
         }
     }
     return 1 + totalPageCount;

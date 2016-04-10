@@ -39,8 +39,8 @@
 @interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
     
     
-    int currentPage;
-    int totalPage;
+    int currentPageNumber;
+    int totalPageCount;
     
     CCFApi * ccfapi;
     CCFUITextView * field;
@@ -117,7 +117,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    currentPage = 1;
+    currentPageNumber = 1;
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
@@ -125,11 +125,11 @@
             [self.tableView.mj_header endRefreshing];
             
             if (isSuccess) {
-                currentPage = 1;
+                currentPageNumber = 1;
 
-                totalPage = (int)thread.totalPageCount;
+                totalPageCount = (int)thread.totalPageCount;
                 
-                if (currentPage >= totalPage) {
+                if (currentPageNumber >= totalPageCount) {
                     [self.tableView.mj_footer endRefreshingWithNoMoreData];
                 }
                 
@@ -138,7 +138,7 @@
 
                 currentThreadPage = thread;
 
-                [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPage]];
+                [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPageNumber]];
                 
                 [self.tableView reloadData];
             }
@@ -149,15 +149,15 @@
     
     self.tableView.mj_footer = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
         
-        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:currentPage + 1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:currentPageNumber + 1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
             
             [self.tableView.mj_footer endRefreshing];
             
             if (isSuccess) {
-                currentPage ++;
-                totalPage = (int)thread.totalPageCount;
+                currentPageNumber ++;
+                totalPageCount = (int)thread.totalPageCount;
                 
-                if (currentPage >= totalPage) {
+                if (currentPageNumber >= totalPageCount) {
                     [self.tableView.mj_footer endRefreshingWithNoMoreData];
                 }
                 NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
@@ -165,7 +165,7 @@
 
                 currentThreadPage = thread;
                 
-                [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPage]];
+                [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPageNumber]];
                 [self.tableView reloadData];
             }
             
@@ -213,7 +213,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    for (int i = totalPage - 1; i >= 0; i--) {
+    for (int i = totalPageCount - 1; i >= 0; i--) {
         
         
         int count = (int)[[postSet objectForKey:[NSNumber numberWithInteger:i]] count];
@@ -221,7 +221,7 @@
             return 1 + i + 1;
         }
     }
-    return 1 + totalPage;
+    return 1 + totalPageCount;
 }
 
 
@@ -237,7 +237,7 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    NSString * title = [NSString stringWithFormat:@"%ld/%d", section, totalPage];
+    NSString * title = [NSString stringWithFormat:@"%ld/%d", section, totalPageCount];
     self.pageNumber.title = title;
     
     if (section == 0) {
@@ -262,7 +262,7 @@
         
         if (sectionNumber !=0) {
             
-            NSString * title = [NSString stringWithFormat:@"%ld/%d", sectionNumber, totalPage];
+            NSString * title = [NSString stringWithFormat:@"%ld/%d", sectionNumber, totalPageCount];
             PageHeaderView *headerView = (PageHeaderView*)[self.tableView headerViewForSection:sectionNumber];
 
             headerView.pageNumber.text = [NSString stringWithFormat:@"PAGE %ld", sectionNumber];
@@ -437,10 +437,10 @@
     
     
     
-    ActionSheetStringPicker * picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择页面" rows:pages initialSelection:currentPage - 1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+    ActionSheetStringPicker * picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择页面" rows:pages initialSelection:currentPageNumber - 1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         
         
-        if (selectedIndex +1 != currentPage) {
+        if (selectedIndex +1 != currentPageNumber) {
             
             
             
@@ -452,11 +452,11 @@
                 [SVProgressHUD dismiss];
                 
                 if (isSuccess) {
-                    currentPage = (int)selectedIndex + 1;
+                    currentPageNumber = (int)selectedIndex + 1;
                     
-                    totalPage = (int)thread.totalPageCount;
+                    totalPageCount = (int)thread.totalPageCount;
                     
-                    if (currentPage >= totalPage) {
+                    if (currentPageNumber >= totalPageCount) {
                         [self.tableView.mj_footer endRefreshingWithNoMoreData];
                     }
                     
@@ -466,9 +466,34 @@
                     
                     currentThreadPage = thread;
                     
-                    [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPage]];
+                    [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPageNumber]];
                     
                     [self.tableView reloadData];
+                    
+                    [self.tableView layoutIfNeeded];
+                    
+                    
+                    NSIndexPath * scrolltoIndex = [NSIndexPath indexPathForRow: 0 inSection: currentPageNumber - 1];
+                    
+                    [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+                    
+//
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        
+//                        NSIndexPath * scrolltoIndex = [NSIndexPath indexPathForRow: 0 inSection: currentPageNumber - 1];
+//                        
+//                        [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionTop animated:YES];
+//                        
+//                    });
+                    
+                    
+//                    [UIView animateWithDuration:0 animations:^{
+//                        [self.tableView reloadData];
+//                    } completion:^(BOOL finished) {
+//                        NSIndexPath * scrolltoIndex = [NSIndexPath indexPathForRow: 0 inSection: currentPageNumber];
+//                        
+//                        [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionTop animated:YES];
+//                    }];
                 }
                 
             }];
@@ -494,6 +519,7 @@
 - (IBAction)showMoreAction:(UIBarButtonItem *)sender {
     
 
+
     itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"复制帖子链接", @"在浏览器中查看",@"选择页码", @"刷新本页"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
@@ -513,16 +539,16 @@
             [SVProgressHUD showWithStatus:@"正在刷新" maskType:SVProgressHUDMaskTypeBlack];
             
             
-            [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:currentPage handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+            [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:currentPageNumber handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
                 
                 [SVProgressHUD dismiss];
                 
                 if (isSuccess) {
 
+                    currentPageNumber = (int)thread.currentPage;
+                    totalPageCount = (int)thread.totalPageCount;
                     
-                    totalPage = (int)thread.totalPageCount;
-                    
-                    if (currentPage >= totalPage) {
+                    if (currentPageNumber >= totalPageCount) {
                         [self.tableView.mj_footer endRefreshingWithNoMoreData];
                     }
                     
@@ -532,9 +558,10 @@
                     
                     currentThreadPage = thread;
                     
-                    [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPage]];
+                    [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPageNumber]];
 
                     [self.tableView reloadData];
+
                 }
                 
             }];
@@ -560,8 +587,8 @@
             
             CCFShowThreadPage * thread = message;
             
-            totalPage = (int)thread.totalPageCount;
-            currentPage = (int)thread.currentPage;
+            totalPageCount = (int)thread.totalPageCount;
+            currentPageNumber = (int)thread.currentPage;
             
             [self.tableView reloadData];
             

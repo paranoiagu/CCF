@@ -39,14 +39,13 @@
 
 #import "XibInflater.h"
 
-@interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate, SimpleReplyDelegate>{
+@interface CCFShowThreadViewController ()< UITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate, SimpleReplyDelegate>{
     
     
     int currentPageNumber;
     int totalPageCount;
     
     CCFApi * ccfapi;
-    CCFUITextView * field;
     CCFApi *_api;
     
     CCFThread * transThread;
@@ -81,38 +80,10 @@
     
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    field = [[CCFUITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
-    field.heightDelegate = self;
-    field.delegate = self;
-    field.scrollsToTop = NO;
-    
-    [_floatToolbar sizeToFit];
+
 
     
     
-    NSArray<UIBarButtonItem*> * items  = _floatToolbar.items;
-    
-    for (UIBarButtonItem * item in items) {
-        if (item.customView != nil) {
-            item.customView = field;
-        }
-        
-        UIEdgeInsets insets = item.imageInsets;
-        insets.bottom = - CGRectGetHeight(_floatToolbar.frame) + 44;
-        item.imageInsets = insets;
-        
-        
-    }
-    
-    CGRect screenSize = [UIScreen mainScreen].bounds;
-    
-    CGRect frame = _floatToolbar.frame;
-    frame.origin.y = screenSize.size.height - 44;
-    _floatToolbar.frame = frame;
-    
-    
-    [self.view addSubview:_floatToolbar];
     
     _api = [[CCFApi alloc] init];
     
@@ -184,33 +155,6 @@
     [self.tableView.mj_header beginRefreshing];
 
     
-    
-}
-
-
--(void)textViewDidChange:(UITextView *)textView{
-    
-    [field showPlaceHolder:[textView.text isEqualToString:@""]];
-}
-
-
-
--(void)heightChanged:(CGFloat)height{
-    
-    CGRect rect = _floatToolbar.frame;
-    CGFloat addHeight = height - rect.size.height;
-    
-    rect.size.height = height + 14;
-    rect.origin.y = rect.origin.y - addHeight - 14;
-    
-    _floatToolbar.frame = rect;
-    
-//    NSArray<UIBarButtonItem*> * items  = _floatToolbar.items;
-//    for (UIBarButtonItem * item in items) {
-//        UIEdgeInsets insets = item.imageInsets;
-//        insets.bottom = -_floatToolbar.frame.size.height / 2;
-//        item.imageInsets = insets;
-//    }
     
 }
 
@@ -642,31 +586,15 @@
 }
 - (IBAction)floatReplyClick:(id)sender {
     
-    [field resignFirstResponder];
+//    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentSize.height -self.tableView.bounds.size.height) animated:YES];
     
-    [SVProgressHUD showSuccessWithStatus:@"正在回复" maskType:SVProgressHUDMaskTypeBlack];
+    int count = (int)[[postSet objectForKey:[NSNumber numberWithInteger:currentPageNumber]] count];
+    if (count > 1) {
+        count = count -1;
+    }
+    NSIndexPath * scrolltoIndex = [NSIndexPath indexPathForRow: count inSection: currentPageNumber];
     
-    [_api replyThreadWithId:transThread.threadID andMessage:field.text handler:^(BOOL isSuccess, id message) {
-        
-        [SVProgressHUD dismiss];
-        
-        if (isSuccess) {
-            
-            field.text = @"";
-            
-            CCFShowThreadPage * thread = message;
-            
-            totalPageCount = (int)thread.totalPageCount;
-            currentPageNumber = (int)thread.currentPage;
-            
-            [self.tableView reloadData];
-            
-            
-        } else{
-            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"发送失败" message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alertView show];
-        }
-    }];
+    [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 
 }
 - (IBAction)changeNumber:(id)sender {

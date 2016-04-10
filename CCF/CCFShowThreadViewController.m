@@ -32,7 +32,9 @@
 #import "ActionSheetPicker.h"
 #import "NSString+Regular.h"
 #import "CCFThreadListTitleCell.h"
+#import "PageHeaderView.h"
 
+#import "XibInflater.h"
 
 @interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
     
@@ -217,9 +219,25 @@
 }
 
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    return 100;
-//}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 0;
+    }
+    return 45;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return nil;
+    } else{
+        PageHeaderView *tmpCustomView = [XibInflater inflateViewByXibName:@"PageHeaderView"];
+        
+        return tmpCustomView;
+    }
+
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return 1;

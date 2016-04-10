@@ -25,6 +25,7 @@
 
 
 - (IBAction)back:(UIBarButtonItem *)sender;
+
 - (IBAction)showMoreAction:(UIBarButtonItem *)sender;
 
 @property (nonatomic, weak) id<TransValueDelegate> transValueDelegate;
@@ -32,5 +33,7 @@
 - (IBAction)changeNumber:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *pageNumber;
+
+- (IBAction)showSimpleReply:(id)sender;
 
 @end

@@ -34,6 +34,7 @@
 #import "CCFThreadListTitleCell.h"
 #import "PageHeaderView.h"
 #import "CCFThreadNotLoadTableViewCell.h"
+#import "CCFSimpleReplyNavigationController.h"
 
 #import "XibInflater.h"
 
@@ -478,6 +479,11 @@
     
     if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
         selectSegue = segue;
+    } else if ([segue.identifier isEqualToString:@"ShowSimpleReply"]){
+        CCFSimpleReplyNavigationController * controller = segue.destinationViewController;
+        self.transValueDelegate = (id<TransValueDelegate>)controller;
+        
+        [self.transValueDelegate transValue:transThread];
     }
 }
 
@@ -526,6 +532,8 @@
                     [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPageNumber]];
                     
                     [self.tableView reloadData];
+                    
+                    [self scrollToNewSection];
                 }
                 
             }];
@@ -550,11 +558,11 @@
 }
 
 
-//-(void) scrollToNewSection:(NSString*) a{
-//    NSIndexPath * scrolltoIndex = [NSIndexPath indexPathForRow: 0 inSection: currentPageNumber - 1];
-//    
-//    [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionTop animated:NO];
-//}
+-(void) scrollToNewSection{
+    NSIndexPath * scrolltoIndex = [NSIndexPath indexPathForRow: 0 inSection: currentPageNumber];
+    
+    [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
 
 - (IBAction)showMoreAction:(UIBarButtonItem *)sender {
     
@@ -643,5 +651,7 @@
 - (IBAction)changeNumber:(id)sender {
     [self showChangePageActionSheet:sender];
     
+}
+- (IBAction)showSimpleReply:(id)sender {
 }
 @end

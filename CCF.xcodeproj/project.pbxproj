@@ -69,6 +69,8 @@
 		3AA2D5191C3610C400F312CC /* carat.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5151C3610C400F312CC /* carat.png */; };
 		3AA2D51A1C3610C400F312CC /* TVAnimationsGestures-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA2D5161C3610C400F312CC /* TVAnimationsGestures-Info.plist */; };
 		3AA5B99A1CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B9991CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m */; };
+		3AA5B99D1CBA7D690008175A /* CCFSimpleReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B99C1CBA7D690008175A /* CCFSimpleReplyViewController.m */; };
+		3AA5B9A01CBA8C6C0008175A /* CCFSimpleReplyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B99F1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.m */; };
 		3AB3F5381C53939300B7FA98 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3F5371C53939300B7FA98 /* CCFForm.m */; };
 		3ABAFE3E1CAACCD300803085 /* CCFUserThreadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABAFE3D1CAACCD300803085 /* CCFUserThreadTableViewController.m */; };
 		3ABAFE411CAAD12300803085 /* TransValueUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABAFE401CAAD12300803085 /* TransValueUITableViewCell.m */; };
@@ -242,6 +244,10 @@
 		3AA2D5161C3610C400F312CC /* TVAnimationsGestures-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TVAnimationsGestures-Info.plist"; sourceTree = "<group>"; };
 		3AA5B9981CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadNotLoadTableViewCell.h; sourceTree = "<group>"; };
 		3AA5B9991CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadNotLoadTableViewCell.m; sourceTree = "<group>"; };
+		3AA5B99B1CBA7D690008175A /* CCFSimpleReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSimpleReplyViewController.h; sourceTree = "<group>"; };
+		3AA5B99C1CBA7D690008175A /* CCFSimpleReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSimpleReplyViewController.m; sourceTree = "<group>"; };
+		3AA5B99E1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSimpleReplyNavigationController.h; sourceTree = "<group>"; };
+		3AA5B99F1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSimpleReplyNavigationController.m; sourceTree = "<group>"; };
 		3AB3F5361C53939300B7FA98 /* CCFForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForm.h; sourceTree = "<group>"; };
 		3AB3F5371C53939300B7FA98 /* CCFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForm.m; sourceTree = "<group>"; };
 		3ABAFE3C1CAACCD300803085 /* CCFUserThreadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUserThreadTableViewController.h; sourceTree = "<group>"; };
@@ -527,6 +533,10 @@
 				3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */,
 				3A1CC3DE1CB922F5007A0B97 /* CCFWritePMViewController.h */,
 				3A1CC3DF1CB922F5007A0B97 /* CCFWritePMViewController.m */,
+				3AA5B99B1CBA7D690008175A /* CCFSimpleReplyViewController.h */,
+				3AA5B99C1CBA7D690008175A /* CCFSimpleReplyViewController.m */,
+				3AA5B99E1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.h */,
+				3AA5B99F1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.m */,
 				3A2FCC781C9558F100B469E4 /* CCFApiBaseTableViewController.h */,
 				3A2FCC791C9558F100B469E4 /* CCFApiBaseTableViewController.m */,
 				3A3672A81CAF6AF000756D8B /* CCFApiBaseViewController.h */,
@@ -993,9 +1003,11 @@
 				3A1C2CCE1C9E3D4E0068AF6B /* CCFSearchPage.m in Sources */,
 				4D796BD81C43576700B3C62D /* CCFSearchViewController.m in Sources */,
 				3A671EE41CB9E061001CC91E /* PageHeaderView.m in Sources */,
+				3AA5B99D1CBA7D690008175A /* CCFSimpleReplyViewController.m in Sources */,
 				4D796BF61C44BBA000B3C62D /* FormEntry+CoreDataProperties.m in Sources */,
 				4D796C051C460D4200B3C62D /* NSUserDefaults+CCF.m in Sources */,
 				3A3672B01CAFDC7000756D8B /* CCFSettingTableViewController.m in Sources */,
+				3AA5B9A01CBA8C6C0008175A /* CCFSimpleReplyNavigationController.m in Sources */,
 				4D852A201C991294009121B2 /* CCFPage.m in Sources */,
 				3A9ADC6C1C9D8F2C006055A8 /* BaseCCFTableViewCell.m in Sources */,
 				3A1CC3E01CB922F5007A0B97 /* CCFWritePMViewController.m in Sources */,

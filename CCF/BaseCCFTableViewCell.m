@@ -64,6 +64,11 @@
 
 -(void)showAvatar:(UIImageView *)avatarImageView userId:(NSString*)userId{
     
+    // 不知道什么原因，userID可能是nil
+    if (userId == nil) {
+        [avatarImageView setImage:defaultAvatar];
+        return;
+    }
     NSString * avatarInArray = [avatarCache valueForKey:userId];
     
     if (avatarInArray == nil) {

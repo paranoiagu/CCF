@@ -13,7 +13,7 @@
 
 @interface CCFShowThreadViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray<CCFPost *> * posts;
+//@property (nonatomic, strong) NSMutableArray<CCFPost *> * posts;
 
 
 @property (strong, nonatomic) IBOutlet UIToolbar *floatToolbar;

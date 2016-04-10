@@ -51,14 +51,13 @@
     CCFShowThreadPage * currentThreadPage;
     
     LCActionSheet * itemActionSheet;
+    
+    NSMutableDictionary * postSet;
 }
 
 @end
 
 @implementation CCFShowThreadViewController
-
-@synthesize posts = _posts;
-
 
 #pragma mark trans value
 -(void)transValue:(CCFThread *)value{
@@ -67,6 +66,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    postSet = [NSMutableDictionary dictionary];
+
+    
+    
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -131,16 +135,11 @@
                 
                 
                 NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
-                
-                
-                if (self.posts == nil) {
-                    self.posts = [NSMutableArray array];
-                }
-                
+
                 currentThreadPage = thread;
+
+                [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPage]];
                 
-                [self.posts removeAllObjects];
-                [self.posts addObjectsFromArray:parsedPosts];
                 [self.tableView reloadData];
             }
             
@@ -162,14 +161,11 @@
                     [self.tableView.mj_footer endRefreshingWithNoMoreData];
                 }
                 NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
-                
-                if (self.posts == nil) {
-                    self.posts = [NSMutableArray array];
-                }
-                
+
+
                 currentThreadPage = thread;
                 
-                [self.posts addObjectsFromArray:parsedPosts];
+                [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPage]];
                 [self.tableView reloadData];
             }
             
@@ -217,15 +213,22 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 2;
+    return 1 + postSet.count;
 }
 
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 100;
+//}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return 1;
+    } else{
+        return [[postSet objectForKey:[NSNumber numberWithInteger:section]] count];
     }
-    return self.posts.count;
+
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
@@ -239,11 +242,10 @@
         CCFThreadDetailCell *cell = (CCFThreadDetailCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
         cell.delegate = self;
         cell.detailDelegate = self;
+        NSArray * posts = [postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]];
         
-        CCFPost *post = self.posts[indexPath.row];
         
-        //    [cell.content loadHTMLString:post.postContent baseURL:[CCFUrlBuilder buildIndexURL]];
-        //    [cell setPost:post];
+        CCFPost *post = posts[indexPath.row];
         [cell setPost:post forIndexPath:indexPath];
         
         return cell;
@@ -255,8 +257,7 @@
     NSNumber * nsheight = [cellHeightDictionary objectForKey:indexPath];
     if (nsheight == nil) {
         [cellHeightDictionary setObject:[NSNumber numberWithFloat:height] forKey:indexPath];
-//        [self.tableView reloadData];
-        NSIndexPath *indexPathReload=[NSIndexPath indexPathForRow:indexPath.row inSection:1];
+        NSIndexPath *indexPathReload=[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPathReload,nil] withRowAnimation:UITableViewRowAnimationNone];
     }
 
@@ -279,19 +280,14 @@
 
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 15 + [tableView fd_heightForCellWithIdentifier:@"CCFThreadDetailCellIdentifier" configuration:^(CCFThreadDetailCell *cell) {
-//
-//        [cell setPost:self.posts[indexPath.row]];
-//    }];
-//}
-
 #pragma mark LCActionSheetDelegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    CCFPost * selectPost = self.posts[indexPath.row];
+     NSArray * posts = [postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]];
+    
+    CCFPost * selectPost = posts[indexPath.row];
 
     itemActionSheet = [LCActionSheet sheetWithTitle:selectPost.postUserInfo.userName buttonTitles:@[@"快速回复", @"@作者", @"复制链接"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
@@ -304,7 +300,7 @@
             
             [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
             
-            CCFPost * selectPost = self.posts[indexPath.row];
+            CCFPost * selectPost = posts[indexPath.row];
             
             [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
             NSString * token = currentThreadPage.securityToken;
@@ -325,7 +321,7 @@
             
             [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
             
-            CCFPost * selectPost = self.posts[indexPath.row];
+            CCFPost * selectPost = posts[indexPath.row];
             
             [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
             NSString * token = currentThreadPage.securityToken;
@@ -358,8 +354,8 @@
 -(void)showUserProfile:(NSIndexPath *)indexPath{
     CCFProfileTableViewController * controller = selectSegue.destinationViewController;
     self.transValueDelegate = (id<TransValueDelegate>)controller;
-    
-    CCFPost * post = self.posts[indexPath.row];
+    NSArray * posts = [postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]];
+    CCFPost * post = posts[indexPath.row];
     
     [self.transValueDelegate transValue:post];
 }
@@ -427,14 +423,10 @@
                             NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
                             
                             
-                            if (self.posts == nil) {
-                                self.posts = [NSMutableArray array];
-                            }
-                            
                             currentThreadPage = thread;
                             
-                            [self.posts removeAllObjects];
-                            [self.posts addObjectsFromArray:parsedPosts];
+                            [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPage]];
+                            
                             [self.tableView reloadData];
                         }
                         
@@ -481,14 +473,10 @@
                     NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
                     
                     
-                    if (self.posts == nil) {
-                        self.posts = [NSMutableArray array];
-                    }
-                    
                     currentThreadPage = thread;
                     
-                    [self.posts removeAllObjects];
-                    [self.posts addObjectsFromArray:parsedPosts];
+                    [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPage]];
+
                     [self.tableView reloadData];
                 }
                 
@@ -513,11 +501,7 @@
             
             field.text = @"";
             
-            [self.posts removeAllObjects];
-            
             CCFShowThreadPage * thread = message;
-            
-            [self.posts addObjectsFromArray:thread.dataList];
             
             totalPage = (int)thread.totalPageCount;
             currentPage = (int)thread.currentPage;

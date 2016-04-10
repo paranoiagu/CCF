@@ -258,7 +258,7 @@
     NSArray * visiblCells = [self.tableView visibleCells];
     if (visiblCells.count > 0) {
         
-        NSUInteger sectionNumber = [[self.tableView indexPathForCell:[visiblCells objectAtIndex:0]] section];
+        NSUInteger sectionNumber = [[self.tableView indexPathForCell:visiblCells.lastObject] section];
         
         if (sectionNumber !=0) {
             

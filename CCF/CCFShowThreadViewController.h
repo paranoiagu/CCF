@@ -28,6 +28,9 @@
 - (IBAction)showMoreAction:(UIBarButtonItem *)sender;
 
 @property (nonatomic, weak) id<TransValueDelegate> transValueDelegate;
-@property (weak, nonatomic) IBOutlet UINavigationItem *titleNavigationItem;
+
+- (IBAction)changeNumber:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *pageNumber;
 
 @end

@@ -143,7 +143,7 @@
 //    frame.size.height = size.height;
 //    self.htmlView.frame = frame;
     
-    [self.detailDelegate relayoutContentHeigt:currentPath with:CGRectGetHeight(layoutFrame.frame) + 65];
+    [self.detailDelegate relayoutContentHeigt:currentPath with:CGRectGetHeight(layoutFrame.frame) + 70];
 }
 
 

@@ -38,7 +38,7 @@
 
 @interface CCFShowThreadViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
     
-    NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
+    
     int currentPage;
     int totalPage;
     
@@ -53,7 +53,7 @@
     CCFShowThreadPage * currentThreadPage;
     
     LCActionSheet * itemActionSheet;
-    
+    NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
     NSMutableDictionary * postSet;
 }
 
@@ -126,9 +126,7 @@
             
             if (isSuccess) {
                 currentPage = 1;
-                
-                [cellHeightDictionary removeAllObjects];
-                
+
                 totalPage = (int)thread.totalPageCount;
                 
                 if (currentPage >= totalPage) {
@@ -178,8 +176,8 @@
     
     
     [self.tableView.mj_header beginRefreshing];
+
     
-    self.titleNavigationItem.title = transThread.threadTitle;
     
 }
 
@@ -215,29 +213,69 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 1 + postSet.count;
+    for (int i = totalPage - 1; i >= 0; i--) {
+        
+        
+        int count = (int)[[postSet objectForKey:[NSNumber numberWithInteger:i]] count];
+        if (count > 0) {
+            return 1 + i + 1;
+        }
+    }
+    return 1 + totalPage;
 }
 
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 5;
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 0;
+        return 1;
     }
-    return 45;
+    return 22;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    NSString * title = [NSString stringWithFormat:@"%ld/%d", section, totalPage];
+    self.pageNumber.title = title;
+    
     if (section == 0) {
         return nil;
     } else{
-        PageHeaderView *tmpCustomView = [XibInflater inflateViewByXibName:@"PageHeaderView"];
         
-        return tmpCustomView;
+        PageHeaderView *headerView = [XibInflater inflateViewByXibName:@"PageHeaderView"];
+        //[headerView.pageNumber setTitle:title forState:UIControlStateNormal];
+        headerView.pageNumber.text = [NSString stringWithFormat:@"PAGE %ld", section];
+        return headerView;
     }
 
+    
 }
 
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSArray * visiblCells = [self.tableView visibleCells];
+    if (visiblCells.count > 0) {
+        
+        NSUInteger sectionNumber = [[self.tableView indexPathForCell:[visiblCells objectAtIndex:0]] section];
+        
+        if (sectionNumber !=0) {
+            
+            NSString * title = [NSString stringWithFormat:@"%ld/%d", sectionNumber, totalPage];
+            PageHeaderView *headerView = (PageHeaderView*)[self.tableView headerViewForSection:sectionNumber];
+
+            headerView.pageNumber.text = [NSString stringWithFormat:@"PAGE %ld", sectionNumber];
+            
+            [self.pageNumber setTitle:title];
+            
+            NSLog( @"scrollViewDidScrollscrollViewDidScrollscrollViewDidScroll &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& %@" ,title);
+        }
+    }
+
+
+    
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return 1;
@@ -389,6 +427,70 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+-(void) showChangePageActionSheet:(UIBarButtonItem *)sender{
+    NSMutableArray<NSString*> * pages = [NSMutableArray array];
+    for (int i = 0 ; i < currentThreadPage.totalPageCount; i++) {
+        NSString * page = [NSString stringWithFormat:@"第 %d 页", i + 1];
+        [pages addObject:page];
+    }
+    
+    
+    
+    ActionSheetStringPicker * picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择页面" rows:pages initialSelection:currentPage - 1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        
+        
+        if (selectedIndex +1 != currentPage) {
+            
+            
+            
+            [SVProgressHUD showWithStatus:@"正在切换" maskType:SVProgressHUDMaskTypeBlack];
+            
+            
+            [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:(int)selectedIndex + 1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+                
+                [SVProgressHUD dismiss];
+                
+                if (isSuccess) {
+                    currentPage = (int)selectedIndex + 1;
+                    
+                    totalPage = (int)thread.totalPageCount;
+                    
+                    if (currentPage >= totalPage) {
+                        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                    }
+                    
+                    
+                    NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
+                    
+                    
+                    currentThreadPage = thread;
+                    
+                    [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPage]];
+                    
+                    [self.tableView reloadData];
+                }
+                
+            }];
+        }
+        
+        
+    } cancelBlock:^(ActionSheetStringPicker *picker) {
+        
+        
+    } origin:sender];
+    
+    UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc] init];
+    cancelItem.title = @"取消";
+    [picker setCancelButton:cancelItem];
+    
+    UIBarButtonItem * queding = [[UIBarButtonItem alloc] init];
+    queding.title = @"确定";
+    [picker setDoneButton:queding];
+    
+    
+    [picker showActionSheetPicker];
+}
 - (IBAction)showMoreAction:(UIBarButtonItem *)sender {
     
 
@@ -404,69 +506,8 @@
             [[UIApplication sharedApplication] openURL:[CCFUrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:1]];
         } else if (buttonIndex == 2){
 
-            NSMutableArray<NSString*> * pages = [NSMutableArray array];
-            for (int i = 0 ; i < currentThreadPage.totalPageCount; i++) {
-                NSString * page = [NSString stringWithFormat:@"第 %d 页", i + 1];
-                [pages addObject:page];
-            }
+            [self showChangePageActionSheet:sender];
             
-            
-            
-            ActionSheetStringPicker * picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择页面" rows:pages initialSelection:currentPage - 1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                
-
-                if (selectedIndex +1 != currentPage) {
-                    
-
-                    
-                    [SVProgressHUD showWithStatus:@"正在切换" maskType:SVProgressHUDMaskTypeBlack];
-                    
-                    
-                    [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:(int)selectedIndex + 1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
-                        
-                        [SVProgressHUD dismiss];
-                        
-                        if (isSuccess) {
-                            currentPage = (int)selectedIndex + 1;
-                            
-                            [cellHeightDictionary removeAllObjects];
-                            
-                            totalPage = (int)thread.totalPageCount;
-                            
-                            if (currentPage >= totalPage) {
-                                [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                            }
-                            
-                            
-                            NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
-                            
-                            
-                            currentThreadPage = thread;
-                            
-                            [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPage]];
-                            
-                            [self.tableView reloadData];
-                        }
-                        
-                    }];
-                }
-                
-                
-            } cancelBlock:^(ActionSheetStringPicker *picker) {
-
-                
-            } origin:sender];
-            
-            UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc] init];
-            cancelItem.title = @"取消";
-            [picker setCancelButton:cancelItem];
-            
-            UIBarButtonItem * queding = [[UIBarButtonItem alloc] init];
-            queding.title = @"确定";
-            [picker setDoneButton:queding];
-            
-            
-            [picker showActionSheetPicker];
         } else if(buttonIndex == 3){
             // 刷新本页
             [SVProgressHUD showWithStatus:@"正在刷新" maskType:SVProgressHUDMaskTypeBlack];
@@ -477,9 +518,7 @@
                 [SVProgressHUD dismiss];
                 
                 if (isSuccess) {
-                    
-                    
-                    [cellHeightDictionary removeAllObjects];
+
                     
                     totalPage = (int)thread.totalPageCount;
                     
@@ -533,5 +572,9 @@
         }
     }];
 
+}
+- (IBAction)changeNumber:(id)sender {
+    [self showChangePageActionSheet:sender];
+    
 }
 @end

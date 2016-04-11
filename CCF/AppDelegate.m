@@ -28,13 +28,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    API_DEBUG = NO;
+    API_DEBUG = YES;
     
     if (API_DEBUG) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory=[paths objectAtIndex:0];//Documents目录
+        
         ApiTestViewController * testController = [[ApiTestViewController alloc] init];
         self.window.rootViewController = testController;
         return YES;
     }
+    
+
     
     //[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     

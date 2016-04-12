@@ -366,7 +366,11 @@
         //avatar
         IGXMLNode * avatarNode = userInfoNode.children[1];
         NSString * avatarLink = [[[avatarNode children] [1] firstChild] attribute:@"src"];
-        avatarLink = [[avatarLink componentsSeparatedByString:@"/"]lastObject];
+        
+        avatarLink = [avatarLink stringWithRegular:@"/avatar(\\d+)_(\\d+).gif"];
+        NSLog(@"showAvatar   ==== detail %@", avatarLink);
+
+        //avatarLink = [[avatarLink componentsSeparatedByString:@"/"]lastObject];
         
         ccfuser.userAvatar = avatarLink;
         

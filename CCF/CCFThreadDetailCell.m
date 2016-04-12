@@ -13,6 +13,7 @@
 #import "CCFUrlBuilder.h"
 #import "CCFCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
+#import <UIImageView+WebCache.h>
 
 
 @interface CCFThreadDetailCell (){
@@ -22,9 +23,15 @@
     NSURL *lastActionLink;
     NSMutableSet *mediaPlayers;
     NSIndexPath * currentPath;
-    CCFCoreDataManager *_coreDateManager;
+    CCFCoreDataManager *coreDateManager;
     
     BOOL _needsAdjustInsetsOnLayout;
+    
+    UIImage * defaultAvatar;
+    
+    NSMutableArray<CCFUserEntry*> * cacheUsers;
+    NSMutableDictionary * avatarCache;
+    
 }
 @end
 
@@ -49,8 +56,24 @@
     
     self.htmlView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.htmlView.relayoutMask = DTAttributedTextContentViewRelayoutOnHeightChanged | DTAttributedTextContentViewRelayoutOnWidthChanged;
+
     
-    _coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+    if (defaultAvatar == nil) {
+        defaultAvatar = [UIImage imageNamed:@"logo.jpg"];
+    }
+    
+    avatarCache = [NSMutableDictionary dictionary];
+    
+    coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+    if (cacheUsers == nil) {
+        cacheUsers = [[coreDateManager selectData:^NSPredicate *{
+            return [NSPredicate predicateWithFormat:@"userID > %d", 0];
+        }] copy];
+    }
+    
+    for (CCFUserEntry * user in cacheUsers) {
+        [avatarCache setValue:user.userAvatar forKey:user.userID];
+    }
     
 }
 
@@ -73,20 +96,41 @@
     
     NSString * avatar = newPost.postUserInfo.userAvatar;
     
-    if ([avatar isEqualToString:@"no_avatar.gif"]) {
+    
+    if (newPost.postUserInfo.userID != nil) {
+        NSString * cacheAvatar = [avatarCache objectForKey:newPost.postUserInfo.userID];
         
-        [self.avatarImage setImage:[UIImage imageNamed:@"logo.jpg"]];
+        if (cacheAvatar == nil) {
+            
+            [coreDateManager insertOneData:^(id src) {
+                
+                CCFUserEntry * user =(CCFUserEntry *)src;
+                
+                user.userID = newPost.postUserInfo.userID;
+                
+                NSString * avatar = newPost.postUserInfo.userAvatar;
+                user.userAvatar = avatar == nil ? @"defaultAvatar" : avatar;
+            }];
+            
+            // 添加到Cache中
+            [avatarCache setValue:avatar == nil ? @"defaultAvatar": avatar forKey:newPost.postUserInfo.userID];
+        }
+    } else{
+        [self.avatarImage setImage:defaultAvatar];
+        return;
+    }
+
+    
+    if (avatar == nil) {
+        
+        [self.avatarImage setImage:defaultAvatar];
         
     } else{
-        [self.avatarImage setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
         
-        [_coreDateManager insertOneData:^(id src) {
-            
-            CCFUserEntry * user =(CCFUserEntry *)src;
-            
-            user.userID = newPost.postUserInfo.userID;
-            user.userAvatar = newPost.postUserInfo.userAvatar;
-        }];
+        NSURL * url = [CCFUrlBuilder buildAvatarURL:avatar];
+
+        [self.avatarImage sd_setImageWithURL:url placeholderImage:defaultAvatar];
+
     }
     
     

@@ -26,7 +26,8 @@
 #import "CCFMyProfileUITableViewController.h"
 #import "LeftDrawerItem.h"
 #import <UIImageView+WebCache.h>
-
+#import "CCFCoreDataManager.h"
+#import "CCFUserEntry+CoreDataProperties.h"
 #import "CCFApi.h"
 
 
@@ -39,6 +40,8 @@
     UIView *_rightEageView;
     
     UIImage *defaultAvatar;
+    
+    CCFCoreDataManager *coreDateManager;
 }
 
 @end
@@ -49,6 +52,35 @@
 @synthesize leftDrawerView = _leftDrawerView;
 @synthesize rightDrawerView = _rightDrawerView;
 
+
+- (void)showUserAvatar {
+    LoginCCFUser * loginUser = [_ccfapi getLoginUser];
+    // 设置登录名称
+    NSString * userName = loginUser.userName;
+    [self.userName setText:userName];
+    
+    coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+    NSArray *cacheUsers = [[coreDateManager selectData:^NSPredicate *{
+        return [NSPredicate predicateWithFormat:@"userID = %@", loginUser.userID];
+    }] copy];
+    
+    if (cacheUsers.count > 0) {
+        CCFUserEntry * entry = cacheUsers.firstObject;
+        if ([entry.userAvatar isEqualToString:@"defaultAvatar"]) {
+            [self getAvatar:loginUser];
+        } else{
+            NSURL * avatarUrl = [CCFUrlBuilder buildAvatarURL:entry.userAvatar];
+            NSString *cacheImageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:avatarUrl];
+            if (cacheImageKey) {
+                [self.avatarUIImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
+            }
+        }
+        
+    } else{
+        // 设置登录用户的头像
+        [self getAvatar:loginUser];
+    }
+}
 
 -(id)init{
     if (self = [super init]) {
@@ -70,13 +102,37 @@
         
         [self setLeftDrawerEnadbled:YES];
         
-        LoginCCFUser * user = [[LoginCCFUser alloc] init];
-        
-        NSURL * url = [CCFUrlBuilder buildAvatarURL:user.userID];
-        [self.avatarUIImageView sd_setImageWithURL:url placeholderImage:defaultAvatar];
+        [self showUserAvatar];
 
     }
     return self;
+}
+
+- (void)getAvatar:(LoginCCFUser *)loginUser {
+    // 设置登录用户的头像
+    [_ccfapi getAvatarWithUserId:loginUser.userID handler:^(BOOL isSuccess, id avatar) {
+        
+        if (isSuccess) {
+            // 存入数据库
+            [coreDateManager insertOneData:^(id src) {
+                CCFUserEntry * user =(CCFUserEntry *)src;
+                user.userID = loginUser.userID;
+                user.userAvatar = avatar == nil ? @"defaultAvatar" : avatar;
+            }];
+            
+            // 显示头像
+            if (avatar == nil) {
+                [self.avatarUIImageView setImage:defaultAvatar];
+            } else{
+                NSURL * avatarUrl = [CCFUrlBuilder buildAvatarURL:avatar];
+                [self.avatarUIImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
+            }
+        } else{
+            [self.avatarUIImageView setImage:defaultAvatar];
+        }
+        
+        
+    }];
 }
 
 -(id)initWithDrawerType:(DrawerViewType)drawerType andXib:(NSString *)name{
@@ -124,21 +180,7 @@
 
             [self initMaskView];
             
-            
-            LoginCCFUser * user = [_ccfapi getLoginUser];
-            // 设置登录名称
-            NSString * userName = user.userName;
-            [self.userName setText:userName];
-            // 设置登录用户的头像
-            [_ccfapi getAvatarWithUserId:user.userID handler:^(BOOL isSuccess, id message) {
-                if (isSuccess) {
-                    NSURL * url = [CCFUrlBuilder buildAvatarURL:message];
-                    [self.avatarUIImageView setImageWithURL:url];
-                } else{
-                    
-                }
-                
-            }];
+            [self showUserAvatar];
             
         }
     

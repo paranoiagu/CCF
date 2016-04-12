@@ -28,7 +28,7 @@
 
 #define kCCFThreadFloor @"https://bbs.et8.net/bbs/showpost.php?p=%@&postcount=1"
 
-#define kCCFAvatar @"https://bbs.et8.net/bbs/customavatars/%@"
+#define kCCFAvatar @"https://bbs.et8.net/bbs/customavatars%@"
 
 #define kCCFPrivateMessageInbox @"https://bbs.et8.net/bbs/private.php?folderid=0"
 

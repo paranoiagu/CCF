@@ -153,6 +153,7 @@
 
 -(void)showAvatar:(UIImageView *)avatarImageView userId:(NSString*)profileUserId{
     
+
     NSString * avatarInArray = [avatarCache valueForKey:profileUserId];
     
     if (avatarInArray == nil) {
@@ -162,7 +163,7 @@
             [coreDateManager insertOneData:^(id src) {
                 CCFUserEntry * user =(CCFUserEntry *)src;
                 user.userID = profileUserId;
-                user.userAvatar = avatar;
+                user.userAvatar = avatar == nil ? @"defaultAvatar" : avatar;
             }];
             // 添加到Cache中
             [avatarCache setValue:avatar == nil ? @"defaultAvatar": avatar forKey:profileUserId];
@@ -171,7 +172,6 @@
             if (avatar == nil) {
                 [avatarImageView setImage:defaultAvatar];
             } else{
-//                [avatarImageView setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
                 [avatarImageView sd_setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar] placeholderImage:defaultAvatar];
             }
         }];
@@ -180,7 +180,6 @@
             [avatarImageView setImage:defaultAvatar];
         } else{
             NSURL * url = [CCFUrlBuilder buildAvatarURL:avatarInArray];
-//            [avatarImageView setImageWithURL:url];
             [avatarImageView sd_setImageWithURL:url placeholderImage:defaultAvatar];
         }
     }

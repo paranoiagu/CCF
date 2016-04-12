@@ -29,7 +29,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    DB_VERSION = 1;
+    DB_VERSION = 2;
     
     
     
@@ -47,7 +47,7 @@
     NSString * versionCode = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory=[paths objectAtIndex:0];//Documents目录
+    NSString *documentsDirectory = [paths objectAtIndex:0];//Documents目录
     
     
     NSLog(@"CCF->>>>>%@", documentsDirectory);

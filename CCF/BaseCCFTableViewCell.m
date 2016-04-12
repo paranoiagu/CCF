@@ -38,9 +38,11 @@
     defaultAvatar = [UIImage imageNamed:@"logo.jpg"];
     
     ccfapi = [[CCFApi alloc] init];
-    coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+    
     avatarCache = [NSMutableDictionary dictionary];
     
+    
+    coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
     if (cacheUsers == nil) {
         cacheUsers = [[coreDateManager selectData:^NSPredicate *{
             return [NSPredicate predicateWithFormat:@"userID > %d", 0];
@@ -72,43 +74,51 @@
     }
     NSString * avatarInArray = [avatarCache valueForKey:userId];
     
+    NSLog( @"showAvatar incache -> %@", avatarInArray);
+    
     if (avatarInArray == nil) {
         
         [ccfapi getAvatarWithUserId:userId handler:^(BOOL isSuccess, NSString *avatar) {
-            // 存入数据库
-            [coreDateManager insertOneData:^(id src) {
-                CCFUserEntry * user =(CCFUserEntry *)src;
-                user.userID = userId;
-                user.userAvatar = avatar;
-            }];
-            // 添加到Cache中
-            [avatarCache setValue:avatar == nil ? @"defaultAvatar": avatar forKey:userId];
             
-            // 显示头像
-            if (avatar == nil) {
-                [avatarImageView setImage:defaultAvatar];
+            if (isSuccess) {
+                // 存入数据库
+                [coreDateManager insertOneData:^(id src) {
+                    CCFUserEntry * user =(CCFUserEntry *)src;
+                    user.userID = userId;
+                    user.userAvatar = avatar == nil ? @"defaultAvatar" : avatar;
+                }];
+                // 添加到Cache中
+                [avatarCache setValue:avatar == nil ? @"defaultAvatar": avatar forKey:userId];
+                
+                // 显示头像
+                if (avatar == nil) {
+                    [avatarImageView setImage:defaultAvatar];
+                } else{
+                    NSURL * avatarUrl = [CCFUrlBuilder buildAvatarURL:avatar];
+                    [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
+                }
             } else{
-                NSURL * avatarUrl = [CCFUrlBuilder buildAvatarURL:avatar];
-                
-
-                [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
-                
-                //[avatarImageView setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
+                [avatarImageView setImage:defaultAvatar];
             }
+
         }];
     } else{
+        
+        NSLog( @"showAvatar %@", avatarInArray);
         if ([avatarInArray isEqualToString:@"defaultAvatar"]) {
             [avatarImageView setImage:defaultAvatar];
         } else{
             
             NSURL * avatarUrl = [CCFUrlBuilder buildAvatarURL:avatarInArray];
-//            [avatarImageView setImageWithURL:url];
             
-            NSString *cacheImageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:avatarUrl];
-            NSString *cacheImagePath = [[SDImageCache sharedImageCache] defaultCachePathForKey:cacheImageKey];
+            NSLog( @"showAvatar abs -> %@", [avatarUrl absoluteString]);
             
-            NSLog(@"缓存路径---------------》》》》》》 %@", cacheImagePath);
-            
+            if (NO) {
+                NSString *cacheImageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:avatarUrl];
+                NSString *cacheImagePath = [[SDImageCache sharedImageCache] defaultCachePathForKey:cacheImageKey];
+            }
+
+
             [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
         }
     }

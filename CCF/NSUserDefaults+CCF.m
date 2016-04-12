@@ -11,7 +11,7 @@
 #define kCCFCookie @"CCF-Cookies"
 #define kCCFFavFormIds @"CCF-FavIds"
 
-#define kCCFInsertAllForms @"InsertAllForms"
+#define kDB_VERSION @"DB_VERSION"
 #define kUserName @"CCF-UserName"
 
 
@@ -54,12 +54,13 @@
 }
 
 
--(BOOL)hasInserAllForms{
-    return [self boolForKey:kCCFInsertAllForms];
+
+-(int)dbVersion{
+    return [[self objectForKey:kDB_VERSION] intValue];
 }
 
--(void)setInserAllForms:(BOOL)insert{
-    return [self setBool:insert forKey:kCCFInsertAllForms];
+-(void)setDBVersion:(int)version{
+    [self setObject:[NSNumber numberWithInt:version] forKey:kDB_VERSION];
 }
 
 -(void)clearCookie{

@@ -19,9 +19,9 @@
 
 -(NSArray *) favFormIds;
 
--(BOOL) hasInserAllForms;
+-(int)dbVersion;
 
--(void) setInserAllForms:(BOOL)insert;
+-(void) setDBVersion:(int)version;
 
 -(void) clearCookie;
 

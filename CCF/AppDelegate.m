@@ -20,6 +20,7 @@
 
 @interface AppDelegate (){
     BOOL API_DEBUG;
+    int DB_VERSION;
 }
 @end
 
@@ -27,7 +28,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    DB_VERSION = 1;
+    
+    
+    
     API_DEBUG = NO;
     
     if (API_DEBUG) {
@@ -37,6 +42,9 @@
         return YES;
     }
     
+    NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
+    
+    NSString * versionCode = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory=[paths objectAtIndex:0];//Documents目录
@@ -72,13 +80,16 @@
     
     NSUserDefaults * data = [NSUserDefaults standardUserDefaults];
     
-    if (![data hasInserAllForms]) {
+    if ([data dbVersion] != DB_VERSION) {
+        
+        CCFCoreDataManager * formManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+        
+        // 清空数据库
+        [formManager deleteData];
         
         NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
         NSArray<CCFForm*> * forms = [[[CCFFormDao alloc]init] parseCCFForms:path];
-        
-        
-        
+
         
         NSMutableArray<CCFForm *> * needInsert = [NSMutableArray array];
         
@@ -86,9 +97,9 @@
             [needInsert addObjectsFromArray:[self flatForm:form]];
         }
         
-        CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
         
-        [manager insertData:needInsert operation:^(NSManagedObject *target, id src) {
+        
+        [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
             FormEntry *newsInfo = (FormEntry*)target;
             newsInfo.formId = [src valueForKey:@"formId"];
             newsInfo.formName = [src valueForKey:@"formName"];
@@ -96,7 +107,12 @@
             newsInfo.isNeedLogin = [src valueForKey:@"isNeedLogin"];
         }];
         
-        [data setInserAllForms:YES];
+        
+        
+        CCFCoreDataManager * userManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+        [userManager deleteData];
+        
+        [data setDBVersion:DB_VERSION];
         
     }
 

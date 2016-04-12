@@ -15,7 +15,6 @@
 #import "CCFNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import "CCFFavFormController.h"
-#import <UIImageView+AFNetworking.h>
 #import "CCFUrlBuilder.h"
 #import "LoginCCFUser.h"
 #import "CCFFormTableViewController.h"
@@ -26,6 +25,7 @@
 #import "CCFFavThreadPostTableViewController.h"
 #import "CCFMyProfileUITableViewController.h"
 #import "LeftDrawerItem.h"
+#import <UIImageView+WebCache.h>
 
 #import "CCFApi.h"
 
@@ -37,6 +37,8 @@
     CCFApi * _ccfapi;
 
     UIView *_rightEageView;
+    
+    UIImage *defaultAvatar;
 }
 
 @end
@@ -59,6 +61,8 @@
         
         [self initMaskView];
         
+        defaultAvatar = [UIImage imageNamed:@"logo.jpg"];
+        
         UIScreenEdgePanGestureRecognizer *leftEdgePanRecognizer = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(handleLeftEdgePan:)];
         leftEdgePanRecognizer.edges = UIRectEdgeLeft;
         
@@ -69,8 +73,7 @@
         LoginCCFUser * user = [[LoginCCFUser alloc] init];
         
         NSURL * url = [CCFUrlBuilder buildAvatarURL:user.userID];
-        NSLog(@"头像-----------> %@", url);
-        [_avatarUIImageView setImageWithURL:url];
+        [self.avatarUIImageView sd_setImageWithURL:url placeholderImage:defaultAvatar];
 
     }
     return self;

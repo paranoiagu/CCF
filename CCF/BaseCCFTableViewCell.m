@@ -7,6 +7,7 @@
 //
 
 #import "BaseCCFTableViewCell.h"
+#import <UIImageView+WebCache.h>
 
 @implementation BaseCCFTableViewCell{
     UIImage * defaultAvatar;
@@ -87,15 +88,28 @@
             if (avatar == nil) {
                 [avatarImageView setImage:defaultAvatar];
             } else{
-                [avatarImageView setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
+                NSURL * avatarUrl = [CCFUrlBuilder buildAvatarURL:avatar];
+                
+
+                [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
+                
+                //[avatarImageView setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
             }
         }];
     } else{
         if ([avatarInArray isEqualToString:@"defaultAvatar"]) {
             [avatarImageView setImage:defaultAvatar];
         } else{
-            NSURL * url = [CCFUrlBuilder buildAvatarURL:avatarInArray];
-            [avatarImageView setImageWithURL:url];
+            
+            NSURL * avatarUrl = [CCFUrlBuilder buildAvatarURL:avatarInArray];
+//            [avatarImageView setImageWithURL:url];
+            
+            NSString *cacheImageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:avatarUrl];
+            NSString *cacheImagePath = [[SDImageCache sharedImageCache] defaultCachePathForKey:cacheImageKey];
+            
+            NSLog(@"缓存路径---------------》》》》》》 %@", cacheImagePath);
+            
+            [avatarImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
         }
     }
 }

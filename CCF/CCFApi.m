@@ -311,6 +311,7 @@
 -(void)getAvatarWithUserId:(NSString *)userId handler:(HandlerWithBool)handler{
     [_browser showProfileWithUserId:userId handler:^(BOOL isSuccess, NSString* result) {
         NSString * avatar = [_praser parseUserAvatar:result userId:userId];
+        NSLog(@"头像---------->> %@", avatar);
         handler(isSuccess, avatar);
     }];
 }

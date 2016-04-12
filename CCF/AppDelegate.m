@@ -28,11 +28,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    API_DEBUG = YES;
+    API_DEBUG = NO;
     
     if (API_DEBUG) {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory=[paths objectAtIndex:0];//Documents目录
         
         ApiTestViewController * testController = [[ApiTestViewController alloc] init];
         self.window.rootViewController = testController;
@@ -40,6 +38,11 @@
     }
     
 
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory=[paths objectAtIndex:0];//Documents目录
+    
+    
+    NSLog(@"CCF->>>>>%@", documentsDirectory);
     
     //[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     

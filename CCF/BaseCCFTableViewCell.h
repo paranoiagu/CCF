@@ -10,7 +10,6 @@
 #import "CCFCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
 #import "CCFApi.h"
-#import <UIImageView+AFNetworking.h>
 #import "CCFUrlBuilder.h"
 #import "TransValueUITableViewCell.h"
 

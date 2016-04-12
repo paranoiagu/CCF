@@ -15,6 +15,7 @@
 #import "CCFUserThreadTableViewController.h"
 #import "CCFPost.h"
 #import "CCFWritePMViewController.h"
+#import <UIImageView+WebCache.h>
 
 @interface CCFProfileTableViewController ()<TransValueDelegate>{
     
@@ -170,7 +171,8 @@
             if (avatar == nil) {
                 [avatarImageView setImage:defaultAvatar];
             } else{
-                [avatarImageView setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
+//                [avatarImageView setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
+                [avatarImageView sd_setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar] placeholderImage:defaultAvatar];
             }
         }];
     } else{
@@ -178,7 +180,8 @@
             [avatarImageView setImage:defaultAvatar];
         } else{
             NSURL * url = [CCFUrlBuilder buildAvatarURL:avatarInArray];
-            [avatarImageView setImageWithURL:url];
+//            [avatarImageView setImageWithURL:url];
+            [avatarImageView sd_setImageWithURL:url placeholderImage:defaultAvatar];
         }
     }
 }

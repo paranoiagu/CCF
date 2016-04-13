@@ -277,40 +277,7 @@
         
         ccfpost.postContent = message.html;
         
-        
-        NSString * pattern = @"<img %@ width=\"300\" height=\"300\" />";
-        NSString * reg = @"<img src=\"http.*\" border=\"0\" alt=\"(.*)?(\n*)?(\\W*)?.*(\\W*)?(.*)\"><br>";
-        
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:reg options:NSRegularExpressionCaseInsensitive error:nil];
-        
-        // 添加的图片
-        NSString * html = message.html;
-        NSArray * result = [regex matchesInString:html options:0 range:NSMakeRange(0, html.length)];
-        for (NSTextCheckingResult *tmpresult in result) {
-            
-            NSString * image = [html substringWithRange:tmpresult.range];
-            NSString * src = [image stringWithRegular:@"src=\"\\S*\""];
-            NSString *fixedImage = [NSString stringWithFormat:pattern, src];
-            ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:image withString:fixedImage];
-        }
-        
-        
-        NSString * imageByUrlReg = @"<img src=\"http.*\" border=\"0\" alt=\"\">";
-        NSRegularExpression *imageByUrlRegx = [NSRegularExpression regularExpressionWithPattern:imageByUrlReg options:NSRegularExpressionCaseInsensitive error:nil];
-        
-        
-        NSString * needFixHtml = ccfpost.postContent;
-        
-        NSArray * imageByUrlresult = [imageByUrlRegx matchesInString:needFixHtml options:0 range:NSMakeRange(0, needFixHtml.length)];
-        for (NSTextCheckingResult *tmpresult in imageByUrlresult) {
-            
-            NSString * image = [needFixHtml substringWithRange:tmpresult.range];
-            NSString * src = [image stringWithRegular:@"src=\"\\S*\""];
-            NSString *fixedImage = [NSString stringWithFormat:pattern, src];
-            ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:image withString:fixedImage];
-        }
-        
-        
+        ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:@"border=\"0\" alt=\"\">" withString:@"width=\"300\" height=\"300\">"];
 
         // 上传的附件
         NSString *xPathAttImage = [NSString stringWithFormat:@"//*[@id='td_post_%@']/div[2]/fieldset/div", postId];

@@ -9,7 +9,6 @@
 #import "CCFThreadDetailCell.h"
 #import "CCFUrlBuilder.h"
 #import "CCFPost.h"
-#import <UIImageView+AFNetworking.h>
 #import "CCFUrlBuilder.h"
 #import "CCFCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
@@ -234,7 +233,9 @@
         imageView.delegate = self;
         
         // sets the image if there is one
-        imageView.image = [(DTImageTextAttachment *)attachment image];
+        //imageView.image = [(DTImageTextAttachment *)attachment image];
+        
+        [imageView sd_setImageWithURL:[attachment contentURL] placeholderImage:nil];
         
         // url for deferred loading
         imageView.url = attachment.contentURL;

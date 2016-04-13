@@ -293,6 +293,24 @@
             NSString *fixedImage = [NSString stringWithFormat:pattern, src];
             ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:image withString:fixedImage];
         }
+        
+        
+        NSString * imageByUrlReg = @"<img src=\"http.*\" border=\"0\" alt=\"\">";
+        NSRegularExpression *imageByUrlRegx = [NSRegularExpression regularExpressionWithPattern:imageByUrlReg options:NSRegularExpressionCaseInsensitive error:nil];
+        
+        
+        NSString * needFixHtml = ccfpost.postContent;
+        
+        NSArray * imageByUrlresult = [imageByUrlRegx matchesInString:needFixHtml options:0 range:NSMakeRange(0, needFixHtml.length)];
+        for (NSTextCheckingResult *tmpresult in imageByUrlresult) {
+            
+            NSString * image = [needFixHtml substringWithRange:tmpresult.range];
+            NSString * src = [image stringWithRegular:@"src=\"\\S*\""];
+            NSString *fixedImage = [NSString stringWithFormat:pattern, src];
+            ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:image withString:fixedImage];
+        }
+        
+        
 
         // 上传的附件
         NSString *xPathAttImage = [NSString stringWithFormat:@"//*[@id='td_post_%@']/div[2]/fieldset/div", postId];

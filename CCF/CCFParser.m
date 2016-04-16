@@ -283,10 +283,31 @@
         
         
         NSString * pattern = @"<img %@ width=\"300\" height=\"300\" />";
-        NSString * reg = @"<img src=\"http.*\" border=\"0\" alt=\"(.*)?(\n*)?(\\W*)?(.*)?(\\W*)?\"( /)?>";
+        
+        
+        NSString * imageByUrlReg = @"<img src=\"http.*\" border=\"0\" alt=\"\">";
+        NSRegularExpression *imageByUrlRegx = [NSRegularExpression regularExpressionWithPattern:imageByUrlReg options:NSRegularExpressionCaseInsensitive error:nil];
+        
+        
+        NSString * needFixHtml = ccfpost.postContent;
+        
+        NSArray * imageByUrlresult = [imageByUrlRegx matchesInString:needFixHtml options:0 range:NSMakeRange(0, needFixHtml.length)];
+        for (NSTextCheckingResult *tmpresult in imageByUrlresult) {
+            
+            NSString * image = [needFixHtml substringWithRange:tmpresult.range];
+            NSString * src = [image stringWithRegular:@"src=\"\\S*\""];
+            NSString *fixedImage = [NSString stringWithFormat:pattern, src];
+            ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:image withString:fixedImage];
+        }
+        
+        
+        
+        
+        NSString * reg = @"<img src=\"http.*\" border=\"0\" alt=\"(\\W*)?(.*)?(\n)?(\\W*)?(.*)?(\n)?(\\W*)?(.*)?\"( style=\"margin: 2px\")?>";
+        
+        //NSString * reg = @"<img src=\"http.*\" border=\"0\" alt=\"\">";
         
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:reg options:NSRegularExpressionCaseInsensitive error:nil];
-    
         // 添加的图片
         NSString * html = message.html;
         NSArray * result = [regex matchesInString:html options:0 range:NSMakeRange(0, html.length)];
@@ -298,20 +319,7 @@
                 ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:image withString:fixedImage];
         }
    
-        NSString * imageByUrlReg = @"<img src=\"http.*\" border=\"0\" alt=\"\">";
-        NSRegularExpression *imageByUrlRegx = [NSRegularExpression regularExpressionWithPattern:imageByUrlReg options:NSRegularExpressionCaseInsensitive error:nil];
-    
-   
-        NSString * needFixHtml = ccfpost.postContent;
-   
-        NSArray * imageByUrlresult = [imageByUrlRegx matchesInString:needFixHtml options:0 range:NSMakeRange(0, needFixHtml.length)];
-        for (NSTextCheckingResult *tmpresult in imageByUrlresult) {
-          
-                NSString * image = [needFixHtml substringWithRange:tmpresult.range];
-                NSString * src = [image stringWithRegular:@"src=\"\\S*\""];
-                NSString *fixedImage = [NSString stringWithFormat:pattern, src];
-                ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:image withString:fixedImage];
-        }
+        
         
         //ccfpost.postContent = [ccfpost.postContent stringByReplacingOccurrencesOfString:@"border=\"0\" alt=\"\">" withString:@"width=\"300\" height=\"300\">"];
 

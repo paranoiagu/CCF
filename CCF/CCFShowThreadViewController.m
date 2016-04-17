@@ -594,7 +594,7 @@
     }
     NSIndexPath * scrolltoIndex = [NSIndexPath indexPathForRow: count inSection: currentPageNumber];
     
-    [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 
 }
 - (IBAction)changeNumber:(id)sender {

@@ -105,11 +105,7 @@
                 currentPageNumber = 1;
 
                 totalPageCount = (int)thread.totalPageCount;
-                
-                if (currentPageNumber >= totalPageCount) {
-                    [self showNoMoreDataView];
-                }
-                
+
                 
                 NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
 
@@ -330,11 +326,7 @@
                 currentPageNumber = (int)thread.currentPage;
                 
                 totalPageCount = (int)thread.totalPageCount;
-                
-                if (currentPageNumber >= totalPageCount) {
-                    [self showNoMoreDataView];
-                }
-                
+
                 
                 NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
                 

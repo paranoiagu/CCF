@@ -964,10 +964,8 @@
     [parameters setValue:@"1" forKey:@"parseurl"];
     [parameters setValue:@"9999" forKey:@"emailupdate"];
     
-    [_browser POSTWithURLString:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
-    } requestCallback:^(BOOL isSuccess, NSString *html) {
-        
+    [_browser POSTWithURLString:url parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess, html);
     }];
 }
 
@@ -1004,7 +1002,7 @@
             
             [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:token posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
                 if (isSuccess) {
-                    handler(YES,@"回复成功");
+                    handler(YES,result);
                 } else{
                     handler(NO,@"回复失败");
                 }

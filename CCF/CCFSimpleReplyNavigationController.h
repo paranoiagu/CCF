@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "CCFThread.h"
 #import "CCFShowThreadViewController.h"
+#import "TransValueBundle.h"
 
 @interface CCFSimpleReplyNavigationController : UINavigationController
 
-@property (nonatomic,strong) CCFThread * transThread;
+@property (nonatomic, strong) TransValueBundle *bundle;
 @property (nonatomic, strong) CCFShowThreadViewController * controller;
 
 @end

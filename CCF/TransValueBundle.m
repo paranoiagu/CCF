@@ -29,6 +29,9 @@
 
 -(int)getIntValue:(NSString *)key{
     NSNumber *value = [dictonary valueForKey:key];
+    if (value == nil) {
+        return -1;
+    }
     return value.intValue;
 }
 

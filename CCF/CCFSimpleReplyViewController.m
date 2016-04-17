@@ -12,9 +12,11 @@
 #import "CCFShowThreadPage.h"
 #import "UIStoryboard+CCF.h"
 #import "CCFShowThreadViewController.h"
+#import "CCFPost.h"
+#import "TransValueBundle.h"
 
 @interface CCFSimpleReplyViewController (){
-    CCFThread * transThread;
+    TransValueBundle * bundle;
 }
 
 @end
@@ -26,27 +28,19 @@
     [super viewDidLoad];
     CCFSimpleReplyNavigationController * navigationController = (CCFSimpleReplyNavigationController *)self.navigationController;
     
-    transThread = navigationController.transThread;
+    bundle = navigationController.bundle;
     
-    self.replyContent.text = [NSString stringWithFormat:@"@%@\n", transThread.threadAuthorName];
+    
+    
+    NSString * userName = [bundle getStringValue:@"POST_USER"];
+    if (userName != nil) {
+            self.replyContent.text = [NSString stringWithFormat:@"@%@\n", userName];
+    }
+
     
     [self.replyContent becomeFirstResponder];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
@@ -55,35 +49,65 @@
 - (IBAction)sendSimpleReply:(id)sender {
     
     [self.replyContent resignFirstResponder];
-
+    
     [SVProgressHUD showWithStatus:@"正在回复" maskType:SVProgressHUDMaskTypeBlack];
     
-    [self.ccfApi replyThreadWithId:transThread.threadID andMessage:self.replyContent.text handler:^(BOOL isSuccess, id message) {
-        
-        [SVProgressHUD dismiss];
-        
-        if (isSuccess) {
-            
-            self.replyContent.text = @"";
-            
-            CCFShowThreadPage * thread = message;
-            
-            
-            CCFSimpleReplyNavigationController * navigationController = (CCFSimpleReplyNavigationController *)self.navigationController;
-            
-            
-            self.delegate = (id<SimpleReplyDelegate>)navigationController.controller;
 
-            [self dismissViewControllerAnimated:YES completion:^{
-                [self.delegate transReplyValue:thread];
-            }];
+    int threadId = [bundle getIntValue:@"THREAD_ID"];
+    int postId = [bundle getIntValue:@"POST_ID"];
+    
+    if (postId != -1) {
+        NSString * securityToken = [bundle getStringValue:@"SECYRITY_TOKEN"];
+        NSString * ajaxLastPost = [bundle getStringValue:@"AJAX_LAST_POST"];
+        
+        [self.ccfApi quickReplyPostWithThreadId:threadId forPostId:postId andMessage:self.replyContent.text securitytoken:securityToken ajaxLastPost:ajaxLastPost handler:^(BOOL isSuccess, CCFShowThreadPage* message) {
+            if (isSuccess && message != nil) {
+                [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType: SVProgressHUDMaskTypeBlack];
+                
+//                CCFShowThreadPage * thread = message;
+//
+//                CCFSimpleReplyNavigationController * navigationController = (CCFSimpleReplyNavigationController *)self.navigationController;
+//                
+//                
+//                self.delegate = (id<SimpleReplyDelegate>)navigationController.controller;
+                
+                [self dismissViewControllerAnimated:YES completion:^{
+                    //[self.delegate transReplyValue:thread];
+                }];
+                
+            } else{
+                [SVProgressHUD showErrorWithStatus:@"回复失败" maskType: SVProgressHUDMaskTypeBlack];
+            }
+        }];
+    } else{
+        [self.ccfApi replyThreadWithId:threadId andMessage:self.replyContent.text handler:^(BOOL isSuccess, id message) {
             
-            
-        } else{
-            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"发送失败" message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alertView show];
-        }
-    }];
+            if (isSuccess) {
+                
+                [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType: SVProgressHUDMaskTypeBlack];
+                
+                self.replyContent.text = @"";
+                
+                CCFShowThreadPage * thread = message;
+                
+                
+                CCFSimpleReplyNavigationController * navigationController = (CCFSimpleReplyNavigationController *)self.navigationController;
+                
+                
+                self.delegate = (id<SimpleReplyDelegate>)navigationController.controller;
+                
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [self.delegate transReplyValue:thread];
+                }];
+                
+                
+            } else{
+                [SVProgressHUD showErrorWithStatus:@"回复失败" maskType: SVProgressHUDMaskTypeBlack];
+            }
+        }];
+
+    }
+  
 }
 
 

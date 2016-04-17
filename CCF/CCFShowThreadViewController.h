@@ -27,7 +27,7 @@
 
 @property (nonatomic, weak) id<TransValueDelegate> transValueDelegate;
 
-@property (nonatomic, weak) id<SimpleReplyTransValueDelegate> simpleTransDelegate;
+@property (nonatomic, weak) id<ReplyTransValueDelegate> replyTransValueDelegate;
 
 
 

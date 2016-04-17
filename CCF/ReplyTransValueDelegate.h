@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "CCFShowThreadViewController.h"
-#import "CCFThread.h"
+#import "TransValueBundle.h"
 
-@protocol SimpleReplyTransValueDelegate<NSObject>
+
+@protocol ReplyTransValueDelegate<NSObject>
 
 @required
--(void)transValue:(id)controller withThread:(CCFThread*) thread;
+-(void)transValue:(id)controller withBundle:(TransValueBundle *) transBundle;
 
 @end

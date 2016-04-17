@@ -347,50 +347,69 @@
         
         CCFPost * selectPost = posts[indexPath.row];
         
-        itemActionSheet = [LCActionSheet sheetWithTitle:selectPost.postUserInfo.userName buttonTitles:@[@"快速回复", @"@作者", @"复制链接"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+        itemActionSheet = [LCActionSheet sheetWithTitle:selectPost.postUserInfo.userName buttonTitles:@[@"快速回复", @"高级回复", @"复制链接"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
             if (buttonIndex == 0) {
                 UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
                 
-                CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
-                self.transValueDelegate = (id<TransValueDelegate>)myThreadController;
+                CCFSimpleReplyNavigationController* simpleReplyController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSimpleReplyNavigationController"];
+                self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)simpleReplyController;
                 
                 TransValueBundle * bundle = [[TransValueBundle alloc] init];
                 
-                [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
-                
                 CCFPost * selectPost = posts[indexPath.row];
-                
+                [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
                 [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
-                NSString * token = currentThreadPage.securityToken;
                 
+                NSString * token = currentThreadPage.securityToken;
                 [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
                 [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+                [bundle putStringValue:selectPost.postUserInfo.userName forKey:@"POST_USER"];
                 
-                [self.transValueDelegate transValue: bundle];
+                [self.replyTransValueDelegate transValue:self withBundle:bundle];
+
+                [self.navigationController presentViewController:simpleReplyController animated:YES completion:^{
+                    
+                }];
                 
-                [self.navigationController pushViewController:myThreadController animated:YES];
+                
             } else if (buttonIndex == 1){
-                UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
                 
-                CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
-                self.transValueDelegate = (id<TransValueDelegate>)myThreadController;
+                UIStoryboard * storyBoard = [UIStoryboard mainStoryboard];
                 
-                TransValueBundle * bundle = [[TransValueBundle alloc] init];
+                CCFSeniorNewPostNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
                 
-                [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+                [self.navigationController presentViewController:controller animated:YES completion:^{
+                    
+                }];
                 
-                CCFPost * selectPost = posts[indexPath.row];
                 
-                [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
-                NSString * token = currentThreadPage.securityToken;
                 
-                [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
-                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
-                [bundle putStringValue:selectPost.postUserInfo.userName forKey:@"USER_NAME"];
                 
-                [self.transValueDelegate transValue: bundle];
+//                UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+//                
+//                
+//                CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
+//                self.transValueDelegate = (id<TransValueDelegate>)myThreadController;
+//                
+//                TransValueBundle * bundle = [[TransValueBundle alloc] init];
+//                
+//                [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+//                
+//                CCFPost * selectPost = posts[indexPath.row];
+//                
+//                [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
+//                NSString * token = currentThreadPage.securityToken;
+//                
+//                [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
+//                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+//                [bundle putStringValue:selectPost.postUserInfo.userName forKey:@"USER_NAME"];
+//                
+//                [self.transValueDelegate transValue: bundle];
+//                
+//                [self.navigationController presentViewController:myThreadController animated:YES completion:^{
+//                    
+//                }];
                 
-                [self.navigationController pushViewController:myThreadController animated:YES];
             } else if (buttonIndex == 2){
                 NSString * louceng = [selectPost.postLouCeng stringWithRegular:@"\\d+"];
                 
@@ -424,10 +443,16 @@
     if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
         selectSegue = segue;
     } else if ([segue.identifier isEqualToString:@"ShowSimpleReply"]){
-        CCFSimpleReplyNavigationController * controller = segue.destinationViewController;
-        self.simpleTransDelegate = (id<SimpleReplyTransValueDelegate>)controller;
         
-        [self.simpleTransDelegate transValue:self withThread:transThread];
+        CCFSimpleReplyNavigationController * simpleReplyController = segue.destinationViewController;
+
+        self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)simpleReplyController;
+        
+        TransValueBundle * bundle = [[TransValueBundle alloc] init];
+        [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+
+        
+        [self.replyTransValueDelegate transValue:self withBundle:bundle];
     }
 }
 

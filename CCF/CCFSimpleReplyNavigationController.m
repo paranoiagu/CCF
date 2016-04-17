@@ -9,16 +9,16 @@
 #import "CCFSimpleReplyNavigationController.h"
 #import "ReplyTransValueDelegate.h"
 
-@interface CCFSimpleReplyNavigationController ()<SimpleReplyTransValueDelegate>
+@interface CCFSimpleReplyNavigationController ()<ReplyTransValueDelegate>
 
 @end
 
 @implementation CCFSimpleReplyNavigationController
 
 
--(void)transValue:(CCFShowThreadViewController *)controller withThread:(CCFThread *)thread{
+-(void)transValue:(CCFShowThreadViewController *)controller withBundle:(TransValueBundle *)transBundle{
     self.controller = controller;
-    self.transThread = thread;
+    self.bundle = transBundle;
 }
 
 

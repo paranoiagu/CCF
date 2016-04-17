@@ -33,6 +33,9 @@
 
 - (NSString *) parsePostHash:(NSString *)html;
 
+- (NSString *) parserPostStartTime:(NSString *)html;
+
+
 - (NSString *) parseLoginErrorMessage:(NSString *)html;
 
 - (CCFSearchPage *) parseSearchPageFromHtml:( NSString*) html;

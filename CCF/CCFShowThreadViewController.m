@@ -562,6 +562,17 @@
             
             CCFSimpleReplyNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
             
+            self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)controller;
+            
+            TransValueBundle * bundle = [[TransValueBundle alloc] init];
+            
+            [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+            NSString * token = currentThreadPage.securityToken;
+            [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
+            [bundle putStringValue:transThread.threadAuthorName forKey:@"POST_USER"];
+            
+            [self.replyTransValueDelegate transValue:self withBundle:bundle];
+            
             [self.navigationController presentViewController:controller animated:YES completion:^{
                 
             }];

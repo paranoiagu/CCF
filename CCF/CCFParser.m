@@ -452,6 +452,13 @@
     return nil;
 }
 
+-(NSString *)parserPostStartTime:(NSString *)html{
+    NSString * reg = @"poststarttime=\\d+";
+    NSString *result = [html stringWithRegular:reg andChild:@"\\d+"];
+    return result;
+}
+
+
 -(NSString *)parsePostHash:(NSString *)html{
     //<input type="hidden" name="posthash" value="81b4404ec1db053e78df16a3536ee7ab" />
     NSString * hash = [html stringWithRegular:@"<input type=\"hidden\" name=\"posthash\" value=\"\\w{32}\" />" andChild:@"\\w{32}"];

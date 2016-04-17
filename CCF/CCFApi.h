@@ -36,7 +36,8 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 // 快速回复
 -(void) quickReplyPostWithThreadId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString*)ajax_lastpost handler:(HandlerWithBool) handler;
 
--(void) seniorReplyWithThreadId:(int)threadId  andMessage:(NSString *)message securitytoken:(NSString *)token posthash:(NSString *)posthash poststarttime:(NSString*)poststarttime handler:(HandlerWithBool)handler;
+// 快速回复
+-(void) seniorReplyWithThreadId:(int)threadId  andMessage:(NSString *)message securitytoken:(NSString *)token handler:(HandlerWithBool)handler;
 
 // 搜索论坛
 -(void) searchWithKeyWord:(NSString*) keyWord handler:(HandlerWithBool) handler;

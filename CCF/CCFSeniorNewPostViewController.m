@@ -208,19 +208,23 @@
 }
 
 - (IBAction)sendSeniorMessage:(UIBarButtonItem *)sender {
-    [SVProgressHUD showWithStatus:@"正在回复"];
+    [self.replyContent resignFirstResponder];
+    
+    [SVProgressHUD showWithStatus:@"高级回复" maskType:SVProgressHUDMaskTypeBlack];
     
     int threadId = [bundle getIntValue:@"THREAD_ID"];
-    int postId = [bundle getIntValue:@"POST_ID"];
     NSString * securityToken = [bundle getStringValue:@"SECYRITY_TOKEN"];
-    NSString * ajaxLastPost = [bundle getStringValue:@"AJAX_LAST_POST"];
-    [self.ccfApi quickReplyPostWithThreadId:threadId forPostId:postId andMessage:self.replyContent.text securitytoken:securityToken ajaxLastPost:ajaxLastPost handler:^(BOOL isSuccess, CCFShowThreadPage* message) {
-        if (isSuccess && message != nil) {
-            [SVProgressHUD showSuccessWithStatus:@"回复成功"];
-            [self.navigationController popViewControllerAnimated:YES];
+
+    [self.ccfApi seniorReplyWithThreadId:threadId andMessage:self.replyContent.text securitytoken:securityToken handler:^(BOOL isSuccess, id message) {
+        if (isSuccess) {
+            [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
+            [self dismissViewControllerAnimated:YES completion:^{
+                
+            }];
         } else{
-            [SVProgressHUD showErrorWithStatus:@"回复失败"];
+            [SVProgressHUD showErrorWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
         }
     }];
+    
 }
 @end

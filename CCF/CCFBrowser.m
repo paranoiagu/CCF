@@ -972,7 +972,48 @@
 }
 
 
+-(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message securitytoken:(NSString *)token handler:(Handler)handler{
+    NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/newreply.php?do=postreply&t=%d", threadId];
+    
+    
+    NSMutableDictionary * presparameters = [NSMutableDictionary dictionary];
+    [presparameters setValue:@"" forKey:@"message"];
+    [presparameters setValue:@"0" forKey:@"wysiwyg"];
+    [presparameters setValue:@"2" forKey:@"styleid"];
+    [presparameters setValue:@"1" forKey:@"signature"];
+    [presparameters setValue:@"1" forKey:@"fromquickreply"];
+    [presparameters setValue:@"" forKey:@"s"];
+    [presparameters setValue:token forKey:@"securitytoken"];
+    [presparameters setValue:@"postreply" forKey:@"do"];
+    [presparameters setValue:[NSString stringWithFormat:@"%d",threadId] forKey:@"t"];
+    [presparameters setValue:@"who cares" forKey:@"p"];
+    [presparameters setValue:@"0" forKey:@"specifiedpost"];
+    [presparameters setValue:@"1" forKey:@"parseurl"];
+    LoginCCFUser * user = [self getCurrentCCFUser];
+    [presparameters setValue:user.userID forKey:@"loggedinuser"];
+    [presparameters setValue:@"进入高级模式" forKey:@"preview"];
+    
+    
+    [_browser POSTWithURLString:url parameters:presparameters requestCallback:^(BOOL isSuccess, NSString *html) {
+        if (isSuccess) {
 
+            NSString * token = [parser parseSecurityToken:html];
+            NSString * postHash = [parser parsePostHash:html];
+            NSString * postStartTime = [parser parserPostStartTime:html];
+            
+            
+            [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:token posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
+                if (isSuccess) {
+                    handler(YES,@"回复成功");
+                } else{
+                    handler(NO,@"回复失败");
+                }
+            }];
+        } else{
+            handler(NO,@"回复失败");
+        }
+    }];
+}
 
 
 

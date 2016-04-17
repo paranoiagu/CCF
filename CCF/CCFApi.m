@@ -376,10 +376,16 @@
     
 }
 
-
--(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message securitytoken:(NSString *)token posthash:(NSString *)posthash poststarttime:(NSString *)poststarttime handler:(HandlerWithBool)handler{
-    
+-(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message securitytoken:(NSString *)token handler:(HandlerWithBool)handler{
+    [_browser seniorReplyWithThreadId:threadId andMessage:message securitytoken:token handler:^(BOOL isSuccess, id result) {
+        if (isSuccess) {
+            handler(isSuccess, result);
+        } else{
+            handler(NO, result);
+        }
+    }];
 }
+
 
 
 

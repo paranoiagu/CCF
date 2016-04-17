@@ -627,9 +627,9 @@
                                                     <color key="textColor" red="0.90588235289999997" green="0.3294117647" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0M-10-WNk">
-                                                    <rect key="frame" x="567" y="0.0" width="25" height="12"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.61176470589999998" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0M-10-WNk" customClass="UILouCengLabel">
+                                                    <rect key="frame" x="575" y="0.0" width="25" height="12"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -658,12 +658,12 @@
                                                 <constraint firstItem="oz3-mV-jMT" firstAttribute="centerX" secondItem="eDf-AR-3fZ" secondAttribute="centerX" id="21z-Y1-NKp"/>
                                                 <constraint firstItem="oz3-mV-jMT" firstAttribute="top" secondItem="eDf-AR-3fZ" secondAttribute="topMargin" id="3Lo-km-7kG"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="VuK-FW-HCm" secondAttribute="trailing" constant="11" id="5VT-BU-7GW"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="J0M-10-WNk" secondAttribute="trailing" constant="-8" id="8uf-7U-Tzj"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="oz3-mV-jMT" secondAttribute="trailing" constant="-8" id="Emu-Gr-gy6"/>
                                                 <constraint firstItem="oz3-mV-jMT" firstAttribute="leading" secondItem="eDf-AR-3fZ" secondAttribute="leadingMargin" constant="-8" id="En1-Xf-o27"/>
                                                 <constraint firstItem="Cug-8n-3l9" firstAttribute="leading" secondItem="eDf-AR-3fZ" secondAttribute="leadingMargin" constant="12" id="FdL-Bx-OJ7"/>
                                                 <constraint firstItem="scb-5k-nzf" firstAttribute="leading" secondItem="eDf-AR-3fZ" secondAttribute="leadingMargin" constant="12" id="Gx6-mF-thA"/>
                                                 <constraint firstItem="7Bq-bY-BX3" firstAttribute="top" secondItem="wSI-L8-ULb" secondAttribute="bottom" constant="8" id="J9H-hi-Wfs"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="J0M-10-WNk" secondAttribute="trailing" constant="0.5" id="PlH-q6-EtR"/>
                                                 <constraint firstItem="wSI-L8-ULb" firstAttribute="top" secondItem="oz3-mV-jMT" secondAttribute="bottom" constant="7" id="Rva-aw-8gg"/>
                                                 <constraint firstItem="VuK-FW-HCm" firstAttribute="top" secondItem="scb-5k-nzf" secondAttribute="bottom" constant="12" id="XaB-pf-5bU"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="VuK-FW-HCm" secondAttribute="bottom" constant="0.5" id="XbF-R2-R86"/>
@@ -672,9 +672,9 @@
                                                 <constraint firstItem="oz3-mV-jMT" firstAttribute="top" secondItem="eDf-AR-3fZ" secondAttribute="top" id="b1i-HI-K1b"/>
                                                 <constraint firstItem="VuK-FW-HCm" firstAttribute="leading" secondItem="eDf-AR-3fZ" secondAttribute="leadingMargin" constant="12" id="bhs-Vm-Q5X"/>
                                                 <constraint firstItem="7Bq-bY-BX3" firstAttribute="leading" secondItem="scb-5k-nzf" secondAttribute="trailing" constant="8" id="cqn-UQ-LIw"/>
+                                                <constraint firstItem="J0M-10-WNk" firstAttribute="top" secondItem="eDf-AR-3fZ" secondAttribute="topMargin" constant="-8" id="paU-Mh-i0v"/>
                                                 <constraint firstItem="VuK-FW-HCm" firstAttribute="top" secondItem="scb-5k-nzf" secondAttribute="bottom" constant="1" id="qcT-Gf-wtB"/>
                                                 <constraint firstItem="wSI-L8-ULb" firstAttribute="leading" secondItem="scb-5k-nzf" secondAttribute="trailing" constant="8" id="vMR-FM-dMg"/>
-                                                <constraint firstItem="J0M-10-WNk" firstAttribute="top" secondItem="oz3-mV-jMT" secondAttribute="bottom" constant="-1" id="z3B-P0-xSS"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">

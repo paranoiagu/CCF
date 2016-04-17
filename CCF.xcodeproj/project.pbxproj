@@ -49,6 +49,7 @@
 		3A690A481C3792D00076C8F1 /* CCFThreadDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A690A471C3792D00076C8F1 /* CCFThreadDetailCell.xib */; };
 		3A7569AD1C42B179000486F4 /* CCFFavFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7569AC1C42B179000486F4 /* CCFFavFormController.m */; };
 		3A842CA11C469AC1002944A9 /* CCFNewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */; };
+		3A8E054E1CC35515003D0D90 /* UILouCengLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E054D1CC35515003D0D90 /* UILouCengLabel.m */; };
 		3A92E7F71CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */; };
 		3A93298D1C39648900A26249 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A93298C1C39648900A26249 /* CoreText.framework */; };
 		3A9ADC691C9D8BD4006055A8 /* UISquareRoundCornerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ADC681C9D8BD4006055A8 /* UISquareRoundCornerImageView.m */; };
@@ -210,6 +211,8 @@
 		3A7569AC1C42B179000486F4 /* CCFFavFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFavFormController.m; sourceTree = "<group>"; };
 		3A842C9F1C469AC1002944A9 /* CCFNewThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFNewThreadViewController.h; sourceTree = "<group>"; };
 		3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFNewThreadViewController.m; sourceTree = "<group>"; };
+		3A8E054C1CC35515003D0D90 /* UILouCengLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILouCengLabel.h; sourceTree = "<group>"; };
+		3A8E054D1CC35515003D0D90 /* UILouCengLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILouCengLabel.m; sourceTree = "<group>"; };
 		3A92E7F51CA0386C000FD0B2 /* CCFMyProfileUITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFMyProfileUITableViewController.h; sourceTree = "<group>"; };
 		3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFMyProfileUITableViewController.m; sourceTree = "<group>"; };
 		3A93298C1C39648900A26249 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -416,6 +419,8 @@
 				3A671EE51CB9E0E1001CC91E /* PageHeaderView.xib */,
 				3A671EE71CB9EA59001CC91E /* XibInflater.h */,
 				3A671EE81CB9EA59001CC91E /* XibInflater.m */,
+				3A8E054C1CC35515003D0D90 /* UILouCengLabel.h */,
+				3A8E054D1CC35515003D0D90 /* UILouCengLabel.m */,
 			);
 			name = Widgets;
 			sourceTree = "<group>";
@@ -960,6 +965,7 @@
 				3AA2D5061C36103C00F312CC /* CCFFormSectionInfo.m in Sources */,
 				3AF86A7F1C8329C40036AD61 /* PrivateMessage.m in Sources */,
 				3ABAFE3E1CAACCD300803085 /* CCFUserThreadTableViewController.m in Sources */,
+				3A8E054E1CC35515003D0D90 /* UILouCengLabel.m in Sources */,
 				3A9FEDE21C3438AC00F30885 /* NSString+Kit.m in Sources */,
 				4DF824BF1C34E9EF005BB858 /* CCFFormTreeJSONModel.m in Sources */,
 				3AF86A781C82EECE0036AD61 /* CCFApi.m in Sources */,

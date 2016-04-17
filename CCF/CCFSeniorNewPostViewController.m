@@ -218,9 +218,19 @@
     [self.ccfApi seniorReplyWithThreadId:threadId andMessage:self.replyContent.text securitytoken:securityToken handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
+            
+            CCFShowThreadPage * thread = message;
+            
+            
+            CCFSimpleReplyNavigationController * navigationController = (CCFSimpleReplyNavigationController *)self.navigationController;
+            
+            
+            self.delegate = (id<ReplyCallbackDelegate>)navigationController.controller;
+            
             [self dismissViewControllerAnimated:YES completion:^{
-                
+                [self.delegate transReplyValue:thread];
             }];
+            
         } else{
             [SVProgressHUD showErrorWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
         }

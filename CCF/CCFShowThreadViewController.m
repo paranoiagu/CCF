@@ -41,7 +41,7 @@
 
 #import "XibInflater.h"
 
-@interface CCFShowThreadViewController ()< UITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate, SimpleReplyDelegate>{
+@interface CCFShowThreadViewController ()< UITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate, ReplyCallbackDelegate>{
     
     
     int currentPageNumber;

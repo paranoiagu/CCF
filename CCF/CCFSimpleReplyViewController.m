@@ -94,7 +94,7 @@
                 CCFSimpleReplyNavigationController * navigationController = (CCFSimpleReplyNavigationController *)self.navigationController;
                 
                 
-                self.delegate = (id<SimpleReplyDelegate>)navigationController.controller;
+                self.delegate = (id<ReplyCallbackDelegate>)navigationController.controller;
                 
                 [self dismissViewControllerAnimated:YES completion:^{
                     [self.delegate transReplyValue:thread];

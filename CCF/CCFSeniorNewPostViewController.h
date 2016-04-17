@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFApiBaseViewController.h"
+#import "ReplyCallbackDelegate.h"
+
 
 @interface CCFSeniorNewPostViewController : CCFApiBaseViewController
 
@@ -21,6 +23,9 @@
 - (IBAction)back:(id)sender;
 
 - (IBAction)sendSeniorMessage:(UIBarButtonItem *)sender;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *insertCollectionView;
+
+@property (nonatomic, strong) id<ReplyCallbackDelegate> delegate;
 
 @end

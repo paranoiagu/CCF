@@ -9,17 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "CCFApiBaseViewController.h"
 #import "CCFShowThreadPage.h"
-
-@protocol SimpleReplyDelegate <NSObject>
-
-@required
--(void) transReplyValue:(CCFShowThreadPage *) value;
-
-@end
+#import "ReplyCallbackDelegate.h"
 
 @interface CCFSimpleReplyViewController : CCFApiBaseViewController
 
-@property (nonatomic, strong) id<SimpleReplyDelegate> delegate;
+@property (nonatomic, strong) id<ReplyCallbackDelegate> delegate;
 
 - (IBAction)sendSimpleReply:(id)sender;
 

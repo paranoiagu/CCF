@@ -107,7 +107,7 @@
                 totalPageCount = (int)thread.totalPageCount;
                 
                 if (currentPageNumber >= totalPageCount) {
-                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                    [self showNoMoreDataView];
                 }
                 
                 
@@ -124,7 +124,7 @@
     }];
     
     
-    self.tableView.mj_footer = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
         [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:currentPageNumber + 1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
             
@@ -135,7 +135,7 @@
                 totalPageCount = (int)thread.totalPageCount;
                 
                 if (currentPageNumber >= totalPageCount) {
-                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                    [self showNoMoreDataView];
                 }
                 NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
 
@@ -211,6 +211,8 @@
         NSUInteger sectionNumber = [[self.tableView indexPathForCell:visiblCells.lastObject] section];
         
         if (sectionNumber !=0) {
+            
+            currentPageNumber = (int)sectionNumber;
             
             NSString * title = [NSString stringWithFormat:@"%ld/%d", sectionNumber, totalPageCount];
             PageHeaderView *headerView = (PageHeaderView*)[self.tableView headerViewForSection:sectionNumber];
@@ -330,7 +332,7 @@
                 totalPageCount = (int)thread.totalPageCount;
                 
                 if (currentPageNumber >= totalPageCount) {
-                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                    [self showNoMoreDataView];
                 }
                 
                 
@@ -467,10 +469,6 @@
                     
                     totalPageCount = (int)thread.totalPageCount;
                     
-                    if (currentPageNumber >= totalPageCount) {
-                        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                    }
-                    
                     
                     NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
                     
@@ -562,7 +560,7 @@
                     totalPageCount = (int)thread.totalPageCount;
                     
                     if (currentPageNumber >= totalPageCount) {
-                        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                        [self showNoMoreDataView];
                     }
                     
                     
@@ -584,6 +582,10 @@
     
     [itemActionSheet show];
 }
+
+-(void) showNoMoreDataView{
+    [SVProgressHUD showInfoWithStatus:@"暂无新帖" maskType:SVProgressHUDMaskTypeBlack];
+}
 - (IBAction)floatReplyClick:(id)sender {
     
 //    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentSize.height -self.tableView.bounds.size.height) animated:YES];
@@ -593,7 +595,7 @@
         count = count -1;
     }
     NSIndexPath * scrolltoIndex = [NSIndexPath indexPathForRow: count inSection: currentPageNumber];
-    
+
     [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 
 }

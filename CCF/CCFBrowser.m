@@ -938,4 +938,60 @@
     }
 }
 
+-(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message securitytoken:(NSString *)token posthash:(NSString *)posthash poststarttime:(NSString *)poststarttime handler:(Handler)handler{
+    
+    NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/newreply.php?do=postreply&t=%d", threadId];
+    
+    
+    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:message forKey:@"message"];
+    [parameters setValue:@"0" forKey:@"wysiwyg"];
+    [parameters setValue:@"0" forKey:@"iconid"];
+    [parameters setValue:@"" forKey:@"s"];
+    [parameters setValue:token forKey:@"securitytoken"];
+    [parameters setValue:@"postreply" forKey:@"do"];
+    [parameters setValue:[NSString stringWithFormat:@"%d",threadId] forKey:@"t"];
+    [parameters setValue:@"" forKey:@"p"];
+    [parameters setValue:@"0" forKey:@"specifiedpost"];
+    [parameters setValue:posthash forKey:@"posthash"];
+    [parameters setValue:poststarttime forKey:@"poststarttime"];
+    LoginCCFUser * user = [self getCurrentCCFUser];
+    [parameters setValue:user.userID forKey:@"loggedinuser"];
+    [parameters setValue:@"" forKey:@"multiquoteempty"];
+    [parameters setValue:@"提交回复" forKey:@"sbutton"];
+    [parameters setValue:@"1" forKey:@"signature"];
+    
+    [parameters setValue:@"1" forKey:@"parseurl"];
+    [parameters setValue:@"9999" forKey:@"emailupdate"];
+    
+    [_browser POSTWithURLString:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+    } requestCallback:^(BOOL isSuccess, NSString *html) {
+        
+    }];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end

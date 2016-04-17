@@ -2890,10 +2890,10 @@
             </objects>
             <point key="canvasLocation" x="2229" y="-3938"/>
         </scene>
-        <!--Senior New Post Navigation Controller-->
+        <!--Simple Reply Navigation Controller-->
         <scene sceneID="CKB-b1-PTH">
             <objects>
-                <navigationController storyboardIdentifier="CCFSeniorNewPostNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="gBw-i8-805" customClass="CCFSeniorNewPostNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CCFSeniorNewPostNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="gBw-i8-805" customClass="CCFSimpleReplyNavigationController" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="WUE-ZV-zcY">

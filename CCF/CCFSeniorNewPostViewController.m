@@ -17,8 +17,9 @@
 #import "CCFShowThreadPage.h"
 #import "LCActionSheet.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "CCFSimpleReplyNavigationController.h"
 
-@interface CCFSeniorNewPostViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate, TransValueDelegate>{
+@interface CCFSeniorNewPostViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate>{
     
     UIImagePickerController *pickControl;
     NSMutableArray<UIImage*> *images;
@@ -31,14 +32,13 @@
 
 
 
-
--(void)transValue:(id)value{
-    bundle = value;
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // 传递数据
+    CCFSimpleReplyNavigationController * controller = (CCFSimpleReplyNavigationController*)self.navigationController;
+    bundle = controller.bundle;
+    
     
     
     _insertCollectionView.delegate = self;

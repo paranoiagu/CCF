@@ -377,6 +377,10 @@
 }
 
 
+-(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message securitytoken:(NSString *)token posthash:(NSString *)posthash poststarttime:(NSString *)poststarttime handler:(HandlerWithBool)handler{
+    
+}
+
 
 
 

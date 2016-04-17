@@ -88,4 +88,6 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 -(void)listAllUserThreads:(int)userId withPage:(int)page handler:(Handler)handler;
 
 -(void)quickReplyPostWithThreadId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString *)ajax_lastpost handler:(Handler)handler;
+
+-(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message securitytoken:(NSString *)token posthash:(NSString *)posthash poststarttime:(NSString *)poststarttime handler:(Handler)handler;
 @end

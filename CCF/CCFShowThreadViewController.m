@@ -36,7 +36,7 @@
 #import "CCFThreadNotLoadTableViewCell.h"
 #import "CCFSimpleReplyNavigationController.h"
 #import "CCFSimpleReplyViewController.h"
-#import "CCFSeniorNewPostNavigationController.h"
+
 
 
 #import "XibInflater.h"
@@ -376,39 +376,34 @@
                 
                 UIStoryboard * storyBoard = [UIStoryboard mainStoryboard];
                 
-                CCFSeniorNewPostNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
+                CCFSimpleReplyNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
+                self.replyTransValueDelegate = (id<ReplyTransValueDelegate>)controller;
+                
+                TransValueBundle * bundle = [[TransValueBundle alloc] init];
+                
+                [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
+                
+                
+                CCFPost * selectPost = posts[indexPath.row];
+                
+                
+                [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
+                
+                NSString * token = currentThreadPage.securityToken;
+                
+                
+                [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
+                
+                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
+                
+                [bundle putStringValue:selectPost.postUserInfo.userName forKey:@"USER_NAME"];
+                
+                [self.replyTransValueDelegate transValue:self withBundle:bundle];
                 
                 [self.navigationController presentViewController:controller animated:YES completion:^{
                     
                 }];
                 
-                
-                
-                
-//                UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-//                
-//                
-//                CCFSeniorNewPostViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostViewController"];
-//                self.transValueDelegate = (id<TransValueDelegate>)myThreadController;
-//                
-//                TransValueBundle * bundle = [[TransValueBundle alloc] init];
-//                
-//                [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
-//                
-//                CCFPost * selectPost = posts[indexPath.row];
-//                
-//                [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
-//                NSString * token = currentThreadPage.securityToken;
-//                
-//                [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
-//                [bundle putStringValue:currentThreadPage.ajaxLastPost forKey:@"AJAX_LAST_POST"];
-//                [bundle putStringValue:selectPost.postUserInfo.userName forKey:@"USER_NAME"];
-//                
-//                [self.transValueDelegate transValue: bundle];
-//                
-//                [self.navigationController presentViewController:myThreadController animated:YES completion:^{
-//                    
-//                }];
                 
             } else if (buttonIndex == 2){
                 NSString * louceng = [selectPost.postLouCeng stringWithRegular:@"\\d+"];
@@ -565,7 +560,7 @@
             // 进入高级回帖
             UIStoryboard * storyBoard = [UIStoryboard mainStoryboard];
             
-            CCFSeniorNewPostNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
+            CCFSimpleReplyNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
             
             [self.navigationController presentViewController:controller animated:YES completion:^{
                 

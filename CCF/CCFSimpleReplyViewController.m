@@ -28,7 +28,7 @@
     
     transThread = navigationController.transThread;
     
-    self.replyContent.text = transThread.threadTitle;
+    self.replyContent.text = [NSString stringWithFormat:@"@%@\n", transThread.threadAuthorName];
     
     [self.replyContent becomeFirstResponder];
 }

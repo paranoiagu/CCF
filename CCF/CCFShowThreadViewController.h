@@ -10,7 +10,7 @@
 #import "CCFPost.h"
 #import "TransValueDelegate.h"
 #include "SelectPhotoCollectionViewCell.h"
-#import "SimpleReplyTransValueDelegate.h"
+#import "ReplyTransValueDelegate.h"
 
 @interface CCFShowThreadViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 

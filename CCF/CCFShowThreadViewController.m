@@ -36,6 +36,8 @@
 #import "CCFThreadNotLoadTableViewCell.h"
 #import "CCFSimpleReplyNavigationController.h"
 #import "CCFSimpleReplyViewController.h"
+#import "CCFSeniorNewPostNavigationController.h"
+
 
 #import "XibInflater.h"
 
@@ -523,49 +525,24 @@
     
 
 
-    itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"复制帖子链接", @"在浏览器中查看",@"选择页码", @"刷新本页"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
+    itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"复制帖子链接", @"在浏览器中查看",@"高级回帖"] redButtonIndex:2 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
+            // 复制贴链接
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
             pasteboard.string = [[CCFUrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:0] absoluteString];
             
             [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
-            
-            
+
         } else if (buttonIndex == 1){
+            // 在浏览器种查看
             [[UIApplication sharedApplication] openURL:[CCFUrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:1]];
         } else if (buttonIndex == 2){
-
-            [self showChangePageActionSheet:sender];
+            // 进入高级回帖
+            UIStoryboard * storyBoard = [UIStoryboard mainStoryboard];
             
-        } else if(buttonIndex == 3){
-            // 刷新本页
-            [SVProgressHUD showWithStatus:@"正在刷新" maskType:SVProgressHUDMaskTypeBlack];
+            CCFSeniorNewPostNavigationController * controller = [storyBoard instantiateViewControllerWithIdentifier:@"CCFSeniorNewPostNavigationController"];
             
-            
-            [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:currentPageNumber handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
-                
-                [SVProgressHUD dismiss];
-                
-                if (isSuccess) {
-
-                    currentPageNumber = (int)thread.currentPage;
-                    totalPageCount = (int)thread.totalPageCount;
-                    
-                    if (currentPageNumber >= totalPageCount) {
-                        [self showNoMoreDataView];
-                    }
-                    
-                    
-                    NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
-                    
-                    
-                    currentThreadPage = thread;
-                    
-                    [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPageNumber]];
-
-                    [self.tableView reloadData];
-
-                }
+            [self.navigationController presentViewController:controller animated:YES completion:^{
                 
             }];
             

@@ -1,26 +1,18 @@
 //
-//  CCFSimpleReplyNavigationController.m
+//  CCFSeniorNewPostNavigationController.m
 //  CCF
 //
-//  Created by 迪远 王 on 16/4/10.
+//  Created by 迪远 王 on 16/4/17.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFSimpleReplyNavigationController.h"
-#import "ReplyTransValueDelegate.h"
+#import "CCFSeniorNewPostNavigationController.h"
 
-@interface CCFSimpleReplyNavigationController ()<SimpleReplyTransValueDelegate>
+@interface CCFSeniorNewPostNavigationController ()
 
 @end
 
-@implementation CCFSimpleReplyNavigationController
-
-
--(void)transValue:(CCFShowThreadViewController *)controller withThread:(CCFThread *)thread{
-    self.controller = controller;
-    self.transThread = thread;
-}
-
+@implementation CCFSeniorNewPostNavigationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

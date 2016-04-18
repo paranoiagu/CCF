@@ -203,44 +203,49 @@
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:fuxkHttp error:nil];
     
-    CCFShowThreadPage * thread = [[CCFShowThreadPage alloc]init];
+    
+    NSString * formId = [fuxkHttp stringWithRegular:@"newthread.php\\?do=newthread&amp;f=\\d+" andChild:@"\\d+"];
+    
+    CCFShowThreadPage * showThreadPage = [[CCFShowThreadPage alloc]init];
+    showThreadPage.formId = formId;
+    
     NSString * securityToken = [self parseSecurityToken:html];
-    thread.securityToken = securityToken;
+    showThreadPage.securityToken = securityToken;
     
     NSString * ajaxLastPost = [self parseAjaxLastPost:html];
-    thread.ajaxLastPost = ajaxLastPost;
+    showThreadPage.ajaxLastPost = ajaxLastPost;
     
-    thread.dataList = [self parseShowThreadPosts:document];
+    showThreadPage.dataList = [self parseShowThreadPosts:document];
     
 
     IGXMLNode * titleNode = [document queryWithXPath:@"/html/body/div[2]/div/div/table[2]/tr/td[1]/table/tr[2]/td/strong"].firstObject;
-    thread.threadTitle = titleNode.text;
+    showThreadPage.threadTitle = titleNode.text;
     
 
     IGXMLNodeSet * threadInfoSet = [document queryWithXPath:@"/html/body/div[4]/div/div/table[1]/tr/td[2]/div/table/tr"];
     
     if (threadInfoSet == nil || threadInfoSet.count == 0) {
-        thread.totalPageCount = 1;
-        thread.currentPage = 1;
-        thread.totalCount = thread.dataList.count;
+        showThreadPage.totalPageCount = 1;
+        showThreadPage.currentPage = 1;
+        showThreadPage.totalCount = showThreadPage.dataList.count;
         
     } else{
         IGXMLNode *currentPageAndTotalPageNode = threadInfoSet.firstObject.firstChild;
         NSString * currentPageAndTotalPageString = currentPageAndTotalPageNode.text;
         NSArray *pageAndTotalPage = [currentPageAndTotalPageString componentsSeparatedByString:@"页，共"];
         
-        thread.totalPageCount = [[[pageAndTotalPage.lastObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"页" withString:@""] intValue];
-        thread.currentPage = [[[pageAndTotalPage.firstObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"第" withString:@""] intValue];
+        showThreadPage.totalPageCount = [[[pageAndTotalPage.lastObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"页" withString:@""] intValue];
+        showThreadPage.currentPage = [[[pageAndTotalPage.firstObject stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"第" withString:@""] intValue];
         
         IGXMLNode *totalPostCount = [threadInfoSet.firstObject children][1];
         
         NSString * totalPostString = [totalPostCount.firstChild attribute:@"title"];
         NSString *tmp = [totalPostString componentsSeparatedByString:@"共计 "].lastObject;
-        thread.totalCount = [[tmp stringByReplacingOccurrencesOfString:@" 条." withString:@""] intValue];
+        showThreadPage.totalCount = [[tmp stringByReplacingOccurrencesOfString:@" 条." withString:@""] intValue];
         
     }
     
-    return thread;
+    return showThreadPage;
 }
 
 
@@ -489,12 +494,13 @@
     
     NSInteger totaleListCount = -1;
     
+    
     for (int i = 0; i < contents.count; i++){
         IGXMLNode * threadListNode = contents[i];
         
         if (threadListNode.children.count > 4) { // 要大于4的原因是：过滤已经被删除的帖子
             
-            CCFSimpleThread * ccfthreadlist = [[CCFSimpleThread alloc]init];
+            CCFSimpleThread * simpleThread = [[CCFSimpleThread alloc]init];
             
             // title
             IGXMLNode * threadTitleNode = threadListNode.children [2];
@@ -503,24 +509,24 @@
 
             NSString *titleAndCategory = [self parseTitle: titleInnerHtml];
             //分离出Title 和 Category
-            ccfthreadlist.threadTitle = [self spliteTitle:titleAndCategory];
-            ccfthreadlist.threadCategory = [self spliteCategory:titleAndCategory];
+            simpleThread.threadTitle = [self spliteTitle:titleAndCategory];
+            simpleThread.threadCategory = [self spliteCategory:titleAndCategory];
 
             IGHTMLDocument * titleTemp = [[IGHTMLDocument alloc]initWithXMLString:titleAndCategory error:nil];
             
             //[@"showthread.php?t=" length]    17的由来
-            ccfthreadlist.threadID = [[titleTemp attribute:@"href"] substringFromIndex: 17];
-            ccfthreadlist.threadTitle = [titleTemp text];
+            simpleThread.threadID = [[titleTemp attribute:@"href"] substringFromIndex: 17];
+            simpleThread.threadTitle = [titleTemp text];
             
             
             IGXMLNode * authorNode = threadListNode.children [3];
             
             NSString * authorIdStr = [authorNode innerHtml];
-            ccfthreadlist.threadAuthorID = [authorIdStr stringWithRegular:@"\\d+"];
+            simpleThread.threadAuthorID = [authorIdStr stringWithRegular:@"\\d+"];
             
-            ccfthreadlist.threadAuthorName = [authorNode text];
+            simpleThread.threadAuthorName = [authorNode text];
         
-            [threadList addObject:ccfthreadlist];
+            [threadList addObject:simpleThread];
         }
     }
     

@@ -538,7 +538,8 @@
     [parameters setValue:hash forKey:@"posthash"];
     [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
     [parameters setValue:@"上传" forKey:@"upload"];
-    [parameters setValue:@"" forKey:@"attachmenturl[]"];
+    NSString * name = [NSString stringWithFormat:@"CCF_CL_ENT_%f", [[NSDate date] timeIntervalSince1970]];
+    [parameters setValue:name forKey:@"attachmenturl[]"];
     
 
     for (NSString *param in parameters) {
@@ -970,7 +971,7 @@
 }
 
 
--(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message securitytoken:(NSString *)token handler:(Handler)handler{
+-(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(Handler)handler{
     NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/newreply.php?do=postreply&t=%d", threadId];
     
     

@@ -376,8 +376,8 @@
     
 }
 
--(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message securitytoken:(NSString *)token handler:(HandlerWithBool)handler{
-    [_browser seniorReplyWithThreadId:threadId andMessage:message securitytoken:token handler:^(BOOL isSuccess, id result) {
+-(void)seniorReplyWithThreadId:(int)threadId forFormId:(int) formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler{
+    [_browser seniorReplyWithThreadId:threadId andMessage:message withImages:(NSArray *)images securitytoken:token handler:^(BOOL isSuccess, id result) {
         if (isSuccess) {
             CCFShowThreadPage * detail = [_praser parseShowThreadWithHtml:result];
             handler(isSuccess, detail);

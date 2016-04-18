@@ -570,6 +570,7 @@
             NSString * token = currentThreadPage.securityToken;
             [bundle putStringValue:token forKey:@"SECYRITY_TOKEN"];
             [bundle putStringValue:transThread.threadAuthorName forKey:@"POST_USER"];
+            [bundle putStringValue:currentThreadPage.formId forKey:@"FORM_ID"];
             
             [self.replyTransValueDelegate transValue:self withBundle:bundle];
             

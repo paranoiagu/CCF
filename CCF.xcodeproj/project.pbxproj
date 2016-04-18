@@ -515,9 +515,9 @@
 		3AEA1F341C365E2100710BD6 /* CCFControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3A8E05561CC3AA28003D0D90 /* ReplyController */,
 				3A3672B11CB0039300756D8B /* Setting */,
 				3A2FCC7B1C956D5C00B469E4 /* TableViewCell */,
+				3A8E05561CC3AA28003D0D90 /* ReplyController */,
 				4D1EEBB81C33D4FD0084F6E9 /* LoginViewController.h */,
 				4D1EEBB91C33D4FD0084F6E9 /* LoginViewController.m */,
 				4D1EEBBA1C33D4FD0084F6E9 /* LoginViewController.xib */,

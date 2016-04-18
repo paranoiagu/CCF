@@ -215,7 +215,9 @@
     int threadId = [bundle getIntValue:@"THREAD_ID"];
     NSString * securityToken = [bundle getStringValue:@"SECYRITY_TOKEN"];
 
-    [self.ccfApi seniorReplyWithThreadId:threadId andMessage:self.replyContent.text securitytoken:securityToken handler:^(BOOL isSuccess, id message) {
+    NSString * formIdStr = [bundle getStringValue:@"FORM_ID"];
+    
+    [self.ccfApi seniorReplyWithThreadId:threadId forFormId:[formIdStr intValue]  andMessage:self.replyContent.text withImages:nil securitytoken:securityToken handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
             

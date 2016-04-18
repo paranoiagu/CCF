@@ -420,6 +420,13 @@
     }];
 }
 
+-(void)uploadImagePrepairFormSeniorReply:(int)threadId startPostTime:(NSString*)time postHash:(NSString*)hash :(Handler) callback{
+    NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/newattachment.php?t=%d&poststarttime=%@&posthash=%@", threadId, time, hash];
+    [_browser GETWithURLString:url requestCallback:^(BOOL isSuccess, NSString *html) {
+        callback(isSuccess, html);
+    }];
+}
+
 // 开始上传图片
 - (void)uploadFile:(NSString *)token fId:(NSString *)fId postTime:(NSString *)postTime hash:(NSString *)hash image:(NSData *)image {
     
@@ -971,7 +978,7 @@
 }
 
 
--(void)seniorReplyWithThreadId:(int)threadId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(Handler)handler{
+-(void)seniorReplyWithThreadId:(int)threadId forFormId:(int) formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(Handler)handler{
     NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/newreply.php?do=postreply&t=%d", threadId];
     
     
@@ -992,26 +999,60 @@
     [presparameters setValue:user.userID forKey:@"loggedinuser"];
     [presparameters setValue:@"进入高级模式" forKey:@"preview"];
     
-    
     [_browser POSTWithURLString:url parameters:presparameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
-
+            
             NSString * token = [parser parseSecurityToken:html];
             NSString * postHash = [parser parsePostHash:html];
             NSString * postStartTime = [parser parserPostStartTime:html];
             
-            
-            [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:token posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
-                if (isSuccess) {
-                    handler(YES,result);
-                } else{
-                    handler(NO,@"回复失败");
-                }
-            }];
+            if (images == nil || [images count] == 0) {
+                [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:token posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
+                    if (isSuccess) {
+                        handler(YES,result);
+                    } else{
+                        handler(NO,@"回复失败");
+                    }
+                }];
+
+            } else{
+                // 如果有图片，先传图片
+                [self uploadImagePrepairFormSeniorReply:threadId startPostTime:postStartTime postHash:postHash :^(BOOL isSuccess, id result) {
+                    // 解析出上传图片需要的参数
+                    NSString * uploadToken = [parser parseSecurityToken:result];
+                    NSString * uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
+                    NSString * uploadHash = [parser parsePostHash:result];
+                    
+                    __block BOOL uploadSuccess = YES;
+                    for (int i = 0; i < images.count && uploadSuccess; i++) {
+                        NSData * image = images[i];
+                        
+                        [self uploadImage:[CCFUrlBuilder buildUploadFileURL] :uploadToken fId:formId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id result) {
+                            uploadSuccess = isSuccess;
+                            
+                            if (i == images.count -1) {
+                                [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:token posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
+                                    if (isSuccess) {
+                                        handler(YES,result);
+                                    } else{
+                                        handler(NO,@"回复失败");
+                                    }
+                                }];
+                            }
+                        }];
+                    }
+                    
+                    if (!uploadSuccess) {
+                        handler(NO, @"上传图片失败！");
+                    }
+                }];
+            }
         } else{
             handler(NO,@"回复失败");
         }
     }];
+    
+    
 }
 
 

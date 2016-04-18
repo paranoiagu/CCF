@@ -217,7 +217,14 @@
 
     NSString * formIdStr = [bundle getStringValue:@"FORM_ID"];
     
-    [self.ccfApi seniorReplyWithThreadId:threadId forFormId:[formIdStr intValue]  andMessage:self.replyContent.text withImages:nil securitytoken:securityToken handler:^(BOOL isSuccess, id message) {
+    NSMutableArray<NSData*> * uploadData = [NSMutableArray array];
+    for (UIImage * image in images) {
+        NSData * data = UIImageJPEGRepresentation(image, 1.0);
+        [uploadData addObject:data];
+    }
+    
+    
+    [self.ccfApi seniorReplyWithThreadId:threadId forFormId:[formIdStr intValue]  andMessage:self.replyContent.text withImages:uploadData securitytoken:securityToken handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
             

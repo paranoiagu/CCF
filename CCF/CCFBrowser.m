@@ -504,11 +504,10 @@
 }
 
 -(void) uploadImage:(NSURL *)url :(NSString *)token fId:(int)fId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData callback:(Handler)callback{
+    
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
-//    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-    
-    //[request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setHTTPShouldHandleCookies:YES];
     [request setTimeoutInterval:60];
     [request setHTTPMethod:@"POST"];
@@ -1016,10 +1015,14 @@
                 }];
 
             } else{
+                
+                __block NSString * uploadImageToken = @"";
+                NSString * urlStr = @"https://bbs.et8.net/bbs/newattachment.php?do=manageattach&p=";
+                NSURL *uploadImageUrl = [NSURL URLWithString:urlStr];
                 // 如果有图片，先传图片
                 [self uploadImagePrepairFormSeniorReply:threadId startPostTime:postStartTime postHash:postHash :^(BOOL isSuccess, id result) {
                     // 解析出上传图片需要的参数
-                    NSString * uploadToken = [parser parseSecurityToken:result];
+                    uploadImageToken = [parser parseSecurityToken:result];
                     NSString * uploadTime = [[token componentsSeparatedByString:@"-"] firstObject];
                     NSString * uploadHash = [parser parsePostHash:result];
                     
@@ -1027,8 +1030,10 @@
                     for (int i = 0; i < images.count && uploadSuccess; i++) {
                         NSData * image = images[i];
                         
-                        [self uploadImage:[CCFUrlBuilder buildUploadFileURL] :uploadToken fId:formId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id result) {
+                        [self uploadImageForSeniorReply:uploadImageUrl :uploadImageToken fId:formId threadId:threadId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id uploadResultHtml) {
                             uploadSuccess = isSuccess;
+                            // 更新token
+                            uploadImageToken = [parser parseSecurityToken:uploadResultHtml];
                             
                             if (i == images.count -1) {
                                 [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:token posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
@@ -1055,6 +1060,106 @@
     
 }
 
+-(NSString *) uploadParamDivider{
+    static const NSString *kRandomAlphabet = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    
+    NSMutableString *randomString = [NSMutableString stringWithCapacity:16];
+    for (int i = 0; i < 16; i++) {
+        [randomString appendFormat: @"%C", [kRandomAlphabet characterAtIndex:arc4random_uniform((u_int32_t)[kRandomAlphabet length])]];
+    }
+    return randomString;
+}
+
+-(void) uploadImageForSeniorReply:(NSURL *)url :(NSString *)token fId:(int)fId threadId:(int) threadId postTime:(NSString *)postTime hash:(NSString *)hash :(NSData *) imageData callback:(Handler)callback{
+    
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    
+    [request setHTTPShouldHandleCookies:YES];
+    [request setTimeoutInterval:60];
+    [request setHTTPMethod:@"POST"];
+    
+    NSString * cookie = [self loadCookie];
+    [request setValue:cookie forHTTPHeaderField:@"Cookie"];
+    
+    NSString *boundary = [NSString stringWithFormat:@"----WebKitFormBoundary%@", [self uploadParamDivider]];
+    
+    // set Content-Type in HTTP header
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+    [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
+    
+    [request setValue:token forHTTPHeaderField:@"securitytoken"];
+    
+    
+    
+    // post body
+    NSMutableData *body = [NSMutableData data];
+    
+    
+    
+    // add params (all params are strings)
+    NSMutableDictionary* parameters = [[NSMutableDictionary alloc] init];
+    [parameters setValue:@"" forKey:@"s"];
+    [parameters setValue:token forKey:@"securitytoken"];
+    [parameters setValue:@"manageattach" forKey:@"do"];
+    [parameters setValue:[NSString stringWithFormat:@"%d", threadId] forKey:@"t"];
+    NSString * formID = [NSString stringWithFormat:@"%d", fId];
+    [parameters setValue:formID forKey:@"f"];
+    [parameters setValue:@"" forKey:@"p"];
+    [parameters setValue:postTime forKey:@"poststarttime"];
+    
+    [parameters setValue:@"0" forKey:@"editpost"];
+    [parameters setValue:hash forKey:@"posthash"];
+    
+    [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
+    [parameters setValue:@"上传" forKey:@"upload"];
+    
+    NSString * name = [NSString stringWithFormat:@"CCF_CLIENT_%f.jpg", [[NSDate date] timeIntervalSince1970]];
+    
+    [parameters setValue:name forKey:@"attachment[]"];
+
+    [parameters setValue:@"" forKey:@"attachmenturl[]"];
+    
+    
+    for (NSString *param in parameters) {
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", param] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"%@\r\n", [parameters objectForKey:param]] dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    
+    
+    // add image data
+    if (imageData) {
+        
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", @"attachment[]", name] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:imageData];
+        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    // set the content-length
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[body length]];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if(data.length > 0) {
+            //success
+            NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            callback(YES, responseString);
+        } else{
+            callback(NO, @"failed");
+        }
+    }];
+}
 
 
 

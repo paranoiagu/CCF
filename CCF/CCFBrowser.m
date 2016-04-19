@@ -949,6 +949,10 @@
     
     NSString * url = [NSString stringWithFormat:@"https://bbs.et8.net/bbs/newreply.php?do=postreply&t=%d", threadId];
     
+    if ([NSUserDefaults standardUserDefaults].isSignatureEnabled) {
+        message = [message stringByAppendingString:[self buildSignature]];
+    }
+
     
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     [parameters setValue:message forKey:@"message"];
@@ -1035,6 +1039,7 @@
                             // 更新token
                             uploadImageToken = [parser parseSecurityToken:uploadResultHtml];
                             
+                            NSLog(@"%@\n\n\n\n\n\n\n\n\n\n\n\n\n", uploadResultHtml);
                             if (i == images.count -1) {
                                 [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:token posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
                                     if (isSuccess) {

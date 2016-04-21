@@ -14,6 +14,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <SVProgressHUD.h>
 #import "CCFUtils.h"
+#import "LCActionSheet.h"
 
 
 @interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, TransValueDelegate, DeleteDelegate>{
@@ -210,6 +211,7 @@
         return;
     }    
     [SVProgressHUD showWithStatus:@"正在发送" maskType:SVProgressHUDMaskTypeBlack];
+    
     NSMutableArray<NSData*> * uploadData = [NSMutableArray array];
     for (UIImage * image in images) {
         NSData * data = UIImageJPEGRepresentation(image, 1.0);
@@ -218,11 +220,9 @@
     
     [_api createNewThreadWithFormId:transForm.formId withSubject:title andMessage:message withImages:[uploadData copy] handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
-            NSLog(@"createNewThreadWithFormId %@", @"发帖成功");
             [SVProgressHUD showSuccessWithStatus:@"发帖成功" maskType:SVProgressHUDMaskTypeBlack];
         } else{
-            NSLog(@"createNewThreadWithFormId %@", message);
-            [SVProgressHUD showErrorWithStatus:@"发帖成功" maskType:SVProgressHUDMaskTypeBlack];
+            [SVProgressHUD showErrorWithStatus:@"发帖失败" maskType:SVProgressHUDMaskTypeBlack];
         }
     }];
 
@@ -234,34 +234,19 @@
 
 - (IBAction)pickPhoto:(id)sender {
     
-    UIAlertController * insertPhotoController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction *photo = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //设置照片源
-        [pickControl setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-        
-        [self presentViewController:pickControl animated:YES completion:nil];
+    LCActionSheet *itemActionSheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"相册", @"拍照"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+        if (buttonIndex == 0) {
+            [pickControl setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+            
+            [self presentViewController:pickControl animated:YES completion:nil];
+        } else if (buttonIndex == 1){
+            [pickControl setSourceType:UIImagePickerControllerSourceTypeCamera];
+            
+            [self presentViewController:pickControl animated:YES completion:nil];
+        }
     }];
     
-    UIAlertAction *camera = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //设置照片源
-        [pickControl setSourceType:UIImagePickerControllerSourceTypeCamera];
-        
-        [self presentViewController:pickControl animated:YES completion:nil];
-        
-    }];
-    
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        
-    }];
-    
-    
-    [insertPhotoController addAction:photo];
-    [insertPhotoController addAction:camera];
-    [insertPhotoController addAction:cancel];
-    
-    [self presentViewController:insertPhotoController animated:YES completion:nil];
+    [itemActionSheet show];
 
 }
 @end

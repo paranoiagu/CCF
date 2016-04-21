@@ -13,6 +13,7 @@
 #import "CCFForm.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <SVProgressHUD.h>
+#import "CCFUtils.h"
 
 
 @interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, TransValueDelegate, DeleteDelegate>{
@@ -157,7 +158,8 @@
     [self fileSizeAtPath:selectUrl];
     
     
-    [images addObject:select];
+    UIImage * scaleImage = [CCFUtils scaleUIImage:select andMaxSize:CGSizeMake(800, 800)];
+    [images addObject:scaleImage];
     
     
     [_selectPhotos reloadData];
@@ -204,10 +206,10 @@
     NSString *message = self.message.text;
     
     if (title.length < 1) {
-        [SVProgressHUD showErrorWithStatus:@"标题太短"];
+        [SVProgressHUD showErrorWithStatus:@"标题太短" maskType:SVProgressHUDMaskTypeBlack];
         return;
     }    
-    [SVProgressHUD showWithStatus:@"正在发送"];
+    [SVProgressHUD showWithStatus:@"正在发送" maskType:SVProgressHUDMaskTypeBlack];
     NSMutableArray<NSData*> * uploadData = [NSMutableArray array];
     for (UIImage * image in images) {
         NSData * data = UIImageJPEGRepresentation(image, 1.0);
@@ -217,10 +219,10 @@
     [_api createNewThreadWithFormId:transForm.formId withSubject:title andMessage:message withImages:[uploadData copy] handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             NSLog(@"createNewThreadWithFormId %@", @"发帖成功");
-            [SVProgressHUD showSuccessWithStatus:@"发帖成功"];
+            [SVProgressHUD showSuccessWithStatus:@"发帖成功" maskType:SVProgressHUDMaskTypeBlack];
         } else{
             NSLog(@"createNewThreadWithFormId %@", message);
-            [SVProgressHUD showErrorWithStatus:@"发帖成功"];
+            [SVProgressHUD showErrorWithStatus:@"发帖成功" maskType:SVProgressHUDMaskTypeBlack];
         }
     }];
 

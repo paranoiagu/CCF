@@ -15,6 +15,7 @@
 #import <SVProgressHUD.h>
 #import "CCFUtils.h"
 #import "LCActionSheet.h"
+#import "ActionSheetStringPicker.h"
 
 
 @interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, TransValueDelegate, DeleteDelegate>{
@@ -248,5 +249,25 @@
     
     [itemActionSheet show];
 
+}
+- (IBAction)showCategory:(UIButton*)sender {
+    NSArray * categorys = @[@"【分享】", @"【推荐】",@"【求助】",@"【注意】",@"【ＣＸ】",@"【高兴】",@"【难过】",@"【转帖】",@"【原创】",@"【讨论】"];
+    ActionSheetStringPicker * picker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择分类" rows:categorys initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        self.subject.text = [NSString stringWithFormat:@"%@%@", self.subject.text, categorys[selectedIndex]];
+        
+    } cancelBlock:^(ActionSheetStringPicker *picker) {
+
+    } origin:sender];
+    
+    UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc] init];
+    cancelItem.title = @"取消";
+    [picker setCancelButton:cancelItem];
+    
+    UIBarButtonItem * queding = [[UIBarButtonItem alloc] init];
+    queding.title = @"确定";
+    [picker setDoneButton:queding];
+    
+    
+    [picker showActionSheetPicker];
 }
 @end

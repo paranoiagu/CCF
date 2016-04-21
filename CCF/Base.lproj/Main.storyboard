@@ -463,10 +463,10 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="标题:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G9m-d8-4BV">
-                                <rect key="frame" x="20" y="14" width="560" height="30"/>
+                                <rect key="frame" x="74" y="14" width="506" height="30"/>
                                 <color key="backgroundColor" white="0.95026939655172415" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1Z3-bz-4X2"/>
+                                    <constraint firstAttribute="height" constant="30" id="gja-AQ-vqa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -522,21 +522,33 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgS-Gn-TxU">
+                                <rect key="frame" x="20" y="14" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="Tcj-Bp-vLF"/>
+                                </constraints>
+                                <state key="normal" title="分类"/>
+                                <connections>
+                                    <action selector="showCategory:" destination="pXN-Qw-w0b" eventType="touchUpInside" id="JLp-hg-Yfn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="G9m-d8-4BV" firstAttribute="top" secondItem="e5j-8u-NEf" secondAttribute="bottom" constant="14" id="6L8-OJ-oki"/>
+                            <constraint firstItem="G9m-d8-4BV" firstAttribute="leading" secondItem="vgS-Gn-TxU" secondAttribute="trailing" constant="8" id="3SX-HJ-Edq"/>
+                            <constraint firstItem="vgS-Gn-TxU" firstAttribute="top" secondItem="e5j-8u-NEf" secondAttribute="bottom" constant="14" id="6VW-45-Myb"/>
                             <constraint firstItem="BTe-LE-Lmy" firstAttribute="top" secondItem="ZRv-YF-VH8" secondAttribute="bottom" id="8wQ-pN-jGX"/>
                             <constraint firstAttribute="leadingMargin" secondItem="lnk-2g-A1b" secondAttribute="leading" id="9Lm-Gn-bY6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CrH-wA-AVZ" secondAttribute="trailing" id="FFA-GU-euN"/>
                             <constraint firstItem="ZRv-YF-VH8" firstAttribute="top" secondItem="CrH-wA-AVZ" secondAttribute="bottom" id="JED-UQ-OFJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="G9m-d8-4BV" secondAttribute="trailing" id="M7D-te-gpB"/>
+                            <constraint firstItem="lnk-2g-A1b" firstAttribute="top" secondItem="G9m-d8-4BV" secondAttribute="bottom" constant="8" id="P9z-HN-lEQ"/>
+                            <constraint firstItem="G9m-d8-4BV" firstAttribute="top" secondItem="e5j-8u-NEf" secondAttribute="bottom" constant="14" id="PT5-yj-XwQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lnk-2g-A1b" secondAttribute="trailing" id="UUh-dX-24Q"/>
                             <constraint firstItem="CrH-wA-AVZ" firstAttribute="top" secondItem="lnk-2g-A1b" secondAttribute="bottom" constant="8" id="V49-yS-Hhl"/>
-                            <constraint firstItem="lnk-2g-A1b" firstAttribute="top" secondItem="G9m-d8-4BV" secondAttribute="bottom" constant="8" id="VYK-ni-TjY"/>
                             <constraint firstItem="ZRv-YF-VH8" firstAttribute="leading" secondItem="AJH-d0-yHy" secondAttribute="leadingMargin" constant="-20" id="l1W-fF-81V"/>
                             <constraint firstAttribute="leadingMargin" secondItem="CrH-wA-AVZ" secondAttribute="leading" id="lvd-MM-5uz"/>
-                            <constraint firstItem="G9m-d8-4BV" firstAttribute="trailing" secondItem="AJH-d0-yHy" secondAttribute="trailingMargin" id="q7s-ji-OSJ"/>
-                            <constraint firstItem="G9m-d8-4BV" firstAttribute="leading" secondItem="AJH-d0-yHy" secondAttribute="leadingMargin" id="xxb-Cc-dQm"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="vgS-Gn-TxU" secondAttribute="leading" id="qzu-eH-cSJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZRv-YF-VH8" secondAttribute="trailing" constant="-20" id="zlz-b8-Z4E"/>
                         </constraints>
                     </view>

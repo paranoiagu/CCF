@@ -24,5 +24,6 @@
 
 
 @property (weak, nonatomic) IBOutlet UICollectionView *selectPhotos;
+- (IBAction)showCategory:(UIButton*)sender;
 
 @end

@@ -12,6 +12,7 @@
 #import <UIImageView+AFNetworking.h>
 #import "CCFUrlBuilder.h"
 #import "CCFCoreDataManager.h"
+#import "CCFNSAttributedStringBuilder.h"
 #import "CCFUserEntry+CoreDataProperties.h"
 
 @implementation CCFShowPMTableViewCell{
@@ -88,42 +89,9 @@
 
 - (NSAttributedString *)showHtml:(NSString *)html{
     
-    NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
-    
-    // Create attributed string from HTML
+    CCFNSAttributedStringBuilder * builder = [[CCFNSAttributedStringBuilder alloc] init];
     CGSize maxImageSize = CGSizeMake(self.window.bounds.size.width - 20.0, self.window.bounds.size.height - 20.0);
-    
-    // example for setting a willFlushCallback, that gets called before elements are written to the generated attributed string
-    void (^callBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement *element) {
-        
-        // the block is being called for an entire paragraph, so we check the individual elements
-        
-        for (DTHTMLElement *oneChildElement in element.childNodes)
-        {
-            // if an element is larger than twice the font size put it in it's own block
-            if (oneChildElement.displayStyle == DTHTMLElementDisplayStyleInline && oneChildElement.textAttachment.displaySize.height > 2.0 * oneChildElement.fontDescriptor.pointSize)
-            {
-                oneChildElement.displayStyle = DTHTMLElementDisplayStyleBlock;
-                oneChildElement.paragraphStyle.minimumLineHeight = element.textAttachment.displaySize.height;
-                oneChildElement.paragraphStyle.maximumLineHeight = element.textAttachment.displaySize.height;
-            }
-        }
-    };
-    
-    NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithFloat:1.25], NSTextSizeMultiplierDocumentOption,
-                                    [NSValue valueWithCGSize:maxImageSize], DTMaxImageSize,
-                                    @"Helvetica Neue", DTDefaultFontFamily,
-                                    @"gray", DTDefaultLinkColor,
-                                    @"blue", DTDefaultLinkHighlightColor,
-                                    callBackBlock,DTWillFlushBlockCallBack, nil];
-    
-    
-    //[options setObject:[NSURL fileURLWithPath:readmePath] forKey:NSBaseURLDocumentOption];
-    
-    NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
-    
-    return string;
+    return [builder buildNSAttributedString:html withImageSize:maxImageSize];
 }
 
 //#pragma mark DTAttributedTextContentViewDelegate

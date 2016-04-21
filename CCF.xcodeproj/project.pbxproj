@@ -93,6 +93,7 @@
 		4D339D991C31454A0022A6A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D971C31454A0022A6A4 /* Main.storyboard */; };
 		4D339D9E1C31454B0022A6A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D9D1C31454B0022A6A4 /* Assets.xcassets */; };
 		4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */; };
+		4D60F3301CC89D01007FFD5A /* CCFNSAttributedStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60F32F1CC89D01007FFD5A /* CCFNSAttributedStringBuilder.m */; };
 		4D6B11C81C9A536600E073A1 /* CCFSimpleThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6B11C71C9A536600E073A1 /* CCFSimpleThread.m */; };
 		4D6B11CB1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6B11CA1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m */; };
 		4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796B5F1C3BC17800B3C62D /* DrawerView.m */; };
@@ -294,6 +295,8 @@
 		4D339D9D1C31454B0022A6A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D339DA01C31454B0022A6A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D339DA21C31454B0022A6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D60F32E1CC89D01007FFD5A /* CCFNSAttributedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFNSAttributedStringBuilder.h; sourceTree = "<group>"; };
+		4D60F32F1CC89D01007FFD5A /* CCFNSAttributedStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFNSAttributedStringBuilder.m; sourceTree = "<group>"; };
 		4D6B11C61C9A536600E073A1 /* CCFSimpleThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSimpleThread.h; sourceTree = "<group>"; };
 		4D6B11C71C9A536600E073A1 /* CCFSimpleThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSimpleThread.m; sourceTree = "<group>"; };
 		4D6B11C91C9A582100E073A1 /* CCFSimpleThreadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSimpleThreadTableViewCell.h; sourceTree = "<group>"; };
@@ -429,6 +432,8 @@
 				3A8E054D1CC35515003D0D90 /* UILouCengLabel.m */,
 				3A8E054F1CC367AE003D0D90 /* UIPageLabel.h */,
 				3A8E05501CC367AE003D0D90 /* UIPageLabel.m */,
+				4D60F32E1CC89D01007FFD5A /* CCFNSAttributedStringBuilder.h */,
+				4D60F32F1CC89D01007FFD5A /* CCFNSAttributedStringBuilder.m */,
 			);
 			name = Widgets;
 			sourceTree = "<group>";
@@ -1013,6 +1018,7 @@
 				3A2FCC771C953FCD00B469E4 /* UICircleImageView.m in Sources */,
 				4D852A231C991B59009121B2 /* CCFForumDisplayPage.m in Sources */,
 				3A3672B41CB0040600756D8B /* NSUserDefaults+Setting.m in Sources */,
+				4D60F3301CC89D01007FFD5A /* CCFNSAttributedStringBuilder.m in Sources */,
 				4D32560D1C4754E700053288 /* SelectPhotoCollectionViewCell.m in Sources */,
 				4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */,
 				3A671EEC1CB9EEF1001CC91E /* UICircleButton.m in Sources */,

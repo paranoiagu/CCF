@@ -161,11 +161,12 @@
     };
     
     NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithFloat:1.25], NSTextSizeMultiplierDocumentOption,
+                                    [NSNumber numberWithFloat:1.4], NSTextSizeMultiplierDocumentOption,
                                     [NSValue valueWithCGSize:maxImageSize], DTMaxImageSize,
                                     @"Helvetica Neue", DTDefaultFontFamily,
                                     @"gray", DTDefaultLinkColor,
                                     @"blue", DTDefaultLinkHighlightColor,
+                                    @(1.2), DTDefaultLineHeightMultiplier,
                                     callBackBlock,DTWillFlushBlockCallBack, nil];
     
     

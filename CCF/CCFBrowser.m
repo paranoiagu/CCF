@@ -443,6 +443,10 @@
     [parameters setValue:hash forKey:@"posthash"];
     [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
     [parameters setValue:@"上传" forKey:@"upload"];
+    NSString * name = [NSString stringWithFormat:@"CCF_CLIENT_%f.jpg", [[NSDate date] timeIntervalSince1970]];
+    
+    [parameters setValue:name forKey:@"attachment[]"];
+    
     [parameters setValue:@"" forKey:@"attachmenturl[]"];
     
     
@@ -515,7 +519,7 @@
     NSString * cookie = [self loadCookie];
     [request setValue:cookie forHTTPHeaderField:@"Cookie"];
     
-    NSString *boundary = @"----WebKitFormBoundaryuMLI1FFamzkfbSe5";
+    NSString *boundary = [NSString stringWithFormat:@"----WebKitFormBoundary%@", [self uploadParamDivider]];
     
     // set Content-Type in HTTP header
     NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
@@ -544,7 +548,12 @@
     [parameters setValue:hash forKey:@"posthash"];
     [parameters setValue:@"16777216" forKey:@"MAX_FILE_SIZE"];
     [parameters setValue:@"上传" forKey:@"upload"];
-    NSString * name = [NSString stringWithFormat:@"CCF_CL_ENT_%f", [[NSDate date] timeIntervalSince1970]];
+    
+    
+    NSString * name = [NSString stringWithFormat:@"CCF_CLIENT_%f.jpg", [[NSDate date] timeIntervalSince1970]];
+    
+    [parameters setValue:name forKey:@"attachment[]"];
+    
     [parameters setValue:name forKey:@"attachmenturl[]"];
     
 
@@ -559,9 +568,8 @@
     // add image data
     if (imageData) {
         
-        float date = [[NSDate date] timeIntervalSince1970];
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%f.jpg\"\r\n", @"attachment[]", date] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", @"attachment[]", name] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:imageData];
         [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -1039,9 +1047,11 @@
                             // 更新token
                             uploadImageToken = [parser parseSecurityToken:uploadResultHtml];
                             
+                            NSLog(@" 上传第 %d 张图片", i);
+                            
                             NSLog(@"%@\n\n\n\n\n\n\n\n\n\n\n\n\n", uploadResultHtml);
                             if (i == images.count -1) {
-                                [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:token posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
+                                [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:uploadImageToken posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
                                     if (isSuccess) {
                                         handler(YES,result);
                                     } else{

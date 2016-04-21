@@ -43,9 +43,10 @@
                                     callBackBlock,DTWillFlushBlockCallBack, nil];
     
     
-    //[options setObject:[NSURL fileURLWithPath:readmePath] forKey:NSBaseURLDocumentOption];
+    [options setObject:[NSURL URLWithString:@"https://bbs.et8.net/bbs/"] forKey:NSBaseURLDocumentOption];
     
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
+    
     
     
     return string;

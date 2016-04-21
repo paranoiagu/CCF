@@ -351,6 +351,7 @@
                 for (int i = 0; i < images.count && uploadSuccess; i++) {
                     NSData * image = images[i];
                     
+                    [NSThread sleepForTimeInterval:3.0f];
                     [self uploadImage:[CCFUrlBuilder buildUploadFileURL] :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id result) {
                         uploadSuccess = isSuccess;
                         
@@ -1049,8 +1050,8 @@
                             
                             NSLog(@" 上传第 %d 张图片", i);
                             
-                            NSLog(@"%@\n\n\n\n\n\n\n\n\n\n\n\n\n", uploadResultHtml);
                             if (i == images.count -1) {
+                                [NSThread sleepForTimeInterval:3.0f];
                                 [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:uploadImageToken posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
                                     if (isSuccess) {
                                         handler(YES,result);

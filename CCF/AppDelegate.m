@@ -32,6 +32,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [AVOSCloud setApplicationId:@"x67DOcrRJjpYs5Qb6H13PrMY-gzGzoHsz" clientKey:@"LGvFICq1HK7z01ybiNQcDQNu"];
+    
+    
+    
+    
     DB_VERSION = 2;
     
     
@@ -126,7 +131,21 @@
 }
 
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
+    NSLog(@"My token is:%@", token);
+    
     [AVOSCloudIM handleRemoteNotificationsWithDeviceToken:deviceToken];
+    [AVOSCloudIM handleRemoteNotificationsWithDeviceToken:deviceToken constructingInstallationWithBlock:^(AVInstallation *currentInstallation) {
+        currentInstallation.deviceProfile = @"devPush";
+    }];
+    
+    AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        BOOL isSuccess = succeeded;
+        
+        NSLog(@"Error-------> :%@", error);
+    }];
 }
 
 

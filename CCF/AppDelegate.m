@@ -16,6 +16,9 @@
 #import "NSUserDefaults+CCF.h"
 #import "ApiTestViewController.h"
 #import "NSUserDefaults+Setting.h"
+#import <AVOSCloud.h>
+#import <AVOSCloudIM.h>
+
 
 
 @interface AppDelegate (){
@@ -117,9 +120,15 @@
     }
 
 
+    [AVOSCloudIM registerForRemoteNotification];
     
     return YES;
 }
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    [AVOSCloudIM handleRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
 
 - (NSArray*) flatForm:(CCFForm*) form{
     NSMutableArray * resultArray = [NSMutableArray array];

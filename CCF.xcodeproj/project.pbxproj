@@ -882,6 +882,11 @@
 					4D339D8A1C31454A0022A6A4 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = NRHHX365ZN;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -1230,6 +1235,7 @@
 				INFOPLIST_FILE = CCF/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.andforce.et8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

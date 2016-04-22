@@ -15,6 +15,9 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - AVOSCloud (3.2.7)
+  - AVOSCloudIM (3.2.7):
+    - AVOSCloud
   - CocoaLumberjack (2.0.3):
     - CocoaLumberjack/Default (= 2.0.3)
     - CocoaLumberjack/Extensions (= 2.0.3)
@@ -56,6 +59,8 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0
   - AFNetworking (~> 3.1.0)
+  - AVOSCloud
+  - AVOSCloudIM
   - DTCoreText (~> 1.6.17)
   - FDFullscreenPopGesture (= 1.1)
   - IGHTMLQuery (~> 0.8.4)
@@ -70,6 +75,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 8312778b6815578e6a86d630fbcf31dc94c534e7
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AVOSCloud: 957d1508104d7c8ed501df9d9b734d7a98c2e047
+  AVOSCloudIM: ec08eaec4d27d732e3be93eadeb3bcf1355b5dcf
   CocoaLumberjack: f58d8a19629f4d8379ae14bb3534def24161430e
   CSSSelectorConverter: 00680dc04a48b74c7a8f792928b89e9f3def9970
   DTCoreText: 3ea8bba23dd2141ba18adb227a7dd33a822df1c4

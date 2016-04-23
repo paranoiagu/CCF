@@ -34,7 +34,7 @@
     
     
     // 这地方要换成你自己的ID，别用我这个，否则签名不对你也无法收到推送
-    //[AVOSCloud setApplicationId:@"x67DOcrRJjpYs5Qb6H13PrMY-gzGzoHsz" clientKey:@"LGvFICq1HK7z01ybiNQcDQNu"];
+    [AVOSCloud setApplicationId:@"" clientKey:@""];
     
     application.applicationIconBadgeNumber = 0;
     

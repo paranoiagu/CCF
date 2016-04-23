@@ -669,6 +669,7 @@
                                                     </constraints>
                                                     <connections>
                                                         <action selector="showUserProfile:" destination="oXX-AQ-Zeh" eventType="touchUpInside" id="fTL-OJ-jzs"/>
+                                                        <segue destination="Kd2-6b-uhY" kind="show" identifier="ShowUserProfile" id="8yZ-lk-mNR"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -2945,10 +2946,10 @@
         <image name="paperclip.gif" width="10" height="13"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2Ik-S0-l6f"/>
+        <segue reference="8yZ-lk-mNR"/>
+        <segue reference="mAb-gQ-mZT"/>
         <segue reference="ezQ-PD-8mT"/>
-        <segue reference="Qk9-TF-3w3"/>
-        <segue reference="Vok-Rm-1py"/>
         <segue reference="jGj-df-43N"/>
+        <segue reference="Vok-Rm-1py"/>
     </inferredMetricsTieBreakers>
 </document>

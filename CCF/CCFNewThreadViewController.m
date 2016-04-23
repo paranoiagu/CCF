@@ -222,6 +222,7 @@
     [_api createNewThreadWithFormId:transForm.formId withSubject:title andMessage:message withImages:[uploadData copy] handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"发帖成功" maskType:SVProgressHUDMaskTypeBlack];
+            [self.navigationController popViewControllerAnimated:YES];
         } else{
             [SVProgressHUD showErrorWithStatus:@"发帖失败" maskType:SVProgressHUDMaskTypeBlack];
         }

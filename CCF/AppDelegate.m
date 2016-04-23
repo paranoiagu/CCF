@@ -32,9 +32,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [AVOSCloud setApplicationId:@"x67DOcrRJjpYs5Qb6H13PrMY-gzGzoHsz" clientKey:@"LGvFICq1HK7z01ybiNQcDQNu"];
     
+    // 这地方要换成你自己的ID，别用我这个，否则签名不对你也无法收到推送
+    //[AVOSCloud setApplicationId:@"x67DOcrRJjpYs5Qb6H13PrMY-gzGzoHsz" clientKey:@"LGvFICq1HK7z01ybiNQcDQNu"];
     
+    application.applicationIconBadgeNumber = 0;
     
     
     DB_VERSION = 2;
@@ -131,14 +133,8 @@
 }
 
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
-    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
-    NSLog(@"My token is:%@", token);
-    
-    [AVOSCloudIM handleRemoteNotificationsWithDeviceToken:deviceToken];
-    [AVOSCloudIM handleRemoteNotificationsWithDeviceToken:deviceToken constructingInstallationWithBlock:^(AVInstallation *currentInstallation) {
-        currentInstallation.deviceProfile = @"devPush";
-    }];
-    
+
+    // 首先要想LeanCloud保存installation
     AVInstallation *currentInstallation = [AVInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -146,7 +142,40 @@
         
         NSLog(@"Error-------> :%@", error);
     }];
+    
+    // 向系统申请推送服务
+    [AVOSCloudIM handleRemoteNotificationsWithDeviceToken:deviceToken];
+
+    
+    
+
 }
+
+
+
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    
+    
+    if (application.applicationState == UIApplicationStateActive) {
+        // 转换成一个本地通知，显示到通知栏，你也可以直接显示出一个 alertView，只是那样稍显 aggressive：）
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.userInfo = userInfo;
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+        localNotification.alertBody = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+        localNotification.fireDate = [NSDate date];
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>   didReceiveRemoteNotification   createLocale");
+    } else {
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>   didReceiveRemoteNotification  remote");
+        [AVAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+    }
+}
+
+
+
+
+
 
 
 - (NSArray*) flatForm:(CCFForm*) form{

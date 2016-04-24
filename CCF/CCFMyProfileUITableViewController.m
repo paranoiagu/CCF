@@ -18,8 +18,9 @@
 #import "CCFMyProfileUITableViewController.h"
 #import "CCFNavigationController.h"
 #import "CCFSettingTableViewController.h"
-
+#import "LoginViewController.h"
 #import "UIStoryboard+CCF.h"
+#import "NSUserDefaults+CCF.h"
 
 @interface CCFMyProfileUITableViewController (){
     CCFUserProfile * userProfile;
@@ -131,6 +132,23 @@
         
         
     } else if (indexPath.row == 1){
+        
+        [[NSUserDefaults standardUserDefaults] clearCookie];
+        
+        NSURL *url = [NSURL URLWithString:@"https://bbs.et8.net/bbs"];
+        if (url) {
+            NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
+            for (int i = 0; i < [cookies count]; i++) {
+                NSHTTPCookie *cookie = (NSHTTPCookie *)[cookies objectAtIndex:i];
+                [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+            }
+        }
+        
+        
+        LoginViewController * rootController = [[LoginViewController alloc] init];
+        
+        UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
+        [stortboard changeRootViewControllerToController:rootController];
         
     } else if (indexPath.row == 2){
         

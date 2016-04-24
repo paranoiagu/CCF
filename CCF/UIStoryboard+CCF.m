@@ -39,4 +39,21 @@
                     completion:nil];
 }
 
+-(void)changeRootViewControllerToController:(UIViewController *)controller{
+    
+    [[UIApplication sharedApplication].keyWindow setRootViewController:controller];
+    
+    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    
+    [UIView transitionWithView:app.window
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionFlipFromTop
+                    animations:^{
+                        app.window.rootViewController = controller;
+                    }
+                    completion:nil];
+}
+
+
+
 @end

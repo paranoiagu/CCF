@@ -21,4 +21,8 @@
 
 -(void) changeRootViewControllerTo:(NSString *)identifier;
 
+-(void) changeRootViewControllerToController:(UIViewController *)controller;
+
+
+
 @end

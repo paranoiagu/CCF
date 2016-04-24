@@ -47,14 +47,18 @@
     
     if (API_DEBUG) {
         
+        NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
+        
+        NSString * versionCode = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+        
+        
         ApiTestViewController * testController = [[ApiTestViewController alloc] init];
         self.window.rootViewController = testController;
         return YES;
     }
     
-    NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
-    
-    NSString * versionCode = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+
+
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];//Documents目录
@@ -138,9 +142,11 @@
     AVInstallation *currentInstallation = [AVInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        BOOL isSuccess = succeeded;
-        
-        NSLog(@"Error-------> :%@", error);
+
+        if (!succeeded) {
+            NSLog(@"Error-------> :%@", error);
+        }
+
     }];
     
     // 向系统申请推送服务

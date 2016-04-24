@@ -113,9 +113,10 @@
             
             NSLog( @"showAvatar abs -> %@", [avatarUrl absoluteString]);
             
-            if (NO) {
+            if (/* DISABLES CODE */ (NO)) {
                 NSString *cacheImageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:avatarUrl];
                 NSString *cacheImagePath = [[SDImageCache sharedImageCache] defaultCachePathForKey:cacheImageKey];
+                NSLog(@"cache_image_path %@", cacheImagePath);
             }
 
 

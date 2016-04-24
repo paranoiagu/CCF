@@ -214,6 +214,8 @@
 		3A690A471C3792D00076C8F1 /* CCFThreadDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCFThreadDetailCell.xib; sourceTree = "<group>"; };
 		3A734BDD1CCC63B300C4821A /* UILoginBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILoginBgView.h; sourceTree = "<group>"; };
 		3A734BDE1CCC63B300C4821A /* UILoginBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILoginBgView.m; sourceTree = "<group>"; };
+		3A734BE01CCCACD700C4821A /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		3A734BE11CCCADF500C4821A /* CCFPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCFPCH.pch; sourceTree = "<group>"; };
 		3A7569AB1C42B179000486F4 /* CCFFavFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFFavFormController.h; sourceTree = "<group>"; };
 		3A7569AC1C42B179000486F4 /* CCFFavFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFFavFormController.m; sourceTree = "<group>"; };
 		3A83BD1E1CC9238E00E7ADE0 /* UIAutoResizeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAutoResizeTextField.h; sourceTree = "<group>"; };
@@ -741,6 +743,8 @@
 				4D796BE31C437C5000B3C62D /* NSString+Regular.m */,
 				4D796C031C460D4200B3C62D /* NSUserDefaults+CCF.h */,
 				4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */,
+				3A734BE01CCCACD700C4821A /* Constants.h */,
+				3A734BE11CCCADF500C4821A /* CCFPCH.pch */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1215,6 +1219,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_PREFIX_HEADER = CCF/CCFPCH.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1239,6 +1244,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_PREFIX_HEADER = CCF/CCFPCH.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",

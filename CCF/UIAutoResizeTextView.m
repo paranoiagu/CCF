@@ -1,12 +1,12 @@
 //
-//  UIAutoResizeTextField.m
+//  UIAutoResizeTextView.m
 //  CCF
 //
-//  Created by 迪远 王 on 16/4/21.
+//  Created by 迪远 王 on 16/4/24.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "UIAutoResizeTextField.h"
+#import "UIAutoResizeTextView.h"
 
 @implementation UIAutoResizeTextView{
     CGRect screenSize;
@@ -22,7 +22,7 @@
 - (void)keyboardWillShow:(id)sender {
     
     CGRect keyboardFrame;
-
+    
     
     [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
     
@@ -31,7 +31,7 @@
         
         CGRect frame = self.frame;
         float screenHeight = CGRectGetHeight(screenSize);
-
+        
         float keyboardHeight = CGRectGetHeight(keyboardFrame);
         
         float fieldHeight  = screenHeight - 64 - keyboardHeight;
@@ -66,5 +66,4 @@
     }];
     
 }
-
 @end

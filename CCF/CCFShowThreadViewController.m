@@ -218,8 +218,7 @@
             headerView.pageNumber.text = [NSString stringWithFormat:@"PAGE %ld", sectionNumber];
             
             [self.pageNumber setTitle:title];
-            
-            NSLog( @"scrollViewDidScrollscrollViewDidScrollscrollViewDidScroll &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& %@" ,title);
+
         }
     }
 

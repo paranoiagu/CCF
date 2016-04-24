@@ -7,16 +7,23 @@
 //
 
 #import "UIAutoResizeTextView.h"
+#import "CCFPCH.pch"
 
 @implementation UIAutoResizeTextView{
-    CGRect screenSize;
+    float topY;
 }
 
 -(void)didMoveToSuperview{
-    screenSize = [UIScreen mainScreen].bounds;
+    topY = self.frame.origin.y + 64 + 10;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
+    
+    
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)keyboardWillShow:(id)sender {
@@ -30,11 +37,10 @@
     [UIView animateWithDuration:0.3 animations:^{
         
         CGRect frame = self.frame;
-        float screenHeight = CGRectGetHeight(screenSize);
         
         float keyboardHeight = CGRectGetHeight(keyboardFrame);
         
-        float fieldHeight  = screenHeight - 64 - keyboardHeight;
+        float fieldHeight  = SCREEN_HEIGHT - topY - keyboardHeight;
         
         frame.size.height = fieldHeight;
         
@@ -49,15 +55,13 @@
     
     [[[((NSNotification *)sender) userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
     
-    
-    
+
     [UIView animateWithDuration:0.3 animations:^{
         
         CGRect frame = self.frame;
         
-        float screenHeight = CGRectGetHeight(screenSize);
         
-        float fieldHeight  = screenHeight - 64;
+        float fieldHeight  = SCREEN_HEIGHT - topY;
         
         frame.size.height = fieldHeight;
         

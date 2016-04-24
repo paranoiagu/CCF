@@ -12,8 +12,9 @@
 #import "MJRefresh.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "TransValueDelegate.h"
+#import "TransBundleUITableViewController.h"
 
-@interface CCFApiBaseTableViewController : UITableViewController
+@interface CCFApiBaseTableViewController : TransBundleUITableViewController
 
 
 @property (nonatomic, strong) CCFApi *ccfApi;

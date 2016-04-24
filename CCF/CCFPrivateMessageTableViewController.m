@@ -13,6 +13,8 @@
 #import "PrivateMessage.h"
 #import "CCFPage.h"
 #import "CCFProfileTableViewController.h"
+#import "CCFWritePMNavigationController.h"
+#import "UIStoryboard+CCF.h"
 
 @interface CCFPrivateMessageTableViewController ()<CCFThreadListCellDelegate>{
     int messageType;
@@ -154,5 +156,13 @@
 - (IBAction)showLeftDrawer:(id)sender {
     CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
     [rootController showLeftDrawer];
+}
+- (IBAction)writePrivateMessage:(UIBarButtonItem *)sender {
+    UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+    
+    CCFWritePMNavigationController * controller = [storyboard instantiateViewControllerWithIdentifier:@"CCFWritePMNavigationController"];
+    [self.navigationController presentViewController:controller animated:YES completion:^{
+        
+    }];
 }
 @end

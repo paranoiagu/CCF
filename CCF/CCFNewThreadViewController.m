@@ -10,21 +10,20 @@
 #import "CCFBrowser.h"
 #import "CCFApi.h"
 #import "SelectPhotoCollectionViewCell.h"
-#import "CCFForm.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <SVProgressHUD.h>
 #import "CCFUtils.h"
 #import "LCActionSheet.h"
 #import "ActionSheetStringPicker.h"
+#import "CCFNewThreadNavigationController.h"
 
 
-@interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, TransValueDelegate, DeleteDelegate>{
+@interface CCFNewThreadViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate>{
     
 
     CCFBrowser * broswer;
     CCFApi *_api;
-                                                        
-    CCFForm * transForm;
+
     UIImagePickerController *pickControl;
     
     
@@ -58,13 +57,6 @@
     
     images = [NSMutableArray array];
 }
-
-
--(void)transValue:(CCFForm *)value{
-    transForm = value;
-}
-
-
 
 
 - (long long) fileSizeAtPathWithString:(NSString*) filePath{
@@ -219,7 +211,8 @@
         [uploadData addObject:data];
     }
     
-    [_api createNewThreadWithFormId:transForm.formId withSubject:title andMessage:message withImages:[uploadData copy] handler:^(BOOL isSuccess, id message) {
+    int formId = [((CCFNewThreadNavigationController*)self.navigationController).bundle getIntValue:@"FORM_ID"];
+    [_api createNewThreadWithFormId:formId withSubject:title andMessage:message withImages:[uploadData copy] handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"发帖成功" maskType:SVProgressHUDMaskTypeBlack];
             [self.navigationController popViewControllerAnimated:YES];
@@ -231,7 +224,10 @@
 }
 
 - (IBAction)back:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (IBAction)pickPhoto:(id)sender {

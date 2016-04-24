@@ -18,7 +18,11 @@
 @property (nonatomic, strong) NSMutableArray * threadTopList;
 
 - (IBAction)back:(UIBarButtonItem *)sender;
+
+
 - (IBAction)createThread:(id)sender;
+
+
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleNavigationItem;
 
 @end

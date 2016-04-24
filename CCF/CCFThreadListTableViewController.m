@@ -18,6 +18,8 @@
 #import "CCFProfileTableViewController.h"
 #import "CCFThreadListForChildFormUITableViewController.h"
 #import "NSUserDefaults+Setting.h"
+#import "CCFNewThreadNavigationController.h"
+#import "UIStoryboard+CCF.h"
 #import <SVProgressHUD.h>
 
 
@@ -25,7 +27,7 @@
 #define TypePullRefresh 0
 #define TypeLoadMore 1
 
-@interface CCFThreadListTableViewController ()<TransValueDelegate, CCFThreadListCellDelegate>{
+@interface CCFThreadListTableViewController ()<TransValueDelegate, CCFThreadListCellDelegate, TransBundleDelegate>{
     CCFForm * transForm;
     
     NSArray * childForms;
@@ -234,6 +236,7 @@
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         
         CCFNewThreadViewController * newPostController = segue.destinationViewController;
+
         self.transValueDelegate = (id<TransValueDelegate>)newPostController;
         [self.transValueDelegate transValue:transForm];
         
@@ -292,6 +295,21 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)transBundle:(TransValueBundle *)bundle{
+    
+}
 - (IBAction)createThread:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard mainStoryboard];
+    
+    CCFNewThreadNavigationController * createController = [storyboard instantiateViewControllerWithIdentifier:@"CCFNewThreadNavigationController"];
+    self.transBundleDelegate = (id<TransBundleDelegate>)createController;
+    
+    TransValueBundle * bundle = [[TransValueBundle alloc] init];
+    [bundle putIntValue:transForm.formId forKey:@"FORM_ID"];
+    [self.transBundleDelegate transBundle:bundle];
+    
+    [self.navigationController presentViewController:createController animated:YES completion:^{
+        
+    }];
 }
 @end

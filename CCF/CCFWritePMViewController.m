@@ -11,9 +11,8 @@
 #import "TransValueDelegate.h"
 #import <SVProgressHUD.h>
 
-@interface CCFWritePMViewController ()<TransValueDelegate>{
-    CCFUserProfile *userProfile;
-}
+
+@interface CCFWritePMViewController ()
 
 @end
 
@@ -21,16 +20,17 @@
 
 @implementation CCFWritePMViewController
 
--(void)transValue:(id)value{
-    userProfile = value;
-}
+
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (userProfile != nil) {
-        self.toWho.text = userProfile.profileName;
+    NSString * profileName = nil;//[((CCFWritePMNavigationController*)self.navigationController).bundle getStringValue:@"PROFILE_NAME"];
+    
+    
+    if (profileName != nil) {
+        self.toWho.text = profileName;
         [self.privateMessageTitle becomeFirstResponder];
     } else{
         [self.toWho becomeFirstResponder];

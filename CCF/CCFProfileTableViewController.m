@@ -14,8 +14,9 @@
 #import "TransValueUITableViewCell.h"
 #import "CCFUserThreadTableViewController.h"
 #import "CCFPost.h"
-#import "CCFWritePMViewController.h"
+#import "CCFWritePMNavigationController.h"
 #import <UIImageView+WebCache.h>
+#import "UIStoryboard+CCF.h"
 
 @interface CCFProfileTableViewController ()<TransValueDelegate>{
     
@@ -141,13 +142,7 @@
         self.transValueDelegate = (id<TransValueDelegate>)controller;
         
         [self.transValueDelegate transValue:userProfile];
-    } else if ([segue.identifier isEqualToString:@"ShowCCFWritePMViewController"]){
-        CCFWritePMViewController * controller = segue.destinationViewController;
-        
-        self.transValueDelegate = (id<TransValueDelegate>)controller;
-        
-        [self.transValueDelegate transValue:userProfile];
-    }
+    } 
     
 }
 
@@ -187,6 +182,20 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if (indexPath.section == 1) {
+        CCFWritePMNavigationController * controller = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"CCFWritePMNavigationController"];
+        TransValueBundle * bundle = [[TransValueBundle alloc] init];
+        [bundle putStringValue:userProfile.profileName forKey:@"PROFILE_NAME"];
+        
+        self.transBundleDelegate = (id<TransBundleDelegate>)controller;
+        
+        [self.transBundleDelegate transBundle:bundle];
+        
+        [self.navigationController presentViewController:controller animated:YES completion:^{
+            
+        }];
+    }
 }
 
 

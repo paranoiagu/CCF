@@ -15,5 +15,6 @@
 - (IBAction)showLeftDrawer:(id)sender;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *messageSegmentedControl;
 
+- (IBAction)writePrivateMessage:(UIBarButtonItem *)sender;
 
 @end

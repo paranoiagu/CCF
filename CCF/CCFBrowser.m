@@ -351,11 +351,12 @@
                 for (int i = 0; i < images.count && uploadSuccess; i++) {
                     NSData * image = images[i];
                     
-                    [NSThread sleepForTimeInterval:3.0f];
+                    [NSThread sleepForTimeInterval:2.0f];
                     [self uploadImage:[CCFUrlBuilder buildUploadFileURL] :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id result) {
                         uploadSuccess = isSuccess;
                         
                         if (i == images.count -1) {
+                            [NSThread sleepForTimeInterval:2.0f];
                             [self doPostThread:fId withSubject:subject andMessage:message withToken:token withHash:hash postTime:time handler:^(BOOL isSuccess ,id result) {
                                 handler(isSuccess, result);
                             }];
@@ -1040,9 +1041,11 @@
                     NSString * uploadHash = [parser parsePostHash:result];
                     
                     __block BOOL uploadSuccess = YES;
-                    for (int i = 0; i < images.count && uploadSuccess; i++) {
+                    int uploadCount = (int)images.count;
+                    for (int i = 0; i < uploadCount && uploadSuccess; i++) {
                         NSData * image = images[i];
                         
+                        [NSThread sleepForTimeInterval:2.0f];
                         [self uploadImageForSeniorReply:uploadImageUrl :uploadImageToken fId:formId threadId:threadId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id uploadResultHtml) {
                             uploadSuccess = isSuccess;
                             // 更新token
@@ -1051,7 +1054,7 @@
                             NSLog(@" 上传第 %d 张图片", i);
                             
                             if (i == images.count -1) {
-                                [NSThread sleepForTimeInterval:3.0f];
+                                [NSThread sleepForTimeInterval:2.0f];
                                 [self seniorReplyWithThreadId:threadId andMessage:message securitytoken:uploadImageToken posthash:postHash poststarttime:postStartTime handler:^(BOOL isSuccess, id result) {
                                     if (isSuccess) {
                                         handler(YES,result);

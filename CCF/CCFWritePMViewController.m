@@ -8,7 +8,7 @@
 //
 
 #import "CCFWritePMViewController.h"
-#import "TransValueDelegate.h"
+#import "CCFWritePMNavigationController.h"
 #import <SVProgressHUD.h>
 
 
@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString * profileName = nil;//[((CCFWritePMNavigationController*)self.navigationController).bundle getStringValue:@"PROFILE_NAME"];
+    NSString * profileName = [((CCFWritePMNavigationController*)self.navigationController).bundle getStringValue:@"PROFILE_NAME"];
     
     
     if (profileName != nil) {
@@ -44,7 +44,9 @@
 
 
 - (IBAction)back:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (IBAction)sendPrivateMessage:(id)sender {

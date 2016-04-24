@@ -183,7 +183,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    if (indexPath.section == 1) {
+    if (indexPath.section == 1 && indexPath.row == 1) {
         CCFWritePMNavigationController * controller = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"CCFWritePMNavigationController"];
         TransValueBundle * bundle = [[TransValueBundle alloc] init];
         [bundle putStringValue:userProfile.profileName forKey:@"PROFILE_NAME"];

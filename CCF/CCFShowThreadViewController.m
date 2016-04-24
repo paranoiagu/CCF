@@ -132,15 +132,24 @@
                 currentPageNumber ++;
                 totalPageCount = (int)thread.totalPageCount;
                 
-                if (currentPageNumber >= totalPageCount) {
-                    [self showNoMoreDataView];
-                }
+
                 NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
 
 
                 currentThreadPage = thread;
                 
+                NSMutableArray<CCFPost *> * currentPosts = [postSet objectForKey:[NSNumber numberWithInt:currentPageNumber]];
+                if (currentPageNumber >= totalPageCount) {
+                    if (currentPosts != nil && currentPosts.count == parsedPosts.count) {
+                        [self showNoMoreDataView];
+                    }
+                    
+                }
                 [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPageNumber]];
+                
+                
+
+                
                 [self.tableView reloadData];
             }
             

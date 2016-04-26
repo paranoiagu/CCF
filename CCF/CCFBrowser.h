@@ -11,6 +11,7 @@
 #import <AFNetworking.h>
 
 #import "LoginCCFUser.h"
+#import "CCFForm.h"
 
 @class CCFShowThreadPage;
 
@@ -34,6 +35,9 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 -(void) replyThreadWithId:(NSString *) threadId withMessage:(NSString *) message handler: (Handler) result;
 
 -(LoginCCFUser *) getCurrentCCFUser;
+
+// 获取所有的论坛列表
+-(void) formList:(Handler)handler;
 
 -(void) searchWithKeyWord:(NSString*) keyWord searchDone:(Handler) callback;
 

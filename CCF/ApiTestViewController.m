@@ -101,7 +101,11 @@
 //    }];
     
     
-    [api showPrivateContentById:2030751 handler:^(BOOL isSuccess, id message) {
+//    [api showPrivateContentById:2030751 handler:^(BOOL isSuccess, id message) {
+//        
+//    }];
+    
+    [api formList:^(BOOL isSuccess, id message) {
         
     }];
 

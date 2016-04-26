@@ -79,6 +79,14 @@
     }];
 }
 
+// 获取所有的论坛列表
+-(void) formList:(Handler)handler{
+    [_browser GETWithURLString:@"https://bbs.et8.net/bbs/archive/index.php" requestCallback:^(BOOL isSuccess, NSString *html) {
+        handler(isSuccess, html);
+    }];
+}
+
+
 -(void) loginWithName:(NSString *)name andPassWord:(NSString *)passWord :(Handler)callBack{
     NSURL * loginUrl = [CCFUrlBuilder buildLoginURL];
     NSString * md5pwd = [passWord md5HexDigest];

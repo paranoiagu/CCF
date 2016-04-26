@@ -897,10 +897,53 @@
 }
 
 
+-(NSArray<CCFForm *> *)parserForms:(NSString *)html{
+    IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
+    
+    NSMutableArray<CCFForm *> * forms = [NSMutableArray array];
+    
+    NSString * xPath = @"//*[@id='content']/ul/li[position()>0]";
+    
+    IGXMLNodeSet * contents = [document query:xPath];
+    
+   
+    NSMutableArray<IGXMLNode*> * flat = [NSMutableArray array];
+    
+    
+    for (IGXMLNode *child in contents) {
+
+        [flat addObjectsFromArray:[self model2Form:child]];
+    }
+    
+    for (IGXMLNode *child in flat) {
+        
+        NSLog(@"------------------------------>>>>>>>   %@\n\n\n\n\n", [child html]);
+    }
+    
+    return [forms copy];
+}
 
 
+-(NSMutableArray<IGXMLNode*>* ) model2Form:(IGXMLNode*) model{
+    NSMutableArray<IGXMLNode*>* form = [NSMutableArray array];
+    [form addObject:model];
+    
+    IGXMLNodeSet * childModels = model.children;
+    
+    if (childModels != nil && childModels.count > 0) {
+        
+        NSMutableArray<IGXMLNode*>* childForms = [NSMutableArray array];
+        
+        for (IGXMLNode * child in childModels) {
 
+            [childForms addObject:child];
+        }
+        [form addObjectsFromArray: childForms];
+    }
 
+    
+    return form;
+}
 
 
 

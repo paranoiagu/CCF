@@ -12,6 +12,7 @@
 #import "CCFSearchThread.h"
 #import "CCFSearchPage.h"
 #import "CCFUserProfile.h"
+#import "CCFForm.h"
 
 typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 
@@ -26,6 +27,9 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 
 // 退出论坛
 -(void) logout;
+
+// 获取所有的论坛列表
+-(void) formList:(HandlerWithBool)handler;
 
 // 发表一个新的帖子
 -(void) createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *) images handler:(HandlerWithBool) handler;

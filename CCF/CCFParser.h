@@ -58,4 +58,6 @@
 
 - (CCFUserProfile *) parserProfile:(NSString*)html userId:(NSString*)userId;
 
+- (NSArray<CCFForm *> *) parserForms:(NSString *) html;
+
 @end

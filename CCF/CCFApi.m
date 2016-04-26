@@ -66,6 +66,14 @@
     [[NSUserDefaults standardUserDefaults] clearCookie];
 }
 
+
+-(void)formList:(HandlerWithBool)handler{
+    [_browser formList:^(BOOL isSuccess, id result) {
+        NSArray<CCFForm *> * forms = [_praser parserForms:result];
+        
+    }];
+}
+
 -(void)createNewThreadWithFormId:(int)fId withSubject:(NSString *)subject andMessage:(NSString *)message withImages:(NSArray *)images handler:(HandlerWithBool)handler{
     [_browser createNewThreadWithFormId:fId withSubject:subject andMessage:message withImages:images handler:^(BOOL isSuccess, NSString* result) {
         if (isSuccess) {

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CCFApiBaseViewController.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : CCFApiBaseViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *userName;
 @property (weak, nonatomic) IBOutlet UITextField *password;

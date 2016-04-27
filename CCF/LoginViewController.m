@@ -21,6 +21,7 @@
 #import "UIStoryboard+CCF.h"
 #import "CCFApi.h"
 #import <SVProgressHUD.h>
+#import "CCFCoreDataManager.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>{
 
@@ -121,6 +122,10 @@
     
     NSString *name = _userName.text;
     NSString *password = _password.text;
+    
+    [_userName resignFirstResponder];
+    [_password resignFirstResponder];
+    
     if ([name isEqualToString:@""] || [password isEqualToString:@""]) {
         
         
@@ -135,15 +140,39 @@
         return;
     }
     
-    [SVProgressHUD showInfoWithStatus:@"正在登录" maskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD showWithStatus:@"正在登录" maskType:SVProgressHUDMaskTypeBlack];
     
     [_ccfApi loginWithName:name andPassWord:password handler:^(BOOL isSuccess, NSString *message) {
         
         [SVProgressHUD dismiss];
 
         if (isSuccess) {
-            UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
-            [stortboard changeRootViewControllerTo:kCCFRootController];
+            
+            [self.ccfApi formList:^(BOOL isSuccess, id needInsert) {
+                
+                if (isSuccess) {
+                    CCFCoreDataManager * formManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+                    [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
+                        FormEntry *newsInfo = (FormEntry*)target;
+                        newsInfo.formId = [src valueForKey:@"formId"];
+                        newsInfo.formName = [src valueForKey:@"formName"];
+                        newsInfo.parentFormId = [src valueForKey:@"parentFormId"];
+                        newsInfo.isNeedLogin = [src valueForKey:@"isNeedLogin"];
+                    }];
+                    
+                    UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
+                    [stortboard changeRootViewControllerTo:kCCFRootController];
+                } else{
+                    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"错误" message:message preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                    
+                    [alert addAction:action];
+                    
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+
+            }];
+
         } else{
             
             UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"错误" message:message preferredStyle:UIAlertControllerStyleAlert];

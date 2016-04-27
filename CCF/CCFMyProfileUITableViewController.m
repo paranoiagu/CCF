@@ -133,16 +133,7 @@
         
     } else if (indexPath.row == 1){
         
-        [[NSUserDefaults standardUserDefaults] clearCookie];
-        
-        NSURL *url = [NSURL URLWithString:@"https://bbs.et8.net/bbs"];
-        if (url) {
-            NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
-            for (int i = 0; i < [cookies count]; i++) {
-                NSHTTPCookie *cookie = (NSHTTPCookie *)[cookies objectAtIndex:i];
-                [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
-            }
-        }
+        [self.ccfApi logout];
         
         
         LoginViewController * rootController = [[LoginViewController alloc] init];

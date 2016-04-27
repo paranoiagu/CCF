@@ -145,11 +145,17 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 }
 
 - (void)initplays {
+
     
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
-    NSArray<CCFForm*> * forms = [[[CCFFormDao alloc]init] parseCCFForms:path];
+    CCFCoreDataManager * formManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+
+    self.forms = [formManager selectAllForms];
     
-    self.forms = [forms mutableCopy];
+    
+//    NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
+//    NSArray<CCFForm*> * forms = [[[CCFFormDao alloc]init] parseCCFForms:path];
+//    
+//    self.forms = [forms mutableCopy];
     
 }
 

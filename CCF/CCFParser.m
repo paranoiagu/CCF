@@ -908,31 +908,53 @@
     
     IGXMLNodeSet * contents = [document query:xPath];
     
+    int replaceId = 10000;
     for (IGXMLNode * child in contents) {
-        [forms addObject:[self node2Form:child]];
+        [forms addObject:[self node2Form:child parentFormId:-1 replaceId:replaceId ++]];
 
     }
 
-    for (CCFForm * form in forms) {
-        NSLog(@">>>>>>>>>>>>>>>>>>>>>>> %@\n\n\n", form.formName);
+    NSMutableArray<CCFForm *> * needInsert = [NSMutableArray array];
+    
+    for (CCFForm *form in forms) {
+        [needInsert addObjectsFromArray:[self flatForm:form]];
     }
     
-    return [forms copy];
+    for (CCFForm * form in needInsert) {
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>> %@     formId: %d     parentFormId:%d\n\n\n", form.formName, form.formId, form.parentFormId);
+    }
+    
+    
+    return [needInsert copy];
 }
 
 
--(CCFForm *) node2Form:(IGXMLNode*) node{
+- (NSArray*) flatForm:(CCFForm*) form{
+    NSMutableArray * resultArray = [NSMutableArray array];
+    [resultArray addObject:form];
+    for (CCFForm * childForm in form.childForms) {
+        [resultArray addObjectsFromArray:[self flatForm:childForm]];
+    }
+    return resultArray;
+}
+
+
+-(CCFForm *) node2Form:(IGXMLNode*) node parentFormId:(int) parentFormId replaceId:(int) replaceId{
     CCFForm * parent = [[CCFForm alloc] init];
-    parent.formId = 0;
-    parent.parentFormId = -1;
-    parent.formName = [[node childrenAtPosition:0] html];
+    NSString * name = [[node childrenAtPosition:0] text];
+    NSString * url = [[node childrenAtPosition:0] html];
+    int formId = [[url stringWithRegular:@"f-\\d+" andChild:@"\\d+"] intValue];
+    int fixFormId = formId == 0 ? replaceId : formId;
+    parent.formId = fixFormId;
+    parent.parentFormId = parentFormId;
+    parent.formName = name;
     
     if (node.childrenCount == 2) {
         IGXMLNodeSet * childSet = [node childrenAtPosition:1].children;
         NSMutableArray<CCFForm *> * childForms = [NSMutableArray array];
         
         for (IGXMLNode * childNode in childSet) {
-            [childForms addObject:[self node2Form:childNode]];
+            [childForms addObject:[self node2Form:childNode parentFormId:fixFormId replaceId:replaceId]];
         }
         parent.childForms = childForms;
     }

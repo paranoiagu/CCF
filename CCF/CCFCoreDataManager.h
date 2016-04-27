@@ -35,4 +35,6 @@ typedef NS_ENUM(NSInteger, CCFCoreDataEntry) {
 
 -(NSArray<CCFForm *> *)selectChildFormsForId:(int)formId;
 
+-(NSArray<CCFForm *> *)selectAllForms;
+
 @end

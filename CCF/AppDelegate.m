@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-#import "CCFBrowser.h"
 #import "CCFForm.h"
 #import "CCFFormDao.h"
 #import "CCFCoreDataManager.h"
@@ -18,6 +17,8 @@
 #import "NSUserDefaults+Setting.h"
 #import <AVOSCloud.h>
 #import <AVOSCloudIM.h>
+#import "CCFApi.h"
+#import "UIStoryboard+CCF.h"
 
 
 
@@ -39,11 +40,11 @@
     application.applicationIconBadgeNumber = 0;
     
     
-    DB_VERSION = 2;
+    DB_VERSION = 3;
     
     
     
-    API_DEBUG = YES;
+    API_DEBUG = NO;
     
     if (API_DEBUG) {
         
@@ -80,8 +81,8 @@
     
     
     
-    CCFBrowser * browser = [[CCFBrowser alloc]init];
-    LoginCCFUser * loginUser = [browser getCurrentCCFUser];
+    CCFApi * browser = [[CCFApi alloc]init];
+    LoginCCFUser * loginUser = [browser getLoginUser];
     
     NSDate * date = [NSDate date];
     
@@ -101,25 +102,25 @@
         // 清空数据库
         [formManager deleteData];
         
-        NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
-        NSArray<CCFForm*> * forms = [[[CCFFormDao alloc]init] parseCCFForms:path];
-
-        
-        NSMutableArray<CCFForm *> * needInsert = [NSMutableArray array];
-        
-        for (CCFForm *form in forms) {
-            [needInsert addObjectsFromArray:[self flatForm:form]];
-        }
-        
-        
-        
-        [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
-            FormEntry *newsInfo = (FormEntry*)target;
-            newsInfo.formId = [src valueForKey:@"formId"];
-            newsInfo.formName = [src valueForKey:@"formName"];
-            newsInfo.parentFormId = [src valueForKey:@"parentFormId"];
-            newsInfo.isNeedLogin = [src valueForKey:@"isNeedLogin"];
-        }];
+//        NSString *path = [[NSBundle mainBundle]pathForResource:@"ccf" ofType:@"json"];
+//        NSArray<CCFForm*> * forms = [[[CCFFormDao alloc]init] parseCCFForms:path];
+//
+//        
+//        NSMutableArray<CCFForm *> * needInsert = [NSMutableArray array];
+//        
+//        for (CCFForm *form in forms) {
+//            [needInsert addObjectsFromArray:[self flatForm:form]];
+//        }
+//        
+//        
+//        
+//        [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
+//            FormEntry *newsInfo = (FormEntry*)target;
+//            newsInfo.formId = [src valueForKey:@"formId"];
+//            newsInfo.formName = [src valueForKey:@"formName"];
+//            newsInfo.parentFormId = [src valueForKey:@"parentFormId"];
+//            newsInfo.isNeedLogin = [src valueForKey:@"isNeedLogin"];
+//        }];
         
         
         
@@ -127,6 +128,14 @@
         [userManager deleteData];
         
         [data setDBVersion:DB_VERSION];
+        
+        
+        [browser logout];
+        
+        LoginViewController * rootController = [[LoginViewController alloc] init];
+        
+        UIStoryboard *stortboard = [UIStoryboard mainStoryboard];
+        [stortboard changeRootViewControllerToController:rootController];
         
     }
 

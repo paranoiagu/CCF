@@ -63,14 +63,32 @@
 }
 
 -(void)logout{
+    
     [[NSUserDefaults standardUserDefaults] clearCookie];
+    
+    NSURL *url = [NSURL URLWithString:@"https://bbs.et8.net/bbs"];
+    if (url) {
+        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
+        for (int i = 0; i < [cookies count]; i++) {
+            NSHTTPCookie *cookie = (NSHTTPCookie *)[cookies objectAtIndex:i];
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+        }
+    }
+    
 }
 
 
 -(void)formList:(HandlerWithBool)handler{
     [_browser formList:^(BOOL isSuccess, id result) {
-        NSArray<CCFForm *> * forms = [_praser parserForms:result];
-        
+        if (isSuccess) {
+            
+            NSArray<CCFForm *> * forms = [_praser parserForms:result];
+            handler(YES, forms);
+        } else{
+            
+            handler(NO, result);
+        }
+
     }];
 }
 

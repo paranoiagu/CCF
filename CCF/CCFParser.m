@@ -200,6 +200,33 @@
     }
     
     
+    NSString * quote = @"<div>\r\n\t\t\t\t\t.*: <strong>.*</strong>\r\n\t\t\t\t\t<a href=\".*\" rel=\"nofollow\"><img class=\"inlineimg\" src=\".*\" border=\"0\" alt=\".*\" /></a>\r\n\t\t\t\t</div>";
+    
+    //NSString * quote = @"\r\n\t\t\t\t\t<a href=\".*\" rel=\"nofollow\"><img class=\"inlineimg\" src=\".*\" border=\"0\" alt=\".*\" /></a>\r\n\t\t\t\t";
+
+//    NSArray * quoteArry = [fuxkHttp arrayWithRegulat:quote];
+//    
+//    for (NSString * http in quoteArry) {
+//        fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:http withString:@"<div><br />\naxxxxxxxx</div>"];
+//    }
+    
+    
+    NSString * quoteTable = @"<td class=\"alt2\" style=\"border:1px inset\">\r\n\t\t\t\r\n\t\t\t\t<div>\r\n\t\t\t\t\t.*: <strong>.*</strong>\r\n\t\t\t\t\t<a href=\".*\" rel=\"nofollow\"><img class=\"inlineimg\" src=\".*\" border=\"0\" alt=\".*\" /></a>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div>\r\n\t\t\t<!-- 修改防止撑破表格 -->\r\n\t\t\t<div class=\"tb\">\r\n\t\t\t<div id=\"wrap\">";
+    NSArray * quoteArry = [fuxkHttp arrayWithRegulat:quoteTable];
+
+    for (NSString * quote in quoteArry) {
+        NSString *author = [quote stringWithRegular:@"<strong>.*</strong>"];
+        author = [NSString stringWithFormat:@"<td>\r\n\t\t\t<div>\r\n\t\t\t%@", author];//[@"<td><div>" stringByAppendingString:author];
+        
+        fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:quote withString:author];
+    }
+    
+    
+    NSString * quoteBottom = @"</div></div>\r\n\t\t\t<!--/ 修改防止撑破表格 -->\t\r\n\t\t\t</div>";
+    NSArray * quoteBottomArray = [fuxkHttp arrayWithRegulat:quoteBottom];
+    for (NSString * quote in quoteBottomArray) {
+        fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:quote withString:@"\r\n\t\t\t</div>"];
+    }
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:fuxkHttp error:nil];
     

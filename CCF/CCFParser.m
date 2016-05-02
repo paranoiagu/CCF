@@ -199,16 +199,14 @@
         
     }
     
+    NSString * start = @"\t\t\t\r\n\t\t\t<!-- 修改防止撑破表格 -->";
+    NSArray * testArray000 = [fuxkHttp arrayWithRegulat:start];
+    fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:start withString:@"\t\t\t\r\n<div>\r\n\t\t\t<!-- 修改防止撑破表格 -->"];
     
-    NSString * quote = @"<div>\r\n\t\t\t\t\t.*: <strong>.*</strong>\r\n\t\t\t\t\t<a href=\".*\" rel=\"nofollow\"><img class=\"inlineimg\" src=\".*\" border=\"0\" alt=\".*\" /></a>\r\n\t\t\t\t</div>";
-    
-    //NSString * quote = @"\r\n\t\t\t\t\t<a href=\".*\" rel=\"nofollow\"><img class=\"inlineimg\" src=\".*\" border=\"0\" alt=\".*\" /></a>\r\n\t\t\t\t";
-
-//    NSArray * quoteArry = [fuxkHttp arrayWithRegulat:quote];
-//    
-//    for (NSString * http in quoteArry) {
-//        fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:http withString:@"<div><br />\naxxxxxxxx</div>"];
-//    }
+    NSString * end = @"<!--/ 修改防止撑破表格 -->\t\r\n\t\t\t\r\n\t\t</td>";
+    NSArray * testArray001 = [fuxkHttp arrayWithRegulat:end];
+    fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:end withString:@"<!--/ 修改防止撑破表格 -->\t\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t</td>"];
+//    NSArray * testArray = [fuxkHttp arrayWithRegulat:end];
     
     
     NSString * quoteTable = @"<td class=\"alt2\" style=\"border:1px inset\">\r\n\t\t\t\r\n\t\t\t\t<div>\r\n\t\t\t\t\t.*: <strong>.*</strong>\r\n\t\t\t\t\t<a href=\".*\" rel=\"nofollow\"><img class=\"inlineimg\" src=\".*\" border=\"0\" alt=\".*\" /></a>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div>\r\n\t\t\t<!-- 修改防止撑破表格 -->\r\n\t\t\t<div class=\"tb\">\r\n\t\t\t<div id=\"wrap\">";
@@ -216,7 +214,7 @@
 
     for (NSString * quote in quoteArry) {
         NSString *author = [quote stringWithRegular:@"<strong>.*</strong>"];
-        author = [NSString stringWithFormat:@"<td>\r\n\t\t\t<div>\r\n\t\t\t%@", author];//[@"<td><div>" stringByAppendingString:author];
+        author = [NSString stringWithFormat:@"<td>\r\n\t\t\t<div>\r\n\t\t\t<strong>@</strong>%@<strong>:</strong>", author];
         
         fuxkHttp = [fuxkHttp stringByReplacingOccurrencesOfString:quote withString:author];
     }
@@ -783,7 +781,7 @@
 
 -(CCFShowPM *)parsePrivateMessageContent:(NSString *)html{
     // 修改引用帖子的样式
-    html = [html stringByReplacingOccurrencesOfString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\">引用:</div>" withString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\"> </div>"];
+    html = [html stringByReplacingOccurrencesOfString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\">引用:</div>" withString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\"><br /></div>"];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     

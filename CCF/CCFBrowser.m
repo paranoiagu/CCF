@@ -198,7 +198,7 @@
 }
 
 -(NSString *) buildSignature{
-    NSString * sigature = [NSString stringWithFormat:@"\n\n发自 %@ 使用 [URL=\"https://bbs.et8.net/bbs/showthread.php?t=1335973\"]CCF客户端[/URL]", iPhoneName];
+    NSString * sigature = [NSString stringWithFormat:@"\n\n发自 %@ 使用 CCF客户端", iPhoneName];
     return sigature;
     
 }

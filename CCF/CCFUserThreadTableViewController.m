@@ -10,6 +10,7 @@
 #import "CCFNavigationController.h"
 #import "CCFSearchResultCell.h"
 #import "CCFShowThreadViewController.h"
+#import "CCFUserProfile.h"
 
 
 @interface CCFUserThreadTableViewController ()<TransValueDelegate>{

@@ -7,6 +7,7 @@
 //
 
 #import "CCFProfileTableViewCell.h"
+#import "CCFUserProfile.h"
 
 @implementation CCFProfileTableViewCell
 

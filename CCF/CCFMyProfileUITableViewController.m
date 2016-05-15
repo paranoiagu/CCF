@@ -21,6 +21,7 @@
 #import "LoginViewController.h"
 #import "UIStoryboard+CCF.h"
 #import "NSUserDefaults+CCF.h"
+#import "CCFUserProfile.h"
 
 @interface CCFMyProfileUITableViewController (){
     CCFUserProfile * userProfile;

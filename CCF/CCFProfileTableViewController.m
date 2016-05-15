@@ -17,6 +17,7 @@
 #import "CCFWritePMNavigationController.h"
 #import <UIImageView+WebCache.h>
 #import "UIStoryboard+CCF.h"
+#import "CCFUserProfile.h"
 
 @interface CCFProfileTableViewController ()<TransValueDelegate>{
     

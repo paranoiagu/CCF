@@ -13,6 +13,7 @@
 #import "CCFShowThreadPage.h"
 #import "CCFPage.h"
 #import "CCFShowPM.h"
+#import "CCFUserProfile.h"
 
 
 #define kCCFCookie_User @"bbuserid"

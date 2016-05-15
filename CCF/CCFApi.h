@@ -11,7 +11,6 @@
 #import "CCFPage.h"
 #import "CCFSearchThread.h"
 #import "CCFSearchPage.h"
-#import "CCFUserProfile.h"
 #import "CCFForm.h"
 
 typedef void (^HandlerWithBool) (BOOL isSuccess, id message);

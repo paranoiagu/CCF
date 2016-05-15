@@ -58,6 +58,7 @@
 		3A842CA11C469AC1002944A9 /* CCFNewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */; };
 		3A84A4381CE8BB1A009619DE /* CCFApiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A84A4371CE8BB1A009619DE /* CCFApiLibrary.framework */; };
 		3A84A43A1CE8BB52009619DE /* CCFApiLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A84A4371CE8BB1A009619DE /* CCFApiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3A84A4411CE8BE5A009619DE /* DYStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A84A4401CE8BE5A009619DE /* DYStringUtils.m */; };
 		3A8E054E1CC35515003D0D90 /* UILouCengLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E054D1CC35515003D0D90 /* UILouCengLabel.m */; };
 		3A8E05511CC367AE003D0D90 /* UIPageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E05501CC367AE003D0D90 /* UIPageLabel.m */; };
 		3A92E7F71CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */; };
@@ -235,7 +236,6 @@
 		3A690A471C3792D00076C8F1 /* CCFThreadDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCFThreadDetailCell.xib; sourceTree = "<group>"; };
 		3A734BDD1CCC63B300C4821A /* UILoginBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILoginBgView.h; sourceTree = "<group>"; };
 		3A734BDE1CCC63B300C4821A /* UILoginBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILoginBgView.m; sourceTree = "<group>"; };
-		3A734BE01CCCACD700C4821A /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		3A734BE11CCCADF500C4821A /* CCFPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCFPCH.pch; sourceTree = "<group>"; };
 		3A734BE21CCCB2E600C4821A /* UIAutoResizeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAutoResizeTextView.h; sourceTree = "<group>"; };
 		3A734BE31CCCB2E600C4821A /* UIAutoResizeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAutoResizeTextView.m; sourceTree = "<group>"; };
@@ -255,6 +255,8 @@
 		3A842C9F1C469AC1002944A9 /* CCFNewThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFNewThreadViewController.h; sourceTree = "<group>"; };
 		3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFNewThreadViewController.m; sourceTree = "<group>"; };
 		3A84A4371CE8BB1A009619DE /* CCFApiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CCFApiLibrary.framework; sourceTree = "<group>"; };
+		3A84A43F1CE8BE5A009619DE /* DYStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYStringUtils.h; sourceTree = "<group>"; };
+		3A84A4401CE8BE5A009619DE /* DYStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYStringUtils.m; sourceTree = "<group>"; };
 		3A8E054C1CC35515003D0D90 /* UILouCengLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILouCengLabel.h; sourceTree = "<group>"; };
 		3A8E054D1CC35515003D0D90 /* UILouCengLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILouCengLabel.m; sourceTree = "<group>"; };
 		3A8E054F1CC367AE003D0D90 /* UIPageLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPageLabel.h; sourceTree = "<group>"; };
@@ -534,6 +536,29 @@
 			name = TransBundle;
 			sourceTree = "<group>";
 		};
+		3A84A4421CE8BEBE009619DE /* CommonUtils */ = {
+			isa = PBXGroup;
+			children = (
+				3A84A43F1CE8BE5A009619DE /* DYStringUtils.h */,
+				3A84A4401CE8BE5A009619DE /* DYStringUtils.m */,
+			);
+			name = CommonUtils;
+			sourceTree = "<group>";
+		};
+		3A84A4431CE8BF97009619DE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4D796BB31C3DF88F00B3C62D /* Addons */,
+				3A9FEDE01C3438AC00F30885 /* NSString+Kit.h */,
+				3A9FEDE11C3438AC00F30885 /* NSString+Kit.m */,
+				4D796BE21C437C5000B3C62D /* NSString+Regular.h */,
+				4D796BE31C437C5000B3C62D /* NSString+Regular.m */,
+				4D796C031C460D4200B3C62D /* NSUserDefaults+CCF.h */,
+				4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
 		3A8E05561CC3AA28003D0D90 /* ReplyController */ = {
 			isa = PBXGroup;
 			children = (
@@ -556,31 +581,15 @@
 			name = CCFURL;
 			sourceTree = "<group>";
 		};
-		3A9FEDD71C342C4400F30885 /* CCFParser */ = {
+		3A9FEDDB1C34306600F30885 /* CCFBrowser */ = {
 			isa = PBXGroup;
 			children = (
 				3A9FEDD81C342CB800F30885 /* CCFParser.h */,
 				3A9FEDD91C342CB800F30885 /* CCFParser.m */,
-			);
-			name = CCFParser;
-			sourceTree = "<group>";
-		};
-		3A9FEDDB1C34306600F30885 /* CCFBrowser */ = {
-			isa = PBXGroup;
-			children = (
 				3A9FEDDC1C3430A500F30885 /* CCFBrowser.h */,
 				3A9FEDDD1C3430A500F30885 /* CCFBrowser.m */,
 			);
 			name = CCFBrowser;
-			sourceTree = "<group>";
-		};
-		3A9FEDDF1C34382E00F30885 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				3A9FEDE01C3438AC00F30885 /* NSString+Kit.h */,
-				3A9FEDE11C3438AC00F30885 /* NSString+Kit.m */,
-			);
-			name = Category;
 			sourceTree = "<group>";
 		};
 		3AA2D4F51C36101E00F312CC /* FoldTableView */ = {
@@ -663,6 +672,11 @@
 		3AF86A751C82EEAF0036AD61 /* CCFAPI */ = {
 			isa = PBXGroup;
 			children = (
+				4D1EEBA81C324FFD0084F6E9 /* Model */,
+				3A9FEDD31C341DE200F30885 /* CCFURL */,
+				3A9FEDDB1C34306600F30885 /* CCFBrowser */,
+				3A84A4431CE8BF97009619DE /* Extension */,
+				4D796BCA1C3E4BA700B3C62D /* Utils */,
 				3AF86A761C82EECE0036AD61 /* CCFApi.h */,
 				3AF86A771C82EECE0036AD61 /* CCFApi.m */,
 				4D93CFD41C85355D00852D28 /* ApiTestViewController.h */,
@@ -683,18 +697,17 @@
 			name = PrivateMessage;
 			sourceTree = "<group>";
 		};
-		4D1EEBA81C324FFD0084F6E9 /* Module */ = {
+		4D1EEBA81C324FFD0084F6E9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				3AF86A7C1C83298C0036AD61 /* PrivateMessage */,
-				4D796BEE1C44B59100B3C62D /* Core Data */,
 				4D796C011C45F38400B3C62D /* JSONModel */,
 				4D796C001C45F2E100B3C62D /* Thread-Normal */,
 				4D796C021C45F99000B3C62D /* Thread-Search */,
 				3AF86A721C82CAB50036AD61 /* LoginCCFUser.h */,
 				3AF86A731C82CAB50036AD61 /* LoginCCFUser.m */,
 			);
-			name = Module;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		4D339D821C31454A0022A6A4 = {
@@ -718,18 +731,13 @@
 		4D339D8D1C31454A0022A6A4 /* CCF */ = {
 			isa = PBXGroup;
 			children = (
+				4D796BEE1C44B59100B3C62D /* Core Data */,
+				3A84A4421CE8BEBE009619DE /* CommonUtils */,
 				3A671EE11CB9E00C001CC91E /* Widgets */,
 				3AF86A751C82EEAF0036AD61 /* CCFAPI */,
-				4D796BCA1C3E4BA700B3C62D /* Utils */,
-				4D796BB31C3DF88F00B3C62D /* Addons */,
 				4D796B5D1C3BC15D00B3C62D /* Public Views */,
 				3AEA1F341C365E2100710BD6 /* CCFControllers */,
 				3AA2D4F51C36101E00F312CC /* FoldTableView */,
-				3A9FEDDF1C34382E00F30885 /* Category */,
-				3A9FEDDB1C34306600F30885 /* CCFBrowser */,
-				3A9FEDD71C342C4400F30885 /* CCFParser */,
-				3A9FEDD31C341DE200F30885 /* CCFURL */,
-				4D1EEBA81C324FFD0084F6E9 /* Module */,
 				4D339D911C31454A0022A6A4 /* AppDelegate.h */,
 				4D339D921C31454A0022A6A4 /* AppDelegate.m */,
 				4D339D971C31454A0022A6A4 /* Main.storyboard */,
@@ -808,11 +816,6 @@
 			children = (
 				4D796BCB1C3E4BDD00B3C62D /* CCFUtils.h */,
 				4D796BCC1C3E4BDD00B3C62D /* CCFUtils.m */,
-				4D796BE21C437C5000B3C62D /* NSString+Regular.h */,
-				4D796BE31C437C5000B3C62D /* NSString+Regular.m */,
-				4D796C031C460D4200B3C62D /* NSUserDefaults+CCF.h */,
-				4D796C041C460D4200B3C62D /* NSUserDefaults+CCF.m */,
-				3A734BE01CCCACD700C4821A /* Constants.h */,
 				3A734BE11CCCADF500C4821A /* CCFPCH.pch */,
 			);
 			name = Utils;
@@ -821,18 +824,13 @@
 		4D796BEE1C44B59100B3C62D /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */,
-				4DB98FAF1C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.h */,
-				4DB98FB01C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m */,
-				4DB98FB11C4E0F5A0081AF87 /* CCFUserEntry.h */,
-				4DB98FB21C4E0F5A0081AF87 /* CCFUserEntry.m */,
-				4DB98F9F1C4E04690081AF87 /* User */,
-				4D796BFC1C44CCCE00B3C62D /* Post */,
-				4D796BFB1C44CCBF00B3C62D /* Form */,
 				4D796BF81C44BE7800B3C62D /* CoreDataManager.h */,
 				4D796BF91C44BE7800B3C62D /* CoreDataManager.m */,
 				4D796BFD1C44FAED00B3C62D /* CCFCoreDataManager.h */,
 				4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */,
+				4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */,
+				4D796BFB1C44CCBF00B3C62D /* Form */,
+				4DB98F9F1C4E04690081AF87 /* User */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -846,13 +844,6 @@
 				4D796BF51C44BBA000B3C62D /* FormEntry.m */,
 			);
 			name = Form;
-			sourceTree = "<group>";
-		};
-		4D796BFC1C44CCCE00B3C62D /* Post */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Post;
 			sourceTree = "<group>";
 		};
 		4D796C001C45F2E100B3C62D /* Thread-Normal */ = {
@@ -910,6 +901,10 @@
 		4DB98F9F1C4E04690081AF87 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				4DB98FAF1C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.h */,
+				4DB98FB01C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m */,
+				4DB98FB11C4E0F5A0081AF87 /* CCFUserEntry.h */,
+				4DB98FB21C4E0F5A0081AF87 /* CCFUserEntry.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -1081,6 +1076,7 @@
 				3A671EE91CB9EA59001CC91E /* XibInflater.m in Sources */,
 				3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */,
 				3AA2D5061C36103C00F312CC /* CCFFormSectionInfo.m in Sources */,
+				3A84A4411CE8BE5A009619DE /* DYStringUtils.m in Sources */,
 				3AF86A7F1C8329C40036AD61 /* PrivateMessage.m in Sources */,
 				3ABAFE3E1CAACCD300803085 /* CCFUserThreadTableViewController.m in Sources */,
 				3A8E054E1CC35515003D0D90 /* UILouCengLabel.m in Sources */,

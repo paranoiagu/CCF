@@ -44,7 +44,7 @@
     
     
     
-    API_DEBUG = YES;
+    API_DEBUG = NO;
     
     if (API_DEBUG) {
         

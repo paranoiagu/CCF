@@ -9,5 +9,6 @@
 #import "CCFApiBaseTableViewController.h"
 
 @interface DRLForumTableViewController : CCFApiBaseTableViewController
+- (IBAction)showLeftDrawer:(id)sender;
 
 @end

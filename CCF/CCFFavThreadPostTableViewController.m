@@ -11,6 +11,7 @@
 #import "CCFSimpleThreadTableViewCell.h"
 #import "CCFShowThreadViewController.h"
 #import "Thread.h"
+#import "DRLTabBarController.h"
 
 
 @interface CCFFavThreadPostTableViewController ()<MGSwipeTableCellDelegate>
@@ -123,6 +124,9 @@
 - (IBAction)showLeftDrawer:(id)sender {
 //    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
 //    [rootController showLeftDrawer];
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    
+    DRLTabBarController * root = (DRLTabBarController *)self.tabBarController;
+    [root showLeftDrawer];
 }
 @end

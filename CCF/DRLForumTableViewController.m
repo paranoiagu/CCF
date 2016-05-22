@@ -13,6 +13,7 @@
 #import "XibInflater.h"
 #import "MGSwipeTableCell.h"
 #import "MGSwipeTableCellWithIndexPath.h"
+#import "DRLTabBarController.h"
 
 @interface DRLForumTableViewController ()<MGSwipeTableCellDelegate>
 
@@ -120,4 +121,8 @@
     
 }
 
+- (IBAction)showLeftDrawer:(id)sender {
+    DRLTabBarController * root = (DRLTabBarController *)self.tabBarController;
+    [root showLeftDrawer];
+}
 @end

@@ -128,7 +128,7 @@
     [_password resignFirstResponder];
     [_vCode resignFirstResponder];
     
-    if ([name isEqualToString:@""] || [password isEqualToString:@""] || [code isEqualToString:@""]) {
+    if ([name isEqualToString:@""] || [password isEqualToString:@""]) {
 
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"错误" message:@"\n用户名或密码为空" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
@@ -171,6 +171,8 @@
             
             
         } else{
+            [SVProgressHUD dismiss];
+            
             UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"错误" message:message preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
             
@@ -178,7 +180,6 @@
             
             [self presentViewController:alert animated:YES completion:nil];
         }
-        
     }];
 
     

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define kCCFRootController @"CCFNavigationController"
+#define kCCFRootController @"DRLTabBarController"
 
 //所有的论坛
 

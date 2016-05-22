@@ -9,7 +9,6 @@
 #import "CCFMyProfileUITableViewController.h"
 #import "CCFProfileTableViewCell.h"
 
-#import "DRLForumTableViewController.h"
 #import "CCFPrivateMessageTableViewController.h"
 #import "CCFMyThreadPostTableViewController.h"
 #import "CCFMyThreadTableViewController.h"
@@ -160,53 +159,53 @@
 #pragma mark Controller跳转
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-//    if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
-//        CCFShowThreadViewController * controller = segue.destinationViewController;
-//        self.transValueDelegate = (id<TransValueDelegate>)controller;
-//        
-//        
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        
-//        CCFNormalThread * thread = nil;
-//        
-//        NSInteger section = indexPath.section;
-//        
-//        if ( section == 1) {
-//            thread = self.threadTopList[indexPath.row];
-//        } else if(section == 2){
-//            thread = self.dataList[indexPath.row];
-//        }
-//        
-//        
-//        [self.transValueDelegate transValue:thread];
-//        
-//    } else if ([segue.identifier isEqualToString:@"ShowChildForm"]){
-//        CCFThreadListForChildFormUITableViewController * controller = segue.destinationViewController;
-//        self.transValueDelegate = (id<TransValueDelegate>)controller;
-//        [self.transValueDelegate transValue:transForm];
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        [self.transValueDelegate transValue:childForms[indexPath.row]];
-//        
-//    } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
-//        selectSegue = segue;
-//    }
-//    
-//    else if ([sender isKindOfClass:[UIButton class]]){
-//        CCFProfileTableViewController * controller = segue.destinationViewController;
-//        self.transValueDelegate = (id<TransValueDelegate>)controller;
-//        
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        
-//        CCFNormalThread * thread = nil;
-//        
-//        if (indexPath.section == 0) {
-//            thread = self.threadTopList[indexPath.row];
-//        } else{
-//            thread = self.dataList[indexPath.row];
-//        }
-//        
-//        [self.transValueDelegate transValue:thread];
-//    }
+    //    if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
+    //        CCFShowThreadViewController * controller = segue.destinationViewController;
+    //        self.transValueDelegate = (id<TransValueDelegate>)controller;
+    //
+    //
+    //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    //
+    //        CCFNormalThread * thread = nil;
+    //
+    //        NSInteger section = indexPath.section;
+    //
+    //        if ( section == 1) {
+    //            thread = self.threadTopList[indexPath.row];
+    //        } else if(section == 2){
+    //            thread = self.dataList[indexPath.row];
+    //        }
+    //
+    //
+    //        [self.transValueDelegate transValue:thread];
+    //
+    //    } else if ([segue.identifier isEqualToString:@"ShowChildForm"]){
+    //        CCFThreadListForChildFormUITableViewController * controller = segue.destinationViewController;
+    //        self.transValueDelegate = (id<TransValueDelegate>)controller;
+    //        [self.transValueDelegate transValue:transForm];
+    //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    //        [self.transValueDelegate transValue:childForms[indexPath.row]];
+    //
+    //    } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
+    //        selectSegue = segue;
+    //    }
+    //
+    //    else if ([sender isKindOfClass:[UIButton class]]){
+    //        CCFProfileTableViewController * controller = segue.destinationViewController;
+    //        self.transValueDelegate = (id<TransValueDelegate>)controller;
+    //
+    //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    //
+    //        CCFNormalThread * thread = nil;
+    //
+    //        if (indexPath.section == 0) {
+    //            thread = self.threadTopList[indexPath.row];
+    //        } else{
+    //            thread = self.dataList[indexPath.row];
+    //        }
+    //
+    //        [self.transValueDelegate transValue:thread];
+    //    }
 }
 
 
@@ -221,6 +220,9 @@
 }
 
 - (IBAction)back:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 @end

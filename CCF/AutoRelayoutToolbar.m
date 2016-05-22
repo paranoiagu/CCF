@@ -6,9 +6,9 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFToolbar.h"
+#import "AutoRelayoutToolbar.h"
 
-@implementation CCFToolbar{
+@implementation AutoRelayoutToolbar{
     CGRect screenSize;
 }
 

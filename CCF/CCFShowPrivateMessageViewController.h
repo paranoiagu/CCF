@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFToolbar.h"
+#import "AutoRelayoutToolbar.h"
 #import "ShowPrivateMessage.h"
 #import "TransValueDelegate.h"
 
@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSMutableArray<ShowPrivateMessage *> * dataList;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet CCFToolbar *floatToolbar;
+@property (weak, nonatomic) IBOutlet AutoRelayoutToolbar *floatToolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *back;
 
 @property (weak, nonatomic) id<TransValueDelegate> transValueDelegate;

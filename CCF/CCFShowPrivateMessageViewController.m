@@ -13,7 +13,7 @@
 #import "CCFParser.h"
 
 #import "MJRefresh.h"
-#import "CCFUITextView.h"
+#import "AutoRelayoutUITextView.h"
 
 #import "ShowThreadPage.h"
 #import "SVProgressHUD.h"
@@ -28,12 +28,12 @@
 
 #import "ForumApi.h"
 
-@interface CCFShowPrivateMessageViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
+@interface CCFShowPrivateMessageViewController ()< UITextViewDelegate, AutoRelayoutUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
 
     PrivateMessage * transPrivateMessage;
 
-    CCFUITextView * field;
+    AutoRelayoutUITextView * field;
     ForumApi *_api;
     
     UIStoryboardSegue * selectSegue;
@@ -55,7 +55,7 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    field = [[CCFUITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
+    field = [[AutoRelayoutUITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
     field.heightDelegate = self;
     field.delegate = self;
     

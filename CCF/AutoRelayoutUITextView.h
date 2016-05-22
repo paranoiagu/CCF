@@ -11,7 +11,7 @@
 #define kMiniHeight 30
 #define kMaxHeight  180
 
-@protocol CCFUITextViewDelegate <NSObject>
+@protocol AutoRelayoutUITextViewDelegate <NSObject>
 
 @required
 -(void)heightChanged:(CGFloat) height;
@@ -19,9 +19,9 @@
 @end
 
 
-@interface CCFUITextView : UITextView
+@interface AutoRelayoutUITextView : UITextView
 
-@property (nonatomic, strong) id<CCFUITextViewDelegate> heightDelegate;
+@property (nonatomic, strong) id<AutoRelayoutUITextViewDelegate> heightDelegate;
 
 
 -(void) showPlaceHolder:(BOOL) show;

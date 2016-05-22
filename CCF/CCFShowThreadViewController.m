@@ -12,7 +12,7 @@
 #import "CCFParser.h"
 
 #import "MJRefresh.h"
-#import "CCFUITextView.h"
+#import "AutoRelayoutUITextView.h"
 
 #import "ShowThreadPage.h"
 

@@ -30,7 +30,6 @@
 		3A671EE91CB9EA59001CC91E /* XibInflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EE81CB9EA59001CC91E /* XibInflater.m */; };
 		3A671EEC1CB9EEF1001CC91E /* UICircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EEB1CB9EEF1001CC91E /* UICircleButton.m */; };
 		3A671EEF1CB9F294001CC91E /* UIRoundCornerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A671EEE1CB9F294001CC91E /* UIRoundCornerButton.m */; };
-		3A6736C31C400EAA008D51EC /* CCFToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6736C21C400EAA008D51EC /* CCFToolbar.m */; };
 		3A690A431C3755C00076C8F1 /* CCFThreadListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A690A421C3755C00076C8F1 /* CCFThreadListCell.m */; };
 		3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A690A451C375B5B0076C8F1 /* CCFThreadDetailCell.m */; };
 		3A690A481C3792D00076C8F1 /* CCFThreadDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A690A471C3792D00076C8F1 /* CCFThreadDetailCell.xib */; };
@@ -96,6 +95,8 @@
 		3AC6607D1CF184CD000D3BDB /* SearchForumDisplayPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC6607A1CF184CD000D3BDB /* SearchForumDisplayPage.m */; };
 		3AC6607E1CF184CD000D3BDB /* ThreadInSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC6607C1CF184CD000D3BDB /* ThreadInSearch.m */; };
 		3AC660811CF18685000D3BDB /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660801CF18685000D3BDB /* NSUserDefaults+Setting.m */; };
+		3AC660841CF1AEA1000D3BDB /* AutoRelayoutToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */; };
+		3AC660871CF1AF85000D3BDB /* AutoRelayoutUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
 		3AF86A7F1C8329C40036AD61 /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF86A7E1C8329C40036AD61 /* PrivateMessage.m */; };
 		4D32560D1C4754E700053288 /* SelectPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D32560C1C4754E700053288 /* SelectPhotoCollectionViewCell.m */; };
@@ -108,7 +109,6 @@
 		4D6B11CB1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6B11CA1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m */; };
 		4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796B5F1C3BC17800B3C62D /* DrawerView.m */; };
 		4D796B681C3BDCA800B3C62D /* DrawerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D796B671C3BDCA800B3C62D /* DrawerView.xib */; };
-		4D796BD21C3FC8ED00B3C62D /* CCFUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BD11C3FC8ED00B3C62D /* CCFUITextView.m */; };
 		4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BDA1C43666C00B3C62D /* CCFSearchResultCell.m */; };
 		4D796BEA1C44992700B3C62D /* UIStoryboard+CCF.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BE91C44992700B3C62D /* UIStoryboard+CCF.m */; };
 		4D796BF11C44B6F800B3C62D /* Form.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */; };
@@ -191,8 +191,6 @@
 		3A671EEB1CB9EEF1001CC91E /* UICircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICircleButton.m; sourceTree = "<group>"; };
 		3A671EED1CB9F294001CC91E /* UIRoundCornerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRoundCornerButton.h; sourceTree = "<group>"; };
 		3A671EEE1CB9F294001CC91E /* UIRoundCornerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRoundCornerButton.m; sourceTree = "<group>"; };
-		3A6736C11C400EAA008D51EC /* CCFToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFToolbar.h; sourceTree = "<group>"; };
-		3A6736C21C400EAA008D51EC /* CCFToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFToolbar.m; sourceTree = "<group>"; };
 		3A690A411C3755C00076C8F1 /* CCFThreadListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListCell.h; sourceTree = "<group>"; };
 		3A690A421C3755C00076C8F1 /* CCFThreadListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListCell.m; sourceTree = "<group>"; };
 		3A690A441C375B5B0076C8F1 /* CCFThreadDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadDetailCell.h; sourceTree = "<group>"; };
@@ -320,6 +318,10 @@
 		3AC6607C1CF184CD000D3BDB /* ThreadInSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadInSearch.m; sourceTree = "<group>"; };
 		3AC6607F1CF18685000D3BDB /* NSUserDefaults+Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Setting.h"; sourceTree = "<group>"; };
 		3AC660801CF18685000D3BDB /* NSUserDefaults+Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Setting.m"; sourceTree = "<group>"; };
+		3AC660821CF1AEA1000D3BDB /* AutoRelayoutToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoRelayoutToolbar.h; sourceTree = "<group>"; };
+		3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoRelayoutToolbar.m; sourceTree = "<group>"; };
+		3AC660851CF1AF85000D3BDB /* AutoRelayoutUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoRelayoutUITextView.h; sourceTree = "<group>"; };
+		3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoRelayoutUITextView.m; sourceTree = "<group>"; };
 		3AEC53981CB9529F00E50390 /* CCFThreadListTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTitleCell.h; sourceTree = "<group>"; };
 		3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTitleCell.m; sourceTree = "<group>"; };
 		3AF86A7D1C8329C40036AD61 /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessage.h; sourceTree = "<group>"; };
@@ -343,8 +345,6 @@
 		4D796B5F1C3BC17800B3C62D /* DrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerView.m; sourceTree = "<group>"; };
 		4D796B601C3BC17800B3C62D /* DrawerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewDelegate.h; sourceTree = "<group>"; };
 		4D796B671C3BDCA800B3C62D /* DrawerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawerView.xib; sourceTree = "<group>"; };
-		4D796BD01C3FC8ED00B3C62D /* CCFUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUITextView.h; sourceTree = "<group>"; };
-		4D796BD11C3FC8ED00B3C62D /* CCFUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUITextView.m; sourceTree = "<group>"; };
 		4D796BD91C43666C00B3C62D /* CCFSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSearchResultCell.h; sourceTree = "<group>"; };
 		4D796BDA1C43666C00B3C62D /* CCFSearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSearchResultCell.m; sourceTree = "<group>"; };
 		4D796BE81C44992700B3C62D /* UIStoryboard+CCF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+CCF.h"; sourceTree = "<group>"; };
@@ -437,8 +437,6 @@
 				3AC65FD31CF149CB000D3BDB /* ForumListHeaderView.h */,
 				3AC65FD41CF149CB000D3BDB /* ForumListHeaderView.m */,
 				3AC65FD51CF149CB000D3BDB /* ForumListHeaderView.xib */,
-				4D796BE81C44992700B3C62D /* UIStoryboard+CCF.h */,
-				4D796BE91C44992700B3C62D /* UIStoryboard+CCF.m */,
 				3A671EE21CB9E061001CC91E /* PageHeaderView.h */,
 				3A671EE31CB9E061001CC91E /* PageHeaderView.m */,
 				3A671EE51CB9E0E1001CC91E /* PageHeaderView.xib */,
@@ -518,6 +516,12 @@
 				3AC65FC71CF13AC5000D3BDB /* NSString+Extensions.m */,
 				3AC6607F1CF18685000D3BDB /* NSUserDefaults+Setting.h */,
 				3AC660801CF18685000D3BDB /* NSUserDefaults+Setting.m */,
+				3A1CF8721C54F8AB002E52EE /* UIImage+Tint.h */,
+				3A1CF8731C54F8AB002E52EE /* UIImage+Tint.m */,
+				3A1CF8741C54F8AB002E52EE /* UIColor+MyColor.h */,
+				3A1CF8751C54F8AB002E52EE /* UIColor+MyColor.m */,
+				4D796BE81C44992700B3C62D /* UIStoryboard+CCF.h */,
+				4D796BE91C44992700B3C62D /* UIStoryboard+CCF.m */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -700,23 +704,17 @@
 		4D796B5D1C3BC15D00B3C62D /* Public Views */ = {
 			isa = PBXGroup;
 			children = (
-				3A1CF8791C54F8CD002E52EE /* Constances.h */,
-				3A1CF8701C54F8AB002E52EE /* CommonUtils.h */,
-				3A1CF8711C54F8AB002E52EE /* CommonUtils.m */,
-				3A1CF8721C54F8AB002E52EE /* UIImage+Tint.h */,
-				3A1CF8731C54F8AB002E52EE /* UIImage+Tint.m */,
-				3A1CF8741C54F8AB002E52EE /* UIColor+MyColor.h */,
-				3A1CF8751C54F8AB002E52EE /* UIColor+MyColor.m */,
-				3A1CF86D1C54F88C002E52EE /* LeftDrawerItem.h */,
-				3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */,
 				4D796B5E1C3BC17800B3C62D /* DrawerView.h */,
 				4D796B5F1C3BC17800B3C62D /* DrawerView.m */,
 				4D796B671C3BDCA800B3C62D /* DrawerView.xib */,
-				4D796B601C3BC17800B3C62D /* DrawerViewDelegate.h */,
-				4D796BD01C3FC8ED00B3C62D /* CCFUITextView.h */,
-				4D796BD11C3FC8ED00B3C62D /* CCFUITextView.m */,
-				3A6736C11C400EAA008D51EC /* CCFToolbar.h */,
-				3A6736C21C400EAA008D51EC /* CCFToolbar.m */,
+				3AC660821CF1AEA1000D3BDB /* AutoRelayoutToolbar.h */,
+				3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */,
+				3AC660851CF1AF85000D3BDB /* AutoRelayoutUITextView.h */,
+				3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */,
+				3A1CF8701C54F8AB002E52EE /* CommonUtils.h */,
+				3A1CF8711C54F8AB002E52EE /* CommonUtils.m */,
+				3A1CF86D1C54F88C002E52EE /* LeftDrawerItem.h */,
+				3A1CF86E1C54F88C002E52EE /* LeftDrawerItem.m */,
 				3A0A997B1C4A5AFC00086DAB /* RoundCornerUITextView.h */,
 				3A0A997C1C4A5AFC00086DAB /* RoundCornerUITextView.m */,
 				3A0A997E1C4A6A4E00086DAB /* RoundCornerUIView.h */,
@@ -727,12 +725,14 @@
 				3A671EEB1CB9EEF1001CC91E /* UICircleButton.m */,
 				3A671EED1CB9F294001CC91E /* UIRoundCornerButton.h */,
 				3A671EEE1CB9F294001CC91E /* UIRoundCornerButton.m */,
-				3A9ADC671C9D8BD4006055A8 /* UISquareRoundCornerImageView.h */,
-				3A9ADC681C9D8BD4006055A8 /* UISquareRoundCornerImageView.m */,
 				3A734BE21CCCB2E600C4821A /* UIAutoResizeTextView.h */,
 				3A734BE31CCCB2E600C4821A /* UIAutoResizeTextView.m */,
 				3A734BDD1CCC63B300C4821A /* UILoginBgView.h */,
 				3A734BDE1CCC63B300C4821A /* UILoginBgView.m */,
+				3A9ADC671C9D8BD4006055A8 /* UISquareRoundCornerImageView.h */,
+				3A9ADC681C9D8BD4006055A8 /* UISquareRoundCornerImageView.m */,
+				3A1CF8791C54F8CD002E52EE /* Constances.h */,
+				4D796B601C3BC17800B3C62D /* DrawerViewDelegate.h */,
 			);
 			name = "Public Views";
 			path = CCF;
@@ -1001,6 +1001,7 @@
 				3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */,
 				3AC65FE91CF15338000D3BDB /* NormalThread.m in Sources */,
 				4D796BF11C44B6F800B3C62D /* Form.xcdatamodeld in Sources */,
+				3AC660841CF1AEA1000D3BDB /* AutoRelayoutToolbar.m in Sources */,
 				3AC6606D1CF1833F000D3BDB /* CCFMyThreadTableViewController.m in Sources */,
 				3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */,
 				4DF824BA1C34C4C6005BB858 /* CCFFormJSONModel.m in Sources */,
@@ -1052,7 +1053,6 @@
 				4DB98FB31C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m in Sources */,
 				4D6B11CB1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m in Sources */,
 				3A2FCC7E1C956DB100B469E4 /* PrivateMessageTableViewCell.m in Sources */,
-				4D796BD21C3FC8ED00B3C62D /* CCFUITextView.m in Sources */,
 				3A1CF8781C54F8AB002E52EE /* UIColor+MyColor.m in Sources */,
 				4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */,
 				4D796BEA1C44992700B3C62D /* UIStoryboard+CCF.m in Sources */,
@@ -1066,6 +1066,7 @@
 				3AC6600A1CF17F8A000D3BDB /* LoginUser.m in Sources */,
 				3A1CF8771C54F8AB002E52EE /* UIImage+Tint.m in Sources */,
 				3AC660721CF1833F000D3BDB /* CCFThreadListTableViewController.m in Sources */,
+				3AC660871CF1AF85000D3BDB /* AutoRelayoutUITextView.m in Sources */,
 				3A0A99801C4A6A4E00086DAB /* RoundCornerUIView.m in Sources */,
 				3A9ADC691C9D8BD4006055A8 /* UISquareRoundCornerImageView.m in Sources */,
 				4D339D901C31454A0022A6A4 /* main.m in Sources */,
@@ -1081,7 +1082,6 @@
 				3AC65FEF1CF15414000D3BDB /* Thread.m in Sources */,
 				3AC6606B1CF1833F000D3BDB /* DRLForumTableViewController.m in Sources */,
 				3A92E7F71CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m in Sources */,
-				3A6736C31C400EAA008D51EC /* CCFToolbar.m in Sources */,
 				3A8E05511CC367AE003D0D90 /* UIPageLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

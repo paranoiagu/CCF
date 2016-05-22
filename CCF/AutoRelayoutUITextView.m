@@ -6,9 +6,9 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFUITextView.h"
+#import "AutoRelayoutUITextView.h"
 
-@implementation CCFUITextView{
+@implementation AutoRelayoutUITextView{
     UILabel * placeHoler;
     
 }

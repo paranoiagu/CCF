@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CCFToolbar : UIToolbar
+@interface AutoRelayoutToolbar : UIToolbar
 
 @end

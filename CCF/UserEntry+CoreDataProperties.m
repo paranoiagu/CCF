@@ -1,17 +1,17 @@
 //
-//  CCFUserEntry+CoreDataProperties.m
+//  UserEntry+CoreDataProperties.m
 //  CCF
 //
-//  Created by WDY on 16/1/19.
+//  Created by 迪远 王 on 16/5/22.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "CCFUserEntry+CoreDataProperties.h"
+#import "UserEntry+CoreDataProperties.h"
 
-@implementation CCFUserEntry (CoreDataProperties)
+@implementation UserEntry (CoreDataProperties)
 
 @dynamic userAvatar;
 @dynamic userID;

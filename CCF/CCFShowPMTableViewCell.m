@@ -13,7 +13,7 @@
 #import "UrlBuilder.h"
 #import "ForumCoreDataManager.h"
 #import "CCFNSAttributedStringBuilder.h"
-#import "CCFUserEntry+CoreDataProperties.h"
+#import "UserEntry+CoreDataProperties.h"
 
 @implementation CCFShowPMTableViewCell{
     NSURL *baseURL;
@@ -73,7 +73,7 @@
         
         [_coreDateManager insertOneData:^(id src) {
             
-            CCFUserEntry * user =(CCFUserEntry *)src;
+            UserEntry * user =(UserEntry *)src;
             
             user.userID = privateMessage.pmUserInfo.userID;
             user.userAvatar = privateMessage.pmUserInfo.userAvatar;

@@ -17,7 +17,7 @@
     
     NSMutableDictionary * avatarCache;
     
-    NSMutableArray<CCFUserEntry*> * cacheUsers;
+    NSMutableArray<UserEntry*> * cacheUsers;
 }
 
 -(instancetype)init{
@@ -49,7 +49,7 @@
         }] copy];
     }
     
-    for (CCFUserEntry * user in cacheUsers) {
+    for (UserEntry * user in cacheUsers) {
         [avatarCache setValue:user.userAvatar forKey:user.userID];
     }
 }
@@ -83,7 +83,7 @@
             if (isSuccess) {
                 // 存入数据库
                 [coreDateManager insertOneData:^(id src) {
-                    CCFUserEntry * user =(CCFUserEntry *)src;
+                    UserEntry * user =(UserEntry *)src;
                     user.userID = userId;
                     user.userAvatar = avatar == nil ? @"defaultAvatar" : avatar;
                 }];

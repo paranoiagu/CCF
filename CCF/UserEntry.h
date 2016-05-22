@@ -1,8 +1,8 @@
 //
-//  CCFUserEntry.h
+//  UserEntry.h
 //  CCF
 //
-//  Created by WDY on 16/1/19.
+//  Created by 迪远 王 on 16/5/22.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CCFUserEntry : NSManagedObject
+@interface UserEntry : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -19,4 +19,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "CCFUserEntry+CoreDataProperties.h"
+#import "UserEntry+CoreDataProperties.h"

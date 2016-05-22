@@ -1,14 +1,14 @@
 //
-//  CCFUserEntry.m
+//  UserEntry.m
 //  CCF
 //
-//  Created by WDY on 16/1/19.
+//  Created by 迪远 王 on 16/5/22.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFUserEntry.h"
+#import "UserEntry.h"
 
-@implementation CCFUserEntry
+@implementation UserEntry
 
 // Insert code here to add functionality to your managed object subclass
 

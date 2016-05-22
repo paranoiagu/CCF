@@ -11,7 +11,7 @@
 #import "Post.h"
 #import "UrlBuilder.h"
 #import "ForumCoreDataManager.h"
-#import "CCFUserEntry+CoreDataProperties.h"
+#import "UserEntry+CoreDataProperties.h"
 #import <UIImageView+WebCache.h>
 #import "CCFNSAttributedStringBuilder.h"
 
@@ -29,7 +29,7 @@
     
     UIImage * defaultAvatar;
     
-    NSMutableArray<CCFUserEntry*> * cacheUsers;
+    NSMutableArray<UserEntry*> * cacheUsers;
     NSMutableDictionary * avatarCache;
     
 }
@@ -71,7 +71,7 @@
         }] copy];
     }
     
-    for (CCFUserEntry * user in cacheUsers) {
+    for (UserEntry * user in cacheUsers) {
         [avatarCache setValue:user.userAvatar forKey:user.userID];
     }
     
@@ -104,7 +104,7 @@
             
             [coreDateManager insertOneData:^(id src) {
                 
-                CCFUserEntry * user =(CCFUserEntry *)src;
+                UserEntry * user =(UserEntry *)src;
                 
                 user.userID = newPost.postUserInfo.userID;
                 

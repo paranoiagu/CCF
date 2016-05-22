@@ -27,7 +27,7 @@
 #import "LeftDrawerItem.h"
 #import <UIImageView+WebCache.h>
 #import "ForumCoreDataManager.h"
-#import "CCFUserEntry+CoreDataProperties.h"
+#import "UserEntry+CoreDataProperties.h"
 #import "ForumApi.h"
 
 
@@ -65,7 +65,7 @@
     }] copy];
     
     if (cacheUsers.count > 0) {
-        CCFUserEntry * entry = cacheUsers.firstObject;
+        UserEntry * entry = cacheUsers.firstObject;
         if ([entry.userAvatar isEqualToString:@"defaultAvatar"]) {
             [self getAvatar:loginUser];
         } else{
@@ -115,7 +115,7 @@
         if (isSuccess) {
             // 存入数据库
             [coreDateManager insertOneData:^(id src) {
-                CCFUserEntry * user =(CCFUserEntry *)src;
+                UserEntry * user =(UserEntry *)src;
                 user.userID = loginUser.userID;
                 user.userAvatar = avatar == nil ? @"defaultAvatar" : avatar;
             }];

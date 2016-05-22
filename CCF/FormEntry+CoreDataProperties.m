@@ -2,7 +2,7 @@
 //  FormEntry+CoreDataProperties.m
 //  CCF
 //
-//  Created by WDY on 16/1/13.
+//  Created by 迪远 王 on 16/5/22.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,7 +15,6 @@
 
 @dynamic formId;
 @dynamic formName;
-@dynamic isNeedLogin;
 @dynamic parentFormId;
 
 @end

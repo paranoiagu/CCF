@@ -10,7 +10,7 @@
 #import "PrivateMessage.h"
 
 #import "CCFNormalThread.h"
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 #import "NSString+Extensions.h"
 #import <UIImageView+AFNetworking.h>
 #import "CCFCoreDataManager.h"

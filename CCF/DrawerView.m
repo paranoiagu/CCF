@@ -15,7 +15,7 @@
 #import "CCFNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import "CCFFavFormController.h"
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 #import "LoginCCFUser.h"
 #import "CCFFormTableViewController.h"
 #import "CCFPrivateMessageTableViewController.h"
@@ -69,7 +69,7 @@
         if ([entry.userAvatar isEqualToString:@"defaultAvatar"]) {
             [self getAvatar:loginUser];
         } else{
-            NSURL * avatarUrl = [CCFUrlBuilder buildAvatarURL:entry.userAvatar];
+            NSURL * avatarUrl = [UrlBuilder buildAvatarURL:entry.userAvatar];
             NSString *cacheImageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:avatarUrl];
             if (cacheImageKey) {
                 [self.avatarUIImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
@@ -124,7 +124,7 @@
             if (avatar == nil) {
                 [self.avatarUIImageView setImage:defaultAvatar];
             } else{
-                NSURL * avatarUrl = [CCFUrlBuilder buildAvatarURL:avatar];
+                NSURL * avatarUrl = [UrlBuilder buildAvatarURL:avatar];
                 [self.avatarUIImageView sd_setImageWithURL:avatarUrl placeholderImage:defaultAvatar];
             }
         } else{

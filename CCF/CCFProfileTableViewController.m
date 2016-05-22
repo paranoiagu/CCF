@@ -168,14 +168,14 @@
             if (avatar == nil) {
                 [avatarImageView setImage:defaultAvatar];
             } else{
-                [avatarImageView sd_setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar] placeholderImage:defaultAvatar];
+                [avatarImageView sd_setImageWithURL:[UrlBuilder buildAvatarURL:avatar] placeholderImage:defaultAvatar];
             }
         }];
     } else{
         if ([avatarInArray isEqualToString:@"defaultAvatar"]) {
             [avatarImageView setImage:defaultAvatar];
         } else{
-            NSURL * url = [CCFUrlBuilder buildAvatarURL:avatarInArray];
+            NSURL * url = [UrlBuilder buildAvatarURL:avatarInArray];
             [avatarImageView sd_setImageWithURL:url placeholderImage:defaultAvatar];
         }
     }

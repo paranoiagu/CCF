@@ -7,9 +7,9 @@
 //
 
 #import "CCFThreadDetailCell.h"
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 #import "CCFPost.h"
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 #import "CCFCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
 #import <UIImageView+WebCache.h>
@@ -127,7 +127,7 @@
         
     } else{
         
-        NSURL * url = [CCFUrlBuilder buildAvatarURL:avatar];
+        NSURL * url = [UrlBuilder buildAvatarURL:avatar];
 
         [self.avatarImage sd_setImageWithURL:url placeholderImage:defaultAvatar];
 

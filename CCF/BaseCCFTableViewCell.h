@@ -10,7 +10,7 @@
 #import "CCFCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
 #import "CCFApi.h"
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 #import "TransValueUITableViewCell.h"
 
 

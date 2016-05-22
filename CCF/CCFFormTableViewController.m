@@ -24,7 +24,7 @@
 #import "CCFParser.h"
 
 #import "CCFBrowser.h"
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 
 #import "CCFFormDao.h"
 

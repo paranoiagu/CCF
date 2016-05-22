@@ -7,10 +7,10 @@
 //
 
 #import "CCFShowPMTableViewCell.h"
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 #import "CCFPost.h"
 #import <UIImageView+AFNetworking.h>
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 #import "CCFCoreDataManager.h"
 #import "CCFNSAttributedStringBuilder.h"
 #import "CCFUserEntry+CoreDataProperties.h"
@@ -69,7 +69,7 @@
         [self.avatarImage setImage:[UIImage imageNamed:@"logo.jpg"]];
         
     } else{
-        [self.avatarImage setImageWithURL:[CCFUrlBuilder buildAvatarURL:avatar]];
+        [self.avatarImage setImageWithURL:[UrlBuilder buildAvatarURL:avatar]];
         
         [_coreDateManager insertOneData:^(id src) {
             

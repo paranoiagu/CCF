@@ -64,7 +64,6 @@
 		3A93298D1C39648900A26249 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A93298C1C39648900A26249 /* CoreText.framework */; };
 		3A9ADC691C9D8BD4006055A8 /* UISquareRoundCornerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ADC681C9D8BD4006055A8 /* UISquareRoundCornerImageView.m */; };
 		3A9ADC6C1C9D8F2C006055A8 /* BaseCCFTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ADC6B1C9D8F2C006055A8 /* BaseCCFTableViewCell.m */; };
-		3A9FEDD61C341E2E00F30885 /* CCFUrlBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FEDD51C341E2E00F30885 /* CCFUrlBuilder.m */; };
 		3A9FEDDA1C342CB800F30885 /* CCFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FEDD91C342CB800F30885 /* CCFParser.m */; };
 		3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FEDDD1C3430A500F30885 /* CCFBrowser.m */; };
 		3AA2D5041C36103C00F312CC /* CCFFormHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D4F71C36103C00F312CC /* CCFFormHeaderView.m */; };
@@ -88,6 +87,7 @@
 		3AC65FC21CF13AA1000D3BDB /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FC11CF13AA1000D3BDB /* Utils.m */; };
 		3AC65FC51CF13AB6000D3BDB /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FC41CF13AB6000D3BDB /* NSUserDefaults+Setting.m */; };
 		3AC65FC81CF13AC5000D3BDB /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FC71CF13AC5000D3BDB /* NSString+Extensions.m */; };
+		3AC65FCD1CF141D3000D3BDB /* UrlBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FCC1CF141D3000D3BDB /* UrlBuilder.m */; };
 		3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */; };
 		3AEA1F371C365EA400710BD6 /* CCFShowThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
@@ -266,8 +266,6 @@
 		3A9ADC681C9D8BD4006055A8 /* UISquareRoundCornerImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISquareRoundCornerImageView.m; sourceTree = "<group>"; };
 		3A9ADC6A1C9D8F2C006055A8 /* BaseCCFTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCCFTableViewCell.h; sourceTree = "<group>"; };
 		3A9ADC6B1C9D8F2C006055A8 /* BaseCCFTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCCFTableViewCell.m; sourceTree = "<group>"; };
-		3A9FEDD41C341E2E00F30885 /* CCFUrlBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUrlBuilder.h; sourceTree = "<group>"; };
-		3A9FEDD51C341E2E00F30885 /* CCFUrlBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUrlBuilder.m; sourceTree = "<group>"; };
 		3A9FEDD81C342CB800F30885 /* CCFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFParser.h; sourceTree = "<group>"; };
 		3A9FEDD91C342CB800F30885 /* CCFParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFParser.m; sourceTree = "<group>"; };
 		3A9FEDDC1C3430A500F30885 /* CCFBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFBrowser.h; sourceTree = "<group>"; };
@@ -309,6 +307,8 @@
 		3AC65FC41CF13AB6000D3BDB /* NSUserDefaults+Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Setting.m"; sourceTree = "<group>"; };
 		3AC65FC61CF13AC5000D3BDB /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
 		3AC65FC71CF13AC5000D3BDB /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
+		3AC65FCB1CF141D3000D3BDB /* UrlBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlBuilder.h; sourceTree = "<group>"; };
+		3AC65FCC1CF141D3000D3BDB /* UrlBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlBuilder.m; sourceTree = "<group>"; };
 		3AEA1F2D1C364E7E00710BD6 /* CCFThreadListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTableViewController.h; sourceTree = "<group>"; };
 		3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTableViewController.m; sourceTree = "<group>"; };
 		3AEA1F351C365EA400710BD6 /* CCFShowThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowThreadViewController.h; sourceTree = "<group>"; };
@@ -535,18 +535,9 @@
 			name = TransBundle;
 			sourceTree = "<group>";
 		};
-		3A84A4421CE8BEBE009619DE /* Uitls */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Uitls;
-			path = CCF;
-			sourceTree = "<group>";
-		};
 		3A84A4431CE8BF97009619DE /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				4D796BB31C3DF88F00B3C62D /* Addons */,
 				3AC65FC31CF13AB6000D3BDB /* NSUserDefaults+Setting.h */,
 				3AC65FC41CF13AB6000D3BDB /* NSUserDefaults+Setting.m */,
 				3AC65FBD1CF13A8F000D3BDB /* NSUserDefaults+Extensions.h */,
@@ -686,19 +677,20 @@
 		3AF86A751C82EEAF0036AD61 /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				3A84A4431CE8BF97009619DE /* Extension */,
+				4D796BB31C3DF88F00B3C62D /* AddonsExtension */,
 				3AC65FC91CF13C42000D3BDB /* ApiTest */,
 				4D1EEBA81C324FFD0084F6E9 /* Model */,
 				3A9FEDDB1C34306600F30885 /* Browser&Parser */,
-				3A84A4431CE8BF97009619DE /* Extension */,
 				3A734BE11CCCADF500C4821A /* CCFPCH.pch */,
 				3AC65FC01CF13AA1000D3BDB /* Utils.h */,
 				3AC65FC11CF13AA1000D3BDB /* Utils.m */,
+				3AC65FCB1CF141D3000D3BDB /* UrlBuilder.h */,
+				3AC65FCC1CF141D3000D3BDB /* UrlBuilder.m */,
 				3AF86A761C82EECE0036AD61 /* CCFApi.h */,
 				3AF86A771C82EECE0036AD61 /* CCFApi.m */,
 				3AF86A721C82CAB50036AD61 /* LoginCCFUser.h */,
 				3AF86A731C82CAB50036AD61 /* LoginCCFUser.m */,
-				3A9FEDD41C341E2E00F30885 /* CCFUrlBuilder.h */,
-				3A9FEDD51C341E2E00F30885 /* CCFUrlBuilder.m */,
 			);
 			name = Api;
 			path = CCF;
@@ -735,10 +727,8 @@
 				3AF86A751C82EEAF0036AD61 /* Api */,
 				4D796B5D1C3BC15D00B3C62D /* Public Views */,
 				3A671EE11CB9E00C001CC91E /* Widgets */,
-				3A84A4421CE8BEBE009619DE /* Uitls */,
 				3AC65FBC1CF13809000D3BDB /* CCF */,
 				3AA2D4F51C36101E00F312CC /* FoldTableView */,
-				4D339D8D1C31454A0022A6A4 /* CCF */,
 				4D339D8C1C31454A0022A6A4 /* Products */,
 				849509D36740A6FFD960CDA8 /* Pods */,
 				CC5E7A99B69535660B7F40C0 /* Frameworks */,
@@ -751,13 +741,6 @@
 				4D339D8B1C31454A0022A6A4 /* CCF.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		4D339D8D1C31454A0022A6A4 /* CCF */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CCF;
 			sourceTree = "<group>";
 		};
 		4D339D8E1C31454A0022A6A4 /* Supporting Files */ = {
@@ -810,7 +793,7 @@
 			path = CCF;
 			sourceTree = "<group>";
 		};
-		4D796BB31C3DF88F00B3C62D /* Addons */ = {
+		4D796BB31C3DF88F00B3C62D /* AddonsExtension */ = {
 			isa = PBXGroup;
 			children = (
 				4DEB34C41C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.h */,
@@ -820,7 +803,7 @@
 				3A256FAE1CA62FC600419D67 /* IGXMLNode+Children.h */,
 				3A256FAF1CA62FC600419D67 /* IGXMLNode+Children.m */,
 			);
-			name = Addons;
+			name = AddonsExtension;
 			sourceTree = "<group>";
 		};
 		4D796BEE1C44B59100B3C62D /* CoreData */ = {
@@ -1114,6 +1097,7 @@
 				3A1C2CD11C9E9B740068AF6B /* CCFProfileTableViewController.m in Sources */,
 				3A256FAD1CA62DA900419D67 /* IGHTMLDocument+QueryNode.m in Sources */,
 				3ABAFE411CAAD12300803085 /* TransValueUITableViewCell.m in Sources */,
+				3AC65FCD1CF141D3000D3BDB /* UrlBuilder.m in Sources */,
 				3A671EEF1CB9F294001CC91E /* UIRoundCornerButton.m in Sources */,
 				3A1C2CCE1C9E3D4E0068AF6B /* CCFSearchPage.m in Sources */,
 				4D796BD81C43576700B3C62D /* CCFSearchViewController.m in Sources */,
@@ -1152,7 +1136,6 @@
 				3A9ADC691C9D8BD4006055A8 /* UISquareRoundCornerImageView.m in Sources */,
 				4D339D901C31454A0022A6A4 /* main.m in Sources */,
 				4D796BED1C44A43B00B3C62D /* CCFNavigationController.m in Sources */,
-				3A9FEDD61C341E2E00F30885 /* CCFUrlBuilder.m in Sources */,
 				3A27EA331C9424EB004D30EB /* CCFFavThreadPostTableViewController.m in Sources */,
 				3A0A997D1C4A5AFC00086DAB /* RoundCornerUITextView.m in Sources */,
 				4D93CFD71C85355D00852D28 /* ApiTestViewController.m in Sources */,

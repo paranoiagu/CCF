@@ -7,7 +7,7 @@
 //
 
 #import "CCFFavFormController.h"
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 #import "CCFParser.h"
 #import "CCFCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"

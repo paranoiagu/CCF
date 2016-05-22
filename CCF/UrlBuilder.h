@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface CCFUrlBuilder : NSObject
+@interface UrlBuilder : NSObject
 
 + (NSURL *) buildMemberURL:(NSString*)userId;
 

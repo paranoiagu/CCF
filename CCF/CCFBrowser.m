@@ -8,7 +8,7 @@
 
 #import "CCFBrowser.h"
 #import "NSString+Extensions.h"
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 #import <AFImageDownloader.h>
 #import <UIImageView+AFNetworking.h>
 #import "Utils.h"
@@ -87,7 +87,7 @@
 
 
 -(void) loginWithName:(NSString *)name andPassWord:(NSString *)passWord :(Handler)callBack{
-    NSURL * loginUrl = [CCFUrlBuilder buildLoginURL];
+    NSURL * loginUrl = [UrlBuilder buildLoginURL];
     NSString * md5pwd = [passWord md5HexDigest];
     
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
@@ -124,7 +124,7 @@
 
 -(void)refreshVCodeToUIImageView:(UIImageView* ) vCodeImageView{
     
-    NSURL *vCodeUrl = [CCFUrlBuilder buildVCodeURL];
+    NSURL *vCodeUrl = [UrlBuilder buildVCodeURL];
     NSString * url = [vCodeUrl absoluteString];
     
     AFImageDownloader *downloader = [[vCodeImageView class] sharedImageDownloader];
@@ -208,7 +208,7 @@
     }
     
     
-    NSURL * loginUrl = [CCFUrlBuilder buildReplyURL:threadId];
+    NSURL * loginUrl = [UrlBuilder buildReplyURL:threadId];
     
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     
@@ -258,7 +258,7 @@
 
 -(void)searchWithKeyWord:(NSString *)keyWord searchDone:(Handler)callback{
 
-    NSURL * searchUrl = [CCFUrlBuilder buildSearchUrl];
+    NSURL * searchUrl = [UrlBuilder buildSearchUrl];
     
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     
@@ -359,7 +359,7 @@
                     NSData * image = images[i];
                     
                     [NSThread sleepForTimeInterval:2.0f];
-                    [self uploadImage:[CCFUrlBuilder buildUploadFileURL] :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id result) {
+                    [self uploadImage:[UrlBuilder buildUploadFileURL] :uploadToken fId:fId postTime:uploadTime hash:uploadHash :image callback:^(BOOL isSuccess, id result) {
                         uploadSuccess = isSuccess;
                         
                         if (i == images.count -1) {
@@ -408,7 +408,7 @@
     [parameters setValue:@"9999" forKey:@"emailupdate"];
     [parameters setValue:@"4" forKey:@"polloptions"];
     
-    NSURL * newPostUrl = [CCFUrlBuilder buildNewThreadURL:fId];
+    NSURL * newPostUrl = [UrlBuilder buildNewThreadURL:fId];
     
     [_browser POSTWithURL:newPostUrl parameters:parameters requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
@@ -422,7 +422,7 @@
 
 // 进入图片管理页面，准备上传图片
 -(void)uploadImagePrepair:(int)formId startPostTime:(NSString*)time postHash:(NSString*)hash :(Handler) callback{
-    NSURL * url = [CCFUrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
+    NSURL * url = [UrlBuilder buildManageFileURL:formId postTime:time postHash:hash];
     
     [_browser GETWithURL:url requestCallback:^(BOOL isSuccess, NSString *html) {
       callback(isSuccess, html);
@@ -469,7 +469,7 @@
 
     
     
-    NSURL * uploadUrl = [CCFUrlBuilder buildUploadFileURL];
+    NSURL * uploadUrl = [UrlBuilder buildUploadFileURL];
     
     //[_browser.requestSerializer setValue:@"multipart/form-data; boundary=----WebKitFormBoundaryG9KMXkoSxJnZByFF" forHTTPHeaderField:@"Content-Type"];
 
@@ -498,7 +498,7 @@
 // 获取发新帖子的Posttime hash 和token
 -(void) createNewThreadPrepair:(int)formId :(CallBack) callback{
     
-    NSURL * newThreadUrl = [CCFUrlBuilder buildNewThreadURL:formId];
+    NSURL * newThreadUrl = [UrlBuilder buildNewThreadURL:formId];
     
     [_browser GETWithURL:newThreadUrl requestCallback:^(BOOL isSuccess, NSString *html) {
         
@@ -607,13 +607,13 @@
 }
 
 -(void)privateMessageWithType:(int)type andpage:(int)page handler:(Handler)handler{
-    [_browser GETWithURL:[CCFUrlBuilder buildPrivateMessageWithType:type andPage:page] requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURL:[UrlBuilder buildPrivateMessageWithType:type andPage:page] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }
 
 -(void)showPrivateContentById:(int)pmId handler:(Handler)handler{
-    [_browser GETWithURL:[CCFUrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURL:[UrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }
@@ -621,7 +621,7 @@
 -(void)replyPrivateMessageWithId:(int)pmId andMessage:(NSString *)message handler:(Handler)handler{
 
     
-    [_browser GETWithURL:[CCFUrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURL:[UrlBuilder buildShowPrivateMessageURLWithId:pmId] requestCallback:^(BOOL isSuccess, NSString *html) {
         
         if (isSuccess) {
             NSString * token = [parser parseSecurityToken:html];
@@ -632,7 +632,7 @@
             NSString * name = [parser parseQuickReplyTo:html];
             
             
-            NSURL * replyUrl = [CCFUrlBuilder buildReplyPrivateMessageURLWithReplyedID:pmId];
+            NSURL * replyUrl = [UrlBuilder buildReplyPrivateMessageURLWithReplyedID:pmId];
             NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
             
             NSString * realMessage = [[quote stringByAppendingString:@"\n"] stringByAppendingString:message];
@@ -671,11 +671,11 @@
 -(void)sendPrivateMessageToUserName:(NSString *)name andTitle:(NSString *)title andMessage:(NSString *)message handler:(Handler)handler{
 
     
-    [_browser GETWithURL:[CCFUrlBuilder buildNewPMUR] requestCallback:^(BOOL isSuccess,NSString *html) {
+    [_browser GETWithURL:[UrlBuilder buildNewPMUR] requestCallback:^(BOOL isSuccess,NSString *html) {
         if (isSuccess) {
             NSString * token = [parser parseSecurityToken:html];
             
-            NSURL * sendPMUrl = [CCFUrlBuilder buildSendPrivateMessageURL];
+            NSURL * sendPMUrl = [UrlBuilder buildSendPrivateMessageURL];
             NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
             
             
@@ -706,7 +706,7 @@
 }
 
 -(void)listfavoriteForms:(Handler)handler{
-    [_browser GETWithURL:[CCFUrlBuilder buildFavFormURL] requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURL:[UrlBuilder buildFavFormURL] requestCallback:^(BOOL isSuccess, NSString *html) {
         if (isSuccess) {
             handler(YES, html);
         } else{
@@ -724,7 +724,7 @@
     
     NSString * userId = user.userID;
     
-    [_browser GETWithURL:[CCFUrlBuilder buildMyThreadPostsURLWithUserId:userId] requestCallback:^(BOOL isSuccess, NSString *html) {
+    [_browser GETWithURL:[UrlBuilder buildMyThreadPostsURLWithUserId:userId] requestCallback:^(BOOL isSuccess, NSString *html) {
         handler(isSuccess, html);
     }];
 }
@@ -738,7 +738,7 @@
     
     if (listMyThreadRedirectUrl == nil) {
         
-        NSURL * myUrl = [CCFUrlBuilder buildMyThreadWithName:user.userName];
+        NSURL * myUrl = [UrlBuilder buildMyThreadWithName:user.userName];
         [_browser GETWithURL:myUrl requestCallback:^(BOOL isSuccess, NSString *html) {
             
             if (listMyThreadRedirectUrl == nil) {
@@ -915,19 +915,19 @@
 
 -(void)showThreadWithId:(int)threadId andPage:(int)page handler:(Handler)handler{
     
-    [self browseWithUrl:[CCFUrlBuilder buildThreadURL:threadId withPage:page] :^(BOOL isSuccess, id result) {
+    [self browseWithUrl:[UrlBuilder buildThreadURL:threadId withPage:page] :^(BOOL isSuccess, id result) {
         handler(isSuccess, result);
     }];
 }
 
 -(void)forumDisplayWithId:(int)formId andPage:(int)page handler:(Handler)handler{
-    [self browseWithUrl:[CCFUrlBuilder buildFormURL:formId withPage:page] :^(BOOL isSuccess, id result) {
+    [self browseWithUrl:[UrlBuilder buildFormURL:formId withPage:page] :^(BOOL isSuccess, id result) {
         handler(isSuccess, result);
     }];
 }
 
 -(void)showProfileWithUserId:(NSString *)userId handler:(Handler)handler{
-    NSURL * url = [CCFUrlBuilder buildMemberURL:userId];
+    NSURL * url = [UrlBuilder buildMemberURL:userId];
     
     [self browseWithUrl:url :^(BOOL isSuccess, id result) {
         handler(isSuccess, result);

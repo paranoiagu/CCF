@@ -8,7 +8,7 @@
 
 #import "CCFShowThreadViewController.h"
 #import "CCFThreadDetailCell.h"
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 #import "CCFParser.h"
 
 #import "MJRefresh.h"
@@ -557,13 +557,13 @@
         if (buttonIndex == 0) {
             // 复制贴链接
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-            pasteboard.string = [[CCFUrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:0] absoluteString];
+            pasteboard.string = [[UrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:0] absoluteString];
             
             [SVProgressHUD showSuccessWithStatus:@"复制成功" maskType:SVProgressHUDMaskTypeBlack];
 
         } else if (buttonIndex == 1){
             // 在浏览器种查看
-            [[UIApplication sharedApplication] openURL:[CCFUrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:1]];
+            [[UIApplication sharedApplication] openURL:[UrlBuilder buildThreadURL:[transThread.threadID intValue] withPage:1]];
         } else if (buttonIndex == 2){
             // 进入高级回帖
             UIStoryboard * storyBoard = [UIStoryboard mainStoryboard];

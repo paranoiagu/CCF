@@ -6,7 +6,7 @@
 //  Copyright © 2015年 andforce. All rights reserved.
 //
 
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 
 #define kCCFIndex @"https://bbs.et8.net/bbs/"
 
@@ -34,7 +34,7 @@
 
 #define kCCFPrivateMessageOutbox @"https://bbs.et8.net/bbs/private.php?folderid=-1"
 
-@implementation CCFUrlBuilder
+@implementation UrlBuilder
 
 +(NSURL *)buildMemberURL:(NSString *)userId{
     

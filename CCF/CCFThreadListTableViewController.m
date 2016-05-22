@@ -8,7 +8,7 @@
 
 #import "CCFThreadListTableViewController.h"
 
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 #import "CCFParser.h"
 #import "CCFThreadListCell.h"
 #import "CCFShowThreadViewController.h"

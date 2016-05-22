@@ -9,7 +9,7 @@
 #import "CCFShowPrivateMessageViewController.h"
 
 #import "CCFThreadDetailCell.h"
-#import "CCFUrlBuilder.h"
+#import "UrlBuilder.h"
 #import "CCFParser.h"
 
 #import "MJRefresh.h"

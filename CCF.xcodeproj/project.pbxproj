@@ -41,8 +41,6 @@
 		3A734BF61CCCCDAE00C4821A /* TransBundleUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A734BF51CCCCDAE00C4821A /* TransBundleUIViewController.m */; };
 		3A734BFB1CCCD72400C4821A /* CCFWritePMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A734BFA1CCCD72400C4821A /* CCFWritePMNavigationController.m */; };
 		3A842CA11C469AC1002944A9 /* CCFNewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */; };
-		3A84A4381CE8BB1A009619DE /* CCFApiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A84A4371CE8BB1A009619DE /* CCFApiLibrary.framework */; };
-		3A84A43A1CE8BB52009619DE /* CCFApiLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A84A4371CE8BB1A009619DE /* CCFApiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3A8E054E1CC35515003D0D90 /* UILouCengLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E054D1CC35515003D0D90 /* UILouCengLabel.m */; };
 		3A8E05511CC367AE003D0D90 /* UIPageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E05501CC367AE003D0D90 /* UIPageLabel.m */; };
 		3A92E7F71CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */; };
@@ -129,20 +127,6 @@
 		4DF824C31C34F0B2005BB858 /* CCFFormDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF824C21C34F0B2005BB858 /* CCFFormDao.m */; };
 		F98D9EA68FB327B72FDB5083 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A2A0B6B96C76030E628C93 /* libPods.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		3A84A43B1CE8BB52009619DE /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				3A84A43A1CE8BB52009619DE /* CCFApiLibrary.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3A0A997B1C4A5AFC00086DAB /* RoundCornerUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundCornerUITextView.h; sourceTree = "<group>"; };
@@ -388,7 +372,6 @@
 			files = (
 				4DEB34C31C47BBE400063CBB /* AssetsLibrary.framework in Frameworks */,
 				3A93298D1C39648900A26249 /* CoreText.framework in Frameworks */,
-				3A84A4381CE8BB1A009619DE /* CCFApiLibrary.framework in Frameworks */,
 				F98D9EA68FB327B72FDB5083 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -855,7 +838,6 @@
 				4D339D891C31454A0022A6A4 /* Resources */,
 				A1C5A111E85F6A0A55D70608 /* Embed Pods Frameworks */,
 				8E83BD880ACE4B8E047C76D4 /* Copy Pods Resources */,
-				3A84A43B1CE8BB52009619DE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

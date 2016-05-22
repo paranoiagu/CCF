@@ -11,7 +11,7 @@
 #import "PrivateMessageTableViewCell.h"
 #import "CCFShowPrivateMessageViewController.h"
 #import "PrivateMessage.h"
-#import "CCFPage.h"
+#import "ForumDisplayPage.h"
 #import "CCFProfileTableViewController.h"
 #import "CCFWritePMNavigationController.h"
 #import "UIStoryboard+CCF.h"
@@ -62,7 +62,7 @@
 
 
 -(void) refreshMessage:(int)page{
-    [self.ccfApi listPrivateMessageWithType:messageType andPage:page handler:^(BOOL isSuccess, CCFPage *message) {
+    [self.ccfApi listPrivateMessageWithType:messageType andPage:page handler:^(BOOL isSuccess, ForumDisplayPage *message) {
         [self.tableView.mj_header endRefreshing];
         
         if (isSuccess) {
@@ -82,7 +82,7 @@
 
 
 -(void)onLoadMore{
-    [self.ccfApi listPrivateMessageWithType:messageType andPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFPage *message) {
+    [self.ccfApi listPrivateMessageWithType:messageType andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
         [self.tableView.mj_footer endRefreshing];
         if (isSuccess) {
             self.currentPage++;

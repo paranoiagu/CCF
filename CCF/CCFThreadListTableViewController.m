@@ -64,7 +64,7 @@
 
 
 -(void)onPullRefresh{
-    [self.ccfApi forumDisplayWithId:transForm.formId andPage:1 handler:^(BOOL isSuccess, CCFPage *page) {
+    [self.ccfApi forumDisplayWithId:transForm.formId andPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
         
         [self.tableView.mj_header endRefreshing];
         
@@ -92,7 +92,7 @@
 }
 
 -(void)onLoadMore{
-    [self.ccfApi forumDisplayWithId:transForm.formId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFPage *page) {
+    [self.ccfApi forumDisplayWithId:transForm.formId andPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *page) {
         
         [self.tableView.mj_footer endRefreshing];
         

@@ -11,7 +11,7 @@
 #import "User.h"
 #import "NormalThread.h"
 #import "FormEntry+CoreDataProperties.h"
-#import "CCFPage.h"
+#import "ForumDisplayPage.h"
 #import "ShowThreadPage.h"
 #import "Forum.h"
 #import "CCFSearchPage.h"
@@ -25,9 +25,9 @@
 - (ShowThreadPage *) parseShowThreadWithHtml:(NSString*)html;
 
 
-- (CCFPage *) parseThreadListFromHtml: (NSString *) html withThread:(int) threadId andContainsTop:(BOOL)containTop;
+- (ForumDisplayPage *) parseThreadListFromHtml: (NSString *) html withThread:(int) threadId andContainsTop:(BOOL)containTop;
 
-- (CCFPage *) parseFavThreadListFormHtml: (NSString *) html;
+- (ForumDisplayPage *) parseFavThreadListFormHtml: (NSString *) html;
 
 - (NSString *) parseSecurityToken:(NSString *)html;
 
@@ -42,7 +42,7 @@
 
 - (NSMutableArray<Forum *> *) parseFavFormFormHtml:(NSString *)html;
 
-- (CCFPage*) parsePrivateMessageFormHtml:(NSString*) html;
+- (ForumDisplayPage*) parsePrivateMessageFormHtml:(NSString*) html;
 
 - (CCFShowPM *) parsePrivateMessageContent:(NSString*) html;
 

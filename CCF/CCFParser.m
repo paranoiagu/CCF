@@ -10,7 +10,7 @@
 #import <IGHTMLQuery.h>
 #import "ShowThreadPage.h"
 #import "CCFSearchThread.h"
-#import "CCFPage.h"
+#import "ForumDisplayPage.h"
 #import "FormEntry+CoreDataProperties.h"
 #import "CCFCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
@@ -25,9 +25,9 @@
 
 @implementation CCFParser
 
--(CCFPage *)parseThreadListFromHtml:(NSString *)html withThread:(int) threadId andContainsTop:(BOOL)containTop{
+-(ForumDisplayPage *)parseThreadListFromHtml:(NSString *)html withThread:(int) threadId andContainsTop:(BOOL)containTop{
     
-    CCFPage * page = [[CCFPage alloc] init];
+    ForumDisplayPage * page = [[ForumDisplayPage alloc] init];
     
     NSString * path = [NSString stringWithFormat:@"//*[@id='threadbits_forum_%d']/tr", threadId];
     
@@ -503,8 +503,8 @@
     
 }
 
--(CCFPage *)parseFavThreadListFormHtml:(NSString *)html{
-    CCFPage * page = [[CCFPage alloc] init];
+-(ForumDisplayPage *)parseFavThreadListFormHtml:(NSString *)html{
+    ForumDisplayPage * page = [[ForumDisplayPage alloc] init];
     
     NSString * path = @"/html/body/div[2]/div/div/table[3]/tr/td[3]/form[2]/table/tr[position()>2]";
     
@@ -696,8 +696,8 @@
 }
 
 
--(CCFPage *)parsePrivateMessageFormHtml:(NSString *)html{
-    CCFPage * page = [[CCFPage alloc] init];
+-(ForumDisplayPage *)parsePrivateMessageFormHtml:(NSString *)html{
+    ForumDisplayPage * page = [[ForumDisplayPage alloc] init];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
 

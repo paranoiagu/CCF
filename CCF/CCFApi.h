@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LoginCCFUser.h"
-#import "CCFPage.h"
+#import "ForumDisplayPage.h"
 #import "CCFSearchThread.h"
 #import "CCFSearchPage.h"
 #import "Forum.h"

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCFPage : NSObject
+@interface ForumDisplayPage : NSObject
 
 @property (nonatomic, strong) NSMutableArray * dataList;
 

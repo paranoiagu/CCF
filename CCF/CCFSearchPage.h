@@ -6,9 +6,9 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFPage.h"
+#import "ForumDisplayPage.h"
 
-@interface CCFSearchPage : CCFPage
+@interface CCFSearchPage : ForumDisplayPage
 
 @property (nonatomic, strong) NSString * redirectUrl;
 

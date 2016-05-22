@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CCFPage.h"
+#import "ForumDisplayPage.h"
 #import "Post.h"
 
-@interface ShowThreadPage : CCFPage
+@interface ShowThreadPage : ForumDisplayPage
 
 @property (nonatomic, strong) NSString* threadID;
 @property (nonatomic, strong) NSString* threadLink;

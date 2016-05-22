@@ -18,7 +18,7 @@
 @implementation CCFMyThreadTableViewController
 
 -(void)onPullRefresh{
-    [self.ccfApi listMyAllThreadsWithPage:1 handler:^(BOOL isSuccess, CCFPage *message) {
+    [self.ccfApi listMyAllThreadsWithPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
         [self.tableView.mj_header endRefreshing];
         
         if (isSuccess) {
@@ -36,7 +36,7 @@
 }
 
 -(void)onLoadMore{
-    [self.ccfApi listMyAllThreadsWithPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFPage *message) {
+    [self.ccfApi listMyAllThreadsWithPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
         [self.tableView.mj_footer endRefreshing];
         
         if (isSuccess) {

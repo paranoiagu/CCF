@@ -97,6 +97,7 @@
 		3AC65FEC1CF153C6000D3BDB /* ShowThreadPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FEB1CF153C6000D3BDB /* ShowThreadPage.m */; };
 		3AC65FEF1CF15414000D3BDB /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FEE1CF15414000D3BDB /* Thread.m */; };
 		3AC65FF21CF1547F000D3BDB /* SimpleThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FF11CF1547F000D3BDB /* SimpleThread.m */; };
+		3AC65FF81CF16040000D3BDB /* ForumDisplayPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FF71CF16040000D3BDB /* ForumDisplayPage.m */; };
 		3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */; };
 		3AEA1F371C365EA400710BD6 /* CCFShowThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
@@ -126,7 +127,6 @@
 		4D796BF71C44BBA000B3C62D /* FormEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF51C44BBA000B3C62D /* FormEntry.m */; };
 		4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF91C44BE7800B3C62D /* CoreDataManager.m */; };
 		4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */; };
-		4D852A201C991294009121B2 /* CCFPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D852A1F1C991294009121B2 /* CCFPage.m */; };
 		4D93CFD71C85355D00852D28 /* ApiTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D93CFD51C85355D00852D28 /* ApiTestViewController.m */; };
 		4D93CFD81C85355D00852D28 /* ApiTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */; };
 		4DAFF55A1C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAFF5591C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m */; };
@@ -329,6 +329,8 @@
 		3AC65FEE1CF15414000D3BDB /* Thread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thread.m; sourceTree = "<group>"; };
 		3AC65FF01CF1547F000D3BDB /* SimpleThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleThread.h; sourceTree = "<group>"; };
 		3AC65FF11CF1547F000D3BDB /* SimpleThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleThread.m; sourceTree = "<group>"; };
+		3AC65FF61CF16040000D3BDB /* ForumDisplayPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumDisplayPage.h; sourceTree = "<group>"; };
+		3AC65FF71CF16040000D3BDB /* ForumDisplayPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumDisplayPage.m; sourceTree = "<group>"; };
 		3AEA1F2D1C364E7E00710BD6 /* CCFThreadListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTableViewController.h; sourceTree = "<group>"; };
 		3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTableViewController.m; sourceTree = "<group>"; };
 		3AEA1F351C365EA400710BD6 /* CCFShowThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowThreadViewController.h; sourceTree = "<group>"; };
@@ -384,8 +386,6 @@
 		4D796BF91C44BE7800B3C62D /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		4D796BFD1C44FAED00B3C62D /* CCFCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFCoreDataManager.h; sourceTree = "<group>"; };
 		4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFCoreDataManager.m; sourceTree = "<group>"; };
-		4D852A1E1C991294009121B2 /* CCFPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFPage.h; sourceTree = "<group>"; };
-		4D852A1F1C991294009121B2 /* CCFPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFPage.m; sourceTree = "<group>"; };
 		4D93CFD41C85355D00852D28 /* ApiTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiTestViewController.h; sourceTree = "<group>"; };
 		4D93CFD51C85355D00852D28 /* ApiTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiTestViewController.m; sourceTree = "<group>"; };
 		4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApiTestViewController.xib; sourceTree = "<group>"; };
@@ -859,8 +859,8 @@
 				3AC65FEE1CF15414000D3BDB /* Thread.m */,
 				3AC65FF01CF1547F000D3BDB /* SimpleThread.h */,
 				3AC65FF11CF1547F000D3BDB /* SimpleThread.m */,
-				4D852A1E1C991294009121B2 /* CCFPage.h */,
-				4D852A1F1C991294009121B2 /* CCFPage.m */,
+				3AC65FF61CF16040000D3BDB /* ForumDisplayPage.h */,
+				3AC65FF71CF16040000D3BDB /* ForumDisplayPage.m */,
 				3A1C2CD21C9EA1010068AF6B /* CCFUserProfile.h */,
 				3A1C2CD31C9EA1010068AF6B /* CCFUserProfile.m */,
 			);
@@ -1092,6 +1092,7 @@
 				4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */,
 				4DAFF55A1C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m in Sources */,
 				4D796BF71C44BBA000B3C62D /* FormEntry.m in Sources */,
+				3AC65FF81CF16040000D3BDB /* ForumDisplayPage.m in Sources */,
 				3A3672AA1CAF6AF000756D8B /* CCFApiBaseViewController.m in Sources */,
 				3AC65FC51CF13AB6000D3BDB /* NSUserDefaults+Setting.m in Sources */,
 				3A7569AD1C42B179000486F4 /* CCFFavFormController.m in Sources */,
@@ -1125,7 +1126,6 @@
 				4D796BF61C44BBA000B3C62D /* FormEntry+CoreDataProperties.m in Sources */,
 				3A3672B01CAFDC7000756D8B /* CCFSettingTableViewController.m in Sources */,
 				3AA5B9A01CBA8C6C0008175A /* CCFSimpleReplyNavigationController.m in Sources */,
-				4D852A201C991294009121B2 /* CCFPage.m in Sources */,
 				3A9ADC6C1C9D8F2C006055A8 /* BaseCCFTableViewCell.m in Sources */,
 				3A1CC3E01CB922F5007A0B97 /* CCFWritePMViewController.m in Sources */,
 				3AC65FF21CF1547F000D3BDB /* SimpleThread.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import "CCFShowNewThreadPostTableViewController.h"
 #import "CCFNavigationController.h"
-#import "CCFPage.h"
+#import "ForumDisplayPage.h"
 #import "CCFSearchThread.h"
 #import "CCFSearchResultCell.h"
 #import "CCFSearchThread.h"
@@ -23,7 +23,7 @@
 @implementation CCFShowNewThreadPostTableViewController
 
 -(void)onPullRefresh{
-    [self.ccfApi listNewThreadPostsWithPage:1 handler:^(BOOL isSuccess, CCFPage *message) {
+    [self.ccfApi listNewThreadPostsWithPage:1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
         [self.tableView.mj_header endRefreshing];
         if (isSuccess) {
             [self.tableView.mj_footer endRefreshing];
@@ -44,7 +44,7 @@
 }
 
 -(void)onLoadMore{
-    [self.ccfApi listNewThreadPostsWithPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFPage *message) {
+    [self.ccfApi listNewThreadPostsWithPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage *message) {
         [self.tableView.mj_footer endRefreshing];
         if (isSuccess) {
             self.currentPage++;

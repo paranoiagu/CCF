@@ -11,7 +11,7 @@
 #import "CCFParser.h"
 #import "NSUserDefaults+Extensions.h"
 #import "ShowThreadPage.h"
-#import "CCFPage.h"
+#import "ForumDisplayPage.h"
 #import "CCFShowPM.h"
 #import "CCFUserProfile.h"
 
@@ -202,7 +202,7 @@
     [_browser privateMessageWithType:type andpage:page handler:^(BOOL isSuccess, id result) {
         
         if (isSuccess) {
-            CCFPage * page = [_praser parsePrivateMessageFormHtml:result];
+            ForumDisplayPage * page = [_praser parsePrivateMessageFormHtml:result];
             handler(YES, page);
         } else{
             handler(NO, result);
@@ -264,7 +264,7 @@
 
 -(void)listMyAllThreadsWithPage:(int)page handler:(HandlerWithBool)handler{
     [_browser listMyAllThreadsWithPage:page handler:^(BOOL isSuccess, id result) {
-        CCFPage* sarchPage = [_praser parseSearchPageFromHtml:result];
+        ForumDisplayPage* sarchPage = [_praser parseSearchPageFromHtml:result];
         handler(isSuccess, sarchPage);
     }];
 }
@@ -282,21 +282,21 @@
 
 -(void)listFavoriteThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler{
     [_browser listFavoriteThreadPostsWithPage:page handler:^(BOOL isSuccess, NSString* result) {
-        CCFPage * page = [_praser parseFavThreadListFormHtml:result];
+        ForumDisplayPage * page = [_praser parseFavThreadListFormHtml:result];
         handler(isSuccess, page);
     }];
 }
 
 -(void)listNewThreadPostsWithPage:(int)page handler:(HandlerWithBool)handler{
     [_browser listNewThreadPostsWithPage:page handler:^(BOOL isSuccess, id result) {
-        CCFPage* sarchPage = [_praser parseSearchPageFromHtml:result];
+        ForumDisplayPage* sarchPage = [_praser parseSearchPageFromHtml:result];
         handler(isSuccess, sarchPage);
     }];
 }
 
 -(void)listTodayNewThreadsWithPage:(int)page handler:(HandlerWithBool)handler{
     [_browser listTodayNewThreadsWithPage:page handler:^(BOOL isSuccess, id result) {
-        CCFPage* sarchPage = [_praser parseSearchPageFromHtml:result];
+        ForumDisplayPage* sarchPage = [_praser parseSearchPageFromHtml:result];
         handler(isSuccess, sarchPage);
     }];
 }
@@ -328,7 +328,7 @@
 -(void)forumDisplayWithId:(int)formId andPage:(int)page handler:(HandlerWithBool)handler{
     [_browser forumDisplayWithId:formId andPage:page handler:^(BOOL isSuccess, NSString* result) {
         if (isSuccess) {
-            CCFPage* page = [_praser parseThreadListFromHtml:result withThread:formId andContainsTop:YES];
+            ForumDisplayPage* page = [_praser parseThreadListFromHtml:result withThread:formId andContainsTop:YES];
             handler(isSuccess, page);
         } else{
             handler(NO, result);
@@ -386,7 +386,7 @@
 
 -(void)listAllUserThreads:(int)userId withPage:(int)page handler:(HandlerWithBool)handler{
     [_browser listAllUserThreads:userId withPage:page handler:^(BOOL isSuccess, id result) {
-        CCFPage* sarchPage = [_praser parseSearchPageFromHtml:result];
+        ForumDisplayPage* sarchPage = [_praser parseSearchPageFromHtml:result];
         handler(isSuccess, sarchPage);
     }];
 }

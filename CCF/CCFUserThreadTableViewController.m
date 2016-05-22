@@ -11,7 +11,7 @@
 #import "CCFSearchResultCell.h"
 #import "CCFShowThreadViewController.h"
 #import "CCFUserProfile.h"
-
+#import "ForumDisplayPage.h"
 
 @interface CCFUserThreadTableViewController ()<TransValueDelegate>{
     CCFUserProfile *userProfile;
@@ -26,7 +26,7 @@
 }
 
 -(void)onPullRefresh{
-    [self.ccfApi listAllUserThreads:[userProfile.profileUserId intValue] withPage:1 handler:^(BOOL isSuccess, CCFPage* message) {
+    [self.ccfApi listAllUserThreads:[userProfile.profileUserId intValue] withPage:1 handler:^(BOOL isSuccess, ForumDisplayPage* message) {
         [self.tableView.mj_header endRefreshing];
         
         if (isSuccess) {
@@ -43,7 +43,7 @@
 }
 
 -(void)onLoadMore{
-    [self.ccfApi listAllUserThreads:[userProfile.profileUserId intValue] withPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFPage* message) {
+    [self.ccfApi listAllUserThreads:[userProfile.profileUserId intValue] withPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage* message) {
         [self.tableView.mj_footer endRefreshing];
         
         if (isSuccess) {

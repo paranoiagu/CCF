@@ -17,7 +17,6 @@
 #import "CCFFavFormController.h"
 #import "UrlBuilder.h"
 #import "LoginUser.h"
-#import "DRLForumTableViewController.h"
 #import "CCFPrivateMessageTableViewController.h"
 #import "CCFMyThreadPostTableViewController.h"
 #import "CCFMyThreadTableViewController.h"
@@ -29,14 +28,17 @@
 #import "ForumCoreDataManager.h"
 #import "UserEntry+CoreDataProperties.h"
 #import "ForumApi.h"
+#import "LoginUser.h"
+#import "DRLTabBarController.h"
+#import "DRLForumTableViewController.h"
 
 
 @interface DrawerView(){
-
+    
     UIButton *_drawerMaskView;
     
     ForumApi * _ccfapi;
-
+    
     UIView *_rightEageView;
     
     UIImage *defaultAvatar;
@@ -103,7 +105,7 @@
         [self setLeftDrawerEnadbled:YES];
         
         [self showUserAvatar];
-
+        
     }
     return self;
 }
@@ -136,59 +138,59 @@
 }
 
 -(id)initWithDrawerType:(DrawerViewType)drawerType andXib:(NSString *)name{
-        if (self = [super init]) {
-            _ccfapi = [[ForumApi alloc] init];
-            
-            // 和 xib 绑定
-            [[NSBundle mainBundle] loadNibNamed:name owner:self options:nil];
-            
-            [self setDrawerType:drawerType];
-            
-            
-            switch (_drawerType) {
-                case DrawerViewTypeLeft:{
-
-                    //_leftDrawerView = nibViews.firstObject;
-                    
-                    [self setUpLeftDrawer];
-                    
-                    [self setLeftDrawerEnadbled:YES];
-                    break;
-                }
-                case DrawerViewTypeRight:{
-                    
-                    //_rightDrawerView = nibViews.firstObject;
-                    [self setUpRightDrawer];
-                    [self setRightDrawerEnadbled:YES];
-                    break;
-                }
-                case DrawerViewTypeLeftAndRight:{
-
-                    //_leftDrawerView = nibViews.firstObject;
-                    [self setUpLeftDrawer];
-                    
-                    
-                    //_rightDrawerView = nibViews.lastObject;
-                    [self setUpRightDrawer];
-                    
-                    
-                    [self setLeftDrawerEnadbled:YES];
-                    [self setRightDrawerEnadbled: YES];
-                    break;
-                }
+    if (self = [super init]) {
+        _ccfapi = [[ForumApi alloc] init];
+        
+        // 和 xib 绑定
+        [[NSBundle mainBundle] loadNibNamed:name owner:self options:nil];
+        
+        [self setDrawerType:drawerType];
+        
+        
+        switch (_drawerType) {
+            case DrawerViewTypeLeft:{
+                
+                //_leftDrawerView = nibViews.firstObject;
+                
+                [self setUpLeftDrawer];
+                
+                [self setLeftDrawerEnadbled:YES];
+                break;
             }
-
-            [self initMaskView];
-            
-            [self showUserAvatar];
-            
+            case DrawerViewTypeRight:{
+                
+                //_rightDrawerView = nibViews.firstObject;
+                [self setUpRightDrawer];
+                [self setRightDrawerEnadbled:YES];
+                break;
+            }
+            case DrawerViewTypeLeftAndRight:{
+                
+                //_leftDrawerView = nibViews.firstObject;
+                [self setUpLeftDrawer];
+                
+                
+                //_rightDrawerView = nibViews.lastObject;
+                [self setUpRightDrawer];
+                
+                
+                [self setLeftDrawerEnadbled:YES];
+                [self setRightDrawerEnadbled: YES];
+                break;
+            }
         }
+        
+        [self initMaskView];
+        
+        [self showUserAvatar];
+        
+    }
     
     return self;
 }
 
 -(id)initWithDrawerType:(DrawerViewType)drawerType{
-   
+    
     if (self = [super init]) {
         
         _ccfapi = [[ForumApi alloc] init];
@@ -204,7 +206,7 @@
                 break;
             }
             case DrawerViewTypeRight:{
-
+                
                 [self initRightDrawerView];
                 [self setUpRightDrawer];
                 [self setRightDrawerEnadbled:YES];
@@ -213,12 +215,12 @@
             case DrawerViewTypeLeftAndRight:{
                 [self initLeftDrawerView];
                 [self setUpLeftDrawer];
-        
+                
                 
                 [self initRightDrawerView];
                 [self setUpRightDrawer];
-
-
+                
+                
                 [self setLeftDrawerEnadbled:YES];
                 [self setRightDrawerEnadbled: YES];
                 break;
@@ -228,7 +230,7 @@
                 
                 [self initLeftDrawerView];
                 [self setUpLeftDrawer];
-
+                
                 [self setLeftDrawerEnadbled:YES];
                 break;
             }
@@ -236,7 +238,7 @@
         
         [self initMaskView];
     }
-
+    
     
     return self;
 }
@@ -255,9 +257,9 @@
     
     NSLog(@"didMoveToSuperview %f", rootView.frame.size.width);
     
-
+    
     _drawerMaskView.frame = CGRectMake(0, 0, rootView.frame.size.width, rootView.frame.size.height);
-
+    
     [rootView addSubview:_drawerMaskView];
     
     
@@ -265,7 +267,7 @@
     if (_drawerType != DrawerViewTypeLeft) {
         _rightEageView = [[UIView alloc]init];
         _rightEageView.frame = CGRectMake(rootView.frame.size.width - kEdge, 0, kEdge, rootView.frame.size.height);
-       // _rightEageView.backgroundColor = [UIColor redColor];
+        // _rightEageView.backgroundColor = [UIColor redColor];
         
         [rootView addSubview:_rightEageView];
         
@@ -308,7 +310,7 @@
         }
         NSLog(@"左侧     %@", subViews);
     }
-
+    
     if (_drawerType != DrawerViewTypeLeft) {
         // init right Drawer
         _rightDrawerView.frame = CGRectMake(rootView.frame.size.width, 0, with, rootView.frame.size.height);
@@ -320,7 +322,7 @@
     }
     
     [rootView bringSubviewToFront:self];
-
+    
 }
 
 -(void)openLeftDrawer{
@@ -436,7 +438,7 @@
         
         CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        DRLForumTableViewController * favController = [storyboard instantiateViewControllerWithIdentifier:@"CCFFormTableViewController"];
+        DRLForumTableViewController * favController = [storyboard instantiateViewControllerWithIdentifier:@"DRLForumTableViewController"];
         [controller setRootViewController:favController];
     }
 }
@@ -454,14 +456,25 @@
 
 - (IBAction)showMyProfile:(id)sender {
     
-    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
-        [self closeLeftDrawer];
+    [self closeLeftDrawer];
+    DRLTabBarController * controller = (DRLTabBarController*)self.window.rootViewController;
+    
+    
+    UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+    CCFNavigationController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileNavigationController"];
+    [controller presentViewController:myProfileControllder animated:YES completion:^{
         
-        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        CCFMyProfileUITableViewController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileUITableViewController"];
-        [controller setRootViewController:myProfileControllder];
-    }
+    }];
+    
+    
+    //    if ([self.window.rootViewController isKindOfClass:[CCFNavigationController class]]) {
+    //        [self closeLeftDrawer];
+    //
+    //        CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
+    //        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
+    //        CCFMyProfileUITableViewController * myProfileControllder = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyProfileUITableViewController"];
+    //        [controller setRootViewController:myProfileControllder];
+    //    }
     
 }
 // 切换Controller结束
@@ -526,7 +539,7 @@
         }
         [self setLeftDrawerOpened:YES];
     }];
-
+    
 }
 
 
@@ -553,7 +566,7 @@
 }
 
 -(void) setUpRightDrawer{
-
+    
     _rightDrawerView.backgroundColor = [UIColor whiteColor];
     
     _rightDrawerView.layer.shadowColor = [[UIColor blackColor]CGColor];
@@ -575,9 +588,9 @@
 }
 
 -(void) setUpLeftDrawer{
-
     
-
+    
+    
     _leftDrawerView.backgroundColor = [UIColor whiteColor];
     
     _leftDrawerView.layer.shadowColor = [[UIColor blackColor]CGColor];
@@ -638,7 +651,7 @@
     if ([self leftDrawerOpened]) {
         [self hideLeftDrawerWithAnim:_leftDrawerView];
     }
-
+    
     [self handleRightPan:recognizer];
 }
 
@@ -666,7 +679,7 @@
 }
 
 - (void) handleMaskPan:(UIPanGestureRecognizer*) recognizer{
-
+    
     if (_leftDrawerOpened) {
         
         [self dragLeftDrawer:recognizer :^CGFloat(CGFloat x, CGFloat maxX) {
@@ -726,12 +739,12 @@
     
     
     currentCenter.x = block(x, maxX);
-
+    
     NSLog(@"dragRightDrawer %f             %f " , currentCenter.x, translation.x);
     
     _rightDrawerView.center = currentCenter;
     
-
+    
     
     if (translation.x < 0 ) {
         _rightDrawerView.layer.shadowOpacity = 0.5f;
@@ -752,7 +765,7 @@
     
     
     CGPoint currentCenter = _leftDrawerView.center;
-
+    
     
     //NSLog(@"dragLeftDrawer %f             %f " , currentCenter.x, translation.x);
     

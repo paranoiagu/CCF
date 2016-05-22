@@ -25,16 +25,16 @@
 }
 
 
--(NSArray<CCFForm *> *)selectFavForms:(NSArray *)ids{
+-(NSArray<Forum *> *)selectFavForms:(NSArray *)ids{
     
     NSArray<FormEntry *> *entrys = [self selectData:^NSPredicate *{
         return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
     }];
     
-    NSMutableArray<CCFForm *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];
+    NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];
     
     for (FormEntry *entry in entrys) {
-        CCFForm * form = [[CCFForm alloc] init];
+        Forum * form = [[Forum alloc] init];
         form.formName = entry.formName;
         form.formId = [entry.formId intValue];
         [forms addObject:form];
@@ -44,23 +44,23 @@
 
 
 
--(NSArray<CCFForm *> *)selectAllForms{
+-(NSArray<Forum *> *)selectAllForms{
     
     NSArray<FormEntry *> *entrys = [self selectData:^NSPredicate *{
         return [NSPredicate predicateWithFormat:@"parentFormId = %d", -1];
     }];
     
-    NSMutableArray<CCFForm *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];
+    NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];
     
     for (FormEntry *entry in entrys) {
-        CCFForm * form = [[CCFForm alloc] init];
+        Forum * form = [[Forum alloc] init];
         form.formName = entry.formName;
         form.formId = [entry.formId intValue];
         form.parentFormId = [entry.parentFormId intValue];
         [forms addObject:form];
     }
     
-    for (CCFForm * form in forms) {
+    for (Forum * form in forms) {
         form.childForms = [self selectChildFormsForId:form.formId];
     }
     
@@ -71,16 +71,16 @@
 }
 
 
--(NSArray<CCFForm *> *)selectChildFormsForId:(int)formId{
+-(NSArray<Forum *> *)selectChildFormsForId:(int)formId{
     
     NSArray<FormEntry *> *entrys = [self selectData:^NSPredicate *{
         return [NSPredicate predicateWithFormat:@"parentFormId = %d", formId];
     }];
     
-    NSMutableArray<CCFForm *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];
+    NSMutableArray<Forum *> *forms = [NSMutableArray arrayWithCapacity:entrys.count];
     
     for (FormEntry *entry in entrys) {
-        CCFForm * form = [[CCFForm alloc] init];
+        Forum * form = [[Forum alloc] init];
         form.formName = entry.formName;
         form.formId = [entry.formId intValue];
         form.parentFormId = [entry.parentFormId intValue];

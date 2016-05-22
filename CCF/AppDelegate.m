@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-#import "CCFForm.h"
+#import "Forum.h"
 #import "CCFFormDao.h"
 #import "CCFCoreDataManager.h"
 #import "FormEntry.h"
@@ -193,10 +193,10 @@
 
 
 
-- (NSArray*) flatForm:(CCFForm*) form{
+- (NSArray*) flatForm:(Forum*) form{
     NSMutableArray * resultArray = [NSMutableArray array];
     [resultArray addObject:form];
-    for (CCFForm * childForm in form.childForms) {
+    for (Forum * childForm in form.childForms) {
         [resultArray addObjectsFromArray:[self flatForm:childForm]];
     }
     return resultArray;

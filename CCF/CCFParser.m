@@ -15,7 +15,7 @@
 #import "CCFCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
 #import "NSString+Extensions.h"
-#import "CCFForm.h"
+#import "Forum.h"
 #import "PrivateMessage.h"
 #import "CCFSimpleThread.h"
 #import "CCFSearchPage.h"
@@ -660,7 +660,7 @@
     return type == nil ? fullTitle : [fullTitle substringFromIndex:type.length];
 }
 
--(NSMutableArray<CCFForm *> *)parseFavFormFormHtml:(NSString *)html{
+-(NSMutableArray<Forum *> *)parseFavFormFormHtml:(NSString *)html{
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet * favFormNodeSet = [document queryWithXPath:@"//*[@id='collapseobj_usercp_forums']/tr[*]/td[2]/div[1]/a"];
@@ -683,10 +683,10 @@
          return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
     }];
     
-    NSMutableArray<CCFForm *> * forms = [NSMutableArray arrayWithCapacity:result.count];
+    NSMutableArray<Forum *> * forms = [NSMutableArray arrayWithCapacity:result.count];
     
     for (FormEntry * entry in result) {
-        CCFForm * form = [[CCFForm alloc] init];
+        Forum * form = [[Forum alloc] init];
         form.formName = entry.formName;
         form.formId = [entry.formId intValue];
         [forms addObject:form];
@@ -920,10 +920,10 @@
 }
 
 
--(NSArray<CCFForm *> *)parserForms:(NSString *)html{
+-(NSArray<Forum *> *)parserForms:(NSString *)html{
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     
-    NSMutableArray<CCFForm *> * forms = [NSMutableArray array];
+    NSMutableArray<Forum *> * forms = [NSMutableArray array];
     
     //*[@id="content"]/ul
     
@@ -937,13 +937,13 @@
 
     }
 
-    NSMutableArray<CCFForm *> * needInsert = [NSMutableArray array];
+    NSMutableArray<Forum *> * needInsert = [NSMutableArray array];
     
-    for (CCFForm *form in forms) {
+    for (Forum *form in forms) {
         [needInsert addObjectsFromArray:[self flatForm:form]];
     }
     
-    for (CCFForm * form in needInsert) {
+    for (Forum * form in needInsert) {
         NSLog(@">>>>>>>>>>>>>>>>>>>>>>> %@     formId: %d     parentFormId:%d\n\n\n", form.formName, form.formId, form.parentFormId);
     }
     
@@ -952,18 +952,18 @@
 }
 
 
-- (NSArray*) flatForm:(CCFForm*) form{
+- (NSArray*) flatForm:(Forum*) form{
     NSMutableArray * resultArray = [NSMutableArray array];
     [resultArray addObject:form];
-    for (CCFForm * childForm in form.childForms) {
+    for (Forum * childForm in form.childForms) {
         [resultArray addObjectsFromArray:[self flatForm:childForm]];
     }
     return resultArray;
 }
 
 
--(CCFForm *) node2Form:(IGXMLNode*) node parentFormId:(int) parentFormId replaceId:(int) replaceId{
-    CCFForm * parent = [[CCFForm alloc] init];
+-(Forum *) node2Form:(IGXMLNode*) node parentFormId:(int) parentFormId replaceId:(int) replaceId{
+    Forum * parent = [[Forum alloc] init];
     NSString * name = [[node childrenAtPosition:0] text];
     NSString * url = [[node childrenAtPosition:0] html];
     int formId = [[url stringWithRegular:@"f-\\d+" andChild:@"\\d+"] intValue];
@@ -974,7 +974,7 @@
     
     if (node.childrenCount == 2) {
         IGXMLNodeSet * childSet = [node childrenAtPosition:1].children;
-        NSMutableArray<CCFForm *> * childForms = [NSMutableArray array];
+        NSMutableArray<Forum *> * childForms = [NSMutableArray array];
         
         for (IGXMLNode * childNode in childSet) {
             [childForms addObject:[self node2Form:childNode parentFormId:fixFormId replaceId:replaceId]];

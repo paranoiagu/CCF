@@ -9,12 +9,12 @@
 #import "CCFFormDao.h"
 #import "CCFFormTreeJSONModel.h"
 #import "CCFFormJSONModel.h"
-#import "CCFForm.h"
+#import "Forum.h"
 
 @implementation CCFFormDao
 
 
--(NSArray<CCFForm *> *)parseCCFForms:(NSString *)jsonFilePath{
+-(NSArray<Forum *> *)parseCCFForms:(NSString *)jsonFilePath{
     NSError *error;
     
     NSData *jsonData = [[NSData alloc]initWithContentsOfFile:jsonFilePath];
@@ -28,7 +28,7 @@
     
     NSArray<CCFFormJSONModel*> * formModels = formTree.ccfforms;
     
-    NSMutableArray<CCFForm*> *forms = [NSMutableArray arrayWithCapacity:formModels.count];
+    NSMutableArray<Forum*> *forms = [NSMutableArray arrayWithCapacity:formModels.count];
     
     for (CCFFormJSONModel * model in formModels) {
         [forms addObject:[self model2Form:model]];
@@ -38,18 +38,17 @@
 }
 
 
--(CCFForm*) model2Form:(CCFFormJSONModel*) model{
-    CCFForm * form = [[CCFForm alloc] init];
+-(Forum*) model2Form:(CCFFormJSONModel*) model{
+    Forum * form = [[Forum alloc] init];
     form.formId = [[model valueForKey:@"formId"] intValue];
     form.formName = [model valueForKey:@"formName"];
     form.parentFormId = [[model valueForKey:@"parentFormId"] intValue];
-    form.isNeedLogin = [[model valueForKey:@"isNeedLogin"] intValue];
     
     NSArray<CCFFormJSONModel*> * childModels = [model valueForKey:@"childForms"];
     
     if (childModels != nil && childModels.count > 0) {
         
-        NSMutableArray<CCFForm*> * childForms = [NSMutableArray arrayWithCapacity:childModels.count];
+        NSMutableArray<Forum*> * childForms = [NSMutableArray arrayWithCapacity:childModels.count];
         
         for (CCFFormJSONModel * child in childModels) {
 

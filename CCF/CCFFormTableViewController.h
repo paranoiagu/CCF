@@ -11,7 +11,7 @@
 #import <MessageUI/MessageUI.h>     // for MFMailComposeViewControllerDelegate
 #import "CCFFormHeaderView.h"    // for SectionHeaderViewDelegate
 #import "TransValueDelegate.h"
-#import "CCFForm.h"
+#import "Forum.h"
 
 #import "DrawerView.h"
 
@@ -21,7 +21,7 @@
 
 - (IBAction)showLeftDrawer:(id)sender;
 
-@property (nonatomic, strong) NSMutableArray<CCFForm *> *forms;
+@property (nonatomic, strong) NSMutableArray<Forum *> *forms;
 
 @property (nonatomic, strong) id<TransValueDelegate> transValueDelegate;
 

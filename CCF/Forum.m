@@ -6,8 +6,8 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFForm.h"
+#import "Forum.h"
 
-@implementation CCFForm
+@implementation Forum
 
 @end

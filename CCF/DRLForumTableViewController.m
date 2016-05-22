@@ -54,7 +54,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
     ForumListHeaderView *headerView = [XibInflater inflateViewByXibName:@"ForumListHeaderView"];
-    CCFForm * parent = self.dataList[section];
+    Forum * parent = self.dataList[section];
     headerView.textLabel.text = parent.formName;
     return headerView;
     
@@ -62,7 +62,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    CCFForm * forum = self.dataList[section];
+    Forum * forum = self.dataList[section];
     return forum.childForms.count;
 }
 
@@ -79,8 +79,8 @@
     
     
     
-    CCFForm * parent = self.dataList[indexPath.section];
-    CCFForm * child = parent.childForms[indexPath.row];
+    Forum * parent = self.dataList[indexPath.section];
+    Forum * child = parent.childForms[indexPath.row];
                      
     cell.textLabel.text = child.formName;
     return cell;
@@ -88,8 +88,8 @@
 
 -(BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion{
     
-    CCFForm * parent = self.dataList[cell.indexPath.section];
-    CCFForm * child = parent.childForms[cell.indexPath.row];
+    Forum * parent = self.dataList[cell.indexPath.section];
+    Forum * child = parent.childForms[cell.indexPath.row];
     
     [self.ccfApi favoriteFormsWithId:[NSString stringWithFormat:@"%d",child.formId] handler:^(BOOL isSuccess, id message) {
         NSLog(@">>>>>>>>>>>> %@", message);
@@ -112,8 +112,8 @@
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         
         
-        CCFForm * select = self.dataList[path.section];
-        CCFForm * child = select.childForms[path.row];
+        Forum * select = self.dataList[path.section];
+        Forum * child = select.childForms[path.row];
         
         [self.transValueDelegate transValue:child];
     }

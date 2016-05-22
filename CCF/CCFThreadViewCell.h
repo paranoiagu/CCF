@@ -48,10 +48,9 @@
  */
 
 #import <UIKit/UIKit.h>
-
+#import "Forum.h"
 
 @class APLHighlightingTextView;
-@class CCFForm;
 
 @interface CCFThreadViewCell : UITableViewCell 
 
@@ -59,7 +58,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *actAndSceneLabel;
 @property (nonatomic, weak) IBOutlet APLHighlightingTextView *quotationTextView;
 
-@property (nonatomic) CCFForm *quotation;
+@property (nonatomic) Forum *quotation;
 
 @property (nonatomic) UILongPressGestureRecognizer *longPressRecognizer;
 

@@ -52,15 +52,14 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "Forum.h"
 
 @class CCFFormHeaderView;
-
-@class CCFForm;
 
 @interface CCFFormSectionInfo : NSObject 
 
 @property (getter = isOpen) BOOL open;
-@property CCFForm *form;
+@property Forum *form;
 @property CCFFormHeaderView *headerView;
 
 @property (nonatomic) NSMutableArray *rowHeights;

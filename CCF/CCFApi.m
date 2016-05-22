@@ -83,7 +83,7 @@
     [_browser formList:^(BOOL isSuccess, id result) {
         if (isSuccess) {
             
-            NSArray<CCFForm *> * forms = [_praser parserForms:result];
+            NSArray<Forum *> * forms = [_praser parserForms:result];
             handler(YES, forms);
         } else{
             
@@ -248,7 +248,7 @@
 -(void)listFavoriteForms:(HandlerWithBool)handler{
     [_browser listfavoriteForms:^(BOOL isSuccess, id result) {
         if (isSuccess) {
-            NSMutableArray<CCFForm *> * favForms = [_praser parseFavFormFormHtml:result];
+            NSMutableArray<Forum *> * favForms = [_praser parseFavFormFormHtml:result];
             handler(YES, favForms);
         } else{
             handler(NO, nil);

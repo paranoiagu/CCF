@@ -13,7 +13,7 @@
 #import "FormEntry+CoreDataProperties.h"
 #import "CCFPage.h"
 #import "CCFShowThreadPage.h"
-#import "CCFForm.h"
+#import "Forum.h"
 #import "CCFSearchPage.h"
 #import "CCFUserProfile.h"
 #import "CCFShowPM.h"
@@ -40,7 +40,7 @@
 
 - (CCFSearchPage *) parseSearchPageFromHtml:( NSString*) html;
 
-- (NSMutableArray<CCFForm *> *) parseFavFormFormHtml:(NSString *)html;
+- (NSMutableArray<Forum *> *) parseFavFormFormHtml:(NSString *)html;
 
 - (CCFPage*) parsePrivateMessageFormHtml:(NSString*) html;
 
@@ -58,6 +58,6 @@
 
 - (CCFUserProfile *) parserProfile:(NSString*)html userId:(NSString*)userId;
 
-- (NSArray<CCFForm *> *) parserForms:(NSString *) html;
+- (NSArray<Forum *> *) parserForms:(NSString *) html;
 
 @end

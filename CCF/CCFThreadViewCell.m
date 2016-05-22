@@ -49,11 +49,11 @@
 
 #import "CCFThreadViewCell.h"
 #import "APLHighlightingTextView.h"
-#import "CCFForm.h"
+#import "Forum.h"
 
 @implementation CCFThreadViewCell
 
-- (void)setQuotation:(CCFForm *)newQuotation {
+- (void)setQuotation:(Forum *)newQuotation {
  
     if (_quotation != newQuotation) {
         _quotation = newQuotation;

@@ -125,7 +125,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
         // For each play, set up a corresponding SectionInfo object to contain the default height for each row.
         NSMutableArray *infoArray = [[NSMutableArray alloc] init];
         
-        for (CCFForm *form in self.forms) {
+        for (Forum *form in self.forms) {
             
             CCFFormSectionInfo *sectionInfo = [[CCFFormSectionInfo alloc] init];
             sectionInfo.form = form;
@@ -168,7 +168,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
         
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         
-        CCFForm * select = self.forms[path.section].childForms[path.row];
+        Forum * select = self.forms[path.section].childForms[path.row];
         
         [self.transValueDelegate transValue:select];
     } else if ([segue.identifier isEqualToString:@"ShowSearchViewController"]){
@@ -219,7 +219,7 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
         cell.longPressRecognizer = nil;
     }
     
-    CCFForm *play = (CCFForm *)[(self.sectionInfoArray)[indexPath.section] form];
+    Forum *play = (Forum *)[(self.sectionInfoArray)[indexPath.section] form];
     cell.quotation = play.childForms[indexPath.row];
     
     return cell;
@@ -436,8 +436,8 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 
 - (void)sendEmailForEntryAtIndexPath:(NSIndexPath *)indexPath {
     
-    CCFForm * selectForm = self.forms[indexPath.section];
-    CCFForm *quotation = selectForm.childForms [indexPath.row];
+    Forum * selectForm = self.forms[indexPath.section];
+    Forum *quotation = selectForm.childForms [indexPath.row];
     
     // In production, send the appropriate message.
     NSLog(@"Send email using quotation:\n%@", quotation.formName);

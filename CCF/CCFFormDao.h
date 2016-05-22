@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-@class CCFForm;
+#import "Forum.h"
+
 
 @interface CCFFormDao : NSObject
 
 
 
--(NSArray<CCFForm *> *)parseCCFForms:(NSString *)jsonFilePath;
+-(NSArray<Forum *> *)parseCCFForms:(NSString *)jsonFilePath;
 
 
 @end

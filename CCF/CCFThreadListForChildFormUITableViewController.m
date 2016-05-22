@@ -19,7 +19,7 @@
 
 
 @interface CCFThreadListForChildFormUITableViewController (){
-    CCFForm * transForm;
+    Forum * transForm;
     
     NSArray * childForms;
 }
@@ -29,7 +29,7 @@
 @implementation CCFThreadListForChildFormUITableViewController
 
 #pragma mark trans value
--(void)transValue:(CCFForm *)value{
+-(void)transValue:(Forum *)value{
     transForm = value;
 }
 

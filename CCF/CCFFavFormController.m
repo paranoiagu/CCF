@@ -12,7 +12,7 @@
 #import "CCFCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
 
-#import "CCFForm.h"
+#import "Forum.h"
 #import "CCFThreadListTableViewController.h"
 #import "CCFNavigationController.h"
 #import "CCFApi.h"
@@ -27,7 +27,7 @@
 
 
 
--(void)transValue:(CCFForm *)value{
+-(void)transValue:(Forum *)value{
     
 }
 
@@ -46,7 +46,7 @@
 
 -(void)onPullRefresh{
     
-    [self.ccfApi listFavoriteForms:^(BOOL isSuccess, NSMutableArray<CCFForm *> * message) {
+    [self.ccfApi listFavoriteForms:^(BOOL isSuccess, NSMutableArray<Forum *> * message) {
         
         
         [self.tableView.mj_header endRefreshing];
@@ -66,7 +66,7 @@
     NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
     
     if (userDef.favFormIds == nil) {
-        [self.ccfApi listFavoriteForms:^(BOOL isSuccess, NSMutableArray<CCFForm *> * message) {
+        [self.ccfApi listFavoriteForms:^(BOOL isSuccess, NSMutableArray<Forum *> * message) {
             self.dataList = message;
             [self.tableView reloadData];
         }];
@@ -90,7 +90,7 @@
         
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         
-        CCFForm * select = self.dataList[path.row];
+        Forum * select = self.dataList[path.row];
         
         [self.transValueDelegate transValue:select];
     }
@@ -118,7 +118,7 @@
     static NSString * ID = @"CCFFavFormControllerCell";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
-    CCFForm * form = self.dataList[indexPath.row];
+    Forum * form = self.dataList[indexPath.row];
     
     cell.textLabel.text = form.formName;
     

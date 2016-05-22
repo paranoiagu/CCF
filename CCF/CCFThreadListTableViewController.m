@@ -28,7 +28,7 @@
 #define TypeLoadMore 1
 
 @interface CCFThreadListTableViewController ()<TransValueDelegate, CCFThreadListCellDelegate, TransBundleDelegate>{
-    CCFForm * transForm;
+    Forum * transForm;
     
     NSArray * childForms;
     
@@ -40,7 +40,7 @@
 @implementation CCFThreadListTableViewController
 
 #pragma mark trans value
--(void)transValue:(CCFForm *)value{
+-(void)transValue:(Forum *)value{
     transForm = value;
 }
 
@@ -156,7 +156,7 @@
         static NSString *reusedIdentifierForm = @"CCFThreadListCellShowChildForm";
         UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:reusedIdentifierForm];
         
-        CCFForm * form = childForms[indexPath.row];
+        Forum * form = childForms[indexPath.row];
         cell.textLabel.text = form.formName;
         return cell;
     } else if(indexPath.section == 1){

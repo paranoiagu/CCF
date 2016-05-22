@@ -7,7 +7,7 @@
 //
 
 #import "CoreDataManager.h"
-#import "CCFForm.h"
+#import "Forum.h"
 
 
 typedef NS_ENUM(NSInteger, CCFCoreDataEntry) {
@@ -31,10 +31,10 @@ typedef NS_ENUM(NSInteger, CCFCoreDataEntry) {
 
 -(instancetype)initWithCCFCoreDataEntry:(CCFCoreDataEntry) enrty;
 
--(NSArray<CCFForm *> *)selectFavForms:(NSArray *) ids;
+-(NSArray<Forum *> *)selectFavForms:(NSArray *) ids;
 
--(NSArray<CCFForm *> *)selectChildFormsForId:(int)formId;
+-(NSArray<Forum *> *)selectChildFormsForId:(int)formId;
 
--(NSArray<CCFForm *> *)selectAllForms;
+-(NSArray<Forum *> *)selectAllForms;
 
 @end

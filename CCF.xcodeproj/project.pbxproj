@@ -80,7 +80,6 @@
 		3AA5B99A1CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B9991CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m */; };
 		3AA5B99D1CBA7D690008175A /* CCFSimpleReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B99C1CBA7D690008175A /* CCFSimpleReplyViewController.m */; };
 		3AA5B9A01CBA8C6C0008175A /* CCFSimpleReplyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5B99F1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.m */; };
-		3AB3F5381C53939300B7FA98 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3F5371C53939300B7FA98 /* CCFForm.m */; };
 		3ABAFE3E1CAACCD300803085 /* CCFUserThreadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABAFE3D1CAACCD300803085 /* CCFUserThreadTableViewController.m */; };
 		3ABAFE411CAAD12300803085 /* TransValueUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABAFE401CAAD12300803085 /* TransValueUITableViewCell.m */; };
 		3AC65FBF1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FBE1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m */; };
@@ -92,6 +91,7 @@
 		3AC65FD61CF149CB000D3BDB /* ForumListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FD41CF149CB000D3BDB /* ForumListHeaderView.m */; };
 		3AC65FD71CF149CB000D3BDB /* ForumListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC65FD51CF149CB000D3BDB /* ForumListHeaderView.xib */; };
 		3AC65FDA1CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FD91CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m */; };
+		3AC65FE01CF14E40000D3BDB /* Forum.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FDF1CF14E40000D3BDB /* Forum.m */; };
 		3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */; };
 		3AEA1F371C365EA400710BD6 /* CCFShowThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
@@ -297,8 +297,6 @@
 		3AA5B99C1CBA7D690008175A /* CCFSimpleReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSimpleReplyViewController.m; sourceTree = "<group>"; };
 		3AA5B99E1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSimpleReplyNavigationController.h; sourceTree = "<group>"; };
 		3AA5B99F1CBA8C6C0008175A /* CCFSimpleReplyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFSimpleReplyNavigationController.m; sourceTree = "<group>"; };
-		3AB3F5361C53939300B7FA98 /* CCFForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFForm.h; sourceTree = "<group>"; };
-		3AB3F5371C53939300B7FA98 /* CCFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFForm.m; sourceTree = "<group>"; };
 		3ABAFE3C1CAACCD300803085 /* CCFUserThreadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUserThreadTableViewController.h; sourceTree = "<group>"; };
 		3ABAFE3D1CAACCD300803085 /* CCFUserThreadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUserThreadTableViewController.m; sourceTree = "<group>"; };
 		3ABAFE3F1CAAD12300803085 /* TransValueUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransValueUITableViewCell.h; sourceTree = "<group>"; };
@@ -320,6 +318,8 @@
 		3AC65FD51CF149CB000D3BDB /* ForumListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForumListHeaderView.xib; sourceTree = "<group>"; };
 		3AC65FD81CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCellWithIndexPath.h; sourceTree = "<group>"; };
 		3AC65FD91CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCellWithIndexPath.m; sourceTree = "<group>"; };
+		3AC65FDE1CF14E40000D3BDB /* Forum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Forum.h; sourceTree = "<group>"; };
+		3AC65FDF1CF14E40000D3BDB /* Forum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Forum.m; sourceTree = "<group>"; };
 		3AEA1F2D1C364E7E00710BD6 /* CCFThreadListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTableViewController.h; sourceTree = "<group>"; };
 		3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTableViewController.m; sourceTree = "<group>"; };
 		3AEA1F351C365EA400710BD6 /* CCFShowThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowThreadViewController.h; sourceTree = "<group>"; };
@@ -848,6 +848,8 @@
 		4D796C001C45F2E100B3C62D /* Thread-Normal */ = {
 			isa = PBXGroup;
 			children = (
+				3AC65FDE1CF14E40000D3BDB /* Forum.h */,
+				3AC65FDF1CF14E40000D3BDB /* Forum.m */,
 				4D1EEBA91C32502A0084F6E9 /* CCFUser.h */,
 				4D1EEBAA1C32502A0084F6E9 /* CCFUser.m */,
 				4D1EEBAC1C3251E70084F6E9 /* CCFPost.h */,
@@ -858,8 +860,6 @@
 				4D852A221C991B59009121B2 /* CCFForumDisplayPage.m */,
 				3A2ECF521C36C0EB00CD3968 /* CCFNormalThread.h */,
 				3A2ECF531C36C0EB00CD3968 /* CCFNormalThread.m */,
-				3AB3F5361C53939300B7FA98 /* CCFForm.h */,
-				3AB3F5371C53939300B7FA98 /* CCFForm.m */,
 				4D852A1B1C97E2A7009121B2 /* CCFThread.h */,
 				4D852A1C1C97E2A7009121B2 /* CCFThread.m */,
 				4D6B11C61C9A536600E073A1 /* CCFSimpleThread.h */,
@@ -1118,6 +1118,7 @@
 				3A1C2CD11C9E9B740068AF6B /* CCFProfileTableViewController.m in Sources */,
 				3A256FAD1CA62DA900419D67 /* IGHTMLDocument+QueryNode.m in Sources */,
 				3ABAFE411CAAD12300803085 /* TransValueUITableViewCell.m in Sources */,
+				3AC65FE01CF14E40000D3BDB /* Forum.m in Sources */,
 				3AC65FCD1CF141D3000D3BDB /* UrlBuilder.m in Sources */,
 				3A671EEF1CB9F294001CC91E /* UIRoundCornerButton.m in Sources */,
 				3A1C2CCE1C9E3D4E0068AF6B /* CCFSearchPage.m in Sources */,
@@ -1137,7 +1138,6 @@
 				3AA2D50F1C36105100F312CC /* CCFFormTableViewController.m in Sources */,
 				3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */,
 				3AA2D5091C36103C00F312CC /* APLHighlightingTextView.m in Sources */,
-				3AB3F5381C53939300B7FA98 /* CCFForm.m in Sources */,
 				4D852A1D1C97E2A7009121B2 /* CCFThread.m in Sources */,
 				3AF86A741C82CAB50036AD61 /* LoginCCFUser.m in Sources */,
 				3A2FCC7E1C956DB100B469E4 /* PrivateMessageTableViewCell.m in Sources */,

@@ -11,7 +11,7 @@
 #import <AFNetworking.h>
 
 #import "LoginCCFUser.h"
-#import "CCFForm.h"
+#import "Forum.h"
 
 @class CCFShowThreadPage;
 

@@ -88,6 +88,7 @@
 		3AC65FFB1CF1687D000D3BDB /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FFA1CF1687D000D3BDB /* UserProfile.m */; };
 		3AC65FFE1CF16C2A000D3BDB /* ShowPrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FFD1CF16C2A000D3BDB /* ShowPrivateMessage.m */; };
 		3AC660011CF174B3000D3BDB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660001CF174B3000D3BDB /* LoginViewController.m */; };
+		3AC660041CF1785A000D3BDB /* DRLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660031CF1785A000D3BDB /* DRLTabBarController.m */; };
 		3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */; };
 		3AEA1F371C365EA400710BD6 /* CCFShowThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
@@ -305,6 +306,8 @@
 		3AC65FFD1CF16C2A000D3BDB /* ShowPrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPrivateMessage.m; sourceTree = "<group>"; };
 		3AC65FFF1CF174B3000D3BDB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		3AC660001CF174B3000D3BDB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		3AC660021CF1785A000D3BDB /* DRLTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRLTabBarController.h; sourceTree = "<group>"; };
+		3AC660031CF1785A000D3BDB /* DRLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRLTabBarController.m; sourceTree = "<group>"; };
 		3AEA1F2D1C364E7E00710BD6 /* CCFThreadListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTableViewController.h; sourceTree = "<group>"; };
 		3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTableViewController.m; sourceTree = "<group>"; };
 		3AEA1F351C365EA400710BD6 /* CCFShowThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowThreadViewController.h; sourceTree = "<group>"; };
@@ -429,17 +432,6 @@
 			);
 			name = TableViewCell;
 			path = CCF;
-			sourceTree = "<group>";
-		};
-		3A3672B11CB0039300756D8B /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				3A3672AE1CAFDC7000756D8B /* CCFSettingTableViewController.h */,
-				3A3672AF1CAFDC7000756D8B /* CCFSettingTableViewController.m */,
-				3A3672B21CB0040600756D8B /* NSUserDefaults+Setting.h */,
-				3A3672B31CB0040600756D8B /* NSUserDefaults+Setting.m */,
-			);
-			name = Setting;
 			sourceTree = "<group>";
 		};
 		3A671EE11CB9E00C001CC91E /* Widgets */ = {
@@ -589,38 +581,43 @@
 				3A734BE81CCCC23700C4821A /* CreateNewThread */,
 				3A734BF01CCCCCC900C4821A /* TransBundle */,
 				3A734BEC1CCCC2CF00C4821A /* PrivateMessage */,
-				3A3672B11CB0039300756D8B /* Setting */,
-				4D1EEBBA1C33D4FD0084F6E9 /* LoginViewController.xib */,
-				3AC65FFF1CF174B3000D3BDB /* LoginViewController.h */,
-				3AC660001CF174B3000D3BDB /* LoginViewController.m */,
-				4D796BEB1C44A43B00B3C62D /* CCFNavigationController.h */,
-				4D796BEC1C44A43B00B3C62D /* CCFNavigationController.m */,
-				3AEA1F2D1C364E7E00710BD6 /* CCFThreadListTableViewController.h */,
-				3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */,
-				3A62DB601CA7D31800AF5E0A /* CCFThreadListForChildFormUITableViewController.h */,
-				3A62DB611CA7D31800AF5E0A /* CCFThreadListForChildFormUITableViewController.m */,
-				3AEA1F351C365EA400710BD6 /* CCFShowThreadViewController.h */,
-				3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */,
-				3A7569AB1C42B179000486F4 /* CCFFavFormController.h */,
-				3A7569AC1C42B179000486F4 /* CCFFavFormController.m */,
-				3AC65FD01CF14938000D3BDB /* DRLForumTableViewController.h */,
-				3AC65FD11CF14938000D3BDB /* DRLForumTableViewController.m */,
-				4D796BD61C43576700B3C62D /* CCFSearchViewController.h */,
-				4D796BD71C43576700B3C62D /* CCFSearchViewController.m */,
-				3A2346341C8C6AE2009A2537 /* CCFMyThreadPostTableViewController.h */,
-				3A2346351C8C6AE2009A2537 /* CCFMyThreadPostTableViewController.m */,
-				3A2346311C8C6A6C009A2537 /* CCFMyThreadTableViewController.h */,
-				3A2346321C8C6A6C009A2537 /* CCFMyThreadTableViewController.m */,
-				3ABAFE3C1CAACCD300803085 /* CCFUserThreadTableViewController.h */,
-				3ABAFE3D1CAACCD300803085 /* CCFUserThreadTableViewController.m */,
-				3A23462E1C8C62C2009A2537 /* CCFShowNewThreadPostTableViewController.h */,
-				3A23462F1C8C62C2009A2537 /* CCFShowNewThreadPostTableViewController.m */,
-				3A27EA311C9424EB004D30EB /* CCFFavThreadPostTableViewController.h */,
-				3A27EA321C9424EB004D30EB /* CCFFavThreadPostTableViewController.m */,
 				3A2FCC781C9558F100B469E4 /* CCFApiBaseTableViewController.h */,
 				3A2FCC791C9558F100B469E4 /* CCFApiBaseTableViewController.m */,
 				3A3672A81CAF6AF000756D8B /* CCFApiBaseViewController.h */,
 				3A3672A91CAF6AF000756D8B /* CCFApiBaseViewController.m */,
+				3A7569AB1C42B179000486F4 /* CCFFavFormController.h */,
+				3A7569AC1C42B179000486F4 /* CCFFavFormController.m */,
+				3A27EA311C9424EB004D30EB /* CCFFavThreadPostTableViewController.h */,
+				3A27EA321C9424EB004D30EB /* CCFFavThreadPostTableViewController.m */,
+				3AC65FD01CF14938000D3BDB /* DRLForumTableViewController.h */,
+				3AC65FD11CF14938000D3BDB /* DRLForumTableViewController.m */,
+				3A2346341C8C6AE2009A2537 /* CCFMyThreadPostTableViewController.h */,
+				3A2346351C8C6AE2009A2537 /* CCFMyThreadPostTableViewController.m */,
+				3A2346311C8C6A6C009A2537 /* CCFMyThreadTableViewController.h */,
+				3A2346321C8C6A6C009A2537 /* CCFMyThreadTableViewController.m */,
+				4D796BEB1C44A43B00B3C62D /* CCFNavigationController.h */,
+				4D796BEC1C44A43B00B3C62D /* CCFNavigationController.m */,
+				3A23462E1C8C62C2009A2537 /* CCFShowNewThreadPostTableViewController.h */,
+				3A23462F1C8C62C2009A2537 /* CCFShowNewThreadPostTableViewController.m */,
+				3AEA1F351C365EA400710BD6 /* CCFShowThreadViewController.h */,
+				3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */,
+				3A62DB601CA7D31800AF5E0A /* CCFThreadListForChildFormUITableViewController.h */,
+				3A62DB611CA7D31800AF5E0A /* CCFThreadListForChildFormUITableViewController.m */,
+				3AEA1F2D1C364E7E00710BD6 /* CCFThreadListTableViewController.h */,
+				3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */,
+				3ABAFE3C1CAACCD300803085 /* CCFUserThreadTableViewController.h */,
+				3ABAFE3D1CAACCD300803085 /* CCFUserThreadTableViewController.m */,
+				3AC65FFF1CF174B3000D3BDB /* LoginViewController.h */,
+				3AC660001CF174B3000D3BDB /* LoginViewController.m */,
+				4D1EEBBA1C33D4FD0084F6E9 /* LoginViewController.xib */,
+				4D796BD61C43576700B3C62D /* CCFSearchViewController.h */,
+				4D796BD71C43576700B3C62D /* CCFSearchViewController.m */,
+				3A3672AE1CAFDC7000756D8B /* CCFSettingTableViewController.h */,
+				3A3672AF1CAFDC7000756D8B /* CCFSettingTableViewController.m */,
+				3AC660021CF1785A000D3BDB /* DRLTabBarController.h */,
+				3AC660031CF1785A000D3BDB /* DRLTabBarController.m */,
+				3A3672B21CB0040600756D8B /* NSUserDefaults+Setting.h */,
+				3A3672B31CB0040600756D8B /* NSUserDefaults+Setting.m */,
 				3A8E05551CC39EC2003D0D90 /* ReplyTransValueDelegate.h */,
 				3A5E95C21CC451BF00AEA0D9 /* ReplyCallbackDelegate.h */,
 			);
@@ -992,6 +989,7 @@
 				3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */,
 				3AF86A7F1C8329C40036AD61 /* PrivateMessage.m in Sources */,
 				3ABAFE3E1CAACCD300803085 /* CCFUserThreadTableViewController.m in Sources */,
+				3AC660041CF1785A000D3BDB /* DRLTabBarController.m in Sources */,
 				3A8E054E1CC35515003D0D90 /* UILouCengLabel.m in Sources */,
 				4DF824BF1C34E9EF005BB858 /* CCFFormTreeJSONModel.m in Sources */,
 				3A734BE41CCCB2E600C4821A /* UIAutoResizeTextView.m in Sources */,

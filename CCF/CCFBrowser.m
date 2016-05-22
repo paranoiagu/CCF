@@ -18,7 +18,7 @@
 #import "ShowThreadPage.h"
 #import "NSUserDefaults+Extensions.h"
 #import "AFHTTPSessionManager+SimpleAction.h"
-#import "LoginCCFUser.h"
+#import "LoginUser.h"
 #import "NSUserDefaults+Setting.h"
 
 
@@ -150,10 +150,10 @@
 
 }
 
--(LoginCCFUser *)getCurrentCCFUser{
+-(LoginUser *)getCurrentCCFUser{
     NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     
-    LoginCCFUser * user = [[LoginCCFUser alloc] init];
+    LoginUser * user = [[LoginUser alloc] init];
     user.userName = [self userName];
     
     for (int i = 0; i < cookies.count; i ++) {
@@ -225,7 +225,7 @@
     
     [parameters setValue:@"1" forKey:@"parseurl"];
     
-    LoginCCFUser * user = [self getCurrentCCFUser];
+    LoginUser * user = [self getCurrentCCFUser];
     
     [parameters setValue:user.userID forKey:@"loggedinuser"];
     [parameters setValue:@"1" forKey:@"fromquickreply"];
@@ -401,7 +401,7 @@
     
     [parameters setValue:time forKey:@"poststarttime"];
     
-    LoginCCFUser *user = [self getCurrentCCFUser];
+    LoginUser *user = [self getCurrentCCFUser];
     [parameters setValue:user.userID forKey:@"loggedinuser"];
     [parameters setValue:@"发表主题" forKey:@"sbutton"];
     [parameters setValue:@"1" forKey:@"parseurl"];
@@ -716,7 +716,7 @@
 }
 
 -(void)listMyAllThreadPost:(Handler)handler{
-    LoginCCFUser * user = [self getCurrentCCFUser];
+    LoginUser * user = [self getCurrentCCFUser];
     if (user == nil || user.userID == nil) {
         handler(NO,@"未登录");
         return;
@@ -730,7 +730,7 @@
 }
 
 -(void)listMyAllThreadsWithPage:(int)page handler:(Handler)handler{
-    LoginCCFUser * user = [self getCurrentCCFUser];
+    LoginUser * user = [self getCurrentCCFUser];
     if (user == nil || user.userID == nil) {
         handler(NO,@"未登录");
         return;
@@ -876,7 +876,7 @@
     [parameters setValue:@"1" forKey:@"specifiedpost"];
     [parameters setValue:@"1" forKey:@"parseurl"];
     
-    LoginCCFUser * user = [self getCurrentCCFUser];
+    LoginUser * user = [self getCurrentCCFUser];
     
     [parameters setValue:user.userID forKey:@"loggedinuser"];
     
@@ -983,7 +983,7 @@
     [parameters setValue:@"0" forKey:@"specifiedpost"];
     [parameters setValue:posthash forKey:@"posthash"];
     [parameters setValue:poststarttime forKey:@"poststarttime"];
-    LoginCCFUser * user = [self getCurrentCCFUser];
+    LoginUser * user = [self getCurrentCCFUser];
     [parameters setValue:user.userID forKey:@"loggedinuser"];
     [parameters setValue:@"" forKey:@"multiquoteempty"];
     [parameters setValue:@"提交回复" forKey:@"sbutton"];
@@ -1015,7 +1015,7 @@
     [presparameters setValue:@"who cares" forKey:@"p"];
     [presparameters setValue:@"0" forKey:@"specifiedpost"];
     [presparameters setValue:@"1" forKey:@"parseurl"];
-    LoginCCFUser * user = [self getCurrentCCFUser];
+    LoginUser * user = [self getCurrentCCFUser];
     [presparameters setValue:user.userID forKey:@"loggedinuser"];
     [presparameters setValue:@"进入高级模式" forKey:@"preview"];
     

@@ -16,7 +16,7 @@
 #import "UIStoryboard+CCF.h"
 #import "CCFFavFormController.h"
 #import "UrlBuilder.h"
-#import "LoginCCFUser.h"
+#import "LoginUser.h"
 #import "DRLForumTableViewController.h"
 #import "CCFPrivateMessageTableViewController.h"
 #import "CCFMyThreadPostTableViewController.h"
@@ -54,7 +54,7 @@
 
 
 - (void)showUserAvatar {
-    LoginCCFUser * loginUser = [_ccfapi getLoginUser];
+    LoginUser * loginUser = [_ccfapi getLoginUser];
     // 设置登录名称
     NSString * userName = loginUser.userName;
     [self.userName setText:userName];
@@ -108,7 +108,7 @@
     return self;
 }
 
-- (void)getAvatar:(LoginCCFUser *)loginUser {
+- (void)getAvatar:(LoginUser *)loginUser {
     // 设置登录用户的头像
     [_ccfapi getAvatarWithUserId:loginUser.userID handler:^(BOOL isSuccess, id avatar) {
         

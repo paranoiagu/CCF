@@ -82,7 +82,7 @@
     
     
     ForumApi * browser = [[ForumApi alloc]init];
-    LoginCCFUser * loginUser = [browser getLoginUser];
+    LoginUser * loginUser = [browser getLoginUser];
     
     NSDate * date = [NSDate date];
     

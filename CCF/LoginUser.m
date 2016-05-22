@@ -6,8 +6,8 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "LoginCCFUser.h"
+#import "LoginUser.h"
 
-@implementation LoginCCFUser
+@implementation LoginUser
 
 @end

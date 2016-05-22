@@ -10,7 +10,7 @@
 
 #import <AFNetworking.h>
 
-#import "LoginCCFUser.h"
+#import "LoginUser.h"
 #import "Forum.h"
 
 @class ShowThreadPage;
@@ -34,7 +34,7 @@ typedef void (^CallBack) (NSString* token, NSString * hash, NSString* time );
 
 -(void) replyThreadWithId:(NSString *) threadId withMessage:(NSString *) message handler: (Handler) result;
 
--(LoginCCFUser *) getCurrentCCFUser;
+-(LoginUser *) getCurrentCCFUser;
 
 // 获取所有的论坛列表
 -(void) formList:(Handler)handler;

@@ -45,7 +45,7 @@
 -(void)loginWithName:(NSString *)name andPassWord:(NSString *)passWord handler:(HandlerWithBool)handler{
     [_browser loginWithName:name andPassWord:passWord :^(BOOL isSuccess, NSString* result) {
         if (isSuccess) {
-            LoginCCFUser *user = [self getLoginUser];
+            LoginUser *user = [self getLoginUser];
             if (user.userID == nil) {
                 NSString* faildMessage = [_praser parseLoginErrorMessage:result];
                 handler(NO, faildMessage);
@@ -59,7 +59,7 @@
     }];
 }
 
--(LoginCCFUser *)getLoginUser{
+-(LoginUser *)getLoginUser{
     return [_browser getCurrentCCFUser];
 }
 

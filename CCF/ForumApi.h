@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LoginCCFUser.h"
+#import "LoginUser.h"
 #import "ForumDisplayPage.h"
 #import "CCFSearchThread.h"
 #import "CCFSearchPage.h"
@@ -22,7 +22,7 @@ typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 -(void) loginWithName:(NSString*)name andPassWord:(NSString*) passWord handler:(HandlerWithBool) handler;
 
 // 获取当前登录的账户信息
--(LoginCCFUser *) getLoginUser;
+-(LoginUser *) getLoginUser;
 
 // 退出论坛
 -(void) logout;

@@ -90,10 +90,10 @@
 		3AC660011CF174B3000D3BDB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660001CF174B3000D3BDB /* LoginViewController.m */; };
 		3AC660041CF1785A000D3BDB /* DRLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660031CF1785A000D3BDB /* DRLTabBarController.m */; };
 		3AC660071CF17D86000D3BDB /* ForumApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660061CF17D86000D3BDB /* ForumApi.m */; };
+		3AC6600A1CF17F8A000D3BDB /* LoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660091CF17F8A000D3BDB /* LoginUser.m */; };
 		3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */; };
 		3AEA1F371C365EA400710BD6 /* CCFShowThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
-		3AF86A741C82CAB50036AD61 /* LoginCCFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF86A731C82CAB50036AD61 /* LoginCCFUser.m */; };
 		3AF86A7F1C8329C40036AD61 /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF86A7E1C8329C40036AD61 /* PrivateMessage.m */; };
 		4D1EEBBC1C33D4FD0084F6E9 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D1EEBBA1C33D4FD0084F6E9 /* LoginViewController.xib */; };
 		4D32560D1C4754E700053288 /* SelectPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D32560C1C4754E700053288 /* SelectPhotoCollectionViewCell.m */; };
@@ -310,14 +310,14 @@
 		3AC660031CF1785A000D3BDB /* DRLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRLTabBarController.m; sourceTree = "<group>"; };
 		3AC660051CF17D86000D3BDB /* ForumApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumApi.h; sourceTree = "<group>"; };
 		3AC660061CF17D86000D3BDB /* ForumApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumApi.m; sourceTree = "<group>"; };
+		3AC660081CF17F8A000D3BDB /* LoginUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUser.h; sourceTree = "<group>"; };
+		3AC660091CF17F8A000D3BDB /* LoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUser.m; sourceTree = "<group>"; };
 		3AEA1F2D1C364E7E00710BD6 /* CCFThreadListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTableViewController.h; sourceTree = "<group>"; };
 		3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTableViewController.m; sourceTree = "<group>"; };
 		3AEA1F351C365EA400710BD6 /* CCFShowThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowThreadViewController.h; sourceTree = "<group>"; };
 		3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFShowThreadViewController.m; sourceTree = "<group>"; };
 		3AEC53981CB9529F00E50390 /* CCFThreadListTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTitleCell.h; sourceTree = "<group>"; };
 		3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTitleCell.m; sourceTree = "<group>"; };
-		3AF86A721C82CAB50036AD61 /* LoginCCFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCCFUser.h; sourceTree = "<group>"; };
-		3AF86A731C82CAB50036AD61 /* LoginCCFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCCFUser.m; sourceTree = "<group>"; };
 		3AF86A7D1C8329C40036AD61 /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessage.h; sourceTree = "<group>"; };
 		3AF86A7E1C8329C40036AD61 /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessage.m; sourceTree = "<group>"; };
 		4AD749A3A2E07798AF7D58D5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -640,8 +640,8 @@
 				3AC65FCC1CF141D3000D3BDB /* UrlBuilder.m */,
 				3AC660051CF17D86000D3BDB /* ForumApi.h */,
 				3AC660061CF17D86000D3BDB /* ForumApi.m */,
-				3AF86A721C82CAB50036AD61 /* LoginCCFUser.h */,
-				3AF86A731C82CAB50036AD61 /* LoginCCFUser.m */,
+				3AC660081CF17F8A000D3BDB /* LoginUser.h */,
+				3AC660091CF17F8A000D3BDB /* LoginUser.m */,
 			);
 			name = Api;
 			path = CCF;
@@ -1060,7 +1060,6 @@
 				3AC660011CF174B3000D3BDB /* LoginViewController.m in Sources */,
 				4D6B11CB1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m in Sources */,
 				3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */,
-				3AF86A741C82CAB50036AD61 /* LoginCCFUser.m in Sources */,
 				3A2FCC7E1C956DB100B469E4 /* PrivateMessageTableViewCell.m in Sources */,
 				4D796BD21C3FC8ED00B3C62D /* CCFUITextView.m in Sources */,
 				3A1CF8781C54F8AB002E52EE /* UIColor+MyColor.m in Sources */,
@@ -1073,6 +1072,7 @@
 				3A1C2CD71C9EB2C10068AF6B /* CCFProfileTableViewCell.m in Sources */,
 				3A734BF31CCCCD8700C4821A /* TransBundleUITableViewController.m in Sources */,
 				3A256FA71CA5995E00419D67 /* CCFShowPMTableViewCell.m in Sources */,
+				3AC6600A1CF17F8A000D3BDB /* LoginUser.m in Sources */,
 				3A1CF8771C54F8AB002E52EE /* UIImage+Tint.m in Sources */,
 				3A0A99801C4A6A4E00086DAB /* RoundCornerUIView.m in Sources */,
 				3A9ADC691C9D8BD4006055A8 /* UISquareRoundCornerImageView.m in Sources */,

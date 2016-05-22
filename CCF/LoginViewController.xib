@@ -142,7 +142,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.36078431370000003" green="0.45098039220000002" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.1843137255" green="0.27058823529999998" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="Oul-TD-2GN" firstAttribute="top" secondItem="sdg-3A-ACc" secondAttribute="bottom" constant="66" id="Bim-WS-uYY"/>
                         <constraint firstItem="sdg-3A-ACc" firstAttribute="top" secondItem="KW9-CB-Ybn" secondAttribute="bottom" constant="33" id="YtF-eU-uSU"/>
@@ -154,7 +154,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.36078431370000003" green="0.45098039220000002" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.1843137255" green="0.27058823529999998" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="cnU-2D-N9K" secondAttribute="bottom" id="7pC-Ez-ECP"/>
                 <constraint firstAttribute="trailing" secondItem="cnU-2D-N9K" secondAttribute="trailing" id="YNB-WH-Ajm"/>

@@ -480,6 +480,7 @@
 				4D60F32F1CC89D01007FFD5A /* CCFNSAttributedStringBuilder.m */,
 			);
 			name = Widgets;
+			path = CCF;
 			sourceTree = "<group>";
 		};
 		3A734BDC1CCC55EF00C4821A /* Profile */ = {
@@ -536,13 +537,14 @@
 			name = TransBundle;
 			sourceTree = "<group>";
 		};
-		3A84A4421CE8BEBE009619DE /* CommonUtils */ = {
+		3A84A4421CE8BEBE009619DE /* Uitls */ = {
 			isa = PBXGroup;
 			children = (
 				3A84A43F1CE8BE5A009619DE /* DYStringUtils.h */,
 				3A84A4401CE8BE5A009619DE /* DYStringUtils.m */,
 			);
-			name = CommonUtils;
+			name = Uitls;
+			path = CCF;
 			sourceTree = "<group>";
 		};
 		3A84A4431CE8BF97009619DE /* Extension */ = {
@@ -608,6 +610,7 @@
 				3AA2D5031C36103C00F312CC /* CCFThreadViewCell.xib */,
 			);
 			name = FoldTableView;
+			path = CCF;
 			sourceTree = "<group>";
 		};
 		3AA2D5111C36107E00F312CC /* SupportFiles */ = {
@@ -622,7 +625,21 @@
 			name = SupportFiles;
 			sourceTree = "<group>";
 		};
-		3AEA1F341C365E2100710BD6 /* CCFControllers */ = {
+		3AC65FBC1CF13809000D3BDB /* CCF */ = {
+			isa = PBXGroup;
+			children = (
+				4D339D8E1C31454A0022A6A4 /* Supporting Files */,
+				4D339D911C31454A0022A6A4 /* AppDelegate.h */,
+				4D339D921C31454A0022A6A4 /* AppDelegate.m */,
+				4D339D971C31454A0022A6A4 /* Main.storyboard */,
+				4D339D9D1C31454B0022A6A4 /* Assets.xcassets */,
+				4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */,
+				4D339DA21C31454B0022A6A4 /* Info.plist */,
+			);
+			path = CCF;
+			sourceTree = "<group>";
+		};
+		3AEA1F341C365E2100710BD6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				3A734BF01CCCCCC900C4821A /* TransBundle */,
@@ -666,10 +683,11 @@
 				3A8E05551CC39EC2003D0D90 /* ReplyTransValueDelegate.h */,
 				3A5E95C21CC451BF00AEA0D9 /* ReplyCallbackDelegate.h */,
 			);
-			name = CCFControllers;
+			name = Controllers;
+			path = CCF;
 			sourceTree = "<group>";
 		};
-		3AF86A751C82EEAF0036AD61 /* CCFAPI */ = {
+		3AF86A751C82EEAF0036AD61 /* Api */ = {
 			isa = PBXGroup;
 			children = (
 				4D1EEBA81C324FFD0084F6E9 /* Model */,
@@ -683,7 +701,8 @@
 				4D93CFD51C85355D00852D28 /* ApiTestViewController.m */,
 				4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */,
 			);
-			name = CCFAPI;
+			name = Api;
+			path = CCF;
 			sourceTree = "<group>";
 		};
 		3AF86A7C1C83298C0036AD61 /* PrivateMessage */ = {
@@ -713,6 +732,14 @@
 		4D339D821C31454A0022A6A4 = {
 			isa = PBXGroup;
 			children = (
+				4D796BEE1C44B59100B3C62D /* CoreData */,
+				3AEA1F341C365E2100710BD6 /* Controllers */,
+				3AF86A751C82EEAF0036AD61 /* Api */,
+				4D796B5D1C3BC15D00B3C62D /* Public Views */,
+				3A671EE11CB9E00C001CC91E /* Widgets */,
+				3A84A4421CE8BEBE009619DE /* Uitls */,
+				3AC65FBC1CF13809000D3BDB /* CCF */,
+				3AA2D4F51C36101E00F312CC /* FoldTableView */,
 				4D339D8D1C31454A0022A6A4 /* CCF */,
 				4D339D8C1C31454A0022A6A4 /* Products */,
 				849509D36740A6FFD960CDA8 /* Pods */,
@@ -731,20 +758,6 @@
 		4D339D8D1C31454A0022A6A4 /* CCF */ = {
 			isa = PBXGroup;
 			children = (
-				4D796BEE1C44B59100B3C62D /* Core Data */,
-				3A84A4421CE8BEBE009619DE /* CommonUtils */,
-				3A671EE11CB9E00C001CC91E /* Widgets */,
-				3AF86A751C82EEAF0036AD61 /* CCFAPI */,
-				4D796B5D1C3BC15D00B3C62D /* Public Views */,
-				3AEA1F341C365E2100710BD6 /* CCFControllers */,
-				3AA2D4F51C36101E00F312CC /* FoldTableView */,
-				4D339D911C31454A0022A6A4 /* AppDelegate.h */,
-				4D339D921C31454A0022A6A4 /* AppDelegate.m */,
-				4D339D971C31454A0022A6A4 /* Main.storyboard */,
-				4D339D9D1C31454B0022A6A4 /* Assets.xcassets */,
-				4D339D9F1C31454B0022A6A4 /* LaunchScreen.storyboard */,
-				4D339DA21C31454B0022A6A4 /* Info.plist */,
-				4D339D8E1C31454A0022A6A4 /* Supporting Files */,
 			);
 			path = CCF;
 			sourceTree = "<group>";
@@ -796,6 +809,7 @@
 				3A734BDE1CCC63B300C4821A /* UILoginBgView.m */,
 			);
 			name = "Public Views";
+			path = CCF;
 			sourceTree = "<group>";
 		};
 		4D796BB31C3DF88F00B3C62D /* Addons */ = {
@@ -821,7 +835,7 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
-		4D796BEE1C44B59100B3C62D /* Core Data */ = {
+		4D796BEE1C44B59100B3C62D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				4D796BF81C44BE7800B3C62D /* CoreDataManager.h */,
@@ -832,7 +846,8 @@
 				4D796BFB1C44CCBF00B3C62D /* Form */,
 				4DB98F9F1C4E04690081AF87 /* User */,
 			);
-			name = "Core Data";
+			name = CoreData;
+			path = CCF;
 			sourceTree = "<group>";
 		};
 		4D796BFB1C44CCBF00B3C62D /* Form */ = {

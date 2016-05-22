@@ -55,7 +55,7 @@
     static NSString * cellId = @"CCFSearchResultCell";
     CCFSearchResultCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
-    CCFSearchThread * thread = self.dataList[indexPath.row];
+    ThreadInSearch * thread = self.dataList[indexPath.row];
     [cell setData:thread];
     
     return cell;
@@ -85,7 +85,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        CCFSearchThread * thread = self.dataList[indexPath.row];
+        ThreadInSearch * thread = self.dataList[indexPath.row];
         
         [self.transValueDelegate transValue:thread];
         

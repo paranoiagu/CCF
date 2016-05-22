@@ -10,7 +10,7 @@
 #import "CCFProfileTableViewCell.h"
 #import "PrivateMessage.h"
 #import "ShowPrivateMessage.h"
-#import "CCFSearchThread.h"
+#import "ThreadInSearch.h"
 #import "TransValueUITableViewCell.h"
 #import "CCFUserThreadTableViewController.h"
 #import "Post.h"
@@ -75,8 +75,8 @@
     } else if([value isKindOfClass:[ShowPrivateMessage class]]){
         ShowPrivateMessage * message = value;
         userId = [message.pmUserInfo.userID intValue];
-    } else if ([value isKindOfClass:[CCFSearchThread class]]){
-        CCFSearchThread * message = value;
+    } else if ([value isKindOfClass:[ThreadInSearch class]]){
+        ThreadInSearch * message = value;
         userId = [message.threadAuthorID intValue];
     } else if([value isKindOfClass:[Post class]]){
         Post * message = value;

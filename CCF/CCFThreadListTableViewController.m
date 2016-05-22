@@ -21,13 +21,15 @@
 #import "CCFNewThreadNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import <SVProgressHUD.h>
+#import "CCFCoreDataManager.h"
+#import "MGSwipeTableCellWithIndexPath.h"
 
 
 
 #define TypePullRefresh 0
 #define TypeLoadMore 1
 
-@interface CCFThreadListTableViewController ()<TransValueDelegate, CCFThreadListCellDelegate, TransBundleDelegate>{
+@interface CCFThreadListTableViewController ()<TransValueDelegate, CCFThreadListCellDelegate, TransBundleDelegate, MGSwipeTableCellDelegate>{
     Forum * transForm;
     
     NSArray * childForms;
@@ -154,7 +156,14 @@
     if (indexPath.section == 0) {
         // 子论坛
         static NSString *reusedIdentifierForm = @"CCFThreadListCellShowChildForm";
-        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:reusedIdentifierForm];
+        MGSwipeTableCellWithIndexPath *cell = (MGSwipeTableCellWithIndexPath*)[tableView dequeueReusableCellWithIdentifier:reusedIdentifierForm];
+        
+        cell.indexPath = indexPath;
+        
+        cell.delegate = self;
+        
+        cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"订阅此论坛" backgroundColor:[UIColor lightGrayColor]]];
+        cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
         
         Forum * form = childForms[indexPath.row];
         cell.textLabel.text = form.formName;
@@ -167,7 +176,16 @@
         
         [cell setData:play forIndexPath:indexPath];
         
+        cell.showUserProfileDelegate = self;
+        
+        cell.indexPath = indexPath;
+        
         cell.delegate = self;
+        
+        cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"收藏此主题" backgroundColor:[UIColor lightGrayColor]]];
+        cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
+        
+        
         
         return cell;
     } else{
@@ -178,11 +196,40 @@
         
         [cell setData:play forIndexPath:indexPath];
         
+        cell.showUserProfileDelegate = self;
+        
+        
+        cell.indexPath = indexPath;
+        
         cell.delegate = self;
+        
+        cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"收藏此主题" backgroundColor:[UIColor lightGrayColor]]];
+        cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
         
         return cell;
     }
 }
+
+-(BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion{
+    NSIndexPath * indexPath = cell.indexPath;
+    if (indexPath.section == 0) {
+        Forum * parent = childForms[cell.indexPath.section];
+        
+        [self.ccfApi favoriteFormsWithId:[NSString stringWithFormat:@"%d",parent.formId] handler:^(BOOL isSuccess, id message) {
+            NSLog(@">>>>>>>>>>>> %@", message);
+        }];
+    } else{
+         NormalThread *play = self.threadTopList[indexPath.row];
+        
+        [self.ccfApi favoriteThreadPostWithId:play.threadID handler:^(BOOL isSuccess, id message) {
+            
+        }];
+    }
+
+    
+    return YES;
+}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {

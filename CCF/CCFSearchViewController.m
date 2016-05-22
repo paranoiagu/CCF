@@ -8,9 +8,9 @@
 
 #import "CCFSearchViewController.h"
 #import "CCFBrowser.h"
-#import "CCFSearchThread.h"
+#import "ThreadInSearch.h"
 #import "ForumApi.h"
-#import "CCFSearchPage.h"
+#import "SearchForumDisplayPage.h"
 #import "CCFSearchResultCell.h"
 #import "CCFShowThreadViewController.h"
 #import "CCFProfileTableViewController.h"
@@ -43,7 +43,7 @@
         [self.tableView.mj_footer endRefreshing];
         return;
     }
-    [self.ccfApi listSearchResultWithUrl:redirectUrl andPage:self.currentPage + 1 handler:^(BOOL isSuccess, CCFSearchPage* message) {
+    [self.ccfApi listSearchResultWithUrl:redirectUrl andPage:self.currentPage + 1 handler:^(BOOL isSuccess, SearchForumDisplayPage* message) {
         [self.tableView.mj_footer endRefreshing];
         
         if (isSuccess) {
@@ -68,7 +68,7 @@
 -(void)keyboardDidHide:(id)sender{
     [SVProgressHUD showWithStatus:@"搜索中" maskType:SVProgressHUDMaskTypeBlack];
     
-    [self.ccfApi searchWithKeyWord:searchText handler:^(BOOL isSuccess, CCFSearchPage* message) {
+    [self.ccfApi searchWithKeyWord:searchText handler:^(BOOL isSuccess, SearchForumDisplayPage* message) {
         [SVProgressHUD dismiss];
         
         if (isSuccess) {
@@ -98,7 +98,7 @@
     CCFProfileTableViewController * controller = (CCFProfileTableViewController *)selectSegue.destinationViewController;
     self.transValueDelegate = (id<TransValueDelegate>)controller;
     
-    CCFSearchThread * thread = self.dataList[indexPath.row];
+    ThreadInSearch * thread = self.dataList[indexPath.row];
     
     [self.transValueDelegate transValue:thread];
 }
@@ -115,7 +115,7 @@
     static NSString *QuoteCellIdentifier = @"CCFSearchResultCell";
     
     CCFSearchResultCell *cell = (CCFSearchResultCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-    cell.delegate = self;
+    cell.showUserProfileDelegate = self;
     [cell setData:self.dataList[indexPath.row]];
     
     
@@ -144,7 +144,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        CCFSearchThread * thread = self.dataList[indexPath.row];
+        ThreadInSearch * thread = self.dataList[indexPath.row];
         
         [self.transValueDelegate transValue:thread];
         

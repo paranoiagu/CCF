@@ -10,8 +10,10 @@
 #import "CCFNavigationController.h"
 #import "CCFSimpleThreadTableViewCell.h"
 #import "CCFShowThreadViewController.h"
+#import "Thread.h"
 
-@interface CCFFavThreadPostTableViewController ()
+
+@interface CCFFavThreadPostTableViewController ()<MGSwipeTableCellDelegate>
 
 @end
 
@@ -59,10 +61,32 @@
     static NSString * identifier = @"CCFSimpleThreadTableViewCell";
     CCFSimpleThreadTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
+    cell.indexPath = indexPath;
+    cell.delegate = self;
+    //configure right buttons
+    cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"取消收藏" backgroundColor:[UIColor lightGrayColor]]];
+    cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
+    
+    
     SimpleThread * list = self.dataList[indexPath.row];
     [cell setData:list];
     
     return cell;
+}
+
+
+-(BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion{
+    
+    SimpleThread * list = self.dataList[cell.indexPath.row];
+    
+    [self.ccfApi unfavoriteThreadPostWithId:list.threadID handler:^(BOOL isSuccess, id message) {
+        NSLog(@">>>>>>>>>>>> %@", message);
+    }];
+    
+    [self.dataList removeObjectAtIndex:cell.indexPath.row];
+    [self.tableView deleteRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    
+    return YES;
 }
 
 

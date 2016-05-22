@@ -46,6 +46,6 @@
     [self setData:data];
 }
 - (IBAction)showUserProfile:(UIButton *)sender {
-    [self.delegate showUserProfile:self.selectIndexPath];
+    [self.showUserProfileDelegate showUserProfile:self.selectIndexPath];
 }
 @end

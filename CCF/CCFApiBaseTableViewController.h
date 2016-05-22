@@ -13,6 +13,7 @@
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "TransValueDelegate.h"
 #import "TransBundleUITableViewController.h"
+#import "ForumDisplayPage.h"
 
 @interface CCFApiBaseTableViewController : TransBundleUITableViewController
 

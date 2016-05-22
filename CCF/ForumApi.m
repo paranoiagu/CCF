@@ -184,7 +184,7 @@
                 return;
             }
             
-            CCFSearchPage * page = [_praser parseSearchPageFromHtml:result];
+            SearchForumDisplayPage * page = [_praser parseSearchPageFromHtml:result];
             
             if (page != nil && page.dataList != nil && page.dataList.count > 0) {
                 handler(YES, page);
@@ -360,7 +360,7 @@
                 return;
             }
             
-            CCFSearchPage * page = [_praser parseSearchPageFromHtml:result];
+            SearchForumDisplayPage * page = [_praser parseSearchPageFromHtml:result];
             
             if (page != nil && page.dataList != nil && page.dataList.count > 0) {
                 handler(YES, page);

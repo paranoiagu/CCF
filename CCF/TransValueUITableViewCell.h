@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MGSwipeTableCellWithIndexPath.h"
 
 @protocol CCFThreadListCellDelegate <NSObject>
 
@@ -16,8 +17,8 @@
 @end
 
 
-@interface TransValueUITableViewCell : UITableViewCell
+@interface TransValueUITableViewCell : MGSwipeTableCellWithIndexPath
 
-@property (weak, nonatomic) id<CCFThreadListCellDelegate> delegate;
+@property (weak, nonatomic) id<CCFThreadListCellDelegate> showUserProfileDelegate;
 
 @end

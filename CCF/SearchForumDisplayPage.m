@@ -6,9 +6,9 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFSearchPage.h"
+#import "SearchForumDisplayPage.h"
 
-@implementation CCFSearchPage
+@implementation SearchForumDisplayPage
 
 
 @end

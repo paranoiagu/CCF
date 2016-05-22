@@ -16,8 +16,10 @@
 #import "CCFThreadListTableViewController.h"
 #import "CCFNavigationController.h"
 #import "ForumApi.h"
+#import "DRLTabBarController.h"
+#import "MGSwipeTableCellWithIndexPath.h"
 
-@interface CCFFavFormController ()<TransValueDelegate>{
+@interface CCFFavFormController ()<TransValueDelegate,MGSwipeTableCellDelegate>{
 
 }
 
@@ -116,7 +118,14 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * ID = @"CCFFavFormControllerCell";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    MGSwipeTableCellWithIndexPath * cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    
+    cell.indexPath = indexPath;
+    cell.delegate = self;
+    //configure right buttons
+    cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"取消订阅" backgroundColor:[UIColor lightGrayColor]]];
+    cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
+    
     
     Forum * form = self.dataList[indexPath.row];
     
@@ -125,8 +134,31 @@
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 54;
+}
+-(BOOL)swipeTableCell:(MGSwipeTableCellWithIndexPath *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion{
+    
+
+    
+    Forum * parent = self.dataList[cell.indexPath.row];
+    
+    [self.ccfApi unfavoriteFormsWithId:[NSString stringWithFormat:@"%d", parent.formId] handler:^(BOOL isSuccess, id message) {
+        
+    }];
+    
+    [self.dataList removeObjectAtIndex:cell.indexPath.row];
+    [self.tableView deleteRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    
+    return YES;
+}
+
+
 - (IBAction)showLeftDrawer:(id)sender {
-    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
-    [rootController showLeftDrawer];
+//    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
+//    [rootController showLeftDrawer];
+    DRLTabBarController * root = (DRLTabBarController *)self.tabBarController;
+    [root showLeftDrawer];
 }
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFSearchThread.h"
+#import "ThreadInSearch.h"
 #import "UICircleImageView.h"
 #import "BaseCCFTableViewCell.h"
 

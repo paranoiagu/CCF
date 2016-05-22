@@ -8,7 +8,7 @@
 
 #import "ForumDisplayPage.h"
 
-@interface CCFSearchPage : ForumDisplayPage
+@interface SearchForumDisplayPage : ForumDisplayPage
 
 @property (nonatomic, strong) NSString * redirectUrl;
 

@@ -14,7 +14,7 @@
 #import "ForumDisplayPage.h"
 #import "ShowThreadPage.h"
 #import "Forum.h"
-#import "CCFSearchPage.h"
+#import "SearchForumDisplayPage.h"
 #import "UserProfile.h"
 #import "ShowPrivateMessage.h"
 
@@ -38,7 +38,7 @@
 
 - (NSString *) parseLoginErrorMessage:(NSString *)html;
 
-- (CCFSearchPage *) parseSearchPageFromHtml:( NSString*) html;
+- (SearchForumDisplayPage *) parseSearchPageFromHtml:( NSString*) html;
 
 - (NSMutableArray<Forum *> *) parseFavFormFormHtml:(NSString *)html;
 

@@ -6,8 +6,8 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFSearchThread.h"
+#import "ThreadInSearch.h"
 
-@implementation CCFSearchThread
+@implementation ThreadInSearch
 
 @end

@@ -14,13 +14,13 @@
 #import<Foundation/Foundation.h>
 
 #import "CCFBrowser.h"
-#import "ForumApi.h"
+#import "CCFParser.h"
 #import "AppDelegate.h"
 
 #import "UIStoryboard+CCF.h"
+#import "ForumApi.h"
 #import <SVProgressHUD.h>
 #import "CCFCoreDataManager.h"
-#import "FormEntry.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>{
 
@@ -142,7 +142,6 @@
     
     [SVProgressHUD showWithStatus:@"正在登录" maskType:SVProgressHUDMaskTypeBlack];
     
-    
     [_ccfApi loginWithName:name andPassWord:password handler:^(BOOL isSuccess, id message) {
         if (isSuccess) {
             
@@ -179,7 +178,9 @@
             
             [self presentViewController:alert animated:YES completion:nil];
         }
+        
     }];
+
     
 }
 

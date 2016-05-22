@@ -380,6 +380,6 @@
     return CGSizeMake(size.width, self.frame.size.height);
 }
 - (IBAction)showUserProfile:(UIButton *)sender {
-    [self.delegate showUserProfile:currentPath];
+    [self.showUserProfileDelegate showUserProfile:currentPath];
 }
 @end

@@ -9,7 +9,7 @@
 #import "CCFParser.h"
 #import <IGHTMLQuery.h>
 #import "ShowThreadPage.h"
-#import "CCFSearchThread.h"
+#import "ThreadInSearch.h"
 #import "ForumDisplayPage.h"
 #import "FormEntry+CoreDataProperties.h"
 #import "CCFCoreDataManager.h"
@@ -18,7 +18,7 @@
 #import "Forum.h"
 #import "PrivateMessage.h"
 #import "SimpleThread.h"
-#import "CCFSearchPage.h"
+#import "SearchForumDisplayPage.h"
 #import "IGHTMLDocument+QueryNode.h"
 #import "IGXMLNode+Children.h"
 
@@ -579,7 +579,7 @@
 }
 
 
--(CCFSearchPage*)parseSearchPageFromHtml:(NSString *)html{
+-(SearchForumDisplayPage*)parseSearchPageFromHtml:(NSString *)html{
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet * searchNodeSet = [document queryWithXPath:@"//*[@id='threadslist']/tr[*]"];
     
@@ -588,7 +588,7 @@
     }
     
     
-    CCFSearchPage * resultPage = [[CCFSearchPage alloc]init];
+    SearchForumDisplayPage * resultPage = [[SearchForumDisplayPage alloc]init];
 
     IGXMLNode * postTotalCountNode = [document queryWithXPath:@"//*[@id='threadslist']/tr[1]/td/span[1]"].firstObject;
 
@@ -606,13 +606,13 @@
         resultPage.totalPageCount = [[pageNode.text stringWithRegular:@"共 \\d+ 页" andChild:@"\\d+"] integerValue];
     }
     
-    NSMutableArray<CCFSearchThread*>* post = [NSMutableArray array];
+    NSMutableArray<ThreadInSearch*>* post = [NSMutableArray array];
     
     for (IGXMLNode *node in searchNodeSet) {
         
         if (node.children.count == 9) {
             // 9个节点是正确的输出结果
-            CCFSearchThread * searchThread = [[CCFSearchThread alloc]init];
+            ThreadInSearch * searchThread = [[ThreadInSearch alloc]init];
             
             IGXMLNode * postForNode = [node childrenAtPosition:2];
             

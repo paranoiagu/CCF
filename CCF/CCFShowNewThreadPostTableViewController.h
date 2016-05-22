@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFApiBaseTableViewController.h"
-#import "CCFShowThreadViewController.h"
 
 @interface CCFShowNewThreadPostTableViewController : CCFApiBaseTableViewController
 

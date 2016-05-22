@@ -9,10 +9,12 @@
 #import "CCFShowNewThreadPostTableViewController.h"
 #import "CCFNavigationController.h"
 #import "ForumDisplayPage.h"
-#import "CCFSearchThread.h"
+#import "ThreadInSearch.h"
 #import "CCFSearchResultCell.h"
-#import "CCFSearchThread.h"
+#import "ThreadInSearch.h"
 #import "CCFProfileTableViewController.h"
+#import "DRLTabBarController.h"
+#import "CCFShowThreadViewController.h"
 
 @interface CCFShowNewThreadPostTableViewController ()<CCFThreadListCellDelegate>{
     UIStoryboardSegue * selectSegue;
@@ -63,9 +65,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * cellId = @"CCFSearchResultCell";
     CCFSearchResultCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    cell.delegate = self;
+    cell.showUserProfileDelegate = self;
     
-    CCFSearchThread * thread = self.dataList[indexPath.row];
+    ThreadInSearch * thread = self.dataList[indexPath.row];
     [cell setData:thread forIndexPath:indexPath];
     return cell;
 }
@@ -74,7 +76,7 @@
     CCFProfileTableViewController * controller = selectSegue.destinationViewController;
     self.transValueDelegate = (id<TransValueDelegate>)controller;
     
-    CCFSearchThread * thread = self.dataList[indexPath.row];
+    ThreadInSearch * thread = self.dataList[indexPath.row];
     
     [self.transValueDelegate transValue:thread];
 }
@@ -111,7 +113,10 @@
 }
 
 - (IBAction)showLeftDrawer:(id)sender {
-    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
-    [rootController showLeftDrawer];
+//    CCFNavigationController * rootController = (CCFNavigationController*)self.navigationController;
+//    [rootController showLeftDrawer];
+    
+    DRLTabBarController * root = (DRLTabBarController *)self.tabBarController;
+    [root showLeftDrawer];
 }
 @end

@@ -46,6 +46,7 @@
     
     int currentPageNumber;
     int totalPageCount;
+
     ForumApi *_api;
     
     Thread * transThread;
@@ -86,7 +87,6 @@
     
     
     _api = [[ForumApi alloc] init];
-    
     
     cellHeightDictionary = [NSMutableDictionary<NSIndexPath *, NSNumber *> dictionary];
     
@@ -266,7 +266,7 @@
             static NSString *QuoteCellIdentifier = @"CCFThreadDetailCellIdentifier";
             
             CCFThreadDetailCell *cell = (CCFThreadDetailCell*)[tableView dequeueReusableCellWithIdentifier:QuoteCellIdentifier];
-            cell.delegate = self;
+            cell.showUserProfileDelegate = self;
             cell.detailDelegate = self;
             NSArray * posts = [postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]];
             
@@ -413,7 +413,7 @@
             } else if (buttonIndex == 2){
                 NSString * louceng = [selectPost.postLouCeng stringWithRegular:@"\\d+"];
                 
-                NSString * postUrl = [NSString stringWithFormat: @"https://bbs.et8.net/bbs/showpost.php?p=%@&postcount=%@", transThread.threadID, louceng];
+                NSString * postUrl = [NSString stringWithFormat: @"https://dream4ever.org//showpost.php?p=%@&postcount=%@", transThread.threadID, louceng];
                 
                 UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                 pasteboard.string = postUrl;

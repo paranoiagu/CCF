@@ -7,7 +7,7 @@
 //
 
 #import "CCFSearchResultCell.h"
-#import "CCFSearchThread.h"
+#import "ThreadInSearch.h"
 
 
 @implementation CCFSearchResultCell{
@@ -15,7 +15,7 @@
 }
 
 
--(void)setData:(CCFSearchThread*)data{
+-(void)setData:(ThreadInSearch*)data{
     self.postTitle.text = data.threadTitle;
     self.postAuthor.text = data.threadAuthorName;
     self.postTime.text = data.lastPostTime;
@@ -31,7 +31,7 @@
 }
 
 - (IBAction)showUserProfile:(UIButton *)sender {
-    [self.delegate showUserProfile:selectIndexPath];
+    [self.showUserProfileDelegate showUserProfile:selectIndexPath];
 }
 
 @end

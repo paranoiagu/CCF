@@ -16,6 +16,7 @@
 #import "CCFNewThreadViewController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "CCFProfileTableViewController.h"
+#import "CCFCoreDataManager.h"
 
 
 @interface CCFThreadListForChildFormUITableViewController (){

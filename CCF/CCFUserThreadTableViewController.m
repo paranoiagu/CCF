@@ -13,6 +13,7 @@
 #import "UserProfile.h"
 #import "ForumDisplayPage.h"
 
+
 @interface CCFUserThreadTableViewController ()<TransValueDelegate>{
     UserProfile *userProfile;
 }
@@ -26,7 +27,7 @@
 }
 
 -(void)onPullRefresh{
-    [self.ccfApi listAllUserThreads:[userProfile.profileUserId intValue] withPage:1 handler:^(BOOL isSuccess, ForumDisplayPage* message) {
+    [self.ccfApi listAllUserThreads:userProfile.profileName withPage:1 handler:^(BOOL isSuccess, ForumDisplayPage* message) {
         [self.tableView.mj_header endRefreshing];
         
         if (isSuccess) {
@@ -43,7 +44,7 @@
 }
 
 -(void)onLoadMore{
-    [self.ccfApi listAllUserThreads:[userProfile.profileUserId intValue] withPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage* message) {
+    [self.ccfApi listAllUserThreads:userProfile.profileName withPage:self.currentPage + 1 handler:^(BOOL isSuccess, ForumDisplayPage* message) {
         [self.tableView.mj_footer endRefreshing];
         
         if (isSuccess) {
@@ -62,7 +63,7 @@
     static NSString * cellId = @"CCFSearchResultCell";
     CCFSearchResultCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
-    CCFSearchThread * thread = self.dataList[indexPath.row];
+    ThreadInSearch * thread = self.dataList[indexPath.row];
     [cell setData:thread];
     
     return cell;
@@ -84,7 +85,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        CCFSearchThread * thread = self.dataList[indexPath.row];
+        ThreadInSearch * thread = self.dataList[indexPath.row];
 
         [self.transValueDelegate transValue:thread];
         

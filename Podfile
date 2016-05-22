@@ -15,6 +15,8 @@ pod 'ActionSheetPicker-3.0'
 pod 'FDFullscreenPopGesture', '1.1'
 pod 'SDWebImage', '~>3.7.5'
 
+pod 'MGSwipeTableCell'
+
 pod 'AVOSCloud'
 
 pod 'AVOSCloudIM'

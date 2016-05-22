@@ -88,6 +88,10 @@
 		3AC65FC51CF13AB6000D3BDB /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FC41CF13AB6000D3BDB /* NSUserDefaults+Setting.m */; };
 		3AC65FC81CF13AC5000D3BDB /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FC71CF13AC5000D3BDB /* NSString+Extensions.m */; };
 		3AC65FCD1CF141D3000D3BDB /* UrlBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FCC1CF141D3000D3BDB /* UrlBuilder.m */; };
+		3AC65FD21CF14938000D3BDB /* DRLForumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FD11CF14938000D3BDB /* DRLForumTableViewController.m */; };
+		3AC65FD61CF149CB000D3BDB /* ForumListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FD41CF149CB000D3BDB /* ForumListHeaderView.m */; };
+		3AC65FD71CF149CB000D3BDB /* ForumListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC65FD51CF149CB000D3BDB /* ForumListHeaderView.xib */; };
+		3AC65FDA1CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FD91CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m */; };
 		3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */; };
 		3AEA1F371C365EA400710BD6 /* CCFShowThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
@@ -309,6 +313,13 @@
 		3AC65FC71CF13AC5000D3BDB /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
 		3AC65FCB1CF141D3000D3BDB /* UrlBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlBuilder.h; sourceTree = "<group>"; };
 		3AC65FCC1CF141D3000D3BDB /* UrlBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlBuilder.m; sourceTree = "<group>"; };
+		3AC65FD01CF14938000D3BDB /* DRLForumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRLForumTableViewController.h; sourceTree = "<group>"; };
+		3AC65FD11CF14938000D3BDB /* DRLForumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRLForumTableViewController.m; sourceTree = "<group>"; };
+		3AC65FD31CF149CB000D3BDB /* ForumListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumListHeaderView.h; sourceTree = "<group>"; };
+		3AC65FD41CF149CB000D3BDB /* ForumListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumListHeaderView.m; sourceTree = "<group>"; };
+		3AC65FD51CF149CB000D3BDB /* ForumListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForumListHeaderView.xib; sourceTree = "<group>"; };
+		3AC65FD81CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCellWithIndexPath.h; sourceTree = "<group>"; };
+		3AC65FD91CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCellWithIndexPath.m; sourceTree = "<group>"; };
 		3AEA1F2D1C364E7E00710BD6 /* CCFThreadListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTableViewController.h; sourceTree = "<group>"; };
 		3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTableViewController.m; sourceTree = "<group>"; };
 		3AEA1F351C365EA400710BD6 /* CCFShowThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowThreadViewController.h; sourceTree = "<group>"; };
@@ -444,6 +455,8 @@
 				3A1C2CD61C9EB2C10068AF6B /* CCFProfileTableViewCell.m */,
 				3AA5B9981CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.h */,
 				3AA5B9991CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m */,
+				3AC65FD81CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.h */,
+				3AC65FD91CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m */,
 			);
 			name = TableViewCell;
 			path = CCF;
@@ -463,6 +476,9 @@
 		3A671EE11CB9E00C001CC91E /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				3AC65FD31CF149CB000D3BDB /* ForumListHeaderView.h */,
+				3AC65FD41CF149CB000D3BDB /* ForumListHeaderView.m */,
+				3AC65FD51CF149CB000D3BDB /* ForumListHeaderView.xib */,
 				4D796BE81C44992700B3C62D /* UIStoryboard+CCF.h */,
 				4D796BE91C44992700B3C62D /* UIStoryboard+CCF.m */,
 				3A671EE21CB9E061001CC91E /* PageHeaderView.h */,
@@ -630,12 +646,12 @@
 		3AEA1F341C365E2100710BD6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3A8E05561CC3AA28003D0D90 /* ReplyController */,
+				3A734BDC1CCC55EF00C4821A /* Profile */,
+				3A734BE81CCCC23700C4821A /* CreateNewThread */,
 				3A734BF01CCCCCC900C4821A /* TransBundle */,
 				3A734BEC1CCCC2CF00C4821A /* PrivateMessage */,
-				3A734BE81CCCC23700C4821A /* CreateNewThread */,
-				3A734BDC1CCC55EF00C4821A /* Profile */,
 				3A3672B11CB0039300756D8B /* Setting */,
-				3A8E05561CC3AA28003D0D90 /* ReplyController */,
 				4D1EEBB81C33D4FD0084F6E9 /* LoginViewController.h */,
 				4D1EEBB91C33D4FD0084F6E9 /* LoginViewController.m */,
 				4D1EEBBA1C33D4FD0084F6E9 /* LoginViewController.xib */,
@@ -651,6 +667,8 @@
 				3AA2D50D1C36105100F312CC /* CCFFormTableViewController.m */,
 				3A7569AB1C42B179000486F4 /* CCFFavFormController.h */,
 				3A7569AC1C42B179000486F4 /* CCFFavFormController.m */,
+				3AC65FD01CF14938000D3BDB /* DRLForumTableViewController.h */,
+				3AC65FD11CF14938000D3BDB /* DRLForumTableViewController.m */,
 				4D796BD61C43576700B3C62D /* CCFSearchViewController.h */,
 				4D796BD71C43576700B3C62D /* CCFSearchViewController.m */,
 				3A2346341C8C6AE2009A2537 /* CCFMyThreadPostTableViewController.h */,
@@ -973,6 +991,7 @@
 				3A671EE61CB9E0E1001CC91E /* PageHeaderView.xib in Resources */,
 				4D339DA11C31454B0022A6A4 /* LaunchScreen.storyboard in Resources */,
 				4D339D9E1C31454B0022A6A4 /* Assets.xcassets in Resources */,
+				3AC65FD71CF149CB000D3BDB /* ForumListHeaderView.xib in Resources */,
 				3AA2D5171C3610C400F312CC /* PlaysAndQuotations.plist in Resources */,
 				3AA2D5191C3610C400F312CC /* carat.png in Resources */,
 				4DF824BC1C34E5EF005BB858 /* ccf.json in Resources */,
@@ -1055,6 +1074,7 @@
 				4D1EEBBB1C33D4FD0084F6E9 /* LoginViewController.m in Sources */,
 				3A734BDF1CCC63B300C4821A /* UILoginBgView.m in Sources */,
 				3A2346331C8C6A6C009A2537 /* CCFMyThreadTableViewController.m in Sources */,
+				3AC65FD21CF14938000D3BDB /* DRLForumTableViewController.m in Sources */,
 				3AA2D5041C36103C00F312CC /* CCFFormHeaderView.m in Sources */,
 				4DF824C31C34F0B2005BB858 /* CCFFormDao.m in Sources */,
 				4DEB34C61C48D57C00063CBB /* AFHTTPSessionManager+SimpleAction.m in Sources */,
@@ -1084,6 +1104,7 @@
 				4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */,
 				3A256FB01CA62FC600419D67 /* IGXMLNode+Children.m in Sources */,
 				3A2FCC771C953FCD00B469E4 /* UICircleImageView.m in Sources */,
+				3AC65FDA1CF14AA9000D3BDB /* MGSwipeTableCellWithIndexPath.m in Sources */,
 				4D852A231C991B59009121B2 /* CCFForumDisplayPage.m in Sources */,
 				3A3672B41CB0040600756D8B /* NSUserDefaults+Setting.m in Sources */,
 				4D60F3301CC89D01007FFD5A /* CCFNSAttributedStringBuilder.m in Sources */,
@@ -1128,6 +1149,7 @@
 				3A2346301C8C62C2009A2537 /* CCFShowNewThreadPostTableViewController.m in Sources */,
 				3A734BEB1CCCC2B000C4821A /* CCFNewThreadNavigationController.m in Sources */,
 				3A0A99831C4A71B600086DAB /* CCFSeniorNewPostViewController.m in Sources */,
+				3AC65FD61CF149CB000D3BDB /* ForumListHeaderView.m in Sources */,
 				3A1C2CD71C9EB2C10068AF6B /* CCFProfileTableViewCell.m in Sources */,
 				3A734BF31CCCCD8700C4821A /* TransBundleUITableViewController.m in Sources */,
 				3A256FA71CA5995E00419D67 /* CCFShowPMTableViewCell.m in Sources */,

@@ -58,7 +58,6 @@
 		3A842CA11C469AC1002944A9 /* CCFNewThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */; };
 		3A84A4381CE8BB1A009619DE /* CCFApiLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A84A4371CE8BB1A009619DE /* CCFApiLibrary.framework */; };
 		3A84A43A1CE8BB52009619DE /* CCFApiLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A84A4371CE8BB1A009619DE /* CCFApiLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3A84A4411CE8BE5A009619DE /* DYStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A84A4401CE8BE5A009619DE /* DYStringUtils.m */; };
 		3A8E054E1CC35515003D0D90 /* UILouCengLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E054D1CC35515003D0D90 /* UILouCengLabel.m */; };
 		3A8E05511CC367AE003D0D90 /* UIPageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E05501CC367AE003D0D90 /* UIPageLabel.m */; };
 		3A92E7F71CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A92E7F61CA0386C000FD0B2 /* CCFMyProfileUITableViewController.m */; };
@@ -86,6 +85,10 @@
 		3AB3F5381C53939300B7FA98 /* CCFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3F5371C53939300B7FA98 /* CCFForm.m */; };
 		3ABAFE3E1CAACCD300803085 /* CCFUserThreadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABAFE3D1CAACCD300803085 /* CCFUserThreadTableViewController.m */; };
 		3ABAFE411CAAD12300803085 /* TransValueUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABAFE401CAAD12300803085 /* TransValueUITableViewCell.m */; };
+		3AC65FBF1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FBE1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m */; };
+		3AC65FC21CF13AA1000D3BDB /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FC11CF13AA1000D3BDB /* Utils.m */; };
+		3AC65FC51CF13AB6000D3BDB /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FC41CF13AB6000D3BDB /* NSUserDefaults+Setting.m */; };
+		3AC65FC81CF13AC5000D3BDB /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FC71CF13AC5000D3BDB /* NSString+Extensions.m */; };
 		3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */; };
 		3AEA1F371C365EA400710BD6 /* CCFShowThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
@@ -108,7 +111,6 @@
 		4D6B11CB1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6B11CA1C9A582100E073A1 /* CCFSimpleThreadTableViewCell.m */; };
 		4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796B5F1C3BC17800B3C62D /* DrawerView.m */; };
 		4D796B681C3BDCA800B3C62D /* DrawerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D796B671C3BDCA800B3C62D /* DrawerView.xib */; };
-		4D796BCD1C3E4BDD00B3C62D /* CCFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BCC1C3E4BDD00B3C62D /* CCFUtils.m */; };
 		4D796BD21C3FC8ED00B3C62D /* CCFUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BD11C3FC8ED00B3C62D /* CCFUITextView.m */; };
 		4D796BD81C43576700B3C62D /* CCFSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BD71C43576700B3C62D /* CCFSearchViewController.m */; };
 		4D796BDB1C43666C00B3C62D /* CCFSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BDA1C43666C00B3C62D /* CCFSearchResultCell.m */; };
@@ -255,8 +257,6 @@
 		3A842C9F1C469AC1002944A9 /* CCFNewThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFNewThreadViewController.h; sourceTree = "<group>"; };
 		3A842CA01C469AC1002944A9 /* CCFNewThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFNewThreadViewController.m; sourceTree = "<group>"; };
 		3A84A4371CE8BB1A009619DE /* CCFApiLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CCFApiLibrary.framework; sourceTree = "<group>"; };
-		3A84A43F1CE8BE5A009619DE /* DYStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYStringUtils.h; sourceTree = "<group>"; };
-		3A84A4401CE8BE5A009619DE /* DYStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYStringUtils.m; sourceTree = "<group>"; };
 		3A8E054C1CC35515003D0D90 /* UILouCengLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILouCengLabel.h; sourceTree = "<group>"; };
 		3A8E054D1CC35515003D0D90 /* UILouCengLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILouCengLabel.m; sourceTree = "<group>"; };
 		3A8E054F1CC367AE003D0D90 /* UIPageLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPageLabel.h; sourceTree = "<group>"; };
@@ -306,6 +306,14 @@
 		3ABAFE3D1CAACCD300803085 /* CCFUserThreadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUserThreadTableViewController.m; sourceTree = "<group>"; };
 		3ABAFE3F1CAAD12300803085 /* TransValueUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransValueUITableViewCell.h; sourceTree = "<group>"; };
 		3ABAFE401CAAD12300803085 /* TransValueUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransValueUITableViewCell.m; sourceTree = "<group>"; };
+		3AC65FBD1CF13A8F000D3BDB /* NSUserDefaults+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Extensions.h"; sourceTree = "<group>"; };
+		3AC65FBE1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Extensions.m"; sourceTree = "<group>"; };
+		3AC65FC01CF13AA1000D3BDB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		3AC65FC11CF13AA1000D3BDB /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		3AC65FC31CF13AB6000D3BDB /* NSUserDefaults+Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Setting.h"; sourceTree = "<group>"; };
+		3AC65FC41CF13AB6000D3BDB /* NSUserDefaults+Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Setting.m"; sourceTree = "<group>"; };
+		3AC65FC61CF13AC5000D3BDB /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
+		3AC65FC71CF13AC5000D3BDB /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
 		3AEA1F2D1C364E7E00710BD6 /* CCFThreadListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTableViewController.h; sourceTree = "<group>"; };
 		3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTableViewController.m; sourceTree = "<group>"; };
 		3AEA1F351C365EA400710BD6 /* CCFShowThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowThreadViewController.h; sourceTree = "<group>"; };
@@ -348,8 +356,6 @@
 		4D796B5F1C3BC17800B3C62D /* DrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerView.m; sourceTree = "<group>"; };
 		4D796B601C3BC17800B3C62D /* DrawerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewDelegate.h; sourceTree = "<group>"; };
 		4D796B671C3BDCA800B3C62D /* DrawerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawerView.xib; sourceTree = "<group>"; };
-		4D796BCB1C3E4BDD00B3C62D /* CCFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUtils.h; sourceTree = "<group>"; };
-		4D796BCC1C3E4BDD00B3C62D /* CCFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUtils.m; sourceTree = "<group>"; };
 		4D796BD01C3FC8ED00B3C62D /* CCFUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFUITextView.h; sourceTree = "<group>"; };
 		4D796BD11C3FC8ED00B3C62D /* CCFUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFUITextView.m; sourceTree = "<group>"; };
 		4D796BD61C43576700B3C62D /* CCFSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFSearchViewController.h; sourceTree = "<group>"; };
@@ -449,6 +455,7 @@
 				3AA5B9991CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m */,
 			);
 			name = TableViewCell;
+			path = CCF;
 			sourceTree = "<group>";
 		};
 		3A3672B11CB0039300756D8B /* Setting */ = {
@@ -540,8 +547,14 @@
 		3A84A4421CE8BEBE009619DE /* Uitls */ = {
 			isa = PBXGroup;
 			children = (
-				3A84A43F1CE8BE5A009619DE /* DYStringUtils.h */,
-				3A84A4401CE8BE5A009619DE /* DYStringUtils.m */,
+				3AC65FC31CF13AB6000D3BDB /* NSUserDefaults+Setting.h */,
+				3AC65FC41CF13AB6000D3BDB /* NSUserDefaults+Setting.m */,
+				3AC65FC01CF13AA1000D3BDB /* Utils.h */,
+				3AC65FC11CF13AA1000D3BDB /* Utils.m */,
+				3AC65FBD1CF13A8F000D3BDB /* NSUserDefaults+Extensions.h */,
+				3AC65FBE1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m */,
+				3AC65FC61CF13AC5000D3BDB /* NSString+Extensions.h */,
+				3AC65FC71CF13AC5000D3BDB /* NSString+Extensions.m */,
 			);
 			name = Uitls;
 			path = CCF;
@@ -647,7 +660,6 @@
 				3A734BE81CCCC23700C4821A /* CreateNewThread */,
 				3A734BDC1CCC55EF00C4821A /* Profile */,
 				3A3672B11CB0039300756D8B /* Setting */,
-				3A2FCC7B1C956D5C00B469E4 /* TableViewCell */,
 				3A8E05561CC3AA28003D0D90 /* ReplyController */,
 				4D1EEBB81C33D4FD0084F6E9 /* LoginViewController.h */,
 				4D1EEBB91C33D4FD0084F6E9 /* LoginViewController.m */,
@@ -690,11 +702,11 @@
 		3AF86A751C82EEAF0036AD61 /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				3A734BE11CCCADF500C4821A /* CCFPCH.pch */,
 				4D1EEBA81C324FFD0084F6E9 /* Model */,
 				3A9FEDD31C341DE200F30885 /* CCFURL */,
 				3A9FEDDB1C34306600F30885 /* CCFBrowser */,
 				3A84A4431CE8BF97009619DE /* Extension */,
-				4D796BCA1C3E4BA700B3C62D /* Utils */,
 				3AF86A761C82EECE0036AD61 /* CCFApi.h */,
 				3AF86A771C82EECE0036AD61 /* CCFApi.m */,
 				4D93CFD41C85355D00852D28 /* ApiTestViewController.h */,
@@ -733,6 +745,7 @@
 			isa = PBXGroup;
 			children = (
 				4D796BEE1C44B59100B3C62D /* CoreData */,
+				3A2FCC7B1C956D5C00B469E4 /* TableViewCell */,
 				3AEA1F341C365E2100710BD6 /* Controllers */,
 				3AF86A751C82EEAF0036AD61 /* Api */,
 				4D796B5D1C3BC15D00B3C62D /* Public Views */,
@@ -825,16 +838,6 @@
 			name = Addons;
 			sourceTree = "<group>";
 		};
-		4D796BCA1C3E4BA700B3C62D /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				4D796BCB1C3E4BDD00B3C62D /* CCFUtils.h */,
-				4D796BCC1C3E4BDD00B3C62D /* CCFUtils.m */,
-				3A734BE11CCCADF500C4821A /* CCFPCH.pch */,
-			);
-			name = Utils;
-			sourceTree = "<group>";
-		};
 		4D796BEE1C44B59100B3C62D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,22 +846,17 @@
 				4D796BFD1C44FAED00B3C62D /* CCFCoreDataManager.h */,
 				4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */,
 				4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */,
-				4D796BFB1C44CCBF00B3C62D /* Form */,
-				4DB98F9F1C4E04690081AF87 /* User */,
-			);
-			name = CoreData;
-			path = CCF;
-			sourceTree = "<group>";
-		};
-		4D796BFB1C44CCBF00B3C62D /* Form */ = {
-			isa = PBXGroup;
-			children = (
 				4D796BF21C44BBA000B3C62D /* FormEntry+CoreDataProperties.h */,
 				4D796BF31C44BBA000B3C62D /* FormEntry+CoreDataProperties.m */,
 				4D796BF41C44BBA000B3C62D /* FormEntry.h */,
 				4D796BF51C44BBA000B3C62D /* FormEntry.m */,
+				4DB98FAF1C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.h */,
+				4DB98FB01C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m */,
+				4DB98FB11C4E0F5A0081AF87 /* CCFUserEntry.h */,
+				4DB98FB21C4E0F5A0081AF87 /* CCFUserEntry.m */,
 			);
-			name = Form;
+			name = CoreData;
+			path = CCF;
 			sourceTree = "<group>";
 		};
 		4D796C001C45F2E100B3C62D /* Thread-Normal */ = {
@@ -911,17 +909,6 @@
 				3A1C2CCD1C9E3D4E0068AF6B /* CCFSearchPage.m */,
 			);
 			name = "Thread-Search";
-			sourceTree = "<group>";
-		};
-		4DB98F9F1C4E04690081AF87 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				4DB98FAF1C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.h */,
-				4DB98FB01C4E0F5A0081AF87 /* CCFUserEntry+CoreDataProperties.m */,
-				4DB98FB11C4E0F5A0081AF87 /* CCFUserEntry.h */,
-				4DB98FB21C4E0F5A0081AF87 /* CCFUserEntry.m */,
-			);
-			name = User;
 			sourceTree = "<group>";
 		};
 		849509D36740A6FFD960CDA8 /* Pods */ = {
@@ -1091,7 +1078,6 @@
 				3A671EE91CB9EA59001CC91E /* XibInflater.m in Sources */,
 				3A690A461C375B5B0076C8F1 /* CCFThreadDetailCell.m in Sources */,
 				3AA2D5061C36103C00F312CC /* CCFFormSectionInfo.m in Sources */,
-				3A84A4411CE8BE5A009619DE /* DYStringUtils.m in Sources */,
 				3AF86A7F1C8329C40036AD61 /* PrivateMessage.m in Sources */,
 				3ABAFE3E1CAACCD300803085 /* CCFUserThreadTableViewController.m in Sources */,
 				3A8E054E1CC35515003D0D90 /* UILouCengLabel.m in Sources */,
@@ -1109,6 +1095,7 @@
 				3A256FA11CA57F4000419D67 /* CCFShowPrivateMessageViewController.m in Sources */,
 				3A2346361C8C6AE2009A2537 /* CCFMyThreadPostTableViewController.m in Sources */,
 				3A734BFB1CCCD72400C4821A /* CCFWritePMNavigationController.m in Sources */,
+				3AC65FC21CF13AA1000D3BDB /* Utils.m in Sources */,
 				3AA5B99A1CBA5BAD0008175A /* CCFThreadNotLoadTableViewCell.m in Sources */,
 				3A9FEDDE1C3430A500F30885 /* CCFBrowser.m in Sources */,
 				4D1EEBB11C3260130084F6E9 /* CCFShowThreadPage.m in Sources */,
@@ -1120,10 +1107,12 @@
 				4DB98FB41C4E0F5A0081AF87 /* CCFUserEntry.m in Sources */,
 				3A1CF8761C54F8AB002E52EE /* CommonUtils.m in Sources */,
 				4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */,
+				3AC65FC81CF13AC5000D3BDB /* NSString+Extensions.m in Sources */,
 				4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */,
 				4DAFF55A1C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m in Sources */,
 				4D796BF71C44BBA000B3C62D /* FormEntry.m in Sources */,
 				3A3672AA1CAF6AF000756D8B /* CCFApiBaseViewController.m in Sources */,
+				3AC65FC51CF13AB6000D3BDB /* NSUserDefaults+Setting.m in Sources */,
 				3A7569AD1C42B179000486F4 /* CCFFavFormController.m in Sources */,
 				3A256FA41CA5947000419D67 /* CCFShowPM.m in Sources */,
 				4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */,
@@ -1145,6 +1134,7 @@
 				3A671EEF1CB9F294001CC91E /* UIRoundCornerButton.m in Sources */,
 				3A1C2CCE1C9E3D4E0068AF6B /* CCFSearchPage.m in Sources */,
 				4D796BD81C43576700B3C62D /* CCFSearchViewController.m in Sources */,
+				3AC65FBF1CF13A8F000D3BDB /* NSUserDefaults+Extensions.m in Sources */,
 				3A671EE41CB9E061001CC91E /* PageHeaderView.m in Sources */,
 				3AA5B99D1CBA7D690008175A /* CCFSimpleReplyViewController.m in Sources */,
 				4D796BF61C44BBA000B3C62D /* FormEntry+CoreDataProperties.m in Sources */,
@@ -1162,7 +1152,6 @@
 				3AA2D5091C36103C00F312CC /* APLHighlightingTextView.m in Sources */,
 				3AB3F5381C53939300B7FA98 /* CCFForm.m in Sources */,
 				4D852A1D1C97E2A7009121B2 /* CCFThread.m in Sources */,
-				4D796BCD1C3E4BDD00B3C62D /* CCFUtils.m in Sources */,
 				3AF86A741C82CAB50036AD61 /* LoginCCFUser.m in Sources */,
 				3A2FCC7E1C956DB100B469E4 /* PrivateMessageTableViewCell.m in Sources */,
 				4D1EEBAB1C32502A0084F6E9 /* CCFUser.m in Sources */,

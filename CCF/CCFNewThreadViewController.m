@@ -12,7 +12,7 @@
 #import "SelectPhotoCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <SVProgressHUD.h>
-#import "CCFUtils.h"
+#import "Utils.h"
 #import "LCActionSheet.h"
 #import "ActionSheetStringPicker.h"
 #import "CCFNewThreadNavigationController.h"
@@ -152,7 +152,7 @@
     [self fileSizeAtPath:selectUrl];
     
     
-    UIImage * scaleImage = [CCFUtils scaleUIImage:select andMaxSize:CGSizeMake(800, 800)];
+    UIImage * scaleImage = [Utils scaleUIImage:select andMaxSize:CGSizeMake(800, 800)];
     [images addObject:scaleImage];
     
     

@@ -12,7 +12,7 @@
 #import "CCFUrlBuilder.h"
 #import <AFImageDownloader.h>
 #import <UIImageView+AFNetworking.h>
-#import "CCFUtils.h"
+#import "Utils.h"
 #import "CCFParser.h"
 
 #import "CCFPost.h"

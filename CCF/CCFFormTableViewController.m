@@ -32,7 +32,7 @@
 #import "CCFThreadListTableViewController.h"
 #import "DrawerView.h"
 
-#import "CCFUtils.h"
+#import "Utils.h"
 
 #import "CCFCoreDataManager.h"
 #import "FormEntry+CoreDataProperties.h"

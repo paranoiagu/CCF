@@ -18,7 +18,7 @@
 #import "LCActionSheet.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "CCFSimpleReplyNavigationController.h"
-#import "CCFUtils.h"
+#import "Utils.h"
 
 @interface CCFSeniorNewPostViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DeleteDelegate>{
     
@@ -139,7 +139,7 @@
     
     CGSize maxImageSize = CGSizeMake(800, 800);
     
-    [images addObject:[CCFUtils scaleUIImage:select andMaxSize:maxImageSize]];
+    [images addObject:[Utils scaleUIImage:select andMaxSize:maxImageSize]];
     
     
     [_insertCollectionView reloadData];

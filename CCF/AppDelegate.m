@@ -12,7 +12,7 @@
 #import "CCFFormDao.h"
 #import "CCFCoreDataManager.h"
 #import "FormEntry.h"
-#import "NSUserDefaults+CCF.h"
+#import "NSUserDefaults+Extensions.h"
 #import "ApiTestViewController.h"
 #import "NSUserDefaults+Setting.h"
 #import <AVOSCloud.h>

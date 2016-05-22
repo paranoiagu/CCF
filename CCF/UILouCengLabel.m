@@ -7,7 +7,7 @@
 //
 
 #import "UILouCengLabel.h"
-#import "NSString+Regular.h"
+#import "NSString+Extensions.h"
 
 
 

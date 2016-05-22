@@ -10,7 +10,7 @@
 #import "CCFUrlBuilder.h"
 #import "CCFParser.h"
 #import "CCFCoreDataManager.h"
-#import "NSUserDefaults+CCF.h"
+#import "NSUserDefaults+Extensions.h"
 
 #import "CCFForm.h"
 #import "CCFThreadListTableViewController.h"

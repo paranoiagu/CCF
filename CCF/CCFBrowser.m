@@ -7,8 +7,7 @@
 //
 
 #import "CCFBrowser.h"
-#import "NSString+Kit.h"
-#import "NSString+Regular.h"
+#import "NSString+Extensions.h"
 #import "CCFUrlBuilder.h"
 #import <AFImageDownloader.h>
 #import <UIImageView+AFNetworking.h>
@@ -17,7 +16,7 @@
 
 #import "CCFPost.h"
 #import "CCFShowThreadPage.h"
-#import "NSUserDefaults+CCF.h"
+#import "NSUserDefaults+Extensions.h"
 #import "AFHTTPSessionManager+SimpleAction.h"
 #import "LoginCCFUser.h"
 #import "NSUserDefaults+Setting.h"

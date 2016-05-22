@@ -30,7 +30,7 @@
 #import <LCActionSheet.h>
 #import <SVProgressHUD.h>
 #import "ActionSheetPicker.h"
-#import "NSString+Regular.h"
+#import "NSString+Extensions.h"
 #import "CCFThreadListTitleCell.h"
 #import "PageHeaderView.h"
 #import "CCFThreadNotLoadTableViewCell.h"

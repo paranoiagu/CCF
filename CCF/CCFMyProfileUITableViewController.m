@@ -20,7 +20,7 @@
 #import "CCFSettingTableViewController.h"
 #import "LoginViewController.h"
 #import "UIStoryboard+CCF.h"
-#import "NSUserDefaults+CCF.h"
+#import "NSUserDefaults+Extensions.h"
 #import "CCFUserProfile.h"
 
 @interface CCFMyProfileUITableViewController (){

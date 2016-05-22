@@ -11,7 +11,7 @@
 
 #import "CCFNormalThread.h"
 #import "CCFUrlBuilder.h"
-#import "NSString+Regular.h"
+#import "NSString+Extensions.h"
 #import <UIImageView+AFNetworking.h>
 #import "CCFCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"

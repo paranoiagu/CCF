@@ -7,7 +7,7 @@
 //
 
 #import "UIPageLabel.h"
-#import "NSString+Regular.h"
+#import "NSString+Extensions.h"
 
 @implementation UIPageLabel{
 UIColor * bgcolor;

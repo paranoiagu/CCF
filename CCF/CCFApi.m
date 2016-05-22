@@ -9,7 +9,7 @@
 #import "CCFApi.h"
 #import "CCFBrowser.h"
 #import "CCFParser.h"
-#import "NSUserDefaults+CCF.h"
+#import "NSUserDefaults+Extensions.h"
 #import "CCFShowThreadPage.h"
 #import "CCFPage.h"
 #import "CCFShowPM.h"

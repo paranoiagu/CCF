@@ -7,7 +7,7 @@
 //
 
 #import "AFHTTPSessionManager+SimpleAction.h"
-#import "NSString+Kit.h"
+#import "NSString+Extensions.h"
 
 @implementation AFHTTPSessionManager(SimpleAction)
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CCFPost.h"
-#import "CCFUser.h"
+#import "User.h"
 #import "CCFNormalThread.h"
 #import "FormEntry+CoreDataProperties.h"
 #import "CCFPage.h"

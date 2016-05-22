@@ -15,7 +15,7 @@
 
 #import <AFNetworking.h>
 #import <IGHTMLQuery.h>
-#import "CCFUser.h"
+#import "User.h"
 #import "CCFPost.h"
 #import "CCFShowThreadPage.h"
 

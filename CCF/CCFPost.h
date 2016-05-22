@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CCFUser.h"
+#import "User.h"
 
 
 @interface CCFPost : NSObject
 
-@property (nonatomic, strong) CCFUser* postUserInfo;
+@property (nonatomic, strong) User* postUserInfo;
 @property (nonatomic, strong) NSString* postLouCeng;    // 帖子楼层
 @property (nonatomic, strong) NSString* postID;
 @property (nonatomic, strong) NSString* postLink;

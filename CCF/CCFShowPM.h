@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CCFUser.h"
+#import "User.h"
 
 @interface CCFShowPM : NSObject
 
-@property (nonatomic, strong) CCFUser* pmUserInfo;
+@property (nonatomic, strong) User* pmUserInfo;
 @property (nonatomic, strong) NSString* pmID;
 @property (nonatomic, strong) NSString* pmTitle;
 @property (nonatomic, strong) NSString* pmTime;

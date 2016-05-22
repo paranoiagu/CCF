@@ -413,7 +413,7 @@
         }
         IGXMLNode *nameNode = userInfoNode.firstChild.firstChild;
         
-        CCFUser* ccfuser = [[CCFUser alloc]init];
+        User* ccfuser = [[User alloc]init];
         
         NSString *name = nameNode.innerHtml;
         ccfuser.userName = name;
@@ -802,7 +802,7 @@
     
     
     // User Info
-    CCFUser * pmAuthor = [[CCFUser alloc] init];
+    User * pmAuthor = [[User alloc] init];
     IGXMLNode *userInfoNode = [document queryNodeWithXPath:@"//*[@id='post']/tr[1]/td[1]"];
     // 用户名
     NSString * name = [[[userInfoNode childrenAtPosition:0] childrenAtPosition:0] text];

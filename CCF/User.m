@@ -6,8 +6,8 @@
 //  Copyright © 2015年 andforce. All rights reserved.
 //
 
-#import "CCFUser.h"
+#import "User.h"
 
-@implementation CCFUser
+@implementation User
 
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCFUser : NSObject
+@interface User : NSObject
 
 @property (nonatomic, strong) NSString* userName;
 @property (nonatomic, strong) NSString* userID;

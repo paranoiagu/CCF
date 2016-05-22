@@ -777,14 +777,14 @@
 }
 
 
--(CCFShowPM *)parsePrivateMessageContent:(NSString *)html{
+-(ShowPrivateMessage *)parsePrivateMessageContent:(NSString *)html{
     // 修改引用帖子的样式
     html = [html stringByReplacingOccurrencesOfString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\">引用:</div>" withString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\"><br /></div>"];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     
     // message content
-    CCFShowPM * privateMessage = [[CCFShowPM alloc] init];
+    ShowPrivateMessage * privateMessage = [[ShowPrivateMessage alloc] init];
     IGXMLNodeSet * contentNodeSet = [document queryWithXPath:@"//*[@id='post_message_']"];
     privateMessage.pmContent = [[contentNodeSet firstObject] html];
     // 回帖时间
@@ -874,9 +874,9 @@
     
 }
 
--(CCFUserProfile *)parserProfile:(NSString *)html userId:(NSString *)userId{
+-(UserProfile *)parserProfile:(NSString *)html userId:(NSString *)userId{
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
-    CCFUserProfile * profile = [[CCFUserProfile alloc] init];
+    UserProfile * profile = [[UserProfile alloc] init];
     // 用户名
     NSString * userNameXPath = @"//*[@id='username_box']/h1/text()";
     profile.profileName = [[self queryText:document withXPath:userNameXPath] trim];

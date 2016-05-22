@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <DTCoreText/DTCoreText.h>
-#import "CCFShowPM.h"
+#import "ShowPrivateMessage.h"
 #import "CCFThreadDetailCell.h"
 #import "BaseCCFTableViewCell.h"
 
@@ -27,7 +27,7 @@
 
 @property (nonatomic, strong) id<CCFThreadListCellDelegate> showProfileDelegate;
 
--(void) setData:(CCFShowPM *)privateMessage forIndexPath:(NSIndexPath*)indexPath;
+-(void) setData:(ShowPrivateMessage *)privateMessage forIndexPath:(NSIndexPath*)indexPath;
 - (IBAction)showUserProfile:(id)sender;
 
 @end

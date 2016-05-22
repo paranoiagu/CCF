@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFToolbar.h"
-#import "CCFShowPM.h"
+#import "ShowPrivateMessage.h"
 #import "TransValueDelegate.h"
 
 @interface CCFShowPrivateMessageViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 
-@property (nonatomic, strong) NSMutableArray<CCFShowPM *> * dataList;
+@property (nonatomic, strong) NSMutableArray<ShowPrivateMessage *> * dataList;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet CCFToolbar *floatToolbar;

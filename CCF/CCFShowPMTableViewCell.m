@@ -52,7 +52,7 @@
     // Configure the view for the selected state
 }
 
--(void)setData:(CCFShowPM *)privateMessage forIndexPath:(NSIndexPath *)indexPath{
+-(void)setData:(ShowPrivateMessage *)privateMessage forIndexPath:(NSIndexPath *)indexPath{
     currentPath = indexPath;
     
     NSString * html = privateMessage.pmContent;

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 
-@interface CCFShowPM : NSObject
+@interface ShowPrivateMessage : NSObject
 
 @property (nonatomic, strong) User* pmUserInfo;
 @property (nonatomic, strong) NSString* pmID;

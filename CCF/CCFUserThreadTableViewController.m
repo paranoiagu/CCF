@@ -10,11 +10,11 @@
 #import "CCFNavigationController.h"
 #import "CCFSearchResultCell.h"
 #import "CCFShowThreadViewController.h"
-#import "CCFUserProfile.h"
+#import "UserProfile.h"
 #import "ForumDisplayPage.h"
 
 @interface CCFUserThreadTableViewController ()<TransValueDelegate>{
-    CCFUserProfile *userProfile;
+    UserProfile *userProfile;
 }
 
 @end

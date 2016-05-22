@@ -21,10 +21,10 @@
 #import "LoginViewController.h"
 #import "UIStoryboard+CCF.h"
 #import "NSUserDefaults+Extensions.h"
-#import "CCFUserProfile.h"
+#import "UserProfile.h"
 
 @interface CCFMyProfileUITableViewController (){
-    CCFUserProfile * userProfile;
+    UserProfile * userProfile;
     
 }
 
@@ -45,7 +45,7 @@
     
     NSString * currentUserId = self.ccfApi.getLoginUser.userID;
     
-    [self.ccfApi showProfileWithUserId:currentUserId handler:^(BOOL isSuccess, CCFUserProfile* message) {
+    [self.ccfApi showProfileWithUserId:currentUserId handler:^(BOOL isSuccess, UserProfile* message) {
         userProfile = message;
         
         [self.tableView.mj_header endRefreshing];

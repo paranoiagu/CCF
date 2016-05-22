@@ -15,8 +15,8 @@
 #import "ShowThreadPage.h"
 #import "Forum.h"
 #import "CCFSearchPage.h"
-#import "CCFUserProfile.h"
-#import "CCFShowPM.h"
+#import "UserProfile.h"
+#import "ShowPrivateMessage.h"
 
 
 @interface CCFParser : NSObject
@@ -44,7 +44,7 @@
 
 - (ForumDisplayPage*) parsePrivateMessageFormHtml:(NSString*) html;
 
-- (CCFShowPM *) parsePrivateMessageContent:(NSString*) html;
+- (ShowPrivateMessage *) parsePrivateMessageContent:(NSString*) html;
 
 - (NSString *) parseQuickReplyQuoteContent:(NSString*) html;
 
@@ -56,7 +56,7 @@
 
 - (NSString *) parseListMyThreadRedirectUrl:(NSString *)html;
 
-- (CCFUserProfile *) parserProfile:(NSString*)html userId:(NSString*)userId;
+- (UserProfile *) parserProfile:(NSString*)html userId:(NSString*)userId;
 
 - (NSArray<Forum *> *) parserForms:(NSString *) html;
 

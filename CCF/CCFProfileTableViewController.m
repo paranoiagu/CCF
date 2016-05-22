@@ -9,7 +9,7 @@
 #import "CCFProfileTableViewController.h"
 #import "CCFProfileTableViewCell.h"
 #import "PrivateMessage.h"
-#import "CCFShowPM.h"
+#import "ShowPrivateMessage.h"
 #import "CCFSearchThread.h"
 #import "TransValueUITableViewCell.h"
 #import "CCFUserThreadTableViewController.h"
@@ -17,11 +17,11 @@
 #import "CCFWritePMNavigationController.h"
 #import <UIImageView+WebCache.h>
 #import "UIStoryboard+CCF.h"
-#import "CCFUserProfile.h"
+#import "UserProfile.h"
 
 @interface CCFProfileTableViewController ()<TransValueDelegate>{
     
-    CCFUserProfile * userProfile;
+    UserProfile * userProfile;
     int userId;
     
     UIImage * defaultAvatar;
@@ -72,8 +72,8 @@
     } else if ([value isKindOfClass:[NormalThread class]]){
         NormalThread * thread = value;
         userId = [thread.threadAuthorID intValue];
-    } else if([value isKindOfClass:[CCFShowPM class]]){
-        CCFShowPM * message = value;
+    } else if([value isKindOfClass:[ShowPrivateMessage class]]){
+        ShowPrivateMessage * message = value;
         userId = [message.pmUserInfo.userID intValue];
     } else if ([value isKindOfClass:[CCFSearchThread class]]){
         CCFSearchThread * message = value;
@@ -87,7 +87,7 @@
 
 -(void)onPullRefresh{
     NSString * userIdString = [NSString stringWithFormat:@"%d", userId];
-    [self.ccfApi showProfileWithUserId:userIdString handler:^(BOOL isSuccess, CCFUserProfile* message) {
+    [self.ccfApi showProfileWithUserId:userIdString handler:^(BOOL isSuccess, UserProfile* message) {
         userProfile = message;
         
         [self.tableView.mj_header endRefreshing];

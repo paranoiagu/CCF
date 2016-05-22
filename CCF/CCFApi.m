@@ -12,8 +12,8 @@
 #import "NSUserDefaults+Extensions.h"
 #import "ShowThreadPage.h"
 #import "ForumDisplayPage.h"
-#import "CCFShowPM.h"
-#import "CCFUserProfile.h"
+#import "ShowPrivateMessage.h"
+#import "UserProfile.h"
 
 
 #define kCCFCookie_User @"bbuserid"
@@ -214,7 +214,7 @@
 -(void)showPrivateContentById:(int)pmId handler:(HandlerWithBool)handler{
     [_browser showPrivateContentById:pmId handler:^(BOOL isSuccess, NSString* result) {
         if (isSuccess) {
-            CCFShowPM * content = [_praser parsePrivateMessageContent:result];
+            ShowPrivateMessage * content = [_praser parsePrivateMessageContent:result];
             handler(YES, content);
         } else {
             handler(NO, result);
@@ -376,7 +376,7 @@
 -(void)showProfileWithUserId:(NSString *)userId handler:(HandlerWithBool)handler{
     [_browser showProfileWithUserId:userId handler:^(BOOL isSuccess, id result) {
         if (isSuccess) {
-            CCFUserProfile * profile = [_praser parserProfile:result userId:userId];
+            UserProfile * profile = [_praser parserProfile:result userId:userId];
             handler(YES, profile);
         } else{
             handler(NO, @"未知错误");

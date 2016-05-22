@@ -6,9 +6,9 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFShowPM.h"
+#import "ShowPrivateMessage.h"
 
-@implementation CCFShowPM
+@implementation ShowPrivateMessage
 
 
 

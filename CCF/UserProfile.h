@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCFUserProfile : NSObject
+@interface UserProfile : NSObject
 
 @property (nonatomic, strong) NSString * profileUserId;
 @property (nonatomic, strong) NSString * profileRank;

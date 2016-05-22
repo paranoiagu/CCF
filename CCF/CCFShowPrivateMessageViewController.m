@@ -19,7 +19,7 @@
 #import "SVProgressHUD.h"
 
 #import <UITableView+FDTemplateLayoutCell.h>
-#import "CCFShowPM.h"
+#import "ShowPrivateMessage.h"
 #import "CCFShowPMTableViewCell.h"
 #import "PrivateMessage.h"
 #import "CCFProfileTableViewController.h"
@@ -99,7 +99,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         
-        [ccfapi showPrivateContentById:[transPrivateMessage.pmID intValue] handler:^(BOOL isSuccess, CCFShowPM* message) {
+        [ccfapi showPrivateContentById:[transPrivateMessage.pmID intValue] handler:^(BOOL isSuccess, ShowPrivateMessage* message) {
             [self.tableView.mj_header endRefreshing];
             
             if (isSuccess) {
@@ -156,7 +156,7 @@
     cell.delegate = self;
     cell.showProfileDelegate = self;
     
-    CCFShowPM *privateMessage = self.dataList[indexPath.row];
+    ShowPrivateMessage *privateMessage = self.dataList[indexPath.row];
     
     [cell setData:privateMessage forIndexPath:indexPath];
     
@@ -194,7 +194,7 @@
     CCFProfileTableViewController * controller = (CCFProfileTableViewController *)selectSegue.destinationViewController;
     self.transValueDelegate = (id<TransValueDelegate>)controller;
     
-    CCFShowPM * message = self.dataList[indexPath.row];
+    ShowPrivateMessage * message = self.dataList[indexPath.row];
     
     [self.transValueDelegate transValue:message];
 }

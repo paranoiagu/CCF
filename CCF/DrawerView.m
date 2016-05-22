@@ -17,7 +17,7 @@
 #import "CCFFavFormController.h"
 #import "UrlBuilder.h"
 #import "LoginCCFUser.h"
-#import "CCFFormTableViewController.h"
+#import "DRLForumTableViewController.h"
 #import "CCFPrivateMessageTableViewController.h"
 #import "CCFMyThreadPostTableViewController.h"
 #import "CCFMyThreadTableViewController.h"
@@ -436,7 +436,7 @@
         
         CCFNavigationController * controller = (CCFNavigationController*)self.window.rootViewController;
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        CCFFormTableViewController * favController = [storyboard instantiateViewControllerWithIdentifier:@"CCFFormTableViewController"];
+        DRLForumTableViewController * favController = [storyboard instantiateViewControllerWithIdentifier:@"CCFFormTableViewController"];
         [controller setRootViewController:favController];
     }
 }

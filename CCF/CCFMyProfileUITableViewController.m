@@ -9,7 +9,7 @@
 #import "CCFMyProfileUITableViewController.h"
 #import "CCFProfileTableViewCell.h"
 
-#import "CCFFormTableViewController.h"
+#import "DRLForumTableViewController.h"
 #import "CCFPrivateMessageTableViewController.h"
 #import "CCFMyThreadPostTableViewController.h"
 #import "CCFMyThreadTableViewController.h"

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFCoreDataManager.h"
+#import "ForumCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
 #import "ForumApi.h"
 #import "UrlBuilder.h"

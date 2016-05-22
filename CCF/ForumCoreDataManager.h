@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, CCFCoreDataEntry) {
 
 
 
-@interface CCFCoreDataManager : CoreDataManager
+@interface ForumCoreDataManager : CoreDataManager
 
 -(instancetype)initWithCCFCoreDataEntry:(CCFCoreDataEntry) enrty;
 

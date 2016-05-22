@@ -9,7 +9,7 @@
 #import "CCFFavFormController.h"
 #import "UrlBuilder.h"
 #import "CCFParser.h"
-#import "CCFCoreDataManager.h"
+#import "ForumCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
 
 #import "Forum.h"
@@ -73,7 +73,7 @@
             [self.tableView reloadData];
         }];
     } else{
-        CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+        ForumCoreDataManager * manager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
         NSArray* forms = [[manager selectFavForms:userDef.favFormIds] mutableCopy];
         
         [self.dataList addObjectsFromArray:forms];

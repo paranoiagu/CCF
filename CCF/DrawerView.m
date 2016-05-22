@@ -26,7 +26,7 @@
 #import "CCFMyProfileUITableViewController.h"
 #import "LeftDrawerItem.h"
 #import <UIImageView+WebCache.h>
-#import "CCFCoreDataManager.h"
+#import "ForumCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
 #import "ForumApi.h"
 
@@ -41,7 +41,7 @@
     
     UIImage *defaultAvatar;
     
-    CCFCoreDataManager *coreDateManager;
+    ForumCoreDataManager *coreDateManager;
 }
 
 @end
@@ -59,7 +59,7 @@
     NSString * userName = loginUser.userName;
     [self.userName setText:userName];
     
-    coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+    coreDateManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
     NSArray *cacheUsers = [[coreDateManager selectData:^NSPredicate *{
         return [NSPredicate predicateWithFormat:@"userID = %@", loginUser.userID];
     }] copy];

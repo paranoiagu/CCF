@@ -13,7 +13,7 @@
 #import "UrlBuilder.h"
 #import "NSString+Extensions.h"
 #import <UIImageView+AFNetworking.h>
-#import "CCFCoreDataManager.h"
+#import "ForumCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
 #import "ForumApi.h"
 #import "BaseCCFTableViewCell.h"

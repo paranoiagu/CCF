@@ -7,7 +7,7 @@
 //
 
 #import "DRLForumTableViewController.h"
-#import "CCFCoreDataManager.h"
+#import "ForumCoreDataManager.h"
 #import "CCFThreadListTableViewController.h"
 #import "ForumListHeaderView.h"
 #import "XibInflater.h"
@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CCFCoreDataManager * formManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+    ForumCoreDataManager * formManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
     
     self.dataList = [[formManager selectAllForms] copy];
     

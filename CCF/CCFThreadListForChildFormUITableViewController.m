@@ -16,7 +16,7 @@
 #import "CCFNewThreadViewController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "CCFProfileTableViewController.h"
-#import "CCFCoreDataManager.h"
+#import "ForumCoreDataManager.h"
 
 
 @interface CCFThreadListForChildFormUITableViewController (){
@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+    ForumCoreDataManager * manager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
     childForms = [[manager selectChildFormsForId:transForm.formId] mutableCopy];
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;

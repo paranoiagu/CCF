@@ -10,7 +10,7 @@
 #import "LoginViewController.h"
 #import "Forum.h"
 #import "CCFFormDao.h"
-#import "CCFCoreDataManager.h"
+#import "ForumCoreDataManager.h"
 #import "FormEntry.h"
 #import "NSUserDefaults+Extensions.h"
 #import "ApiTestViewController.h"
@@ -97,7 +97,7 @@
     
     if ([data dbVersion] != DB_VERSION) {
         
-        CCFCoreDataManager * formManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+        ForumCoreDataManager * formManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
         
         // 清空数据库
         [formManager deleteData];
@@ -124,7 +124,7 @@
         
         
         
-        CCFCoreDataManager * userManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+        ForumCoreDataManager * userManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
         [userManager deleteData];
         
         [data setDBVersion:DB_VERSION];

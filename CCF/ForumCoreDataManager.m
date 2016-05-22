@@ -6,11 +6,11 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFCoreDataManager.h"
+#import "ForumCoreDataManager.h"
 #import "FormEntry.h"
 
 
-@implementation CCFCoreDataManager
+@implementation ForumCoreDataManager
 
 -(instancetype)initWithCCFCoreDataEntry:(CCFCoreDataEntry)enrty{
     if (enrty == CCFCoreDataEntryForm) {

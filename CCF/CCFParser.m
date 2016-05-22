@@ -12,7 +12,7 @@
 #import "ThreadInSearch.h"
 #import "ForumDisplayPage.h"
 #import "FormEntry+CoreDataProperties.h"
-#import "CCFCoreDataManager.h"
+#import "ForumCoreDataManager.h"
 #import "NSUserDefaults+Extensions.h"
 #import "NSString+Extensions.h"
 #import "Forum.h"
@@ -678,7 +678,7 @@
 
 
     // 通过ids 过滤出Form
-    CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+    ForumCoreDataManager * manager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
     NSArray * result = [manager selectData:^NSPredicate *{
          return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
     }];

@@ -11,7 +11,7 @@
 #import "Post.h"
 #import <UIImageView+AFNetworking.h>
 #import "UrlBuilder.h"
-#import "CCFCoreDataManager.h"
+#import "ForumCoreDataManager.h"
 #import "CCFNSAttributedStringBuilder.h"
 #import "CCFUserEntry+CoreDataProperties.h"
 
@@ -22,7 +22,7 @@
     NSURL *lastActionLink;
     NSMutableSet *mediaPlayers;
     NSIndexPath * currentPath;
-    CCFCoreDataManager *_coreDateManager;
+    ForumCoreDataManager *_coreDateManager;
     
     BOOL _needsAdjustInsetsOnLayout;
 }
@@ -42,7 +42,7 @@
     self.htmlView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.htmlView.relayoutMask = DTAttributedTextContentViewRelayoutOnHeightChanged | DTAttributedTextContentViewRelayoutOnWidthChanged;
     
-    _coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+    _coreDateManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
     
 }
 

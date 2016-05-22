@@ -26,7 +26,7 @@
     
     UIImage * defaultAvatar;
     
-    CCFCoreDataManager *coreDateManager;
+    ForumCoreDataManager *coreDateManager;
     ForumApi * ccfapi;
     
     NSMutableDictionary * avatarCache;
@@ -44,7 +44,7 @@
     defaultAvatar = [UIImage imageNamed:@"logo.jpg"];
     
     ccfapi = [[ForumApi alloc] init];
-    coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+    coreDateManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
     avatarCache = [NSMutableDictionary dictionary];
     
     if (cacheUsers == nil) {

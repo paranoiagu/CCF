@@ -20,7 +20,7 @@
 #import "UIStoryboard+CCF.h"
 #import "ForumApi.h"
 #import <SVProgressHUD.h>
-#import "CCFCoreDataManager.h"
+#import "ForumCoreDataManager.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>{
 
@@ -151,7 +151,7 @@
                 [SVProgressHUD dismiss];
                 if (isSuccess) {
                     NSArray<Forum *> *needInsert = message;
-                    CCFCoreDataManager * formManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+                    ForumCoreDataManager * formManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
                     [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
                         FormEntry *newsInfo = (FormEntry*)target;
                         newsInfo.formId = [src valueForKey:@"formId"];

@@ -97,6 +97,7 @@
 		3AC660811CF18685000D3BDB /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660801CF18685000D3BDB /* NSUserDefaults+Setting.m */; };
 		3AC660841CF1AEA1000D3BDB /* AutoRelayoutToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */; };
 		3AC660871CF1AF85000D3BDB /* AutoRelayoutUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */; };
+		3AC6608F1CF1B4A0000D3BDB /* ForumCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC6608E1CF1B4A0000D3BDB /* ForumCoreDataManager.m */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
 		3AF86A7F1C8329C40036AD61 /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF86A7E1C8329C40036AD61 /* PrivateMessage.m */; };
 		4D32560D1C4754E700053288 /* SelectPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D32560C1C4754E700053288 /* SelectPhotoCollectionViewCell.m */; };
@@ -115,7 +116,6 @@
 		4D796BF61C44BBA000B3C62D /* FormEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF31C44BBA000B3C62D /* FormEntry+CoreDataProperties.m */; };
 		4D796BF71C44BBA000B3C62D /* FormEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF51C44BBA000B3C62D /* FormEntry.m */; };
 		4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BF91C44BE7800B3C62D /* CoreDataManager.m */; };
-		4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */; };
 		4D93CFD71C85355D00852D28 /* ApiTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D93CFD51C85355D00852D28 /* ApiTestViewController.m */; };
 		4D93CFD81C85355D00852D28 /* ApiTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */; };
 		4DAFF55A1C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAFF5591C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m */; };
@@ -322,6 +322,8 @@
 		3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoRelayoutToolbar.m; sourceTree = "<group>"; };
 		3AC660851CF1AF85000D3BDB /* AutoRelayoutUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoRelayoutUITextView.h; sourceTree = "<group>"; };
 		3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoRelayoutUITextView.m; sourceTree = "<group>"; };
+		3AC6608D1CF1B4A0000D3BDB /* ForumCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumCoreDataManager.h; sourceTree = "<group>"; };
+		3AC6608E1CF1B4A0000D3BDB /* ForumCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumCoreDataManager.m; sourceTree = "<group>"; };
 		3AEC53981CB9529F00E50390 /* CCFThreadListTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTitleCell.h; sourceTree = "<group>"; };
 		3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTitleCell.m; sourceTree = "<group>"; };
 		3AF86A7D1C8329C40036AD61 /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessage.h; sourceTree = "<group>"; };
@@ -356,8 +358,6 @@
 		4D796BF51C44BBA000B3C62D /* FormEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormEntry.m; sourceTree = "<group>"; };
 		4D796BF81C44BE7800B3C62D /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		4D796BF91C44BE7800B3C62D /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
-		4D796BFD1C44FAED00B3C62D /* CCFCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFCoreDataManager.h; sourceTree = "<group>"; };
-		4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFCoreDataManager.m; sourceTree = "<group>"; };
 		4D93CFD41C85355D00852D28 /* ApiTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiTestViewController.h; sourceTree = "<group>"; };
 		4D93CFD51C85355D00852D28 /* ApiTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiTestViewController.m; sourceTree = "<group>"; };
 		4D93CFD61C85355D00852D28 /* ApiTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApiTestViewController.xib; sourceTree = "<group>"; };
@@ -756,8 +756,8 @@
 			children = (
 				4D796BF81C44BE7800B3C62D /* CoreDataManager.h */,
 				4D796BF91C44BE7800B3C62D /* CoreDataManager.m */,
-				4D796BFD1C44FAED00B3C62D /* CCFCoreDataManager.h */,
-				4D796BFE1C44FAED00B3C62D /* CCFCoreDataManager.m */,
+				3AC6608D1CF1B4A0000D3BDB /* ForumCoreDataManager.h */,
+				3AC6608E1CF1B4A0000D3BDB /* ForumCoreDataManager.m */,
 				4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */,
 				4D796BF21C44BBA000B3C62D /* FormEntry+CoreDataProperties.h */,
 				4D796BF31C44BBA000B3C62D /* FormEntry+CoreDataProperties.m */,
@@ -1008,7 +1008,6 @@
 				4DB98FB41C4E0F5A0081AF87 /* CCFUserEntry.m in Sources */,
 				3AC660761CF1833F000D3BDB /* CCFSearchViewController.m in Sources */,
 				3A1CF8761C54F8AB002E52EE /* CommonUtils.m in Sources */,
-				4D796BFF1C44FAED00B3C62D /* CCFCoreDataManager.m in Sources */,
 				3AC65FC81CF13AC5000D3BDB /* NSString+Extensions.m in Sources */,
 				4D796BFA1C44BE7800B3C62D /* CoreDataManager.m in Sources */,
 				4DAFF55A1C91AB2E000E72C8 /* CCFPrivateMessageTableViewController.m in Sources */,
@@ -1056,6 +1055,7 @@
 				3A1CF8781C54F8AB002E52EE /* UIColor+MyColor.m in Sources */,
 				4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */,
 				4D796BEA1C44992700B3C62D /* UIStoryboard+CCF.m in Sources */,
+				3AC6608F1CF1B4A0000D3BDB /* ForumCoreDataManager.m in Sources */,
 				3AC660711CF1833F000D3BDB /* CCFThreadListForChildFormUITableViewController.m in Sources */,
 				3A734BEB1CCCC2B000C4821A /* CCFNewThreadNavigationController.m in Sources */,
 				3A0A99831C4A71B600086DAB /* CCFSeniorNewPostViewController.m in Sources */,

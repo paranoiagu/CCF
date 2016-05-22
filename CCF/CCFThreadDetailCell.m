@@ -10,7 +10,7 @@
 #import "UrlBuilder.h"
 #import "Post.h"
 #import "UrlBuilder.h"
-#import "CCFCoreDataManager.h"
+#import "ForumCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
 #import <UIImageView+WebCache.h>
 #import "CCFNSAttributedStringBuilder.h"
@@ -23,7 +23,7 @@
     NSURL *lastActionLink;
     NSMutableSet *mediaPlayers;
     NSIndexPath * currentPath;
-    CCFCoreDataManager *coreDateManager;
+    ForumCoreDataManager *coreDateManager;
     
     BOOL _needsAdjustInsetsOnLayout;
     
@@ -64,7 +64,7 @@
     
     avatarCache = [NSMutableDictionary dictionary];
     
-    coreDateManager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+    coreDateManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
     if (cacheUsers == nil) {
         cacheUsers = [[coreDateManager selectData:^NSPredicate *{
             return [NSPredicate predicateWithFormat:@"userID > %d", 0];

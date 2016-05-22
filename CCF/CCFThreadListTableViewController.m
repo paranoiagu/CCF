@@ -21,7 +21,7 @@
 #import "CCFNewThreadNavigationController.h"
 #import "UIStoryboard+CCF.h"
 #import <SVProgressHUD.h>
-#import "CCFCoreDataManager.h"
+#import "ForumCoreDataManager.h"
 #import "MGSwipeTableCellWithIndexPath.h"
 
 
@@ -50,7 +50,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    CCFCoreDataManager * manager = [[CCFCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+    ForumCoreDataManager * manager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
     childForms = [[manager selectChildFormsForId:transForm.formId] mutableCopy];
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;

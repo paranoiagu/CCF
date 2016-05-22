@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CCFShowThreadPage.h"
+#import "ShowThreadPage.h"
 
 @protocol ReplyCallbackDelegate<NSObject>
 
--(void) transReplyValue:(CCFShowThreadPage *) value;
+-(void) transReplyValue:(ShowThreadPage *) value;
 
 @end

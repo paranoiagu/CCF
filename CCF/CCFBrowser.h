@@ -13,7 +13,7 @@
 #import "LoginCCFUser.h"
 #import "Forum.h"
 
-@class CCFShowThreadPage;
+@class ShowThreadPage;
 
 
 typedef void(^Handler) (BOOL isSuccess, id result);

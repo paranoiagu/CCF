@@ -78,7 +78,7 @@
             [self.threadTopList removeAllObjects];
             [self.dataList removeAllObjects];
             
-            for (CCFNormalThread * thread in page.dataList) {
+            for (NormalThread * thread in page.dataList) {
                 if (thread.isTopThread) {
                     [self.threadTopList addObject:thread];
                 }else{
@@ -103,7 +103,7 @@
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
             
-            for (CCFNormalThread * thread in page.dataList) {
+            for (NormalThread * thread in page.dataList) {
                 if (!thread.isTopThread) {
                     [self.dataList addObject:thread];
                 }
@@ -163,7 +163,7 @@
         
         CCFThreadListCell *cell = (CCFThreadListCell*)[tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
         
-        CCFNormalThread *play = self.threadTopList[indexPath.row];
+        NormalThread *play = self.threadTopList[indexPath.row];
         
         [cell setData:play forIndexPath:indexPath];
         
@@ -174,7 +174,7 @@
         
         CCFThreadListCell *cell = (CCFThreadListCell*)[tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
         
-        CCFNormalThread *play = self.dataList[indexPath.row];
+        NormalThread *play = self.dataList[indexPath.row];
         
         [cell setData:play forIndexPath:indexPath];
         
@@ -206,7 +206,7 @@
     CCFProfileTableViewController * controller = (CCFProfileTableViewController *)selectSegue.destinationViewController;
     self.transValueDelegate = (id<TransValueDelegate>)controller;
     
-    CCFNormalThread * thread = nil;
+    NormalThread * thread = nil;
     
     if (childForms.count == 0) {
         if (indexPath.section == 0) {
@@ -248,7 +248,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        CCFNormalThread * thread = nil;
+        NormalThread * thread = nil;
         
         NSInteger section = indexPath.section;
         
@@ -278,7 +278,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        CCFNormalThread * thread = nil;
+        NormalThread * thread = nil;
         
         if (indexPath.section == 0) {
             thread = self.threadTopList[indexPath.row];

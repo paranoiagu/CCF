@@ -8,7 +8,7 @@
 
 #import "CCFShowPMTableViewCell.h"
 #import "UrlBuilder.h"
-#import "CCFPost.h"
+#import "Post.h"
 #import <UIImageView+AFNetworking.h>
 #import "UrlBuilder.h"
 #import "CCFCoreDataManager.h"

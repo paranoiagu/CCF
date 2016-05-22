@@ -14,13 +14,13 @@
 #import "MJRefresh.h"
 #import "CCFUITextView.h"
 
-#import "CCFShowThreadPage.h"
+#import "ShowThreadPage.h"
 
 
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "TransValueDelegate.h"
 #import "CCFApi.h"
-#import "CCFThread.h"
+#import "Thread.h"
 #import "TransValueUITableViewCell.h"
 #import "CCFProfileTableViewController.h"
 #import "CCFNavigationController.h"
@@ -50,11 +50,11 @@
     CCFApi * ccfapi;
     CCFApi *_api;
     
-    CCFThread * transThread;
+    Thread * transThread;
     
     UIStoryboardSegue * selectSegue;
     
-    CCFShowThreadPage * currentThreadPage;
+    ShowThreadPage * currentThreadPage;
     
     LCActionSheet * itemActionSheet;
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
@@ -66,7 +66,7 @@
 @implementation CCFShowThreadViewController
 
 #pragma mark trans value
--(void)transValue:(CCFThread *)value{
+-(void)transValue:(Thread *)value{
     transThread = value;
 }
 
@@ -100,7 +100,7 @@
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:1 handler:^(BOOL isSuccess, ShowThreadPage * thread) {
             [self.tableView.mj_header endRefreshing];
             
             if (isSuccess) {
@@ -109,7 +109,7 @@
                 totalPageCount = (int)thread.totalPageCount;
 
                 
-                NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
+                NSMutableArray<Post *> * parsedPosts = thread.dataList;
 
                 currentThreadPage = thread;
 
@@ -124,7 +124,7 @@
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:currentPageNumber + 1 handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:currentPageNumber + 1 handler:^(BOOL isSuccess, ShowThreadPage * thread) {
             
             [self.tableView.mj_footer endRefreshing];
             
@@ -133,12 +133,12 @@
                 totalPageCount = (int)thread.totalPageCount;
                 
 
-                NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
+                NSMutableArray<Post *> * parsedPosts = thread.dataList;
 
 
                 currentThreadPage = thread;
                 
-                NSMutableArray<CCFPost *> * currentPosts = [postSet objectForKey:[NSNumber numberWithInt:currentPageNumber]];
+                NSMutableArray<Post *> * currentPosts = [postSet objectForKey:[NSNumber numberWithInt:currentPageNumber]];
                 if (currentPageNumber >= totalPageCount) {
                     if (currentPosts != nil && currentPosts.count == parsedPosts.count) {
                         [self showNoMoreDataView];
@@ -274,7 +274,7 @@
             NSArray * posts = [postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]];
             
             
-            CCFPost *post = posts[indexPath.row];
+            Post *post = posts[indexPath.row];
             [cell setPost:post forIndexPath:indexPath];
             
             return cell;
@@ -328,7 +328,7 @@
         [SVProgressHUD showWithStatus:@"正在加载" maskType:SVProgressHUDMaskTypeBlack];
         
         
-        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:(int)indexPath.section handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:(int)indexPath.section handler:^(BOOL isSuccess, ShowThreadPage * thread) {
             
             [SVProgressHUD dismiss];
             
@@ -338,7 +338,7 @@
                 totalPageCount = (int)thread.totalPageCount;
 
                 
-                NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
+                NSMutableArray<Post *> * parsedPosts = thread.dataList;
                 
                 
                 currentThreadPage = thread;
@@ -353,7 +353,7 @@
     } else{
         NSArray * posts = [postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]];
         
-        CCFPost * selectPost = posts[indexPath.row];
+        Post * selectPost = posts[indexPath.row];
         
         itemActionSheet = [LCActionSheet sheetWithTitle:selectPost.postUserInfo.userName buttonTitles:@[@"快速回复", @"高级回复", @"复制链接"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
             if (buttonIndex == 0) {
@@ -364,7 +364,7 @@
                 
                 TransValueBundle * bundle = [[TransValueBundle alloc] init];
                 
-                CCFPost * selectPost = posts[indexPath.row];
+                Post * selectPost = posts[indexPath.row];
                 [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
                 [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
                 
@@ -392,7 +392,7 @@
                 [bundle putIntValue:[transThread.threadID intValue] forKey:@"THREAD_ID"];
                 
                 
-                CCFPost * selectPost = posts[indexPath.row];
+                Post * selectPost = posts[indexPath.row];
                 
                 
                 [bundle putIntValue:[selectPost.postID intValue] forKey:@"POST_ID"];
@@ -436,7 +436,7 @@
     CCFProfileTableViewController * controller = selectSegue.destinationViewController;
     self.transValueDelegate = (id<TransValueDelegate>)controller;
     NSArray * posts = [postSet objectForKey:[NSNumber numberWithInteger:indexPath.section]];
-    CCFPost * post = posts[indexPath.row];
+    Post * post = posts[indexPath.row];
     
     [self.transValueDelegate transValue:post];
 }
@@ -482,7 +482,7 @@
             [SVProgressHUD showWithStatus:@"正在切换" maskType:SVProgressHUDMaskTypeBlack];
             
             
-            [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:selectPage handler:^(BOOL isSuccess, CCFShowThreadPage * thread) {
+            [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:selectPage handler:^(BOOL isSuccess, ShowThreadPage * thread) {
                 
                 [SVProgressHUD dismiss];
                 
@@ -492,7 +492,7 @@
                     totalPageCount = (int)thread.totalPageCount;
                     
                     
-                    NSMutableArray<CCFPost *> * parsedPosts = thread.dataList;
+                    NSMutableArray<Post *> * parsedPosts = thread.dataList;
                     
                     
                     currentThreadPage = thread;
@@ -532,14 +532,14 @@
     [self.tableView scrollToRowAtIndexPath:scrolltoIndex atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
--(void)transReplyValue:(CCFShowThreadPage *)value{
+-(void)transReplyValue:(ShowThreadPage *)value{
     
     currentThreadPage = value;
     
     currentPageNumber = (int)value.currentPage;
     totalPageCount = (int)value.totalPageCount;
     
-    NSMutableArray<CCFPost *> * parsedPosts = value.dataList;
+    NSMutableArray<Post *> * parsedPosts = value.dataList;
     
     [postSet setObject:parsedPosts forKey:[NSNumber numberWithInt:currentPageNumber]];
     

@@ -8,7 +8,7 @@
 
 #import "CCFThreadDetailCell.h"
 #import "UrlBuilder.h"
-#import "CCFPost.h"
+#import "Post.h"
 #import "UrlBuilder.h"
 #import "CCFCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
@@ -84,7 +84,7 @@
 }
 
 
-- (void)setPost:(CCFPost *)newPost forIndexPath:(NSIndexPath *)indexPath{
+- (void)setPost:(Post *)newPost forIndexPath:(NSIndexPath *)indexPath{
     currentPath = indexPath;
     
     NSString * html = newPost.postContent;

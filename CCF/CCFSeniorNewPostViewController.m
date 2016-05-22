@@ -10,11 +10,11 @@
 
 #import "SelectPhotoCollectionViewCell.h"
 #import "TransValueDelegate.h"
-#import "CCFThread.h"
-#import "CCFPost.h"
+#import "Thread.h"
+#import "Post.h"
 #import "TransValueBundle.h"
 #import <SVProgressHUD.h>
-#import "CCFShowThreadPage.h"
+#import "ShowThreadPage.h"
 #import "LCActionSheet.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "CCFSimpleReplyNavigationController.h"
@@ -230,7 +230,7 @@
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType:SVProgressHUDMaskTypeBlack];
             
-            CCFShowThreadPage * thread = message;
+            ShowThreadPage * thread = message;
             
             
             CCFSimpleReplyNavigationController * navigationController = (CCFSimpleReplyNavigationController *)self.navigationController;

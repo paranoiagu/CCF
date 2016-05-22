@@ -101,7 +101,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        CCFThread * thread = self.dataList[indexPath.row];
+        Thread * thread = self.dataList[indexPath.row];
 
         [self.transValueDelegate transValue:thread];
         

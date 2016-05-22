@@ -9,10 +9,10 @@
 #import "CCFSimpleReplyViewController.h"
 #import "CCFSimpleReplyNavigationController.h"
 #import "SVProgressHUD.h"
-#import "CCFShowThreadPage.h"
+#import "ShowThreadPage.h"
 #import "UIStoryboard+CCF.h"
 #import "CCFShowThreadViewController.h"
-#import "CCFPost.h"
+#import "Post.h"
 #import "TransValueBundle.h"
 
 @interface CCFSimpleReplyViewController (){
@@ -60,7 +60,7 @@
         NSString * securityToken = [bundle getStringValue:@"SECYRITY_TOKEN"];
         NSString * ajaxLastPost = [bundle getStringValue:@"AJAX_LAST_POST"];
         
-        [self.ccfApi quickReplyPostWithThreadId:threadId forPostId:postId andMessage:self.replyContent.text securitytoken:securityToken ajaxLastPost:ajaxLastPost handler:^(BOOL isSuccess, CCFShowThreadPage* message) {
+        [self.ccfApi quickReplyPostWithThreadId:threadId forPostId:postId andMessage:self.replyContent.text securitytoken:securityToken ajaxLastPost:ajaxLastPost handler:^(BOOL isSuccess, ShowThreadPage* message) {
             if (isSuccess && message != nil) {
                 [SVProgressHUD showSuccessWithStatus:@"回复成功" maskType: SVProgressHUDMaskTypeBlack];
                 
@@ -88,7 +88,7 @@
                 
                 self.replyContent.text = @"";
                 
-                CCFShowThreadPage * thread = message;
+                ShowThreadPage * thread = message;
                 
                 
                 CCFSimpleReplyNavigationController * navigationController = (CCFSimpleReplyNavigationController *)self.navigationController;

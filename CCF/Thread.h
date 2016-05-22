@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CCFSimpleThread.h"
+#import "SimpleThread.h"
 
-@interface CCFThread : CCFSimpleThread
+@interface Thread : SimpleThread
 
 @property (nonatomic, strong) NSString* postCount;          // 回复数
 @property (nonatomic, strong) NSString* openCount;          // 查看数量

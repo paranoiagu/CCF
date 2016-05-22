@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCFSimpleThread : NSObject
+@interface SimpleThread : NSObject
 
 @property (nonatomic, strong) NSString* threadID;
 @property (nonatomic, strong) NSString* threadTitle;        // 主题

@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "CCFPage.h"
-#import "CCFPost.h"
+#import "Post.h"
 
-@interface CCFShowThreadPage : CCFPage
+@interface ShowThreadPage : CCFPage
 
 @property (nonatomic, strong) NSString* threadID;
 @property (nonatomic, strong) NSString* threadLink;

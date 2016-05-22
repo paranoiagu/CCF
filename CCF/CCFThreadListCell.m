@@ -7,7 +7,7 @@
 //
 
 #import "CCFThreadListCell.h"
-#import "CCFNormalThread.h"
+#import "NormalThread.h"
 #import "UrlBuilder.h"
 #import "NSString+Extensions.h"
 #import <UIImageView+AFNetworking.h>
@@ -45,7 +45,7 @@
     return self;
 }
 
--(void)setData:(CCFNormalThread *)data{
+-(void)setData:(NormalThread *)data{
     self.threadAuthor.text = data.threadAuthorName;
     
     self.threadType.text = data.threadCategory;

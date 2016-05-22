@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseCCFTableViewCell.h"
-#import "CCFNormalThread.h"
+#import "NormalThread.h"
 
 
 @interface CCFThreadListCell : BaseCCFTableViewCell

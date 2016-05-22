@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CCFThread.h"
+#import "Thread.h"
 
-@interface CCFNormalThread : CCFThread
+@interface NormalThread : Thread
 
 @property (nonatomic, assign) BOOL isTopThread;             // 是否置顶帖子
 

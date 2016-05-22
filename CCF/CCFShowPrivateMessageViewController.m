@@ -15,7 +15,7 @@
 #import "MJRefresh.h"
 #import "CCFUITextView.h"
 
-#import "CCFShowThreadPage.h"
+#import "ShowThreadPage.h"
 #import "SVProgressHUD.h"
 
 #import <UITableView+FDTemplateLayoutCell.h>

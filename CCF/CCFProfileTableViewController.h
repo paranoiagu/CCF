@@ -8,7 +8,7 @@
 
 #import "CCFApiBaseTableViewController.h"
 #import "TransValueDelegate.h"
-#import "CCFNormalThread.h"
+#import "NormalThread.h"
 
 @interface CCFProfileTableViewController : CCFApiBaseTableViewController
 

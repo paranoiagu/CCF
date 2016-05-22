@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CCFThread.h"
+#import "Thread.h"
 
-@interface CCFSearchThread : CCFThread
+@interface CCFSearchThread : Thread
 
 @property (nonatomic, strong) NSString* fromFormName;       // 所属论坛名称
 

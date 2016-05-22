@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFSimpleThread.h"
+#import "SimpleThread.h"
 #import "BaseCCFTableViewCell.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 

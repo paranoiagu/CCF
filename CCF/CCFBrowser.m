@@ -14,8 +14,8 @@
 #import "Utils.h"
 #import "CCFParser.h"
 
-#import "CCFPost.h"
-#import "CCFShowThreadPage.h"
+#import "Post.h"
+#import "ShowThreadPage.h"
 #import "NSUserDefaults+Extensions.h"
 #import "AFHTTPSessionManager+SimpleAction.h"
 #import "LoginCCFUser.h"

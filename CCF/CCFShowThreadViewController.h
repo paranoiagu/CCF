@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFPost.h"
+#import "Post.h"
 #import "TransValueDelegate.h"
 #include "SelectPhotoCollectionViewCell.h"
 #import "ReplyTransValueDelegate.h"

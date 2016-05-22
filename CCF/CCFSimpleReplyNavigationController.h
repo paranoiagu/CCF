@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCFThread.h"
+#import "Thread.h"
 #import "CCFShowThreadViewController.h"
 #import "TransValueBundle.h"
 

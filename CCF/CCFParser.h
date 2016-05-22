@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CCFPost.h"
+#import "Post.h"
 #import "User.h"
-#import "CCFNormalThread.h"
+#import "NormalThread.h"
 #import "FormEntry+CoreDataProperties.h"
 #import "CCFPage.h"
-#import "CCFShowThreadPage.h"
+#import "ShowThreadPage.h"
 #import "Forum.h"
 #import "CCFSearchPage.h"
 #import "CCFUserProfile.h"
@@ -22,7 +22,7 @@
 @interface CCFParser : NSObject
 
 
-- (CCFShowThreadPage *) parseShowThreadWithHtml:(NSString*)html;
+- (ShowThreadPage *) parseShowThreadWithHtml:(NSString*)html;
 
 
 - (CCFPage *) parseThreadListFromHtml: (NSString *) html withThread:(int) threadId andContainsTop:(BOOL)containTop;

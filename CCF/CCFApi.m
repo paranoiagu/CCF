@@ -10,7 +10,7 @@
 #import "CCFBrowser.h"
 #import "CCFParser.h"
 #import "NSUserDefaults+Extensions.h"
-#import "CCFShowThreadPage.h"
+#import "ShowThreadPage.h"
 #import "CCFPage.h"
 #import "CCFShowPM.h"
 #import "CCFUserProfile.h"
@@ -110,7 +110,7 @@
                 return;
             }
             
-            CCFShowThreadPage * thread = [_praser parseShowThreadWithHtml:result];
+            ShowThreadPage * thread = [_praser parseShowThreadWithHtml:result];
             
             
             
@@ -149,7 +149,7 @@
                 return;
             }
             
-            CCFShowThreadPage * thread = [_praser parseShowThreadWithHtml:result];
+            ShowThreadPage * thread = [_praser parseShowThreadWithHtml:result];
             
             
             
@@ -316,7 +316,7 @@
 -(void)showThreadWithId:(int)threadId andPage:(int)page handler:(HandlerWithBool)handler{
     [_browser showThreadWithId:threadId andPage:page handler:^(BOOL isSuccess, NSString* html) {
         if (isSuccess) {
-            CCFShowThreadPage * detail = [_praser parseShowThreadWithHtml:html];
+            ShowThreadPage * detail = [_praser parseShowThreadWithHtml:html];
             handler(isSuccess, detail);
         } else{
             handler(NO, html);
@@ -394,7 +394,7 @@
 -(void)quickReplyPostWithThreadId:(int)threadId forPostId:(int)postId andMessage:(NSString *)message securitytoken:(NSString *)token ajaxLastPost:(NSString *)ajax_lastpost handler:(HandlerWithBool)handler{
     [_browser quickReplyPostWithThreadId:threadId forPostId:postId andMessage:message securitytoken:token ajaxLastPost:ajax_lastpost handler:^(BOOL isSuccess, NSString* result) {
         if (isSuccess) {
-            CCFShowThreadPage * detail = [_praser parseShowThreadWithHtml:result];
+            ShowThreadPage * detail = [_praser parseShowThreadWithHtml:result];
             handler(isSuccess, detail);
         } else{
             handler(NO, result);
@@ -406,7 +406,7 @@
 -(void)seniorReplyWithThreadId:(int)threadId forFormId:(int) formId andMessage:(NSString *)message withImages:(NSArray *)images securitytoken:(NSString *)token handler:(HandlerWithBool)handler{
     [_browser seniorReplyWithThreadId:threadId forFormId:(int) formId andMessage:message withImages:(NSArray *)images securitytoken:token handler:^(BOOL isSuccess, id result) {
         if (isSuccess) {
-            CCFShowThreadPage * detail = [_praser parseShowThreadWithHtml:result];
+            ShowThreadPage * detail = [_praser parseShowThreadWithHtml:result];
             handler(isSuccess, detail);
         } else{
             handler(NO, result);

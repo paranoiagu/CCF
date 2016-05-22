@@ -8,7 +8,7 @@
 
 #import "CCFParser.h"
 #import <IGHTMLQuery.h>
-#import "CCFShowThreadPage.h"
+#import "ShowThreadPage.h"
 #import "CCFSearchThread.h"
 #import "CCFPage.h"
 #import "FormEntry+CoreDataProperties.h"
@@ -17,7 +17,7 @@
 #import "NSString+Extensions.h"
 #import "Forum.h"
 #import "PrivateMessage.h"
-#import "CCFSimpleThread.h"
+#import "SimpleThread.h"
 #import "CCFSearchPage.h"
 #import "IGHTMLDocument+QueryNode.h"
 #import "IGXMLNode+Children.h"
@@ -31,7 +31,7 @@
     
     NSString * path = [NSString stringWithFormat:@"//*[@id='threadbits_forum_%d']/tr", threadId];
     
-    NSMutableArray<CCFNormalThread *> * threadList = [NSMutableArray<CCFNormalThread *> array];
+    NSMutableArray<NormalThread *> * threadList = [NSMutableArray<NormalThread *> array];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet* contents = [document queryWithXPath: path];
@@ -43,7 +43,7 @@
         
         if (threadListNode.children.count > 4) { // 要大于4的原因是：过滤已经被删除的帖子
             
-            CCFNormalThread * normalThread = [[CCFNormalThread alloc]init];
+            NormalThread * normalThread = [[NormalThread alloc]init];
             
             // title Node
             IGXMLNode * threadTitleNode = [threadListNode childrenAtPosition:2];
@@ -171,7 +171,7 @@
 
 
 
--(CCFShowThreadPage *)parseShowThreadWithHtml:(NSString *)html{
+-(ShowThreadPage *)parseShowThreadWithHtml:(NSString *)html{
 
     // 修改引用帖子的样式
     html = [html stringByReplacingOccurrencesOfString:@"<div class=\"smallfont\" style=\"margin-bottom:2px\">引用:</div>" withString:@""];
@@ -229,7 +229,7 @@
     
     NSString * formId = [fuxkHttp stringWithRegular:@"newthread.php\\?do=newthread&amp;f=\\d+" andChild:@"\\d+"];
     
-    CCFShowThreadPage * showThreadPage = [[CCFShowThreadPage alloc]init];
+    ShowThreadPage * showThreadPage = [[ShowThreadPage alloc]init];
     showThreadPage.formId = formId;
     
     NSString * securityToken = [self parseSecurityToken:html];
@@ -276,9 +276,9 @@
 
 
 
--(NSMutableArray<CCFPost *> *)parseShowThreadPosts:(IGHTMLDocument *)document{
+-(NSMutableArray<Post *> *)parseShowThreadPosts:(IGHTMLDocument *)document{
     
-    NSMutableArray<CCFPost*> * posts = [NSMutableArray array];
+    NSMutableArray<Post*> * posts = [NSMutableArray array];
     
     // 发帖内容的 table -> td
     IGXMLNodeSet *postMessages = [document queryWithXPath:@"//*[@id='posts']/div[*]/div/div/div/table/tr[1]/td[2]"];
@@ -289,7 +289,7 @@
     
     for (IGXMLNode * node in postMessages) {
         
-        CCFPost * ccfpost = [[CCFPost alloc]init];
+        Post * ccfpost = [[Post alloc]init];
         
         
         NSString * postId = [[[node attribute:@"id"] componentsSeparatedByString:@"td_post_"]lastObject];
@@ -448,7 +448,7 @@
         
         posts[postPointer].postUserInfo = ccfuser;
         
-        CCFPost * newPost = posts[postPointer];
+        Post * newPost = posts[postPointer];
         newPost.postUserInfo = ccfuser;
         [posts removeObjectAtIndex:postPointer];
         [posts insertObject:newPost atIndex:postPointer];
@@ -510,7 +510,7 @@
     
     //*[@id="threadbits_forum_147"]/tr[1]
     
-    NSMutableArray<CCFSimpleThread *> * threadList = [NSMutableArray<CCFSimpleThread *> array];
+    NSMutableArray<SimpleThread *> * threadList = [NSMutableArray<SimpleThread *> array];
     
     IGHTMLDocument *document = [[IGHTMLDocument alloc]initWithHTMLString:html error:nil];
     IGXMLNodeSet* contents = [document queryWithXPath: path];
@@ -523,7 +523,7 @@
         
         if (threadListNode.children.count > 4) { // 要大于4的原因是：过滤已经被删除的帖子
             
-            CCFSimpleThread * simpleThread = [[CCFSimpleThread alloc]init];
+            SimpleThread * simpleThread = [[SimpleThread alloc]init];
             
             // title
             IGXMLNode * threadTitleNode = threadListNode.children [2];

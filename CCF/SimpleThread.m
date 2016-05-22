@@ -6,8 +6,8 @@
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFSimpleThread.h"
+#import "SimpleThread.h"
 
-@implementation CCFSimpleThread
+@implementation SimpleThread
 
 @end

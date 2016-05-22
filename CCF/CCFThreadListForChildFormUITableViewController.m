@@ -64,7 +64,7 @@
             [self.threadTopList removeAllObjects];
             [self.dataList removeAllObjects];
             
-            for (CCFNormalThread * thread in page.dataList) {
+            for (NormalThread * thread in page.dataList) {
                 if (thread.isTopThread) {
                     [self.threadTopList addObject:thread];
                 }else{
@@ -89,7 +89,7 @@
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
             
-            for (CCFNormalThread * thread in page.dataList) {
+            for (NormalThread * thread in page.dataList) {
                 if (!thread.isTopThread) {
                     [self.dataList addObject:thread];
                 }
@@ -131,10 +131,10 @@
     CCFThreadListCell *cell = (CCFThreadListCell*)[tableView dequeueReusableCellWithIdentifier:reusedIdentifier];
     
     if (indexPath.section == 0) {
-        CCFNormalThread *play = self.threadTopList[indexPath.row];
+        NormalThread *play = self.threadTopList[indexPath.row];
         [cell setData:play];
     } else{
-        CCFNormalThread *play = self.dataList[indexPath.row];
+        NormalThread *play = self.dataList[indexPath.row];
         [cell setData:play];
     }
     return cell;
@@ -171,7 +171,7 @@
         [self.transValueDelegate transValue:transForm];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        CCFNormalThread * thread = nil;
+        NormalThread * thread = nil;
         
         if (indexPath.section == 0) {
             thread = self.threadTopList[indexPath.row];
@@ -186,7 +186,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        CCFNormalThread * thread = nil;
+        NormalThread * thread = nil;
         
         if (indexPath.section == 0) {
             thread = self.threadTopList[indexPath.row];

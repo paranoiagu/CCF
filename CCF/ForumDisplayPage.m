@@ -1,13 +1,13 @@
 //
-//  CCFForumDisplayPage.h
+//  CCFForumDisplayPage.m
 //  CCF
 //
 //  Created by WDY on 16/3/16.
 //  Copyright © 2016年 andforce. All rights reserved.
 //
 
-#import "CCFPage.h"
+#import "ForumDisplayPage.h"
 
-@interface CCFForumDisplayPage : CCFPage
+@implementation ForumDisplayPage
 
 @end

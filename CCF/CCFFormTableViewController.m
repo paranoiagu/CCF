@@ -16,8 +16,8 @@
 #import <AFNetworking.h>
 #import <IGHTMLQuery.h>
 #import "User.h"
-#import "CCFPost.h"
-#import "CCFShowThreadPage.h"
+#import "Post.h"
+#import "ShowThreadPage.h"
 
 #import "LoginViewController.h"
 

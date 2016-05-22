@@ -6,9 +6,9 @@
 //  Copyright © 2015年 andforce. All rights reserved.
 //
 
-#import "CCFPost.h"
+#import "Post.h"
 
-@implementation CCFPost
+@implementation Post
 
 
 @end

@@ -10,7 +10,7 @@
 #import "User.h"
 
 
-@interface CCFPost : NSObject
+@interface Post : NSObject
 
 @property (nonatomic, strong) User* postUserInfo;
 @property (nonatomic, strong) NSString* postLouCeng;    // 帖子楼层

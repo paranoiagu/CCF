@@ -59,7 +59,7 @@
     static NSString * identifier = @"CCFSimpleThreadTableViewCell";
     CCFSimpleThreadTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
-    CCFSimpleThread * list = self.dataList[indexPath.row];
+    SimpleThread * list = self.dataList[indexPath.row];
     [cell setData:list];
     
     return cell;
@@ -87,7 +87,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        CCFThread * thread = self.dataList[indexPath.row];
+        Thread * thread = self.dataList[indexPath.row];
         
         [self.transValueDelegate transValue:thread];
         

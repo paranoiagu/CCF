@@ -13,7 +13,7 @@
 #import "CCFSearchThread.h"
 #import "TransValueUITableViewCell.h"
 #import "CCFUserThreadTableViewController.h"
-#import "CCFPost.h"
+#import "Post.h"
 #import "CCFWritePMNavigationController.h"
 #import <UIImageView+WebCache.h>
 #import "UIStoryboard+CCF.h"
@@ -69,8 +69,8 @@
     if ([value isKindOfClass:[PrivateMessage class]]) {
         PrivateMessage * message = value;
         userId = [message.pmAuthorId intValue];
-    } else if ([value isKindOfClass:[CCFNormalThread class]]){
-        CCFNormalThread * thread = value;
+    } else if ([value isKindOfClass:[NormalThread class]]){
+        NormalThread * thread = value;
         userId = [thread.threadAuthorID intValue];
     } else if([value isKindOfClass:[CCFShowPM class]]){
         CCFShowPM * message = value;
@@ -78,8 +78,8 @@
     } else if ([value isKindOfClass:[CCFSearchThread class]]){
         CCFSearchThread * message = value;
         userId = [message.threadAuthorID intValue];
-    } else if([value isKindOfClass:[CCFPost class]]){
-        CCFPost * message = value;
+    } else if([value isKindOfClass:[Post class]]){
+        Post * message = value;
         userId = [message.postUserInfo.userID intValue];
     }
 }

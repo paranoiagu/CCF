@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PrivateMessage.h"
 
-#import "CCFNormalThread.h"
+#import "NormalThread.h"
 #import "UrlBuilder.h"
 #import "NSString+Extensions.h"
 #import <UIImageView+AFNetworking.h>

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <DTCoreText/DTCoreText.h>
 
-#import "CCFPost.h"
+#import "Post.h"
 #import "TransValueUITableViewCell.h"
 
 @protocol CCFThreadDetailCellDelegate <NSObject>
@@ -33,7 +33,7 @@
 
 @property (nonatomic, strong) id<CCFThreadDetailCellDelegate> detailDelegate;
 
--(void) setPost:(CCFPost *)post forIndexPath:(NSIndexPath*)indexPath;
+-(void) setPost:(Post *)post forIndexPath:(NSIndexPath*)indexPath;
 
 @property (nonatomic, strong) NSURL *lastActionLink;
 

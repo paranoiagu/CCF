@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFApiBaseViewController.h"
-#import "CCFShowThreadPage.h"
+#import "ShowThreadPage.h"
 #import "ReplyCallbackDelegate.h"
 
 @interface CCFSimpleReplyViewController : CCFApiBaseViewController

@@ -1256,12 +1256,6 @@
                                 <action selector="showLeftDrawer:" destination="3SN-sr-Skg" id="Pg9-no-zDb"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="ic_mode_edit_18pt" id="dbA-85-bG6" userLabel="新主题">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="createThread:" destination="3SN-sr-Skg" id="wq7-Tv-Ums"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -3152,6 +3146,6 @@
         <segue reference="Klt-aO-3La"/>
         <segue reference="0wo-f6-UjE"/>
         <segue reference="l30-na-XLg"/>
-        <segue reference="8yZ-lk-mNR"/>
+        <segue reference="bvY-WW-r79"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,7 +15,7 @@
 #import <UIImageView+AFNetworking.h>
 #import "CCFCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
-#import "CCFApi.h"
+#import "ForumApi.h"
 #import "BaseCCFTableViewCell.h"
 
 @interface PrivateMessageTableViewCell : BaseCCFTableViewCell

@@ -26,16 +26,15 @@
 
 
 
-#import "CCFApi.h"
+#import "ForumApi.h"
 
 @interface CCFShowPrivateMessageViewController ()< UITextViewDelegate, CCFUITextViewDelegate, CCFThreadDetailCellDelegate, TransValueDelegate, CCFThreadListCellDelegate>{
     NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightDictionary;
 
     PrivateMessage * transPrivateMessage;
-    
-    CCFApi * ccfapi;
+
     CCFUITextView * field;
-    CCFApi *_api;
+    ForumApi *_api;
     
     UIStoryboardSegue * selectSegue;
 }
@@ -87,9 +86,7 @@
     
     [self.view addSubview:_floatToolbar];
     
-    _api = [[CCFApi alloc] init];
-    
-    ccfapi = [[CCFApi alloc]init];
+    _api = [[ForumApi alloc] init];
     
     cellHeightDictionary = [NSMutableDictionary<NSIndexPath *, NSNumber *> dictionary];
     
@@ -99,7 +96,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         
-        [ccfapi showPrivateContentById:[transPrivateMessage.pmID intValue] handler:^(BOOL isSuccess, ShowPrivateMessage* message) {
+        [_api showPrivateContentById:[transPrivateMessage.pmID intValue] handler:^(BOOL isSuccess, ShowPrivateMessage* message) {
             [self.tableView.mj_header endRefreshing];
             
             if (isSuccess) {

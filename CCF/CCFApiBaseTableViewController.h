@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "CCFApi.h"
+#import "ForumApi.h"
 #import "MJRefresh.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "TransValueDelegate.h"
@@ -17,7 +17,7 @@
 @interface CCFApiBaseTableViewController : TransBundleUITableViewController
 
 
-@property (nonatomic, strong) CCFApi *ccfApi;
+@property (nonatomic, strong) ForumApi *ccfApi;
 @property (nonatomic, strong) NSMutableArray *dataList;
 @property (nonatomic, assign) int currentPage;
 @property (nonatomic, assign) int totalPage;

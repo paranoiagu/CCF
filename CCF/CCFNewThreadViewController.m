@@ -8,7 +8,7 @@
 
 #import "CCFNewThreadViewController.h"
 #import "CCFBrowser.h"
-#import "CCFApi.h"
+#import "ForumApi.h"
 #import "SelectPhotoCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <SVProgressHUD.h>
@@ -22,7 +22,7 @@
     
 
     CCFBrowser * broswer;
-    CCFApi *_api;
+    ForumApi *_api;
 
     UIImagePickerController *pickControl;
     
@@ -38,7 +38,7 @@
     [super viewDidLoad];
 
     broswer = [[CCFBrowser alloc]init];
-    _api = [[CCFApi alloc] init];
+    _api = [[ForumApi alloc] init];
     
     
     _selectPhotos.delegate = self;

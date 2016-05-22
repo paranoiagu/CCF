@@ -28,14 +28,14 @@
 #import <UIImageView+WebCache.h>
 #import "CCFCoreDataManager.h"
 #import "CCFUserEntry+CoreDataProperties.h"
-#import "CCFApi.h"
+#import "ForumApi.h"
 
 
 @interface DrawerView(){
 
     UIButton *_drawerMaskView;
     
-    CCFApi * _ccfapi;
+    ForumApi * _ccfapi;
 
     UIView *_rightEageView;
     
@@ -85,7 +85,7 @@
 -(id)init{
     if (self = [super init]) {
         
-        _ccfapi = [[CCFApi alloc] init];
+        _ccfapi = [[ForumApi alloc] init];
         [self setDrawerType:DrawerViewTypeLeft];
         
         [self initLeftDrawerView];
@@ -137,7 +137,7 @@
 
 -(id)initWithDrawerType:(DrawerViewType)drawerType andXib:(NSString *)name{
         if (self = [super init]) {
-            _ccfapi = [[CCFApi alloc] init];
+            _ccfapi = [[ForumApi alloc] init];
             
             // 和 xib 绑定
             [[NSBundle mainBundle] loadNibNamed:name owner:self options:nil];
@@ -191,7 +191,7 @@
    
     if (self = [super init]) {
         
-        _ccfapi = [[CCFApi alloc] init];
+        _ccfapi = [[ForumApi alloc] init];
         
         [self setDrawerType:drawerType];
         

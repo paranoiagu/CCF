@@ -19,7 +19,7 @@
 
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "TransValueDelegate.h"
-#import "CCFApi.h"
+#import "ForumApi.h"
 #import "Thread.h"
 #import "TransValueUITableViewCell.h"
 #import "CCFProfileTableViewController.h"
@@ -46,9 +46,7 @@
     
     int currentPageNumber;
     int totalPageCount;
-    
-    CCFApi * ccfapi;
-    CCFApi *_api;
+    ForumApi *_api;
     
     Thread * transThread;
     
@@ -87,9 +85,8 @@
     
     
     
-    _api = [[CCFApi alloc] init];
+    _api = [[ForumApi alloc] init];
     
-    ccfapi = [[CCFApi alloc]init];
     
     cellHeightDictionary = [NSMutableDictionary<NSIndexPath *, NSNumber *> dictionary];
     
@@ -100,7 +97,7 @@
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:1 handler:^(BOOL isSuccess, ShowThreadPage * thread) {
+        [_api showThreadWithId:[transThread.threadID intValue] andPage:1 handler:^(BOOL isSuccess, ShowThreadPage * thread) {
             [self.tableView.mj_header endRefreshing];
             
             if (isSuccess) {
@@ -124,7 +121,7 @@
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:currentPageNumber + 1 handler:^(BOOL isSuccess, ShowThreadPage * thread) {
+        [_api showThreadWithId:[transThread.threadID intValue] andPage:currentPageNumber + 1 handler:^(BOOL isSuccess, ShowThreadPage * thread) {
             
             [self.tableView.mj_footer endRefreshing];
             
@@ -328,7 +325,7 @@
         [SVProgressHUD showWithStatus:@"正在加载" maskType:SVProgressHUDMaskTypeBlack];
         
         
-        [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:(int)indexPath.section handler:^(BOOL isSuccess, ShowThreadPage * thread) {
+        [_api showThreadWithId:[transThread.threadID intValue] andPage:(int)indexPath.section handler:^(BOOL isSuccess, ShowThreadPage * thread) {
             
             [SVProgressHUD dismiss];
             
@@ -482,7 +479,7 @@
             [SVProgressHUD showWithStatus:@"正在切换" maskType:SVProgressHUDMaskTypeBlack];
             
             
-            [ccfapi showThreadWithId:[transThread.threadID intValue] andPage:selectPage handler:^(BOOL isSuccess, ShowThreadPage * thread) {
+            [_api showThreadWithId:[transThread.threadID intValue] andPage:selectPage handler:^(BOOL isSuccess, ShowThreadPage * thread) {
                 
                 [SVProgressHUD dismiss];
                 

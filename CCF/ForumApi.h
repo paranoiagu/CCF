@@ -15,7 +15,7 @@
 
 typedef void (^HandlerWithBool) (BOOL isSuccess, id message);
 
-@interface CCFApi : NSObject
+@interface ForumApi : NSObject
 
 
 // 登录论坛

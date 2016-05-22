@@ -15,7 +15,7 @@
 #import "Forum.h"
 #import "CCFThreadListTableViewController.h"
 #import "CCFNavigationController.h"
-#import "CCFApi.h"
+#import "ForumApi.h"
 
 @interface CCFFavFormController ()<TransValueDelegate>{
 

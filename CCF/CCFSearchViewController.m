@@ -9,7 +9,7 @@
 #import "CCFSearchViewController.h"
 #import "CCFBrowser.h"
 #import "CCFSearchThread.h"
-#import "CCFApi.h"
+#import "ForumApi.h"
 #import "CCFSearchPage.h"
 #import "CCFSearchResultCell.h"
 #import "CCFShowThreadViewController.h"

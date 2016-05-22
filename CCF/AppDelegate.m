@@ -17,7 +17,7 @@
 #import "NSUserDefaults+Setting.h"
 #import <AVOSCloud.h>
 #import <AVOSCloudIM.h>
-#import "CCFApi.h"
+#import "ForumApi.h"
 #import "UIStoryboard+CCF.h"
 
 
@@ -81,7 +81,7 @@
     
     
     
-    CCFApi * browser = [[CCFApi alloc]init];
+    ForumApi * browser = [[ForumApi alloc]init];
     LoginCCFUser * loginUser = [browser getLoginUser];
     
     NSDate * date = [NSDate date];

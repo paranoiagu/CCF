@@ -42,7 +42,7 @@
     avatarCache = [NSMutableDictionary dictionary];
     
     
-    coreDateManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+    coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
     if (cacheUsers == nil) {
         cacheUsers = [[coreDateManager selectData:^NSPredicate *{
             return [NSPredicate predicateWithFormat:@"userID > %d", 0];

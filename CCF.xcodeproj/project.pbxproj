@@ -97,7 +97,7 @@
 		3AC660811CF18685000D3BDB /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660801CF18685000D3BDB /* NSUserDefaults+Setting.m */; };
 		3AC660841CF1AEA1000D3BDB /* AutoRelayoutToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */; };
 		3AC660871CF1AF85000D3BDB /* AutoRelayoutUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */; };
-		3AC6608F1CF1B4A0000D3BDB /* ForumCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC6608E1CF1B4A0000D3BDB /* ForumCoreDataManager.m */; };
+		3AC660921CF1B578000D3BDB /* ForumCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC660911CF1B578000D3BDB /* ForumCoreDataManager.m */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
 		3AF86A7F1C8329C40036AD61 /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF86A7E1C8329C40036AD61 /* PrivateMessage.m */; };
 		4D32560D1C4754E700053288 /* SelectPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D32560C1C4754E700053288 /* SelectPhotoCollectionViewCell.m */; };
@@ -322,8 +322,8 @@
 		3AC660831CF1AEA1000D3BDB /* AutoRelayoutToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoRelayoutToolbar.m; sourceTree = "<group>"; };
 		3AC660851CF1AF85000D3BDB /* AutoRelayoutUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoRelayoutUITextView.h; sourceTree = "<group>"; };
 		3AC660861CF1AF85000D3BDB /* AutoRelayoutUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoRelayoutUITextView.m; sourceTree = "<group>"; };
-		3AC6608D1CF1B4A0000D3BDB /* ForumCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumCoreDataManager.h; sourceTree = "<group>"; };
-		3AC6608E1CF1B4A0000D3BDB /* ForumCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumCoreDataManager.m; sourceTree = "<group>"; };
+		3AC660901CF1B578000D3BDB /* ForumCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumCoreDataManager.h; sourceTree = "<group>"; };
+		3AC660911CF1B578000D3BDB /* ForumCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumCoreDataManager.m; sourceTree = "<group>"; };
 		3AEC53981CB9529F00E50390 /* CCFThreadListTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTitleCell.h; sourceTree = "<group>"; };
 		3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTitleCell.m; sourceTree = "<group>"; };
 		3AF86A7D1C8329C40036AD61 /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessage.h; sourceTree = "<group>"; };
@@ -754,10 +754,10 @@
 		4D796BEE1C44B59100B3C62D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				3AC660901CF1B578000D3BDB /* ForumCoreDataManager.h */,
+				3AC660911CF1B578000D3BDB /* ForumCoreDataManager.m */,
 				4D796BF81C44BE7800B3C62D /* CoreDataManager.h */,
 				4D796BF91C44BE7800B3C62D /* CoreDataManager.m */,
-				3AC6608D1CF1B4A0000D3BDB /* ForumCoreDataManager.h */,
-				3AC6608E1CF1B4A0000D3BDB /* ForumCoreDataManager.m */,
 				4D796BEF1C44B6F800B3C62D /* Form.xcdatamodeld */,
 				4D796BF21C44BBA000B3C62D /* FormEntry+CoreDataProperties.h */,
 				4D796BF31C44BBA000B3C62D /* FormEntry+CoreDataProperties.m */,
@@ -985,6 +985,7 @@
 				3AC660701CF1833F000D3BDB /* CCFShowThreadViewController.m in Sources */,
 				3AF86A7F1C8329C40036AD61 /* PrivateMessage.m in Sources */,
 				3AC660731CF1833F000D3BDB /* CCFUserThreadTableViewController.m in Sources */,
+				3AC660921CF1B578000D3BDB /* ForumCoreDataManager.m in Sources */,
 				3A8E054E1CC35515003D0D90 /* UILouCengLabel.m in Sources */,
 				4DF824BF1C34E9EF005BB858 /* CCFFormTreeJSONModel.m in Sources */,
 				3A734BE41CCCB2E600C4821A /* UIAutoResizeTextView.m in Sources */,
@@ -1055,7 +1056,6 @@
 				3A1CF8781C54F8AB002E52EE /* UIColor+MyColor.m in Sources */,
 				4D339D931C31454A0022A6A4 /* AppDelegate.m in Sources */,
 				4D796BEA1C44992700B3C62D /* UIStoryboard+CCF.m in Sources */,
-				3AC6608F1CF1B4A0000D3BDB /* ForumCoreDataManager.m in Sources */,
 				3AC660711CF1833F000D3BDB /* CCFThreadListForChildFormUITableViewController.m in Sources */,
 				3A734BEB1CCCC2B000C4821A /* CCFNewThreadNavigationController.m in Sources */,
 				3A0A99831C4A71B600086DAB /* CCFSeniorNewPostViewController.m in Sources */,

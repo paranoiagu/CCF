@@ -59,7 +59,7 @@
     NSString * userName = loginUser.userName;
     [self.userName setText:userName];
     
-    coreDateManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+    coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
     NSArray *cacheUsers = [[coreDateManager selectData:^NSPredicate *{
         return [NSPredicate predicateWithFormat:@"userID = %@", loginUser.userID];
     }] copy];

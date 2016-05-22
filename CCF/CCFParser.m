@@ -678,7 +678,7 @@
 
 
     // 通过ids 过滤出Form
-    ForumCoreDataManager * manager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+    ForumCoreDataManager * manager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
     NSArray * result = [manager selectData:^NSPredicate *{
          return [NSPredicate predicateWithFormat:@"formId IN %@", ids];
     }];

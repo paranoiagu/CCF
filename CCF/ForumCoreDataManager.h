@@ -10,10 +10,10 @@
 #import "Forum.h"
 
 
-typedef NS_ENUM(NSInteger, CCFCoreDataEntry) {
-    CCFCoreDataEntryForm = 0,
-    CCFCoreDataEntryPost,
-    CCFCoreDataEntryUser
+typedef NS_ENUM(NSInteger, EntryType) {
+    EntryTypeForm = 0,
+    EntryTypePost,
+    EntryTypeUser
     
 };
 
@@ -26,10 +26,9 @@ typedef NS_ENUM(NSInteger, CCFCoreDataEntry) {
 #define kUserEntry @"CCFUserEntry"
 
 
-
 @interface ForumCoreDataManager : CoreDataManager
 
--(instancetype)initWithCCFCoreDataEntry:(CCFCoreDataEntry) enrty;
+-(instancetype)initWithEntryType:(EntryType) enrty;
 
 -(NSArray<Forum *> *)selectFavForms:(NSArray *) ids;
 

@@ -42,7 +42,7 @@
     self.htmlView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.htmlView.relayoutMask = DTAttributedTextContentViewRelayoutOnHeightChanged | DTAttributedTextContentViewRelayoutOnWidthChanged;
     
-    _coreDateManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+    _coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
     
 }
 

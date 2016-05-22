@@ -97,7 +97,7 @@
     
     if ([data dbVersion] != DB_VERSION) {
         
-        ForumCoreDataManager * formManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+        ForumCoreDataManager * formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
         
         // 清空数据库
         [formManager deleteData];
@@ -124,7 +124,7 @@
         
         
         
-        ForumCoreDataManager * userManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+        ForumCoreDataManager * userManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
         [userManager deleteData];
         
         [data setDBVersion:DB_VERSION];

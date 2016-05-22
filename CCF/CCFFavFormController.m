@@ -73,7 +73,7 @@
             [self.tableView reloadData];
         }];
     } else{
-        ForumCoreDataManager * manager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+        ForumCoreDataManager * manager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
         NSArray* forms = [[manager selectFavForms:userDef.favFormIds] mutableCopy];
         
         [self.dataList addObjectsFromArray:forms];

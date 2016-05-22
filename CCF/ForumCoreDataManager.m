@@ -12,11 +12,11 @@
 
 @implementation ForumCoreDataManager
 
--(instancetype)initWithCCFCoreDataEntry:(CCFCoreDataEntry)enrty{
-    if (enrty == CCFCoreDataEntryForm) {
+-(instancetype)initWithEntryType:(EntryType)enrty{
+    if (enrty == EntryTypeForm) {
     
         return [self initWithXcdatamodeld:kFormXcda andWithPersistentName:kFormDBName andWithEntryName:kFormEntry];
-    } else if (enrty == CCFCoreDataEntryUser){
+    } else if (enrty == EntryTypeUser){
         
         return [self initWithXcdatamodeld:kFormXcda andWithPersistentName:kFormDBName andWithEntryName:kUserEntry];
     }

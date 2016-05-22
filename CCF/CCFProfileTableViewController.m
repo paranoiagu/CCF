@@ -44,7 +44,7 @@
     defaultAvatar = [UIImage imageNamed:@"logo.jpg"];
     
     ccfapi = [[ForumApi alloc] init];
-    coreDateManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+    coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
     avatarCache = [NSMutableDictionary dictionary];
     
     if (cacheUsers == nil) {

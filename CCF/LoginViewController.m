@@ -151,7 +151,7 @@
                 [SVProgressHUD dismiss];
                 if (isSuccess) {
                     NSArray<Forum *> *needInsert = message;
-                    ForumCoreDataManager * formManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryForm];
+                    ForumCoreDataManager * formManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeForm];
                     [formManager insertData:needInsert operation:^(NSManagedObject *target, id src) {
                         FormEntry *newsInfo = (FormEntry*)target;
                         newsInfo.formId = [src valueForKey:@"formId"];

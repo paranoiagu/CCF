@@ -34,7 +34,7 @@
     if (self) {
 
         ccfapi = [[ForumApi alloc] init];
-        _coreDateManager = [[ForumCoreDataManager alloc] initWithCCFCoreDataEntry:CCFCoreDataEntryUser];
+        _coreDateManager = [[ForumCoreDataManager alloc] initWithEntryType:EntryTypeUser];
         
         [self.avatarImage setContentScaleFactor:[[UIScreen mainScreen] scale]];
         self.avatarImage.contentMode =  UIViewContentModeScaleAspectFit;

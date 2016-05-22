@@ -97,7 +97,6 @@
 		3AC65FEC1CF153C6000D3BDB /* ShowThreadPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FEB1CF153C6000D3BDB /* ShowThreadPage.m */; };
 		3AC65FEF1CF15414000D3BDB /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FEE1CF15414000D3BDB /* Thread.m */; };
 		3AC65FF21CF1547F000D3BDB /* SimpleThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FF11CF1547F000D3BDB /* SimpleThread.m */; };
-		3AC65FF51CF15500000D3BDB /* ForumDisplayPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC65FF41CF15500000D3BDB /* ForumDisplayPage.m */; };
 		3AEA1F2F1C364E7E00710BD6 /* CCFThreadListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */; };
 		3AEA1F371C365EA400710BD6 /* CCFShowThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEA1F361C365EA400710BD6 /* CCFShowThreadViewController.m */; };
 		3AEC539A1CB9529F00E50390 /* CCFThreadListTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC53991CB9529F00E50390 /* CCFThreadListTitleCell.m */; };
@@ -330,8 +329,6 @@
 		3AC65FEE1CF15414000D3BDB /* Thread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thread.m; sourceTree = "<group>"; };
 		3AC65FF01CF1547F000D3BDB /* SimpleThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleThread.h; sourceTree = "<group>"; };
 		3AC65FF11CF1547F000D3BDB /* SimpleThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleThread.m; sourceTree = "<group>"; };
-		3AC65FF31CF15500000D3BDB /* ForumDisplayPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumDisplayPage.h; sourceTree = "<group>"; };
-		3AC65FF41CF15500000D3BDB /* ForumDisplayPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumDisplayPage.m; sourceTree = "<group>"; };
 		3AEA1F2D1C364E7E00710BD6 /* CCFThreadListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFThreadListTableViewController.h; sourceTree = "<group>"; };
 		3AEA1F2E1C364E7E00710BD6 /* CCFThreadListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFThreadListTableViewController.m; sourceTree = "<group>"; };
 		3AEA1F351C365EA400710BD6 /* CCFShowThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFShowThreadViewController.h; sourceTree = "<group>"; };
@@ -856,8 +853,6 @@
 				3AC65FE51CF152B0000D3BDB /* Post.m */,
 				3AC65FEA1CF153C6000D3BDB /* ShowThreadPage.h */,
 				3AC65FEB1CF153C6000D3BDB /* ShowThreadPage.m */,
-				3AC65FF31CF15500000D3BDB /* ForumDisplayPage.h */,
-				3AC65FF41CF15500000D3BDB /* ForumDisplayPage.m */,
 				3AC65FE71CF15338000D3BDB /* NormalThread.h */,
 				3AC65FE81CF15338000D3BDB /* NormalThread.m */,
 				3AC65FED1CF15414000D3BDB /* Thread.h */,
@@ -1100,7 +1095,6 @@
 				3A3672AA1CAF6AF000756D8B /* CCFApiBaseViewController.m in Sources */,
 				3AC65FC51CF13AB6000D3BDB /* NSUserDefaults+Setting.m in Sources */,
 				3A7569AD1C42B179000486F4 /* CCFFavFormController.m in Sources */,
-				3AC65FF51CF15500000D3BDB /* ForumDisplayPage.m in Sources */,
 				3A256FA41CA5947000419D67 /* CCFShowPM.m in Sources */,
 				4D796B611C3BC17800B3C62D /* DrawerView.m in Sources */,
 				3A256FB01CA62FC600419D67 /* IGXMLNode+Children.m in Sources */,

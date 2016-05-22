@@ -21,6 +21,8 @@
 #import "UIStoryboard+CCF.h"
 #import "NSUserDefaults+Extensions.h"
 #import "UserProfile.h"
+#import "CCFShowThreadViewController.h"
+#import "NormalThread.h"
 
 @interface CCFMyProfileUITableViewController (){
     UserProfile * userProfile;
@@ -75,7 +77,7 @@
     if (section == 0) {
         return userProfile == nil ? 0 : 1;;
     } else if (section == 1){
-        return 4;
+        return 3;
     } else{
         return 3;
     }
@@ -99,8 +101,6 @@
         } else if (indexPath.row == 1){
             cell.textLabel.text = @"注销";
         } else if (indexPath.row == 2){
-            cell.textLabel.text = @"我收藏的主题";
-        } else if (indexPath.row == 3){
             cell.textLabel.text = @"我发表的主题";
         }
         return cell;
@@ -144,70 +144,15 @@
     } else if (indexPath.row == 2){
         
         UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
-        CCFFavThreadPostTableViewController * favThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFFavThreadPostTableViewController"];
-        [self.navigationController pushViewController:favThreadController animated:YES];
-        
-    } else if (indexPath.row == 3){
-        UIStoryboard * storyboard = [UIStoryboard mainStoryboard];
         CCFMyThreadTableViewController * myThreadController = [storyboard instantiateViewControllerWithIdentifier:@"CCFMyThreadTableViewController"];
         [self.navigationController pushViewController:myThreadController animated:YES];
+        
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
 }
 
 #pragma mark Controller跳转
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    //    if([segue.identifier isEqualToString:@"ShowThreadPosts"]){
-    //        CCFShowThreadViewController * controller = segue.destinationViewController;
-    //        self.transValueDelegate = (id<TransValueDelegate>)controller;
-    //
-    //
-    //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    //
-    //        CCFNormalThread * thread = nil;
-    //
-    //        NSInteger section = indexPath.section;
-    //
-    //        if ( section == 1) {
-    //            thread = self.threadTopList[indexPath.row];
-    //        } else if(section == 2){
-    //            thread = self.dataList[indexPath.row];
-    //        }
-    //
-    //
-    //        [self.transValueDelegate transValue:thread];
-    //
-    //    } else if ([segue.identifier isEqualToString:@"ShowChildForm"]){
-    //        CCFThreadListForChildFormUITableViewController * controller = segue.destinationViewController;
-    //        self.transValueDelegate = (id<TransValueDelegate>)controller;
-    //        [self.transValueDelegate transValue:transForm];
-    //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    //        [self.transValueDelegate transValue:childForms[indexPath.row]];
-    //
-    //    } else if ([segue.identifier isEqualToString:@"ShowUserProfile"]){
-    //        selectSegue = segue;
-    //    }
-    //
-    //    else if ([sender isKindOfClass:[UIButton class]]){
-    //        CCFProfileTableViewController * controller = segue.destinationViewController;
-    //        self.transValueDelegate = (id<TransValueDelegate>)controller;
-    //
-    //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    //
-    //        CCFNormalThread * thread = nil;
-    //
-    //        if (indexPath.section == 0) {
-    //            thread = self.threadTopList[indexPath.row];
-    //        } else{
-    //            thread = self.dataList[indexPath.row];
-    //        }
-    //
-    //        [self.transValueDelegate transValue:thread];
-    //    }
-}
-
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
